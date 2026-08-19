@@ -145,10 +145,60 @@ cal = calibration_table(SAMPLE)
 eq("calibration buckets", sorted(r["bucket"] for r in cal),
    ["8.0-8.4", "8.5-8.9", "9.0-9.4"])
 
+# ---- team name matching -------------------------------------------------
+from lib.teams import (  # noqa: E402
+    MUST_STAY_DISTINCT, VARIANTS, canonical, normalize, suggest,
+)
+
+# Names that must never collapse into each other. This is the check that
+# stops Ohio from being graded as Ohio State.
+for a, b in MUST_STAY_DISTINCT:
+    if normalize(a) == normalize(b):
+        FAILS.append(f"name collision: {a} and {b} both normalize to {normalize(a)}")
+
+# Every declared variant resolves to its canonical spelling.
+for canon_name, alts in VARIANTS.items():
+    for alt in alts:
+        eq(f"variant {alt}", canonical(alt, {canon_name}), canon_name)
+
+CFBD_SAMPLE = {
+    "Mississippi", "Mississippi State", "Ohio", "Ohio State", "Miami",
+    "Miami (OH)", "Washington", "Washington State", "San José State",
+    "San Diego State", "Hawai'i", "UT San Antonio", "Appalachian State",
+    "NC State", "North Carolina", "Louisiana", "Louisiana Monroe",
+    "Louisiana Tech", "LSU", "Texas A&M", "Sam Houston", "Connecticut",
+    "Massachusetts", "UCF", "South Florida", "Pittsburgh", "Army",
+    "Southern Mississippi", "Michigan", "Michigan State",
+}
+
+for src, want in [
+    ("Ole Miss", "Mississippi"), ("Mississippi State", "Mississippi State"),
+    ("Ohio", "Ohio"), ("Ohio State", "Ohio State"),
+    ("Miami", "Miami"), ("Miami (OH)", "Miami (OH)"), ("Miami Ohio", "Miami (OH)"),
+    ("San Jose State", "San José State"), ("Hawaii", "Hawai'i"),
+    ("UTSA", "UT San Antonio"), ("App State", "Appalachian State"),
+    ("North Carolina State", "NC State"), ("UL Monroe", "Louisiana Monroe"),
+    ("Louisiana-Lafayette", "Louisiana"), ("Louisiana State", "LSU"),
+    ("Southern Miss", "Southern Mississippi"), ("Central Florida", "UCF"),
+    ("USF", "South Florida"), ("Pitt", "Pittsburgh"), ("UConn", "Connecticut"),
+    ("UMass", "Massachusetts"), ("Sam Houston State", "Sam Houston"),
+    ("Army West Point", "Army"), ("Washington", "Washington"),
+    ("Washington State", "Washington State"), ("Michigan", "Michigan"),
+    ("Texas A and M", "Texas A&M"),
+]:
+    eq(f"canonical({src})", canonical(src, CFBD_SAMPLE), want)
+
+# A name we cannot place must come back None. Silence is the bug we are
+# guarding against, so returning a plausible wrong answer is a failure.
+for bad in ["Nowhere Tech", "Fake State", "Springfield A&M", ""]:
+    eq(f"unknown {bad!r} refuses to match", canonical(bad, CFBD_SAMPLE), None)
+
+eq("suggest returns candidates", bool(suggest("Mississippi Stat", CFBD_SAMPLE)), True)
+
 if FAILS:
     print(f"FAILED {len(FAILS)} check(s):")
     for f in FAILS:
         print("  " + f)
     raise SystemExit(1)
 
-print("All grading checks passed.")
+print("All grading and name-matching checks passed.")

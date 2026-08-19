@@ -26,39 +26,20 @@ from lib.scoring import (  # noqa: E402
     payout,
     summarize,
 )
-
-# The Odds API and CFBD do not always spell a school the same way.
-ALIASES = {
-    "ole miss": "mississippi",
-    "miami (fl)": "miami",
-    "miami (oh)": "miami (oh)",
-    "usc": "usc",
-    "ul monroe": "louisiana monroe",
-    "ul lafayette": "louisiana",
-    "sam houston state": "sam houston",
-    "app state": "appalachian state",
-    "utsa": "ut san antonio",
-    "hawai'i": "hawaii",
-    "san jose state": "san josé state",
-}
+from lib.teams import canonical, normalize, suggest  # noqa: E402
 
 
-def norm(name: str) -> str:
-    n = (name or "").strip().lower()
-    n = n.replace("&", "and").replace(".", "").replace("'", "'")
-    n = " ".join(n.split())
-    return ALIASES.get(n, n)
-
-
-def build_result_index(cfbd_games: list[dict]) -> dict:
-    """Key finals by a normalized (home, away) pair."""
-    idx = {}
+def build_result_index(cfbd_games: list[dict]) -> tuple[dict, set[str]]:
+    """Key finals by a normalized (home, away) pair, plus the team universe."""
+    idx: dict = {}
+    known: set[str] = set()
     for g in cfbd_games:
         home = g.get("homeTeam") or g.get("home_team")
         away = g.get("awayTeam") or g.get("away_team")
         if not home or not away:
             continue
-        idx[(norm(home), norm(away))] = {
+        known.update((home, away))
+        idx[(normalize(home), normalize(away))] = {
             "home_team": home,
             "away_team": away,
             "home_score": g.get("homePoints", g.get("home_points")),
@@ -68,23 +49,37 @@ def build_result_index(cfbd_games: list[dict]) -> dict:
             "completed": bool(g.get("completed")),
             "neutral_site": bool(g.get("neutralSite", g.get("neutral_site"))),
         }
-    return idx
+    return idx, known
 
 
-def match_game(pick: dict, idx: dict) -> dict | None:
-    """Match on the matchup string, both orientations."""
-    mu = pick.get("matchup", "")
-    if " @ " in mu:
-        away, home = mu.split(" @ ", 1)
-    elif " vs " in mu:
-        away, home = mu.split(" vs ", 1)
+def split_matchup(matchup: str) -> tuple[str, str] | None:
+    if " @ " in matchup:
+        away, home = matchup.split(" @ ", 1)
+    elif " vs " in matchup:
+        away, home = matchup.split(" vs ", 1)
     else:
         return None
-    key = (norm(home), norm(away))
-    if key in idx:
-        return idx[key]
-    flipped = (norm(away), norm(home))
-    return idx.get(flipped)
+    return away.strip(), home.strip()
+
+
+def match_game(pick: dict, idx: dict, known: set[str]) -> dict | None:
+    """
+    Resolve a pick's matchup to a CFBD game. Tries both orientations, since
+    a neutral site game can be listed either way by either source.
+    """
+    parts = split_matchup(pick.get("matchup", ""))
+    if not parts:
+        return None
+    away_raw, home_raw = parts
+
+    home = canonical(home_raw, known) or home_raw
+    away = canonical(away_raw, known) or away_raw
+
+    for key in ((normalize(home), normalize(away)),
+                (normalize(away), normalize(home))):
+        if key in idx:
+            return idx[key]
+    return None
 
 
 def rebuild_memory(picks: list[dict], season: int) -> dict:
@@ -158,15 +153,18 @@ def main() -> int:
 
     cfbd = CFBDClient()
     idx: dict = {}
+    known: set[str] = set()
     for wk in weeks:
         try:
-            idx.update(build_result_index(cfbd.games(args.season, week=wk)))
+            i, k = build_result_index(cfbd.games(args.season, week=wk))
+            idx.update(i)
+            known.update(k)
         except CFBDError as e:
             print(f"WARNING: could not load week {wk}: {e}", file=sys.stderr)
 
     graded_now, unmatched = 0, []
     for p in pending:
-        game = match_game(p, idx)
+        game = match_game(p, idx, known)
         if not game:
             unmatched.append(p["matchup"])
             continue
@@ -204,9 +202,28 @@ def main() -> int:
     }
     if not args.quiet:
         print(json.dumps(out, indent=2))
+
     if unmatched:
-        print(f"WARNING: {len(set(unmatched))} matchups did not map to a CFBD game. "
-              "Check ALIASES in grade_results.py.", file=sys.stderr)
+        # An unmatched pick never settles. It sits pending forever, quietly
+        # missing from the record, which is the most dangerous failure this
+        # system has. Make it loud and make it non-zero.
+        print(f"\nUNMATCHED: {len(set(unmatched))} matchups did not map to a "
+              "CFBD game, so those picks are still pending:", file=sys.stderr)
+        for mu in sorted(set(unmatched)):
+            parts = split_matchup(mu)
+            hints = ""
+            if parts and known:
+                bad = [t for t in parts if canonical(t, known) is None]
+                if bad:
+                    hints = "; ".join(
+                        f"{t!r} -> try {', '.join(suggest(t, known)) or 'no close match'}"
+                        for t in bad
+                    )
+            print(f"  {mu}{'  (' + hints + ')' if hints else ''}", file=sys.stderr)
+        print("\nAdd the spelling to VARIANTS in scripts/lib/teams.py and rerun. "
+              "Never hand-edit a result into picks.json.", file=sys.stderr)
+        return 5
+
     return 0
 
 

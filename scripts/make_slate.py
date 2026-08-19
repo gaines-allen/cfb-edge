@@ -29,33 +29,7 @@ from lib.model import (  # noqa: E402
     project_game,
     suggested_confidence,
 )
-
-ALIASES = {
-    "Ole Miss": "Mississippi",
-    "Miami": "Miami",
-    "Louisiana-Monroe": "Louisiana Monroe",
-    "Louisiana-Lafayette": "Louisiana",
-    "UL Monroe": "Louisiana Monroe",
-    "App State": "Appalachian State",
-    "Sam Houston State": "Sam Houston",
-    "Hawai'i": "Hawai'i",
-    "San Jose State": "San José State",
-    "UTSA": "UT San Antonio",
-}
-
-
-def canon(name: str, known: set[str]) -> str:
-    """Map an Odds API school name onto the CFBD spelling."""
-    if name in known:
-        return name
-    if name in ALIASES and ALIASES[name] in known:
-        return ALIASES[name]
-    low = {k.lower(): k for k in known}
-    if name.lower() in low:
-        return low[name.lower()]
-    # Last resort: unique prefix match, and only if it is unambiguous.
-    hits = [k for k in known if k.lower().startswith(name.lower()[:6])]
-    return hits[0] if len(hits) == 1 else name
+from lib.teams import canonical, suggest  # noqa: E402
 
 
 def find(lines: list[dict], market: str, side: str) -> dict | None:
@@ -114,9 +88,23 @@ def main() -> int:
             neutral_by_pair[(h, a)] = bool(g.get("neutralSite"))
 
     rows = []
+    unmapped: dict[str, list[str]] = {}
+    skipped = []
+
     for g in games:
-        home = canon(g["home_team"], known)
-        away = canon(g["away_team"], known)
+        home = canonical(g["home_team"], known)
+        away = canonical(g["away_team"], known)
+
+        # No guessing. A name we cannot place gets reported and the game is
+        # left off the slate, because a wrong rating lookup produces a
+        # confident number for the wrong team, which is worse than a gap.
+        if home is None or away is None:
+            for raw, mapped in ((g["home_team"], home), (g["away_team"], away)):
+                if mapped is None and raw not in unmapped:
+                    unmapped[raw] = suggest(raw, known)
+            skipped.append(f"{g['away_team']} @ {g['home_team']}")
+            continue
+
         neutral = neutral_by_pair.get((home, away), False)
 
         proj = project_game(home, away, book, neutral=neutral, hfa=args.hfa)
@@ -192,6 +180,8 @@ def main() -> int:
         "warning": age_note or None,
         "games_on_board": len(games),
         "games_with_candidates": len(rows),
+        "games_skipped_unmapped": skipped,
+        "unmapped_names": unmapped,
         "min_edge": args.min_edge,
         "slate": rows,
     }
@@ -201,6 +191,7 @@ def main() -> int:
         "week": week,
         "games_on_board": len(games),
         "games_with_candidates": len(rows),
+        "games_skipped_unmapped": len(skipped),
         "top": [
             {"matchup": r["matchup"],
              "best": r["candidates"][0]["side"],
@@ -211,6 +202,18 @@ def main() -> int:
         ],
         "warning": age_note or None,
     }, indent=2))
+
+    if unmapped:
+        print("\nNAME MAPPING FAILED for these schools, so their games were "
+              "left off the slate:", file=sys.stderr)
+        for raw, hints in sorted(unmapped.items()):
+            hint = f"  did you mean: {', '.join(hints)}" if hints else \
+                   "  no close match in the CFBD team list"
+            print(f"  {raw!r}\n{hint}", file=sys.stderr)
+        print("\nFix by adding the spelling to VARIANTS in scripts/lib/teams.py, "
+              "then rerun. Do not hand-edit the slate.", file=sys.stderr)
+        return 4
+
     return 0
 
 
