@@ -1,0 +1,97 @@
+name: Daily update
+
+# What runs here is only the deterministic half of the system: pull the
+# FanDuel board, settle anything that finished, rebuild the page, commit.
+# Making the picks needs an agent doing actual research, so that runs on
+# Wednesday from Claude, not from here.
+
+on:
+  schedule:
+    # 07:00 America/Chicago, every day. Line movement plus overnight grading.
+    - cron: "0 12 * * *"
+    # Saturday 10:00 and 12:00 Chicago. These two runs are what capture
+    # closing lines before the noon and afternoon kicks, so they matter more
+    # than any other pull in the week.
+    - cron: "0 15 * * 6"
+    - cron: "0 17 * * 6"
+    # Sunday 09:00 Chicago. Everything from Saturday is final by now.
+    - cron: "0 14 * * 0"
+  workflow_dispatch:
+    inputs:
+      markets:
+        description: "Market set to pull"
+        required: false
+        default: "default"
+        type: choice
+        options: [default, all]
+      season:
+        description: "Season to grade"
+        required: false
+        default: "2026"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Pull the FanDuel board
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          python3 scripts/fetch_odds.py --markets "${{ inputs.markets || 'default' }}"
+
+      - name: Grade anything that finished
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          python3 scripts/grade_results.py --season "${{ inputs.season || '2026' }}"
+
+      - name: Rebuild the page
+        run: python3 scripts/build_site.py
+
+      - name: Commit
+        run: |
+          git config user.name "cfb-edge-bot"
+          git config user.email "actions@github.com"
+          git add data site
+          if git diff --staged --quiet; then
+            echo "Nothing moved."
+          else
+            git commit -m "Daily update: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
