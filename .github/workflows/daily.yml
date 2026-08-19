@@ -49,17 +49,35 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # These two need API keys and reach out to the network, so a bad day
+      # upstream must not stop the page from rebuilding and deploying. A
+      # stale board on a live page beats a dead page.
       - name: Pull the FanDuel board
+        id: odds
+        continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           python3 scripts/fetch_odds.py --markets "${{ inputs.markets || 'default' }}"
 
       - name: Grade anything that finished
+        id: grade
+        continue-on-error: true
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           python3 scripts/grade_results.py --season "${{ inputs.season || '2026' }}"
+
+      - name: Check the grading math
+        run: python3 scripts/selftest.py
+
+      - name: Report what failed
+        if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure'
+        run: |
+          echo "### Upstream step failed" >> $GITHUB_STEP_SUMMARY
+          echo "Odds pull: ${{ steps.odds.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "Grading: ${{ steps.grade.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "Most often this means ODDS_API_KEY or CFBD_API_KEY is missing from repository secrets, or the monthly credit quota is spent." >> $GITHUB_STEP_SUMMARY
 
       - name: Rebuild the page
         run: python3 scripts/build_site.py
