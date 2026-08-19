@@ -3,9 +3,13 @@
 odds-scout's tool. Pulls the FanDuel board, snapshots every number we care
 about, and stamps closing lines onto any pick whose game has kicked off.
 
-    python3 scripts/fetch_odds.py                 # full board + snapshot
-    python3 scripts/fetch_odds.py --close-only    # just stamp closers
-    python3 scripts/fetch_odds.py --markets all   # include 2H (costs 7 credits)
+    python3 scripts/fetch_odds.py                 # full board, 3 credits
+    python3 scripts/fetch_odds.py --close-only    # just stamp closers, free
+    python3 scripts/fetch_odds.py --halves ID,ID  # add 1H for those games
+
+The bulk endpoint only serves spreads, totals and moneyline. Half markets
+come from the single-event endpoint at 2 credits a game, so they are opt in
+per event rather than pulled across the board.
 """
 
 from __future__ import annotations
@@ -20,8 +24,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
 from lib.odds_api import (  # noqa: E402
-    ALL_MARKETS,
-    DEFAULT_MARKETS,
+    FEATURED_MARKETS,
+    PERIOD_MARKETS,
     Game,
     OddsAPIError,
     OddsClient,
@@ -111,6 +115,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--markets", default="default", choices=["default", "all"])
     ap.add_argument("--close-only", action="store_true")
+    ap.add_argument("--halves", default="",
+                    help="comma separated event ids to also pull half markets "
+                         "for. Costs 2 credits per event, so pass only the "
+                         "games actually being considered, never the board.")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
 
@@ -125,13 +133,30 @@ def main() -> int:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
 
-    markets = ALL_MARKETS if args.markets == "all" else DEFAULT_MARKETS
+    markets = FEATURED_MARKETS
 
     try:
         games = client.board(markets=markets)
     except OddsAPIError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 3
+
+    # Half markets, only for the events explicitly asked for. The bulk
+    # endpoint rejects them, and pulling them board-wide would burn the
+    # monthly credit allowance in a single run.
+    want_halves = [e.strip() for e in args.halves.split(",") if e.strip()]
+    period_markets = PERIOD_MARKETS if args.markets == "all" else [
+        "spreads_h1", "totals_h1"]
+    halves_found, halves_empty = 0, 0
+
+    for g in games:
+        if g.event_id in want_halves:
+            extra = client.event_odds(g.event_id, markets=period_markets)
+            if extra and extra.lines:
+                g.lines.extend(extra.lines)
+                halves_found += 1
+            else:
+                halves_empty += 1
 
     payload = []
     for g in games:
@@ -149,6 +174,9 @@ def main() -> int:
     out = {
         "games": len(payload),
         "markets": markets,
+        "half_markets_requested": len(want_halves),
+        "half_markets_found": halves_found,
+        "half_markets_not_posted": halves_empty,
         "closing_lines_stamped": stamped,
         "credits_remaining": quota["remaining"],
         "fetched_at": store.now_iso(),

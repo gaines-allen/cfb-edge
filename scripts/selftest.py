@@ -8,6 +8,7 @@ than no grader, because it teaches the handicapper the wrong lesson.
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -194,6 +195,49 @@ for bad in ["Nowhere Tech", "Fake State", "Springfield A&M", ""]:
     eq(f"unknown {bad!r} refuses to match", canonical(bad, CFBD_SAMPLE), None)
 
 eq("suggest returns candidates", bool(suggest("Mississippi Stat", CFBD_SAMPLE)), True)
+
+# Python collapses a duplicate dict key at parse time, so a second entry for
+# a school silently deletes the first one's variants. That bug shipped once.
+# It can only be caught by reading the source.
+_teams_src = (Path(__file__).resolve().parent / "lib" / "teams.py").read_text()
+_keys = re.findall(r'^\s{4}"([^"]+)":\s*\[', _teams_src, re.M)
+_dupes = sorted({k for k in _keys if _keys.count(k) > 1})
+eq("no duplicate keys in VARIANTS", _dupes, [])
+
+# Names taken from a real FanDuel board, which returns the mascot attached.
+# This is the regression test for the bug that would have broken week zero.
+BOARD_SAMPLE = {
+    "Alabama Crimson Tide": "Alabama",
+    "TCU Horned Frogs": "TCU",
+    "Arizona State Sun Devils": "Arizona State",
+    "Arizona Wildcats": "Arizona",
+    "Ohio State Buckeyes": "Ohio State",
+    "Ohio Bobcats": "Ohio",
+    "Miami (FL) Hurricanes": "Miami",
+    "Miami (OH) RedHawks": "Miami (OH)",
+    "Hawaii Rainbow Warriors": "Hawai'i",
+    "Appalachian State Mountaineers": "Appalachian State",
+    "Southern Mississippi Golden Eagles": "Southern Mississippi",
+    "Sam Houston State Bearkats": "Sam Houston",
+    "San Jose State Spartans": "San José State",
+    "Ole Miss Rebels": "Mississippi",
+    "UTSA Roadrunners": "UT San Antonio",
+    "NC State Wolfpack": "NC State",
+    "UMass Minutemen": "Massachusetts",
+    "Texas A&M Aggies": "Texas A&M",
+    "Louisiana Ragin Cajuns": "Louisiana",
+    "Army Black Knights": "Army",
+    "Washington State Cougars": "Washington State",
+    "Washington Huskies": "Washington",
+}
+BOARD_KNOWN = set(BOARD_SAMPLE.values()) | {
+    "Mississippi State", "Michigan", "Michigan State", "Louisiana Monroe",
+}
+for board_name, want in BOARD_SAMPLE.items():
+    eq(f"board {board_name}", canonical(board_name, BOARD_KNOWN), want)
+
+eq("board garbage refuses to match",
+   canonical("Nowhere Tech Fighting Nobodies", BOARD_KNOWN), None)
 
 if FAILS:
     print(f"FAILED {len(FAILS)} check(s):")
