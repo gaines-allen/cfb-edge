@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CFB Edge - weekly card and running ledger</title>
+<style>
+:root {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-2: #212120;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --hair: rgba(255,255,255,0.10);
+  --good: #0ca30c;
+  --critical: #d03b3b;
+  --warning: #fab219;
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font-family: var(--font); font-size: 15px; line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 15px; margin: 34px 0 12px; color: var(--ink-2); font-weight: 600; }
+p { margin: 0 0 12px; }
+.sub { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+header.top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid var(--hair);
+}
+
+.hero { display: flex; gap: 28px; flex-wrap: wrap; margin: 22px 0 6px; align-items: flex-end; }
+.hero .big { font-size: 54px; font-weight: 650; line-height: 1; letter-spacing: -0.03em; }
+.hero .lbl { color: var(--muted); font-size: 12px; text-transform: uppercase;
+             letter-spacing: 0.08em; margin-bottom: 6px; }
+.stat { min-width: 92px; }
+.stat .v { font-size: 21px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pos { color: var(--good); } .neg { color: var(--critical); } .flat { color: var(--ink-2); }
+
+.weekbar { display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0 4px; }
+.weekbar button {
+  background: var(--surface); color: var(--ink-2); border: 1px solid var(--hair);
+  border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 13px; cursor: pointer;
+}
+.weekbar button[aria-pressed="true"] { background: var(--s1); color: #fff; border-color: var(--s1); }
+.weekbar button:hover { border-color: var(--muted); }
+
+.card {
+  background: var(--surface); border: 1px solid var(--hair); border-radius: 12px;
+  padding: 16px 18px; margin-bottom: 12px;
+}
+.card .row1 { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.card .play { font-size: 18px; font-weight: 650; letter-spacing: -0.01em; }
+.card .mu { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.card .why { color: var(--ink-2); margin-top: 12px; font-size: 14px; }
+.meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
+        padding-top: 12px; border-top: 1px solid var(--grid); }
+.meta div { font-size: 12px; color: var(--muted); }
+.meta div b { display: block; color: var(--ink); font-size: 15px; font-weight: 600;
+              font-variant-numeric: tabular-nums; }
+.tags { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 11px; color: var(--muted); border: 1px solid var(--grid);
+       border-radius: 5px; padding: 2px 7px; }
+
+.pill { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px;
+        border-radius: 5px; border: 1px solid; white-space: nowrap; }
+.pill.win { color: var(--good); border-color: var(--good); }
+.pill.loss { color: var(--critical); border-color: var(--critical); }
+.pill.push { color: var(--ink-2); border-color: var(--axis); }
+.pill.pending { color: var(--warning); border-color: var(--warning); }
+.pill.void { color: var(--muted); border-color: var(--grid); }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--grid); }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase;
+     letter-spacing: 0.06em; }
+td.num, th.num { font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--surface-2); }
+
+figure { margin: 0 0 8px; background: var(--surface); border: 1px solid var(--hair);
+         border-radius: 12px; padding: 16px 18px 10px; }
+figcaption { color: var(--muted); font-size: 12px; margin-top: 8px; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.ax { stroke: var(--axis); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 11px; font-family: var(--font);
+        font-variant-numeric: tabular-nums; }
+.lbl { fill: var(--ink-2); font-size: 11px; font-family: var(--font); }
+.dlabel { fill: var(--ink); font-size: 11px; font-family: var(--font); font-weight: 600;
+          font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2);
+          margin-bottom: 10px; }
+.legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block;
+            margin-right: 6px; vertical-align: -1px; }
+
+.lesson { border-left: 2px solid var(--s3); padding: 2px 0 2px 14px; margin-bottom: 16px; }
+.lesson .when { color: var(--muted); font-size: 12px; }
+.empty { color: var(--muted); font-size: 14px; padding: 20px 0; }
+
+footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--hair);
+         color: var(--muted); font-size: 12.5px; }
+footer .rg { color: var(--ink-2); }
+
+.tip { position: fixed; pointer-events: none; opacity: 0; transition: opacity .12s;
+       background: var(--surface-2); border: 1px solid var(--hair); border-radius: 8px;
+       padding: 8px 11px; font-size: 12.5px; color: var(--ink); z-index: 20;
+       box-shadow: 0 6px 20px rgba(0,0,0,.5); max-width: 240px; }
+.tip b { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 700px) {
+  .hero .big { font-size: 42px; }
+  table.stack thead { display: none; }
+  table.stack tr { display: block; border-bottom: 1px solid var(--grid); padding: 10px 0; }
+  table.stack td { display: flex; justify-content: space-between; border: 0; padding: 3px 0; }
+  table.stack td::before { content: attr(data-l); color: var(--muted); font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>CFB Edge</h1>
+      <p class="sub">Six plays a week, published only above <span id="thr"></span> out of 10.
+         Every pick, every number, and every reason, graded in public.</p>
+    </div>
+  </header>
+
+  <div class="hero" id="hero"></div>
+
+  <h2>The card</h2>
+  <div class="weekbar" id="weekbar"></div>
+  <div id="cards"></div>
+
+  <h2>Does the confidence number mean anything</h2>
+  <figure>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>Win rate</span>
+      <span><i style="background:var(--warning)"></i>Breakeven at -110 (52.4%)</span>
+    </div>
+    <svg id="calChart" viewBox="0 0 720 260" role="img"
+         aria-label="Win rate by confidence bucket against the 52.4 percent breakeven line"></svg>
+    <figcaption>Includes shadow picks rated below the publish threshold, which is how the
+      threshold gets tested rather than assumed. Units on the below-8 row are notional at
+      1 unit, since nothing below the threshold is ever staked.</figcaption>
+  </figure>
+  <table id="calTable" class="stack"></table>
+
+  <h2>Units over time</h2>
+  <figure>
+    <svg id="unitsChart" viewBox="0 0 720 240" role="img"
+         aria-label="Cumulative units won and lost across every settled pick"></svg>
+    <figcaption>Cumulative net units across settled live plays, in settlement order.</figcaption>
+  </figure>
+
+  <h2>By week</h2>
+  <table id="weeklyTable" class="stack"></table>
+
+  <h2>By market and period</h2>
+  <table id="marketTable" class="stack"></table>
+
+  <h2>What the reasons have been worth</h2>
+  <table id="factorTable" class="stack"></table>
+
+  <h2>What the grader learned</h2>
+  <div id="lessons"></div>
+
+  <footer>
+    <p id="stamp"></p>
+    <p class="rg">These are opinions on a football game, not investment advice. The model is
+      being tested in public and it has been wrong. Bet only what you can afford to lose.
+      If gambling stops being fun, call 1-800-GAMBLER.</p>
+  </footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const DATA = {"generated_at":"2026-08-19T00:02:24+00:00","board_fetched_at":null,"credits_remaining":null,"live_threshold":8.0,"target_picks":6,"breakeven":52.4,"overall":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null},"overall_shadow":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null},"pending_count":0,"weeks":[],"current":{"season":null,"week":null},"weekly":[],"cumulative":[],"calibration":[],"by_market":[],"by_period":[],"by_factor":[],"lessons":[],"picks":[]};
+
+const $ = s => document.querySelector(s);
+const el = (t, c, h) => { const e = document.createElement(t);
+  if (c) e.className = c; if (h !== undefined) e.innerHTML = h; return e; };
+const esc = s => String(s == null ? "" : s)
+  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const sgn = n => (n > 0 ? "pos" : n < 0 ? "neg" : "flat");
+const su = n => (n > 0 ? "+" : "") + Number(n).toFixed(2);
+
+$("#thr").textContent = DATA.live_threshold.toFixed(1);
+
+/* ---------- hero ---------- */
+(function () {
+  const o = DATA.overall, h = $("#hero");
+  h.appendChild(el("div", "stat", `<div class="lbl">Units</div>
+    <div class="big num ${sgn(o.units)}">${su(o.units || 0)}</div>`));
+  const stats = [
+    ["Record", `${o.wins || 0}-${o.losses || 0}${o.pushes ? "-" + o.pushes : ""}`, ""],
+    ["Win rate", o.picks ? (o.win_pct || 0).toFixed(1) + "%" : "n/a",
+      !o.picks ? "" : (o.win_pct || 0) >= DATA.breakeven ? "pos" : "neg"],
+    ["ROI", o.picks ? (o.roi || 0).toFixed(1) + "%" : "n/a", o.picks ? sgn(o.roi) : ""],
+    ["Avg CLV", o.avg_clv == null ? "n/a" : su(o.avg_clv) + " pts",
+      o.avg_clv == null ? "" : sgn(o.avg_clv)],
+    ["Beat close", o.beat_close_pct == null ? "n/a" : o.beat_close_pct.toFixed(0) + "%", ""],
+    ["Pending", String(DATA.pending_count || 0), ""],
+  ];
+  stats.forEach(([l, v, c]) => h.appendChild(
+    el("div", "stat", `<div class="lbl">${l}</div><div class="v ${c}">${v}</div>`)));
+})();
+
+/* ---------- week bar + cards ---------- */
+let activeWeek = DATA.current && DATA.current.week;
+
+function renderWeekbar() {
+  const bar = $("#weekbar");
+  bar.innerHTML = "";
+  if (!DATA.weeks.length) return;
+  DATA.weeks.slice().reverse().forEach(w => {
+    const b = el("button", null, "Week " + w.week);
+    b.setAttribute("aria-pressed", String(w.week === activeWeek));
+    b.onclick = () => { activeWeek = w.week; renderWeekbar(); renderCards(); };
+    bar.appendChild(b);
+  });
+}
+
+function renderCards() {
+  const box = $("#cards");
+  box.innerHTML = "";
+  const rows = DATA.picks.filter(p => p.live && p.week === activeWeek);
+  if (!rows.length) {
+    box.appendChild(el("p", "empty",
+      "No live plays logged for this week yet. A short card is the correct outcome when the slate is priced well."));
+    return;
+  }
+  rows.forEach(p => {
+    const c = el("div", "card");
+    const r = String(p.result || "pending");
+    c.appendChild(el("div", "row1", `
+      <div>
+        <div class="play">${esc(p.title)}</div>
+        <div class="mu">${esc(p.matchup)}${p.final_score ? " &middot; " + esc(p.final_score) : ""}</div>
+      </div>
+      <span class="pill ${r}">${esc(p.result_label)}</span>`));
+    c.appendChild(el("div", "why", esc(p.rationale)));
+
+    const bits = [
+      ["Confidence", Number(p.confidence).toFixed(1)],
+      ["Units", Number(p.units).toFixed(1) + "u"],
+      ["Model", p.model_number == null ? "n/a" : Number(p.model_number).toFixed(1)],
+      ["Edge", p.edge == null ? "n/a" : su(p.edge) + " pts"],
+      ["Closed", p.close_line == null ? "open" : Number(p.close_line).toFixed(1)],
+      ["CLV", p.clv_points == null ? "n/a" : su(p.clv_points) + " pts"],
+      ["Net", r === "pending" ? "-" : su(p.units_net) + "u"],
+    ];
+    const m = el("div", "meta");
+    bits.forEach(([l, v], i) => {
+      const cls = (i === 5 && p.clv_points != null) ? sgn(p.clv_points)
+                : (i === 6 && r !== "pending") ? sgn(p.units_net) : "";
+      m.appendChild(el("div", null, `${l}<b class="${cls}">${v}</b>`));
+    });
+    c.appendChild(m);
+
+    if (p.factors && p.factors.length) {
+      const t = el("div", "tags");
+      p.factors.forEach(f => t.appendChild(el("span", "tag", esc(f.replace(/_/g, " ")))));
+      c.appendChild(t);
+    }
+    box.appendChild(c);
+  });
+}
+
+/* ---------- tooltip ---------- */
+const tip = $("#tip");
+function showTip(e, html) {
+  tip.innerHTML = html; tip.style.opacity = "1";
+  const pad = 14;
+  let x = e.clientX + pad, y = e.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - pad;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => { tip.style.opacity = "0"; };
+
+/* ---------- calibration chart ---------- */
+(function () {
+  const svg = $("#calChart"), rows = DATA.calibration || [];
+  const W = 720, H = 260, L = 46, R = 16, T = 16, B = 46;
+  const pw = W - L - R, ph = H - T - B;
+  if (!rows.length) {
+    svg.setAttribute("viewBox", `0 0 ${W} 52`);
+    svg.innerHTML = `<text class="lbl" x="4" y="26">Nothing graded yet, so there is nothing to calibrate.</text>`;
+    return;
+  }
+  const ns = "http://www.w3.org/2000/svg";
+  const mk = (n, a) => { const e = document.createElementNS(ns, n);
+    for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const y = v => T + ph - (v / 100) * ph;
+  const frag = document.createDocumentFragment();
+
+  [0, 25, 50, 75, 100].forEach(v => {
+    frag.appendChild(mk("line", { class: "gl", x1: L, x2: L + pw, y1: y(v), y2: y(v) }));
+    const t = mk("text", { class: "tick", x: L - 8, y: y(v) + 4, "text-anchor": "end" });
+    t.textContent = v + "%"; frag.appendChild(t);
+  });
+
+  const step = pw / rows.length, bw = Math.min(74, step * 0.56);
+  rows.forEach((r, i) => {
+    const cx = L + step * (i + 0.5);
+    const h = Math.max(2, (r.win_pct / 100) * ph);
+    const bar = mk("rect", { x: cx - bw / 2, y: y(r.win_pct), width: bw, height: h,
+      rx: 4, fill: "var(--s1)" });
+    bar.addEventListener("mousemove", e => showTip(e,
+      `<b>${esc(r.bucket)}</b><br>${r.wins}-${r.losses}${r.pushes ? "-" + r.pushes : ""}
+       on ${r.picks} picks<br>Win rate <b>${r.win_pct.toFixed(1)}%</b><br>
+       Units <b>${su(r.units)}</b>`));
+    bar.addEventListener("mouseleave", hideTip);
+    frag.appendChild(bar);
+
+    const v = mk("text", { class: "dlabel", x: cx, y: y(r.win_pct) - 7,
+      "text-anchor": "middle" });
+    v.textContent = r.win_pct.toFixed(0) + "%"; frag.appendChild(v);
+
+    const lab = mk("text", { class: "tick", x: cx, y: T + ph + 18, "text-anchor": "middle" });
+    lab.textContent = r.bucket; frag.appendChild(lab);
+    const n = mk("text", { class: "tick", x: cx, y: T + ph + 33, "text-anchor": "middle" });
+    n.textContent = "n=" + r.picks; frag.appendChild(n);
+  });
+
+  frag.appendChild(mk("line", { x1: L, x2: L + pw, y1: y(DATA.breakeven), y2: y(DATA.breakeven),
+    stroke: "var(--warning)", "stroke-width": 2, "stroke-dasharray": "5 4" }));
+  frag.appendChild(mk("line", { class: "ax", x1: L, x2: L + pw, y1: T + ph, y2: T + ph }));
+  svg.appendChild(frag);
+})();
+
+/* ---------- units chart ---------- */
+(function () {
+  const svg = $("#unitsChart"), pts = DATA.cumulative || [];
+  const W = 720, H = 240, L = 46, R = 16, T = 16, B = 30;
+  const pw = W - L - R, ph = H - T - B;
+  const ns = "http://www.w3.org/2000/svg";
+  const mk = (n, a) => { const e = document.createElementNS(ns, n);
+    for (const k in a) e.setAttribute(k, a[k]); return e; };
+  if (pts.length < 1) {
+    svg.setAttribute("viewBox", `0 0 ${W} 52`);
+    svg.innerHTML = `<text class="lbl" x="4" y="26">Nothing settled yet.</text>`;
+    return;
+  }
+  const vals = pts.map(p => p.units).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const pad = Math.max(1, (hi - lo) * 0.15); lo -= pad; hi += pad;
+  const x = i => L + (pts.length === 1 ? pw / 2 : (i / (pts.length - 1)) * pw);
+  const y = v => T + ph - ((v - lo) / (hi - lo)) * ph;
+  const frag = document.createDocumentFragment();
+
+  [lo, (lo + hi) / 2, hi].forEach(v => {
+    frag.appendChild(mk("line", { class: "gl", x1: L, x2: L + pw, y1: y(v), y2: y(v) }));
+    const t = mk("text", { class: "tick", x: L - 8, y: y(v) + 4, "text-anchor": "end" });
+    t.textContent = v.toFixed(1) + "u"; frag.appendChild(t);
+  });
+  if (lo < 0 && hi > 0) {
+    frag.appendChild(mk("line", { x1: L, x2: L + pw, y1: y(0), y2: y(0),
+      stroke: "var(--axis)", "stroke-width": 1.5 }));
+  }
+
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.units).toFixed(1)}`).join(" ");
+  frag.appendChild(mk("path", { d, fill: "none", stroke: "var(--s1)", "stroke-width": 2,
+    "stroke-linejoin": "round", "stroke-linecap": "round" }));
+
+  pts.forEach((p, i) => {
+    const c = mk("circle", { cx: x(i), cy: y(p.units), r: 4.5,
+      fill: p.result === "win" ? "var(--good)" : p.result === "loss" ? "var(--critical)" : "var(--muted)",
+      stroke: "var(--surface)", "stroke-width": 2 });
+    c.addEventListener("mousemove", e => showTip(e,
+      `<b>${esc(p.label)}</b><br>${esc(String(p.result).toUpperCase())}<br>
+       Running <b>${su(p.units)}u</b>`));
+    c.addEventListener("mouseleave", hideTip);
+    frag.appendChild(c);
+  });
+  svg.appendChild(frag);
+})();
+
+/* ---------- tables ---------- */
+function table(sel, cols, rows, emptyMsg) {
+  const t = $(sel);
+  if (!rows.length) { t.outerHTML = `<p class="empty">${emptyMsg}</p>`; return; }
+  const head = "<thead><tr>" + cols.map(c =>
+    `<th class="${c.num ? "num" : ""}">${c.h}</th>`).join("") + "</tr></thead>";
+  const body = "<tbody>" + rows.map(r => "<tr>" + cols.map(c => {
+    const v = c.f(r);
+    return `<td data-l="${c.h}" class="${c.num ? "num" : ""} ${c.cls ? c.cls(r) : ""}">${v}</td>`;
+  }).join("") + "</tr>").join("") + "</tbody>";
+  t.innerHTML = head + body;
+}
+
+const recCol = r => `${r.wins}-${r.losses}${r.pushes ? "-" + r.pushes : ""}`;
+
+table("#calTable", [
+  { h: "Confidence", f: r => esc(r.bucket) },
+  { h: "Picks", num: 1, f: r => r.picks },
+  { h: "Record", num: 1, f: r => recCol(r) },
+  { h: "Win %", num: 1, f: r => r.win_pct.toFixed(1),
+    cls: r => r.win_pct >= DATA.breakeven ? "pos" : "neg" },
+  { h: "Units", num: 1, f: r => su(r.units), cls: r => sgn(r.units) },
+  { h: "ROI %", num: 1, f: r => r.roi.toFixed(1), cls: r => sgn(r.roi) },
+  { h: "Avg CLV", num: 1, f: r => r.avg_clv == null ? "n/a" : su(r.avg_clv) },
+], DATA.calibration, "Nothing graded yet, so there is nothing to calibrate against.");
+
+table("#weeklyTable", [
+  { h: "Week", f: r => "Week " + r.week },
+  { h: "Picks", num: 1, f: r => r.picks },
+  { h: "Record", num: 1, f: r => recCol(r) },
+  { h: "Units", num: 1, f: r => su(r.units), cls: r => sgn(r.units) },
+  { h: "ROI %", num: 1, f: r => r.roi.toFixed(1), cls: r => sgn(r.roi) },
+  { h: "Avg CLV", num: 1, f: r => r.avg_clv == null ? "n/a" : su(r.avg_clv) },
+  { h: "Pending", num: 1, f: r => r.pending },
+], DATA.weekly, "No weeks logged yet.");
+
+const mkRows = (DATA.by_market || []).map(r => ({ ...r, k: r.market }))
+  .concat((DATA.by_period || []).map(r => ({ ...r, k: r.period })));
+table("#marketTable", [
+  { h: "Split", f: r => esc(r.k) },
+  { h: "Picks", num: 1, f: r => r.picks },
+  { h: "Record", num: 1, f: r => recCol(r) },
+  { h: "Win %", num: 1, f: r => r.win_pct.toFixed(1),
+    cls: r => r.win_pct >= DATA.breakeven ? "pos" : "neg" },
+  { h: "Units", num: 1, f: r => su(r.units), cls: r => sgn(r.units) },
+  { h: "Avg CLV", num: 1, f: r => r.avg_clv == null ? "n/a" : su(r.avg_clv) },
+], mkRows, "No settled picks to split yet.");
+
+table("#factorTable", [
+  { h: "Reason", f: r => esc(r.factor.replace(/_/g, " ")) },
+  { h: "Picks", num: 1, f: r => r.picks },
+  { h: "Record", num: 1, f: r => `${r.wins}-${r.losses}${r.pushes ? "-" + r.pushes : ""}` },
+  { h: "Win %", num: 1, f: r => (r.win_pct || 0).toFixed(1),
+    cls: r => (r.win_pct || 0) >= DATA.breakeven ? "pos" : "neg" },
+  { h: "Units", num: 1, f: r => su(r.units), cls: r => sgn(r.units) },
+], DATA.by_factor, "The grader builds this table once picks start settling.");
+
+/* ---------- lessons ---------- */
+(function () {
+  const box = $("#lessons");
+  if (!DATA.lessons.length) {
+    box.appendChild(el("p", "empty",
+      "The grader writes here after the first slate settles."));
+    return;
+  }
+  DATA.lessons.forEach(l => {
+    const d = el("div", "lesson");
+    d.appendChild(el("div", "when", `Season ${esc(l.season)}, week ${esc(l.week)}`));
+    d.appendChild(el("p", null, esc(l.lesson)));
+    if (l.evidence) d.appendChild(el("p", "when", esc(l.evidence)));
+    box.appendChild(d);
+  });
+})();
+
+/* ---------- footer ---------- */
+(function () {
+  const b = DATA.board_fetched_at ? new Date(DATA.board_fetched_at).toLocaleString() : "never";
+  const g = new Date(DATA.generated_at).toLocaleString();
+  const c = DATA.credits_remaining == null ? "unknown" : DATA.credits_remaining;
+  $("#stamp").textContent =
+    `Page built ${g}. FanDuel board last pulled ${b}. Odds API credits remaining: ${c}. ` +
+    `Lines come from The Odds API, ratings and results from CollegeFootballData.`;
+})();
+
+renderWeekbar();
+renderCards();
+</script>
+</body>
+</html>
