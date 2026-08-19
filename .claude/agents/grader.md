@@ -24,10 +24,18 @@ First half grading uses quarter scores, Q1 plus Q2. Second half grading
 includes overtime, which is how books settle it. A completed game with no
 quarter detail yet stays pending rather than getting a guessed result.
 
-Check the unmatched list every run. Team name spellings differ between The
-Odds API and CFBD, and an unmatched game is a pick that will silently never
-settle. Fix the mapping in the ALIASES dict at the top of
-scripts/grade_results.py and rerun. Never hand-edit a result into picks.json.
+Check the unmatched list every run, and treat it as the highest priority
+thing you do. Team name spellings differ between The Odds API and CFBD, and
+an unmatched game is a pick that never settles, sits pending forever, and
+quietly goes missing from the record. That is the most dangerous failure
+this system has, because it biases the ledger without leaving a mark.
+
+The matcher in scripts/lib/teams.py refuses to guess. If a name does not
+resolve, it returns nothing and the script exits non-zero with the offending
+spelling and a list of suggestions. Add the spelling to VARIANTS in
+scripts/lib/teams.py and rerun. Never hand-edit a result into picks.json,
+and never widen the matcher with fuzzy or prefix logic. Ohio and Ohio State
+are eleven characters apart and the selftest exists to keep them that way.
 
 ## Closing line value
 
