@@ -68,16 +68,30 @@ jobs:
         run: |
           python3 scripts/grade_results.py --season "${{ inputs.season || '2026' }}"
 
-      - name: Check the grading math
+      # Build the candidate slate here rather than at pick time. The
+      # Wednesday handicapper session has no API keys of its own, so it
+      # reads data/slate.json and data/board.json straight out of the repo.
+      - name: Build the candidate slate
+        id: slate
+        continue-on-error: true
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          python3 scripts/make_slate.py --season "${{ inputs.season || '2026' }}"
+
+      - name: Check the grading math and the name matcher
         run: python3 scripts/selftest.py
 
       - name: Report what failed
-        if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure'
+        if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure' || steps.slate.outcome == 'failure'
         run: |
-          echo "### Upstream step failed" >> $GITHUB_STEP_SUMMARY
+          echo "### A step did not finish clean" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "Odds pull: ${{ steps.odds.outcome }}" >> $GITHUB_STEP_SUMMARY
           echo "Grading: ${{ steps.grade.outcome }}" >> $GITHUB_STEP_SUMMARY
-          echo "Most often this means ODDS_API_KEY or CFBD_API_KEY is missing from repository secrets, or the monthly credit quota is spent." >> $GITHUB_STEP_SUMMARY
+          echo "Slate build: ${{ steps.slate.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Usual causes: ODDS_API_KEY or CFBD_API_KEY missing from repository secrets, the monthly credit quota is spent, or a school name failed to map between sources. Open the failing step's log. A name mapping failure lists the exact spelling and gets fixed in scripts/lib/teams.py, never by hand-editing data." >> $GITHUB_STEP_SUMMARY
 
       - name: Rebuild the page
         run: python3 scripts/build_site.py
