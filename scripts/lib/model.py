@@ -11,7 +11,11 @@ is pure win/loss memory. Weighting them beats picking one.
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, asdict
+from pathlib import Path
+
+CALIBRATION_FILE = Path(__file__).resolve().parents[2] / "data" / "model_calibration.json"
 
 # Home field in FBS has compressed over the last decade. This is a starting
 # value; the grader adjusts it in memory.json once there is a sample.
@@ -22,6 +26,34 @@ RATING_WEIGHTS = {"sp": 0.45, "fpi": 0.25, "srs": 0.20, "elo": 0.10}
 
 # Elo points per point of scoring margin, used to put Elo on a common scale.
 ELO_PER_POINT = 25.0
+
+
+def load_calibration() -> dict:
+    """
+    Bias and sigma per market, measured by scripts/calibrate_model.py.
+    Missing file means no correction and no z scores, which is safe: the
+    handicapper then sees raw points and the floor confidence stays low.
+    """
+    try:
+        return json.loads(CALIBRATION_FILE.read_text())
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def z_score(edge_pts: float | None, market: str,
+            calibration: dict | None = None) -> float | None:
+    """
+    How unusual is this disagreement. A six point gap on a total sounds huge
+    and is under two sigma, which is the whole reason this function exists.
+    """
+    if edge_pts is None:
+        return None
+    cal = calibration if calibration is not None else load_calibration()
+    entry = cal.get("totals" if market == "total" else "spreads") or {}
+    sigma = entry.get("sigma")
+    if not sigma:
+        return None
+    return round(edge_pts / float(sigma), 2)
 
 
 @dataclass
@@ -96,7 +128,8 @@ def blended_rating(row: dict) -> float | None:
 
 def project_game(home: str, away: str, book: dict[str, dict],
                  neutral: bool = False, hfa: float = DEFAULT_HFA,
-                 league_avg_total: float = 54.0) -> Projection:
+                 league_avg_total: float = 54.0,
+                 calibrate: bool = True) -> Projection:
     hr = blended_rating(book.get(home, {}))
     ar = blended_rating(book.get(away, {}))
     applied_hfa = NEUTRAL_HFA if neutral else hfa
@@ -106,20 +139,37 @@ def project_game(home: str, away: str, book: dict[str, dict],
         # Negative means the home team is laying points.
         spread = -round((hr - ar) + applied_hfa, 1)
 
-    # Totals from SP+ offense and defense when available. SP+ offense is
-    # points per drive above average, so this is a rough scaling, and the
-    # handicapper is told to treat it as a prior, not a number to bet.
+    # SP+ offense and defense are projected points scored and points allowed
+    # against an average opponent, not differentials. So each side's expected
+    # points is the average of its own offense and the opponent's defense.
+    #
+    # An earlier version treated them as differentials and produced 83 point
+    # totals against a 48.5 market, which is the model being wrong rather
+    # than the market. Caught on the first live slate.
     total = None
+    home_points = away_points = None
     h_off = (book.get(home, {}) or {}).get("sp_off")
     h_def = (book.get(home, {}) or {}).get("sp_def")
     a_off = (book.get(away, {}) or {}).get("sp_off")
     a_def = (book.get(away, {}) or {}).get("sp_def")
     if None not in (h_off, h_def, a_off, a_def):
         try:
-            off_edge = (float(h_off) - float(a_def)) + (float(a_off) - float(h_def))
-            total = round(league_avg_total + off_edge * 0.5, 1)
+            home_points = (float(h_off) + float(a_def)) / 2.0
+            away_points = (float(a_off) + float(h_def)) / 2.0
+            total = round(home_points + away_points, 1)
         except (TypeError, ValueError):
-            total = None
+            total = home_points = away_points = None
+
+    # Centre the model on the market. A constant offset is not an edge, and
+    # leaving it in means every total looks like an under.
+    cal = load_calibration() if calibrate else {}
+    if cal:
+        tb = (cal.get("totals") or {}).get("bias")
+        sb = (cal.get("spreads") or {}).get("bias")
+        if total is not None and tb is not None:
+            total = round(total - float(tb), 1)
+        if spread is not None and sb is not None:
+            spread = round(spread - float(sb), 1)
 
     # First half typically carries about 47% of full-game scoring and a
     # slightly compressed spread, since blowout garbage time lands after half.
@@ -137,6 +187,8 @@ def project_game(home: str, away: str, book: dict[str, dict],
         inputs={
             "home_rating": round(hr, 2) if hr is not None else None,
             "away_rating": round(ar, 2) if ar is not None else None,
+            "home_points": round(home_points, 1) if home_points is not None else None,
+            "away_points": round(away_points, 1) if away_points is not None else None,
             "home_components": book.get(home, {}),
             "away_components": book.get(away, {}),
         },
@@ -145,6 +197,7 @@ def project_game(home: str, away: str, book: dict[str, dict],
                 1 for k in RATING_WEIGHTS if book.get(home, {}).get(k) is not None),
             "ratings_present_away": sum(
                 1 for k in RATING_WEIGHTS if book.get(away, {}).get(k) is not None),
+            "calibrated": bool(cal),
         },
     )
 
@@ -158,23 +211,30 @@ def edge_vs_market(projected: float | None, market_line: float | None
 
 
 def suggested_confidence(edge_pts: float | None, market: str,
-                         ratings_complete: bool = True) -> float:
+                         ratings_complete: bool = True,
+                         calibration: dict | None = None) -> float:
     """
-    A floor, not a verdict. The agent starts here and then moves the number
-    based on things the model cannot see. Deliberately conservative: a raw
-    rating edge alone should almost never produce an 8.
+    A floor, not a verdict, and deliberately hard to move.
+
+    Scored in standard deviations rather than points, because points are
+    misleading: measured dispersion between this model and the market is
+    around 3 points on totals and 2.8 on spreads, so a "six point edge" is
+    under two sigma and most of it is noise. Two sigma gets you to roughly
+    6.5, which is still below the publish threshold. Nothing here alone
+    should ever clear 8. That has to be earned with research the model
+    cannot do.
     """
     if edge_pts is None:
         return 0.0
-    e = abs(edge_pts)
 
-    if market in ("spread",):
-        base = 4.0 + min(e, 10.0) * 0.38
-    elif market in ("total",):
-        base = 3.8 + min(e, 12.0) * 0.32
-    else:
-        base = 3.5 + min(e, 10.0) * 0.30
+    z = z_score(edge_pts, market, calibration)
+    if z is None:
+        # Uncalibrated. Fall back to a blunt points scale and cap it lower,
+        # since we have no idea how unusual this gap is.
+        base = 4.0 + min(abs(edge_pts), 10.0) * 0.20
+        return round(min(base, 6.5), 1)
 
+    base = 3.5 + min(abs(z), 4.0) * 1.5
     if not ratings_complete:
         base -= 0.8
-    return round(min(base, 9.0), 1)
+    return round(min(base, 7.5), 1)
