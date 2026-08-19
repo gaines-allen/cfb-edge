@@ -61,10 +61,18 @@ Pages, with the source set to GitHub Actions.
 
 ## Credits
 
-The default board pull costs 5 Odds API credits, which is 5 markets across 1
-region. The scheduled runs come to about 150 a month against a free tier of
-500. Adding second half markets raises it to 7 per pull. CFBD responses cache
-to disk for 12 hours, so repeated runs on the same day cost nothing.
+A board pull costs 3 Odds API credits: spreads, totals and moneyline across
+one region. The scheduled runs come to about 90 a month against a free tier
+of 500.
+
+Half markets are not available on the bulk endpoint, which returns 422 if you
+ask. They come from the single-event endpoint at 2 credits per game, so
+`fetch_odds.py --halves` takes explicit event ids and is meant for the handful
+of games actually under consideration. Books post college half lines close to
+kickoff, so before game week the call usually comes back empty and free.
+
+CFBD responses cache to disk for 12 hours, so repeated runs on the same day
+cost nothing.
 
 ## What this is not
 
