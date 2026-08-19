@@ -98,37 +98,97 @@ at 7.5, deliberately below the 8.0 publish threshold, so the ratings model can
 never justify a live pick on its own. Everything above 8 has to be earned with
 research the model cannot do. Preserve that property.
 
-## Open workstreams
+## Roadmap
 
-Descriptions only. Ordering is a separate decision.
+All four workstreams are in scope. Harden and backtest come first, and they
+are more coupled than they look: the fixtures the test suite needs are the
+same captured API payloads the backtest replays, and the schema validators
+that stop a silent shape change are what stop a backtest from quietly
+scoring garbage. Build them together and each is roughly half the work.
 
-**Backtest.** Run the pipeline against 2023 through 2025, which CFBD has in
-full including quarter scores and opening and closing lines. For each week,
-build the slate from ratings as they stood, apply the confidence scoring, and
-grade against what happened. Answers whether a two sigma edge actually beats
-52.4 percent, whether the confidence scale separates anything, and whether 8.0
-is the right threshold. The honest limit: this backtests the ratings model and
-the staking math, not the handicapper's research layer, which cannot be
-simulated. Heaviest CFBD usage of anything here, likely Tier 2 territory.
+### Phase 1, harden
 
-**Deepen the inputs.** The projection currently uses SP+ overall and its
-offense and defense split, FPI, SRS and Elo. Absent: returning production,
-which matters most in preseason; PPA and success rate; explosiveness splits;
-pace, which drives totals; garbage-time-adjusted numbers; weather; and the SEC
-and Big Ten availability reports. Each addition needs to be shown to improve
-the number, which means it needs the backtest to measure against.
+Replace the hand-rolled `selftest.py` with pytest, keeping a thin wrapper so
+the GitHub Action keeps calling one command. Capture real API payloads as
+fixtures under `tests/fixtures/`: a full FanDuel board, a CFBD games response
+with quarter scores, SP+ and FPI rows, an ESPN teams page. Those fixtures are
+phase 2's input, so capture more than the tests strictly need.
 
-**Half markets.** Build a poller that checks the per-event endpoint as game
-week approaches and captures half lines the moment books post them, with the
-credit accounting that implies. Decide what happens when they never appear.
-The derived numbers in the model, 0.55 of the full spread and 0.47 of the
-total, are a prior for comparison, not a price you can bet.
+Add shape validation on every external response. Every bug this system has
+shipped came from an upstream field meaning something other than what the
+code assumed, so a missing or renamed field has to raise rather than resolve
+to None and flow onward as a confident number.
 
-**Harden.** Replace the hand-rolled selftest with pytest, run it on pull
-requests, validate the shape of every external response so a source change
-fails loudly instead of producing quiet garbage, add a dry-run mode, add
-structured logging. Two real bugs shipped in one build session and both were
-caught by looking at live data rather than by any test.
+Add a dry-run flag to every script that writes, and structured logging with
+the run id, the endpoint, the credit cost and the row count.
+
+Run pytest on pull requests, not just on the daily schedule.
+
+Done when a deliberately corrupted fixture makes a test fail rather than a
+pick appear, and when `pytest` and the PR check are both green.
+
+### Phase 2, backtest
+
+Walk 2023, 2024 and 2025 week by week. For each week build the slate, apply
+the confidence scoring, and grade against what actually happened using the
+existing `scoring.py`, which is already covered by hand-worked cases.
+
+**The trap that would make this lie to you.** CFBD's `/ratings/sp` returns
+end-of-season SP+. Using it to score a week 3 game means the model already
+knows how the season turned out. That is lookahead bias, and it will make a
+mediocre model look excellent, which is the worst possible outcome because
+you will then bet it. Every input has to be as-of the week being scored.
+Weekly Elo from `/ratings/elo?week=` is genuinely time-varying. SP+ is not,
+so either restrict SP+ to preseason projections, or reconstruct week-by-week
+ratings from game results, or drop SP+ from the backtest and accept that you
+are testing a weaker model than the live one. Whichever you pick, write down
+which and why, because a backtest whose time handling is undocumented is
+worth nothing.
+
+Split the data. Fit and tune on 2023 and 2024, hold 2025 back untouched as
+the test set. Tuning on everything and reporting the fit is the other classic
+way to fool yourself.
+
+Report win rate by sigma bucket against the 52.4 percent breakeven, ROI on
+units risked, the CLV distribution, and a calibration curve of predicted
+against actual. That last one is the real deliverable.
+
+Honest limit worth restating: this tests the ratings model and the staking
+math. It cannot test the handicapper's research layer, which is where every
+pick above 8.0 is supposed to come from. A clean backtest tells you the
+baseline is sound, not that the system wins.
+
+Heaviest CFBD usage of anything here. Budget for Tier 2 at five dollars.
+
+Done when it reports calibration on held-out 2025 with the time handling
+documented.
+
+### Phase 3, deepen the inputs
+
+Only after phase 2, because "better" needs a measurement. Add one input at a
+time, re-run the backtest, and keep it only if it improves the held-out set.
+Candidates in rough order of expected value: returning production, which
+matters most in preseason when there are no results yet; pace, which drives
+totals more than anything else on the list; PPA and success rate;
+explosiveness splits; garbage-time-adjusted numbers; weather, which needs
+CFBD Tier 1; and the SEC and Big Ten availability reports.
+
+Expect several of these to fail to improve anything. Record the ones that
+did not work and why, so nobody re-adds them in November.
+
+### Phase 4, half markets
+
+Poll the per-event endpoint as game week approaches and capture half lines
+the moment books post them, at two credits per game against a 500 credit
+month, so the poller needs a shortlist rather than the board.
+
+Once phase 2 exists, first-half performance is backtestable, because CFBD
+carries quarter scores. Do that before betting them.
+
+Decide what happens when the lines never appear, which is the current state
+across every book. The derived numbers in the model, 0.55 of the full spread
+and 0.47 of the total, are a prior for comparison, not a price. Nobody can
+bet a number that is not posted.
 
 ## Rules that do not bend
 
