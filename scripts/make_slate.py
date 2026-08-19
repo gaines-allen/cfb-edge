@@ -26,10 +26,12 @@ from lib.model import (  # noqa: E402
     DEFAULT_HFA,
     build_rating_book,
     edge_vs_market,
+    load_calibration,
     project_game,
     suggested_confidence,
+    z_score,
 )
-from lib.teams import canonical, suggest  # noqa: E402
+from lib.teams import MASCOT_MAP, canonical, suggest  # noqa: E402
 
 
 def find(lines: list[dict], market: str, side: str) -> dict | None:
@@ -80,6 +82,7 @@ def main() -> int:
 
     book = build_rating_book(sp, fpi, srs, elo)
     known = set(book.keys())
+    calibration = load_calibration()
 
     neutral_by_pair = {}
     for g in sched:
@@ -87,20 +90,62 @@ def main() -> int:
         if h and a:
             neutral_by_pair[(h, a)] = bool(g.get("neutralSite"))
 
+    # The board runs weeks ahead, so filter to the target week's window
+    # rather than rating a November game off a preseason number.
+    window = next((w for w in cal if int(w.get("week", -1)) == int(week)
+                   and w.get("seasonType") == "regular"), None)
+    lo = hi = None
+    if window:
+        try:
+            lo = datetime.fromisoformat(window["firstGameStart"].replace("Z", "+00:00"))
+            hi = datetime.fromisoformat(window["lastGameStart"].replace("Z", "+00:00"))
+            hi = hi.replace(hour=23, minute=59)
+        except (KeyError, ValueError, AttributeError):
+            lo = hi = None
+
+    def in_week(iso_ts: str) -> bool:
+        if lo is None or hi is None:
+            return True
+        try:
+            k = datetime.fromisoformat(iso_ts.replace("Z", "+00:00"))
+        except (ValueError, AttributeError):
+            return True
+        return lo <= k <= hi
+
     rows = []
     unmapped: dict[str, list[str]] = {}
-    skipped = []
+    unrated: list[str] = []
+    skipped, out_of_week = [], 0
+
+    # Everything the alias map knows about, FBS or not. Used to tell a name
+    # we cannot place apart from a school that simply has no FBS rating.
+    all_schools = set(MASCOT_MAP.values()) | known
 
     for g in games:
+        if not in_week(g.get("commence_time", "")):
+            out_of_week += 1
+            continue
+
         home = canonical(g["home_team"], known)
         away = canonical(g["away_team"], known)
 
-        # No guessing. A name we cannot place gets reported and the game is
-        # left off the slate, because a wrong rating lookup produces a
-        # confident number for the wrong team, which is worse than a gap.
+        # Two different failures that must not be conflated. A school with
+        # no FBS rating is an FCS opponent and dropping the game is correct,
+        # since a buy game is not a bet. A name nothing recognizes is a bug
+        # in the matcher and has to be loud.
         if home is None or away is None:
             for raw, mapped in ((g["home_team"], home), (g["away_team"], away)):
-                if mapped is None and raw not in unmapped:
+                if mapped is not None:
+                    continue
+                # Recognized by the alias map or the variant table counts as
+                # a real school. UTRGV is in neither ESPN's list nor the FBS
+                # ratings because the program only started in 2025, but the
+                # variant table knows it, and that is enough to call it an
+                # unrated opponent rather than a matcher bug.
+                if canonical(raw, all_schools) or canonical(raw):
+                    if raw not in unrated:
+                        unrated.append(raw)
+                elif raw not in unmapped:
                     unmapped[raw] = suggest(raw, known)
             skipped.append(f"{g['away_team']} @ {g['home_team']}")
             continue
@@ -146,7 +191,9 @@ def main() -> int:
                 "price": price,
                 "model_number": projected,
                 "edge_points": e,
-                "floor_confidence": suggested_confidence(e, market, complete),
+                "edge_sigma": z_score(e, market, calibration),
+                "floor_confidence": suggested_confidence(e, market, complete,
+                                                         calibration),
             })
 
         add("spread", "full", mkt_spread, proj.projected_spread)
@@ -180,9 +227,12 @@ def main() -> int:
         "warning": age_note or None,
         "games_on_board": len(games),
         "games_with_candidates": len(rows),
-        "games_skipped_unmapped": skipped,
+        "games_dropped": skipped,
+        "games_outside_week": out_of_week,
+        "unrated_schools": sorted(unrated),
         "unmapped_names": unmapped,
         "min_edge": args.min_edge,
+        "calibration": calibration,
         "slate": rows,
     }
     (store.DATA / "slate.json").write_text(json.dumps(out, indent=2))
@@ -191,21 +241,32 @@ def main() -> int:
         "week": week,
         "games_on_board": len(games),
         "games_with_candidates": len(rows),
-        "games_skipped_unmapped": len(skipped),
+        "games_dropped_no_rating": len(skipped),
+        "games_outside_week": out_of_week,
+        "unrated_schools": len(unrated),
+        "unmapped_names": len(unmapped),
         "top": [
             {"matchup": r["matchup"],
              "best": r["candidates"][0]["side"],
              "market": f"{r['candidates'][0]['market']}/{r['candidates'][0]['period']}",
              "edge": r["candidates"][0]["edge_points"],
+             "sigma": r["candidates"][0]["edge_sigma"],
              "floor_conf": r["candidates"][0]["floor_confidence"]}
             for r in rows[:15]
         ],
         "warning": age_note or None,
     }, indent=2))
 
+    if unrated:
+        print(f"\nDropped {len(skipped)} games. {len(unrated)} schools have no FBS "
+              "rating, which is expected for FCS opponents and means those games "
+              "are correctly off the card:", file=sys.stderr)
+        print("  " + ", ".join(sorted(unrated)[:12])
+              + (" ..." if len(unrated) > 12 else ""), file=sys.stderr)
+
     if unmapped:
-        print("\nNAME MAPPING FAILED for these schools, so their games were "
-              "left off the slate:", file=sys.stderr)
+        print("\nNAME MAPPING FAILED for these schools. This is a matcher bug, "
+              "not an FCS game:", file=sys.stderr)
         for raw, hints in sorted(unmapped.items()):
             hint = f"  did you mean: {', '.join(hints)}" if hints else \
                    "  no close match in the CFBD team list"
