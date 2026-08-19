@@ -25,10 +25,15 @@ BASE = "https://api.the-odds-api.com/v4"
 SPORT = "americanfootball_ncaaf"
 BOOK = "fanduel"
 
-# Full game + first half + second half. Second half is dropped from the
-# default set to stay inside the free tier; add it when the plan allows.
-DEFAULT_MARKETS = ["spreads", "totals", "spreads_h1", "totals_h1", "h2h"]
-ALL_MARKETS = DEFAULT_MARKETS + ["spreads_h2", "totals_h2"]
+# The bulk /odds endpoint only serves featured markets. Asking it for
+# spreads_h1 returns 422 INVALID_MARKET, confirmed against the live API.
+# Half markets exist, but only on the single-event endpoint.
+FEATURED_MARKETS = ["spreads", "totals", "h2h"]
+PERIOD_MARKETS = ["spreads_h1", "totals_h1", "spreads_h2", "totals_h2"]
+
+# Kept for callers that still import these names.
+DEFAULT_MARKETS = FEATURED_MARKETS
+ALL_MARKETS = FEATURED_MARKETS + PERIOD_MARKETS
 
 
 class OddsAPIError(RuntimeError):
@@ -148,6 +153,36 @@ class OddsClient:
             },
         )
         return [self._parse_event(ev) for ev in raw if self._has_book(ev)]
+
+    def event_odds(self, event_id: str,
+                   markets: list[str] | None = None) -> Game | None:
+        """
+        Half and quarter markets for one game. These are not available on the
+        bulk endpoint, so this is the only way to get them.
+
+        Cost is markets times regions per event, and it is charged only when
+        a bookmaker actually returns a price. Books post college half lines
+        close to kickoff, so before game week this is usually free and
+        usually empty. Never loop this over a full board: sixty games at two
+        markets is 120 credits, most of a free month.
+        """
+        markets = markets or ["spreads_h1", "totals_h1"]
+        try:
+            raw = self._get(
+                f"/sports/{SPORT}/events/{event_id}/odds",
+                {
+                    "regions": "us",
+                    "markets": ",".join(markets),
+                    "oddsFormat": "american",
+                    "dateFormat": "iso",
+                    "bookmakers": self.book,
+                },
+            )
+        except OddsAPIError:
+            return None
+        if not raw or not raw.get("bookmakers"):
+            return None
+        return self._parse_event(raw)
 
     def scores(self, days_from: int = 3) -> list[dict]:
         """Recent and live scores. days_from is capped at 3 by the API."""
