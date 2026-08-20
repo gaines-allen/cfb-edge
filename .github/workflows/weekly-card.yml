@@ -92,8 +92,19 @@ jobs:
       - name: Research the slate and write the draft
         id: research
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # A subscription token rather than an API key, so the run bills
+          # against the Claude plan already being paid for instead of
+          # metered API usage. Generate it with claude setup-token, which
+          # mints a 1 year OAuth token on a Pro, Max, Team or Enterprise
+          # plan. Note that --bare does not read this variable, which is a
+          # second reason the step below does not pass it.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
+          if [ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
+            echo "CLAUDE_CODE_OAUTH_TOKEN is not set. Generate one with"
+            echo "claude setup-token and add it as a repository secret."
+            exit 1
+          fi
           set -o pipefail
           claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }}" \
             --model opus \

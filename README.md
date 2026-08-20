@@ -114,9 +114,17 @@ units are the weekly ceilings, and the same game and market cannot be taken
 twice. Several picks resting on one reason get flagged as correlated, which
 is a warning rather than a rejection.
 
-Add `ANTHROPIC_API_KEY` to the repository secrets alongside the other two.
-The run reports its own cost estimate in the workflow summary, and
-`--max-turns` caps how long the agent can loop.
+Authentication is a subscription token, not a metered API key. Run
+`claude setup-token` locally, which mints a 1 year OAuth token on a Pro,
+Max, Team or Enterprise plan, and add the value as the repository secret
+`CLAUDE_CODE_OAUTH_TOKEN`. The run then bills against the Claude plan
+rather than API usage. The run reports its own cost estimate in the
+workflow summary, and `--max-turns` caps how long the agent can loop.
+
+The workflow does not pass `--bare` for 2 reasons. Bare mode skips
+`CLAUDE.md` and the agent definitions in `.claude/`, which are the
+instructions the handicapper needs, and bare mode does not read
+`CLAUDE_CODE_OAUTH_TOKEN` at all.
 
 One honest limit. Phase 2 tests the ratings model and the staking math, and
 it cannot test the research layer, which is where every pick above 8.0 comes

@@ -22,6 +22,19 @@ TESTS = (WORKFLOWS / "tests.yml").read_text()
 GITIGNORE = (ROOT / ".gitignore").read_text()
 
 
+def commands(yaml_text: str) -> str:
+    """
+    The runnable lines only. The workflow carries comments explaining why it
+    avoids certain flags, and a check that trips on the comment warning
+    against a flag rather than on the flag is a check nobody will keep.
+    """
+    return "\n".join(ln for ln in yaml_text.splitlines()
+                      if not ln.lstrip().startswith("#"))
+
+
+WEEKLY_CMDS = commands(WEEKLY)
+
+
 # ------------------------------------------------- the daily job is intact
 
 def test_the_daily_job_still_calls_selftest_by_name():
@@ -37,6 +50,25 @@ def test_the_daily_job_does_not_run_an_agent():
     """
     assert "claude -p" not in DAILY
     assert "ANTHROPIC_API_KEY" not in DAILY
+    assert "CLAUDE_CODE_OAUTH_TOKEN" not in DAILY
+
+
+def test_the_agent_authenticates_with_the_subscription_token():
+    """
+    A subscription token rather than a metered API key. Bare mode does not
+    read CLAUDE_CODE_OAUTH_TOKEN, so the run must not pass --bare, which it
+    also must not do because it needs CLAUDE.md and .claude/agents.
+    """
+    assert "secrets.CLAUDE_CODE_OAUTH_TOKEN" in WEEKLY
+    assert "--bare" not in WEEKLY_CMDS
+
+
+def test_a_missing_token_fails_fast():
+    """
+    Without this the run reaches the agent step, fails on authentication,
+    and reports it as a model error rather than a missing secret.
+    """
+    assert 'if [ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]' in WEEKLY
 
 
 # --------------------------------------------- the agent's permissions
@@ -153,3 +185,4 @@ def test_the_test_job_gets_no_api_keys():
     assert "secrets.ODDS_API_KEY" not in TESTS
     assert "secrets.CFBD_API_KEY" not in TESTS
     assert "secrets.ANTHROPIC_API_KEY" not in TESTS
+    assert "secrets.CLAUDE_CODE_OAUTH_TOKEN" not in TESTS
