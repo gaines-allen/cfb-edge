@@ -59,6 +59,61 @@ Pages, with the source set to GitHub Actions.
     python3 scripts/grade_results.py --season 2026      # settle
     python3 scripts/build_site.py                       # rebuild the page
 
+Every script that writes to `data/` or `site/` takes `--dry-run`, which
+reports what would change and writes nothing. Use it before any run you are
+not certain about, and before anything that touches the ledger.
+
+Each run writes one structured record per external call to stderr and to a
+gitignored JSONL under `data/.cache/runs/`, carrying the run id, the
+endpoint, the credit cost and the row count. stdout is unchanged, because
+the workflow and the agents parse it. Set `RUN_ID` to join a local run to a
+GitHub Actions run.
+
+## Tests
+
+    python3 scripts/selftest.py            # what the daily job runs
+    python3 scripts/selftest.py -k teams -v
+
+`selftest.py` is a wrapper around pytest so the workflow keeps calling one
+command. The checks live in `tests/` and run offline against captured
+payloads, so no key is needed and a pull request from a fork runs exactly
+what a branch runs. `.github/workflows/tests.yml` runs them on every pull
+request under Python 3.9 and 3.11.
+
+Shape validation sits on every external response in `scripts/lib/schema.py`.
+A missing or renamed field raises rather than resolving to None and flowing
+onward as a confident number, which is how every bug this system has shipped
+got out. Presence checks are the easy half. The half that matters is
+semantic: a column of SP+ offense ratings whose median sits near 0 is a
+differential whatever it is called, and a CFBD team name the ESPN map can
+shorten is carrying a mascot whatever the docs say.
+
+## Fixtures
+
+`tests/fixtures/` holds raw upstream payloads, captured and refreshed by
+
+    python3 scripts/refresh_fixtures.py --dry-run     # price the run first
+    python3 scripts/refresh_fixtures.py --sources cfbd --seasons 2024
+
+They are raw rather than parsed, because the parser and the validators are
+the code under test. `MANIFEST.json` records the endpoint, the parameters,
+the row count, the credit cost and a hash of every one, and a test fails if
+a fixture stops matching its entry. Never edit a fixture by hand, rerun the
+script.
+
+The set covers 15 weeks each of 2023, 2024 and 2025, because phase 2 replays
+them to backtest those seasons. Point `CFBD_CACHE_DIR` at a directory seeded
+from the fixtures and any script runs offline with no key and no credits.
+
+One limit worth knowing before phase 2. The Odds API serves current and
+upcoming odds on the free tier, and its historical endpoint is a paid add
+on, so FanDuel boards cannot be back captured for 2023 through 2025. The
+market numbers for those seasons come from CFBD `/lines`, which carries
+opening and closing spreads and totals by provider. The FanDuel board
+fixtures cover the live path and the parser only. Run the capture with
+`--archive` to file each board pull under its own timestamp so the multi
+week set builds up over the season.
+
 ## Credits
 
 A board pull costs 3 Odds API credits: spreads, totals and moneyline across
