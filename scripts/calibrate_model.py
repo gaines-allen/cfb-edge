@@ -28,7 +28,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.cfbd import CFBDClient, CFBDError, current_week  # noqa: E402
+from lib.schema import ShapeError  # noqa: E402
 from lib.model import CALIBRATION_FILE, build_rating_book, project_game  # noqa: E402
 from lib.teams import canonical  # noqa: E402
 
@@ -39,7 +41,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, default=2026)
     ap.add_argument("--week", type=int, default=None)
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
     args = ap.parse_args()
+
+    log = RunLog("calibrate_model", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     games = store.load_board().get("games", [])
     if not games:
@@ -54,7 +61,12 @@ def main() -> int:
             cfbd.sp_ratings(args.season), cfbd.fpi(args.season),
             cfbd.srs(args.season), cfbd.elo(args.season, week=week),
         )
+    except ShapeError as e:
+        log.error(str(e))
+        print(f"SHAPE ERROR: {e}", file=sys.stderr)
+        return 5
     except CFBDError as e:
+        log.error(str(e))
         print(f"ERROR: {e}", file=sys.stderr)
         return 3
 
@@ -109,7 +121,7 @@ def main() -> int:
                  "points gap into a z score. Re-measure when ratings update, "
                  "which in season means weekly."),
     }
-    CALIBRATION_FILE.write_text(json.dumps(payload, indent=2))
+    store.write_json(CALIBRATION_FILE, payload)
     print(json.dumps(payload, indent=2))
     return 0
 

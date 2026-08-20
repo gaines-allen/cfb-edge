@@ -18,7 +18,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.cfbd import CFBDClient, CFBDError  # noqa: E402
+from lib.schema import ShapeError  # noqa: E402
 from lib.scoring import (  # noqa: E402
     breakdown,
     calibration_table,
@@ -136,7 +138,12 @@ def main() -> int:
     ap.add_argument("--season", type=int, default=2026)
     ap.add_argument("--week", type=int, default=None)
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
     args = ap.parse_args()
+
+    log = RunLog("grade_results", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     picks = store.load_picks()
     pending = [p for p in picks if p.get("result") == "pending"]
@@ -159,7 +166,15 @@ def main() -> int:
             i, k = build_result_index(cfbd.games(args.season, week=wk))
             idx.update(i)
             known.update(k)
+        except ShapeError as e:
+            # Never downgrade this to a warning. Grading against a payload
+            # whose fields changed meaning writes a wrong result into an
+            # append only ledger, and those rows cannot be moved afterwards.
+            log.error(str(e), week=wk)
+            print(f"SHAPE ERROR on week {wk}: {e}", file=sys.stderr)
+            return 5
         except CFBDError as e:
+            log.error(str(e), week=wk)
             print(f"WARNING: could not load week {wk}: {e}", file=sys.stderr)
 
     graded_now, unmatched = 0, []

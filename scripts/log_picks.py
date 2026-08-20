@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 
 VALID_MARKETS = {"spread", "total", "moneyline"}
 VALID_PERIODS = {"full", "h1", "h2"}
@@ -99,6 +100,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--allow-overwrite", action="store_true")
     args = ap.parse_args()
+
+    log = RunLog("log_picks", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     draft_path = Path(args.file)
     if not draft_path.exists():

@@ -21,7 +21,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.cfbd import CFBDClient, CFBDError, current_week  # noqa: E402
+from lib.schema import ShapeError  # noqa: E402
 from lib.model import (  # noqa: E402
     DEFAULT_HFA,
     build_rating_book,
@@ -48,7 +50,12 @@ def main() -> int:
     ap.add_argument("--min-edge", type=float, default=1.5,
                     help="points of disagreement needed to list a candidate")
     ap.add_argument("--hfa", type=float, default=DEFAULT_HFA)
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
     args = ap.parse_args()
+
+    log = RunLog("make_slate", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     board = store.load_board()
     games = board.get("games", [])
@@ -76,7 +83,14 @@ def main() -> int:
         elo = cfbd.elo(args.season, week=week)
         fpi = cfbd.fpi(args.season)
         sched = cfbd.games(args.season, week=week)
+    except ShapeError as e:
+        # An upstream field changed meaning. Stop rather than project a
+        # confident number off a payload nobody has looked at.
+        log.error(str(e))
+        print(f"SHAPE ERROR: {e}", file=sys.stderr)
+        return 5
     except CFBDError as e:
+        log.error(str(e))
         print(f"ERROR: {e}", file=sys.stderr)
         return 3
 
@@ -235,7 +249,7 @@ def main() -> int:
         "calibration": calibration,
         "slate": rows,
     }
-    (store.DATA / "slate.json").write_text(json.dumps(out, indent=2))
+    wrote = store.write_json(store.DATA / "slate.json", out)
 
     print(json.dumps({
         "week": week,

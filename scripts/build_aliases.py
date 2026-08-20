@@ -17,6 +17,7 @@ so it has to be paged. Asking for limit=900 silently returns the top 25.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import urllib.request
@@ -24,6 +25,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from lib import schema, store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.teams import ALIAS_FILE, normalize  # noqa: E402
 
 BASE = ("https://site.api.espn.com/apis/site/v2/sports/football/"
@@ -36,7 +39,7 @@ def fetch_teams() -> list[dict]:
         url = f"{BASE}?limit=100&page={page}"
         with urllib.request.urlopen(url, timeout=30) as r:
             payload = json.load(r)
-        teams = payload["sports"][0]["leagues"][0].get("teams", [])
+        teams = schema.validate_espn_teams(payload, expected=100)
         if not teams:
             break
         out.extend(t["team"] for t in teams)
@@ -44,6 +47,14 @@ def fetch_teams() -> list[dict]:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
+    args = ap.parse_args()
+
+    log = RunLog("build_aliases", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
+
     teams = fetch_teams()
     if not teams:
         print("ERROR: ESPN returned no teams", file=sys.stderr)
@@ -72,8 +83,7 @@ def main() -> int:
     clean = {k: next(iter(v)) for k, v in buckets.items() if len(v) == 1}
     dropped = {k: sorted(v) for k, v in buckets.items() if len(v) > 1}
 
-    ALIAS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    ALIAS_FILE.write_text(json.dumps(clean, indent=0, sort_keys=True))
+    store.write_text(ALIAS_FILE, json.dumps(clean, indent=0, sort_keys=True))
 
     print(json.dumps({
         "teams_seen": len(teams),

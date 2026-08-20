@@ -10,6 +10,7 @@ path with no network.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from collections import defaultdict
@@ -18,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import breakdown, calibration_table, summarize  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -645,14 +647,22 @@ renderCards();
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
+    args = ap.parse_args()
+
+    log = RunLog("build_site", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
+
     payload = build_payload()
-    SITE.mkdir(parents=True, exist_ok=True)
-    (SITE / "data.json").write_text(json.dumps(payload, indent=2))
+    store.write_json(SITE / "data.json", payload)
     html = HTML.replace("__DATA__", json.dumps(payload, separators=(",", ":")))
-    (SITE / "index.html").write_text(html)
+    store.write_text(SITE / "index.html", html)
 
     print(json.dumps({
-        "wrote": ["site/index.html", "site/data.json"],
+        "dry_run": args.dry_run,
+        "wrote": [] if args.dry_run else ["site/index.html", "site/data.json"],
         "bytes": len(html),
         "live_picks": sum(1 for p in payload["picks"] if p["live"]),
         "weeks": len(payload["weeks"]),
