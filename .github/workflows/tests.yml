@@ -1,0 +1,55 @@
+name: Tests
+
+# Runs on every pull request, not just on the daily schedule. A shape change
+# or a broken grader used to reach main and only surface the next morning.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.11 is what the daily job runs. 3.9 is what a Mac ships with, so
+        # the suite has to pass on both or it fails for 1 of us only.
+        python-version: ["3.9", "3.11"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # Called the same way the daily job calls it, so the wrapper the
+      # workflow depends on is itself under test.
+      - name: Run the suite
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: python3 scripts/selftest.py -q
+
+      # No key is needed to run the tests, and none is provided here. The
+      # suite replays captured fixtures, so a pull request from a fork runs
+      # exactly what a pull request from a branch runs.
+      - name: Confirm the suite ran offline
+        if: always()
+        run: |
+          if [ -n "${ODDS_API_KEY:-}" ] || [ -n "${CFBD_API_KEY:-}" ]; then
+            echo "A key reached the test job. The suite is meant to run offline."
+            exit 1
+          fi
+          echo "No API keys in the test environment, as intended."
