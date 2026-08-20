@@ -21,6 +21,9 @@ from typing import Any
 
 import requests
 
+from . import schema
+from .runlog import RunLog
+
 BASE = "https://api.the-odds-api.com/v4"
 SPORT = "americanfootball_ncaaf"
 BOOK = "fanduel"
@@ -99,7 +102,8 @@ class Game:
 
 class OddsClient:
     def __init__(self, api_key: str | None = None, book: str = BOOK,
-                 timeout: int = 30, retries: int = 3):
+                 timeout: int = 30, retries: int = 3,
+                 log: RunLog | None = None):
         self.api_key = api_key or os.environ.get("ODDS_API_KEY", "")
         if not self.api_key:
             raise OddsAPIError(
@@ -110,6 +114,7 @@ class OddsClient:
         self.timeout = timeout
         self.retries = retries
         self.quota = Quota()
+        self.log = log or RunLog("odds_api", to_stderr=False, to_file=False)
 
     # ---------- transport ----------
 
@@ -117,24 +122,40 @@ class OddsClient:
         params = {**params, "apiKey": self.api_key}
         url = f"{BASE}{path}"
         last_err: Exception | None = None
-        for attempt in range(self.retries):
-            try:
-                r = requests.get(url, params=params, timeout=self.timeout)
-                if r.status_code == 401:
-                    raise OddsAPIError("401 from The Odds API - the key is wrong or expired.")
-                if r.status_code == 429:
-                    raise OddsAPIError("429 - monthly credit quota exhausted.")
-                if r.status_code >= 500:
-                    raise requests.HTTPError(f"{r.status_code} from upstream")
-                r.raise_for_status()
-                self.quota = Quota.from_headers(r.headers)
-                return r.json()
-            except OddsAPIError:
-                raise
-            except Exception as e:  # noqa: BLE001 - retry transport faults only
-                last_err = e
-                time.sleep(1.5 * (attempt + 1))
-        raise OddsAPIError(f"Odds API unreachable after {self.retries} tries: {last_err}")
+        with self.log.call(path, params) as call:
+            for attempt in range(self.retries):
+                try:
+                    r = requests.get(url, params=params, timeout=self.timeout)
+                    if r.status_code == 401:
+                        raise OddsAPIError("401 from The Odds API - the key is wrong or expired.")
+                    if r.status_code == 429:
+                        raise OddsAPIError("429 - monthly credit quota exhausted.")
+                    if r.status_code >= 500:
+                        raise requests.HTTPError(f"{r.status_code} from upstream")
+                    r.raise_for_status()
+                    self.quota = Quota.from_headers(r.headers)
+                    # The charged amount comes off the response header, so
+                    # this is what was actually spent rather than an estimate.
+                    call.credit_cost = self.quota.last_cost
+                    call.credits_remaining = self.quota.remaining
+                    data = r.json()
+                    call.rows = len(data) if isinstance(data, list) else 1
+                    return data
+                except OddsAPIError:
+                    raise
+                except Exception as e:  # noqa: BLE001 - retry transport faults only
+                    last_err = e
+                    time.sleep(1.5 * (attempt + 1))
+            raise OddsAPIError(
+                f"Odds API unreachable after {self.retries} tries: {last_err}")
+
+    def get_raw(self, path: str, params: dict) -> Any:
+        """
+        The unparsed response, for capturing fixtures. The fixtures have to
+        be raw, because the parser and the validators are the code under
+        test and a parsed fixture would test neither.
+        """
+        return self._get(path, params)
 
     # ---------- public ----------
 
@@ -152,6 +173,7 @@ class OddsClient:
                 "bookmakers": self.book,
             },
         )
+        schema.validate_odds_board(raw, min_events=0)
         return [self._parse_event(ev) for ev in raw if self._has_book(ev)]
 
     def event_odds(self, event_id: str,
@@ -182,14 +204,17 @@ class OddsClient:
             return None
         if not raw or not raw.get("bookmakers"):
             return None
+        schema.validate_odds_event(
+            raw, endpoint=f"the-odds-api /events/{event_id}/odds")
         return self._parse_event(raw)
 
     def scores(self, days_from: int = 3) -> list[dict]:
         """Recent and live scores. days_from is capped at 3 by the API."""
-        return self._get(
+        raw = self._get(
             f"/sports/{SPORT}/scores",
             {"daysFrom": max(1, min(3, days_from)), "dateFormat": "iso"},
         )
+        return schema.validate_odds_scores(raw)
 
     # ---------- parsing ----------
 
@@ -197,6 +222,11 @@ class OddsClient:
         return any(b.get("key") == self.book for b in ev.get("bookmakers", []))
 
     def _parse_event(self, ev: dict) -> Game:
+        # Validated on the way in, so every field read below is known to be
+        # present and the right type. The previous version of this method
+        # did int(oc.get("price", 0)), which turned a renamed price field
+        # into a 0 that reached payout() looking like a real number.
+        schema.validate_odds_event(ev, require_bookmakers=False)
         g = Game(
             event_id=ev["id"],
             commence_time=ev["commence_time"],
@@ -212,9 +242,9 @@ class OddsClient:
                     g.lines.append(
                         Line(
                             market=mkey,
-                            side=oc.get("name", ""),
+                            side=oc["name"],
                             point=oc.get("point"),
-                            price=int(oc.get("price", 0)),
+                            price=int(oc["price"]),
                             book=self.book,
                         )
                     )

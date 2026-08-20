@@ -103,6 +103,17 @@ def build_rating_book(sp: list[dict], fpi: list[dict], srs: list[dict],
         if t:
             book.setdefault(t, {})["elo"] = r.get("elo") or r.get("rating")
 
+    # An empty response from any 1 source is normal, since SRS and FPI have
+    # nothing to say before a season is played. All 4 coming back empty is
+    # not normal, and the old behaviour was to build an empty book, project
+    # every game as None, and drop the whole slate without saying why.
+    if not book:
+        raise ValueError(
+            "No ratings loaded from any of SP+, FPI, SRS or Elo. The rating "
+            "book is empty, so every projection would be None and the slate "
+            "would come back empty with no reason given. Check CFBD_API_KEY "
+            "and the season argument."
+        )
     return book
 
 
