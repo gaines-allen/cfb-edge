@@ -113,7 +113,8 @@ def new_pick(season: int, week: int, event_id: str, matchup: str,
              kickoff: str, market: str, period: str, side: str,
              line: float | None, price: int, confidence: float,
              units: float, rationale: str, factors: dict,
-             model_number: float | None = None) -> dict:
+             model_number: float | None = None,
+             sources: list[dict] | None = None) -> dict:
     """
     market: spread | total | moneyline
     period: full | h1 | h2
@@ -139,6 +140,9 @@ def new_pick(season: int, week: int, event_id: str, matchup: str,
                  if model_number is not None and line is not None else None),
         "rationale": rationale,
         "factors": factors,
+        # Where the researched claim came from, so the grader can tell a
+        # sourced read from a hunch when it scores the factor scorecard.
+        "sources": sources or [],
         "placed_at": now_iso(),
         "close_line": None,
         "close_price": None,

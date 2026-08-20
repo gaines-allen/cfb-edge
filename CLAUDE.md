@@ -24,7 +24,10 @@ that agent's job.
 
 Wednesday morning: odds-scout pulls the board, handicapper builds the slate
 and writes the card. Six plays is the target, above 8.0 is the bar, and a
-short card beats a padded one.
+short card beats a padded one. The weekly-card workflow now runs that same
+research unattended and opens a pull request with the result. It writes a
+draft, deterministic code validates it against scripts/lib/card_rules.py,
+and a person merges. Read the sources on every pick before you do.
 
 Thursday through Saturday: odds-scout pulls daily. The Saturday morning pull
 is the one that captures closing lines, so it is the one that cannot be

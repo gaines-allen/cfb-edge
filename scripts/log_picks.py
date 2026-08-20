@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.card_rules import check_card, correlation_warnings  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 
 VALID_MARKETS = {"spread", "total", "moneyline"}
@@ -120,6 +121,10 @@ def main() -> int:
     errors: list[str] = []
     for i, d in enumerate(draft):
         errors.extend(validate(d, board_index, i))
+    # The same rules the weekly workflow enforces, so a hand logged card
+    # cannot walk around a gate the automated one has to clear.
+    errors += check_card(draft)
+
     if errors:
         print("Validation failed:\n" + "\n".join(errors), file=sys.stderr)
         return 3
@@ -164,6 +169,7 @@ def main() -> int:
             factors={t: True for t in (d.get("factors") or [])},
             model_number=(float(d["model_number"])
                           if d.get("model_number") is not None else None),
+            sources=d.get("sources") or [],
         ))
 
     live = [p for p in new_rows if p["live"]]
