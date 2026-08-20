@@ -198,10 +198,12 @@ def main() -> int:
 
     if args.dry_run:
         print(json.dumps({"dry_run": True, **summary}, indent=2))
+        log.finish()
         return 0
 
     store.save_picks(existing + new_rows)
     print(json.dumps(summary, indent=2))
+    log.finish()
     return 0
 
 

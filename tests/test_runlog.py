@@ -98,3 +98,20 @@ def test_a_skipped_write_is_visible(capsys):
     rec = records(capsys)[0]
     assert rec["skipped"] is True
     assert rec["dry_run"] is True
+
+
+def test_every_script_hands_its_log_to_the_client():
+    """
+    A client built without the run log keeps its own silent one, so the
+    endpoint, credit cost and row count never reach stderr and the whole
+    point of the logging is lost. This caught exactly that.
+    """
+    import re
+    from conftest import ROOT
+    bad = []
+    for p in sorted((ROOT / "scripts").glob("*.py")):
+        src = p.read_text()
+        for m in re.finditer(r"\b(CFBDClient|OddsClient)\(([^)]*)\)", src):
+            if "log=" not in m.group(2):
+                bad.append(f"{p.name}: {m.group(0)}")
+    assert bad == [], f"clients built without a run log: {bad}"

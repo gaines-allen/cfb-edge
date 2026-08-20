@@ -132,10 +132,11 @@ def main() -> int:
     if args.close_only:
         n = stamp_closing_lines({})
         print(json.dumps({"closing_lines_stamped": n}))
+        log.finish()
         return 0
 
     try:
-        client = OddsClient()
+        client = OddsClient(log=log)
     except OddsAPIError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
@@ -200,6 +201,7 @@ def main() -> int:
     if quota["remaining"] is not None and quota["remaining"] < 40:
         print(f"WARNING: only {quota['remaining']} Odds API credits left this month.",
               file=sys.stderr)
+    log.finish()
     return 0
 
 

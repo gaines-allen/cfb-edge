@@ -91,6 +91,7 @@ def main() -> int:
         "ambiguous_dropped": dropped,
         "wrote": str(ALIAS_FILE.relative_to(ALIAS_FILE.parents[1])),
     }, indent=2))
+    log.finish()
     return 0
 
 

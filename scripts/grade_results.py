@@ -152,13 +152,14 @@ def main() -> int:
         mem = rebuild_memory(picks, args.season)
         print(json.dumps({"graded": 0, "note": "nothing pending",
                           "record": mem.get("overall", {})}, indent=2))
+        log.finish()
         return 0
 
     weeks = sorted({p.get("week") for p in pending if p.get("week")})
     if args.week:
         weeks = [args.week]
 
-    cfbd = CFBDClient()
+    cfbd = CFBDClient(log=log)
     idx: dict = {}
     known: set[str] = set()
     for wk in weeks:
@@ -239,6 +240,7 @@ def main() -> int:
               "Never hand-edit a result into picks.json.", file=sys.stderr)
         return 5
 
+    log.finish()
     return 0
 
 

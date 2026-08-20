@@ -668,6 +668,7 @@ def main() -> int:
         "weeks": len(payload["weeks"]),
         "record": payload["overall"],
     }, indent=2))
+    log.finish()
     return 0
 
 

@@ -37,6 +37,30 @@ from lib.teams import canonical  # noqa: E402
 MIN_SAMPLE = 20
 
 
+def resolve_week(requested, cal, season):
+    """
+    Pick the week to work, and refuse rather than substitute.
+
+    Week 0 is the trap this exists for. It is a real thing people ask for,
+    and 0 is falsy, so "requested or current_week(cal)" threw it away and
+    quietly returned a different week with no warning. CFBD also folds week
+    0 games into week 1 for every season from 2023 to 2026, so a request
+    for 0 has no data behind it at all.
+    """
+    weeks = sorted({int(w["week"]) for w in cal
+                    if w.get("seasonType") == "regular"
+                    and w.get("week") is not None})
+    if requested is None:
+        return current_week(cal) or (weeks[0] if weeks else 1)
+    requested = int(requested)
+    if weeks and requested not in weeks:
+        raise ValueError(
+            f"season {season} has no week {requested}. The calendar carries "
+            f"weeks {weeks[0]} to {weeks[-1]}. CFBD folds week 0 openers into "
+            f"week 1, so ask for week {weeks[0]}."
+        )
+    return requested
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, default=2026)
@@ -54,13 +78,17 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
-    cfbd = CFBDClient()
+    cfbd = CFBDClient(log=log)
     try:
-        week = args.week or current_week(cfbd.calendar(args.season)) or 1
+        week = resolve_week(args.week, cfbd.calendar(args.season), args.season)
         book = build_rating_book(
             cfbd.sp_ratings(args.season), cfbd.fpi(args.season),
             cfbd.srs(args.season), cfbd.elo(args.season, week=week),
         )
+    except ValueError as e:
+        log.error(str(e))
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 4
     except ShapeError as e:
         log.error(str(e))
         print(f"SHAPE ERROR: {e}", file=sys.stderr)
@@ -123,6 +151,7 @@ def main() -> int:
     }
     store.write_json(CALIBRATION_FILE, payload)
     print(json.dumps(payload, indent=2))
+    log.finish()
     return 0
 
 
