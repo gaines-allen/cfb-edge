@@ -189,6 +189,29 @@ kickoff, so before game week the call usually comes back empty and free.
 CFBD responses cache to disk for 12 hours, so repeated runs on the same day
 cost nothing.
 
+## Reading the record
+
+Every row the grader writes carries a verdict beside its record, computed
+from a Wilson 95 percent interval against the 52.4 percent breakeven at
+-110. A row reading `no_signal` is not weak evidence, it is no evidence,
+because the interval still contains breakeven.
+
+The numbers are worth knowing before the first week grades. A 3 and 1 record
+carries an interval from 30 to 95 percent. Sixty wins and 40 losses, a 60
+percent record over 100 picks, still reads `no_signal` at 50.2 to 69.1.
+Even 160 and 120 is not there. A verdict of `beats_breakeven` needs several
+hundred decided picks.
+
+The card is capped at 6 a week and often produces 2, so a 14 week season
+yields between 28 and 84 graded picks across 16 factor tags. Most cells will
+hold 3 or 4 entries for a long time. The point of the verdict is that the
+handicapper cannot read "first half unders are 1 and 4" as a lesson and
+start avoiding them, which is learning noise and getting worse while
+appearing to improve.
+
+Expect the file to read `no_signal` almost everywhere for a long time. That
+is the file being honest.
+
 ## What this is not
 
 Opinions on football games. Not investment advice, not a guarantee, and not a

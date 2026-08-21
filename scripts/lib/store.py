@@ -218,7 +218,12 @@ DEFAULT_MEMORY = {
     "active_adjustments": [],
     "notes": (
         "Written by the grader after each slate settles. The handicapper is "
-        "required to read this file before rating any pick."
+        "required to read this file before rating any pick. Every row "
+        "carries a verdict beside its record. Read the verdict. A row "
+        "marked no_signal is not weak evidence, it is no evidence: its 95 "
+        "percent interval still contains the 52.4 percent needed to break "
+        "even. Only beats_breakeven and below_breakeven are evidence, and "
+        "both take several hundred decided picks to appear."
     ),
 }
 

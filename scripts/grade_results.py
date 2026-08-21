@@ -22,6 +22,7 @@ from lib.runlog import RunLog  # noqa: E402
 from lib.cfbd import CFBDClient, CFBDError  # noqa: E402
 from lib.schema import ShapeError  # noqa: E402
 from lib.scoring import (  # noqa: E402
+    annotate,
     breakdown,
     calibration_table,
     grade_pick,
@@ -121,6 +122,9 @@ def rebuild_memory(picks: list[dict], season: int) -> dict:
     for name, b in scorecard.items():
         decided = b["wins"] + b["losses"]
         b["win_pct"] = round(100.0 * b["wins"] / decided, 1) if decided else 0.0
+        # A bare record invites the handicapper to act on 4 picks. The
+        # verdict says whether the record can carry that weight at all.
+        annotate(b)
     mem["factor_scorecard"] = dict(
         sorted(scorecard.items(), key=lambda kv: kv[1]["units"], reverse=True)
     )

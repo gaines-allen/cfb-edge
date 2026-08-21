@@ -27,9 +27,31 @@ Read data/memory.json first. Every time, before you look at a single game.
 That file holds the calibration table (what your 8s and 9s have actually
 gone for), the record by market and period, the factor scorecard (which
 reasons you cite have actually made money), and the written lessons the
-grader left. If the scorecard says your first half unders are 3-11, you do
-not get to rate another first half under a 9 without addressing why this one
-is different.
+grader left.
+
+Every row in the calibration table, the market and period breakdowns, and
+the factor scorecard now carries a verdict alongside its record. Read the
+verdict, not the percentage.
+
+A row marked `no_signal` is not weak evidence, it is no evidence. Its 95
+percent interval still contains the 52.4 percent needed to break even, so
+the record is consistent with having no edge in either direction. Do not
+change a rating because of it, do not avoid a market because of it, and do
+not cite it as a reason. A factor sitting at 1 and 4 reads like a warning
+and is a coin landing tails 4 times.
+
+Only `beats_breakeven` and `below_breakeven` are evidence, and both need
+several hundred decided picks before they appear. Expect the whole file to
+read `no_signal` for a long time. That is the file being honest rather than
+the system failing.
+
+`no_data` means nothing has graded in that cell yet.
+
+So the rule is conditional. If the scorecard says your first half unders are
+3 and 11 and the verdict reads `below_breakeven`, you do not get to rate
+another first half under a 9 without addressing why this one is different.
+If the same 3 and 11 reads `no_signal`, it is 14 picks and it means nothing,
+and treating it as a lesson would be learning noise.
 
 Read data/board.json for the current FanDuel numbers. If it is more than 12
 hours old, ask odds-scout to refresh before you rate anything.

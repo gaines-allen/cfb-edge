@@ -226,6 +226,7 @@ def calibration_table(picks: list[dict]) -> list[dict]:
             continue
         s = summarize(group)
         s["bucket"] = name
+        annotate(s)
         rows.append(s)
     return rows
 
@@ -242,5 +243,80 @@ def breakdown(picks: list[dict], key: str) -> list[dict]:
     for name, group in sorted(groups.items()):
         s = summarize(group)
         s[key] = name
+        annotate(s)
         rows.append(s)
     return sorted(rows, key=lambda r: r["units"], reverse=True)
+
+# ---------------------------------------------------- sample sufficiency
+
+def wilson_interval(wins: int, decided: int, z: float = 1.96
+                    ) -> tuple[float, float] | None:
+    """
+    A 95% interval for a win rate, by the Wilson score method.
+
+    The plain normal interval is badly wrong at the sample sizes this system
+    actually produces. At 3 wins from 4 it gives a range running past 100%,
+    which is worse than saying nothing. Wilson stays inside 0 to 1 and stays
+    honest at small n, which is the only regime this file will see for a
+    long time.
+    """
+    if decided <= 0:
+        return None
+    import math
+    p_hat = wins / decided
+    denom = 1.0 + z * z / decided
+    centre = (p_hat + z * z / (2 * decided)) / denom
+    margin = z * math.sqrt(
+        p_hat * (1 - p_hat) / decided + z * z / (4 * decided * decided)) / denom
+    return (round(100.0 * max(0.0, centre - margin), 1),
+            round(100.0 * min(1.0, centre + margin), 1))
+
+
+def sample_verdict(wins: int, decided: int, price: int = -110) -> dict:
+    """
+    Does this record actually say anything, or is it noise wearing a
+    percentage?
+
+    A record only carries information when its 95% interval sits entirely on
+    one side of breakeven. Six picks a week over a 14 week season is at most
+    84 graded picks spread across 16 factor tags, so most cells will hold 3
+    or 4 entries and mean nothing at all. Reading "first half unders are 1
+    and 4" as evidence and avoiding them is how a system gets worse while
+    appearing to learn.
+
+    verdict is one of no_data, no_signal, beats_breakeven, below_breakeven.
+    Only the last 2 are evidence.
+    """
+    be = 100.0 * breakeven(price)
+    interval = wilson_interval(wins, decided)
+    if interval is None:
+        return {"verdict": "no_data", "decided": 0, "breakeven_pct": round(be, 1),
+                "interval_95": None,
+                "reading": "Nothing has graded yet, so there is nothing to read."}
+    lo, hi = interval
+    if lo > be:
+        verdict = "beats_breakeven"
+        reading = (f"{decided} decided, and the whole 95% interval "
+                   f"{lo} to {hi} sits above the {be:.1f} needed to break "
+                   f"even. This is evidence.")
+    elif hi < be:
+        verdict = "below_breakeven"
+        reading = (f"{decided} decided, and the whole 95% interval "
+                   f"{lo} to {hi} sits below the {be:.1f} needed to break "
+                   f"even. This is evidence.")
+    else:
+        verdict = "no_signal"
+        reading = (f"{decided} decided. The 95% interval {lo} to {hi} "
+                   f"contains the {be:.1f} breakeven, so this record is "
+                   f"consistent with having no edge either way. Do not act "
+                   f"on it.")
+    return {"verdict": verdict, "decided": decided,
+            "breakeven_pct": round(be, 1), "interval_95": [lo, hi],
+            "reading": reading}
+
+
+def annotate(row: dict, price: int = -110) -> dict:
+    """Attach the verdict to any row carrying wins and losses."""
+    decided = int(row.get("wins", 0)) + int(row.get("losses", 0))
+    row.update(sample_verdict(int(row.get("wins", 0)), decided, price))
+    return row

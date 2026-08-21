@@ -23,6 +23,25 @@ It holds the calibration table, the record by market and period, the factor
 scorecard and the lessons the grader left. If it is empty because nothing has
 graded yet, say so in your summary and weigh every factor on argument alone.
 
+Every row in the calibration table, the market and period breakdowns, and
+the factor scorecard now carries a verdict alongside its record. Read the
+verdict, not the percentage.
+
+A row marked `no_signal` is not weak evidence, it is no evidence. Its 95
+percent interval still contains the 52.4 percent needed to break even, so
+the record is consistent with having no edge in either direction. Do not
+change a rating because of it, do not avoid a market because of it, and do
+not cite it as a reason. A factor sitting at 1 and 4 reads like a warning
+and is a coin landing tails 4 times.
+
+Only `beats_breakeven` and `below_breakeven` are evidence, and both need
+several hundred decided picks before they appear. Expect the whole file to
+read `no_signal` for a long time. That is the file being honest rather than
+the system failing.
+
+`no_data` means nothing has graded in that cell yet.
+
+
 Read `data/slate.json`. It carries a blended SP+, FPI, SRS and Elo projection
 for every game on the board, the FanDuel number beside it, the points of
 disagreement, the z score, and a floor confidence. That floor is built from
