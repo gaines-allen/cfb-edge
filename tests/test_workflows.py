@@ -188,8 +188,33 @@ def test_the_card_is_rehearsed_before_it_is_logged():
         "the real log_picks call does not follow the rehearsal"
 
 
-def test_a_rejected_card_is_kept_for_reading():
-    assert "rejected-card" in WEEKLY
+def test_whatever_the_run_produced_is_kept_for_reading():
+    """
+    Any failure, not only a rejected card. The first real run failed at the
+    agent step and uploaded nothing, so the payload holding the reason was
+    lost with the runner.
+    """
+    assert "upload-artifact" in WEEKLY_CMDS
+    assert "if: failure()" in WEEKLY
+
+
+def test_the_token_is_stripped_of_whitespace():
+    """
+    A token copied out of an 80 column terminal carries a line break at
+    character 80, and the API rejects the header. The first real run failed
+    on exactly that. The token contains no whitespace, so removing all of it
+    repairs a secret that was pasted with the break already in it.
+    """
+    assert "tr -d '[:space:]'" in WEEKLY_CMDS
+
+
+def test_a_failure_prints_the_reason():
+    """
+    Claude Code puts the reason in the result field. Printing only the
+    subtype turns "Invalid auth token" into "Failed with subtype success".
+    """
+    block = WEEKLY.split("if d.get(\"is_error\")", 1)[1][:400]
+    assert 'd.get("result")' in block
 
 
 # ------------------------------------------- nothing publishes itself

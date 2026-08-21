@@ -113,6 +113,14 @@ jobs:
             echo "claude setup-token and add it as a repository secret."
             exit 1
           fi
+          # Strip every whitespace character out of the token. A token copied
+          # from an 80 column terminal carries a line break at character 80,
+          # because the soft wrap becomes a real newline on copy, and the API
+          # then rejects the Authorization header. The token itself contains
+          # no whitespace, so removing all of it is safe and repairs a secret
+          # that was pasted with the break already in it.
+          CLAUDE_CODE_OAUTH_TOKEN="$(printf '%s' "$CLAUDE_CODE_OAUTH_TOKEN" | tr -d '[:space:]')"
+          export CLAUDE_CODE_OAUTH_TOKEN
           set -o pipefail
           claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }}" \
             --model opus \
@@ -161,6 +169,12 @@ jobs:
               sys.exit(1)
           if d.get("is_error"):
               print(f"Failed with subtype `{subtype}`.\n")
+              # Claude Code puts the reason in result, including auth
+              # failures. Printing only the subtype hides the one line that
+              # says what went wrong.
+              print("```")
+              print((d.get("result") or "no message returned")[:2000])
+              print("```")
               sys.exit(1)
           print("```")
           print((d.get("result") or "")[:3000])
@@ -215,11 +229,12 @@ jobs:
 
       # A card that breaks a rule stops here, and data/picks.json is never
       # opened. The draft is uploaded so the rejection can be read.
-      - name: Keep the rejected draft
-        if: failure() && steps.validate.outcome == 'failure'
+      - name: Keep whatever the run produced
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: rejected-card
+          name: run-output
+          if-no-files-found: ignore
           path: |
             picks_draft.json
             validation.json
