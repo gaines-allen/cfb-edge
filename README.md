@@ -1,10 +1,21 @@
-# CFB Edge
+# Steve
 
 Six college football plays a week, published only above 8.0 out of 10, with
 every number, every reason, and every result tracked in public so the model
 can find out whether it is any good.
 
-The dashboard is at `site/index.html`, served from GitHub Pages.
+The dashboard is at `site/index.html`, served from GitHub Pages. It is
+written by Steve, a character who books and does not sell. The promise in
+his tagline is the product: a bookie never shows you his record, and this
+one posts his either way, before kickoff.
+
+Steve is a persona and the page says so near the footer. A page whose whole
+argument is that it does not overclaim cannot open by implying a real
+handicapper is behind it. Everything he says lives in the `VOICE` dictionary
+at the top of `scripts/build_site.py` and nothing is written into the
+markup, so replacing the character is one edit and a test fails if a phrase
+of his leaks into a tag. The empty states and the losing weeks are his too,
+because the swagger only means something while the honest copy survives.
 
 ## How it works
 

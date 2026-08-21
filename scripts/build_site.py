@@ -100,42 +100,46 @@ def weekly_rows(picks: list[dict]) -> list[dict]:
 # The character. Every line the page says out loud lives here, so the
 # persona can be rewritten without touching a single tag.
 #
-# Phil books. He does not sell. The whole promise sits in the tagline: a
+# Steve books. He does not sell. The whole promise sits in the tagline: a
 # bookie takes the other side of your bet and never shows you his record,
-# and this one posts his either way. That only works while the honest copy
-# survives, so the empty states, the losing weeks and the "this means
-# nothing yet" lines are his too, not exceptions to him.
+# and this one posts his either way. The swagger only means something while
+# the honest copy survives, so the empty states, the losing weeks and the
+# "this means nothing yet" lines are his too, not exceptions carved out of
+# him. A man who is actually good does not need a play every Wednesday.
 #
 # He talks the way the rest of this repo writes. Prose, no lists, no em
 # dashes, plain verbs, numbers instead of adjectives, and he never signs
 # off with a summary. He is a persona and the page says so, because a page
 # built on not overclaiming cannot open by implying a real handicapper.
 VOICE = {
-    "name": "PHIL",
-    "full_name": "Phil",
+    "name": "STEVE",
+    "full_name": "Steve",
+    "kicker": "College football picks",
+    "logo": "steve.png",
+    "sign_off": "Steve",
     "tagline": "Your bookie never shows you his record. I post mine, win "
-               "or lose, before the games kick.",
+               "or lose, before kickoff.",
     "subhead": "Six plays a week at most, nothing under 8.0 out of 10, "
                "every number and every reason on the board.",
 
-    # Openly a persona. A page built on not overclaiming cannot start by
+    # Openly a persona. A page built on not overclaiming cannot open by
     # implying a real handicapper is behind it.
-    "about": "Phil is the voice of this system, not a person. The numbers "
+    "about": "Steve is the voice of this system, not a person. The numbers "
              "come from a ratings model, the reasons come from research "
              "that is checked against its sources before anything is "
              "posted, and every figure about the record is computed from "
              "the ledger rather than written by hand.",
 
-    "card_heading": "The card",
-    "card_empty": "Nothing this week. The board is priced right and I am "
-                  "not making something up to fill the space.",
-    "card_short": "That is the whole card. A short week means the numbers "
-                  "were fair, not that I ran out of time.",
+    "card_heading": "Today's picks",
+    "card_empty": "Nothing this week. The board is priced right, and I do "
+                  "not hand you a play just because it is Wednesday.",
+    "card_short": "That is the card. A short week means the numbers were "
+                  "fair, not that I got lazy.",
     "card_pending": "Still running",
 
     "book_heading": "The book",
     "book_empty": "Nothing has settled yet, so there is no record to show "
-                  "you. Come back after the first Sunday.",
+                  "you. Come back after the first Sunday and I will.",
 
     "calibration_heading": "Do my numbers mean anything",
     "calibration_empty": "Nothing has graded, so an 8 and a 9 are two "
@@ -170,7 +174,6 @@ VOICE = {
                       "tells you nothing either way. I post it because "
                       "hiding it would be worse, not because it proves "
                       "something.",
-    # Shorter, for the second place the same caveat has to appear.
     "no_signal_short": "Same caveat as above. Not enough has decided for "
                        "these bars to mean anything yet.",
 
@@ -279,70 +282,101 @@ HTML = """<!doctype html>
 <meta name="description" content="__TAGLINE__">
 <style>
   :root {
-    --ink: #0b0b0c;
-    --panel: #131316;
-    --line: #26262b;
-    --text: #f1ece2;
-    --dim: #9b968c;
-    --chalk: #e8b04b;
-    --win: #6fbf73;
-    --loss: #d2645c;
-    --push: #8a8f98;
+    /* Sampled off the logo: navy field, cream lettering, gold rule,
+       banner green. The card itself is cream because Steve writes it on
+       a pad, and the pad is the thing he is holding. */
+    --navy: #101c33;
+    --navy-2: #17263f;
+    --line: #26364f;
+    --cream: #f0e6d2;
+    --paper: #f4ecda;
+    --ink: #16233b;
+    --dim: #9aa6bb;
+    --gold: #c9a961;
+    --green: #24422f;
+    --win: #3f7d4a;
+    --loss: #b4463c;
+    --push: #6d7688;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--ink); color: var(--text);
+    margin: 0; background: var(--navy); color: var(--cream);
     font: 16px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 940px; margin: 0 auto; padding: 48px 20px 80px; }
-  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; }
-  .mark {
-    font-size: 44px; letter-spacing: .22em; font-weight: 700;
-    color: var(--text); margin: 0 0 14px;
+  header {
+    border-bottom: 2px solid var(--gold); padding-bottom: 28px;
+    display: flex; gap: 26px; align-items: center; flex-wrap: wrap;
   }
-  .tagline { font-size: 19px; margin: 0 0 8px; max-width: 46ch; }
+  header img { width: 132px; height: auto; flex: none; }
+  .mark {
+    font-size: 46px; letter-spacing: .16em; font-weight: 800;
+    color: var(--cream); margin: 0 0 6px; line-height: 1;
+  }
+  .kicker {
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin: 0 0 12px;
+  }
+  .headtext { flex: 1 1 340px; }
+  .tagline { font-size: 19px; margin: 0 0 8px; max-width: 48ch; }
   .subhead { color: var(--dim); font-size: 15px; margin: 0; max-width: 62ch; }
   h2 {
     font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--dim); font-weight: 600; margin: 52px 0 16px;
+    color: var(--gold); font-weight: 700; margin: 52px 0 16px;
   }
   .said { font-size: 17px; max-width: 62ch; margin: 0 0 8px; }
   .quiet { color: var(--dim); font-size: 14px; max-width: 66ch; }
 
   /* the tickets */
   .tickets { display: grid; gap: 14px; }
+  /* Cream paper on navy, ruled like the pad in the logo. */
   .ticket {
-    background: var(--panel); border: 1px solid var(--line);
-    border-left: 3px solid var(--chalk); border-radius: 4px; padding: 18px 20px;
+    background: var(--paper); color: var(--ink);
+    border: 1px solid #d9cdb2; border-top: 5px solid var(--gold);
+    border-radius: 3px; padding: 18px 20px 16px;
+    box-shadow: 0 2px 0 rgba(0,0,0,.35);
   }
-  .ticket.win { border-left-color: var(--win); }
-  .ticket.loss { border-left-color: var(--loss); }
-  .ticket.push { border-left-color: var(--push); }
+  .ticket.win { border-top-color: var(--win); }
+  .ticket.loss { border-top-color: var(--loss); }
+  .ticket.push { border-top-color: var(--push); }
   .tick-top {
     display: flex; flex-wrap: wrap; align-items: baseline;
     gap: 10px 14px; margin-bottom: 4px;
   }
-  .play { font-size: 25px; font-weight: 700; letter-spacing: -.01em; }
-  .price { color: var(--chalk); font-size: 17px; font-variant-numeric: tabular-nums; }
+  .play { font-size: 25px; font-weight: 800; letter-spacing: -.01em; color: var(--ink); }
+  .price {
+    color: #7a5c16; font-size: 17px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
   .badge {
     font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px;
-    color: var(--dim);
+    border: 1px solid #c0b394; border-radius: 999px; padding: 3px 9px;
+    color: #6a6252; font-weight: 700;
   }
   .badge.win { color: var(--win); border-color: var(--win); }
   .badge.loss { color: var(--loss); border-color: var(--loss); }
   .badge.push { color: var(--push); border-color: var(--push); }
-  .matchup { color: var(--dim); font-size: 14px; margin-bottom: 12px; }
-  .why { margin: 0 0 12px; max-width: 68ch; }
-  .meta {
-    display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px;
-    color: var(--dim); font-variant-numeric: tabular-nums;
+  .matchup {
+    color: #6a6252; font-size: 13px; margin-bottom: 12px;
+    padding-bottom: 10px; border-bottom: 1px solid #ded2b8;
+    letter-spacing: .02em;
   }
-  .meta b { color: var(--text); font-weight: 600; }
-  .srcs { margin-top: 12px; font-size: 13px; }
-  .srcs a { color: var(--chalk); text-decoration: none; border-bottom: 1px solid #4a3a1c; }
-  .srcs a:hover { border-bottom-color: var(--chalk); }
+  .why { margin: 0 0 12px; max-width: 68ch; color: #2a3448; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px;
+    color: #6a6252; font-variant-numeric: tabular-nums;
+    border-top: 1px solid #ded2b8; padding-top: 10px;
+  }
+  .meta b { color: var(--ink); font-weight: 700; }
+  .srcs { margin-top: 10px; font-size: 12px; color: #6a6252; }
+  .srcs a { color: #7a5c16; text-decoration: none; border-bottom: 1px solid #cbb98d; }
+  .srcs a:hover { border-bottom-color: #7a5c16; }
+  /* His signature, the way he signs the pad. */
+  .sign {
+    margin-top: 14px; text-align: right; font-size: 15px;
+    color: #6a6252; font-style: italic;
+  }
 
   /* the book */
   .stats { display: flex; flex-wrap: wrap; gap: 30px 40px; align-items: flex-end; }
@@ -350,30 +384,32 @@ HTML = """<!doctype html>
     font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
     color: var(--dim);
   }
-  .stat .v { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .v { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
   .stat.big .v { font-size: 52px; }
-  .v.pos { color: var(--win); } .v.neg { color: var(--loss); }
+  .v.pos { color: #6fbf73; } .v.neg { color: #e0776c; }
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th, td {
     text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line);
     font-variant-numeric: tabular-nums;
   }
-  th { color: var(--dim); font-weight: 600; font-size: 12px;
+  th { color: var(--gold); font-weight: 700; font-size: 12px;
        letter-spacing: .08em; text-transform: uppercase; }
   .nosig { color: var(--dim); font-size: 12px; }
 
   .panel {
-    background: var(--panel); border: 1px solid var(--line);
+    background: var(--navy-2); border: 1px solid var(--line);
     border-radius: 4px; padding: 18px 20px;
   }
   svg { display: block; width: 100%; height: auto; }
   footer {
-    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line);
+    margin-top: 64px; padding-top: 24px; border-top: 2px solid var(--gold);
     color: var(--dim); font-size: 13px;
   }
-  footer .warn { color: var(--text); margin-top: 14px; max-width: 70ch; }
+  footer .warn { color: var(--cream); margin-top: 14px; max-width: 70ch; }
   @media (max-width: 620px) {
+    header { gap: 16px; }
+    header img { width: 96px; }
     .mark { font-size: 32px; }
     .play { font-size: 21px; }
     .stat.big .v { font-size: 40px; }
@@ -384,9 +420,13 @@ HTML = """<!doctype html>
 <div class="wrap">
 
   <header>
-    <div class="mark">__NAME__</div>
-    <p class="tagline">__TAGLINE__</p>
-    <p class="subhead">__SUBHEAD__</p>
+    <img src="__LOGO__" alt="__NAME__, college football picks" width="132">
+    <div class="headtext">
+      <div class="mark">__NAME__</div>
+      <p class="kicker">__KICKER__</p>
+      <p class="tagline">__TAGLINE__</p>
+      <p class="subhead">__SUBHEAD__</p>
+    </div>
   </header>
 
   <h2 id="card-h">The card</h2>
@@ -468,6 +508,7 @@ function ticket(p) {
       ${p.final_score ? `<span>Final <b>${esc(p.final_score)}</b></span>` : ""}
     </div>
     ${srcs ? `<div class="srcs">${esc(V.sources_heading)}: ${srcs}</div>` : ""}
+    <div class="sign">&mdash; ${esc(V.sign_off)}</div>
   </div>`;
 }
 
@@ -632,7 +673,9 @@ def main() -> int:
             .replace("__VOICE__", json.dumps(VOICE, separators=(",", ":")))
             .replace("__NAME__", VOICE["name"])
             .replace("__TAGLINE__", VOICE["tagline"])
-            .replace("__SUBHEAD__", VOICE["subhead"]))
+            .replace("__SUBHEAD__", VOICE["subhead"])
+            .replace("__KICKER__", VOICE["kicker"])
+            .replace("__LOGO__", VOICE["logo"]))
     store.write_text(SITE / "index.html", html)
 
     print(json.dumps({

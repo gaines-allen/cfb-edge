@@ -1,7 +1,7 @@
 """
 The page, and the character speaking on it.
 
-Phil is a persona wrapped around a ledger. That is fine right up until the
+Steve is a persona wrapped around a ledger. That is fine right up until the
 persona starts making claims the ledger does not support, so these tests
 guard the seam: the voice stays in one place, the honest copy survives, and
 the headline record can never be printed without the caveat that it means
@@ -23,13 +23,20 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import build_site as B  # noqa: E402
 
 
+# Every __PLACEHOLDER__ the template contains, read off the template
+# rather than listed by hand. A new one added to the markup and forgotten
+# in main() would otherwise ship unreplaced with no test to catch it.
+PLACEHOLDERS = sorted(set(re.findall(r"__[A-Z]+__", B.HTML)))
+
+
 def render(payload: dict) -> str:
-    return (B.HTML
-            .replace("__DATA__", json.dumps(payload))
-            .replace("__VOICE__", json.dumps(B.VOICE))
-            .replace("__NAME__", B.VOICE["name"])
-            .replace("__TAGLINE__", B.VOICE["tagline"])
-            .replace("__SUBHEAD__", B.VOICE["subhead"]))
+    html = B.HTML.replace("__DATA__", json.dumps(payload)) \
+                 .replace("__VOICE__", json.dumps(B.VOICE))
+    for token in PLACEHOLDERS:
+        key = token.strip("_").lower()
+        if key in B.VOICE:
+            html = html.replace(token, B.VOICE[key])
+    return html
 
 
 # ------------------------------------------------------- the character
@@ -53,7 +60,7 @@ def test_no_em_dashes_anywhere_in_the_voice(key):
     assert "–" not in B.VOICE[key]
 
 
-def test_the_page_says_phil_is_not_a_person():
+def test_the_page_says_the_character_is_not_a_person():
     """
     A page whose whole argument is that it does not overclaim cannot open
     by implying a real handicapper is behind it.
@@ -75,10 +82,34 @@ def test_every_voice_key_the_template_asks_for_exists():
     assert missing == [], f"template reads VOICE keys that do not exist: {missing}"
 
 
+def test_every_placeholder_has_something_to_fill_it():
+    """
+    __NAME__ and friends are filled from VOICE. A template placeholder with
+    no matching key would render literally on the page.
+    """
+    missing = [t for t in PLACEHOLDERS
+               if t not in ("__DATA__", "__VOICE__")
+               and t.strip("_").lower() not in B.VOICE]
+    assert missing == [], f"no VOICE key for {missing}"
+
+
 def test_no_placeholder_survives_a_render():
     html = render({"picks": [], "overall": {}, "current": {}})
-    for token in ("__DATA__", "__VOICE__", "__NAME__", "__TAGLINE__", "__SUBHEAD__"):
-        assert token not in html
+    for token in PLACEHOLDERS:
+        assert token not in html, f"{token} was never replaced"
+
+
+def test_the_real_build_replaces_every_placeholder():
+    """render() above is the test's own copy. This checks main()'s."""
+    import subprocess
+    import sys as _sys
+    proc = subprocess.run(
+        [_sys.executable, str(ROOT / "scripts" / "build_site.py"), "--dry-run"],
+        capture_output=True, text=True, cwd=str(ROOT))
+    assert proc.returncode == 0, proc.stderr[-400:]
+    built = (ROOT / "site" / "index.html").read_text()
+    for token in PLACEHOLDERS:
+        assert token not in built, f"{token} is unreplaced in the built page"
 
 
 # ------------------------------------------- the record cannot overclaim
