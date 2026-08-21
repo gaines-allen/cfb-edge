@@ -35,6 +35,10 @@ RATINGS_ONLY = "rating_edge"
 # last week's reasoning, and a 3 week old report is last week's reasoning.
 MAX_SOURCE_AGE_DAYS = 14
 
+# A quote shorter than this matches a page by accident. "he is out" appears
+# everywhere and proves nothing about the page being cited.
+MIN_QUOTE_CHARS = 25
+
 # Above this a pick stakes the maximum 2 units, so it carries a higher bar.
 MAX_STAKE_THRESHOLD = 9.0
 
@@ -125,6 +129,19 @@ def check_pick(pick: dict, i: int, now: datetime | None = None) -> list[str]:
     for j, s in enumerate(sources):
         if not str(s.get("url", "")).startswith("http"):
             errs.append(f"{label}: source {j} has no usable url")
+        # The quote is the exact sentence from the page that supports the
+        # claim, and scripts/verify_sources.py checks it is really there.
+        # Without it nothing can tell a read source from a paraphrased one.
+        quote = str(s.get("quote") or "").strip()
+        if not quote:
+            errs.append(
+                f"{label}: source {j} has no quote. Give the exact sentence "
+                f"from the page that supports the claim, so it can be checked "
+                f"against the page rather than taken on trust.")
+        elif len(quote) < MIN_QUOTE_CHARS:
+            errs.append(
+                f"{label}: source {j} quotes {len(quote)} characters, under "
+                f"the {MIN_QUOTE_CHARS} needed to identify a sentence.")
         d = _parse_date(s.get("date"))
         if d is None:
             errs.append(f"{label}: source {j} has no parseable date")

@@ -48,7 +48,9 @@ def draft_row(event, spread, **over):
         "factors": ["rating_edge", "injury_edge"],
         "sources": [{"url": "https://example.com/report",
                      "publisher": "Beat writer", "date": FRESH,
-                     "claim": "starter cleared to play"}],
+                     "claim": "starter cleared to play",
+                     "quote": "The starting left tackle has been cleared to "
+                              "play in the opener, the coach said Monday."}],
     }
     row.update(over)
     return row
@@ -108,7 +110,10 @@ def test_stale_research_is_refused(tmp_path, board_event):
     event, spread = board_event
     proc = run_log(tmp_path, [draft_row(
         event, spread,
-        sources=[{"url": "https://example.com/a", "date": STALE}])], "--dry-run")
+        sources=[{"url": "https://example.com/a", "date": STALE,
+                  "quote": "The starting left tackle has been cleared to "
+                           "play in the opener, the coach said Monday."}])],
+        "--dry-run")
     assert proc.returncode == 3
     assert "last week's reasoning" in proc.stderr
 

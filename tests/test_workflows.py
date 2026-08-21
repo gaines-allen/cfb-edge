@@ -271,3 +271,31 @@ def test_a_failed_run_does_not_reach_the_validator():
     """The agent step must still fail the job when the payload says it failed."""
     block = WEEKLY.split("> research.json", 1)[1].split("Fail if the agent")[0]
     assert "sys.exit(1)" in block
+
+
+def test_sources_are_verified_before_anything_is_logged():
+    """
+    A url and a date only prove a page exists. Opening it is what separates
+    a read source from a paraphrased one, and that has to happen before the
+    ledger is touched.
+    """
+    assert (AFTER_AGENT.index("verify_sources.py")
+            < AFTER_AGENT.index("log_picks.py"))
+
+
+def test_the_pull_request_names_what_could_not_be_confirmed():
+    """
+    The unverified list is the part a person has to read, so it belongs in
+    the pull request rather than buried in a log.
+    """
+    body = WEEKLY.split("pr_body.md", 1)[1][:1400]
+    assert "unverified_on_live_picks" in body
+    assert "Read these before merging" in body
+
+
+def test_the_pull_request_states_the_limits_of_the_check():
+    assert 's["note"]' in WEEKLY
+
+
+def test_the_verification_report_is_kept_on_failure():
+    assert "verification.json" in WEEKLY_CMDS

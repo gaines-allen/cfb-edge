@@ -229,6 +229,26 @@ jobs:
 
       # A card that breaks a rule stops here, and data/picks.json is never
       # opened. The draft is uploaded so the rejection can be read.
+      # Open every cited page and check the claim is really on it. A url and
+      # a date only prove a page exists. Without this a paraphrase, a
+      # misremembered quote, or a page that says the opposite all pass.
+      - name: Verify every cited source
+        if: steps.validate.outputs.no_card != 'true'
+        id: sources
+        run: |
+          python3 scripts/verify_sources.py --file picks_draft.json \
+            --out verification.json
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          v = json.load(open("verification.json"))
+          print("\n### Source verification\n")
+          print(f"{v['sources_verified']} of {v['sources_checked']} cited "
+                f"sentences were found on the page they came from.\n")
+          for line in v["unverified_on_live_picks"]:
+              print(f"- UNVERIFIED: {line}\n")
+          print(f"\n{v['note']}\n")
+          PY
+
       - name: Keep whatever the run produced
         if: failure()
         uses: actions/upload-artifact@v4
@@ -238,6 +258,7 @@ jobs:
           path: |
             picks_draft.json
             validation.json
+            verification.json
             research.json
 
       - name: Log the card and rebuild the page
@@ -271,13 +292,26 @@ jobs:
           fi
           git commit -m "Weekly card: $(date -u +'%Y-%m-%d')"
           git push origin "$BRANCH"
-          {
-            echo "The handicapper researched the slate and this card cleared every rule in scripts/lib/card_rules.py."
-            echo
-            echo "Nothing here is published until this merges. Read the rationale and the sources on each pick before you do."
-            echo
-            cat validation.json
-          } > pr_body.md
+          python3 - <<'PY' > pr_body.md
+          import json
+          v = json.load(open("validation.json"))
+          s = json.load(open("verification.json"))
+          print("The handicapper researched the slate. This card cleared "
+                "every rule in `scripts/lib/card_rules.py`, and every cited "
+                "sentence below was found on the page it came from.\n")
+          print(f"{v['live']} live picks, {v['units_at_risk']} units at risk, "
+                f"{s['sources_verified']} of {s['sources_checked']} sources "
+                f"confirmed.\n")
+          if s["unverified_on_live_picks"]:
+              print("## Read these before merging\n")
+              for line in s["unverified_on_live_picks"]:
+                  print(f"- {line}\n")
+          for w in v.get("warnings", []):
+              print(f"Warning: {w}\n")
+          print("## What the machine did not check\n")
+          print(s["note"] + "\n")
+          print("Nothing here is published until this merges.\n")
+          PY
           gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
                        --body-file pr_body.md \
                        --base main --head "$BRANCH"

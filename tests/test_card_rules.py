@@ -38,7 +38,9 @@ def pick(**over):
         "rationale": "A" * 120,
         "factors": ["rating_edge", "injury_edge"],
         "sources": [{"url": "https://example.com/a", "publisher": "Beat",
-                     "date": FRESH, "claim": "starter is out"}],
+                     "date": FRESH, "claim": "starter is out",
+                     "quote": "The starting left tackle has been cleared to "
+                              "play in the opener, the coach said Monday."}],
     }
     base.update(over)
     return base
@@ -74,19 +76,28 @@ def test_a_live_pick_needs_sources():
     assert any("no sources" in e for e in bad)
 
 
+GOOD_QUOTE = ("The starting left tackle has been cleared to play in the "
+              "opener, the coach said Monday.")
+
+
 @pytest.mark.parametrize("source,fragment", [
-    ({"url": "not-a-url", "date": FRESH}, "no usable url"),
-    ({"url": "https://x.com/a", "date": "the other day"}, "no parseable date"),
-    ({"url": "https://x.com/a", "date": STALE}, "days old"),
-    ({"url": "https://x.com/a",
+    ({"url": "not-a-url", "date": FRESH, "quote": GOOD_QUOTE}, "no usable url"),
+    ({"url": "https://x.com/a", "date": "the other day", "quote": GOOD_QUOTE},
+     "no parseable date"),
+    ({"url": "https://x.com/a", "date": STALE, "quote": GOOD_QUOTE}, "days old"),
+    ({"url": "https://x.com/a", "quote": GOOD_QUOTE,
       "date": (NOW + timedelta(days=5)).strftime("%Y-%m-%d")}, "future"),
+    ({"url": "https://x.com/a", "date": FRESH}, "no quote"),
+    ({"url": "https://x.com/a", "date": FRESH, "quote": "he is out"},
+     "under the 25"),
 ])
 def test_bad_sources_are_rejected(source, fragment):
     assert any(fragment in e for e in errs(pick(sources=[source])))
 
 
 def test_stale_research_is_reusing_last_weeks_reasoning():
-    bad = errs(pick(sources=[{"url": "https://x.com/a", "date": STALE}]))
+    bad = errs(pick(sources=[{"url": "https://x.com/a", "date": STALE,
+                              "quote": GOOD_QUOTE}]))
     assert any("last week's reasoning" in e for e in bad)
 
 
@@ -124,8 +135,8 @@ def test_two_units_passes_with_two_of_each():
     ok = errs(pick(
         confidence=9.2, units=2.0,
         factors=["rating_edge", "injury_edge", "line_value"],
-        sources=[{"url": "https://a.com/1", "date": FRESH},
-                 {"url": "https://b.com/2", "date": FRESH}]))
+        sources=[{"url": "https://a.com/1", "date": FRESH, "quote": GOOD_QUOTE},
+                 {"url": "https://b.com/2", "date": FRESH, "quote": GOOD_QUOTE}]))
     assert ok == []
 
 
@@ -179,8 +190,10 @@ def test_an_empty_card_is_fine():
 def test_the_weekly_unit_ceiling_holds():
     card = [pick(event_id=f"ev{i}", matchup=f"A{i} @ H{i}", confidence=9.1,
                  units=2.0, factors=["rating_edge", "injury_edge", "line_value"],
-                 sources=[{"url": "https://a.com/1", "date": FRESH},
-                          {"url": "https://b.com/2", "date": FRESH}])
+                 sources=[{"url": "https://a.com/1", "date": FRESH,
+                           "quote": GOOD_QUOTE},
+                          {"url": "https://b.com/2", "date": FRESH,
+                           "quote": GOOD_QUOTE}])
             for i in range(7)]
     bad = check_card(card, now=NOW)
     assert any(f"weekly ceiling is {MAX_UNITS_PER_WEEK}" in e for e in bad)
@@ -231,7 +244,8 @@ def today_card(n, **over):
     real_fresh = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
     over.setdefault("sources", [{"url": "https://example.com/a",
                                  "publisher": "Beat", "date": real_fresh,
-                                 "claim": "starter is out"}])
+                                 "claim": "starter is out",
+                                 "quote": GOOD_QUOTE}])
     return [pick(event_id=f"ev{i}", matchup=f"A{i} @ H{i}", **over)
             for i in range(n)]
 
@@ -270,3 +284,27 @@ def test_a_missing_draft_is_an_error_not_a_pass(tmp_path):
          "--file", str(tmp_path / "nope.json")],
         capture_output=True, text=True, cwd=str(ROOT))
     assert proc.returncode == 2
+
+
+
+# ------------------------------------------------- the quote requirement
+
+def test_a_source_without_a_quote_is_rejected():
+    """
+    A url and a date prove a page exists. The quote is what lets a machine
+    check the claim against the page instead of taking the paraphrase on
+    trust, which is the whole product.
+    """
+    bad = errs(pick(sources=[{"url": "https://x.com/a", "date": FRESH}]))
+    assert any("no quote" in e for e in bad)
+
+
+def test_a_trivial_quote_is_rejected():
+    """"he is out" appears everywhere and proves nothing about this page."""
+    bad = errs(pick(sources=[{"url": "https://x.com/a", "date": FRESH,
+                              "quote": "he is out"}]))
+    assert any("under the 25" in e for e in bad)
+
+
+def test_a_shadow_pick_needs_no_quote():
+    assert errs(pick(confidence=7.2, factors=["rating_edge"], sources=[])) == []

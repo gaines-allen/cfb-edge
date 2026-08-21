@@ -45,8 +45,24 @@ Anything at 8.0 or above whose only factor is `rating_edge`. The ratings
 model caps at 7.5 so it can never publish on its own, and restating its
 number at 8.1 walks around that cap.
 
-Anything at 8.0 or above with no sources. Every source needs a url and a
-date, and a date older than 14 days counts as reusing last week's reasoning.
+Anything at 8.0 or above with no sources. Every source needs a url, a date,
+and a quote, and a date older than 14 days counts as reusing last week's
+reasoning.
+
+The quote is the part that matters most. Copy the exact sentence from the
+page that supports your claim, verbatim, at least 25 characters. After you
+finish, scripts/verify_sources.py opens every url and checks that sentence
+is really on that page. A paraphrase will not match. A remembered quote will
+not match. A page you did not actually open will not match. Any live pick
+whose sources cannot be confirmed stops the run.
+
+So do not cite a page you have not read, and do not reconstruct a quote from
+memory. If you cannot fetch a page, either drop the claim or keep the pick
+below 8.0 and say in the rationale that the source could not be opened.
+
+What the check cannot do is tell whether the page is accurate, whether the
+quote is in context, or whether the outlet is any good. A person reads the
+card for that, so make the claim easy to check rather than easy to believe.
 
 Anything tagged `injury_edge` without a source. If you cannot confirm a
 player's status, say so in the rationale and keep the confidence below 8.5
@@ -84,7 +100,8 @@ A JSON list. Include everything you rated 6.0 and up, not only what cleared
         "factors": ["rating_edge", "injury_edge"],
         "sources": [
           {"url": "https://...", "publisher": "name", "date": "2026-09-02",
-           "claim": "what this source establishes"}
+           "claim": "what this source establishes",
+           "quote": "the exact sentence from that page, copied verbatim"}
         ]
       }
     ]

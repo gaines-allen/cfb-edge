@@ -126,6 +126,20 @@ The workflow does not pass `--bare` for 2 reasons. Bare mode skips
 instructions the handicapper needs, and bare mode does not read
 `CLAUDE_CODE_OAUTH_TOKEN` at all.
 
+Every cited source is opened and read before anything is logged.
+`scripts/verify_sources.py` fetches each url and checks that the exact
+sentence the pick relies on is really on that page. A url and a date only
+prove a page exists, so without this a paraphrase, a misremembered quote, or
+a page saying the opposite all pass identically to a source someone actually
+read. A live pick needs at least 1 source confirmed this way. Anything that
+could not be confirmed, including a paywall or a dead link, is named in the
+pull request rather than passing quietly.
+
+What that check cannot do is tell whether the page is accurate, whether the
+quote sits in context, or whether the outlet is worth anything. It moves the
+question from "did the agent read something" to "is what it read any good",
+and the second one is still yours.
+
 One honest limit. Phase 2 tests the ratings model and the staking math, and
 it cannot test the research layer, which is where every pick above 8.0 comes
 from. `factor_scorecard` in `data/memory.json` is what will eventually
