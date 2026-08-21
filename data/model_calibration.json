@@ -1,18 +1,18 @@
 {
-  "measured_at": "2026-08-20T14:09:08+00:00",
+  "measured_at": "2026-08-21T14:05:54+00:00",
   "season": 2026,
   "week": 1,
   "totals": {
     "n": 63,
-    "bias": -0.954,
+    "bias": -0.906,
     "median": -0.7,
-    "sigma": 3.246
+    "sigma": 3.274
   },
   "spreads": {
     "n": 63,
-    "bias": 0.568,
+    "bias": 0.616,
     "median": 1.0,
-    "sigma": 2.759
+    "sigma": 2.726
   },
   "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
 }
