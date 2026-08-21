@@ -88,6 +88,52 @@ semantic: a column of SP+ offense ratings whose median sits near 0 is a
 differential whatever it is called, and a CFBD team name the ESPN map can
 shorten is carrying a mascot whatever the docs say.
 
+## The weekly card
+
+The daily job does the deterministic half and stops, because making a pick
+needs an agent that can read an injury report. `.github/workflows/weekly-card.yml`
+runs that agent on Wednesday at 08:30 Chicago, and by hand from the Actions
+tab.
+
+The boundary is the point. The agent reads the slate, searches the web, and
+writes one file, `picks_draft.json`, which is gitignored scratch. It cannot
+run git, cannot run `log_picks.py`, cannot edit anything, and has `Write`
+scoped to that single filename. Deterministic code then checks the card, and
+only a card that passes reaches `data/picks.json`. The result lands in a pull
+request, so a person reads the rationale and the sources and merges. Nothing
+publishes itself.
+
+`scripts/lib/card_rules.py` holds the rules, and `scripts/validate_card.py`
+runs them as a gate. `log_picks.py` runs the same ones, so a hand logged card
+cannot walk around a check the automated path has to clear. Anything at 8.0
+or above needs a factor beyond `rating_edge` and at least one source with a
+url and a date under 14 days old. An injury claim needs a source, and an
+unconfirmed status caps the confidence below 8.5. Anything at 9.0 stakes the
+maximum 2 units and needs 2 factors and 2 sources. Six live picks and 12
+units are the weekly ceilings, and the same game and market cannot be taken
+twice. Several picks resting on one reason get flagged as correlated, which
+is a warning rather than a rejection.
+
+Authentication is a subscription token, not a metered API key. Run
+`claude setup-token` locally, which mints a 1 year OAuth token on a Pro,
+Max, Team or Enterprise plan, and add the value as the repository secret
+`CLAUDE_CODE_OAUTH_TOKEN`. The run then bills against the Claude plan
+rather than API usage. The run reports its own cost estimate in the
+workflow summary, and `--max-turns` caps how long the agent can loop.
+
+The workflow does not pass `--bare` for 2 reasons. Bare mode skips
+`CLAUDE.md` and the agent definitions in `.claude/`, which are the
+instructions the handicapper needs, and bare mode does not read
+`CLAUDE_CODE_OAUTH_TOKEN` at all.
+
+One honest limit. Phase 2 tests the ratings model and the staking math, and
+it cannot test the research layer, which is where every pick above 8.0 comes
+from. `factor_scorecard` in `data/memory.json` is what will eventually
+measure it, and it is empty until picks grade. Until it fills, run this with
+`research_only` set to true and read the drafts, or read every pull request
+before merging it. The rules above check that the process was followed. They
+cannot check that the reasoning was any good.
+
 ## Fixtures
 
 `tests/fixtures/` holds raw upstream payloads, captured and refreshed by

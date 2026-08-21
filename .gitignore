@@ -11,3 +11,8 @@ package-lock.json
 
 # Structured run logs, 1 JSONL per run id.
 data/.cache/runs/
+
+# The handicapper draft, validated then logged. Never committed raw.
+picks_draft.json
+research.json
+validation.json

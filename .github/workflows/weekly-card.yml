@@ -1,0 +1,268 @@
+name: Weekly card
+
+# The research half, run unattended. The daily job does the deterministic
+# work and stops, because making a pick needs an agent that can read an
+# injury report. This runs that agent, validates what it produced, and opens
+# a pull request. It never writes to main and never publishes on its own.
+#
+# The boundary matters more than anything else here. The agent writes one
+# file, picks_draft.json, which is gitignored scratch. Deterministic code
+# then checks the card against scripts/lib/card_rules.py, and only a card
+# that passes reaches data/picks.json. A person merges the pull request.
+
+on:
+  schedule:
+    # 08:30 America/Chicago on Wednesday. The board has Tuesday's moves in
+    # it and the SEC files its first injury report the same day.
+    - cron: "30 13 * * 3"
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season"
+        required: false
+        default: "2026"
+      week:
+        description: "Week, blank for the current one"
+        required: false
+        default: ""
+      max_turns:
+        description: "Cap on agent turns, which is the cost control"
+        required: false
+        default: "60"
+      research_only:
+        description: "Stop after the draft and skip the pull request"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-card
+  cancel-in-progress: false
+
+jobs:
+  card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: pip install -r requirements.txt
+
+      # The suite gates everything downstream. A broken grader or a changed
+      # upstream shape must stop the run before an agent reasons off it.
+      - name: Check the suite first
+        run: python3 scripts/selftest.py -q
+
+      - name: Refresh the board and rebuild the slate
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          WEEK="${{ inputs.week }}"
+          SEASON="${{ inputs.season || '2026' }}"
+          python3 scripts/fetch_odds.py
+          python3 scripts/calibrate_model.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
+          python3 scripts/make_slate.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      # Not --bare, on purpose. Bare mode skips CLAUDE.md and the agent
+      # definitions in .claude/, and those are the instructions the
+      # handicapper needs. This repository is the one being run, so loading
+      # its own configuration is the intent rather than a risk.
+      #
+      # dontAsk denies anything outside the allow list rather than waiting
+      # for a prompt that will never come. The agent gets the web and its
+      # own draft file, and nothing that can reach the ledger or git.
+      #
+      # The draft rule is spelled Edit, not Write. Claude Code checks file
+      # permissions against Edit(path) and Read(path) rules only, so a
+      # Write(path) rule is accepted and then never consulted. The first
+      # unattended run spent 16 minutes researching and could not write its
+      # own output, because Write(picks_draft.json) granted nothing and a
+      # bare Edit deny blocked the write. The deny rules below are scoped
+      # to paths for the same reason: a bare tool name denies everywhere.
+      - name: Research the slate and write the draft
+        id: research
+        env:
+          # A subscription token rather than an API key, so the run bills
+          # against the Claude plan already being paid for instead of
+          # metered API usage. Generate it with claude setup-token, which
+          # mints a 1 year OAuth token on a Pro, Max, Team or Enterprise
+          # plan. Note that --bare does not read this variable, which is a
+          # second reason the step below does not pass it.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
+            echo "CLAUDE_CODE_OAUTH_TOKEN is not set. Generate one with"
+            echo "claude setup-token and add it as a repository secret."
+            exit 1
+          fi
+          set -o pipefail
+          claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }}" \
+            --model opus \
+            --permission-mode dontAsk \
+            --max-turns "${{ inputs.max_turns || '60' }}" \
+            --output-format json \
+            --allowedTools \
+              "WebSearch" \
+              "WebFetch" \
+              "Read" \
+              "Glob" \
+              "Grep" \
+              "Edit(picks_draft.json)" \
+              "Bash(python3 scripts/make_slate.py *)" \
+            --disallowedTools \
+              "Edit(data/**)" \
+              "Edit(site/**)" \
+              "Edit(scripts/**)" \
+              "Edit(.github/**)" \
+              "Bash(git *)" \
+              "Bash(python3 scripts/log_picks.py *)" \
+              "Bash(python3 scripts/fetch_odds.py *)" \
+              "Bash(rm *)" \
+            > research.json || true
+          # claude -p exits non zero when it hits the turn cap, and the
+          # result comes back empty, so read the payload rather than the
+          # exit code. num_turns counts messages including tool results and
+          # runs higher than --max-turns, which counts assistant turns.
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          import sys
+          try:
+              d = json.load(open("research.json"))
+          except (OSError, json.JSONDecodeError) as e:
+              print(f"### The handicapper produced no readable output\n\n{e}\n")
+              sys.exit(1)
+          subtype = d.get("subtype")
+          print("### Handicapper run\n")
+          print(f"Cost estimate: ${d.get('total_cost_usd', 0):.2f}\n")
+          print(f"Turns: {d.get('num_turns')} messages\n")
+          print(f"Session: `{d.get('session_id', 'unknown')}`\n")
+          if subtype == "error_max_turns":
+              print("Stopped at the turn cap before finishing. Raise max_turns "
+                    "or narrow the slate, and treat any draft it left as "
+                    "partial.\n")
+              sys.exit(1)
+          if d.get("is_error"):
+              print(f"Failed with subtype `{subtype}`.\n")
+              sys.exit(1)
+          print("```")
+          print((d.get("result") or "")[:3000])
+          print("```")
+          PY
+
+      - name: Fail if the agent wrote outside its lane
+        run: |
+          # The agent may create picks_draft.json and nothing else. Anything
+          # else in the tree means the boundary did not hold.
+          git add -A -n 2>/dev/null || true
+          STRAY=$(git status --porcelain | grep -v '^?? picks_draft.json$' \
+                  | grep -v '^?? research.json$' \
+                  | grep -v '^ M data/' | grep -v '^?? data/' || true)
+          if [ -n "$STRAY" ]; then
+            echo "The agent touched files it was not allowed to touch:"
+            echo "$STRAY"
+            exit 1
+          fi
+          echo "Boundary held."
+
+      - name: Validate the card
+        id: validate
+        run: |
+          if [ ! -f picks_draft.json ]; then
+            # Never treat this as a quiet no card. The agent is told to
+            # write an empty list when nothing clears 8.0, so a missing
+            # file means it could not write at all, which is what a
+            # permission mistake looks like from the outside.
+            echo "picks_draft.json is missing. The agent did not write it."
+            echo "That is a permission or tooling failure, not an empty card."
+            echo "### The handicapper could not write its draft" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "$(tr -d '[:space:]' < picks_draft.json)" = "[]" ]; then
+            echo "no_card=true" >> "$GITHUB_OUTPUT"
+            echo "Nothing cleared 8.0. A short card beats a padded one." \
+              >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          python3 scripts/validate_card.py --file picks_draft.json --json \
+            | tee validation.json
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          v = json.load(open("validation.json"))
+          print("\n### Card validation\n")
+          print(f"{v['picks']} rated, {v['live']} live, "
+                f"{v['units_at_risk']} units at risk.\n")
+          for w in v["warnings"]:
+              print(f"Warning: {w}\n")
+          PY
+
+      # A card that breaks a rule stops here, and data/picks.json is never
+      # opened. The draft is uploaded so the rejection can be read.
+      - name: Keep the rejected draft
+        if: failure() && steps.validate.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rejected-card
+          path: |
+            picks_draft.json
+            validation.json
+            research.json
+
+      - name: Log the card and rebuild the page
+        if: steps.validate.outputs.no_card != 'true' && inputs.research_only != true
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          SEASON="${{ inputs.season || '2026' }}"
+          WEEK="${{ inputs.week }}"
+          # Rehearse first. A dry run prints what would change and writes
+          # nothing, so a surprise shows up before the ledger is touched.
+          python3 scripts/log_picks.py --file picks_draft.json \
+            --season "$SEASON" ${WEEK:+--week "$WEEK"} --dry-run
+          python3 scripts/log_picks.py --file picks_draft.json \
+            --season "$SEASON" ${WEEK:+--week "$WEEK"}
+          python3 scripts/build_site.py
+
+      - name: Open a pull request
+        if: steps.validate.outputs.no_card != 'true' && inputs.research_only != true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="card/$(date -u +'%Y-week%V')-${{ github.run_id }}"
+          git config user.name "cfb-edge-bot"
+          git config user.email "actions@github.com"
+          git checkout -b "$BRANCH"
+          git add data site
+          if git diff --staged --quiet; then
+            echo "Nothing to publish." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m "Weekly card: $(date -u +'%Y-%m-%d')"
+          git push origin "$BRANCH"
+          {
+            echo "The handicapper researched the slate and this card cleared every rule in scripts/lib/card_rules.py."
+            echo
+            echo "Nothing here is published until this merges. Read the rationale and the sources on each pick before you do."
+            echo
+            cat validation.json
+          } > pr_body.md
+          gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
+                       --body-file pr_body.md \
+                       --base main --head "$BRANCH"

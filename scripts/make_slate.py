@@ -214,8 +214,17 @@ def main() -> int:
             if market == "spread":
                 # Model number below the market number means home is undervalued.
                 side = home if e < 0 else away
-                line = float(mkt["point"]) if side == home else -float(mkt["point"])
-                price = mkt.get("price")
+                # Read the number and the price off the side actually being
+                # bet. The point mirrors, but the price does not, and taking
+                # the home entry's price for an away pick was wrong on every
+                # away side. Hawaii +5.5 was +100 on the board while
+                # Stanford -5.5 was -122, and the slate reported -122 for
+                # Hawaii. That flows into payout, ROI and breakeven.
+                raw_side = g["home_team"] if side == home else g["away_team"]
+                key = "spreads_h1" if period == "h1" else "spreads"
+                entry = find(lines, key, raw_side) or mkt
+                line = float(entry["point"])
+                price = entry.get("price")
             else:
                 side = "Over" if e > 0 else "Under"
                 line = float(mkt["point"])
