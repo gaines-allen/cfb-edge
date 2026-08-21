@@ -74,15 +74,58 @@ def test_a_missing_token_fails_fast():
 # --------------------------------------------- the agent's permissions
 
 def test_the_agent_may_write_only_its_draft():
-    assert 'Write(picks_draft.json)' in WEEKLY
-    assert '"Write"' not in WEEKLY, "an unscoped Write grants the whole tree"
+    """
+    Spelled Edit, not Write. Claude Code checks file permissions against
+    Edit(path) and Read(path) rules only, so a Write(path) rule is accepted
+    and never consulted. The first unattended run researched for 16 minutes
+    and could not write its own output because of exactly that.
+    """
+    assert "Edit(picks_draft.json)" in WEEKLY_CMDS
+    assert "Write(" not in WEEKLY_CMDS, (
+        "a Write(path) rule is never consulted, so it grants nothing"
+    )
+    assert '"Write"' not in WEEKLY_CMDS, "an unscoped Write grants the whole tree"
+
+
+def test_the_deny_rules_are_scoped_to_paths():
+    """
+    A bare tool name denies that tool everywhere, which is what blocked the
+    draft write on the first run. Every deny here names a path instead.
+    """
+    block = WEEKLY_CMDS.split("--disallowedTools", 1)[1].split("> research.json")[0]
+    for line in block.splitlines():
+        rule = line.strip().strip('\\').strip().strip('"')
+        if not rule:
+            continue
+        assert "(" in rule and rule.endswith(")"), (
+            f"deny rule {rule!r} names a bare tool, which denies it everywhere"
+        )
+
+
+@pytest.mark.parametrize("protected", ["data/**", "site/**", "scripts/**"])
+def test_the_agent_cannot_edit_the_repository(protected):
+    assert f"Edit({protected})" in WEEKLY_CMDS
+
+
+def test_a_missing_draft_fails_rather_than_reading_as_no_card():
+    """
+    The agent is told to write an empty list when nothing clears 8.0, so a
+    missing file means it could not write at all. Reporting that as a quiet
+    no card would hide a permission failure as a handicapping decision.
+    """
+    assert "picks_draft.json is missing" in WEEKLY
+    assert 'if [ ! -f picks_draft.json ]' in WEEKLY_CMDS
+
+
+def test_an_empty_card_is_still_a_clean_outcome():
+    assert '= "[]" ]' in WEEKLY_CMDS
 
 
 @pytest.mark.parametrize("forbidden", [
     "Bash(git *)",
     "Bash(python3 scripts/log_picks.py *)",
     "Bash(rm *)",
-    "Edit",
+    "Edit(data/**)",
 ])
 def test_the_agent_cannot_reach_the_ledger_or_git(forbidden):
     """

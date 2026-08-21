@@ -89,6 +89,14 @@ jobs:
       # dontAsk denies anything outside the allow list rather than waiting
       # for a prompt that will never come. The agent gets the web and its
       # own draft file, and nothing that can reach the ledger or git.
+      #
+      # The draft rule is spelled Edit, not Write. Claude Code checks file
+      # permissions against Edit(path) and Read(path) rules only, so a
+      # Write(path) rule is accepted and then never consulted. The first
+      # unattended run spent 16 minutes researching and could not write its
+      # own output, because Write(picks_draft.json) granted nothing and a
+      # bare Edit deny blocked the write. The deny rules below are scoped
+      # to paths for the same reason: a bare tool name denies everywhere.
       - name: Research the slate and write the draft
         id: research
         env:
@@ -117,10 +125,13 @@ jobs:
               "Read" \
               "Glob" \
               "Grep" \
-              "Write(picks_draft.json)" \
+              "Edit(picks_draft.json)" \
               "Bash(python3 scripts/make_slate.py *)" \
             --disallowedTools \
-              "Edit" \
+              "Edit(data/**)" \
+              "Edit(site/**)" \
+              "Edit(scripts/**)" \
+              "Edit(.github/**)" \
               "Bash(git *)" \
               "Bash(python3 scripts/log_picks.py *)" \
               "Bash(python3 scripts/fetch_odds.py *)" \
@@ -155,9 +166,20 @@ jobs:
       - name: Validate the card
         id: validate
         run: |
-          if [ ! -s picks_draft.json ]; then
+          if [ ! -f picks_draft.json ]; then
+            # Never treat this as a quiet no card. The agent is told to
+            # write an empty list when nothing clears 8.0, so a missing
+            # file means it could not write at all, which is what a
+            # permission mistake looks like from the outside.
+            echo "picks_draft.json is missing. The agent did not write it."
+            echo "That is a permission or tooling failure, not an empty card."
+            echo "### The handicapper could not write its draft" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "$(tr -d '[:space:]' < picks_draft.json)" = "[]" ]; then
             echo "no_card=true" >> "$GITHUB_OUTPUT"
-            echo "The handicapper wrote no draft." >> "$GITHUB_STEP_SUMMARY"
+            echo "Nothing cleared 8.0. A short card beats a padded one." \
+              >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           python3 scripts/validate_card.py --file picks_draft.json --json \
