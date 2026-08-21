@@ -178,3 +178,31 @@ def test_building_the_site_never_touches_the_ledger():
     before = (ROOT / "data" / "picks.json").read_bytes()
     B.build_payload()
     assert (ROOT / "data" / "picks.json").read_bytes() == before
+
+
+# ------------------------------------------------- units on the chart
+
+def test_breakeven_is_a_percentage_not_a_fraction():
+    """
+    BREAKEVEN is 52.4, not 0.524. The calibration chart multiplied it by
+    100 again, so every bar was compared against 5240 percent, drew as a
+    loss, and the breakeven marker was rendered off the chart. Nothing
+    caught it because nothing had graded, so the chart was always empty.
+    """
+    assert B.BREAKEVEN == pytest.approx(52.4, abs=0.1)
+    assert "100 * (DATA.breakeven" not in B.HTML
+    assert "DATA.breakeven || 52.4" in B.HTML
+
+
+def test_a_winning_bucket_would_draw_green():
+    """
+    The comparison the bug broke. A bucket above breakeven has to be on the
+    winning side of the line.
+    """
+    assert 66.7 >= B.BREAKEVEN
+
+
+def test_the_chart_colours_come_from_the_brand():
+    """Chart colours drifted from the palette when the page was rebranded."""
+    for stale in ("#6fbf73", "#d2645c", "#e8b04b", "#9b968c", "#f1ece2"):
+        assert stale not in B.HTML, f"{stale} is from the old palette"

@@ -4,140 +4,194 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STEVE - the card</title>
-<meta name="description" content="Your bookie never shows you his record. I post mine, win or lose, before kickoff.">
+<meta name="description" content="Six plays. Every number. Every result, including the ugly ones.">
 <style>
   :root {
-    /* Sampled off the logo: navy field, cream lettering, gold rule,
-       banner green. The card itself is cream because Steve writes it on
-       a pad, and the pad is the thing he is holding. */
-    --navy: #101c33;
-    --navy-2: #17263f;
-    --line: #26364f;
-    --cream: #f0e6d2;
-    --paper: #f4ecda;
+    --navy: #0e1a2f;
+    --navy-2: #142442;
+    --green: #1f3a2b;
+    --green-2: #2a4d38;
+    --cream: #f4ecd8;
+    --paper: #f6efdd;
     --ink: #16233b;
-    --dim: #9aa6bb;
+    --ink-2: #46506a;
+    --dim: #93a1b8;
     --gold: #c9a961;
-    --green: #24422f;
-    --win: #3f7d4a;
-    --loss: #b4463c;
+    --gold-2: #e0c489;
+    --win: #2f6d3d;
+    --loss: #a83b31;
     --push: #6d7688;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--navy); color: var(--cream);
-    font: 16px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    color: var(--cream);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #1a2c4c 0%, transparent 70%),
+      var(--navy);
+    font: 17px/1.6 "Iowan Old Style", "Palatino Linotype", Palatino,
+          Georgia, "Times New Roman", serif;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 940px; margin: 0 auto; padding: 48px 20px 80px; }
-  header {
-    border-bottom: 2px solid var(--gold); padding-bottom: 28px;
-    display: flex; gap: 26px; align-items: center; flex-wrap: wrap;
-  }
-  header img { width: 132px; height: auto; flex: none; }
-  .mark {
-    font-size: 46px; letter-spacing: .16em; font-weight: 800;
-    color: var(--cream); margin: 0 0 6px; line-height: 1;
-  }
-  .kicker {
-    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--gold); margin: 0 0 12px;
-  }
-  .headtext { flex: 1 1 340px; }
-  .tagline { font-size: 19px; margin: 0 0 8px; max-width: 48ch; }
-  .subhead { color: var(--dim); font-size: 15px; margin: 0; max-width: 62ch; }
-  h2 {
-    font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--gold); font-weight: 700; margin: 52px 0 16px;
-  }
-  .said { font-size: 17px; max-width: 62ch; margin: 0 0 8px; }
-  .quiet { color: var(--dim); font-size: 14px; max-width: 66ch; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 22px 90px; }
 
-  /* the tickets */
-  .tickets { display: grid; gap: 14px; }
-  /* Cream paper on navy, ruled like the pad in the logo. */
+  /* ------------------------------------------------ the masthead */
+  header { text-align: center; padding-bottom: 10px; }
+  header img {
+    width: min(320px, 72vw); height: auto;
+    filter: drop-shadow(0 8px 22px rgba(0,0,0,.45));
+  }
+  .tagline {
+    font-size: clamp(22px, 3.4vw, 30px); line-height: 1.3;
+    margin: 10px auto 12px; max-width: 30ch; color: var(--cream);
+    text-wrap: balance;
+  }
+  .subhead {
+    color: var(--dim); font-size: 15px; margin: 0 auto; max-width: 56ch;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .rule {
+    height: 2px; margin: 30px auto 0; max-width: 320px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ------------------------------------- headings as banner ribbons */
+  h2 {
+    display: inline-block; margin: 56px 0 18px; padding: 7px 20px 8px;
+    background: var(--green); color: var(--gold-2);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase; border-radius: 2px;
+    box-shadow: inset 0 0 0 1px var(--green-2), 0 2px 0 rgba(0,0,0,.3);
+  }
+  h2::before, h2::after { content: "°5"; opacity: .55; margin: 0 9px; font-size: 9px; }
+  .said { font-size: 18px; max-width: 60ch; margin: 0 0 8px; }
+  .quiet {
+    color: var(--dim); font-size: 14px; max-width: 64ch;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .weekline {
+    color: var(--gold); font-size: 12px; letter-spacing: .12em;
+    text-transform: uppercase; margin: 0 0 22px;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* --------------------------------------------- the pad, not a box */
+  .tickets { display: grid; gap: 26px; }
   .ticket {
-    background: var(--paper); color: var(--ink);
-    border: 1px solid #d9cdb2; border-top: 5px solid var(--gold);
-    border-radius: 3px; padding: 18px 20px 16px;
-    box-shadow: 0 2px 0 rgba(0,0,0,.35);
+    position: relative; background: var(--paper); color: var(--ink);
+    padding: 26px 28px 20px; border-radius: 2px;
+    box-shadow: 0 10px 26px rgba(0,0,0,.4);
+    /* faint ruling, the way a pad is ruled */
+    background-image: repeating-linear-gradient(
+      to bottom, transparent 0 30px, rgba(22,35,59,.06) 30px 31px);
+    background-position: 0 74px;
   }
-  .ticket.win { border-top-color: var(--win); }
-  .ticket.loss { border-top-color: var(--loss); }
-  .ticket.push { border-top-color: var(--push); }
+  /* torn top edge instead of a border */
+  .ticket::before {
+    content: ""; position: absolute; left: 0; right: 0; top: -5px; height: 6px;
+    background: repeating-radial-gradient(
+      circle at 5px 6px, var(--paper) 0 4.2px, transparent 4.4px 100%);
+    background-size: 10px 6px;
+  }
+  .ticket::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
+    background: var(--gold);
+  }
+  .ticket.win::after { background: var(--win); }
+  .ticket.loss::after { background: var(--loss); }
+  .ticket.push::after { background: var(--push); }
+
   .tick-top {
-    display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 10px 14px; margin-bottom: 4px;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
   }
-  .play { font-size: 25px; font-weight: 800; letter-spacing: -.01em; color: var(--ink); }
+  .play {
+    font-size: clamp(24px, 3.6vw, 32px); font-weight: 700; line-height: 1.15;
+    letter-spacing: -.015em; color: var(--ink);
+  }
   .price {
-    color: #7a5c16; font-size: 17px; font-weight: 700;
+    color: #8a6410; font-size: 18px; font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
   .badge {
-    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    border: 1px solid #c0b394; border-radius: 999px; padding: 3px 9px;
-    color: #6a6252; font-weight: 700;
+    margin-left: auto; font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; padding: 4px 11px; border-radius: 999px;
+    font-weight: 800; color: #fff; background: var(--push);
+    font-family: ui-sans-serif, -apple-system, sans-serif;
   }
-  .badge.win { color: var(--win); border-color: var(--win); }
-  .badge.loss { color: var(--loss); border-color: var(--loss); }
-  .badge.push { color: var(--push); border-color: var(--push); }
+  .badge.win { background: var(--win); }
+  .badge.loss { background: var(--loss); }
+  .badge.push { background: var(--push); }
+  .badge.pending { background: transparent; color: #8a8168;
+                   box-shadow: inset 0 0 0 1px #cbbf9f; }
   .matchup {
-    color: #6a6252; font-size: 13px; margin-bottom: 12px;
-    padding-bottom: 10px; border-bottom: 1px solid #ded2b8;
-    letter-spacing: .02em;
+    color: #7b7360; font-size: 13px; letter-spacing: .06em;
+    text-transform: uppercase; margin: 6px 0 16px;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
   }
-  .why { margin: 0 0 12px; max-width: 68ch; color: #2a3448; }
+  .why { margin: 0 0 16px; max-width: 62ch; color: #223049; font-size: 17px; }
   .meta {
-    display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px;
-    color: #6a6252; font-variant-numeric: tabular-nums;
-    border-top: 1px solid #ded2b8; padding-top: 10px;
+    display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px;
+    color: #7b7360; font-variant-numeric: tabular-nums;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
   }
   .meta b { color: var(--ink); font-weight: 700; }
-  .srcs { margin-top: 10px; font-size: 12px; color: #6a6252; }
-  .srcs a { color: #7a5c16; text-decoration: none; border-bottom: 1px solid #cbb98d; }
-  .srcs a:hover { border-bottom-color: #7a5c16; }
-  /* His signature, the way he signs the pad. */
+  .srcs {
+    margin-top: 12px; font-size: 12px; color: #7b7360;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .srcs a { color: #8a6410; text-decoration: none; border-bottom: 1px solid #d3c39a; }
+  .srcs a:hover { border-bottom-color: #8a6410; }
   .sign {
-    margin-top: 14px; text-align: right; font-size: 15px;
-    color: #6a6252; font-style: italic;
+    margin-top: 10px; text-align: right; font-size: 27px; color: #5c5443;
+    font-family: "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
   }
 
-  /* the book */
-  .stats { display: flex; flex-wrap: wrap; gap: 30px 40px; align-items: flex-end; }
+  /* ----------------------------------------- the book, without boxes */
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 0;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .stats { gap: 22px 0; }
+  .stat {
+    padding: 2px 26px; border-left: 1px solid #26364f;
+  }
+  .stat:first-child { padding-left: 0; border-left: 0; }
   .stat .k {
-    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--dim);
+    font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 2px;
   }
-  .stat .v { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
-  .stat.big .v { font-size: 52px; }
-  .v.pos { color: #6fbf73; } .v.neg { color: #e0776c; }
+  .stat .v { font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .stat.big .v { font-size: 46px; line-height: 1.05; }
+  .v.pos { color: #7ecf84; } .v.neg { color: #ec8478; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
   th, td {
-    text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line);
+    text-align: left; padding: 10px 12px; border-bottom: 1px solid #22314a;
     font-variant-numeric: tabular-nums;
   }
-  th { color: var(--gold); font-weight: 700; font-size: 12px;
-       letter-spacing: .08em; text-transform: uppercase; }
+  th {
+    color: var(--gold); font-weight: 700; font-size: 11px;
+    letter-spacing: .1em; text-transform: uppercase; border-bottom-color: var(--gold);
+  }
+  tr:last-child td { border-bottom: 0; }
   .nosig { color: var(--dim); font-size: 12px; }
-
-  .panel {
-    background: var(--navy-2); border: 1px solid var(--line);
-    border-radius: 4px; padding: 18px 20px;
-  }
+  .chart { margin: 4px 0 6px; }
   svg { display: block; width: 100%; height: auto; }
+
   footer {
-    margin-top: 64px; padding-top: 24px; border-top: 2px solid var(--gold);
-    color: var(--dim); font-size: 13px;
+    margin-top: 72px; padding-top: 26px;
+    border-top: 1px solid #22314a; color: var(--dim); font-size: 13px;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
   }
-  footer .warn { color: var(--cream); margin-top: 14px; max-width: 70ch; }
+  footer .warn { color: var(--cream); margin-top: 14px; max-width: 68ch; }
   @media (max-width: 620px) {
-    header { gap: 16px; }
-    header img { width: 96px; }
-    .mark { font-size: 32px; }
-    .play { font-size: 21px; }
-    .stat.big .v { font-size: 40px; }
+    .wrap { padding: 28px 16px 70px; }
+    .stat { padding-right: 18px; margin-right: 18px; }
+    .ticket { padding: 22px 20px 18px; }
   }
 </style>
 </head>
@@ -145,13 +199,10 @@
 <div class="wrap">
 
   <header>
-    <img src="steve.png" alt="STEVE, college football picks" width="132">
-    <div class="headtext">
-      <div class="mark">STEVE</div>
-      <p class="kicker">College football picks</p>
-      <p class="tagline">Your bookie never shows you his record. I post mine, win or lose, before kickoff.</p>
-      <p class="subhead">Six plays a week at most, nothing under 8.0 out of 10, every number and every reason on the board.</p>
-    </div>
+    <img src="steve.png" alt="STEVE, College football picks">
+    <p class="tagline">Six plays. Every number. Every result, including the ugly ones.</p>
+    <p class="subhead">Nothing goes up under 8.0 out of 10, the card is posted before kickoff, and the record underneath it is the same one whether the week went well or not.</p>
+    <div class="rule"></div>
   </header>
 
   <h2 id="card-h">The card</h2>
@@ -186,8 +237,8 @@
 
 </div>
 <script>
-const DATA = {"generated_at":"2026-08-21T17:58:56+00:00","board_fetched_at":"2026-08-21T17:58:47+00:00","credits_remaining":465,"live_threshold":8.0,"target_picks":6,"breakeven":52.4,"overall":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null,"verdict":"no_data","decided":0,"breakeven_pct":52.4,"interval_95":null,"reading":"Nothing has graded yet, so there is nothing to read."},"overall_shadow":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null,"verdict":"no_data","decided":0,"breakeven_pct":52.4,"interval_95":null,"reading":"Nothing has graded yet, so there is nothing to read."},"pending_count":0,"weeks":[],"current":{"season":null,"week":null},"weekly":[],"cumulative":[],"calibration":[],"by_market":[],"by_period":[],"by_factor":[],"lessons":[],"picks":[]};
-const V = {"name":"STEVE","full_name":"Steve","kicker":"College football picks","logo":"steve.png","sign_off":"Steve","tagline":"Your bookie never shows you his record. I post mine, win or lose, before kickoff.","subhead":"Six plays a week at most, nothing under 8.0 out of 10, every number and every reason on the board.","about":"Steve is the voice of this system, not a person. The numbers come from a ratings model, the reasons come from research that is checked against its sources before anything is posted, and every figure about the record is computed from the ledger rather than written by hand.","card_heading":"Today's picks","card_empty":"Nothing this week. The board is priced right, and I do not hand you a play just because it is Wednesday.","card_short":"That is the card. A short week means the numbers were fair, not that I got lazy.","card_pending":"Still running","book_heading":"The book","book_empty":"Nothing has settled yet, so there is no record to show you. Come back after the first Sunday and I will.","calibration_heading":"Do my numbers mean anything","calibration_empty":"Nothing has graded, so an 8 and a 9 are two numbers I wrote down.","calibration_note":"Shadow picks rated under the publish line are in here on purpose. That is how the line gets tested instead of assumed. Units on the below-8 row are notional, since nothing under the line is staked.","cumulative_heading":"Where you would be","cumulative_empty":"Nothing has settled yet.","cumulative_note":"Net units across settled plays, in the order they settled.","weekly_heading":"Week by week","weekly_empty":"No weeks on the board yet.","split_heading":"Where it came from","split_empty":"Nothing settled to split yet.","factors_heading":"What my reasons have been worth","factors_empty":"This fills in once picks start settling.","lessons_heading":"What I got wrong","lessons_empty":"Nothing to own up to yet, which only means nothing has graded.","no_signal":"Too few decided picks to mean anything.","no_signal_long":"That record has not decided enough games to mean anything. The 95 percent range on it still covers the 52.4 percent you need to break even, so it tells you nothing either way. I post it because hiding it would be worse, not because it proves something.","no_signal_short":"Same caveat as above. Not enough has decided for these bars to mean anything yet.","sources_heading":"Where I got it","sources_note":"Every link was opened and the quoted line checked against the page before the pick went up.","disclaimer":"These are opinions on football games, not investment advice. This model is being tested in public and it has been wrong. Bet only what you can afford to lose. If gambling stops being fun, call 1-800-GAMBLER."};
+const DATA = {"generated_at":"2026-08-21T18:07:50+00:00","board_fetched_at":"2026-08-21T17:58:47+00:00","credits_remaining":465,"live_threshold":8.0,"target_picks":6,"breakeven":52.4,"overall":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null,"verdict":"no_data","decided":0,"breakeven_pct":52.4,"interval_95":null,"reading":"Nothing has graded yet, so there is nothing to read."},"overall_shadow":{"picks":0,"wins":0,"losses":0,"pushes":0,"win_pct":0.0,"units":0,"risked":0,"roi":0.0,"avg_clv":null,"beat_close_pct":null,"verdict":"no_data","decided":0,"breakeven_pct":52.4,"interval_95":null,"reading":"Nothing has graded yet, so there is nothing to read."},"pending_count":0,"weeks":[],"current":{"season":null,"week":null},"weekly":[],"cumulative":[],"calibration":[],"by_market":[],"by_period":[],"by_factor":[],"lessons":[],"picks":[]};
+const V = {"name":"STEVE","full_name":"Steve","kicker":"College football picks","logo":"steve.png","sign_off":"Steve","tagline":"Six plays. Every number. Every result, including the ugly ones.","subhead":"Nothing goes up under 8.0 out of 10, the card is posted before kickoff, and the record underneath it is the same one whether the week went well or not.","about":"Steve is the voice of this system, not a person. The numbers come from a ratings model, the reasons come from research that is checked against its sources before anything is posted, and every figure about the record is computed from the ledger rather than written by hand.","card_heading":"Today's picks","card_empty":"Nothing this week. The board is priced right, and I do not hand you a play just because it is Wednesday.","card_short":"That is the card. A short week means the numbers were fair, not that I clocked off early.","card_pending":"Still running","book_heading":"The book","book_empty":"Nothing has settled yet. Ask me again Sunday night and there will be a number here, whichever way it went.","calibration_heading":"Do my numbers mean anything","calibration_empty":"Nothing has graded, so an 8 and a 9 are two numbers I wrote down and nothing more.","calibration_note":"Shadow picks rated under the publish line are in here on purpose. That is how the line gets tested instead of assumed. Units on the below-8 row are notional, since nothing under the line is staked.","cumulative_heading":"Where you would be","cumulative_empty":"Nothing has settled yet.","cumulative_note":"Net units across settled plays, in the order they settled.","weekly_heading":"Week by week","weekly_empty":"No weeks on the board yet.","split_heading":"Where it came from","split_empty":"Nothing settled to split yet.","factors_heading":"What my reasons have been worth","factors_empty":"This fills in once picks start settling.","lessons_heading":"What I got wrong","lessons_empty":"Nothing to own up to yet. Give it time.","no_signal":"Too few decided picks to mean anything.","no_signal_long":"That record has not decided enough games to mean anything. The 95 percent range on it still covers the 52.4 percent you need to break even, so it tells you nothing either way. I post it because hiding it would be worse, not because it proves something.","no_signal_short":"Same caveat as above. Not enough has decided for these bars to mean anything yet.","sources_heading":"Where I got it","sources_note":"Every link was opened and the quoted line checked against the page before the pick went up.","disclaimer":"These are opinions on football games, not investment advice. This model is being tested in public and it has been wrong. Bet only what you can afford to lose. If gambling stops being fun, call 1-800-GAMBLER."};
 
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g,
   c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -212,7 +263,7 @@ function ticket(p) {
   const settled = ["win","loss","push"].includes(r);
   const badge = settled
     ? `<span class="badge ${r}">${esc(p.result_label)} ${signed(p.units_net)}u</span>`
-    : `<span class="badge">${esc(V.card_pending)}</span>`;
+    : `<span class="badge pending">${esc(V.card_pending)}</span>`;
   const srcs = (p.sources || []).filter(s => s && s.url).map(s =>
     `<a href="${esc(s.url)}" target="_blank" rel="noopener">${
       esc(s.publisher || new URL(s.url).hostname)}</a>`).join(" &middot; ");
@@ -244,8 +295,8 @@ function ticket(p) {
   if (!live.length) { el("card").innerHTML = say(V.card_empty); return; }
   const staked = live.reduce((a, p) => a + (p.units || 0), 0);
   el("card").innerHTML =
-    `<p class="quiet" style="margin-bottom:14px">Season ${esc(cur.season)}, week ${esc(cur.week)}. ` +
-    `${live.length} ${live.length === 1 ? "play" : "plays"}, ${num(staked, 1)} units.</p>` +
+    `<p class="weekline">Season ${esc(cur.season)} &middot; Week ${esc(cur.week)} &middot; ` +
+    `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${num(staked, 1)} units</p>` +
     `<div class="tickets">${live.map(ticket).join("")}</div>` +
     (live.length < DATA.target_picks ? say(V.card_short, "quiet") : "") +
     `<p class="quiet" style="margin-top:10px">${esc(V.sources_note)}</p>`;
@@ -277,23 +328,24 @@ function ticket(p) {
 (function renderCal() {
   const rows = (DATA.calibration || []).filter(r => r.picks);
   if (!rows.length) { el("cal").innerHTML = say(V.calibration_empty); return; }
-  const be = 100 * (DATA.breakeven || 0.524);
+  // BREAKEVEN comes through as a percentage, 52.4, not a fraction.
+  const be = DATA.breakeven || 52.4;
   const w = 700, h = 34 * rows.length + 30, lab = 92, max = 100;
   const bars = rows.map((r, i) => {
     const y = i * 34 + 8, len = (r.win_pct / max) * (w - lab - 60);
     return `<rect x="${lab}" y="${y}" width="${Math.max(len, 1)}" height="18" rx="2"
-              fill="${r.win_pct >= be ? "#6fbf73" : "#d2645c"}" opacity=".85"/>
-            <text x="0" y="${y + 14}" fill="#9b968c" font-size="12">${esc(r.bucket)}</text>
-            <text x="${lab + Math.max(len, 1) + 8}" y="${y + 14}" fill="#f1ece2" font-size="12">
+              fill="${r.win_pct >= be ? "#4f9a5c" : "#b4463c"}" opacity=".92"/>
+            <text x="0" y="${y + 14}" fill="#93a1b8" font-size="12">${esc(r.bucket)}</text>
+            <text x="${lab + Math.max(len, 1) + 8}" y="${y + 14}" fill="#f4ecd8" font-size="12">
               ${r.win_pct}% (${r.wins}-${r.losses})</text>`;
   }).join("");
   const bx = lab + (be / max) * (w - lab - 60);
-  el("cal").innerHTML = `<div class="panel">
+  el("cal").innerHTML = `<div class="chart">
     <svg viewBox="0 0 ${w} ${h}" role="img" aria-label="win rate by confidence bucket">
       ${bars}
-      <line x1="${bx}" y1="0" x2="${bx}" y2="${h - 24}" stroke="#e8b04b"
-            stroke-width="1" stroke-dasharray="3 3"/>
-      <text x="${bx + 5}" y="${h - 10}" fill="#e8b04b" font-size="11">
+      <line x1="${bx}" y1="0" x2="${bx}" y2="${h - 24}" stroke="#c9a961"
+            stroke-width="1.5" stroke-dasharray="4 4"/>
+      <text x="${bx + 6}" y="${h - 10}" fill="#c9a961" font-size="11">
         breakeven ${be.toFixed(1)}%</text>
     </svg></div>` +
     (rows.some(r => r.verdict === "no_signal") ? say(V.no_signal_short, "quiet") : "") +
@@ -311,12 +363,12 @@ function ticket(p) {
   const Y = v => h - pad - ((v - lo) / span) * (h - pad * 2);
   const d = pts.map((p, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(p.units).toFixed(1)}`).join("");
   const last = ys[ys.length - 1];
-  el("cum").innerHTML = `<div class="panel">
+  el("cum").innerHTML = `<div class="chart">
     <svg viewBox="0 0 ${w} ${h}" role="img" aria-label="net units over time">
-      <line x1="${pad}" y1="${Y(0)}" x2="${w - pad}" y2="${Y(0)}" stroke="#26262b"/>
-      <path d="${d}" fill="none" stroke="${last >= 0 ? "#6fbf73" : "#d2645c"}" stroke-width="2"/>
-      <text x="${w - pad}" y="${Y(last) - 8}" text-anchor="end"
-            fill="${last >= 0 ? "#6fbf73" : "#d2645c"}" font-size="13">${signed(last)}u</text>
+      <line x1="${pad}" y1="${Y(0)}" x2="${w - pad}" y2="${Y(0)}" stroke="#22314a"/>
+      <path d="${d}" fill="none" stroke="${last >= 0 ? "#7ecf84" : "#ec8478"}" stroke-width="2.5"/>
+      <text x="${w - pad}" y="${Y(last) - 10}" text-anchor="end"
+            fill="${last >= 0 ? "#7ecf84" : "#ec8478"}" font-size="13">${signed(last)}u</text>
     </svg></div>` + say(V.cumulative_note, "quiet");
 })();
 
