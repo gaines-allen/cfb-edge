@@ -229,3 +229,20 @@ def test_the_test_job_gets_no_api_keys():
     assert "secrets.CFBD_API_KEY" not in TESTS
     assert "secrets.ANTHROPIC_API_KEY" not in TESTS
     assert "secrets.CLAUDE_CODE_OAUTH_TOKEN" not in TESTS
+
+
+def test_the_turn_cap_is_reported_rather_than_swallowed():
+    """
+    claude -p exits non zero at the turn cap and returns an empty result,
+    so the step reads the payload instead of the exit code. Without this a
+    capped run dies with no reason in the summary, and the draft it left
+    behind is partial rather than absent.
+    """
+    assert "error_max_turns" in WEEKLY
+    assert "> research.json || true" in WEEKLY_CMDS
+
+
+def test_a_failed_run_does_not_reach_the_validator():
+    """The agent step must still fail the job when the payload says it failed."""
+    block = WEEKLY.split("> research.json", 1)[1].split("Fail if the agent")[0]
+    assert "sys.exit(1)" in block

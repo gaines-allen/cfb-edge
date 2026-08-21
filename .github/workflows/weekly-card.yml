@@ -136,13 +136,32 @@ jobs:
               "Bash(python3 scripts/log_picks.py *)" \
               "Bash(python3 scripts/fetch_odds.py *)" \
               "Bash(rm *)" \
-            > research.json
+            > research.json || true
+          # claude -p exits non zero when it hits the turn cap, and the
+          # result comes back empty, so read the payload rather than the
+          # exit code. num_turns counts messages including tool results and
+          # runs higher than --max-turns, which counts assistant turns.
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
-          d = json.load(open("research.json"))
+          import sys
+          try:
+              d = json.load(open("research.json"))
+          except (OSError, json.JSONDecodeError) as e:
+              print(f"### The handicapper produced no readable output\n\n{e}\n")
+              sys.exit(1)
+          subtype = d.get("subtype")
           print("### Handicapper run\n")
           print(f"Cost estimate: ${d.get('total_cost_usd', 0):.2f}\n")
+          print(f"Turns: {d.get('num_turns')} messages\n")
           print(f"Session: `{d.get('session_id', 'unknown')}`\n")
+          if subtype == "error_max_turns":
+              print("Stopped at the turn cap before finishing. Raise max_turns "
+                    "or narrow the slate, and treat any draft it left as "
+                    "partial.\n")
+              sys.exit(1)
+          if d.get("is_error"):
+              print(f"Failed with subtype `{subtype}`.\n")
+              sys.exit(1)
           print("```")
           print((d.get("result") or "")[:3000])
           print("```")
