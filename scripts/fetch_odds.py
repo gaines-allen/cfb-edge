@@ -23,6 +23,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
+from lib.schema import ShapeError  # noqa: E402
 from lib.odds_api import (  # noqa: E402
     FEATURED_MARKETS,
     PERIOD_MARKETS,
@@ -120,15 +122,21 @@ def main() -> int:
                          "for. Costs 2 credits per event, so pass only the "
                          "games actually being considered, never the board.")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
     args = ap.parse_args()
+
+    log = RunLog("fetch_odds", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     if args.close_only:
         n = stamp_closing_lines({})
         print(json.dumps({"closing_lines_stamped": n}))
+        log.finish()
         return 0
 
     try:
-        client = OddsClient()
+        client = OddsClient(log=log)
     except OddsAPIError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
@@ -137,7 +145,13 @@ def main() -> int:
 
     try:
         games = client.board(markets=markets)
+    except ShapeError as e:
+        # Do not overwrite a good board with a payload that changed shape.
+        log.error(str(e))
+        print(f"SHAPE ERROR: {e}", file=sys.stderr)
+        return 5
     except OddsAPIError as e:
+        log.error(str(e))
         print(f"ERROR: {e}", file=sys.stderr)
         return 3
 
@@ -187,6 +201,7 @@ def main() -> int:
     if quota["remaining"] is not None and quota["remaining"] < 40:
         print(f"WARNING: only {quota['remaining']} Odds API credits left this month.",
               file=sys.stderr)
+    log.finish()
     return 0
 
 

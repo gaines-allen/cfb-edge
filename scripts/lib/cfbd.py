@@ -21,9 +21,18 @@ from typing import Any
 
 import requests
 
+from . import schema
+from .runlog import RunLog
+
 BASE = "https://api.collegefootballdata.com"
-CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / ".cache"
-CACHE_TTL_SECONDS = 12 * 3600
+
+# CFBD_CACHE_DIR points the cache somewhere else, which is how a test and
+# the phase 2 backtest replay captured fixtures without a key and without
+# spending a call. The default is the gitignored cache the daily job uses.
+CACHE_DIR = Path(os.environ.get(
+    "CFBD_CACHE_DIR",
+    Path(__file__).resolve().parents[2] / "data" / ".cache"))
+CACHE_TTL_SECONDS = int(os.environ.get("CFBD_CACHE_TTL", 12 * 3600))
 
 
 class CFBDError(RuntimeError):
@@ -32,12 +41,16 @@ class CFBDError(RuntimeError):
 
 class CFBDClient:
     def __init__(self, api_key: str | None = None, timeout: int = 30,
-                 cache_ttl: int = CACHE_TTL_SECONDS):
+                 cache_ttl: int = CACHE_TTL_SECONDS,
+                 log: RunLog | None = None,
+                 cache_dir: Path | None = None):
         self.api_key = api_key or os.environ.get("CFBD_API_KEY", "")
         self.timeout = timeout
         self.cache_ttl = cache_ttl
         self.enabled = bool(self.api_key)
-        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        self.log = log or RunLog("cfbd", to_stderr=False, to_file=False)
+        self.cache_dir = Path(cache_dir) if cache_dir else CACHE_DIR
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
 
     # ---------- cache ----------
 
@@ -46,12 +59,14 @@ class CFBDClient:
             f"{path}|{json.dumps(params, sort_keys=True)}".encode()
         ).hexdigest()[:24]
         safe = path.strip("/").replace("/", "_")
-        return CACHE_DIR / f"{safe}.{key}.json"
+        return self.cache_dir / f"{safe}.{key}.json"
 
     def _read_cache(self, p: Path) -> Any | None:
         if not p.exists():
             return None
-        if time.time() - p.stat().st_mtime > self.cache_ttl:
+        # A negative ttl never expires, which is what a fixture replay wants.
+        # A 0 ttl always expires, which is what a fresh capture wants.
+        if self.cache_ttl >= 0 and time.time() - p.stat().st_mtime > self.cache_ttl:
             return None
         try:
             return json.loads(p.read_text())
@@ -65,69 +80,83 @@ class CFBDClient:
         params = {k: v for k, v in (params or {}).items() if v is not None}
         cp = self._cache_path(path, params)
 
-        cached = self._read_cache(cp)
-        if cached is not None:
-            return cached
+        # A cache hit costs 0 calls, a live call costs 1. Logging which is
+        # the only way to see whether the 12 hour cache is doing its job
+        # against a 1,000 call month.
+        with self.log.call(path, params) as call:
+            cached = self._read_cache(cp)
+            if cached is not None:
+                call.cached = True
+                call.credit_cost = 0
+                call.rows = len(cached) if isinstance(cached, list) else 1
+                return cached
 
-        if not self.enabled:
-            raise CFBDError(
-                "No CFBD_API_KEY set and nothing cached. Free key: "
-                "https://collegefootballdata.com/key"
-            )
+            if not self.enabled:
+                raise CFBDError(
+                    "No CFBD_API_KEY set and nothing cached. Free key: "
+                    "https://collegefootballdata.com/key"
+                )
 
-        try:
-            r = requests.get(
-                f"{BASE}{path}",
-                params=params,
-                headers={"Authorization": f"Bearer {self.api_key}"},
-                timeout=self.timeout,
-            )
-            if r.status_code == 401:
-                raise CFBDError("401 from CFBD - bad or missing bearer token.")
-            r.raise_for_status()
-            data = r.json()
-        except CFBDError:
-            raise
-        except Exception as e:  # noqa: BLE001
-            # A stale cache beats no data at all on a daily automated run.
-            if allow_stale and cp.exists():
-                return json.loads(cp.read_text())
-            raise CFBDError(f"CFBD request failed for {path}: {e}") from e
+            try:
+                r = requests.get(
+                    f"{BASE}{path}",
+                    params=params,
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                    timeout=self.timeout,
+                )
+                if r.status_code == 401:
+                    raise CFBDError("401 from CFBD - bad or missing bearer token.")
+                r.raise_for_status()
+                data = r.json()
+                call.credit_cost = 1
+            except CFBDError:
+                raise
+            except Exception as e:  # noqa: BLE001
+                # A stale cache beats no data at all on a daily automated run.
+                if allow_stale and cp.exists():
+                    call.cached = True
+                    call.status = "stale_cache"
+                    call.credit_cost = 1
+                    return json.loads(cp.read_text())
+                raise CFBDError(f"CFBD request failed for {path}: {e}") from e
 
-        cp.write_text(json.dumps(data))
-        return data
+            call.rows = len(data) if isinstance(data, list) else 1
+            cp.write_text(json.dumps(data))
+            return data
 
     # ---------- endpoints ----------
 
     def calendar(self, year: int) -> list[dict]:
-        return self.get("/calendar", {"year": year})
+        return schema.validate_cfbd_calendar(self.get("/calendar", {"year": year}))
 
     def games(self, year: int, week: int | None = None,
               season_type: str = "regular",
               classification: str = "fbs") -> list[dict]:
-        return self.get("/games", {
+        return schema.validate_cfbd_games(self.get("/games", {
             "year": year, "week": week,
             "seasonType": season_type, "classification": classification,
-        })
+        }), min_rows=0)
 
     def lines(self, year: int, week: int | None = None,
               season_type: str = "regular") -> list[dict]:
         """Opening and closing spreads/totals by provider - the CLV backbone."""
-        return self.get("/lines", {
+        return schema.validate_cfbd_lines(self.get("/lines", {
             "year": year, "week": week, "seasonType": season_type,
-        })
+        }), min_rows=0)
 
     def sp_ratings(self, year: int, team: str | None = None) -> list[dict]:
-        return self.get("/ratings/sp", {"year": year, "team": team})
+        rows = self.get("/ratings/sp", {"year": year, "team": team})
+        return schema.validate_sp_ratings(rows)
 
     def srs(self, year: int) -> list[dict]:
-        return self.get("/ratings/srs", {"year": year})
+        return schema.validate_srs_ratings(self.get("/ratings/srs", {"year": year}))
 
     def elo(self, year: int, week: int | None = None) -> list[dict]:
-        return self.get("/ratings/elo", {"year": year, "week": week})
+        rows = self.get("/ratings/elo", {"year": year, "week": week})
+        return schema.validate_elo_ratings(rows, week=week)
 
     def fpi(self, year: int) -> list[dict]:
-        return self.get("/ratings/fpi", {"year": year})
+        return schema.validate_fpi_ratings(self.get("/ratings/fpi", {"year": year}))
 
     def talent(self, year: int) -> list[dict]:
         return self.get("/talent", {"year": year})
@@ -160,7 +189,7 @@ class CFBDClient:
         return self.get("/teams/ats", {"year": year, "team": team})
 
     def fbs_teams(self, year: int) -> list[dict]:
-        return self.get("/teams/fbs", {"year": year})
+        return schema.validate_fbs_teams(self.get("/teams/fbs", {"year": year}))
 
     def venues(self) -> list[dict]:
         return self.get("/venues", {})

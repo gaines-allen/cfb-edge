@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .runlog import RunLog
+
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
@@ -38,6 +40,31 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+# ----------------------------------------------------------- dry run
+
+# One switch, checked by every write in the repo. A dry run has to leave
+# data/ and site/ byte identical, so every writer routes through here rather
+# than calling write_text on its own.
+_DRY_RUN = False
+_LOG: RunLog | None = None
+
+
+def set_dry_run(on: bool, log: RunLog | None = None) -> None:
+    global _DRY_RUN, _LOG
+    _DRY_RUN = bool(on)
+    if log is not None:
+        _LOG = log
+
+
+def is_dry_run() -> bool:
+    return _DRY_RUN
+
+
+def _report(path: Path, payload: str, wrote: bool) -> None:
+    if _LOG is not None:
+        _LOG.write(path, size_bytes=len(payload.encode()), skipped=not wrote)
+
+
 def _load(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
@@ -47,11 +74,29 @@ def _load(path: Path, default: Any) -> Any:
         return default
 
 
-def _save(path: Path, obj: Any) -> None:
+def write_text(path: Path, text: str) -> bool:
+    """
+    The one place anything in this repo touches disk. Returns True when it
+    wrote and False when a dry run skipped it.
+    """
+    if _DRY_RUN:
+        _report(path, text, wrote=False)
+        return False
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(obj, indent=2, sort_keys=False))
+    tmp.write_text(text)
     tmp.replace(path)
+    _report(path, text, wrote=True)
+    return True
+
+
+def write_json(path: Path, obj: Any, indent: int | None = 2,
+               sort_keys: bool = False) -> bool:
+    return write_text(path, json.dumps(obj, indent=indent, sort_keys=sort_keys))
+
+
+def _save(path: Path, obj: Any) -> None:
+    write_json(path, obj)
 
 
 # ---------------------------------------------------------------- picks

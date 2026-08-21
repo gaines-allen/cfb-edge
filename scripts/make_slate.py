@@ -21,7 +21,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.runlog import RunLog  # noqa: E402
 from lib.cfbd import CFBDClient, CFBDError, current_week  # noqa: E402
+from lib.schema import ShapeError  # noqa: E402
 from lib.model import (  # noqa: E402
     DEFAULT_HFA,
     build_rating_book,
@@ -41,6 +43,30 @@ def find(lines: list[dict], market: str, side: str) -> dict | None:
     return None
 
 
+def resolve_week(requested, cal, season):
+    """
+    Pick the week to work, and refuse rather than substitute.
+
+    Week 0 is the trap this exists for. It is a real thing people ask for,
+    and 0 is falsy, so "requested or current_week(cal)" threw it away and
+    quietly returned a different week with no warning. CFBD also folds week
+    0 games into week 1 for every season from 2023 to 2026, so a request
+    for 0 has no data behind it at all.
+    """
+    weeks = sorted({int(w["week"]) for w in cal
+                    if w.get("seasonType") == "regular"
+                    and w.get("week") is not None})
+    if requested is None:
+        return current_week(cal) or (weeks[0] if weeks else 1)
+    requested = int(requested)
+    if weeks and requested not in weeks:
+        raise ValueError(
+            f"season {season} has no week {requested}. The calendar carries "
+            f"weeks {weeks[0]} to {weeks[-1]}. CFBD folds week 0 openers into "
+            f"week 1, so ask for week {weeks[0]}."
+        )
+    return requested
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, default=2026)
@@ -48,7 +74,12 @@ def main() -> int:
     ap.add_argument("--min-edge", type=float, default=1.5,
                     help="points of disagreement needed to list a candidate")
     ap.add_argument("--hfa", type=float, default=DEFAULT_HFA)
+    ap.add_argument("--dry-run", action="store_true",
+                    help="report what would change and write nothing")
     args = ap.parse_args()
+
+    log = RunLog("make_slate", dry_run=args.dry_run)
+    store.set_dry_run(args.dry_run, log)
 
     board = store.load_board()
     games = board.get("games", [])
@@ -67,16 +98,27 @@ def main() -> int:
         except ValueError:
             pass
 
-    cfbd = CFBDClient()
+    cfbd = CFBDClient(log=log)
     try:
         cal = cfbd.calendar(args.season)
-        week = args.week or current_week(cal) or 1
+        week = resolve_week(args.week, cal, args.season)
         sp = cfbd.sp_ratings(args.season)
         srs = cfbd.srs(args.season)
         elo = cfbd.elo(args.season, week=week)
         fpi = cfbd.fpi(args.season)
         sched = cfbd.games(args.season, week=week)
+    except ValueError as e:
+        log.error(str(e))
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 4
+    except ShapeError as e:
+        # An upstream field changed meaning. Stop rather than project a
+        # confident number off a payload nobody has looked at.
+        log.error(str(e))
+        print(f"SHAPE ERROR: {e}", file=sys.stderr)
+        return 5
     except CFBDError as e:
+        log.error(str(e))
         print(f"ERROR: {e}", file=sys.stderr)
         return 3
 
@@ -235,7 +277,7 @@ def main() -> int:
         "calibration": calibration,
         "slate": rows,
     }
-    (store.DATA / "slate.json").write_text(json.dumps(out, indent=2))
+    wrote = store.write_json(store.DATA / "slate.json", out)
 
     print(json.dumps({
         "week": week,
@@ -275,6 +317,7 @@ def main() -> int:
               "then rerun. Do not hand-edit the slate.", file=sys.stderr)
         return 4
 
+    log.finish()
     return 0
 
 

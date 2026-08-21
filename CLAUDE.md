@@ -62,6 +62,18 @@ unconfirmed and dropping the confidence.
     data/slate.json         this week's candidates, rebuilt by make_slate.py
     site/index.html         the dashboard, self-contained, no network needed
 
+## Before you change anything
+
+Run `python3 scripts/selftest.py`. It runs the pytest suite in `tests/`
+offline against captured payloads and takes 4 seconds. Every script that
+writes takes `--dry-run`, and using it first costs nothing.
+
+Two properties are load bearing and have tests that fail if either moves.
+`scripts/lib/teams.py` returns None rather than guessing, so do not add
+fuzzy or prefix matching to it. `suggested_confidence` caps at 7.5, below
+the 8.0 publish threshold, so the ratings model can never justify a
+published pick on its own.
+
 ## Keys
 
 ODDS_API_KEY from the-odds-api.com, free tier is 500 credits a month and the

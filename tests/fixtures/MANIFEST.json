@@ -1,0 +1,2569 @@
+{
+  "refreshed_at": "20260820T133906Z",
+  "note": "Raw upstream payloads. Captured by scripts/refresh_fixtures.py, validated before writing, and replayed by the tests and by the phase 2 backtest. Rerun the script rather than hand editing any file here.",
+  "fixtures": [
+    {
+      "name": "calendar_2023",
+      "source": "cfbd",
+      "endpoint": "/calendar",
+      "params": {
+        "year": 2023
+      },
+      "rows": 16,
+      "sha256": "8e672cb85236cdcd",
+      "credit_cost": 1,
+      "bytes": 3386,
+      "captured_at": "20260820T132854Z"
+    },
+    {
+      "name": "calendar_2024",
+      "source": "cfbd",
+      "endpoint": "/calendar",
+      "params": {
+        "year": 2024
+      },
+      "rows": 17,
+      "sha256": "212a1679fab90407",
+      "credit_cost": 1,
+      "bytes": 3598,
+      "captured_at": "20260820T133153Z"
+    },
+    {
+      "name": "calendar_2025",
+      "source": "cfbd",
+      "endpoint": "/calendar",
+      "params": {
+        "year": 2025
+      },
+      "rows": 17,
+      "sha256": "6bf1acc88165cfcc",
+      "credit_cost": 1,
+      "bytes": 3598,
+      "captured_at": "20260820T132940Z"
+    },
+    {
+      "name": "calendar_2026",
+      "source": "cfbd",
+      "endpoint": "/calendar",
+      "params": {
+        "year": 2026
+      },
+      "rows": 16,
+      "sha256": "c199269f2d653b56",
+      "credit_cost": 1,
+      "bytes": 3386,
+      "captured_at": "20260820T133902Z"
+    },
+    {
+      "name": "elo_2023_w01",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 1
+      },
+      "rows": 133,
+      "sha256": "baf2be32926866f2",
+      "credit_cost": 1,
+      "bytes": 9224,
+      "captured_at": "20260820T132857Z"
+    },
+    {
+      "name": "elo_2023_w02",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 2
+      },
+      "rows": 133,
+      "sha256": "1311cdd12ae36628",
+      "credit_cost": 1,
+      "bytes": 9224,
+      "captured_at": "20260820T132857Z"
+    },
+    {
+      "name": "elo_2023_w03",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 3
+      },
+      "rows": 133,
+      "sha256": "93974f14028b110b",
+      "credit_cost": 1,
+      "bytes": 9224,
+      "captured_at": "20260820T132858Z"
+    },
+    {
+      "name": "elo_2023_w04",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 4
+      },
+      "rows": 133,
+      "sha256": "913c47de02e6d2a9",
+      "credit_cost": 1,
+      "bytes": 9224,
+      "captured_at": "20260820T132859Z"
+    },
+    {
+      "name": "elo_2023_w05",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 5
+      },
+      "rows": 133,
+      "sha256": "5b0df9aab8ed9d31",
+      "credit_cost": 1,
+      "bytes": 9223,
+      "captured_at": "20260820T132900Z"
+    },
+    {
+      "name": "elo_2023_w06",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 6
+      },
+      "rows": 133,
+      "sha256": "05ff255d1b2ee571",
+      "credit_cost": 1,
+      "bytes": 9223,
+      "captured_at": "20260820T132900Z"
+    },
+    {
+      "name": "elo_2023_w07",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 7
+      },
+      "rows": 133,
+      "sha256": "4d3bb33b523f1449",
+      "credit_cost": 1,
+      "bytes": 9223,
+      "captured_at": "20260820T132901Z"
+    },
+    {
+      "name": "elo_2023_w08",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 8
+      },
+      "rows": 133,
+      "sha256": "fab8e34b0b08e6f9",
+      "credit_cost": 1,
+      "bytes": 9222,
+      "captured_at": "20260820T132902Z"
+    },
+    {
+      "name": "elo_2023_w09",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 9
+      },
+      "rows": 133,
+      "sha256": "1a8af9a070838aa4",
+      "credit_cost": 1,
+      "bytes": 9222,
+      "captured_at": "20260820T132906Z"
+    },
+    {
+      "name": "elo_2023_w10",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 10
+      },
+      "rows": 133,
+      "sha256": "ddf7f940b9995d87",
+      "credit_cost": 1,
+      "bytes": 9223,
+      "captured_at": "20260820T132907Z"
+    },
+    {
+      "name": "elo_2023_w11",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 11
+      },
+      "rows": 133,
+      "sha256": "d4d77ae5d7357f51",
+      "credit_cost": 1,
+      "bytes": 9222,
+      "captured_at": "20260820T132907Z"
+    },
+    {
+      "name": "elo_2023_w12",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 12
+      },
+      "rows": 133,
+      "sha256": "2875c066c056e3d4",
+      "credit_cost": 1,
+      "bytes": 9221,
+      "captured_at": "20260820T132908Z"
+    },
+    {
+      "name": "elo_2023_w13",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 13
+      },
+      "rows": 133,
+      "sha256": "b46048937b1a28ff",
+      "credit_cost": 1,
+      "bytes": 9220,
+      "captured_at": "20260820T132909Z"
+    },
+    {
+      "name": "elo_2023_w14",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 14
+      },
+      "rows": 133,
+      "sha256": "1dc2df637ddb63dc",
+      "credit_cost": 1,
+      "bytes": 9220,
+      "captured_at": "20260820T132910Z"
+    },
+    {
+      "name": "elo_2023_w15",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2023,
+        "week": 15
+      },
+      "rows": 133,
+      "sha256": "30c8b17b37183880",
+      "credit_cost": 1,
+      "bytes": 9220,
+      "captured_at": "20260820T132910Z"
+    },
+    {
+      "name": "elo_2024_w01",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 1
+      },
+      "rows": 133,
+      "sha256": "89ecfba7a242a479",
+      "credit_cost": 1,
+      "bytes": 9209,
+      "captured_at": "20260820T133155Z"
+    },
+    {
+      "name": "elo_2024_w02",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 2
+      },
+      "rows": 134,
+      "sha256": "dbc3c6581e06d481",
+      "credit_cost": 1,
+      "bytes": 9282,
+      "captured_at": "20260820T132915Z"
+    },
+    {
+      "name": "elo_2024_w03",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 3
+      },
+      "rows": 134,
+      "sha256": "7a7cd96d9700f361",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132916Z"
+    },
+    {
+      "name": "elo_2024_w04",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 4
+      },
+      "rows": 134,
+      "sha256": "3907e8f23a793d4b",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132916Z"
+    },
+    {
+      "name": "elo_2024_w05",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 5
+      },
+      "rows": 134,
+      "sha256": "fbe5e0b8f6f60a33",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132917Z"
+    },
+    {
+      "name": "elo_2024_w06",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 6
+      },
+      "rows": 134,
+      "sha256": "c750c81102d1312f",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132919Z"
+    },
+    {
+      "name": "elo_2024_w07",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 7
+      },
+      "rows": 134,
+      "sha256": "8c5b2af93395f845",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132923Z"
+    },
+    {
+      "name": "elo_2024_w08",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 8
+      },
+      "rows": 134,
+      "sha256": "9e4eb464dc05919d",
+      "credit_cost": 1,
+      "bytes": 9281,
+      "captured_at": "20260820T132924Z"
+    },
+    {
+      "name": "elo_2024_w09",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 9
+      },
+      "rows": 134,
+      "sha256": "ac633b2798e16e53",
+      "credit_cost": 1,
+      "bytes": 9280,
+      "captured_at": "20260820T132926Z"
+    },
+    {
+      "name": "elo_2024_w10",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 10
+      },
+      "rows": 134,
+      "sha256": "5f02837cb5948ac0",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132928Z"
+    },
+    {
+      "name": "elo_2024_w11",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 11
+      },
+      "rows": 134,
+      "sha256": "cbd509db8a7b8285",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132931Z"
+    },
+    {
+      "name": "elo_2024_w12",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 12
+      },
+      "rows": 134,
+      "sha256": "d85c657073507acc",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132933Z"
+    },
+    {
+      "name": "elo_2024_w13",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 13
+      },
+      "rows": 134,
+      "sha256": "4fdc06a9aeadb944",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132935Z"
+    },
+    {
+      "name": "elo_2024_w14",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 14
+      },
+      "rows": 134,
+      "sha256": "0ac6f42071f23686",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132936Z"
+    },
+    {
+      "name": "elo_2024_w15",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2024,
+        "week": 15
+      },
+      "rows": 134,
+      "sha256": "8eb27374e5bf6837",
+      "credit_cost": 1,
+      "bytes": 9279,
+      "captured_at": "20260820T132939Z"
+    },
+    {
+      "name": "elo_2025_w01",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 1
+      },
+      "rows": 136,
+      "sha256": "e1fc1d4bd9ce75ad",
+      "credit_cost": 1,
+      "bytes": 9430,
+      "captured_at": "20260820T132945Z"
+    },
+    {
+      "name": "elo_2025_w02",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 2
+      },
+      "rows": 136,
+      "sha256": "a0742a6c3423816b",
+      "credit_cost": 1,
+      "bytes": 9429,
+      "captured_at": "20260820T132947Z"
+    },
+    {
+      "name": "elo_2025_w03",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 3
+      },
+      "rows": 136,
+      "sha256": "5edf92347d740d61",
+      "credit_cost": 1,
+      "bytes": 9429,
+      "captured_at": "20260820T132947Z"
+    },
+    {
+      "name": "elo_2025_w04",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 4
+      },
+      "rows": 136,
+      "sha256": "c5e4916de49083b7",
+      "credit_cost": 1,
+      "bytes": 9429,
+      "captured_at": "20260820T132948Z"
+    },
+    {
+      "name": "elo_2025_w05",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 5
+      },
+      "rows": 136,
+      "sha256": "ca3f52f0d82e233c",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132949Z"
+    },
+    {
+      "name": "elo_2025_w06",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 6
+      },
+      "rows": 136,
+      "sha256": "17e213958cd6a24e",
+      "credit_cost": 1,
+      "bytes": 9429,
+      "captured_at": "20260820T132950Z"
+    },
+    {
+      "name": "elo_2025_w07",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 7
+      },
+      "rows": 136,
+      "sha256": "66fd68a8b41275c1",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132950Z"
+    },
+    {
+      "name": "elo_2025_w08",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 8
+      },
+      "rows": 136,
+      "sha256": "931f2765e40624a1",
+      "credit_cost": 1,
+      "bytes": 9427,
+      "captured_at": "20260820T132951Z"
+    },
+    {
+      "name": "elo_2025_w09",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 9
+      },
+      "rows": 136,
+      "sha256": "d3962bdd10eb665b",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132952Z"
+    },
+    {
+      "name": "elo_2025_w10",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 10
+      },
+      "rows": 136,
+      "sha256": "93472b2274c98be2",
+      "credit_cost": 1,
+      "bytes": 9427,
+      "captured_at": "20260820T132953Z"
+    },
+    {
+      "name": "elo_2025_w11",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 11
+      },
+      "rows": 136,
+      "sha256": "b7a3320627e63031",
+      "credit_cost": 1,
+      "bytes": 9427,
+      "captured_at": "20260820T132954Z"
+    },
+    {
+      "name": "elo_2025_w12",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 12
+      },
+      "rows": 136,
+      "sha256": "6fdb4e334d194872",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132954Z"
+    },
+    {
+      "name": "elo_2025_w13",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 13
+      },
+      "rows": 136,
+      "sha256": "1885655eeb3bb264",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132955Z"
+    },
+    {
+      "name": "elo_2025_w14",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 14
+      },
+      "rows": 136,
+      "sha256": "f5d9f960b5b85be6",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132956Z"
+    },
+    {
+      "name": "elo_2025_w15",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2025,
+        "week": 15
+      },
+      "rows": 136,
+      "sha256": "b83794fc04ef2e8a",
+      "credit_cost": 1,
+      "bytes": 9428,
+      "captured_at": "20260820T132957Z"
+    },
+    {
+      "name": "elo_2026_w01",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2026,
+        "week": 1
+      },
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c",
+      "credit_cost": 1,
+      "bytes": 2,
+      "captured_at": "20260820T133903Z"
+    },
+    {
+      "name": "elo_2026_w02",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2026,
+        "week": 2
+      },
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c",
+      "credit_cost": 1,
+      "bytes": 2,
+      "captured_at": "20260820T133904Z"
+    },
+    {
+      "name": "elo_2026_w03",
+      "source": "cfbd",
+      "endpoint": "/ratings/elo",
+      "params": {
+        "year": 2026,
+        "week": 3
+      },
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c",
+      "credit_cost": 1,
+      "bytes": 2,
+      "captured_at": "20260820T133906Z"
+    },
+    {
+      "name": "fpi_2023",
+      "source": "cfbd",
+      "endpoint": "/ratings/fpi",
+      "params": {
+        "year": 2023
+      },
+      "rows": 133,
+      "sha256": "6abfc9d6c69cbff5",
+      "credit_cost": 1,
+      "bytes": 41459,
+      "captured_at": "20260820T132854Z"
+    },
+    {
+      "name": "fpi_2024",
+      "source": "cfbd",
+      "endpoint": "/ratings/fpi",
+      "params": {
+        "year": 2024
+      },
+      "rows": 134,
+      "sha256": "99f800a6fe354578",
+      "credit_cost": 1,
+      "bytes": 41726,
+      "captured_at": "20260820T133153Z"
+    },
+    {
+      "name": "fpi_2025",
+      "source": "cfbd",
+      "endpoint": "/ratings/fpi",
+      "params": {
+        "year": 2025
+      },
+      "rows": 136,
+      "sha256": "40498fc25363b665",
+      "credit_cost": 1,
+      "bytes": 42414,
+      "captured_at": "20260820T132941Z"
+    },
+    {
+      "name": "fpi_2026",
+      "source": "cfbd",
+      "endpoint": "/ratings/fpi",
+      "params": {
+        "year": 2026
+      },
+      "rows": 138,
+      "sha256": "1a527603e1ea9d3e",
+      "credit_cost": 1,
+      "bytes": 41216,
+      "captured_at": "20260820T133902Z"
+    },
+    {
+      "name": "games_2023_w01",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 1,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 94,
+      "sha256": "ae0ae096f7f61783",
+      "credit_cost": 1,
+      "bytes": 73824,
+      "captured_at": "20260820T132855Z"
+    },
+    {
+      "name": "games_2023_w02",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 2,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 85,
+      "sha256": "d47a8e2548d1f539",
+      "credit_cost": 1,
+      "bytes": 66549,
+      "captured_at": "20260820T132857Z"
+    },
+    {
+      "name": "games_2023_w03",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 3,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 75,
+      "sha256": "c22e36e446e1b9bd",
+      "credit_cost": 1,
+      "bytes": 58636,
+      "captured_at": "20260820T132858Z"
+    },
+    {
+      "name": "games_2023_w04",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 4,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 67,
+      "sha256": "eebfb9f800d12e9f",
+      "credit_cost": 1,
+      "bytes": 52440,
+      "captured_at": "20260820T132858Z"
+    },
+    {
+      "name": "games_2023_w05",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 5,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 59,
+      "sha256": "8e5c389999380641",
+      "credit_cost": 1,
+      "bytes": 46054,
+      "captured_at": "20260820T132859Z"
+    },
+    {
+      "name": "games_2023_w06",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 6,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 51,
+      "sha256": "e366b6119368b647",
+      "credit_cost": 1,
+      "bytes": 39899,
+      "captured_at": "20260820T132900Z"
+    },
+    {
+      "name": "games_2023_w07",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 7,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 55,
+      "sha256": "0be6a96fa8f8dc31",
+      "credit_cost": 1,
+      "bytes": 42882,
+      "captured_at": "20260820T132901Z"
+    },
+    {
+      "name": "games_2023_w08",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 8,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 54,
+      "sha256": "062dd0fde43b9cc0",
+      "credit_cost": 1,
+      "bytes": 42246,
+      "captured_at": "20260820T132901Z"
+    },
+    {
+      "name": "games_2023_w09",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 9,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 54,
+      "sha256": "2be47390bccb02a7",
+      "credit_cost": 1,
+      "bytes": 42206,
+      "captured_at": "20260820T132904Z"
+    },
+    {
+      "name": "games_2023_w10",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 10,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 65,
+      "sha256": "5020604e1a8cb073",
+      "credit_cost": 1,
+      "bytes": 50824,
+      "captured_at": "20260820T132906Z"
+    },
+    {
+      "name": "games_2023_w11",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 11,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 65,
+      "sha256": "f49c631066280b05",
+      "credit_cost": 1,
+      "bytes": 50835,
+      "captured_at": "20260820T132907Z"
+    },
+    {
+      "name": "games_2023_w12",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 12,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 68,
+      "sha256": "1b22c63ecfabc347",
+      "credit_cost": 1,
+      "bytes": 53187,
+      "captured_at": "20260820T132908Z"
+    },
+    {
+      "name": "games_2023_w13",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 13,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 65,
+      "sha256": "38d88c3c6059eeb0",
+      "credit_cost": 1,
+      "bytes": 50850,
+      "captured_at": "20260820T132908Z"
+    },
+    {
+      "name": "games_2023_w14",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 14,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 10,
+      "sha256": "817340a2e8f34185",
+      "credit_cost": 1,
+      "bytes": 7987,
+      "captured_at": "20260820T132909Z"
+    },
+    {
+      "name": "games_2023_w15",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2023,
+        "week": 15,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 1,
+      "sha256": "671a5828ef497b2a",
+      "credit_cost": 1,
+      "bytes": 783,
+      "captured_at": "20260820T132910Z"
+    },
+    {
+      "name": "games_2024_w01",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 1,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 100,
+      "sha256": "54eed4d4a327da73",
+      "credit_cost": 1,
+      "bytes": 78473,
+      "captured_at": "20260820T133155Z"
+    },
+    {
+      "name": "games_2024_w02",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 2,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 78,
+      "sha256": "63c97dca5daba4d9",
+      "credit_cost": 1,
+      "bytes": 61121,
+      "captured_at": "20260820T132914Z"
+    },
+    {
+      "name": "games_2024_w03",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 3,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 63,
+      "sha256": "b7700c93ea96039b",
+      "credit_cost": 1,
+      "bytes": 49333,
+      "captured_at": "20260820T132915Z"
+    },
+    {
+      "name": "games_2024_w04",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 4,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 64,
+      "sha256": "289e2fc681a3e7f6",
+      "credit_cost": 1,
+      "bytes": 50139,
+      "captured_at": "20260820T132916Z"
+    },
+    {
+      "name": "games_2024_w05",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 5,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 56,
+      "sha256": "6caad7b090425b84",
+      "credit_cost": 1,
+      "bytes": 43743,
+      "captured_at": "20260820T132917Z"
+    },
+    {
+      "name": "games_2024_w06",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 6,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 49,
+      "sha256": "1088ae58a5119e66",
+      "credit_cost": 1,
+      "bytes": 38156,
+      "captured_at": "20260820T132919Z"
+    },
+    {
+      "name": "games_2024_w07",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 7,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 52,
+      "sha256": "d9946b52001237a7",
+      "credit_cost": 1,
+      "bytes": 40649,
+      "captured_at": "20260820T132922Z"
+    },
+    {
+      "name": "games_2024_w08",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 8,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 59,
+      "sha256": "c097ad27722d3572",
+      "credit_cost": 1,
+      "bytes": 46119,
+      "captured_at": "20260820T132923Z"
+    },
+    {
+      "name": "games_2024_w09",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 9,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 57,
+      "sha256": "e7411c5b661463de",
+      "credit_cost": 1,
+      "bytes": 44490,
+      "captured_at": "20260820T132926Z"
+    },
+    {
+      "name": "games_2024_w10",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 10,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 49,
+      "sha256": "444f8a3934c09a6b",
+      "credit_cost": 1,
+      "bytes": 38338,
+      "captured_at": "20260820T132928Z"
+    },
+    {
+      "name": "games_2024_w11",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 11,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 50,
+      "sha256": "d40673ab062c3dc0",
+      "credit_cost": 1,
+      "bytes": 39124,
+      "captured_at": "20260820T132930Z"
+    },
+    {
+      "name": "games_2024_w12",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 12,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 55,
+      "sha256": "8d2cf34c562ec558",
+      "credit_cost": 1,
+      "bytes": 43012,
+      "captured_at": "20260820T132932Z"
+    },
+    {
+      "name": "games_2024_w13",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 13,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 65,
+      "sha256": "4a9e7f8aa4ca5c7b",
+      "credit_cost": 1,
+      "bytes": 50841,
+      "captured_at": "20260820T132933Z"
+    },
+    {
+      "name": "games_2024_w14",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 14,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 67,
+      "sha256": "05b42ab0db4e00ef",
+      "credit_cost": 1,
+      "bytes": 52430,
+      "captured_at": "20260820T132935Z"
+    },
+    {
+      "name": "games_2024_w15",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2024,
+        "week": 15,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 9,
+      "sha256": "a29e0680e77322b4",
+      "credit_cost": 1,
+      "bytes": 7180,
+      "captured_at": "20260820T132937Z"
+    },
+    {
+      "name": "games_2025_w01",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 1,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 96,
+      "sha256": "119c97e2c7ece6df",
+      "credit_cost": 1,
+      "bytes": 75496,
+      "captured_at": "20260820T132945Z"
+    },
+    {
+      "name": "games_2025_w02",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 2,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 83,
+      "sha256": "0e07706bb70eb57f",
+      "credit_cost": 1,
+      "bytes": 65385,
+      "captured_at": "20260820T132945Z"
+    },
+    {
+      "name": "games_2025_w03",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 3,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 70,
+      "sha256": "41aac6986eb769cf",
+      "credit_cost": 1,
+      "bytes": 54829,
+      "captured_at": "20260820T132947Z"
+    },
+    {
+      "name": "games_2025_w04",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 4,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 62,
+      "sha256": "a26975160e5c67cc",
+      "credit_cost": 1,
+      "bytes": 48690,
+      "captured_at": "20260820T132948Z"
+    },
+    {
+      "name": "games_2025_w05",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 5,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 53,
+      "sha256": "a40502f3f39176dd",
+      "credit_cost": 1,
+      "bytes": 41575,
+      "captured_at": "20260820T132948Z"
+    },
+    {
+      "name": "games_2025_w06",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 6,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 51,
+      "sha256": "003435b268eb2f8c",
+      "credit_cost": 1,
+      "bytes": 40067,
+      "captured_at": "20260820T132949Z"
+    },
+    {
+      "name": "games_2025_w07",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 7,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 56,
+      "sha256": "23b43d57c9c0647f",
+      "credit_cost": 1,
+      "bytes": 43845,
+      "captured_at": "20260820T132950Z"
+    },
+    {
+      "name": "games_2025_w08",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 8,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 60,
+      "sha256": "b8dcd79ed415a741",
+      "credit_cost": 1,
+      "bytes": 47070,
+      "captured_at": "20260820T132951Z"
+    },
+    {
+      "name": "games_2025_w09",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 9,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 53,
+      "sha256": "eb6acb146f1452ca",
+      "credit_cost": 1,
+      "bytes": 41462,
+      "captured_at": "20260820T132952Z"
+    },
+    {
+      "name": "games_2025_w10",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 10,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 52,
+      "sha256": "43c612d63f0b53a7",
+      "credit_cost": 1,
+      "bytes": 40830,
+      "captured_at": "20260820T132952Z"
+    },
+    {
+      "name": "games_2025_w11",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 11,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 52,
+      "sha256": "7ec3a61eb5ea115b",
+      "credit_cost": 1,
+      "bytes": 40768,
+      "captured_at": "20260820T132953Z"
+    },
+    {
+      "name": "games_2025_w12",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 12,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 59,
+      "sha256": "763fee1ed6adb930",
+      "credit_cost": 1,
+      "bytes": 46385,
+      "captured_at": "20260820T132954Z"
+    },
+    {
+      "name": "games_2025_w13",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 13,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 64,
+      "sha256": "b816d50ce859daed",
+      "credit_cost": 1,
+      "bytes": 50183,
+      "captured_at": "20260820T132955Z"
+    },
+    {
+      "name": "games_2025_w14",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 14,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 67,
+      "sha256": "3059543c0faad215",
+      "credit_cost": 1,
+      "bytes": 52411,
+      "captured_at": "20260820T132956Z"
+    },
+    {
+      "name": "games_2025_w15",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2025,
+        "week": 15,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 9,
+      "sha256": "f86b50371e238d84",
+      "credit_cost": 1,
+      "bytes": 7193,
+      "captured_at": "20260820T132956Z"
+    },
+    {
+      "name": "games_2026_w01",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2026,
+        "week": 1,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 99,
+      "sha256": "cc81e23230086a3a",
+      "credit_cost": 1,
+      "bytes": 73142,
+      "captured_at": "20260820T133903Z"
+    },
+    {
+      "name": "games_2026_w02",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2026,
+        "week": 2,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 86,
+      "sha256": "37e3d8ab01d474d7",
+      "credit_cost": 1,
+      "bytes": 63336,
+      "captured_at": "20260820T133904Z"
+    },
+    {
+      "name": "games_2026_w03",
+      "source": "cfbd",
+      "endpoint": "/games",
+      "params": {
+        "year": 2026,
+        "week": 3,
+        "seasonType": "regular",
+        "classification": "fbs"
+      },
+      "rows": 75,
+      "sha256": "223ef35d5ed99f9d",
+      "credit_cost": 1,
+      "bytes": 55228,
+      "captured_at": "20260820T133904Z"
+    },
+    {
+      "name": "lines_2023_w01",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 1,
+        "seasonType": "regular"
+      },
+      "rows": 119,
+      "sha256": "81a5340c7dcc609c",
+      "credit_cost": 1,
+      "bytes": 101383,
+      "captured_at": "20260820T132855Z"
+    },
+    {
+      "name": "lines_2023_w02",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 2,
+        "seasonType": "regular"
+      },
+      "rows": 90,
+      "sha256": "8e1acb1c9c98da5f",
+      "credit_cost": 1,
+      "bytes": 66333,
+      "captured_at": "20260820T132857Z"
+    },
+    {
+      "name": "lines_2023_w03",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 3,
+        "seasonType": "regular"
+      },
+      "rows": 87,
+      "sha256": "ca5d8a3ddc302337",
+      "credit_cost": 1,
+      "bytes": 55874,
+      "captured_at": "20260820T132858Z"
+    },
+    {
+      "name": "lines_2023_w04",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 4,
+        "seasonType": "regular"
+      },
+      "rows": 113,
+      "sha256": "32c0b36c92f9bbd9",
+      "credit_cost": 1,
+      "bytes": 80006,
+      "captured_at": "20260820T132859Z"
+    },
+    {
+      "name": "lines_2023_w05",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 5,
+        "seasonType": "regular"
+      },
+      "rows": 98,
+      "sha256": "c6453ee1e3b62021",
+      "credit_cost": 1,
+      "bytes": 69530,
+      "captured_at": "20260820T132859Z"
+    },
+    {
+      "name": "lines_2023_w06",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 6,
+        "seasonType": "regular"
+      },
+      "rows": 97,
+      "sha256": "510f7742d43adb9b",
+      "credit_cost": 1,
+      "bytes": 66949,
+      "captured_at": "20260820T132900Z"
+    },
+    {
+      "name": "lines_2023_w07",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 7,
+        "seasonType": "regular"
+      },
+      "rows": 107,
+      "sha256": "4b7ef4e74f8b8879",
+      "credit_cost": 1,
+      "bytes": 74194,
+      "captured_at": "20260820T132901Z"
+    },
+    {
+      "name": "lines_2023_w08",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 8,
+        "seasonType": "regular"
+      },
+      "rows": 106,
+      "sha256": "602e651936223a41",
+      "credit_cost": 1,
+      "bytes": 73520,
+      "captured_at": "20260820T132902Z"
+    },
+    {
+      "name": "lines_2023_w09",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 9,
+        "seasonType": "regular"
+      },
+      "rows": 109,
+      "sha256": "edc646e8f4edc754",
+      "credit_cost": 1,
+      "bytes": 74986,
+      "captured_at": "20260820T132906Z"
+    },
+    {
+      "name": "lines_2023_w10",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 10,
+        "seasonType": "regular"
+      },
+      "rows": 118,
+      "sha256": "5037503652e1bd1b",
+      "credit_cost": 1,
+      "bytes": 79369,
+      "captured_at": "20260820T132906Z"
+    },
+    {
+      "name": "lines_2023_w11",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 11,
+        "seasonType": "regular"
+      },
+      "rows": 115,
+      "sha256": "247565e5fbaf06a1",
+      "credit_cost": 1,
+      "bytes": 79731,
+      "captured_at": "20260820T132907Z"
+    },
+    {
+      "name": "lines_2023_w12",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 12,
+        "seasonType": "regular"
+      },
+      "rows": 114,
+      "sha256": "e48310c13b057a6b",
+      "credit_cost": 1,
+      "bytes": 78139,
+      "captured_at": "20260820T132908Z"
+    },
+    {
+      "name": "lines_2023_w13",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 13,
+        "seasonType": "regular"
+      },
+      "rows": 66,
+      "sha256": "18e0ae0f0cdbe544",
+      "credit_cost": 1,
+      "bytes": 53689,
+      "captured_at": "20260820T132909Z"
+    },
+    {
+      "name": "lines_2023_w14",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 14,
+        "seasonType": "regular"
+      },
+      "rows": 10,
+      "sha256": "7521133b9d02934c",
+      "credit_cost": 1,
+      "bytes": 8304,
+      "captured_at": "20260820T132909Z"
+    },
+    {
+      "name": "lines_2023_w15",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2023,
+        "week": 15,
+        "seasonType": "regular"
+      },
+      "rows": 1,
+      "sha256": "051f8f2544c2a65a",
+      "credit_cost": 1,
+      "bytes": 827,
+      "captured_at": "20260820T132910Z"
+    },
+    {
+      "name": "lines_2024_w01",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 1,
+        "seasonType": "regular"
+      },
+      "rows": 125,
+      "sha256": "b83ab46098211c9e",
+      "credit_cost": 1,
+      "bytes": 74490,
+      "captured_at": "20260820T133155Z"
+    },
+    {
+      "name": "lines_2024_w02",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 2,
+        "seasonType": "regular"
+      },
+      "rows": 109,
+      "sha256": "c7630612428a15f6",
+      "credit_cost": 1,
+      "bytes": 72086,
+      "captured_at": "20260820T132915Z"
+    },
+    {
+      "name": "lines_2024_w03",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 3,
+        "seasonType": "regular"
+      },
+      "rows": 104,
+      "sha256": "94cf79102dc7b5cd",
+      "credit_cost": 1,
+      "bytes": 71305,
+      "captured_at": "20260820T132915Z"
+    },
+    {
+      "name": "lines_2024_w04",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 4,
+        "seasonType": "regular"
+      },
+      "rows": 101,
+      "sha256": "a27b07e25717c239",
+      "credit_cost": 1,
+      "bytes": 70446,
+      "captured_at": "20260820T132916Z"
+    },
+    {
+      "name": "lines_2024_w05",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 5,
+        "seasonType": "regular"
+      },
+      "rows": 104,
+      "sha256": "dcb5d0748b633011",
+      "credit_cost": 1,
+      "bytes": 70139,
+      "captured_at": "20260820T132917Z"
+    },
+    {
+      "name": "lines_2024_w06",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 6,
+        "seasonType": "regular"
+      },
+      "rows": 102,
+      "sha256": "3e289ce7aa7c7132",
+      "credit_cost": 1,
+      "bytes": 67917,
+      "captured_at": "20260820T132919Z"
+    },
+    {
+      "name": "lines_2024_w07",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 7,
+        "seasonType": "regular"
+      },
+      "rows": 104,
+      "sha256": "37da7da334793306",
+      "credit_cost": 1,
+      "bytes": 69890,
+      "captured_at": "20260820T132922Z"
+    },
+    {
+      "name": "lines_2024_w08",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 8,
+        "seasonType": "regular"
+      },
+      "rows": 109,
+      "sha256": "cd4d9fdf295278db",
+      "credit_cost": 1,
+      "bytes": 74714,
+      "captured_at": "20260820T132924Z"
+    },
+    {
+      "name": "lines_2024_w09",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 9,
+        "seasonType": "regular"
+      },
+      "rows": 114,
+      "sha256": "df25c876ab2c7413",
+      "credit_cost": 1,
+      "bytes": 76435,
+      "captured_at": "20260820T132926Z"
+    },
+    {
+      "name": "lines_2024_w10",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 10,
+        "seasonType": "regular"
+      },
+      "rows": 103,
+      "sha256": "fa0d99aff6f7fbcb",
+      "credit_cost": 1,
+      "bytes": 68351,
+      "captured_at": "20260820T132928Z"
+    },
+    {
+      "name": "lines_2024_w11",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 11,
+        "seasonType": "regular"
+      },
+      "rows": 109,
+      "sha256": "4f813e6902e47eef",
+      "credit_cost": 1,
+      "bytes": 71909,
+      "captured_at": "20260820T132930Z"
+    },
+    {
+      "name": "lines_2024_w12",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 12,
+        "seasonType": "regular"
+      },
+      "rows": 115,
+      "sha256": "655aae17c9ba7dc1",
+      "credit_cost": 1,
+      "bytes": 76455,
+      "captured_at": "20260820T132932Z"
+    },
+    {
+      "name": "lines_2024_w13",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 13,
+        "seasonType": "regular"
+      },
+      "rows": 125,
+      "sha256": "a19f4b326e41afa3",
+      "credit_cost": 1,
+      "bytes": 84610,
+      "captured_at": "20260820T132934Z"
+    },
+    {
+      "name": "lines_2024_w14",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 14,
+        "seasonType": "regular"
+      },
+      "rows": 77,
+      "sha256": "03d8ae5d58d7f8bf",
+      "credit_cost": 1,
+      "bytes": 61229,
+      "captured_at": "20260820T132935Z"
+    },
+    {
+      "name": "lines_2024_w15",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2024,
+        "week": 15,
+        "seasonType": "regular"
+      },
+      "rows": 17,
+      "sha256": "f5ef73549d44c9b3",
+      "credit_cost": 1,
+      "bytes": 11626,
+      "captured_at": "20260820T132938Z"
+    },
+    {
+      "name": "lines_2025_w01",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 1,
+        "seasonType": "regular"
+      },
+      "rows": 127,
+      "sha256": "2e691d7736ee9d49",
+      "credit_cost": 1,
+      "bytes": 88914,
+      "captured_at": "20260820T132945Z"
+    },
+    {
+      "name": "lines_2025_w02",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 2,
+        "seasonType": "regular"
+      },
+      "rows": 119,
+      "sha256": "67054bdd5d632486",
+      "credit_cost": 1,
+      "bytes": 74731,
+      "captured_at": "20260820T132946Z"
+    },
+    {
+      "name": "lines_2025_w03",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 3,
+        "seasonType": "regular"
+      },
+      "rows": 108,
+      "sha256": "5af35d8fbbd9b6ce",
+      "credit_cost": 1,
+      "bytes": 78548,
+      "captured_at": "20260820T132947Z"
+    },
+    {
+      "name": "lines_2025_w04",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 4,
+        "seasonType": "regular"
+      },
+      "rows": 107,
+      "sha256": "9e1658c2238467f3",
+      "credit_cost": 1,
+      "bytes": 75182,
+      "captured_at": "20260820T132948Z"
+    },
+    {
+      "name": "lines_2025_w05",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 5,
+        "seasonType": "regular"
+      },
+      "rows": 106,
+      "sha256": "5ea34443b88cdd0d",
+      "credit_cost": 1,
+      "bytes": 71647,
+      "captured_at": "20260820T132949Z"
+    },
+    {
+      "name": "lines_2025_w06",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 6,
+        "seasonType": "regular"
+      },
+      "rows": 95,
+      "sha256": "68c9e13b1486090e",
+      "credit_cost": 1,
+      "bytes": 65338,
+      "captured_at": "20260820T132949Z"
+    },
+    {
+      "name": "lines_2025_w07",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 7,
+        "seasonType": "regular"
+      },
+      "rows": 107,
+      "sha256": "5cd1a24fb969af88",
+      "credit_cost": 1,
+      "bytes": 73093,
+      "captured_at": "20260820T132950Z"
+    },
+    {
+      "name": "lines_2025_w08",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 8,
+        "seasonType": "regular"
+      },
+      "rows": 108,
+      "sha256": "6839da2ec592ce07",
+      "credit_cost": 1,
+      "bytes": 74846,
+      "captured_at": "20260820T132951Z"
+    },
+    {
+      "name": "lines_2025_w09",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 9,
+        "seasonType": "regular"
+      },
+      "rows": 112,
+      "sha256": "2d8bf4555f1c5ef3",
+      "credit_cost": 1,
+      "bytes": 74624,
+      "captured_at": "20260820T132952Z"
+    },
+    {
+      "name": "lines_2025_w10",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 10,
+        "seasonType": "regular"
+      },
+      "rows": 110,
+      "sha256": "50abaaec37121479",
+      "credit_cost": 1,
+      "bytes": 73443,
+      "captured_at": "20260820T132953Z"
+    },
+    {
+      "name": "lines_2025_w11",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 11,
+        "seasonType": "regular"
+      },
+      "rows": 113,
+      "sha256": "8cd66acf5d528874",
+      "credit_cost": 1,
+      "bytes": 75064,
+      "captured_at": "20260820T132953Z"
+    },
+    {
+      "name": "lines_2025_w12",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 12,
+        "seasonType": "regular"
+      },
+      "rows": 121,
+      "sha256": "ca862ab0dc5f3ad1",
+      "credit_cost": 1,
+      "bytes": 81654,
+      "captured_at": "20260820T132954Z"
+    },
+    {
+      "name": "lines_2025_w13",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 13,
+        "seasonType": "regular"
+      },
+      "rows": 123,
+      "sha256": "98d1a6f6e31a0d30",
+      "credit_cost": 1,
+      "bytes": 84196,
+      "captured_at": "20260820T132955Z"
+    },
+    {
+      "name": "lines_2025_w14",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 14,
+        "seasonType": "regular"
+      },
+      "rows": 77,
+      "sha256": "86505c85775c128f",
+      "credit_cost": 1,
+      "bytes": 61633,
+      "captured_at": "20260820T132956Z"
+    },
+    {
+      "name": "lines_2025_w15",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2025,
+        "week": 15,
+        "seasonType": "regular"
+      },
+      "rows": 9,
+      "sha256": "9d235824de4acd02",
+      "credit_cost": 1,
+      "bytes": 9214,
+      "captured_at": "20260820T132957Z"
+    },
+    {
+      "name": "lines_2026_w01",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2026,
+        "week": 1,
+        "seasonType": "regular"
+      },
+      "rows": 99,
+      "sha256": "5ef194e623c43d64",
+      "credit_cost": 1,
+      "bytes": 51223,
+      "captured_at": "20260820T133903Z"
+    },
+    {
+      "name": "lines_2026_w02",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2026,
+        "week": 2,
+        "seasonType": "regular"
+      },
+      "rows": 86,
+      "sha256": "948ea5de73fafd8e",
+      "credit_cost": 1,
+      "bytes": 29539,
+      "captured_at": "20260820T133904Z"
+    },
+    {
+      "name": "lines_2026_w03",
+      "source": "cfbd",
+      "endpoint": "/lines",
+      "params": {
+        "year": 2026,
+        "week": 3,
+        "seasonType": "regular"
+      },
+      "rows": 75,
+      "sha256": "25f3c16cf958dfd5",
+      "credit_cost": 1,
+      "bytes": 25421,
+      "captured_at": "20260820T133906Z"
+    },
+    {
+      "name": "sp_2023",
+      "source": "cfbd",
+      "endpoint": "/ratings/sp",
+      "params": {
+        "year": 2023
+      },
+      "rows": 134,
+      "sha256": "c3a27323e8de27ca",
+      "credit_cost": 1,
+      "bytes": 69601,
+      "captured_at": "20260820T132854Z"
+    },
+    {
+      "name": "sp_2024",
+      "source": "cfbd",
+      "endpoint": "/ratings/sp",
+      "params": {
+        "year": 2024
+      },
+      "rows": 135,
+      "sha256": "6f92f3acd176e141",
+      "credit_cost": 1,
+      "bytes": 70122,
+      "captured_at": "20260820T133153Z"
+    },
+    {
+      "name": "sp_2025",
+      "source": "cfbd",
+      "endpoint": "/ratings/sp",
+      "params": {
+        "year": 2025
+      },
+      "rows": 137,
+      "sha256": "2fbcd7742dd7feb5",
+      "credit_cost": 1,
+      "bytes": 71178,
+      "captured_at": "20260820T132941Z"
+    },
+    {
+      "name": "sp_2026",
+      "source": "cfbd",
+      "endpoint": "/ratings/sp",
+      "params": {
+        "year": 2026
+      },
+      "rows": 139,
+      "sha256": "629a0471bcc65d6e",
+      "credit_cost": 1,
+      "bytes": 72253,
+      "captured_at": "20260820T133902Z"
+    },
+    {
+      "name": "srs_2023",
+      "source": "cfbd",
+      "endpoint": "/ratings/srs",
+      "params": {
+        "year": 2023
+      },
+      "rows": 261,
+      "sha256": "ef296b10c2fdb2a0",
+      "credit_cost": 1,
+      "bytes": 26841,
+      "captured_at": "20260820T132854Z"
+    },
+    {
+      "name": "srs_2024",
+      "source": "cfbd",
+      "endpoint": "/ratings/srs",
+      "params": {
+        "year": 2024
+      },
+      "rows": 265,
+      "sha256": "e68f741db67185ba",
+      "credit_cost": 1,
+      "bytes": 27165,
+      "captured_at": "20260820T133153Z"
+    },
+    {
+      "name": "srs_2025",
+      "source": "cfbd",
+      "endpoint": "/ratings/srs",
+      "params": {
+        "year": 2025
+      },
+      "rows": 266,
+      "sha256": "30ade1fbb92b9a67",
+      "credit_cost": 1,
+      "bytes": 27298,
+      "captured_at": "20260820T132942Z"
+    },
+    {
+      "name": "srs_2026",
+      "source": "cfbd",
+      "endpoint": "/ratings/srs",
+      "params": {
+        "year": 2026
+      },
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c",
+      "credit_cost": 1,
+      "bytes": 2,
+      "captured_at": "20260820T133902Z"
+    },
+    {
+      "name": "teams_fbs_2023",
+      "source": "cfbd",
+      "endpoint": "/teams/fbs",
+      "params": {
+        "year": 2023
+      },
+      "rows": 133,
+      "sha256": "998f15aee24eca20",
+      "credit_cost": 1,
+      "bytes": 195716,
+      "captured_at": "20260820T132855Z"
+    },
+    {
+      "name": "teams_fbs_2024",
+      "source": "cfbd",
+      "endpoint": "/teams/fbs",
+      "params": {
+        "year": 2024
+      },
+      "rows": 134,
+      "sha256": "7c8ce6d37c72d18d",
+      "credit_cost": 1,
+      "bytes": 197102,
+      "captured_at": "20260820T133155Z"
+    },
+    {
+      "name": "teams_fbs_2025",
+      "source": "cfbd",
+      "endpoint": "/teams/fbs",
+      "params": {
+        "year": 2025
+      },
+      "rows": 136,
+      "sha256": "66efd4f753acfcec",
+      "credit_cost": 1,
+      "bytes": 200047,
+      "captured_at": "20260820T132943Z"
+    },
+    {
+      "name": "teams_fbs_2026",
+      "source": "cfbd",
+      "endpoint": "/teams/fbs",
+      "params": {
+        "year": 2026
+      },
+      "rows": 138,
+      "sha256": "645f63ce58cb4270",
+      "credit_cost": 1,
+      "bytes": 202974,
+      "captured_at": "20260820T133903Z"
+    },
+    {
+      "name": "teams_page01",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 1
+      },
+      "rows": 100,
+      "sha256": "d995cff4689f063b",
+      "credit_cost": 0,
+      "bytes": 301452,
+      "captured_at": "20260820T132838Z"
+    },
+    {
+      "name": "teams_page02",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 2
+      },
+      "rows": 100,
+      "sha256": "25172e2388c00695",
+      "credit_cost": 0,
+      "bytes": 321101,
+      "captured_at": "20260820T132839Z"
+    },
+    {
+      "name": "teams_page03",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 3
+      },
+      "rows": 100,
+      "sha256": "9f375a17583c87ed",
+      "credit_cost": 0,
+      "bytes": 192551,
+      "captured_at": "20260820T132839Z"
+    },
+    {
+      "name": "teams_page04",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 4
+      },
+      "rows": 100,
+      "sha256": "fcaa4761e8b4f170",
+      "credit_cost": 0,
+      "bytes": 239180,
+      "captured_at": "20260820T132840Z"
+    },
+    {
+      "name": "teams_page05",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 5
+      },
+      "rows": 100,
+      "sha256": "805fa102d4355657",
+      "credit_cost": 0,
+      "bytes": 266345,
+      "captured_at": "20260820T132840Z"
+    },
+    {
+      "name": "teams_page06",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 6
+      },
+      "rows": 100,
+      "sha256": "898cbbbff963d846",
+      "credit_cost": 0,
+      "bytes": 257432,
+      "captured_at": "20260820T132841Z"
+    },
+    {
+      "name": "teams_page07",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 7
+      },
+      "rows": 100,
+      "sha256": "8d049eafe9ae7db2",
+      "credit_cost": 0,
+      "bytes": 192815,
+      "captured_at": "20260820T132842Z"
+    },
+    {
+      "name": "teams_page08",
+      "source": "espn",
+      "endpoint": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+      "params": {
+        "limit": 100,
+        "page": 8
+      },
+      "rows": 59,
+      "sha256": "ee6901c1e982ca3e",
+      "credit_cost": 0,
+      "bytes": 83008,
+      "captured_at": "20260820T132842Z"
+    },
+    {
+      "name": "board_current",
+      "source": "odds_api",
+      "endpoint": "/sports/americanfootball_ncaaf/odds",
+      "params": {
+        "regions": "us",
+        "markets": "spreads,totals,h2h",
+        "oddsFormat": "american",
+        "dateFormat": "iso",
+        "bookmakers": "fanduel"
+      },
+      "rows": 111,
+      "sha256": "735e384928b72710",
+      "credit_cost": 3,
+      "bytes": 83921,
+      "captured_at": "20260820T132842Z"
+    },
+    {
+      "name": "scores_current",
+      "source": "odds_api",
+      "endpoint": "/sports/americanfootball_ncaaf/scores",
+      "params": {
+        "daysFrom": 3,
+        "dateFormat": "iso"
+      },
+      "rows": 111,
+      "sha256": "04de256c70ecd1c8",
+      "credit_cost": 2,
+      "bytes": 28799,
+      "captured_at": "20260820T132843Z"
+    }
+  ]
+}

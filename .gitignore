@@ -8,3 +8,6 @@ __pycache__/
 .DS_Store
 node_modules/
 package-lock.json
+
+# Structured run logs, 1 JSONL per run id.
+data/.cache/runs/
