@@ -19,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.teams import canonical, load_logos  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
     annotate, breakdown, calibration_table, summarize,
@@ -137,6 +138,35 @@ VOICE = {
              "than typed in by someone having a good week.",
 
     "page_title": "Steve. The card, and the record.",
+    "board_heading": "This week's board",
+    "board_note": "Every game on the slate, my number next to theirs, "
+                  "whether or not it made the card. If you like something "
+                  "I passed on, that's your money and your business.",
+    "board_empty": "No board yet. It goes up Monday of game week.",
+    "board_moved": "Moved",
+    "board_kick": "Kickoff",
+    "board_my_spread": "My spread",
+    "board_mkt_spread": "Their spread",
+    "board_my_total": "My total",
+    "board_mkt_total": "Their total",
+    "board_lean": "Where I lean",
+    "board_no_lean": "Priced right. No lean.",
+
+    "lock_title": "The Lock of the Week",
+    "lock_note": "The Lock is whichever play I'm most confident in. It "
+                 "gets the crown, not extra units, because doubling a bet "
+                 "is how confident men go broke.",
+
+    "live_heading": "Saturday, live",
+    "live_note": "Scores update through the afternoon while games run. "
+                 "Covering here is where the bet stands right now, not a "
+                 "grade. Grading happens Sunday, by the machine, not by "
+                 "me squinting at a scoreboard.",
+    "live_covering": "covering",
+    "live_not_covering": "not covering",
+    "live_tied": "dead even",
+    "live_final": "final",
+
     "card_heading": "Today's picks",
     "card_empty": "Nothing this week. The board's priced right, and I'm not "
                   "inventing a play so you have something to read on a "
@@ -230,6 +260,140 @@ VOICE = {
 }
 
 
+
+
+def board_rows() -> list[dict]:
+    """
+    The whole week, one row per game, for the collapsible board. Logos come
+    off the ESPN map, movement comes off the line history the fetcher has
+    been appending all week: the first snapshot against the latest one, for
+    the home spread and the total.
+    """
+    slate = store._load(store.DATA / "slate.json", {})
+    history = store.load_line_history()
+    logos = load_logos()
+    known_locations = set(logos)
+    market_by_event: dict[str, dict] = {}
+    for bg in store.load_board().get("games", []):
+        spread = total = None
+        for ln in bg.get("lines", []):
+            if ln.get("market") == "spreads" and ln.get("side") == bg.get("home_team"):
+                spread = ln.get("point")
+            elif ln.get("market") == "totals" and ln.get("side") == "Over":
+                total = ln.get("point")
+        market_by_event[bg.get("event_id")] = {"spread": spread, "total": total}
+    rows = []
+    for g in slate.get("slate", []):
+        series = history.get(g.get("event_id"), [])
+        move = {}
+        if len(series) >= 2:
+            first, last = series[0], series[-1]
+            for label, key in (("spread", f"spreads|{g['home_team']}"),
+                               ("total", "totals|Over")):
+                a = (first.get(key) or {}).get("point")
+                b = (last.get(key) or {}).get("point")
+                if a is not None and b is not None and a != b:
+                    move[label] = {"from": a, "to": b}
+        model = g.get("model") or {}
+        market = market_by_event.get(g.get("event_id"), {})
+        rows.append({
+            "market_spread": market.get("spread"),
+            "market_total": market.get("total"),
+            "event_id": g.get("event_id"),
+            "kickoff": g.get("kickoff"),
+            "matchup": g.get("matchup"),
+            "home_team": g.get("home_team"),
+            "away_team": g.get("away_team"),
+            # Board names carry mascots and variant spellings, which is
+            # exactly the problem canonical() exists for, so the logo
+            # lookup goes through the full matcher rather than a half
+            # reimplementation of it. A miss stays a miss: no logo beats a
+            # wrong logo for the same reason None beats a guessed match.
+            "home_logo": logos.get(
+                canonical(g.get("home_team") or "", known_locations) or ""),
+            "away_logo": logos.get(
+                canonical(g.get("away_team") or "", known_locations) or ""),
+            "neutral_site": g.get("neutral_site"),
+            "projected_spread": model.get("projected_spread"),
+            "projected_total": model.get("projected_total"),
+            "candidates": g.get("candidates") or [],
+            "movement": move,
+        })
+    rows.sort(key=lambda r: r.get("kickoff") or "")
+    return {"week": slate.get("week"), "season": slate.get("season"),
+            "built_at": slate.get("built_at"), "rows": rows}
+
+
+LIVE_FILE = store.DATA / "live_scores.json"
+LIVE_FRESH_MINUTES = 90
+
+
+def live_strip(picks: list[dict]) -> dict | None:
+    """
+    Saturday's scoreboard, joined to the card. Informational only: the
+    covering flag here never grades anything, because grading belongs to
+    the grader and quarter detail this feed does not carry.
+    """
+    import datetime as _dt
+    raw = store._load(LIVE_FILE, None)
+    if not raw or not raw.get("fetched_at"):
+        return None
+    try:
+        fetched = _dt.datetime.fromisoformat(raw["fetched_at"])
+        age = (_dt.datetime.now(_dt.timezone.utc) - fetched).total_seconds() / 60
+    except ValueError:
+        return None
+    if age > LIVE_FRESH_MINUTES:
+        return None
+    by_event = {g.get("event_id"): g for g in raw.get("games", [])}
+    rows = []
+    for p in picks:
+        if not p.get("live") or p.get("result") != "pending":
+            continue
+        g = by_event.get(p.get("event_id"))
+        if not g or g.get("home_score") is None:
+            continue
+        hs, as_ = int(g["home_score"]), int(g["away_score"])
+        covering = None
+        if p.get("period") == "full" and p.get("line") is not None:
+            if p.get("market") in ("spread", "Spread"):
+                team = hs if p["side"] == g.get("home_team") else as_
+                opp = as_ if p["side"] == g.get("home_team") else hs
+                m = team - opp + float(p["line"])
+                covering = "covering" if m > 0 else ("tied" if m == 0 else "not covering")
+            elif p.get("market") in ("total", "Total"):
+                t = hs + as_
+                over = str(p["side"]).lower().startswith("o")
+                if t == float(p["line"]):
+                    covering = "tied"
+                else:
+                    covering = ("covering" if (t > float(p["line"])) == over
+                                else "not covering")
+        rows.append({"pick_id": p.get("id"), "matchup": p.get("matchup"),
+                     "title": p.get("title"), "home_score": hs, "away_score": as_,
+                     "completed": bool(g.get("completed")), "covering": covering})
+    if not rows:
+        return None
+    return {"fetched_at": raw["fetched_at"], "rows": rows}
+
+
+def lock_id(picks: list[dict], season, week) -> str | None:
+    """
+    The Lock of the Week is computed, never remembered: the most confident
+    live pick on the current week's card, whenever the page renders. Ties
+    break on the size of the edge, then on who was published first, so the
+    crown cannot flicker between renders.
+    """
+    field = [p for p in picks
+             if p.get("live") and p.get("season") == season and p.get("week") == week]
+    if not field:
+        return None
+    field.sort(key=lambda p: (-float(p.get("confidence") or 0),
+                              -abs(float(p.get("edge") or 0)),
+                              p.get("placed_at") or "~"))
+    return field[0].get("id")
+
+
 def build_payload() -> dict:
     picks = store.load_picks()
     memory = store.load_memory()
@@ -253,8 +417,14 @@ def build_payload() -> dict:
         by_factor.append({"factor": name, **b})
     by_factor.sort(key=lambda r: r.get("units", 0), reverse=True)
 
+    pick_rows = [p for p in picks]
+    lock = lock_id(picks, current[0], current[1])
+
     return {
         "generated_at": store.now_iso(),
+        "board": board_rows(),
+        "live": live_strip(picks),
+        "lock_id": lock,
         "board_fetched_at": board.get("fetched_at"),
         "credits_remaining": (board.get("quota") or {}).get("remaining"),
         "live_threshold": store.LIVE_THRESHOLD,
@@ -497,6 +667,79 @@ HTML = """<!doctype html>
   .chart { margin: 4px 0 6px; }
   svg { display: block; width: 100%; height: auto; }
 
+  /* ------------------------------------------------ the board */
+  .game {
+    border-bottom: 1px solid #22314a;
+  }
+  .game summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center;
+    gap: 14px; padding: 14px 4px; font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .game summary::-webkit-details-marker { display: none; }
+  .game summary:hover { background: rgba(201,169,97,.05); }
+  .glogo { width: 34px; height: 34px; object-fit: contain; flex: none; }
+  .gteams { flex: 1 1 auto; min-width: 0; }
+  .gteams .away, .gteams .home { font-size: 15px; font-weight: 600; }
+  .gat { color: var(--dim); font-size: 12px; padding: 0 2px; }
+  .gnums {
+    text-align: right; font-variant-numeric: tabular-nums; flex: none;
+    font-size: 14px; color: var(--cream);
+  }
+  .gnums .lbl { color: var(--dim); font-size: 10px; letter-spacing: .1em;
+                text-transform: uppercase; }
+  .gkick { color: var(--dim); font-size: 12px; flex: none; width: 86px;
+           text-align: right; }
+  .gcaret { color: var(--gold); flex: none; transition: transform .15s; }
+  .game[open] .gcaret { transform: rotate(90deg); }
+  .gbody {
+    padding: 4px 6px 18px 54px;
+    font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 14px;
+  }
+  .gbody table { max-width: 460px; margin-bottom: 10px; }
+  .gbody td, .gbody th { padding: 6px 10px; }
+  .gmove { color: var(--gold-2); font-size: 13px; margin: 6px 0; }
+  .glean { color: var(--cream); font-size: 14px; margin: 6px 0 0; }
+  .glean b { color: var(--gold-2); }
+
+  /* ------------------------------------------------ the lock */
+  .ticket.lock {
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 4px rgba(201,169,97,.15), 0 14px 32px rgba(0,0,0,.5);
+  }
+  .lockbanner {
+    text-align: center; margin: 0 0 6px;
+  }
+  .lockbanner span {
+    display: inline-block; background: var(--gold); color: #1c1508;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: .22em;
+    text-transform: uppercase; padding: 6px 22px; border-radius: 2px;
+  }
+  .lockbanner span::before, .lockbanner span::after {
+    content: "\2605"; margin: 0 10px; font-size: 10px;
+  }
+
+  /* ------------------------------------------------ saturday live */
+  .live {
+    background: var(--green); border: 1px solid var(--green-2);
+    border-radius: 4px; padding: 14px 18px; margin: 40px 0 0;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .live h3 {
+    margin: 0 0 8px; color: var(--gold-2); font-size: 12px;
+    letter-spacing: .18em; text-transform: uppercase;
+  }
+  .liverow {
+    display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline;
+    padding: 6px 0; border-top: 1px solid var(--green-2); font-size: 14px;
+  }
+  .liverow:first-of-type { border-top: 0; }
+  .livescore { font-weight: 800; font-variant-numeric: tabular-nums; }
+  .livetag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .livetag.covering { color: #8fdc96; }
+  .livetag.notcovering { color: #f0a49b; }
+  .livetag.tied, .livetag.final { color: var(--dim); }
+
   footer {
     margin-top: 72px; padding-top: 26px;
     border-top: 1px solid #22314a; color: var(--dim); font-size: 13px;
@@ -520,8 +763,13 @@ HTML = """<!doctype html>
     <div class="rule"></div>
   </header>
 
+  <div id="livewrap"></div>
+
   <h2 id="card-h">The card</h2>
   <div id="card"></div>
+
+  <h2 id="board-h">The board</h2>
+  <div id="board"></div>
 
   <h2 id="book-h">The book</h2>
   <div id="book"></div>
@@ -561,7 +809,7 @@ const el = id => document.getElementById(id);
 const num = (n, d = 2) => (n == null ? "n/a" : Number(n).toFixed(d));
 const signed = (n, d = 2) => (n == null ? "n/a" : (n > 0 ? "+" : "") + Number(n).toFixed(d));
 
-for (const [id, key] of [["card-h","card_heading"],["book-h","book_heading"],
+for (const [id, key] of [["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
   ["cal-h","calibration_heading"],["cum-h","cumulative_heading"],
   ["wk-h","weekly_heading"],["split-h","split_heading"],
   ["fac-h","factors_heading"],["les-h","lessons_heading"]]) {
@@ -609,10 +857,19 @@ function ticket(p) {
     p.live && p.season === cur.season && p.week === cur.week);
   if (!live.length) { el("card").innerHTML = say(V.card_empty); return; }
   const staked = live.reduce((a, p) => a + (p.units || 0), 0);
+  // The Lock leads. It is computed server side as the most confident
+  // pick of the week, and here it only gets the crown and the top slot.
+  const lock = live.find(p => p.id === DATA.lock_id);
+  const rest = live.filter(p => p.id !== DATA.lock_id);
+  const lockHtml = lock
+    ? `<div class="lockbanner"><span>${esc(V.lock_title)}</span></div>` +
+      ticket(lock).replace('class="ticket', 'class="ticket lock') +
+      `<p class="quiet" style="margin:10px 0 4px">${esc(V.lock_note)}</p>`
+    : "";
   el("card").innerHTML =
     `<p class="weekline">Season ${esc(cur.season)} &middot; Week ${esc(cur.week)} &middot; ` +
     `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${num(staked, 1)} units</p>` +
-    `<div class="tickets">${live.map(ticket).join("")}</div>` +
+    `<div class="tickets">${lockHtml}${rest.map(ticket).join("")}</div>` +
     (live.length < DATA.target_picks ? say(V.card_short, "quiet") : "") +
     `<p class="quiet" style="margin-top:10px">${esc(V.sources_note)}</p>`;
 })();
@@ -733,6 +990,94 @@ el("les").innerHTML = (DATA.lessons || []).length
       `<p class="said">${esc(l.lesson)}</p>` +
       `<p class="quiet">Week ${esc(l.week)}, ${esc(l.season)}.</p>`).join("")
   : say(V.lessons_empty);
+
+
+
+/* ------------------------------------------------------- the board */
+(function renderBoard() {
+  const b = DATA.board || {};
+  const rows = b.rows || [];
+  if (!rows.length) { el("board").innerHTML = say(V.board_empty); return; }
+  // The folded week 1 genuinely spans 2 weekends, so the day alone reads
+  // as a sorting bug. The date settles it.
+  const kick = iso => {
+    try {
+      return new Date(iso).toLocaleString(undefined,
+        { weekday: "short", month: "numeric", day: "numeric",
+          hour: "numeric", minute: "2-digit" });
+    } catch (e) { return ""; }
+  };
+  const logo = (src, alt) => src
+    ? `<img class="glogo" src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`
+    : `<span class="glogo"></span>`;
+  const fmtpt = v => v == null ? "n/a" : (v > 0 ? "+" : "") + v;
+  const html = rows.map(g => {
+    const best = (g.candidates || [])[0];
+    const lean = best
+      ? `<p class="glean">${esc(V.board_lean)}: <b>${esc(best.side)} ` +
+        `${best.market === "total" ? best.bet_line : fmtpt(best.bet_line)}` +
+        `</b> &middot; edge ${fmtpt(best.edge_points)} ` +
+        `(${best.edge_sigma == null ? "n/a" : fmtpt(best.edge_sigma)}&sigma;) ` +
+        `&middot; floor ${num(best.floor_confidence, 1)}</p>`
+      : `<p class="glean">${esc(V.board_no_lean)}</p>`;
+
+    const move = Object.entries(g.movement || {}).map(([k, m]) =>
+      `${k} ${fmtpt(m.from)} &rarr; ${fmtpt(m.to)}`).join(", ");
+    return `<details class="game">
+      <summary>
+        <span class="gcaret">&#9656;</span>
+        ${logo(g.away_logo, g.away_team)}
+        <div class="gteams"><span class="away">${esc(g.away_team)}</span>
+          <span class="gat">at</span>
+          <span class="home">${esc(g.home_team)}</span>${
+            g.neutral_site ? ' <span class="gat">(neutral)</span>' : ""}</div>
+        ${logo(g.home_logo, g.home_team)}
+        <div class="gnums">
+          <div class="lbl">spread / total</div>
+          ${g.market_spread == null ? "n/a" : fmtpt(g.market_spread)} / ${
+            g.market_total == null ? "n/a" : g.market_total}
+        </div>
+        <div class="gkick">${kick(g.kickoff)}</div>
+      </summary>
+      <div class="gbody">
+        <table><thead><tr><th></th>
+          <th>${esc(V.board_mkt_spread)}</th><th>${esc(V.board_my_spread)}</th>
+          <th>${esc(V.board_mkt_total)}</th><th>${esc(V.board_my_total)}</th>
+        </tr></thead><tbody><tr><td></td>
+          <td>${g.market_spread == null ? "n/a" : fmtpt(g.market_spread)}</td>
+          <td>${fmtpt(g.projected_spread)}</td>
+          <td>${g.market_total == null ? "n/a" : g.market_total}</td>
+          <td>${g.projected_total == null ? "n/a" : g.projected_total}</td>
+        </tr></tbody></table>
+        ${move ? `<p class="gmove">${esc(V.board_moved)}: ${move}</p>` : ""}
+        ${lean}
+      </div>
+    </details>`;
+  }).join("");
+  el("board").innerHTML =
+    `<p class="quiet" style="margin-bottom:12px">${esc(V.board_note)}</p>` + html;
+})();
+
+/* -------------------------------------------------- saturday live */
+(function renderLive() {
+  const L = DATA.live;
+  if (!L || !L.rows || !L.rows.length) return;
+  const tag = c => {
+    if (c === "covering") return `<span class="livetag covering">${esc(V.live_covering)}</span>`;
+    if (c === "not covering") return `<span class="livetag notcovering">${esc(V.live_not_covering)}</span>`;
+    if (c === "tied") return `<span class="livetag tied">${esc(V.live_tied)}</span>`;
+    return "";
+  };
+  el("livewrap").innerHTML = `<div class="live">
+    <h3>${esc(V.live_heading)}</h3>
+    ${L.rows.map(r => `<div class="liverow">
+      <span>${esc(r.title)}</span>
+      <span class="livescore">${esc(r.matchup)}: ${r.away_score}&ndash;${r.home_score}</span>
+      ${r.completed ? `<span class="livetag final">${esc(V.live_final)}</span>` : tag(r.covering)}
+    </div>`).join("")}
+    <p class="quiet" style="margin:10px 0 0">${esc(V.live_note)}</p>
+  </div>`;
+})();
 
 /* ------------------------------------------------------------ footer */
 const when = iso => new Date(iso).toLocaleString(undefined,

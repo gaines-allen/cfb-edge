@@ -1,0 +1,80 @@
+name: Saturday tracking
+
+# The live half of Saturday. Every 30 minutes from noon to midnight
+# Eastern, poll the scores endpoint, rewrite the live strip, and redeploy
+# the page. The script exits before making a single API call when no live
+# pick is pending inside the window, so a bye week or an unmerged card
+# costs 0 credits and the commit step finds nothing to commit.
+#
+# This writes data/live_scores.json and site/ only. The ledger is not
+# touched, and grading stays with Sunday's run, which has quarter detail.
+
+on:
+  schedule:
+    # Noon to midnight Eastern is 16:00 Saturday to 04:00 Sunday UTC.
+    - cron: "*/30 16-23 * * 6"
+    - cron: "*/30 0-3 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: track-scores
+  cancel-in-progress: true
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Poll the scores
+        id: poll
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          RUN_ID: ${{ github.run_id }}
+        run: python3 scripts/track_scores.py
+
+      - name: Rebuild the page
+        run: python3 scripts/build_site.py
+
+      - name: Commit
+        run: |
+          git config user.name "cfb-edge-bot"
+          git config user.email "actions@github.com"
+          git add data/live_scores.json site
+          if git diff --staged --quiet; then
+            echo "Nothing moved."
+          else
+            git commit -m "Live scores: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+  deploy:
+    needs: track
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

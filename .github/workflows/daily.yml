@@ -7,15 +7,20 @@ name: Daily update
 
 on:
   schedule:
-    # 07:00 America/Chicago, every day. Line movement plus overnight grading.
-    - cron: "0 12 * * *"
-    # Saturday 10:00 and 12:00 Chicago. These two runs are what capture
-    # closing lines before the noon and afternoon kicks, so they matter more
-    # than any other pull in the week.
+    # 14:00 Eastern, every day. The site's promise is that lines are at
+    # most a day old, and 2 PM catches the morning's moves. GitHub crons
+    # are UTC, so this drifts to 1 PM Eastern when daylight time ends in
+    # November. An hour early beats a second daily pull.
+    - cron: "0 18 * * *"
+    # Saturday 11:00 and 13:00 Eastern. These two runs capture closing
+    # lines before the noon and afternoon kicks, so they matter more than
+    # any other pull in the week.
     - cron: "0 15 * * 6"
     - cron: "0 17 * * 6"
-    # Sunday 09:00 Chicago. Everything from Saturday is final by now.
-    - cron: "0 14 * * 0"
+    # Sunday 09:00 Eastern. Saturday is final, the grader settles the card,
+    # rebuilds calibration and the factor scorecard, and the results page
+    # is up by the time anyone checks it over coffee.
+    - cron: "0 13 * * 0"
   workflow_dispatch:
     inputs:
       markets:

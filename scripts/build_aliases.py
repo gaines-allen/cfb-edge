@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import schema, store  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
-from lib.teams import ALIAS_FILE, normalize  # noqa: E402
+from lib.teams import ALIAS_FILE, LOGO_FILE, normalize  # noqa: E402
 
 BASE = ("https://site.api.espn.com/apis/site/v2/sports/football/"
         "college-football/teams")
@@ -85,11 +85,27 @@ def main() -> int:
 
     store.write_text(ALIAS_FILE, json.dumps(clean, indent=0, sort_keys=True))
 
+    # Logo URLs, keyed by the normalized location so the site can look a
+    # team up the same way the matcher does. ESPN serves these from its
+    # CDN at stable ids, and the payload carries them beside the name
+    # split, so this costs nothing extra.
+    logos: dict[str, str] = {}
+    for t in teams:
+        loc = t.get("location")
+        entries = t.get("logos") or []
+        href = next((l.get("href") for l in entries
+                     if "default" in (l.get("rel") or [])), None)
+        if loc and href:
+            logos.setdefault(loc, href)
+    store.write_text(LOGO_FILE, json.dumps(logos, indent=0, sort_keys=True))
+
     print(json.dumps({
         "teams_seen": len(teams),
         "alias_keys": len(clean),
         "ambiguous_dropped": dropped,
-        "wrote": str(ALIAS_FILE.relative_to(ALIAS_FILE.parents[1])),
+        "logo_keys": len(logos),
+        "wrote": [str(ALIAS_FILE.relative_to(ALIAS_FILE.parents[1])),
+                  str(LOGO_FILE.relative_to(LOGO_FILE.parents[1]))],
     }, indent=2))
     log.finish()
     return 0

@@ -30,6 +30,15 @@ import unicodedata
 from pathlib import Path
 
 ALIAS_FILE = Path(__file__).resolve().parents[2] / "data" / "team_aliases.json"
+LOGO_FILE = Path(__file__).resolve().parents[2] / "data" / "team_logos.json"
+
+
+def load_logos() -> dict:
+    """Normalized location to ESPN logo URL. Empty when never built."""
+    try:
+        return json.loads(LOGO_FILE.read_text())
+    except (OSError, json.JSONDecodeError):
+        return {}
 
 # Schools whose names diverge across sources. Key is the canonical CFBD
 # spelling, value is every other spelling seen in the wild. Anything not

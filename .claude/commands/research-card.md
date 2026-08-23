@@ -16,6 +16,22 @@ do not commit, and do not push. A later step in the workflow validates your
 draft and opens a pull request. A person merges it. That separation is the
 reason you are allowed to run on your own.
 
+## Scope
+
+The invocation may carry `scope thursday` or `scope full`.
+
+`scope thursday` is the early run. Rate only games kicking before Friday
+6 PM Eastern, and leave everything else alone for Friday's run. If nothing
+in that window clears 8.0, write an empty list and say so. That is the
+normal Thursday outcome: an early game only publishes early when the
+research genuinely likes it, and a game you passed on still shows on the
+site's board with the model's numbers, so anyone who wants it can bet it
+themselves.
+
+`scope full`, or no scope, is the whole slate. Skip any game already
+carrying a published pick in `data/picks.json` from an earlier run this
+week, and do not re-rate it.
+
 ## The job
 
 Read `data/memory.json` first, every time, before you look at a single game.

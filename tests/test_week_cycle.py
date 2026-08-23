@@ -1,0 +1,240 @@
+"""
+The shape of the week: the Monday board, the Lock, the Thursday early run,
+Saturday tracking and the Sunday settle.
+
+Most of these guard seams between generated data and the page, because
+that is where this session's real bugs have lived: a market number sourced
+from the wrong file, a breakeven compared at the wrong scale, a logo keyed
+by the wrong form of a name.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from datetime import datetime, timedelta, timezone
+
+import pytest
+
+from conftest import ROOT
+
+sys.path.insert(0, str(ROOT / "scripts"))
+
+import build_site as B  # noqa: E402
+import track_scores  # noqa: E402
+
+NOW = datetime(2026, 8, 29, 20, 0, tzinfo=timezone.utc)
+
+
+# ------------------------------------------------------- the board
+
+@pytest.fixture(scope="module")
+def board():
+    return B.board_rows()
+
+
+def test_every_board_game_carries_both_market_numbers(board):
+    """
+    The first cut sourced market numbers from candidates, which only exist
+    where the model found an edge, so every fairly priced game showed n/a.
+    A board that goes blank exactly where the pricing is good is backwards.
+    """
+    rows = board["rows"]
+    assert rows, "the board is empty"
+    missing = [r["matchup"] for r in rows
+               if r["market_spread"] is None or r["market_total"] is None]
+    assert missing == [], missing
+
+
+def test_every_board_game_carries_both_logos(board):
+    missing = [r["matchup"] for r in board["rows"]
+               if not (r["home_logo"] and r["away_logo"])]
+    assert missing == [], missing
+
+
+def test_logos_come_through_the_real_matcher():
+    """
+    Sam Houston State Bearkats has to find ESPN's Sam Houston. Only
+    canonical() knows that, and a half reimplementation missed it.
+    """
+    src = open(B.__file__).read()
+    assert "canonical(" in src.split("def board_rows")[1].split("def ")[1] \
+        or "canonical(" in src.split("def board_rows")[1][:3000]
+
+
+def test_the_board_is_sorted_by_kickoff(board):
+    kicks = [r["kickoff"] for r in board["rows"]]
+    assert kicks == sorted(kicks)
+
+
+def test_a_missing_logo_stays_missing():
+    """No logo beats a wrong logo, same reason None beats a guessed match."""
+    from lib.teams import canonical, load_logos
+    logos = load_logos()
+    assert canonical("Nowhere Tech Fighting Nobodies", set(logos)) is None
+
+
+# ------------------------------------------------------- the lock
+
+def pick(id, conf, edge=0.0, placed="2026-08-28T18:00:00+00:00", **over):
+    base = {"id": id, "live": True, "season": 2026, "week": 1,
+            "confidence": conf, "edge": edge, "placed_at": placed,
+            "result": "pending"}
+    base.update(over)
+    return base
+
+
+def test_the_lock_is_the_most_confident_pick():
+    picks = [pick("a", 8.2), pick("b", 8.6), pick("c", 8.4)]
+    assert B.lock_id(picks, 2026, 1) == "b"
+
+
+def test_lock_ties_break_on_edge_then_first_published():
+    tied = [pick("a", 8.4, edge=2.0, placed="2026-08-28T19:00:00+00:00"),
+            pick("b", 8.4, edge=3.5, placed="2026-08-28T20:00:00+00:00")]
+    assert B.lock_id(tied, 2026, 1) == "b"
+    dead = [pick("a", 8.4, edge=2.0, placed="2026-08-27T12:00:00+00:00"),
+            pick("b", 8.4, edge=2.0, placed="2026-08-28T12:00:00+00:00")]
+    assert B.lock_id(dead, 2026, 1) == "a"
+
+
+def test_a_thursday_pick_can_wear_the_crown():
+    """Published early does not mean demoted."""
+    picks = [pick("thu", 9.0, placed="2026-08-27T18:00:00+00:00"),
+             pick("fri", 8.4, placed="2026-08-28T18:00:00+00:00")]
+    assert B.lock_id(picks, 2026, 1) == "thu"
+
+
+def test_shadow_picks_never_lock():
+    picks = [pick("shadow", 9.9, live=False), pick("real", 8.1)]
+    assert B.lock_id(picks, 2026, 1) == "real"
+
+
+def test_the_lock_gets_a_crown_not_units():
+    """The lock is presentation. Nothing in the staking ladder reads it."""
+    import re
+    from lib import card_rules
+    src = open(card_rules.__file__).read()
+    assert not re.search(r"\block\b", src, re.I), (
+        "card_rules mentions the lock, so staking may be reading presentation"
+    )
+
+
+# ------------------------------------------------- saturday tracking
+
+def test_no_pending_picks_means_no_network():
+    assert track_scores.watchable([], NOW) == []
+    settled = [pick("a", 8.4, result="win",
+                    kickoff="2026-08-29T16:00:00Z")]
+    assert track_scores.watchable(settled, NOW) == []
+
+
+def test_only_games_near_kickoff_are_watched():
+    inside = pick("in", 8.4, kickoff="2026-08-29T23:30:00Z")
+    tomorrow = pick("out", 8.4, kickoff="2026-09-05T16:00:00Z")
+    long_over = pick("old", 8.4, kickoff="2026-08-29T02:00:00Z")
+    got = track_scores.watchable([inside, tomorrow, long_over], NOW)
+    assert [p["id"] for p in got] == ["in"]
+
+
+def test_the_tracker_never_imports_the_ledger_writer():
+    """It reads picks and writes one scores file. Nothing else."""
+    src = open(track_scores.__file__).read()
+    assert "save_picks" not in src
+    assert "log_picks" not in src
+
+
+# ------------------------------------------------- the live strip
+
+def strip_for(raw, picks):
+    import build_site
+    orig = build_site.store._load
+    try:
+        build_site.store._load = lambda path, default: (
+            raw if path == build_site.LIVE_FILE else orig(path, default))
+        return build_site.live_strip(picks)
+    finally:
+        build_site.store._load = orig
+
+
+LIVE_PICK = {"id": "p1", "live": True, "result": "pending", "event_id": "e1",
+             "matchup": "A @ B", "title": "B -6.5", "market": "spread",
+             "period": "full", "side": "B", "line": -6.5}
+GAME = {"event_id": "e1", "home_team": "B", "away_team": "A",
+        "home_score": 21, "away_score": 10, "completed": False}
+
+
+def fresh(mins_ago=5):
+    at = datetime.now(timezone.utc) - timedelta(minutes=mins_ago)
+    return {"fetched_at": at.isoformat(timespec="seconds"), "games": [GAME]}
+
+
+def test_a_fresh_feed_renders_and_computes_covering():
+    got = strip_for(fresh(), [LIVE_PICK])
+    assert got and got["rows"][0]["covering"] == "covering"
+
+
+def test_a_stale_feed_renders_nothing():
+    """
+    A Tuesday page must not show Saturday's scoreboard. 90 minutes is the
+    line, since the poller runs every 30.
+    """
+    assert strip_for(fresh(mins_ago=180), [LIVE_PICK]) is None
+
+
+def test_not_covering_and_tied_read_correctly():
+    dog = dict(LIVE_PICK, side="A", line=6.5)   # A +6.5, down 11
+    got = strip_for(fresh(), [dog])
+    assert got["rows"][0]["covering"] == "not covering"
+    push = dict(LIVE_PICK, line=-11.0)
+    got = strip_for(fresh(), [push])
+    assert got["rows"][0]["covering"] == "tied"
+
+
+def test_half_bets_show_scores_but_never_a_covering_flag():
+    """The feed has no quarter detail, so claiming coverage would be a guess."""
+    h1 = dict(LIVE_PICK, period="h1")
+    got = strip_for(fresh(), [h1])
+    assert got["rows"][0]["covering"] is None
+
+
+# --------------------------------------------------- the schedules
+
+DAILY = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
+WEEKLY = (ROOT / ".github" / "workflows" / "weekly-card.yml").read_text()
+TRACK = (ROOT / ".github" / "workflows" / "track-scores.yml").read_text()
+
+
+def test_the_site_updates_daily_at_2pm_eastern():
+    assert '"0 18 * * *"' in DAILY
+
+
+def test_the_card_researches_thursday_and_friday():
+    assert '"0 18 * * 4"' in WEEKLY
+    assert '"0 18 * * 5"' in WEEKLY
+    assert '"30 13 * * 3"' not in WEEKLY, "the Wednesday cron survived"
+
+
+def test_thursday_runs_are_scoped():
+    assert 'SCOPE="thursday"' in WEEKLY
+    assert "scope $SCOPE" in WEEKLY
+
+
+def test_sunday_grades_in_the_morning():
+    assert '"0 13 * * 0"' in DAILY
+
+
+def test_saturday_tracking_covers_noon_to_midnight_eastern():
+    assert '"*/30 16-23 * * 6"' in TRACK
+    assert '"*/30 0-3 * * 0"' in TRACK
+
+
+def test_the_tracker_workflow_cannot_reach_the_ledger():
+    assert "log_picks" not in TRACK
+    assert "git add data/live_scores.json site" in TRACK
+
+
+def test_scope_is_documented_for_the_agent():
+    cmd = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
+    assert "scope thursday" in cmd
+    assert "before Friday" in cmd

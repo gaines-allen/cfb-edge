@@ -12,9 +12,14 @@ name: Weekly card
 
 on:
   schedule:
-    # 08:30 America/Chicago on Wednesday. The board has Tuesday's moves in
-    # it and the SEC files its first injury report the same day.
-    - cron: "30 13 * * 3"
+    # Thursday and Friday at 14:00 Eastern. Thursday's run is scoped to
+    # games kicking before Friday evening, so a Thursday game the research
+    # actually likes publishes ahead of its kickoff instead of after it.
+    # Friday's run is the full card, ready for the 6 PM Eastern publish
+    # once the pull request is merged. The scope is derived from the day
+    # below, because schedule events cannot carry inputs.
+    - cron: "0 18 * * 4"
+    - cron: "0 18 * * 5"
   workflow_dispatch:
     inputs:
       season:
@@ -122,7 +127,13 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN="$(printf '%s' "$CLAUDE_CODE_OAUTH_TOKEN" | tr -d '[:space:]')"
           export CLAUDE_CODE_OAUTH_TOKEN
           set -o pipefail
-          claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }}" \
+          # Thursday runs are scoped to the early games. Friday and manual
+          # runs take the whole slate.
+          SCOPE="full"
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%u)" = "4" ]; then
+            SCOPE="thursday"
+          fi
+          claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }} scope $SCOPE" \
             --model opus \
             --permission-mode dontAsk \
             --max-turns "${{ inputs.max_turns || '60' }}" \

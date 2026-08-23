@@ -99,6 +99,47 @@ semantic: a column of SP+ offense ratings whose median sits near 0 is a
 differential whatever it is called, and a CFBD team name the ESPN map can
 shorten is carrying a mascot whatever the docs say.
 
+## The week
+
+Monday at 2 PM Eastern the full slate goes up: every game as a collapsible
+row with team logos, the market's spread and total beside the model's, the
+edge, and how the line has moved since the week opened. The board carries
+everything whether or not it makes the card, so a game the research passed
+on is still there with its numbers for anyone who wants to bet it
+themselves.
+
+Tuesday through Friday the same 2 PM run keeps the lines at most a day
+old. GitHub crons run in UTC, so the update lands an hour earlier by the
+clock once daylight time ends.
+
+Thursday at 2 PM Eastern the research runs scoped to games kicking before
+Friday evening. A Thursday game only publishes early when it clears the
+same 8.0 bar as everything else; most Thursdays that run writes an empty
+card and no pull request appears.
+
+Friday at 2 PM Eastern the research runs on the rest of the slate, and the
+card is ready for a 6 PM publish once the pull request is merged. The most
+confident play of the week wears The Lock of the Week. The Lock is
+computed, never remembered: highest confidence, ties broken by the size of
+the edge and then by who published first, and it earns a crown rather than
+extra units, because doubling a bet is how confident men go broke.
+
+Saturday from noon to midnight Eastern a tracker polls scores every 30
+minutes and the site shows each card game live with where the bet stands.
+That flag is informational: grading stays with Sunday's run, which has the
+quarter detail the live feed does not. The tracker exits before spending a
+single credit when no card is live.
+
+Sunday at 9 AM Eastern the grader settles the card, computes closing line
+value, rebuilds the calibration table and the factor scorecard, and writes
+its lessons, so the results and whatever the system learned are on the
+page by mid morning.
+
+The credit math at full tilt: 7 daily pulls, 2 Saturday closing pulls, the
+Sunday pull and 24 tracker polls come to about 78 credits a week, roughly
+340 a month against the 500 the free tier allows, and the tracker half of
+that only spends when a card is actually live.
+
 ## The weekly card
 
 The daily job does the deterministic half and stops, because making a pick
