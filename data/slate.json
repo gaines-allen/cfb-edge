@@ -1,12 +1,12 @@
 {
-  "built_at": "2026-08-21T14:05:55+00:00",
+  "built_at": "2026-08-23T14:20:36+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-21T14:05:52+00:00",
+  "board_fetched_at": "2026-08-23T14:20:33+00:00",
   "warning": null,
   "games_on_board": 110,
-  "games_with_candidates": 42,
+  "games_with_candidates": 41,
   "games_dropped": [
     "Albany @ Buffalo Bulls",
     "Bethune-Cookman Wildcats @ UCF Knights",
@@ -109,20 +109,20 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-21T14:05:54+00:00",
+    "measured_at": "2026-08-23T14:20:35+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 63,
-      "bias": -0.906,
+      "bias": -0.89,
       "median": -0.7,
-      "sigma": 3.274
+      "sigma": 3.268
     },
     "spreads": {
       "n": 63,
-      "bias": 0.616,
+      "bias": 0.648,
       "median": 1.0,
-      "sigma": 2.726
+      "sigma": 2.724
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -176,7 +176,7 @@
           "price": -110,
           "model_number": 54.3,
           "edge_points": 7.8,
-          "edge_sigma": 2.38,
+          "edge_sigma": 2.39,
           "floor_confidence": 7.1
         }
       ]
@@ -230,7 +230,7 @@
           "price": -110,
           "model_number": 48.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.95,
+          "edge_sigma": -1.96,
           "floor_confidence": 6.4
         },
         {
@@ -296,7 +296,7 @@
           "price": -105,
           "model_number": 50.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.95,
+          "edge_sigma": -1.96,
           "floor_confidence": 6.4
         },
         {
@@ -308,8 +308,8 @@
           "price": -118,
           "model_number": -56.4,
           "edge_points": -5.9,
-          "edge_sigma": -2.16,
-          "floor_confidence": 6.7
+          "edge_sigma": -2.17,
+          "floor_confidence": 6.8
         }
       ]
     },
@@ -362,7 +362,7 @@
           "price": -105,
           "model_number": 55.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.95,
+          "edge_sigma": -1.96,
           "floor_confidence": 6.4
         },
         {
@@ -548,7 +548,7 @@
           "price": -110,
           "model_number": -15.8,
           "edge_points": -5.3,
-          "edge_sigma": -1.94,
+          "edge_sigma": -1.95,
           "floor_confidence": 6.4
         },
         {
@@ -677,7 +677,7 @@
           "side": "San Jos\u00e9 State",
           "market_line": -38.5,
           "bet_line": 38.5,
-          "price": -105,
+          "price": -115,
           "model_number": -35.4,
           "edge_points": 3.1,
           "edge_sigma": 1.14,
@@ -734,7 +734,7 @@
           "price": -110,
           "model_number": 58.8,
           "edge_points": 4.3,
-          "edge_sigma": 1.31,
+          "edge_sigma": 1.32,
           "floor_confidence": 5.5
         },
         {
@@ -797,10 +797,10 @@
           "side": "Sacramento State",
           "market_line": -9.5,
           "bet_line": 9.5,
-          "price": -108,
+          "price": -112,
           "model_number": -5.4,
           "edge_points": 4.1,
-          "edge_sigma": 1.5,
+          "edge_sigma": 1.51,
           "floor_confidence": 5.8
         }
       ]
@@ -851,7 +851,7 @@
           "side": "Oregon State",
           "market_line": -20.5,
           "bet_line": 20.5,
-          "price": -115,
+          "price": -105,
           "model_number": -16.6,
           "edge_points": 3.9,
           "edge_sigma": 1.43,
@@ -910,6 +910,60 @@
           "edge_points": 3.9,
           "edge_sigma": 1.19,
           "floor_confidence": 5.3
+        }
+      ]
+    },
+    {
+      "event_id": "965fa47588c773e6753d409fc1020dec",
+      "kickoff": "2026-09-05T23:00:00Z",
+      "matchup": "Western Michigan Broncos @ Michigan Wolverines",
+      "home_team": "Michigan Wolverines",
+      "away_team": "Western Michigan Broncos",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Michigan",
+        "away_team": "Western Michigan",
+        "projected_spread": -24.7,
+        "projected_total": 47.8,
+        "projected_h1_spread": -13.6,
+        "projected_h1_total": 22.5,
+        "hfa_applied": 2.2,
+        "inputs": {
+          "home_rating": 16.6,
+          "away_rating": -5.3,
+          "home_points": 29.2,
+          "away_points": 17.7,
+          "home_components": {
+            "sp": 17,
+            "sp_off": 33.2,
+            "sp_def": 15.8,
+            "fpi": 15.875
+          },
+          "away_components": {
+            "sp": -6,
+            "sp_off": 19.6,
+            "sp_def": 25.2,
+            "fpi": -4.037
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Western Michigan",
+          "market_line": -28.5,
+          "bet_line": 28.5,
+          "price": -110,
+          "model_number": -24.7,
+          "edge_points": 3.8,
+          "edge_sigma": 1.4,
+          "floor_confidence": 5.6
         }
       ]
     },
@@ -1133,7 +1187,7 @@
           "side": "Memphis",
           "market_line": -9.5,
           "bet_line": -9.5,
-          "price": -114,
+          "price": -115,
           "model_number": -13.0,
           "edge_points": -3.5,
           "edge_sigma": -1.28,
@@ -1385,7 +1439,7 @@
           "side": "Hawai'i",
           "market_line": -5.5,
           "bet_line": 5.5,
-          "price": -118,
+          "price": -104,
           "model_number": -2.6,
           "edge_points": 2.9,
           "edge_sigma": 1.06,
@@ -1610,60 +1664,6 @@
       ]
     },
     {
-      "event_id": "965fa47588c773e6753d409fc1020dec",
-      "kickoff": "2026-09-05T23:00:00Z",
-      "matchup": "Western Michigan Broncos @ Michigan Wolverines",
-      "home_team": "Michigan Wolverines",
-      "away_team": "Western Michigan Broncos",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Michigan",
-        "away_team": "Western Michigan",
-        "projected_spread": -24.7,
-        "projected_total": 47.8,
-        "projected_h1_spread": -13.6,
-        "projected_h1_total": 22.5,
-        "hfa_applied": 2.2,
-        "inputs": {
-          "home_rating": 16.6,
-          "away_rating": -5.3,
-          "home_points": 29.2,
-          "away_points": 17.7,
-          "home_components": {
-            "sp": 17,
-            "sp_off": 33.2,
-            "sp_def": 15.8,
-            "fpi": 15.875
-          },
-          "away_components": {
-            "sp": -6,
-            "sp_off": 19.6,
-            "sp_def": 25.2,
-            "fpi": -4.037
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Western Michigan",
-          "market_line": -27.5,
-          "bet_line": 27.5,
-          "price": -110,
-          "model_number": -24.7,
-          "edge_points": 2.8,
-          "edge_sigma": 1.03,
-          "floor_confidence": 5.0
-        }
-      ]
-    },
-    {
       "event_id": "2c288580da16e12d35355f2548721be6",
       "kickoff": "2026-08-29T16:00:00Z",
       "matchup": "North Carolina Tar Heels @ TCU Horned Frogs",
@@ -1709,10 +1709,10 @@
           "side": "Over",
           "market_line": 47.5,
           "bet_line": 47.5,
-          "price": -115,
+          "price": -110,
           "model_number": 50.2,
           "edge_points": 2.7,
-          "edge_sigma": 0.82,
+          "edge_sigma": 0.83,
           "floor_confidence": 4.7
         },
         {
@@ -1721,7 +1721,7 @@
           "side": "North Carolina",
           "market_line": -7.5,
           "bet_line": 7.5,
-          "price": -110,
+          "price": -108,
           "model_number": -4.9,
           "edge_points": 2.6,
           "edge_sigma": 0.95,
@@ -1886,7 +1886,7 @@
           "price": -115,
           "model_number": 45.9,
           "edge_points": -2.6,
-          "edge_sigma": -0.79,
+          "edge_sigma": -0.8,
           "floor_confidence": 4.7
         },
         {
@@ -1895,7 +1895,7 @@
           "side": "Ohio",
           "market_line": -24.5,
           "bet_line": 24.5,
-          "price": -108,
+          "price": -112,
           "model_number": -22.4,
           "edge_points": 2.1,
           "edge_sigma": 0.77,
@@ -1949,7 +1949,7 @@
           "side": "Miami (OH)",
           "market_line": -16.5,
           "bet_line": 16.5,
-          "price": -115,
+          "price": -110,
           "model_number": -14.2,
           "edge_points": 2.3,
           "edge_sigma": 0.84,
@@ -2410,60 +2410,6 @@
           "edge_points": 1.9,
           "edge_sigma": 0.7,
           "floor_confidence": 4.5
-        }
-      ]
-    },
-    {
-      "event_id": "123a238486098cc9e8f71fea0cf4e7b0",
-      "kickoff": "2026-08-29T19:30:00Z",
-      "matchup": "NC State Wolfpack @ Virginia Cavaliers",
-      "home_team": "Virginia Cavaliers",
-      "away_team": "NC State Wolfpack",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Virginia",
-        "away_team": "NC State",
-        "projected_spread": -5.8,
-        "projected_total": 51.7,
-        "projected_h1_spread": -3.2,
-        "projected_h1_total": 24.3,
-        "hfa_applied": 2.2,
-        "inputs": {
-          "home_rating": 8.03,
-          "away_rating": 4.99,
-          "home_points": 25.9,
-          "away_points": 24.9,
-          "home_components": {
-            "sp": 8.1,
-            "sp_off": 26.9,
-            "sp_def": 18.9,
-            "fpi": 7.895
-          },
-          "away_components": {
-            "sp": 5.7,
-            "sp_off": 31,
-            "sp_def": 24.9,
-            "fpi": 3.719
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 53.5,
-          "bet_line": 53.5,
-          "price": -110,
-          "model_number": 51.7,
-          "edge_points": -1.8,
-          "edge_sigma": -0.55,
-          "floor_confidence": 4.3
         }
       ]
     },
