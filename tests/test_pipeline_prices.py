@@ -33,14 +33,24 @@ def slate(tmp_path_factory):
     env.pop("ODDS_API_KEY", None)
     env["CFBD_CACHE_DIR"] = str(cache)
     env["CFBD_CACHE_TTL"] = "-1"
-    proc = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "make_slate.py"),
-         "--season", "2026", "--week", "1"],
-        capture_output=True, text=True, cwd=str(ROOT), env=env)
-    assert proc.returncode == 0, proc.stderr[-600:]
-    built = json.loads((ROOT / "data" / "slate.json").read_text())
-    # Put the committed build back rather than leaving a rebuilt one behind.
-    subprocess.run(["git", "checkout", "--", "data/slate.json"], cwd=str(ROOT))
+    # Restore by content, never by git. In the daily workflow this test
+    # runs after make_slate and before the commit, and a git restore here
+    # reverted every fresh slate to the previous commit's copy, so the
+    # site shipped a board frozen at whatever was committed when this test
+    # first landed. Saving the bytes and putting them back keeps the test
+    # tidy without deciding what the working tree ought to contain.
+    slate_path = ROOT / "data" / "slate.json"
+    before = slate_path.read_bytes() if slate_path.exists() else None
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "make_slate.py"),
+             "--season", "2026", "--week", "1"],
+            capture_output=True, text=True, cwd=str(ROOT), env=env)
+        assert proc.returncode == 0, proc.stderr[-600:]
+        built = json.loads(slate_path.read_text())
+    finally:
+        if before is not None:
+            slate_path.write_bytes(before)
     return built
 
 
@@ -121,3 +131,20 @@ def test_a_wrong_price_changes_the_breakeven_it_implies():
     from lib.scoring import breakeven
     assert breakeven(100) == pytest.approx(0.500, abs=0.001)
     assert breakeven(-122) == pytest.approx(0.550, abs=0.001)
+
+
+def test_nothing_in_the_suite_git_restores_generated_data():
+    """
+    The daily workflow runs this suite between make_slate and the commit.
+    A git restore of anything under data/ or site/ in a test reverts the
+    fresh build to the previous commit, and the site ships stale. That
+    happened: the board froze at August 21 for 2 days before a routine
+    noticed the built_at never moved.
+    """
+    import re
+    offenders = []
+    for p in sorted((ROOT / "tests").glob("*.py")):
+        for i, line in enumerate(p.read_text().splitlines(), 1):
+            if re.search(r"git.{0,20}checkout.{0,20}(data|site)/", line):
+                offenders.append(f"{p.name}:{i}")
+    assert offenders == [], offenders
