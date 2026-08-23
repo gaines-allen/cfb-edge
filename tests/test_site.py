@@ -206,3 +206,44 @@ def test_the_chart_colours_come_from_the_brand():
     """Chart colours drifted from the palette when the page was rebranded."""
     for stale in ("#6fbf73", "#d2645c", "#e8b04b", "#9b968c", "#f1ece2"):
         assert stale not in B.HTML, f"{stale} is from the old palette"
+
+
+# ------------------------------------------------ he has to sound like him
+
+def test_he_uses_contractions():
+    """
+    Without them he reads like a form letter, and a wise guy who talks like
+    a form letter is not a wise guy.
+    """
+    spoken = " ".join(v for k, v in B.VOICE.items()
+                      if k not in ("disclaimer", "name", "full_name", "logo",
+                                   "kicker", "sign_off"))
+    assert spoken.count("'") >= 8, "he is not using contractions"
+
+
+def test_the_disclaimer_stays_straight():
+    """
+    The helpline is not a bit. It keeps the formal register even when
+    everything around it loosens up.
+    """
+    d = B.VOICE["disclaimer"]
+    for contraction in ("n't", "I'm", "it's", "there's"):
+        assert contraction not in d
+
+
+def test_american_spelling():
+    joined = " ".join(B.VOICE.values())
+    for british in ("apologise", "realise", "favourite", "colour"):
+        assert british not in joined
+
+
+def test_the_honest_lines_survived_the_rewrite():
+    """
+    The jokes are allowed to change. These are not, because they are the
+    product rather than the packaging.
+    """
+    assert "52.4" in B.VOICE["no_signal_long"]
+    assert "lucky" in B.VOICE["no_signal_long"]
+    assert "priced right" in B.VOICE["card_empty"]
+    assert "not a person" in B.VOICE["about"]
+    assert "1-800-GAMBLER" in B.VOICE["disclaimer"]

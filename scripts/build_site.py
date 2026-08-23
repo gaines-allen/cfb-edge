@@ -100,12 +100,15 @@ def weekly_rows(picks: list[dict]) -> list[dict]:
 # The character. Every line the page says out loud lives here, so the
 # persona can be rewritten without touching a single tag.
 #
-# Steve books. He does not sell. The whole promise sits in the tagline: a
-# bookie takes the other side of your bet and never shows you his record,
-# and this one posts his either way. The swagger only means something while
-# the honest copy survives, so the empty states, the losing weeks and the
-# "this means nothing yet" lines are his too, not exceptions carved out of
-# him. A man who is actually good does not need a play every Wednesday.
+# Steve is a wise guy who books. He needles, he does not sell, and the
+# needling only works because he is telling the truth. The joke and the
+# honesty are the same move: a man willing to say the record makes him look
+# like an idiot is a man you can believe about the record.
+#
+# So the empty states, the losing weeks and the "this means nothing yet"
+# lines are the funniest thing he says, not exceptions carved out of him.
+# A guy who only shows you the good stretch is selling something, and he
+# says so on the page.
 #
 # He talks the way the rest of this repo writes. Prose, no lists, no em
 # dashes, plain verbs, numbers instead of adjectives, and he never signs
@@ -117,44 +120,48 @@ VOICE = {
     "kicker": "College football picks",
     "logo": "steve.png",
     "sign_off": "Steve",
-    "tagline": "Six plays. Every number. Every result, "
-               "including the ugly ones.",
-    "subhead": "Nothing goes up under 8.0 out of 10, the card is posted "
-               "before kickoff, and the record underneath it is the same "
-               "one whether the week went well or not.",
+    "tagline": "Six plays. Every number. Every result, including the ones "
+               "that make me look like an idiot.",
+    "subhead": "Nothing goes up under 8.0 out of 10, and the card is posted "
+               "before kickoff, so I can't quietly improve it afterwards. "
+               "Neither can you.",
 
     # Openly a persona. A page built on not overclaiming cannot open by
-    # implying a real handicapper is behind it.
-    "about": "Steve is the voice of this system, not a person. The numbers "
-             "come from a ratings model, the reasons come from research "
-             "that is checked against its sources before anything is "
-             "posted, and every figure about the record is computed from "
-             "the ledger rather than written by hand.",
+    # implying a real handicapper is behind it, and the joke lands better
+    # when it is honest about itself.
+    "about": "Steve is the voice of this system, not a person. Nobody's "
+             "back there with a cigar. The numbers come from a ratings "
+             "model, the reasons come from research that is checked "
+             "against its sources before anything is posted, and every "
+             "figure about the record is computed from the ledger rather "
+             "than typed in by someone having a good week.",
 
     "card_heading": "Today's picks",
-    "card_empty": "Nothing this week. The board is priced right, and I do "
-                  "not hand you a play just because it is Wednesday.",
-    "card_short": "That is the card. A short week means the numbers were "
-                  "fair, not that I clocked off early.",
+    "card_empty": "Nothing this week. The board's priced right, and I'm not "
+                  "inventing a play so you have something to read on a "
+                  "Wednesday.",
+    "card_short": "That's the card. A short week means the numbers were "
+                  "fair. It doesn't mean I was out golfing.",
     "card_pending": "Still running",
 
     "book_heading": "The book",
-    "book_empty": "Nothing has settled yet. Ask me again Sunday night "
-                  "and there will be a number here, whichever way it "
-                  "went.",
+    "book_empty": "Nothing has settled, so there's nothing to brag about "
+                  "and nothing to apologize for. Ask me Sunday night.",
 
     "calibration_heading": "Do my numbers mean anything",
-    "calibration_empty": "Nothing has graded, so an 8 and a 9 are two "
-                         "numbers I wrote down and nothing more.",
-    "calibration_note": "Shadow picks rated under the publish line are in "
-                        "here on purpose. That is how the line gets tested "
-                        "instead of assumed. Units on the below-8 row are "
-                        "notional, since nothing under the line is staked.",
+    "calibration_empty": "Nothing has graded. Right now an 8 and a 9 are "
+                         "two numbers I wrote down with a lot of confidence "
+                         "and no evidence.",
+    "calibration_note": "Shadow picks under the publish line are in here on "
+                        "purpose. That's how the line gets tested instead "
+                        "of assumed. Units on the below-8 row are pretend, "
+                        "because I don't stake what I don't publish.",
 
     "cumulative_heading": "Where you would be",
     "cumulative_empty": "Nothing has settled yet.",
     "cumulative_note": "Net units across settled plays, in the order they "
-                       "settled.",
+                       "settled. No smoothing, and the chart doesn't start "
+                       "somewhere flattering.",
 
     "weekly_heading": "Week by week",
     "weekly_empty": "No weeks on the board yet.",
@@ -163,27 +170,31 @@ VOICE = {
     "split_empty": "Nothing settled to split yet.",
 
     "factors_heading": "What my reasons have been worth",
-    "factors_empty": "This fills in once picks start settling.",
+    "factors_empty": "This fills in once picks settle. Then we find out "
+                     "which of my reasons were reasons and which were "
+                     "vibes.",
 
     "lessons_heading": "What I got wrong",
-    "lessons_empty": "Nothing to own up to yet. Give it time.",
+    "lessons_empty": "Nothing to own up to yet. Give it a week.",
 
-    "no_signal": "Too few decided picks to mean anything.",
-    "no_signal_long": "That record has not decided enough games to mean "
-                      "anything. The 95 percent range on it still covers "
-                      "the 52.4 percent you need to break even, so it "
-                      "tells you nothing either way. I post it because "
-                      "hiding it would be worse, not because it proves "
-                      "something.",
-    "no_signal_short": "Same caveat as above. Not enough has decided for "
-                       "these bars to mean anything yet.",
+    "no_signal": "Too few picks to mean anything.",
+    "no_signal_long": "Before anyone gets excited, that record hasn't "
+                      "decided enough games to mean a thing. The 95 percent "
+                      "range on it still covers the 52.4 percent you need "
+                      "to break even, so it's just as consistent with me "
+                      "being lucky as with me being good. I post it anyway, "
+                      "because a guy who only shows you the good stretch is "
+                      "selling something.",
+    "no_signal_short": "Same warning as above. Not enough has decided for "
+                       "these bars to be worth the ink.",
 
     "sources_heading": "Where I got it",
     "sources_note": "Every link was opened and the quoted line checked "
-                    "against the page before the pick went up.",
+                    "against the page before the pick went up. If I say a "
+                    "coach said it, something went and read the page.",
 
-    # Deliberately out of character. Nobody should have to read a persona
-    # to find the helpline.
+    # Deliberately straight. Nobody should have to get past a bit to find
+    # the helpline.
     "disclaimer": "These are opinions on football games, not investment "
                   "advice. This model is being tested in public and it has "
                   "been wrong. Bet only what you can afford to lose. If "
