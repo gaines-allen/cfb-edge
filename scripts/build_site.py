@@ -136,6 +136,7 @@ VOICE = {
              "figure about the record is computed from the ledger rather "
              "than typed in by someone having a good week.",
 
+    "page_title": "Steve. The card, and the record.",
     "card_heading": "Today's picks",
     "card_empty": "Nothing this week. The board's priced right, and I'm not "
                   "inventing a play so you have something to read on a "
@@ -163,7 +164,7 @@ VOICE = {
                        "settled. No smoothing, and the chart doesn't start "
                        "somewhere flattering.",
 
-    "weekly_heading": "Week by week",
+    "weekly_heading": "How the weeks went",
     "weekly_empty": "No weeks on the board yet.",
 
     "split_heading": "Where it came from",
@@ -187,6 +188,33 @@ VOICE = {
                       "selling something.",
     "no_signal_short": "Same warning as above. Not enough has decided for "
                        "these bars to be worth the ink.",
+
+    # The row of figures used to read like column headers on a report.
+    "stat_units": "Up",
+    "stat_units_down": "Down",
+    "stat_record": "Record",
+    "stat_winrate": "Hit rate",
+    "stat_roi": "Return",
+    "stat_clv": "Line value",
+    "stat_close": "Beat the close",
+    "stat_pending": "Still out there",
+    "col_reading": "What that tells you",
+    "col_week": "Week",
+    "col_plays": "Plays",
+    "col_units": "Units",
+    "col_kind": "Kind",
+    "col_split": "Split",
+    "col_reason": "Reason",
+
+    # Even the provenance is him. It was the last line on the page still
+    # written by a machine about a machine.
+    "provenance": "I pulled the board at {board}, rebuilt this at {built}, "
+                  "and there are {credits} credits left on the account. "
+                  "Lines come from The Odds API, ratings and results from "
+                  "CollegeFootballData.",
+    "provenance_noboard": "I have not pulled a board yet. Lines come from "
+                          "The Odds API, ratings and results from "
+                          "CollegeFootballData.",
 
     "sources_heading": "Where I got it",
     "sources_note": "Every link was opened and the quoted line checked "
@@ -290,7 +318,7 @@ HTML = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__NAME__ - the card</title>
+<title>__PAGE_TITLE__</title>
 <meta name="description" content="__TAGLINE__">
 <style>
   :root {
@@ -593,14 +621,15 @@ function ticket(p) {
 (function renderBook() {
   const o = DATA.overall || {};
   if (!o.picks) { el("book").innerHTML = say(V.book_empty); return; }
+  const upLabel = (o.units < 0) ? V.stat_units_down : V.stat_units;
   const stats = [
-    ["Units", signed(o.units), true, o.units],
-    ["Record", `${o.wins}-${o.losses}${o.pushes ? "-" + o.pushes : ""}`, false, null],
-    ["Win rate", o.win_pct != null ? o.win_pct + "%" : "n/a", false, null],
-    ["ROI", o.roi != null ? signed(o.roi, 1) + "%" : "n/a", false, o.roi],
-    ["Avg CLV", o.avg_clv != null ? signed(o.avg_clv, 2) : "n/a", false, o.avg_clv],
-    ["Beat close", o.beat_close_pct != null ? o.beat_close_pct + "%" : "n/a", false, null],
-    ["Still running", DATA.pending_count, false, null],
+    [upLabel, signed(o.units), true, o.units],
+    [V.stat_record, `${o.wins}-${o.losses}${o.pushes ? "-" + o.pushes : ""}`, false, null],
+    [V.stat_winrate, o.win_pct != null ? o.win_pct + "%" : "n/a", false, null],
+    [V.stat_roi, o.roi != null ? signed(o.roi, 1) + "%" : "n/a", false, o.roi],
+    [V.stat_clv, o.avg_clv != null ? signed(o.avg_clv, 2) : "n/a", false, o.avg_clv],
+    [V.stat_close, o.beat_close_pct != null ? o.beat_close_pct + "%" : "n/a", false, null],
+    [V.stat_pending, DATA.pending_count, false, null],
   ];
   el("book").innerHTML =
     `<div class="stats">${stats.map(([k, v, big, sign]) => `
@@ -671,10 +700,10 @@ const sigCell = r => r.verdict && r.verdict !== "beats_breakeven"
   : esc(r.reading || "");
 
 el("wk").innerHTML = table([
-  ["Week", r => `${esc(r.season)} wk ${esc(r.week)}`],
-  ["Plays", r => esc(r.picks)],
-  ["Record", r => `${esc(r.wins)}-${esc(r.losses)}`],
-  ["Units", r => signed(r.units)],
+  [V.col_week, r => `${esc(r.season)} wk ${esc(r.week)}`],
+  [V.col_plays, r => esc(r.picks)],
+  [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+  [V.col_units, r => signed(r.units)],
 ], DATA.weekly || [], V.weekly_empty);
 
 const splitRows = [
@@ -683,20 +712,20 @@ const splitRows = [
 ];
 el("split").innerHTML = splitRows.length
   ? table([
-      ["Kind", r => esc(r.kind)],
-      ["Split", r => esc(r.market || r.period)],
-      ["Record", r => `${esc(r.wins)}-${esc(r.losses)}`],
-      ["Units", r => signed(r.units)],
-      ["Reading", sigCell],
+      [V.col_kind, r => esc(r.kind)],
+      [V.col_split, r => esc(r.market || r.period)],
+      [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+      [V.col_units, r => signed(r.units)],
+      [V.col_reading, sigCell],
     ], splitRows, V.split_empty)
   : say(V.split_empty);
 
 el("fac").innerHTML = table([
-  ["Reason", r => esc(r.factor)],
-  ["Plays", r => esc(r.picks)],
-  ["Record", r => `${esc(r.wins)}-${esc(r.losses)}`],
-  ["Units", r => signed(r.units)],
-  ["Reading", sigCell],
+  [V.col_reason, r => esc(r.factor)],
+  [V.col_plays, r => esc(r.picks)],
+  [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+  [V.col_units, r => signed(r.units)],
+  [V.col_reading, sigCell],
 ], DATA.by_factor || [], V.factors_empty);
 
 el("les").innerHTML = (DATA.lessons || []).length
@@ -706,11 +735,15 @@ el("les").innerHTML = (DATA.lessons || []).length
   : say(V.lessons_empty);
 
 /* ------------------------------------------------------------ footer */
-el("prov").textContent =
-  `Built ${new Date(DATA.generated_at).toLocaleString()}. ` +
-  `Board pulled ${DATA.board_fetched_at ? new Date(DATA.board_fetched_at).toLocaleString() : "never"}. ` +
-  `Odds API credits left ${DATA.credits_remaining == null ? "unknown" : DATA.credits_remaining}. ` +
-  `Lines from The Odds API, ratings and results from CollegeFootballData.`;
+const when = iso => new Date(iso).toLocaleString(undefined,
+  { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+el("prov").textContent = DATA.board_fetched_at
+  ? V.provenance
+      .replace("{board}", when(DATA.board_fetched_at))
+      .replace("{built}", when(DATA.generated_at))
+      .replace("{credits}", DATA.credits_remaining == null
+        ? "an unknown number of" : DATA.credits_remaining)
+  : V.provenance_noboard;
 el("about").textContent = V.about;
 el("warn").textContent = V.disclaimer;
 </script>
@@ -739,7 +772,8 @@ def main() -> int:
             .replace("__TAGLINE__", VOICE["tagline"])
             .replace("__SUBHEAD__", VOICE["subhead"])
             .replace("__KICKER__", VOICE["kicker"])
-            .replace("__LOGO__", VOICE["logo"]))
+            .replace("__LOGO__", VOICE["logo"])
+            .replace("__PAGE_TITLE__", VOICE["page_title"]))
     store.write_text(SITE / "index.html", html)
 
     print(json.dumps({

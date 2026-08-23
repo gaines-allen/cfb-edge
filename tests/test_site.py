@@ -247,3 +247,47 @@ def test_the_honest_lines_survived_the_rewrite():
     assert "priced right" in B.VOICE["card_empty"]
     assert "not a person" in B.VOICE["about"]
     assert "1-800-GAMBLER" in B.VOICE["disclaimer"]
+
+
+# ------------------------------------------- the whole page is him
+
+def test_nothing_on_the_page_is_written_by_a_machine():
+    """
+    The provenance line used to read "Built 8/21/2026. Board pulled...
+    Odds API credits left 465", which is a machine describing itself in the
+    middle of a page that is meant to be one man talking.
+    """
+    assert "Built ${new Date" not in B.HTML
+    assert "provenance" in B.VOICE
+    assert B.VOICE["provenance"].startswith("I ")
+
+
+def test_the_tab_title_is_his_too():
+    assert B.VOICE["page_title"].startswith("Steve")
+    assert "__PAGE_TITLE__" in B.HTML
+    assert "- the card</title>" not in B.HTML
+
+
+@pytest.mark.parametrize("label", [
+    "stat_units", "stat_record", "stat_winrate", "stat_roi",
+    "stat_clv", "stat_close", "stat_pending",
+])
+def test_the_figures_are_labelled_in_his_words(label):
+    """
+    ROI, AVG CLV and PENDING are report headers. He says return, line value
+    and still out there.
+    """
+    assert label in B.VOICE and B.VOICE[label]
+
+
+def test_no_report_jargon_survives_in_the_labels():
+    labels = " ".join(B.VOICE[k] for k in B.VOICE if k.startswith(("stat_", "col_")))
+    for jargon in ("ROI", "CLV", "Pending", "Avg"):
+        assert jargon not in labels, f"{jargon} is report language, not his"
+
+
+def test_no_table_header_is_hard_coded():
+    """A column header typed into the markup is a header he cannot change."""
+    body = B.HTML.split("<script>", 1)[1]
+    for hard in ('["Week",', '["Record",', '["Units",', '["Reading",', '["Reason",'):
+        assert hard not in body, f"{hard} is hard coded instead of coming from VOICE"
