@@ -15,6 +15,13 @@ import json
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
+# A blended rating and an SP+ only points split will never agree exactly,
+# and they do not have to. Across the live board they land 1.9 points
+# apart at the median and never more than 6. Past this they are not two
+# readings of one game, they are two games, and publishing both is how a
+# page ends up saying a team wins by 56 and by 28 in the same column.
+COHERENCE_TOLERANCE = 4.0
+
 CALIBRATION_FILE = Path(__file__).resolve().parents[2] / "data" / "model_calibration.json"
 
 # Home field in FBS has compressed over the last decade. This is a starting
@@ -65,6 +72,11 @@ class Projection:
     projected_h1_spread: float | None
     projected_h1_total: float | None
     hfa_applied: float
+    # How far the two halves of the model disagree about this game, in
+    # points. The spread comes off a blended rating, the total comes off
+    # SP+ offense and defense, and they are only allowed to describe the
+    # same game. None when either half is missing.
+    coherence_gap: float | None
     inputs: dict
     confidence_inputs: dict
 
@@ -163,10 +175,28 @@ def project_game(home: str, away: str, book: dict[str, dict],
     h_def = (book.get(home, {}) or {}).get("sp_def")
     a_off = (book.get(away, {}) or {}).get("sp_off")
     a_def = (book.get(away, {}) or {}).get("sp_def")
+    #
+    # Averaging the two halved every margin. Work it through: the margin
+    # that formula produces is ((h_off + a_def) - (a_off + h_def)) / 2,
+    # which is exactly half the rating differential the spread is built
+    # from. So the spread model and the totals model described two
+    # different games, and the site printed both. Ohio State by 56.4 on
+    # one row and by 28.6 on the next, same matchup, same page.
+    #
+    # An offense rated 41 scores 41 against an average defense. Facing a
+    # defense that allows 36.7 where average allows 27, it scores 41 plus
+    # that 9.7 difference. Adjust, do not average. The margin then equals
+    # the rating differential by construction, so the two halves agree.
+    league_pts = float(league_avg_total) / 2.0
     if None not in (h_off, h_def, a_off, a_def):
         try:
-            home_points = (float(h_off) + float(a_def)) / 2.0
-            away_points = (float(a_off) + float(h_def)) / 2.0
+            home_points = float(h_off) + (float(a_def) - league_pts)
+            away_points = float(a_off) + (float(h_def) - league_pts)
+            # A projection below a shutout is not a projection. Clamping
+            # breaks the agreement above, which is why coherent() checks
+            # the result rather than trusting it.
+            home_points = max(home_points, 0.0)
+            away_points = max(away_points, 0.0)
             total = round(home_points + away_points, 1)
         except (TypeError, ValueError):
             total = home_points = away_points = None
@@ -195,6 +225,9 @@ def project_game(home: str, away: str, book: dict[str, dict],
         projected_h1_spread=h1_spread,
         projected_h1_total=h1_total,
         hfa_applied=applied_hfa,
+        coherence_gap=(
+            None if None in (spread, home_points, away_points)
+            else round(abs(-spread - (home_points - away_points)), 2)),
         inputs={
             "home_rating": round(hr, 2) if hr is not None else None,
             "away_rating": round(ar, 2) if ar is not None else None,

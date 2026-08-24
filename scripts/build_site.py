@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
-from lib.model import load_calibration  # noqa: E402
+from lib.model import COHERENCE_TOLERANCE, load_calibration  # noqa: E402
 from lib.teams import canonical, load_logos  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
@@ -140,7 +140,7 @@ VOICE = {
 
     "page_title": "Steve. The card, and the record.",
     "running_heading": "The running card",
-    "running_note": "The 6 leans I like best right now, not picks. These "
+    "running_note": "The {n} I like best right now, not picks. These "
                     "move. A number the market has caught up to stops "
                     "being worth anything, so what was good Monday is "
                     "often gone by Thursday, and I'd rather show you that "
@@ -212,6 +212,12 @@ VOICE = {
     "board_held": "{count} came off the book since the last pull, so I "
                   "pulled them here too. A number I can't verify is a "
                   "number you don't get: {games}.",
+    "board_incoherent": "{count} I'm sitting out, and not because of the "
+                        "line. My spread and my total disagreed with each "
+                        "other about the same game, and a number that "
+                        "argues with itself is worth nothing to you: "
+                        "{games}. I'd rather show you an empty row than "
+                        "two of my own numbers that can't both be right.",
     "board_moved": "Moved",
     "board_kick": "Kickoff",
     "board_my_spread": "My spread",
@@ -340,6 +346,30 @@ VOICE = {
 
 
 
+def incoherent(g: dict) -> bool:
+    """
+    Whether a game's two halves disagree about the game.
+
+    make_slate writes this flag, but the gate is recomputed here from the
+    model's own numbers rather than trusted. A slate built before the
+    flag existed carries no flag, and "the field is missing" must not read
+    as "the game is fine". The page is the last thing standing between a
+    broken number and a reader.
+    """
+    if g.get("incoherent"):
+        return True
+    m = g.get("model") or {}
+    inp = m.get("inputs") or {}
+    gap = m.get("coherence_gap")
+    if gap is None:
+        sp = m.get("projected_spread")
+        hp, ap = inp.get("home_points"), inp.get("away_points")
+        if None in (sp, hp, ap):
+            return False
+        gap = abs(-sp - (hp - ap))
+    return gap > COHERENCE_TOLERANCE
+
+
 def board_rows() -> list[dict]:
     """
     The whole week, one row per game, for the collapsible board. Logos come
@@ -396,6 +426,7 @@ def board_rows() -> list[dict]:
             "projected_total": model.get("projected_total"),
             "home_short": model.get("home_team"),
             "away_short": model.get("away_team"),
+            "incoherent": incoherent(g),
             "candidates": sorted(
                 g.get("candidates") or [],
                 key=lambda c: -(c.get("floor_confidence") or 0)),
@@ -435,17 +466,19 @@ def board_rows() -> list[dict]:
     board_stale = age_hours is None or age_hours > MAX_BOARD_AGE_HOURS \
         or mismatched
 
-    held = [r for r in rows
-            if r["market_spread"] is None and r["market_total"] is None]
-    rows = [r for r in rows
-            if not (r["market_spread"] is None and r["market_total"] is None)]
+    def no_line(r):
+        return r["market_spread"] is None and r["market_total"] is None
+
+    held = [{"matchup": r["matchup"], "kickoff": r["kickoff"],
+             "why": "incoherent" if r.get("incoherent") else "no_line"}
+            for r in rows if no_line(r) or r.get("incoherent")]
+    rows = [r for r in rows if not (no_line(r) or r.get("incoherent"))]
 
     return {"week": slate.get("week"), "season": slate.get("season"),
             "built_at": slate.get("built_at"), "rows": rows,
             "fetched_at": fetched_at, "age_hours": age_hours,
             "stale": board_stale, "mismatched": mismatched,
-            "held": [{"matchup": r["matchup"], "kickoff": r["kickoff"]}
-                     for r in held]}
+            "held": held}
 
 
 # A line older than this is not current, whatever the workflow says. The
@@ -673,6 +706,11 @@ def running_card() -> dict | None:
         if not e:
             return None
         g = slate_by_event.get(e.get("event_id")) or {}
+        # The running card keeps its own file, so a game gated off the
+        # board would otherwise walk straight back on here. This is the
+        # pair the reader actually sees side by side.
+        if incoherent(g):
+            return None
         moved_conf = None
         if e.get("first_confidence") is not None \
                 and e.get("confidence") is not None:
@@ -706,6 +744,8 @@ def running_card() -> dict | None:
 
     card = [c for c in (shape(k) for k in raw["card"]) if c]
     dropped = [c for c in (shape(k) for k in raw.get("dropped", [])) if c]
+    if not card:
+        return None
     dropped.sort(key=lambda c: c.get("confidence") or 0, reverse=True)
     caveat = hoist_built([c.get("defense") for c in card])
     return {"caveat": caveat,
@@ -1572,8 +1612,10 @@ if ((DATA.lessons || []).length) {
     ? say(V.running_stacked.replace("{games}", games), "quiet")
     : "";
   const caveat = R.caveat ? `<p class="caveat">${esc(R.caveat)}</p>` : "";
+  const note = V.running_note.replace("{n}",
+    R.card.length === 1 ? "one lean" : `${R.card.length} leans`);
   el("running").innerHTML =
-    `<p class="quiet" style="margin-bottom:14px">${esc(V.running_note)}</p>` +
+    `<p class="quiet" style="margin-bottom:14px">${esc(note)}</p>` +
     caveat + R.card.map(c => row(c, false)).join("") + stacked + dropped;
 })();
 
@@ -1613,11 +1655,19 @@ if ((DATA.lessons || []).length) {
     return;
   }
   if (!rows.length) { el("board").innerHTML = say(V.board_empty); return; }
-  const heldNote = (b.held || []).length
-    ? say(V.board_held
-        .replace("{count}", b.held.length === 1 ? "1 game" : b.held.length + " games")
-        .replace("{games}", b.held.map(h => h.matchup).join("; ")), "quiet")
-    : "";
+  const holdNote = (why, copy) => {
+    const hits = (b.held || []).filter(h => h.why === why);
+    if (!hits.length) return "";
+    const LIST = 6;
+    const named = hits.slice(0, LIST).map(h => h.matchup).join("; ");
+    const rest = hits.length - LIST;
+    return say(copy
+      .replace("{count}", hits.length === 1 ? "1 game" : hits.length + " games")
+      .replace("{games}", rest > 0 ? `${named}, and ${rest} more` : named),
+      "quiet");
+  };
+  const heldNote = holdNote("no_line", V.board_held)
+    + holdNote("incoherent", V.board_incoherent);
   // The folded week 1 genuinely spans 2 weekends, so the day alone reads
   // as a sorting bug. The date settles it.
   const kick = iso => {

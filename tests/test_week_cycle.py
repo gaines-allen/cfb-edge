@@ -365,7 +365,8 @@ def test_a_game_off_the_book_is_held_and_named():
     got = gate_with(board, slate_payload(at, rows))
     assert len(got["rows"]) == 1
     assert got["held"] == [{"matchup": "Other Team @ Gone Team",
-                            "kickoff": "2026-08-29T16:00:00Z"}]
+                            "kickoff": "2026-08-29T16:00:00Z",
+                            "why": "no_line"}]
 
 
 def test_a_missing_board_reads_as_stale():

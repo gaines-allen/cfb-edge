@@ -30,6 +30,7 @@ from lib.model import (  # noqa: E402
     edge_vs_market,
     load_calibration,
     project_game,
+    COHERENCE_TOLERANCE,
     suggested_confidence,
     z_score,
 )
@@ -252,7 +253,19 @@ def main() -> int:
         add("spread", "h1", mkt_h1_spread, proj.projected_h1_spread)
         add("total", "h1", mkt_h1_total, proj.projected_h1_total)
 
-        if candidates:
+        # A game whose two halves disagree gets no candidates at all. It
+        # still goes on the slate so the board can show it and say why,
+        # because silently dropping a game looks the same as never having
+        # seen it.
+        incoherent = (proj.coherence_gap is not None
+                      and proj.coherence_gap > COHERENCE_TOLERANCE)
+        if incoherent:
+            log.event("model_incoherent", matchup=f"{g['away_team']} @ "
+                      f"{g['home_team']}", gap=proj.coherence_gap,
+                      tolerance=COHERENCE_TOLERANCE, dropped=len(candidates))
+            candidates = []
+
+        if candidates or incoherent:
             rows.append({
                 "event_id": g["event_id"],
                 "kickoff": g["commence_time"],
@@ -261,12 +274,14 @@ def main() -> int:
                 "away_team": g["away_team"],
                 "neutral_site": neutral,
                 "model": proj.to_dict(),
+                "incoherent": incoherent,
                 "candidates": sorted(candidates,
                                      key=lambda c: abs(c["edge_points"]),
                                      reverse=True),
             })
 
-    rows.sort(key=lambda r: max(abs(c["edge_points"]) for c in r["candidates"]),
+    rows.sort(key=lambda r: max([abs(c["edge_points"])
+                                 for c in r["candidates"]] or [0]),
               reverse=True)
 
     out = {

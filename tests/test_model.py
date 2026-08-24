@@ -17,6 +17,7 @@ import math
 
 import pytest
 
+from lib import model
 from lib.model import (
     DEFAULT_HFA, NEUTRAL_HFA, RATING_WEIGHTS, blended_rating,
     build_rating_book, edge_vs_market, project_game, suggested_confidence,
@@ -105,19 +106,64 @@ def sp_row(team, off, deff, overall=0.0):
             "offense": {"rating": off}, "defense": {"rating": deff}}
 
 
-def test_expected_points_average_own_offense_and_opponent_defense():
+def test_expected_points_adjust_own_offense_by_the_opponent_defense():
     """
-    Each side's expected points is the average of its own offense and the
-    opponent's defense. The bug was treating both as differentials and
-    adding them to a league average, which produced 83 point totals.
+    Each side's expected points is its own offense, moved by how far the
+    opponent's defense sits from average. Two wrong answers sit either
+    side of this one. Adding the two raw numbers gave 83 point totals.
+    Averaging them, which replaced it, halved every margin: the spread
+    said one team by 56 and the total implied 28, about the same game.
     """
     book = build_rating_book(
         [sp_row("Home", 34.0, 20.0), sp_row("Away", 24.0, 18.0)], [], [], [])
     proj = project_game("Home", "Away", book, calibrate=False)
-    # Home scores (34 + 18) / 2 = 26. Away scores (24 + 20) / 2 = 22.
-    assert proj.projected_total == pytest.approx(48.0, abs=0.05)
-    assert proj.inputs["home_points"] == pytest.approx(26.0, abs=0.05)
-    assert proj.inputs["away_points"] == pytest.approx(22.0, abs=0.05)
+    # League average is 27 a side. Home scores 34 + (18 - 27) = 25.
+    # Away scores 24 + (20 - 27) = 17.
+    assert proj.inputs["home_points"] == pytest.approx(25.0, abs=0.05)
+    assert proj.inputs["away_points"] == pytest.approx(17.0, abs=0.05)
+    assert proj.projected_total == pytest.approx(42.0, abs=0.05)
+
+
+def test_the_two_halves_of_the_model_describe_the_same_game():
+    """
+    The spread is built from a blended rating and the total from SP+
+    offense and defense. Nothing forces them to agree, so this checks
+    that they do: the margin the points imply is the margin the spread
+    states. This is the invariant the averaging bug broke.
+    """
+    book = build_rating_book(
+        [sp_row("Home", 34.0, 20.0, overall=14.0),
+         sp_row("Away", 24.0, 18.0, overall=6.0)], [], [], [])
+    proj = project_game("Home", "Away", book, calibrate=False, neutral=True)
+    from_points = proj.inputs["home_points"] - proj.inputs["away_points"]
+    assert from_points == pytest.approx(-proj.projected_spread, abs=0.15)
+    assert proj.coherence_gap == pytest.approx(0.0, abs=0.15)
+
+
+def test_a_mismatch_too_lopsided_to_score_is_flagged_not_published():
+    """
+    Ohio State and Ball State off the live board. SP+ projects Ball State
+    at minus 6 points, which is not a score, so it clamps at a shutout.
+    Clamping breaks the agreement above, and that is the whole reason the
+    gap is measured rather than assumed: the game gets held instead of
+    going up with a number the model cannot stand behind.
+    """
+    book = build_rating_book(
+        [sp_row("Home", 41.0, 8.4, overall=32.6),
+         sp_row("Away", 12.2, 36.7, overall=-24.5)], [], [], [])
+    proj = project_game("Home", "Away", book, calibrate=False, neutral=True)
+    assert proj.inputs["away_points"] == 0.0
+    assert proj.coherence_gap > model.COHERENCE_TOLERANCE
+
+
+def test_a_game_the_model_disagrees_with_itself_about_is_measurable():
+    # Nothing downstream can gate on a disagreement it cannot see.
+    book = build_rating_book(
+        [sp_row("Home", 34.0, 20.0, overall=14.0),
+         sp_row("Away", 24.0, 18.0, overall=6.0)], [], [], [])
+    proj = project_game("Home", "Away", book, calibrate=False)
+    assert proj.coherence_gap is not None
+    assert proj.coherence_gap < model.COHERENCE_TOLERANCE
 
 
 def test_projected_total_lands_in_a_believable_range():

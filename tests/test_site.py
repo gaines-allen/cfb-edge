@@ -21,6 +21,7 @@ from conftest import ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import build_site as B  # noqa: E402
+from lib import model  # noqa: E402
 
 
 # Every __PLACEHOLDER__ the template contains, read off the template
@@ -541,3 +542,58 @@ def test_each_board_team_keeps_its_logo_beside_its_name():
     # parking that logo against the numbers instead of its own team.
     assert '<span class="gside">' in B.HTML
     assert ".gside { display: inline-flex" in B.HTML
+
+
+# ---------------------------------------------------------------------
+# No contradictions
+#
+# The spread came off a blended rating and the total came off SP+ offense
+# and defense, and nothing made them agree. The page ran both: Ohio State
+# by 56.5 on one row, and 39.0 to 10.5 on the next, which is by 28.5.
+# Same game, same card, two different games.
+# ---------------------------------------------------------------------
+
+def implied_margin(defense: dict) -> float | None:
+    """The margin a total's defense implies, read back out of its text."""
+    nums = re.findall(r"(\d+\.\d)", (defense or {}).get("line") or "")
+    return abs(float(nums[0]) - float(nums[1])) if len(nums) >= 2 else None
+
+
+def test_no_two_leans_on_one_game_describe_different_games():
+    payload = B.build_payload()
+    running = payload.get("running") or {}
+    by_game = {}
+    for c in running.get("card", []) + running.get("dropped", []):
+        by_game.setdefault((c.get("home_team"), c.get("away_team")), []) \
+            .append(c)
+    for game, leans in by_game.items():
+        margins = [m for m in (implied_margin(c.get("defense"))
+                               for c in leans) if m is not None]
+        if len(margins) < 2:
+            continue
+        assert max(margins) - min(margins) <= model.COHERENCE_TOLERANCE, game
+
+
+def test_a_game_the_model_argues_with_itself_about_never_reaches_the_page():
+    broken = {"model": {"projected_spread": -56.4,
+                        "inputs": {"home_points": 38.9, "away_points": 10.3}}}
+    assert B.incoherent(broken)
+    fine = {"model": {"projected_spread": -20.2,
+                      "inputs": {"home_points": 30.3, "away_points": 10.1}}}
+    assert not B.incoherent(fine)
+
+
+def test_the_gate_is_recomputed_rather_than_trusted():
+    # A slate built before the flag existed carries no flag. Missing must
+    # not read as fine.
+    assert B.incoherent({"model": {"projected_spread": -56.4,
+                                   "inputs": {"home_points": 38.9,
+                                              "away_points": 10.3}}})
+    # And an explicit flag is honoured even when the numbers look calm.
+    assert B.incoherent({"incoherent": True, "model": {}})
+
+
+def test_a_held_game_says_which_one_and_why():
+    assert "{games}" in B.VOICE["board_incoherent"]
+    assert "{count}" in B.VOICE["board_incoherent"]
+    assert "disagreed with each other" in B.VOICE["board_incoherent"]
