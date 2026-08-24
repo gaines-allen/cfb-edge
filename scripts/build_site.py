@@ -871,6 +871,10 @@ function say(text, cls) {
   return `<p class="${cls || "said"}">${esc(text)}</p>`;
 }
 
+function hide(id) {
+  for (const e of [el(id + "-h"), el(id)]) if (e) e.style.display = "none";
+}
+
 /* ---------------------------------------------------------- the card */
 function ticket(p) {
   const r = p.result || "pending";
@@ -928,7 +932,7 @@ function ticket(p) {
 /* ---------------------------------------------------------- the book */
 (function renderBook() {
   const o = DATA.overall || {};
-  if (!o.picks) { el("book").innerHTML = say(V.book_empty); return; }
+  if (!o.picks) { hide("book"); return; }
   const upLabel = (o.units < 0) ? V.stat_units_down : V.stat_units;
   const stats = [
     [upLabel, signed(o.units), true, o.units],
@@ -951,7 +955,7 @@ function ticket(p) {
 /* ------------------------------------------------------- calibration */
 (function renderCal() {
   const rows = (DATA.calibration || []).filter(r => r.picks);
-  if (!rows.length) { el("cal").innerHTML = say(V.calibration_empty); return; }
+  if (!rows.length) { hide("cal"); return; }
   // BREAKEVEN comes through as a percentage, 52.4, not a fraction.
   const be = DATA.breakeven || 52.4;
   const w = 700, h = 34 * rows.length + 30, lab = 92, max = 100;
@@ -979,7 +983,7 @@ function ticket(p) {
 /* -------------------------------------------------------- cumulative */
 (function renderCum() {
   const pts = DATA.cumulative || [];
-  if (pts.length < 2) { el("cum").innerHTML = say(V.cumulative_empty); return; }
+  if (pts.length < 2) { hide("cum"); return; }
   const w = 700, h = 200, pad = 28;
   const ys = pts.map(p => p.units);
   const lo = Math.min(0, ...ys), hi = Math.max(0, ...ys), span = (hi - lo) || 1;
@@ -1007,40 +1011,43 @@ const sigCell = r => r.verdict && r.verdict !== "beats_breakeven"
   ? `<span class="nosig">${esc(V.no_signal)}</span>`
   : esc(r.reading || "");
 
-el("wk").innerHTML = table([
-  [V.col_week, r => `${esc(r.season)} wk ${esc(r.week)}`],
-  [V.col_plays, r => esc(r.picks)],
-  [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
-  [V.col_units, r => signed(r.units)],
-], DATA.weekly || [], V.weekly_empty);
+if ((DATA.weekly || []).length) {
+  el("wk").innerHTML = table([
+    [V.col_week, r => `${esc(r.season)} wk ${esc(r.week)}`],
+    [V.col_plays, r => esc(r.picks)],
+    [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+    [V.col_units, r => signed(r.units)],
+  ], DATA.weekly, V.weekly_empty);
+} else hide("wk");
 
 const splitRows = [
   ...(DATA.by_market || []).map(r => ({...r, kind: "Market"})),
   ...(DATA.by_period || []).map(r => ({...r, kind: "Period"})),
 ];
-el("split").innerHTML = splitRows.length
-  ? table([
+if (!splitRows.length) hide("split");
+else el("split").innerHTML = table([
       [V.col_kind, r => esc(r.kind)],
       [V.col_split, r => esc(r.market || r.period)],
       [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
       [V.col_units, r => signed(r.units)],
       [V.col_reading, sigCell],
-    ], splitRows, V.split_empty)
-  : say(V.split_empty);
+    ], splitRows, V.split_empty);
 
-el("fac").innerHTML = table([
-  [V.col_reason, r => esc(r.factor)],
-  [V.col_plays, r => esc(r.picks)],
-  [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
-  [V.col_units, r => signed(r.units)],
-  [V.col_reading, sigCell],
-], DATA.by_factor || [], V.factors_empty);
+if ((DATA.by_factor || []).length) {
+  el("fac").innerHTML = table([
+    [V.col_reason, r => esc(r.factor)],
+    [V.col_plays, r => esc(r.picks)],
+    [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+    [V.col_units, r => signed(r.units)],
+    [V.col_reading, sigCell],
+  ], DATA.by_factor, V.factors_empty);
+} else hide("fac");
 
-el("les").innerHTML = (DATA.lessons || []).length
-  ? (DATA.lessons || []).map(l =>
-      `<p class="said">${esc(l.lesson)}</p>` +
-      `<p class="quiet">Week ${esc(l.week)}, ${esc(l.season)}.</p>`).join("")
-  : say(V.lessons_empty);
+if ((DATA.lessons || []).length) {
+  el("les").innerHTML = DATA.lessons.map(l =>
+    `<p class="said">${esc(l.lesson)}</p>` +
+    `<p class="quiet">Week ${esc(l.week)}, ${esc(l.season)}.</p>`).join("");
+} else hide("les");
 
 
 

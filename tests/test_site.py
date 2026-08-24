@@ -291,3 +291,28 @@ def test_no_table_header_is_hard_coded():
     body = B.HTML.split("<script>", 1)[1]
     for hard in ('["Week",', '["Record",', '["Units",', '["Reading",', '["Reason",'):
         assert hard not in body, f"{hard} is hard coded instead of coming from VOICE"
+
+
+# ------------------------------------------- empty sections disappear
+
+def test_empty_sections_hide_rather_than_apologize():
+    """
+    Before the card publishes and anything grades, 7 sections rendered a
+    heading over a line saying nothing was there yet. That reads as
+    scaffolding. A section with no data now hides itself, heading and all,
+    and only the card and the board keep their empty lines, because those
+    say something a visitor needs: when the card lands, and that the board
+    goes up Monday.
+    """
+    body = B.HTML.split("<script>", 1)[1]
+    assert "function hide(id)" in body
+    for section in ("book", "cal", "cum", "wk", "split", "fac", "les"):
+        assert f'hide("{section}")' in body, f"{section} never hides"
+
+
+def test_the_card_and_board_keep_their_empty_lines():
+    body = B.HTML.split("<script>", 1)[1]
+    assert "V.card_empty" in body
+    assert "V.board_empty" in body
+    assert 'hide("card")' not in body
+    assert 'hide("board")' not in body
