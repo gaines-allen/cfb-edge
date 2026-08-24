@@ -315,11 +315,33 @@ def test_empty_sections_hide_rather_than_apologize():
 
 
 def test_the_card_and_board_keep_their_empty_lines():
+    """
+    The board always says something a visitor needs, so it never hides.
+    The card keeps its empty line too, but only inside the window it is
+    promised in. Monday through Thursday an empty card is scaffolding.
+    """
     body = B.HTML.split("<script>", 1)[1]
     assert "V.card_empty" in body
     assert "V.board_empty" in body
-    assert 'hide("card")' not in body
     assert 'hide("board")' not in body
+
+
+def test_the_card_stays_down_until_the_day_it_is_promised():
+    body = B.HTML.split("<script>", 1)[1]
+    assert "function cardWindow()" in body
+    assert '["Fri", "Sat", "Sun"]' in body
+    # The window gates the empty state only. A Thursday game that earns
+    # its place brings the card back on its own.
+    card = body[body.index("if (!live.length) {"):]
+    assert 'hide("card")' in card[:200]
+    assert "cardWindow()" in card[:200]
+
+
+def test_a_failed_timezone_lookup_shows_the_card_rather_than_hiding_it():
+    body = B.HTML.split("<script>", 1)[1]
+    window = body[body.index("function cardWindow()"):]
+    window = window[:window.index("function hide(id)")]
+    assert "catch" in window and "return true" in window
 
 
 # ---------------------------------------------------------------------
@@ -597,3 +619,13 @@ def test_a_held_game_says_which_one_and_why():
     assert "{games}" in B.VOICE["board_incoherent"]
     assert "{count}" in B.VOICE["board_incoherent"]
     assert "disagreed with each other" in B.VOICE["board_incoherent"]
+
+
+def test_a_published_pick_on_a_broken_game_keeps_its_reason_but_not_my_number():
+    broken = {"e1": {"model": {"projected_spread": -56.4,
+                               "inputs": {"home_points": 38.9,
+                                          "away_points": 10.3}},
+                     "candidates": []}}
+    pick = {"event_id": "e1", "market": "spread", "period": "full",
+            "side": "Home", "model_number": -56.4}
+    assert B.pick_defense(broken, pick) is None

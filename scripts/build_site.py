@@ -139,7 +139,7 @@ VOICE = {
              "than typed in by someone having a good week.",
 
     "page_title": "Steve. The card, and the record.",
-    "running_heading": "The running card",
+    "running_heading": "Best bets",
     "running_note": "The {n} I like best right now, not picks. These "
                     "move. A number the market has caught up to stops "
                     "being worth anything, so what was good Monday is "
@@ -664,7 +664,10 @@ def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
     the slate gets no defense rather than one built on a stale number.
     """
     g = slate_by_event.get(p.get("event_id"))
-    if not g:
+    if not g or incoherent(g):
+        # The researched reason still stands on its own sources. The
+        # model's number does not, and printing it here is how two plays
+        # on one game end up quoting different margins.
         return None
     cand = next((c for c in g.get("candidates") or []
                  if c.get("market") == p.get("market")
@@ -1370,6 +1373,21 @@ function say(text, cls) {
   return `<p class="${cls || "said"}">${esc(text)}</p>`;
 }
 
+// The week is quoted in Eastern everywhere on this page, so the day has
+// to be Eastern too. A reader in Los Angeles at 9pm Thursday is not owed
+// Friday's card, and one in London at 2am Friday is not owed it either.
+// If the lookup fails, show: a section wrongly visible is a smaller
+// failure than a card wrongly hidden.
+function cardWindow() {
+  try {
+    const day = new Date().toLocaleDateString("en-US",
+      { timeZone: "America/New_York", weekday: "short" });
+    return ["Fri", "Sat", "Sun"].includes(day);
+  } catch (e) {
+    return true;
+  }
+}
+
 function hide(id) {
   for (const e of [el(id + "-h"), el(id)]) if (e) e.style.display = "none";
 }
@@ -1412,7 +1430,11 @@ function ticket(p) {
   const cur = DATA.current || {};
   const live = (DATA.picks || []).filter(p =>
     p.live && p.season === cur.season && p.week === cur.week);
-  if (!live.length) { el("card").innerHTML = say(V.card_empty); return; }
+  if (!live.length) {
+    if (!cardWindow()) { hide("card"); return; }
+    el("card").innerHTML = say(V.card_empty);
+    return;
+  }
   const staked = live.reduce((a, p) => a + (p.units || 0), 0);
   // The Lock leads. It is computed server side as the most confident
   // pick of the week, and here it only gets the crown and the top slot.
