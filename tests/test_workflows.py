@@ -299,3 +299,43 @@ def test_the_pull_request_states_the_limits_of_the_check():
 
 def test_the_verification_report_is_kept_on_failure():
     assert "verification.json" in WEEKLY_CMDS
+
+
+# ---------------------------------------------------------------------
+# Getting the page onto the internet
+#
+# Pages serves an Actions artifact, not the branch. So committing a built
+# page and pushing it does nothing on its own, and nothing says so: the
+# repo is right, the site is stale, and the two look identical from a
+# terminal. Two commits sat undeployed on 2026-08-24 before anyone noticed.
+# ---------------------------------------------------------------------
+
+DEPLOY = (WORKFLOWS / "deploy.yml").read_text()
+
+
+def test_a_push_that_changes_the_page_deploys_it():
+    assert re.search(r"on:\s*\n\s*push:", DEPLOY)
+    assert '"site/**"' in DEPLOY
+
+
+def test_the_deploy_workflow_runs_no_scripts():
+    # It exists to publish what is already committed. The moment it starts
+    # pulling a board or rebuilding the page it costs API credits on every
+    # push, and every push is a lot of pulls.
+    assert "run:" not in DEPLOY
+    assert "python" not in DEPLOY.lower()
+
+
+def test_the_deploy_workflow_publishes_the_site_directory():
+    assert "upload-pages-artifact" in DEPLOY
+    assert re.search(r"path:\s*site", DEPLOY)
+
+
+@pytest.mark.parametrize("name", ["daily.yml", "track-scores.yml",
+                                  "deploy.yml"])
+def test_every_deploying_workflow_asks_for_pages_write(name):
+    text = (WORKFLOWS / name).read_text()
+    if "deploy-pages" not in text:
+        pytest.skip(f"{name} does not deploy")
+    assert "pages: write" in text
+    assert "id-token: write" in text

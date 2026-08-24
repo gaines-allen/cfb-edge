@@ -1,0 +1,43 @@
+name: Deploy the page
+
+# Pages is served from an Actions artifact, not from the branch, so the
+# only things that ever reached the live site were the deploy jobs inside
+# daily.yml and track-scores.yml. A push that changed the page and nothing
+# else sat in the repo until the next 2 PM pull, which on 2026-08-24 meant
+# two commits that looked deployed, were not, and gave no sign of it.
+#
+# This deploys what is already built and committed. It runs no scripts and
+# spends no API credits, so it is safe on every push.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+# The github-pages environment serialises deployments on its own, so a
+# push landing mid data-pull queues behind that run's deploy rather than
+# racing it.
+concurrency:
+  group: deploy-page
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
