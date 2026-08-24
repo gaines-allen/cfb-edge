@@ -196,8 +196,10 @@ VOICE = {
 
     "board_heading": "This week's board",
     "board_note": "Every game on the slate, my number next to theirs, "
-                  "whether or not it made the card. If you like something "
-                  "I passed on, that's your money and your business.",
+                  "whether or not it made the card. Strongest lean at the "
+                  "top, weakest at the bottom, so the further you scroll "
+                  "the less I have to say. If you like something I passed "
+                  "on, that's your money and your business.",
     "board_empty": "No board yet. It goes up Monday of game week.",
     "board_stale": "The lines I have are {age} hours old, and I don't post "
                    "a number I can't stand behind. The board is down until "
@@ -384,10 +386,20 @@ def board_rows() -> list[dict]:
             "neutral_site": g.get("neutral_site"),
             "projected_spread": model.get("projected_spread"),
             "projected_total": model.get("projected_total"),
-            "candidates": g.get("candidates") or [],
+            "candidates": sorted(
+                g.get("candidates") or [],
+                key=lambda c: -(c.get("floor_confidence") or 0)),
             "movement": move,
         })
-    rows.sort(key=lambda r: r.get("kickoff") or "")
+    # Best lean first, weakest last. Sorting by kickoff buried the best
+    # thing on the board behind whatever happened to kick earliest, which
+    # makes a reader scroll to find the point. Kickoff breaks ties and
+    # still shows on every row, so nothing chronological is lost.
+    def best_confidence(r):
+        return max((c.get("floor_confidence") or 0)
+                   for c in r["candidates"]) if r["candidates"] else -1
+
+    rows.sort(key=lambda r: (-best_confidence(r), r.get("kickoff") or ""))
 
     # The staleness gate. A number only publishes when it can be verified
     # against the current pull. A game on the slate with no line in the

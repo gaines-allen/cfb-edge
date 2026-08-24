@@ -62,9 +62,35 @@ def test_logos_come_through_the_real_matcher():
         or "canonical(" in src.split("def board_rows")[1][:3000]
 
 
-def test_the_board_is_sorted_by_kickoff(board):
-    kicks = [r["kickoff"] for r in board["rows"]]
-    assert kicks == sorted(kicks)
+def test_the_board_leads_with_the_strongest_lean(board):
+    """
+    Sorted by kickoff, the best thing on the whole slate sat third behind
+    whatever kicked earliest, so a reader had to scroll to find the point.
+    Strongest first, weakest last, with kickoff still on every row.
+    """
+    def best(r):
+        return max((c.get("floor_confidence") or 0)
+                   for c in r["candidates"]) if r["candidates"] else -1
+
+    confs = [best(r) for r in board["rows"]]
+    assert confs == sorted(confs, reverse=True), confs[:8]
+
+
+def test_a_game_leads_with_its_own_strongest_lean(board):
+    """A game carrying 2 leans opens on the better one."""
+    for r in board["rows"]:
+        confs = [c.get("floor_confidence") or 0 for c in r["candidates"]]
+        assert confs == sorted(confs, reverse=True), r["matchup"]
+
+
+def test_games_with_no_lean_sink_to_the_bottom(board):
+    """
+    Nothing to say ranks below something to say, whatever time it kicks.
+    """
+    rows = board["rows"]
+    first_empty = next((i for i, r in enumerate(rows) if not r["candidates"]),
+                       len(rows))
+    assert all(not r["candidates"] for r in rows[first_empty:])
 
 
 def test_a_missing_logo_stays_missing():
