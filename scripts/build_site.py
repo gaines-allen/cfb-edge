@@ -174,10 +174,15 @@ VOICE = {
     "live_tied": "dead even",
     "live_final": "final",
 
-    "card_heading": "Today's picks",
-    "card_empty": "Nothing this week. The board's priced right, and I'm not "
-                  "inventing a play so you have something to read on a "
-                  "Wednesday.",
+    "card_heading": "The card",
+    # The empty state shows all week before Friday, so it has to cover 2
+    # truths at once: early in the week the card is not built yet, and
+    # after Friday an empty card means the board was priced right.
+    "card_empty": "The card gets built through the week. A Thursday game "
+                  "that earns a spot goes up early, and the rest lands "
+                  "Friday by 6. If nothing's here after that, the board's "
+                  "priced right and I'm not inventing a play to fill the "
+                  "space.",
     "card_short": "That's the card. A short week means the numbers were "
                   "fair. It doesn't mean I was out golfing.",
     "card_pending": "Still running",
