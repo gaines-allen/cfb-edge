@@ -238,3 +238,124 @@ def test_scope_is_documented_for_the_agent():
     cmd = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
     assert "scope thursday" in cmd
     assert "before Friday" in cmd
+
+
+# ------------------------------------------------- the staleness gate
+
+def gate_with(board_file, slate_file):
+    """Run board_rows against injected board and slate payloads."""
+    orig_board = B.store.load_board
+    orig_load = B.store._load
+    slate_path = B.store.DATA / "slate.json"
+    try:
+        B.store.load_board = lambda: board_file
+        B.store._load = lambda path, default: (
+            slate_file if path == slate_path else orig_load(path, default))
+        return B.board_rows()
+    finally:
+        B.store.load_board = orig_board
+        B.store._load = orig_load
+
+
+def board_payload(fetched_at, games=None):
+    return {"fetched_at": fetched_at, "games": games or []}
+
+
+def slate_payload(board_fetched_at, rows):
+    return {"week": 1, "season": 2026, "built_at": board_fetched_at,
+            "board_fetched_at": board_fetched_at, "slate": rows}
+
+
+def game_row(event_id="e1", home="Home Team", away="Away Team"):
+    return {"event_id": event_id, "kickoff": "2026-08-29T16:00:00Z",
+            "matchup": f"{away} @ {home}", "home_team": home,
+            "away_team": away, "neutral_site": False,
+            "model": {"projected_spread": -3.5, "projected_total": 51.0},
+            "candidates": []}
+
+
+def lines_for(home, spread=-6.5, total=52.5):
+    return [{"market": "spreads", "side": home, "point": spread, "price": -110},
+            {"market": "totals", "side": "Over", "point": total, "price": -110}]
+
+
+def iso_hours_ago(h):
+    from datetime import datetime, timedelta, timezone
+    return (datetime.now(timezone.utc) - timedelta(hours=h)
+            ).isoformat(timespec="seconds")
+
+
+def test_a_fresh_matching_board_publishes():
+    at = iso_hours_ago(1)
+    board = board_payload(at, [{"event_id": "e1",
+                                "home_team": "Home Team",
+                                "lines": lines_for("Home Team")}])
+    got = gate_with(board, slate_payload(at, [game_row()]))
+    assert got["stale"] is False
+    assert len(got["rows"]) == 1 and got["held"] == []
+
+
+def test_an_aged_board_does_not_publish_numbers():
+    """
+    The site's promise is a line at most a day old. A 30 hour board still
+    renders a page, but the page says the numbers are down, and no game
+    row carries a number nobody should bet.
+    """
+    at = iso_hours_ago(30)
+    board = board_payload(at, [{"event_id": "e1",
+                                "home_team": "Home Team",
+                                "lines": lines_for("Home Team")}])
+    got = gate_with(board, slate_payload(at, [game_row()]))
+    assert got["stale"] is True
+    assert got["age_hours"] > 26
+
+
+def test_a_half_updated_pipeline_reads_as_stale():
+    """
+    Slate built from one pull, board on disk from another. That mismatch
+    is exactly the shape of the bug that froze the site for 2 days, so it
+    is stale outright even when both halves are individually recent.
+    """
+    board = board_payload(iso_hours_ago(1), [{
+        "event_id": "e1", "home_team": "Home Team",
+        "lines": lines_for("Home Team")}])
+    got = gate_with(board, slate_payload(iso_hours_ago(3), [game_row()]))
+    assert got["mismatched"] is True
+    assert got["stale"] is True
+
+
+def test_a_game_off_the_book_is_held_and_named():
+    """
+    On the slate but absent from the current pull means the book took it
+    down or the fetch failed. Either way the number cannot be verified, so
+    the game is held back and called out rather than shown.
+    """
+    at = iso_hours_ago(1)
+    board = board_payload(at, [{"event_id": "e1",
+                                "home_team": "Home Team",
+                                "lines": lines_for("Home Team")}])
+    rows = [game_row(), game_row(event_id="gone", home="Gone Team",
+                              away="Other Team")]
+    got = gate_with(board, slate_payload(at, rows))
+    assert len(got["rows"]) == 1
+    assert got["held"] == [{"matchup": "Other Team @ Gone Team",
+                            "kickoff": "2026-08-29T16:00:00Z"}]
+
+
+def test_a_missing_board_reads_as_stale():
+    got = gate_with({"fetched_at": None, "games": []},
+                    slate_payload(iso_hours_ago(1), [game_row()]))
+    assert got["stale"] is True
+
+
+def test_the_page_speaks_when_the_board_is_down():
+    assert "board_stale" in B.VOICE and "{age}" in B.VOICE["board_stale"]
+    assert "board_held" in B.VOICE and "{games}" in B.VOICE["board_held"]
+    assert "b.stale" in B.HTML
+
+
+def test_the_build_output_names_what_was_held():
+    """The workflow log is where the callout lands for the routines to read."""
+    src = open(B.__file__).read()
+    assert "games_held_back" in src
+    assert "board_stale" in src

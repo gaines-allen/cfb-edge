@@ -143,6 +143,13 @@ VOICE = {
                   "whether or not it made the card. If you like something "
                   "I passed on, that's your money and your business.",
     "board_empty": "No board yet. It goes up Monday of game week.",
+    "board_stale": "The lines I have are {age} hours old, and I don't post "
+                   "a number I can't stand behind. The board is down until "
+                   "the next pull lands. That's not caution theater, that's "
+                   "the difference between me and a tout.",
+    "board_held": "{count} came off the book since the last pull, so I "
+                  "pulled them here too. A number I can't verify is a "
+                  "number you don't get: {games}.",
     "board_moved": "Moved",
     "board_kick": "Kickoff",
     "board_my_spread": "My spread",
@@ -320,9 +327,48 @@ def board_rows() -> list[dict]:
             "movement": move,
         })
     rows.sort(key=lambda r: r.get("kickoff") or "")
-    return {"week": slate.get("week"), "season": slate.get("season"),
-            "built_at": slate.get("built_at"), "rows": rows}
 
+    # The staleness gate. A number only publishes when it can be verified
+    # against the current pull. A game on the slate with no line in the
+    # latest board has come off the book or failed its fetch, so it is
+    # held back and named rather than shown with a number nobody can bet.
+    # A slate built from a different pull than the board on disk means the
+    # pipeline half updated, which is exactly the failure that once froze
+    # the site for 2 days, so it is treated as stale outright.
+    board_file = store.load_board()
+    fetched_at = board_file.get("fetched_at")
+    age_hours = None
+    if fetched_at:
+        try:
+            import datetime as _dt
+            fetched = _dt.datetime.fromisoformat(fetched_at)
+            age_hours = round((_dt.datetime.now(_dt.timezone.utc)
+                               - fetched).total_seconds() / 3600, 1)
+        except ValueError:
+            age_hours = None
+    mismatched = bool(slate.get("board_fetched_at")
+                      and fetched_at
+                      and slate["board_fetched_at"] != fetched_at)
+    board_stale = age_hours is None or age_hours > MAX_BOARD_AGE_HOURS \
+        or mismatched
+
+    held = [r for r in rows
+            if r["market_spread"] is None and r["market_total"] is None]
+    rows = [r for r in rows
+            if not (r["market_spread"] is None and r["market_total"] is None)]
+
+    return {"week": slate.get("week"), "season": slate.get("season"),
+            "built_at": slate.get("built_at"), "rows": rows,
+            "fetched_at": fetched_at, "age_hours": age_hours,
+            "stale": board_stale, "mismatched": mismatched,
+            "held": [{"matchup": r["matchup"], "kickoff": r["kickoff"]}
+                     for r in held]}
+
+
+# A line older than this is not current, whatever the workflow says. The
+# daily pull runs every 24 hours, so 26 allows a slow runner and nothing
+# more.
+MAX_BOARD_AGE_HOURS = 26
 
 LIVE_FILE = store.DATA / "live_scores.json"
 LIVE_FRESH_MINUTES = 90
@@ -997,7 +1043,17 @@ el("les").innerHTML = (DATA.lessons || []).length
 (function renderBoard() {
   const b = DATA.board || {};
   const rows = b.rows || [];
+  if (b.stale) {
+    el("board").innerHTML = say(
+      V.board_stale.replace("{age}", b.age_hours == null ? "unknown" : b.age_hours));
+    return;
+  }
   if (!rows.length) { el("board").innerHTML = say(V.board_empty); return; }
+  const heldNote = (b.held || []).length
+    ? say(V.board_held
+        .replace("{count}", b.held.length === 1 ? "1 game" : b.held.length + " games")
+        .replace("{games}", b.held.map(h => h.matchup).join("; ")), "quiet")
+    : "";
   // The folded week 1 genuinely spans 2 weekends, so the day alone reads
   // as a sorting bug. The date settles it.
   const kick = iso => {
@@ -1055,7 +1111,8 @@ el("les").innerHTML = (DATA.lessons || []).length
     </details>`;
   }).join("");
   el("board").innerHTML =
-    `<p class="quiet" style="margin-bottom:12px">${esc(V.board_note)}</p>` + html;
+    `<p class="quiet" style="margin-bottom:12px">${esc(V.board_note)}</p>` +
+    html + heldNote;
 })();
 
 /* -------------------------------------------------- saturday live */
@@ -1128,6 +1185,9 @@ def main() -> int:
         "live_picks": sum(1 for p in payload["picks"] if p["live"]),
         "weeks": len(payload["weeks"]),
         "record": payload["overall"],
+        "board_stale": payload["board"].get("stale"),
+        "board_age_hours": payload["board"].get("age_hours"),
+        "games_held_back": [h["matchup"] for h in payload["board"].get("held", [])],
     }, indent=2))
     log.finish()
     return 0
