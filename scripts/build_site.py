@@ -162,9 +162,9 @@ VOICE = {
     # The explainer. Every figure in it comes from the live measurement,
     # so the copy cannot drift from the arithmetic it is describing.
     "edge_heading": "What confidence actually means",
-    "edge_body_1": "Every lean carries a number from 1 to 10. Here is "
-                   "exactly how it is built, because a number you cannot "
-                   "interrogate is a number you should not trust.",
+    "edge_body_1": "Every lean carries a number from 1 to 10. Here's how "
+                   "I build it, because if you can't take a number apart "
+                   "you've got no business betting it.",
     "edge_body_2": "I have a number for a game and the book has a number. "
                    "The gap between them is the edge, in points. Points "
                    "lie, though. Six points on a total is not the same "
@@ -176,15 +176,16 @@ VOICE = {
                    "{spread_sigma} points on a spread and {total_sigma} on "
                    "a total. So six points on a total is under 2 sigma. "
                    "Sounds enormous. Is not.",
-    "edge_body_4": "Confidence is that sigma on a 1 to 10 scale: 3.5, plus "
-                   "1.5 for every sigma. That is the whole formula. "
+    "edge_body_4": "Confidence is that sigma on a 1 to 10 scale. Start at "
+                   "3.5, add 1.5 for every sigma. That's the whole "
+                   "formula, there's no second page. "
                    "Confidence and edge are one fact stated twice, so if "
                    "you only want to look at one number, look at this one.",
     "edge_body_5": "What counts as good, on this board: the middle lean "
                    "runs about 1 sigma, which is a 5. The top tenth reach "
                    "1.9, about a 6.4. The best thing on the whole board "
                    "sits at 2.4, a 7.1. Anything past 3 sigma has never "
-                   "once been a real edge here. That is a broken rating, "
+                   "once been real money here. That is a broken rating, "
                    "and I would sooner assume I am wrong than assume the "
                    "market left 4 touchdowns lying on the table.",
     "edge_body_6": "And the ceiling. This number stops at {cap} however "
@@ -316,6 +317,7 @@ VOICE = {
                           "The Odds API, ratings and results from "
                           "CollegeFootballData.",
 
+    "pick_numbers": "Here's the math I did before I liked it.",
     "sources_heading": "Where I got it",
     "sources_note": "Every link was opened and the quoted line checked "
                     "against the page before the pick went up. If I say a "
@@ -443,6 +445,147 @@ def board_rows() -> list[dict]:
 # more.
 MAX_BOARD_AGE_HOURS = 26
 
+RATING_LABEL = {"sp": "SP+", "fpi": "FPI", "srs": "SRS", "elo": "Elo"}
+
+# Steve says the same thing six different ways or the card reads like a
+# form letter. The variant is picked off the matchup so it is stable from
+# pull to pull, which keeps a lean's defense from rewording itself every
+# afternoon while the pick underneath it has not moved.
+TOTAL_OPENERS = (
+    "I got {home} for {hp} and {away} for {ap}. Call it {tot} on the "
+    "scoreboard.",
+    "Way I see it, {home} hangs {hp} and {away} answers with {ap}. "
+    "That's {tot} between them.",
+    "Pencil me in for {home} {hp}, {away} {ap}. Adds up to {tot}.",
+)
+SPREAD_OPENERS = (
+    "I make it {fav} by {margin}{hfa}.",
+    "On my sheet {fav} wins this by {margin}{hfa}.",
+    "Give me {fav} minus {margin} on this one{hfa}.",
+)
+SIGMA_TALK = (
+    (1.05, "which is nothing special, I see gaps like that all day"),
+    (1.95, "and that's a wider gap than most games on my board"),
+    (2.25, "which puts it in the top tenth of anything I'm looking at"),
+    (99.0, "and that's about as far apart as me and the book ever get"),
+)
+
+
+def defend(model: dict, market: str, side: str, market_line, sigma) -> dict:
+    """
+    Steve's case for a lean, in numbers rather than adjectives.
+
+    A lean has no research behind it, so the defense cannot be a story. It
+    is the arithmetic that produced the disagreement, said out loud: what
+    each team is worth, what that makes the game, what the book is asking,
+    and how far apart those two are. Naming which ratings actually spoke
+    matters most in week 1, when SRS and Elo are empty and a number that
+    looks solid is standing on half its usual legs.
+    """
+    inp = model.get("inputs") or {}
+    home, away = model.get("home_team"), model.get("away_team")
+    hfa = model.get("hfa_applied")
+    seed = sum(ord(c) for c in f"{home}{away}{market}{side}")
+    sources = []
+    for key, label in RATING_LABEL.items():
+        h = (inp.get("home_components") or {}).get(key)
+        a = (inp.get("away_components") or {}).get(key)
+        if h is not None and a is not None:
+            sources.append(label)
+
+    line = None
+    if market == "total":
+        hp, ap = inp.get("home_points"), inp.get("away_points")
+        if hp is not None and ap is not None:
+            line = TOTAL_OPENERS[seed % len(TOTAL_OPENERS)].format(
+                home=home, away=away, hp=hp, ap=ap, tot=round(hp + ap, 1))
+    else:
+        hr, ar = inp.get("home_rating"), inp.get("away_rating")
+        if hr is not None and ar is not None:
+            # Say what I make the game, not the ingredients. A reader
+            # should not have to add the ratings gap to the home field
+            # bump to find out what my number actually is.
+            margin = (hr - ar) + (hfa or 0)
+            fav = home if margin >= 0 else away
+            hfa_txt = (f", and that's after I already spot the other guy "
+                       f"{hfa} for being at home" if hfa and fav != home
+                       else f", {hfa} of which is just for sleeping at home"
+                       if hfa else ", neutral field, nobody gets a bump")
+            line = SPREAD_OPENERS[seed % len(SPREAD_OPENERS)].format(
+                fav=fav, margin=abs(round(margin, 1)), hfa=hfa_txt)
+
+    against = ""
+    if market_line is None and market != "moneyline":
+        against = ""
+    elif market == "moneyline":
+        against = "No number to haggle over here, you're just taking a side."
+    elif market == "total":
+        against = f"Book's asking {market_line}."
+    else:
+        against = f"Book's got it at {abs(market_line)}."
+
+    unusual = ""
+    if sigma is not None:
+        a = abs(float(sigma))
+        how = next(t for cut, t in SIGMA_TALK if a < cut)
+        unusual = f"That's {a:.2f} sigma between us, {how}."
+
+    built = ""
+    if sources:
+        missing = [l for l in RATING_LABEL.values() if l not in sources]
+        built = f"Numbers come off {' and '.join(sources)}."
+        if missing:
+            built += (f" {' and '.join(missing)} haven't said a word yet, "
+                      f"so I'm working off {len(sources)} opinions instead "
+                      f"of 4. Bet it accordingly.")
+
+    return {"line": line, "against": against, "unusual": unusual,
+            "built": built,
+            "text": " ".join(t for t in (line, against, unusual, built) if t)}
+
+
+def hoist_built(defenses: list) -> str | None:
+    """
+    Pull the ratings caveat off the rows when it is the same on all of
+    them. In week 1 every game is missing SRS and Elo, so repeating that
+    line under each pick buries the part that differs. It moves above the
+    card instead, where a reader takes it once and applies it to
+    everything below.
+    """
+    kept = [d for d in defenses if d and d.get("built")]
+    if len(kept) < 2 or len({d["built"] for d in kept}) != 1:
+        return None
+    shared = kept[0]["built"]
+    for d in kept:
+        d["built"] = ""
+        d["text"] = " ".join(t for t in (d.get("line"), d.get("against"),
+                                         d.get("unusual")) if t)
+    return shared
+
+
+def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
+    """
+    The same case, for a pick that made the published card.
+
+    Joins back to the slate by event id, then to the specific candidate by
+    market, period and side, so the defense on the card is the arithmetic
+    the running card was already showing. A pick whose game has aged off
+    the slate gets no defense rather than one built on a stale number.
+    """
+    g = slate_by_event.get(p.get("event_id"))
+    if not g:
+        return None
+    cand = next((c for c in g.get("candidates") or []
+                 if c.get("market") == p.get("market")
+                 and c.get("period") == p.get("period")
+                 and c.get("side") == p.get("side")), None)
+    line = (cand or {}).get("market_line")
+    if line is None and p.get("market") != "moneyline":
+        line = p.get("close_line")
+    return defend(g.get("model") or {}, p.get("market"), p.get("side"),
+                  line, (cand or {}).get("edge_sigma"))
+
+
 RUNNING_FILE = store.DATA / "running_card.json"
 
 
@@ -457,11 +600,19 @@ def running_card() -> dict | None:
     if not raw or not raw.get("card"):
         return None
     leans = raw.get("leans", {})
+    # The running card carries only the lean. The teams, their logos and
+    # the model behind the number live on the slate, so join back to it.
+    slate_by_event = {g["event_id"]: g
+                      for g in (store._load(store.DATA / "slate.json", {})
+                                .get("slate", []))}
+    logos = load_logos()
+    known_locations = set(logos)
 
     def shape(key):
         e = leans.get(key)
         if not e:
             return None
+        g = slate_by_event.get(e.get("event_id")) or {}
         moved_conf = None
         if e.get("first_confidence") is not None \
                 and e.get("confidence") is not None:
@@ -483,12 +634,21 @@ def running_card() -> dict | None:
             "days_tracked": len(e.get("history") or []),
             "rank": e.get("rank"), "peak_rank": e.get("peak_rank"),
             "on_board": e.get("on_board", True),
+            "home_team": g.get("home_team"), "away_team": g.get("away_team"),
+            "home_logo": logos.get(
+                canonical(g.get("home_team") or "", known_locations) or ""),
+            "away_logo": logos.get(
+                canonical(g.get("away_team") or "", known_locations) or ""),
+            "defense": defend(g.get("model") or {}, e.get("market"),
+                              e.get("side"), e.get("line"), e.get("sigma")),
         }
 
     card = [c for c in (shape(k) for k in raw["card"]) if c]
     dropped = [c for c in (shape(k) for k in raw.get("dropped", [])) if c]
     dropped.sort(key=lambda c: c.get("confidence") or 0, reverse=True)
-    return {"updated_at": raw.get("updated_at"),
+    caveat = hoist_built([c.get("defense") for c in card])
+    return {"caveat": caveat,
+            "updated_at": raw.get("updated_at"),
             "board_fetched_at": raw.get("board_fetched_at"),
             "season": raw.get("season"), "week": raw.get("week"),
             "card": card, "dropped": dropped[:4],
@@ -567,6 +727,9 @@ def lock_id(picks: list[dict], season, week) -> str | None:
 
 def build_payload() -> dict:
     picks = store.load_picks()
+    slate_by_event = {g["event_id"]: g
+                      for g in (store._load(store.DATA / "slate.json", {})
+                                .get("slate", []))}
     memory = store.load_memory()
     board = store.load_board()
 
@@ -591,7 +754,7 @@ def build_payload() -> dict:
     pick_rows = [p for p in picks]
     lock = lock_id(picks, current[0], current[1])
 
-    return {
+    payload = {
         "generated_at": store.now_iso(),
         "board": board_rows(),
         "running": running_card(),
@@ -657,11 +820,19 @@ def build_payload() -> dict:
                 # showing them is the difference between a claim and a
                 # receipt.
                 "sources": p.get("sources") or [],
+                # The model's own case, next to the researched reason. A
+                # pick defended only by prose is one you cannot check.
+                "defense": pick_defense(slate_by_event, p),
                 "live": p.get("live"),
             }
             for p in sorted(picks, key=lambda x: (x.get("kickoff") or ""))
         ],
     }
+    # Same treatment the running card gets: the ratings caveat sits once
+    # above the card rather than under every ticket.
+    payload["card_caveat"] = hoist_built(
+        [p["defense"] for p in payload["picks"] if p.get("live")])
+    return payload
 
 
 HTML = """<!doctype html>
@@ -796,6 +967,10 @@ HTML = """<!doctype html>
     font-family: ui-sans-serif, -apple-system, sans-serif;
   }
   .why { margin: 0 0 16px; max-width: 62ch; color: #223049; font-size: 17px; }
+  .why.numbers {
+    font-size: 14px; color: #4a5468; border-left: 2px solid #d9cdb2;
+    padding-left: 14px; font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
   .meta {
     display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px;
     color: #7b7360; font-variant-numeric: tabular-nums;
@@ -850,29 +1025,56 @@ HTML = """<!doctype html>
 
   /* ------------------------------------------- the running card */
   .lean {
-    display: flex; align-items: center; gap: 16px; padding: 14px 4px;
-    border-bottom: 1px solid #22314a;
+    padding: 22px 0 20px; border-bottom: 1px solid #22314a;
     font-family: ui-sans-serif, -apple-system, sans-serif;
   }
   .lean:last-child { border-bottom: 0; }
-  .conf {
-    flex: none; width: 62px; text-align: center;
-  }
+  .leanhead { display: flex; align-items: center; gap: 18px; }
+  .conf { flex: none; width: 72px; text-align: center; }
   .conf .n {
-    font-size: 27px; font-weight: 800; line-height: 1;
+    font-size: 34px; font-weight: 800; line-height: 1;
     font-variant-numeric: tabular-nums; color: var(--gold-2);
   }
   .conf .lbl {
     font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--dim); margin-top: 3px;
+    color: var(--dim); margin-top: 4px;
   }
-  .leanbody { flex: 1 1 auto; min-width: 0; }
-  .leanplay { font-size: 16px; font-weight: 700; color: var(--cream); }
+  .teams {
+    display: flex; align-items: center; gap: 12px; flex: 1 1 auto;
+    min-width: 0; flex-wrap: wrap;
+  }
+  .team { display: flex; align-items: center; gap: 10px; }
+  .team img { width: 42px; height: 42px; object-fit: contain; flex: none; }
+  .team .nm { font-size: 18px; font-weight: 700; color: var(--cream); }
+  .vs {
+    color: var(--dim); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .leanbody { padding-left: 90px; }
+  .leanplay {
+    font-size: 20px; font-weight: 800; color: var(--gold-2); margin-top: 12px;
+  }
+  .leanplay .price { font-size: 15px; }
+  .leandef {
+    font-size: 14px; color: var(--cream); margin-top: 8px; max-width: 62ch;
+    line-height: 1.55;
+  }
   .leanmeta {
-    font-size: 12px; color: var(--dim); margin-top: 3px;
+    font-size: 12px; color: var(--dim); margin-top: 6px;
     font-variant-numeric: tabular-nums;
   }
-  .leanmove { font-size: 12px; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .leanmove { font-size: 12px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .caveat.dark { color: #6b5a2e; border-left-color: #b39a55; }
+  .caveat {
+    font-size: 13px; color: var(--gold-2); margin: 0 0 18px;
+    border-left: 2px solid var(--gold-2); padding-left: 12px; max-width: 62ch;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  @media (max-width: 620px) {
+    .leanbody { padding-left: 0; }
+    .team img { width: 32px; height: 32px; }
+    .team .nm { font-size: 15px; }
+  }
   .up { color: #7ecf84; } .down { color: #ec8478; } .flat { color: var(--dim); }
   .lean.gone { opacity: .55; }
   .dropped { margin-top: 26px; }
@@ -1000,9 +1202,6 @@ HTML = """<!doctype html>
   <h2 id="running-h">The running card</h2>
   <div id="running"></div>
 
-  <h2 id="edge-h">What confidence actually means</h2>
-  <div id="edge"></div>
-
   <h2 id="board-h">The board</h2>
   <div id="board"></div>
 
@@ -1026,6 +1225,9 @@ HTML = """<!doctype html>
 
   <h2 id="les-h">What I got wrong</h2>
   <div id="les"></div>
+
+  <h2 id="edge-h">What confidence actually means</h2>
+  <div id="edge"></div>
 
   <footer>
     <p id="about" class="warn"></p>
@@ -1079,6 +1281,9 @@ function ticket(p) {
     </div>
     <div class="matchup">${esc(p.matchup)} &middot; ${esc(p.market)} ${esc(p.period)}</div>
     ${p.rationale ? `<p class="why">${esc(p.rationale)}</p>` : ""}
+    ${p.defense && p.defense.text
+      ? `<p class="why numbers">${esc(V.pick_numbers)} ${esc(p.defense.text)}</p>`
+      : ""}
     <div class="meta">
       <span>Confidence <b>${num(p.confidence, 1)}</b></span>
       <span>Stake <b>${num(p.units, 1)}u</b></span>
@@ -1109,6 +1314,8 @@ function ticket(p) {
   el("card").innerHTML =
     `<p class="weekline">Season ${esc(cur.season)} &middot; Week ${esc(cur.week)} &middot; ` +
     `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${num(staked, 1)} units</p>` +
+    (DATA.card_caveat
+      ? `<p class="caveat dark">${esc(DATA.card_caveat)}</p>` : "") +
     `<div class="tickets">${lockHtml}${rest.map(ticket).join("")}</div>` +
     (live.length < DATA.target_picks ? say(V.card_short, "quiet") : "") +
     `<p class="quiet" style="margin-top:10px">${esc(V.sources_note)}</p>`;
@@ -1256,14 +1463,26 @@ if ((DATA.lessons || []).length) {
            `</span> <span class="flat">${esc(
              V.running_since.replace("{days}", c.days_tracked))}${line}</span>`;
   };
+  const badge = (src, name) => `<div class="team">${
+    src ? `<img src="${esc(src)}" alt="${esc(name)}" loading="lazy">`
+        : ""}<span class="nm">${esc(name)}</span></div>`;
   const row = (c, gone) => `<div class="lean ${gone ? "gone" : ""}">
-    <div class="conf"><div class="n">${num(c.confidence, 1)}</div>
-      <div class="lbl">conf</div></div>
+    <div class="leanhead">
+      <div class="conf"><div class="n">${num(c.confidence, 1)}</div>
+        <div class="lbl">conf</div></div>
+      <div class="teams">
+        ${badge(c.away_logo, c.away_team || c.matchup)}
+        <span class="vs">at</span>
+        ${badge(c.home_logo, c.home_team || "")}
+      </div>
+    </div>
     <div class="leanbody">
       <div class="leanplay">${fmt(c)} <span class="price">${
         c.price > 0 ? "+" : ""}${esc(c.price)}</span></div>
-      <div class="leanmeta">${esc(c.matchup)} &middot; ${esc(c.market)} ${
-        esc(c.period)} &middot; my number ${c.model_number} &middot; ${
+      ${c.defense && c.defense.text
+        ? `<div class="leandef">${esc(c.defense.text)}</div>` : ""}
+      <div class="leanmeta">${esc(c.market)} ${esc(c.period)} &middot; my
+        number ${c.model_number} &middot; ${
         c.sigma == null ? "n/a" : Math.abs(c.sigma).toFixed(2)}&sigma;</div>
       <div class="leanmove">${move(c)}</div>
     </div></div>`;
@@ -1276,9 +1495,10 @@ if ((DATA.lessons || []).length) {
   const stacked = games < R.card.length
     ? say(V.running_stacked.replace("{games}", games), "quiet")
     : "";
+  const caveat = R.caveat ? `<p class="caveat">${esc(R.caveat)}</p>` : "";
   el("running").innerHTML =
     `<p class="quiet" style="margin-bottom:14px">${esc(V.running_note)}</p>` +
-    R.card.map(c => row(c, false)).join("") + stacked + dropped;
+    caveat + R.card.map(c => row(c, false)).join("") + stacked + dropped;
 })();
 
 /* ---------------------------------------------------- the explainer */

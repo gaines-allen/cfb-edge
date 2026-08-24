@@ -319,3 +319,118 @@ def test_the_card_and_board_keep_their_empty_lines():
     assert "V.board_empty" in body
     assert 'hide("card")' not in body
     assert 'hide("board")' not in body
+
+
+# ---------------------------------------------------------------------
+# Defending a pick
+#
+# Every lean and every published pick carries the arithmetic that produced
+# it. These guard the two ways that goes wrong: the numbers stop matching
+# the claim, or the claim stops sounding like a person said it.
+# ---------------------------------------------------------------------
+
+MODEL = {
+    "home_team": "Ohio State Buckeyes",
+    "away_team": "Ball State Cardinals",
+    "hfa_applied": 2.2,
+    "inputs": {
+        "home_rating": 31.26, "away_rating": -22.31,
+        "home_points": 38.9, "away_points": 10.3,
+        "home_components": {"sp": 31.26, "fpi": 30.0},
+        "away_components": {"sp": -22.31, "fpi": -20.0},
+    },
+}
+
+
+def test_a_spread_defense_states_the_number_rather_than_the_ingredients():
+    d = B.defend(MODEL, "spread", "Ohio State Buckeyes", -50.5, 2.17)
+    # 31.26 - (-22.31) + 2.2 = 55.77. A reader should not have to do that.
+    assert "55.8" in d["text"]
+    assert "Ohio State Buckeyes" in d["text"]
+    assert "Book's got it at 50.5." in d["text"]
+
+
+def test_a_total_defense_adds_the_two_sides_up():
+    d = B.defend(MODEL, "total", "Under", 56.5, 1.94)
+    assert "49.2" in d["text"] and "38.9" in d["text"] and "10.3" in d["text"]
+    assert "Book's asking 56.5." in d["text"]
+
+
+def test_a_moneyline_does_not_compare_a_price_to_a_margin():
+    d = B.defend(MODEL, "moneyline", "Ball State Cardinals", -145, 1.2)
+    assert "-145" not in d["text"]
+    assert "just taking a side" in d["text"]
+
+
+@pytest.mark.parametrize("sigma,phrase", [
+    (0.80, "nothing special"),
+    (1.50, "wider gap than most"),
+    (2.10, "top tenth"),
+    (2.40, "as far apart as me and the book ever get"),
+])
+def test_the_sigma_tiers_actually_separate(sigma, phrase):
+    # The live board runs a median near 1.0 and a max near 2.4. A tier set
+    # that fires "widest on the board" at 1.9 said it on six picks at once,
+    # which is the same as saying nothing.
+    assert phrase in B.defend(MODEL, "spread", "x", -50.5, sigma)["text"]
+
+
+def test_a_missing_rating_source_is_named_not_hidden():
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0)
+    assert "SP+ and FPI" in d["built"]
+    assert "SRS and Elo" in d["built"]
+    assert "2 opinions instead of 4" in d["built"]
+
+
+def test_a_defense_survives_a_model_with_nothing_in_it():
+    d = B.defend({}, "spread", "x", -3.5, 1.0)
+    assert d["line"] is None
+    assert isinstance(d["text"], str)
+
+
+def test_the_same_matchup_keeps_the_same_phrasing_between_pulls():
+    # The card is rebuilt every afternoon. A defense that rewords itself
+    # while the pick underneath has not moved reads like new information.
+    first = B.defend(MODEL, "total", "Under", 56.5, 1.94)["text"]
+    second = B.defend(MODEL, "total", "Under", 56.5, 1.94)["text"]
+    assert first == second
+
+
+def test_a_shared_caveat_is_hoisted_off_the_rows():
+    rows = [B.defend(MODEL, "spread", str(i), -50.5, 2.0) for i in range(3)]
+    shared = B.hoist_built(rows)
+    assert shared and "SRS and Elo" in shared
+    for r in rows:
+        assert r["built"] == ""
+        assert "SRS and Elo" not in r["text"]
+
+
+def test_a_caveat_that_differs_by_row_stays_on_the_rows():
+    full = {**MODEL, "inputs": {**MODEL["inputs"],
+                                "home_components": {"sp": 1, "fpi": 1,
+                                                    "srs": 1, "elo": 1},
+                                "away_components": {"sp": 1, "fpi": 1,
+                                                    "srs": 1, "elo": 1}}}
+    rows = [B.defend(MODEL, "spread", "a", -50.5, 2.0),
+            B.defend(full, "spread", "b", -50.5, 2.0)]
+    assert B.hoist_built(rows) is None
+    assert all(r["built"] for r in rows)
+
+
+def test_the_running_card_row_shows_both_teams_and_their_logos():
+    row = re.search(r"const row = \(c, gone\).*?\n    </div></div>`;",
+                    B.HTML, re.S).group(0)
+    for field in ("c.away_team", "c.home_team", "c.away_logo", "c.home_logo",
+                  "c.defense"):
+        assert field in row, field
+
+
+def test_the_published_ticket_carries_the_model_case_too():
+    assert "p.defense && p.defense.text" in B.HTML
+    assert "V.pick_numbers" in B.HTML
+
+
+def test_the_explainer_sits_below_the_record():
+    order = re.findall(r'id="(\w+)-h"', B.HTML)
+    assert order.index("edge") > order.index("les")
+    assert order[-1] == "edge"
