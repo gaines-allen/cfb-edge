@@ -471,7 +471,24 @@ SIGMA_TALK = (
 )
 
 
-def defend(model: dict, market: str, side: str, market_line, sigma) -> dict:
+def bias_note(raw: float, published: float) -> str:
+    """
+    Say so when the bias correction moved the number.
+
+    scripts/calibrate_model.py measures how far the model's numbers have
+    landed from the market and subtracts that offset, so the raw ratings
+    and the published figure never quite match. Leaving the gap unexplained
+    invites the reader to check the arithmetic, find it off by half a
+    point, and stop trusting the rest.
+    """
+    if abs(raw - published) < 0.2:
+        return ""
+    return (f" Straight off the ratings that's {raw}, and the bias check "
+            f"against how my last 63 landed does the rest.")
+
+
+def defend(model: dict, market: str, side: str, market_line, sigma,
+           model_number=None) -> dict:
     """
     Steve's case for a lean, in numbers rather than adjectives.
 
@@ -481,6 +498,11 @@ def defend(model: dict, market: str, side: str, market_line, sigma) -> dict:
     and how far apart those two are. Naming which ratings actually spoke
     matters most in week 1, when SRS and Elo are empty and a number that
     looks solid is standing on half its usual legs.
+
+    The number quoted is the one the model published, not one rebuilt from
+    the ratings. Those differ by the bias correction, and a defense that
+    quietly disagrees with the figure printed beside it is worse than no
+    defense at all.
     """
     inp = model.get("inputs") or {}
     home, away = model.get("home_team"), model.get("away_team")
@@ -497,22 +519,31 @@ def defend(model: dict, market: str, side: str, market_line, sigma) -> dict:
     if market == "total":
         hp, ap = inp.get("home_points"), inp.get("away_points")
         if hp is not None and ap is not None:
+            raw = round(hp + ap, 1)
+            tot = round(float(model_number), 1) if model_number is not None \
+                else raw
             line = TOTAL_OPENERS[seed % len(TOTAL_OPENERS)].format(
-                home=home, away=away, hp=hp, ap=ap, tot=round(hp + ap, 1))
+                home=home, away=away, hp=hp, ap=ap, tot=tot)
+            line += bias_note(raw, tot)
     else:
         hr, ar = inp.get("home_rating"), inp.get("away_rating")
         if hr is not None and ar is not None:
-            # Say what I make the game, not the ingredients. A reader
+            # Quote the published number, not one rebuilt here. A reader
             # should not have to add the ratings gap to the home field
-            # bump to find out what my number actually is.
-            margin = (hr - ar) + (hfa or 0)
-            fav = home if margin >= 0 else away
+            # bump, and the two would not agree anyway.
+            raw = (hr - ar) + (hfa or 0)
+            margin = abs(float(model_number)) if model_number is not None \
+                else abs(raw)
+            fav = home if (model_number is not None
+                           and float(model_number) < 0) or (
+                              model_number is None and raw >= 0) else away
             hfa_txt = (f", and that's after I already spot the other guy "
                        f"{hfa} for being at home" if hfa and fav != home
                        else f", {hfa} of which is just for sleeping at home"
                        if hfa else ", neutral field, nobody gets a bump")
             line = SPREAD_OPENERS[seed % len(SPREAD_OPENERS)].format(
-                fav=fav, margin=abs(round(margin, 1)), hfa=hfa_txt)
+                fav=fav, margin=round(margin, 1), hfa=hfa_txt)
+            line += bias_note(round(abs(raw), 1), round(margin, 1))
 
     against = ""
     if market_line is None and market != "moneyline":
@@ -583,7 +614,8 @@ def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
     if line is None and p.get("market") != "moneyline":
         line = p.get("close_line")
     return defend(g.get("model") or {}, p.get("market"), p.get("side"),
-                  line, (cand or {}).get("edge_sigma"))
+                  line, (cand or {}).get("edge_sigma"),
+                  p.get("model_number") or (cand or {}).get("model_number"))
 
 
 RUNNING_FILE = store.DATA / "running_card.json"
@@ -640,7 +672,8 @@ def running_card() -> dict | None:
             "away_logo": logos.get(
                 canonical(g.get("away_team") or "", known_locations) or ""),
             "defense": defend(g.get("model") or {}, e.get("market"),
-                              e.get("side"), e.get("line"), e.get("sigma")),
+                              e.get("side"), e.get("line"), e.get("sigma"),
+                              e.get("model_number")),
         }
 
     card = [c for c in (shape(k) for k in raw["card"]) if c]
@@ -1074,6 +1107,11 @@ HTML = """<!doctype html>
     .leanbody { padding-left: 0; }
     .team img { width: 32px; height: 32px; }
     .team .nm { font-size: 15px; }
+    /* Let the two teams stack. Left to wrap on their own, a long name
+       pushes the "at" up onto the away team's line, where it reads as
+       part of that name instead of the thing separating them. */
+    .teams { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .vs { padding-left: 6px; }
   }
   .up { color: #7ecf84; } .down { color: #ec8478; } .flat { color: var(--dim); }
   .lean.gone { opacity: .55; }

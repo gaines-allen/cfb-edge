@@ -343,17 +343,39 @@ MODEL = {
 
 
 def test_a_spread_defense_states_the_number_rather_than_the_ingredients():
-    d = B.defend(MODEL, "spread", "Ohio State Buckeyes", -50.5, 2.17)
-    # 31.26 - (-22.31) + 2.2 = 55.77. A reader should not have to do that.
-    assert "55.8" in d["text"]
+    d = B.defend(MODEL, "spread", "Ohio State Buckeyes", -50.5, 2.17, -56.4)
+    assert "56.4" in d["text"]
     assert "Ohio State Buckeyes" in d["text"]
     assert "Book's got it at 50.5." in d["text"]
 
 
 def test_a_total_defense_adds_the_two_sides_up():
-    d = B.defend(MODEL, "total", "Under", 56.5, 1.94)
-    assert "49.2" in d["text"] and "38.9" in d["text"] and "10.3" in d["text"]
+    d = B.defend(MODEL, "total", "Under", 56.5, 1.94, 50.1)
+    assert "50.1" in d["text"] and "38.9" in d["text"] and "10.3" in d["text"]
     assert "Book's asking 56.5." in d["text"]
+
+
+@pytest.mark.parametrize("market,number", [
+    ("spread", -56.4), ("total", 50.1)])
+def test_the_defense_quotes_the_number_printed_beside_it(market, number):
+    # The page prints model_number in the row's metadata. Rebuilding the
+    # number from the ratings instead lands 0.6 off, because the bias
+    # correction sits between them, and a defense that disagrees with the
+    # figure next to it is worse than no defense.
+    d = B.defend(MODEL, market, "x", -50.5, 2.0, number)
+    assert str(abs(number)) in d["text"]
+
+
+def test_the_bias_correction_is_named_when_it_moves_the_number():
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -56.4)
+    # Raw ratings give 55.77, published is 56.4. Both belong in the text.
+    assert "55.8" in d["text"] and "56.4" in d["text"]
+    assert "bias check" in d["text"]
+
+
+def test_no_bias_line_when_the_correction_did_nothing():
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -55.8)
+    assert "bias check" not in d["text"]
 
 
 def test_a_moneyline_does_not_compare_a_price_to_a_margin():
@@ -372,7 +394,8 @@ def test_the_sigma_tiers_actually_separate(sigma, phrase):
     # The live board runs a median near 1.0 and a max near 2.4. A tier set
     # that fires "widest on the board" at 1.9 said it on six picks at once,
     # which is the same as saying nothing.
-    assert phrase in B.defend(MODEL, "spread", "x", -50.5, sigma)["text"]
+    assert phrase in B.defend(MODEL, "spread", "x", -50.5, sigma,
+                              -56.4)["text"]
 
 
 def test_a_missing_rating_source_is_named_not_hidden():
