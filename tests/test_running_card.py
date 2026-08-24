@@ -61,14 +61,14 @@ def test_confidence_still_stops_below_the_publish_line():
 
 def test_the_explainer_reads_its_numbers_from_the_measurement():
     """
-    Sigma is remeasured every week. Numbers typed into the copy would
-    drift away from the arithmetic they claim to describe.
+    The typical miss is remeasured every week. Numbers typed into the copy
+    would drift away from the arithmetic they claim to describe.
     """
     scale = B.build_payload()["scale"]
     cal = load_calibration()
-    assert scale["spread_sigma"] == (cal.get("spreads") or {}).get("sigma")
-    assert scale["total_sigma"] == (cal.get("totals") or {}).get("sigma")
-    for token in ("{spread_sigma}", "{total_sigma}", "{sample}"):
+    assert scale["spread_gap"] == (cal.get("spreads") or {}).get("sigma")
+    assert scale["total_gap"] == (cal.get("totals") or {}).get("sigma")
+    for token in ("{spread_gap}", "{total_gap}", "{sample}"):
         assert token in B.VOICE["edge_body_3"]
     assert "{cap}" in B.VOICE["edge_body_6"]
     assert "{publish}" in B.VOICE["edge_body_6"]
@@ -76,8 +76,11 @@ def test_the_explainer_reads_its_numbers_from_the_measurement():
 
 def test_the_explainer_says_the_two_numbers_are_one_fact():
     body = " ".join(B.VOICE[f"edge_body_{i}"] for i in range(1, 7)).lower()
-    assert "one fact stated twice" in body
-    assert "sigma" in body
+    assert "one fact said twice" in body
+    # The explainer has to teach the scale without naming it. A reader who
+    # has to look up a Greek letter to read a betting page has been sold a
+    # lecture, not a pick.
+    assert "sigma" not in body
 
 
 # ----------------------------------------------- the card moves

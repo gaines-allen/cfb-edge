@@ -235,7 +235,7 @@ def test_the_disclaimer_stays_straight():
 
 
 def test_american_spelling():
-    joined = " ".join(B.VOICE.values())
+    joined = " ".join(B.VOICE.values()).lower()
     for british in ("apologise", "realise", "favourite", "colour"):
         assert british not in joined
 
@@ -245,7 +245,7 @@ def test_the_honest_lines_survived_the_rewrite():
     The jokes are allowed to change. These are not, because they are the
     product rather than the packaging.
     """
-    assert "52.4" in B.VOICE["no_signal_long"]
+    assert "52.5" in B.VOICE["no_signal_long"]
     assert "lucky" in B.VOICE["no_signal_long"]
     assert "priced right" in B.VOICE["card_empty"]
     assert "not a person" in B.VOICE["about"]
@@ -343,70 +343,74 @@ MODEL = {
 
 
 def test_a_spread_defense_states_the_number_rather_than_the_ingredients():
-    d = B.defend(MODEL, "spread", "Ohio State Buckeyes", -50.5, 2.17, -56.4)
-    assert "56.4" in d["text"]
+    d = B.defend(MODEL, "spread", "Ohio State Buckeyes", -50.5, 2.17,
+                 -56.4, 5.9)
+    assert "56.5" in d["text"]
     assert "Ohio State Buckeyes" in d["text"]
     assert "Book's got it at 50.5." in d["text"]
 
 
 def test_a_total_defense_adds_the_two_sides_up():
-    d = B.defend(MODEL, "total", "Under", 56.5, 1.94, 50.1)
-    assert "50.1" in d["text"] and "38.9" in d["text"] and "10.3" in d["text"]
+    d = B.defend(MODEL, "total", "Under", 56.5, 1.94, 50.1, -6.4)
+    assert "50.0" in d["text"] and "39.0" in d["text"] and "10.5" in d["text"]
     assert "Book's asking 56.5." in d["text"]
 
 
-@pytest.mark.parametrize("market,number", [
-    ("spread", -56.4), ("total", 50.1)])
-def test_the_defense_quotes_the_number_printed_beside_it(market, number):
+@pytest.mark.parametrize("market,number,shown", [
+    ("spread", -56.4, "56.5"), ("total", 50.1, "50.0")])
+def test_the_defense_quotes_the_number_printed_beside_it(market, number,
+                                                         shown):
     # The page prints model_number in the row's metadata. Rebuilding the
     # number from the ratings instead lands 0.6 off, because the bias
     # correction sits between them, and a defense that disagrees with the
     # figure next to it is worse than no defense.
-    d = B.defend(MODEL, market, "x", -50.5, 2.0, number)
-    assert str(abs(number)) in d["text"]
+    d = B.defend(MODEL, market, "x", -50.5, 2.0, number, 5.9)
+    assert shown in d["text"]
 
 
 def test_the_bias_correction_is_named_when_it_moves_the_number():
-    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -56.4)
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -56.4, 5.9)
     # Raw ratings give 55.77, published is 56.4. Both belong in the text.
-    assert "55.8" in d["text"] and "56.4" in d["text"]
-    assert "bias check" in d["text"]
+    assert "56.0" in d["text"] and "56.5" in d["text"]
+    assert "nudge it" in d["text"]
 
 
 def test_no_bias_line_when_the_correction_did_nothing():
-    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -55.8)
-    assert "bias check" not in d["text"]
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -55.8, 5.9)
+    assert "nudge it" not in d["text"]
 
 
 def test_a_moneyline_does_not_compare_a_price_to_a_margin():
-    d = B.defend(MODEL, "moneyline", "Ball State Cardinals", -145, 1.2)
+    d = B.defend(MODEL, "moneyline", "Ball State Cardinals", -145, 1.2,
+                 -56.4, 5.9)
     assert "-145" not in d["text"]
     assert "just taking a side" in d["text"]
 
 
-@pytest.mark.parametrize("sigma,phrase", [
+@pytest.mark.parametrize("scaled,phrase", [
     (0.80, "nothing special"),
-    (1.50, "wider gap than most"),
+    (1.50, "bigger gap than most"),
     (2.10, "top tenth"),
     (2.40, "as far apart as me and the book ever get"),
 ])
-def test_the_sigma_tiers_actually_separate(sigma, phrase):
+def test_the_gap_tiers_actually_separate(scaled, phrase):
     # The live board runs a median near 1.0 and a max near 2.4. A tier set
     # that fires "widest on the board" at 1.9 said it on six picks at once,
-    # which is the same as saying nothing.
-    assert phrase in B.defend(MODEL, "spread", "x", -50.5, sigma,
-                              -56.4)["text"]
+    # which is the same as saying nothing. The scaled figure picks the
+    # tier; only the points gap is ever printed.
+    assert phrase in B.defend(MODEL, "spread", "x", -50.5, scaled,
+                              -56.4, 5.9)["text"]
 
 
 def test_a_missing_rating_source_is_named_not_hidden():
-    d = B.defend(MODEL, "spread", "x", -50.5, 2.0)
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.0, -56.4, 5.9)
     assert "SP+ and FPI" in d["built"]
     assert "SRS and Elo" in d["built"]
     assert "2 opinions instead of 4" in d["built"]
 
 
 def test_a_defense_survives_a_model_with_nothing_in_it():
-    d = B.defend({}, "spread", "x", -3.5, 1.0)
+    d = B.defend({}, "spread", "x", -3.5, 1.0, None, 2.0)
     assert d["line"] is None
     assert isinstance(d["text"], str)
 
@@ -414,13 +418,14 @@ def test_a_defense_survives_a_model_with_nothing_in_it():
 def test_the_same_matchup_keeps_the_same_phrasing_between_pulls():
     # The card is rebuilt every afternoon. A defense that rewords itself
     # while the pick underneath has not moved reads like new information.
-    first = B.defend(MODEL, "total", "Under", 56.5, 1.94)["text"]
-    second = B.defend(MODEL, "total", "Under", 56.5, 1.94)["text"]
+    first = B.defend(MODEL, "total", "Under", 56.5, 1.94, 50.1, -6.4)["text"]
+    second = B.defend(MODEL, "total", "Under", 56.5, 1.94, 50.1, -6.4)["text"]
     assert first == second
 
 
 def test_a_shared_caveat_is_hoisted_off_the_rows():
-    rows = [B.defend(MODEL, "spread", str(i), -50.5, 2.0) for i in range(3)]
+    rows = [B.defend(MODEL, "spread", str(i), -50.5, 2.0, -56.4, 5.9)
+            for i in range(3)]
     shared = B.hoist_built(rows)
     assert shared and "SRS and Elo" in shared
     for r in rows:
@@ -434,8 +439,8 @@ def test_a_caveat_that_differs_by_row_stays_on_the_rows():
                                                     "srs": 1, "elo": 1},
                                 "away_components": {"sp": 1, "fpi": 1,
                                                     "srs": 1, "elo": 1}}}
-    rows = [B.defend(MODEL, "spread", "a", -50.5, 2.0),
-            B.defend(full, "spread", "b", -50.5, 2.0)]
+    rows = [B.defend(MODEL, "spread", "a", -50.5, 2.0, -56.4, 5.9),
+            B.defend(full, "spread", "b", -50.5, 2.0, -56.4, 5.9)]
     assert B.hoist_built(rows) is None
     assert all(r["built"] for r in rows)
 
@@ -457,3 +462,82 @@ def test_the_explainer_sits_below_the_record():
     order = re.findall(r'id="(\w+)-h"', B.HTML)
     assert order.index("edge") > order.index("les")
     assert order[-1] == "edge"
+
+
+# ---------------------------------------------------------------------
+# Plain numbers, plain words
+#
+# A book prices in halves and a bettor reads in halves. Precision the
+# model cannot justify reads as authority it has not earned, and a Greek
+# letter on a betting page sends a reader to a search engine.
+# ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("raw,shown", [
+    (7.13, "7.0"), (6.84, "7.0"), (6.6, "6.5"), (54.3, "54.5"),
+    (28.1, "28.0"), (0, "0.0"), (-3.26, "-3.5"),
+])
+def test_every_printed_number_lands_on_a_half(raw, shown):
+    assert B.half(raw) == shown
+
+
+def test_half_leaves_nothing_alone():
+    assert B.half(None) is None
+    assert B.half(2.0, signed=True) == "+2.0"
+    assert B.half(-2.0, signed=True) == "-2.0"
+
+
+def test_the_javascript_rounds_the_same_way():
+    # Two rounding rules, one in Python and one in the page, would show a
+    # different number in the defense than in the row above it.
+    assert "Math.round(Number(n) * 2) / 2" in B.HTML
+
+
+def test_no_greek_reaches_the_reader():
+    for key, text in B.VOICE.items():
+        assert "sigma" not in text.lower(), key
+        assert "σ" not in text, key
+    markup = re.sub(r"\{[^{}]*\}", "", B.HTML)
+    assert "&sigma;" not in markup
+    assert "σ" not in markup
+
+
+def test_the_defense_counts_in_points_not_multiples():
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.17, -56.4, 5.9)
+    assert "5.9" not in d["text"]      # the raw gap, rounded off
+    assert "6.0 points between us" in d["text"]
+
+
+def test_a_defense_without_a_gap_says_nothing_about_the_gap():
+    d = B.defend(MODEL, "spread", "x", -50.5, 2.17, -56.4, None)
+    assert "points between us" not in d["text"]
+
+
+# ---------------------------------------------------------------------
+# The board
+#
+# A spread is stored from the home team's side, so -50.5 alone names no
+# favourite. On the board that is the one thing a reader is looking for.
+# ---------------------------------------------------------------------
+
+def test_the_board_names_who_is_favoured():
+    assert "const fav = (g, sp)" in B.HTML
+    assert "g.home_short || g.home_team" in B.HTML
+    assert "pick 'em" in B.HTML
+
+
+def test_the_board_carries_short_names_for_the_favourite_label():
+    rows = B.board_rows()["rows"]
+    if not rows:
+        pytest.skip("no board built")
+    assert any(r.get("home_short") for r in rows)
+    # The short name comes off the model, never off a guess at the mascot.
+    for r in rows:
+        if r.get("home_short"):
+            assert r["home_short"] in r["home_team"]
+
+
+def test_each_board_team_keeps_its_logo_beside_its_name():
+    # .gteams used to expand between the away name and the home logo,
+    # parking that logo against the numbers instead of its own team.
+    assert '<span class="gside">' in B.HTML
+    assert ".gside { display: inline-flex" in B.HTML

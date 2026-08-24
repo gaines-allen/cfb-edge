@@ -144,10 +144,14 @@ VOICE = {
                     "move. A number the market has caught up to stops "
                     "being worth anything, so what was good Monday is "
                     "often gone by Thursday, and I'd rather show you that "
-                    "than quietly swap it out.",
+                    "than quietly swap it out. One thing before you "
+                    "scroll: a total needs a wider gap than a spread to "
+                    "mean the same thing, so these are not simply ranked "
+                    "by points apart.",
     "running_empty": "Nothing tracked yet. This fills in once the board "
                      "is up and I've had a day to watch it move.",
     "running_new": "new today",
+    "running_held": "holding",
     "running_since": "tracked {days} days",
     "running_stacked": "Worth saying: those 6 leans cover {games} games, "
                        "not 6. When a game shows up twice it is one "
@@ -170,24 +174,23 @@ VOICE = {
                    "lie, though. Six points on a total is not the same "
                    "animal as six points on a spread, because totals swing "
                    "wider than spreads do.",
-    "edge_body_3": "So I divide that gap by how far my number and the "
-                   "book's normally sit apart. That gives a sigma. Right "
-                   "now, measured across {sample} games, that gap runs "
-                   "{spread_sigma} points on a spread and {total_sigma} on "
-                   "a total. So six points on a total is under 2 sigma. "
-                   "Sounds enormous. Is not.",
-    "edge_body_4": "Confidence is that sigma on a 1 to 10 scale. Start at "
-                   "3.5, add 1.5 for every sigma. That's the whole "
-                   "formula, there's no second page. "
-                   "Confidence and edge are one fact stated twice, so if "
-                   "you only want to look at one number, look at this one.",
-    "edge_body_5": "What counts as good, on this board: the middle lean "
-                   "runs about 1 sigma, which is a 5. The top tenth reach "
-                   "1.9, about a 6.4. The best thing on the whole board "
-                   "sits at 2.4, a 7.1. Anything past 3 sigma has never "
-                   "once been real money here. That is a broken rating, "
-                   "and I would sooner assume I am wrong than assume the "
-                   "market left 4 touchdowns lying on the table.",
+    "edge_body_3": "So I measure how far off I usually am, and score the "
+                   "gap against that. Across {sample} games this week my "
+                   "spread numbers sit about {spread_gap} points from the "
+                   "book and my totals about {total_gap}. So six points on "
+                   "a total is not even twice my normal miss. Sounds "
+                   "enormous. It isn't.",
+    "edge_body_4": "Confidence turns that into a 1 to 10. A gap the size "
+                   "of my usual miss is a 5. Every extra miss worth of gap "
+                   "adds another 1.5. That's the whole formula, there's no "
+                   "second page. Confidence and edge are one fact said "
+                   "twice, so if you only want to look at one number, look "
+                   "at this one.",
+    "edge_body_5": "What counts as good on this board. The middle lean is "
+                   "a 5. The top tenth get to 6.5. The best thing up there "
+                   "right now is a 7. If something ever came back a 9 I'd "
+                   "assume my ratings broke before I'd assume the book left "
+                   "four touchdowns lying on the table.",
     "edge_body_6": "And the ceiling. This number stops at {cap} however "
                    "big the gap gets, and the publish line is {publish}. "
                    "Nothing I compute can put a play on the card by "
@@ -215,6 +218,7 @@ VOICE = {
     "board_mkt_spread": "Their spread",
     "board_my_total": "My total",
     "board_mkt_total": "Their total",
+    "board_col_line": "Favorite / total",
     "board_lean": "Where I lean",
     "board_no_lean": "Priced right. No lean.",
 
@@ -281,12 +285,14 @@ VOICE = {
 
     "no_signal": "Too few picks to mean anything.",
     "no_signal_long": "Before anyone gets excited, that record hasn't "
-                      "decided enough games to mean a thing. The 95 percent "
-                      "range on it still covers the 52.4 percent you need "
-                      "to break even, so it's just as consistent with me "
-                      "being lucky as with me being good. I post it anyway, "
-                      "because a guy who only shows you the good stretch is "
-                      "selling something.",
+                      "decided enough games to mean a thing. Swing a "
+                      "couple of results either way and it covers "
+                      "everything from losing money to printing it, "
+                      "including the 52.5 percent you need just to break "
+                      "even. So it's as consistent with me being lucky as "
+                      "with me being good. I post it anyway, because a guy "
+                      "who only shows you the good stretch is selling "
+                      "something.",
     "no_signal_short": "Same warning as above. Not enough has decided for "
                        "these bars to be worth the ink.",
 
@@ -388,6 +394,8 @@ def board_rows() -> list[dict]:
             "neutral_site": g.get("neutral_site"),
             "projected_spread": model.get("projected_spread"),
             "projected_total": model.get("projected_total"),
+            "home_short": model.get("home_team"),
+            "away_short": model.get("away_team"),
             "candidates": sorted(
                 g.get("candidates") or [],
                 key=lambda c: -(c.get("floor_confidence") or 0)),
@@ -463,12 +471,31 @@ SPREAD_OPENERS = (
     "On my sheet {fav} wins this by {margin}{hfa}.",
     "Give me {fav} minus {margin} on this one{hfa}.",
 )
-SIGMA_TALK = (
+# How unusual a gap is still has to account for totals swinging wider
+# than spreads, so the tier is chosen on the scaled figure. Only the
+# points ever reach the page.
+GAP_TALK = (
     (1.05, "which is nothing special, I see gaps like that all day"),
-    (1.95, "and that's a wider gap than most games on my board"),
+    (1.95, "which is a bigger gap than most games on my board"),
     (2.25, "which puts it in the top tenth of anything I'm looking at"),
-    (99.0, "and that's about as far apart as me and the book ever get"),
+    (99.0, "which is about as far apart as me and the book ever get"),
 )
+
+
+def half(v, signed: bool = False) -> str | None:
+    """
+    Every number on the page, rounded to the half point.
+
+    A book prices in halves and a bettor reads in halves, so 6.83 on a
+    confidence scale is false precision dressed as rigor. The model keeps
+    its full value for sorting and for the publish gate. This is only what
+    gets printed.
+    """
+    if v is None:
+        return None
+    r = round(float(v) * 2) / 2
+    out = f"{r:.1f}"
+    return f"+{out}" if signed and r > 0 else out
 
 
 def bias_note(raw: float, published: float) -> str:
@@ -481,14 +508,14 @@ def bias_note(raw: float, published: float) -> str:
     invites the reader to check the arithmetic, find it off by half a
     point, and stop trusting the rest.
     """
-    if abs(raw - published) < 0.2:
+    if half(raw) == half(published):
         return ""
-    return (f" Straight off the ratings that's {raw}, and the bias check "
-            f"against how my last 63 landed does the rest.")
+    return (f" Straight off the ratings that's {half(raw)}, and I nudge it "
+            f"for the way my numbers have been landing against the book.")
 
 
 def defend(model: dict, market: str, side: str, market_line, sigma,
-           model_number=None) -> dict:
+           model_number=None, edge_points=None) -> dict:
     """
     Steve's case for a lean, in numbers rather than adjectives.
 
@@ -519,11 +546,10 @@ def defend(model: dict, market: str, side: str, market_line, sigma,
     if market == "total":
         hp, ap = inp.get("home_points"), inp.get("away_points")
         if hp is not None and ap is not None:
-            raw = round(hp + ap, 1)
-            tot = round(float(model_number), 1) if model_number is not None \
-                else raw
+            raw = hp + ap
+            tot = float(model_number) if model_number is not None else raw
             line = TOTAL_OPENERS[seed % len(TOTAL_OPENERS)].format(
-                home=home, away=away, hp=hp, ap=ap, tot=tot)
+                home=home, away=away, hp=half(hp), ap=half(ap), tot=half(tot))
             line += bias_note(raw, tot)
     else:
         hr, ar = inp.get("home_rating"), inp.get("away_rating")
@@ -538,12 +564,13 @@ def defend(model: dict, market: str, side: str, market_line, sigma,
                            and float(model_number) < 0) or (
                               model_number is None and raw >= 0) else away
             hfa_txt = (f", and that's after I already spot the other guy "
-                       f"{hfa} for being at home" if hfa and fav != home
-                       else f", {hfa} of which is just for sleeping at home"
+                       f"{half(hfa)} for being at home" if hfa and fav != home
+                       else f", {half(hfa)} of which is just for sleeping "
+                       f"at home"
                        if hfa else ", neutral field, nobody gets a bump")
             line = SPREAD_OPENERS[seed % len(SPREAD_OPENERS)].format(
-                fav=fav, margin=round(margin, 1), hfa=hfa_txt)
-            line += bias_note(round(abs(raw), 1), round(margin, 1))
+                fav=fav, margin=half(margin), hfa=hfa_txt)
+            line += bias_note(abs(raw), margin)
 
     against = ""
     if market_line is None and market != "moneyline":
@@ -556,10 +583,10 @@ def defend(model: dict, market: str, side: str, market_line, sigma,
         against = f"Book's got it at {abs(market_line)}."
 
     unusual = ""
-    if sigma is not None:
-        a = abs(float(sigma))
-        how = next(t for cut, t in SIGMA_TALK if a < cut)
-        unusual = f"That's {a:.2f} sigma between us, {how}."
+    if sigma is not None and edge_points is not None:
+        how = next(t for cut, t in GAP_TALK if abs(float(sigma)) < cut)
+        unusual = (f"That leaves {half(abs(float(edge_points)))} points "
+                   f"between us, {how}.")
 
     built = ""
     if sources:
@@ -615,7 +642,8 @@ def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
         line = p.get("close_line")
     return defend(g.get("model") or {}, p.get("market"), p.get("side"),
                   line, (cand or {}).get("edge_sigma"),
-                  p.get("model_number") or (cand or {}).get("model_number"))
+                  p.get("model_number") or (cand or {}).get("model_number"),
+                  (cand or {}).get("edge_points") or p.get("edge"))
 
 
 RUNNING_FILE = store.DATA / "running_card.json"
@@ -673,7 +701,7 @@ def running_card() -> dict | None:
                 canonical(g.get("away_team") or "", known_locations) or ""),
             "defense": defend(g.get("model") or {}, e.get("market"),
                               e.get("side"), e.get("line"), e.get("sigma"),
-                              e.get("model_number")),
+                              e.get("model_number"), e.get("edge_points")),
         }
 
     card = [c for c in (shape(k) for k in raw["card"]) if c]
@@ -796,8 +824,8 @@ def build_payload() -> dict:
         "scale": {
             "cap": 7.5,
             "publish": store.LIVE_THRESHOLD,
-            "spread_sigma": (load_calibration().get("spreads") or {}).get("sigma"),
-            "total_sigma": (load_calibration().get("totals") or {}).get("sigma"),
+            "spread_gap": (load_calibration().get("spreads") or {}).get("sigma"),
+            "total_gap": (load_calibration().get("totals") or {}).get("sigma"),
             "sample": (load_calibration().get("spreads") or {}).get("n"),
         },
         "live": live_strip(picks),
@@ -1147,7 +1175,11 @@ HTML = """<!doctype html>
   .game summary::-webkit-details-marker { display: none; }
   .game summary:hover { background: rgba(201,169,97,.05); }
   .glogo { width: 34px; height: 34px; object-fit: contain; flex: none; }
-  .gteams { flex: 1 1 auto; min-width: 0; }
+  .gteams {
+    flex: 1 1 auto; min-width: 0; display: flex; align-items: center;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .gside { display: inline-flex; align-items: center; gap: 8px; }
   .gteams .away, .gteams .home { font-size: 15px; font-weight: 600; }
   .gat { color: var(--dim); font-size: 12px; padding: 0 2px; }
   .gnums {
@@ -1281,8 +1313,10 @@ const V = __VOICE__;
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g,
   c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el = id => document.getElementById(id);
-const num = (n, d = 2) => (n == null ? "n/a" : Number(n).toFixed(d));
-const signed = (n, d = 2) => (n == null ? "n/a" : (n > 0 ? "+" : "") + Number(n).toFixed(d));
+const half = n => (Math.round(Number(n) * 2) / 2).toFixed(1);
+const num = n => (n == null ? "n/a" : half(n));
+const signed = n => (n == null ? "n/a"
+  : (Number(n) > 0 ? "+" : "") + half(n));
 
 for (const [id, key] of [["running-h","running_heading"],["edge-h","edge_heading"],
   ["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
@@ -1497,9 +1531,13 @@ if ((DATA.lessons || []).length) {
     const arrow = d > 0 ? "&uarr;" : d < 0 ? "&darr;" : "&rarr;";
     const line = c.moved_line
       ? ` &middot; line ${c.moved_line.from} to ${c.moved_line.to}` : "";
-    return `<span class="${cls}">${arrow} from ${num(c.first_confidence, 1)}` +
-           `</span> <span class="flat">${esc(
-             V.running_since.replace("{days}", c.days_tracked))}${line}</span>`;
+    // Once both figures round to the same half point, "from 7.0" on a
+    // row already showing 7.0 claims a move that did not happen.
+    const from = num(c.first_confidence) === num(c.confidence)
+      ? `<span class="flat">${esc(V.running_held)}</span>`
+      : `<span class="${cls}">${arrow} from ${num(c.first_confidence)}</span>`;
+    return `${from} <span class="flat">${esc(
+      V.running_since.replace("{days}", c.days_tracked))}${line}</span>`;
   };
   const badge = (src, name) => `<div class="team">${
     src ? `<img src="${esc(src)}" alt="${esc(name)}" loading="lazy">`
@@ -1520,8 +1558,8 @@ if ((DATA.lessons || []).length) {
       ${c.defense && c.defense.text
         ? `<div class="leandef">${esc(c.defense.text)}</div>` : ""}
       <div class="leanmeta">${esc(c.market)} ${esc(c.period)} &middot; my
-        number ${c.model_number} &middot; ${
-        c.sigma == null ? "n/a" : Math.abs(c.sigma).toFixed(2)}&sigma;</div>
+        number ${num(c.model_number)}${c.edge_points == null ? "" :
+        ` &middot; ${num(Math.abs(c.edge_points))} points apart`}</div>
       <div class="leanmove">${move(c)}</div>
     </div></div>`;
   const dropped = (R.dropped || []).length
@@ -1544,23 +1582,23 @@ if ((DATA.lessons || []).length) {
   const sc = DATA.scale || {};
   const fill = t => t
     .replace("{sample}", sc.sample == null ? "the board" : sc.sample)
-    .replace("{spread_sigma}", sc.spread_sigma == null ? "about 3" : sc.spread_sigma)
-    .replace("{total_sigma}", sc.total_sigma == null ? "about 3" : sc.total_sigma)
-    .replace("{cap}", Number(sc.cap).toFixed(1))
-    .replace("{publish}", Number(sc.publish).toFixed(1));
+    .replace("{spread_gap}", sc.spread_gap == null ? "about 3" : num(sc.spread_gap))
+    .replace("{total_gap}", sc.total_gap == null ? "about 3" : num(sc.total_gap))
+    .replace("{cap}", num(sc.cap))
+    .replace("{publish}", num(sc.publish));
   const rungs = [
-    ["1.0&sigma;", "5.0", "typical lean"],
-    ["1.9&sigma;", "6.4", "top tenth"],
-    ["2.4&sigma;", "7.1", "best on the board"],
-    ["&mdash;", Number(sc.cap).toFixed(1), "my ceiling"],
-    ["&mdash;", Number(sc.publish).toFixed(1), "publish line"],
+    ["5.0", "a typical lean"],
+    ["6.5", "top tenth of the board"],
+    ["7.0", "best thing up there"],
+    [num(sc.cap), "my ceiling"],
+    [num(sc.publish), "publish line"],
   ];
   el("edge").innerHTML = `<div class="edge">` +
     [1, 2, 3, 4].map(i => say(fill(V["edge_body_" + i]))).join("") +
-    `<div class="scale">${rungs.map(([sig, val, lbl], i) => `
+    `<div class="scale">${rungs.map(([val, lbl], i) => `
       <div class="rung ${i >= 3 ? "bar" : ""}">
         <div class="v">${val}</div>
-        <div class="k">${sig} &middot; ${lbl}</div>
+        <div class="k">${lbl}</div>
       </div>`).join("")}</div>` +
     say(fill(V.edge_body_5)) + say(fill(V.edge_body_6)) + `</div>`;
 })();
@@ -1592,15 +1630,23 @@ if ((DATA.lessons || []).length) {
   const logo = (src, alt) => src
     ? `<img class="glogo" src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`
     : `<span class="glogo"></span>`;
-  const fmtpt = v => v == null ? "n/a" : (v > 0 ? "+" : "") + v;
+  const fmtpt = v => v == null ? "n/a" : signed(v);
+  // A spread is stored from the home team's side, negative when the home
+  // team lays. On its own that is a number with no subject.
+  const fav = (g, sp) => {
+    if (sp == null) return "n/a";
+    if (Number(sp) === 0) return "pick 'em";
+    const who = Number(sp) < 0 ? (g.home_short || g.home_team)
+                               : (g.away_short || g.away_team);
+    return `${esc(who)} ${num(-Math.abs(Number(sp)))}`;
+  };
   const html = rows.map(g => {
     const best = (g.candidates || [])[0];
     const lean = best
       ? `<p class="glean">${esc(V.board_lean)}: <b>${esc(best.side)} ` +
         `${best.market === "total" ? best.bet_line : fmtpt(best.bet_line)}` +
-        `</b> &middot; edge ${fmtpt(best.edge_points)} ` +
-        `(${best.edge_sigma == null ? "n/a" : fmtpt(best.edge_sigma)}&sigma;) ` +
-        `&middot; floor ${num(best.floor_confidence, 1)}</p>`
+        `</b> &middot; ${num(Math.abs(best.edge_points))} points apart ` +
+        `&middot; confidence ${num(best.floor_confidence)}</p>`
       : `<p class="glean">${esc(V.board_no_lean)}</p>`;
 
     const move = Object.entries(g.movement || {}).map(([k, m]) =>
@@ -1608,16 +1654,17 @@ if ((DATA.lessons || []).length) {
     return `<details class="game">
       <summary>
         <span class="gcaret">&#9656;</span>
-        ${logo(g.away_logo, g.away_team)}
-        <div class="gteams"><span class="away">${esc(g.away_team)}</span>
+        <div class="gteams">
+          <span class="gside">${logo(g.away_logo, g.away_team)}
+            <span class="away">${esc(g.away_team)}</span></span>
           <span class="gat">at</span>
-          <span class="home">${esc(g.home_team)}</span>${
+          <span class="gside">${logo(g.home_logo, g.home_team)}
+            <span class="home">${esc(g.home_team)}</span></span>${
             g.neutral_site ? ' <span class="gat">(neutral)</span>' : ""}</div>
-        ${logo(g.home_logo, g.home_team)}
         <div class="gnums">
-          <div class="lbl">spread / total</div>
-          ${g.market_spread == null ? "n/a" : fmtpt(g.market_spread)} / ${
-            g.market_total == null ? "n/a" : g.market_total}
+          <div class="lbl">${esc(V.board_col_line)}</div>
+          ${fav(g, g.market_spread)} &middot; ${
+            g.market_total == null ? "n/a" : num(g.market_total)}
         </div>
         <div class="gkick">${kick(g.kickoff)}</div>
       </summary>
@@ -1626,10 +1673,10 @@ if ((DATA.lessons || []).length) {
           <th>${esc(V.board_mkt_spread)}</th><th>${esc(V.board_my_spread)}</th>
           <th>${esc(V.board_mkt_total)}</th><th>${esc(V.board_my_total)}</th>
         </tr></thead><tbody><tr><td></td>
-          <td>${g.market_spread == null ? "n/a" : fmtpt(g.market_spread)}</td>
-          <td>${fmtpt(g.projected_spread)}</td>
-          <td>${g.market_total == null ? "n/a" : g.market_total}</td>
-          <td>${g.projected_total == null ? "n/a" : g.projected_total}</td>
+          <td>${fav(g, g.market_spread)}</td>
+          <td>${fav(g, g.projected_spread)}</td>
+          <td>${g.market_total == null ? "n/a" : num(g.market_total)}</td>
+          <td>${g.projected_total == null ? "n/a" : num(g.projected_total)}</td>
         </tr></tbody></table>
         ${move ? `<p class="gmove">${esc(V.board_moved)}: ${move}</p>` : ""}
         ${lean}
