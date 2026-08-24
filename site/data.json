@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-24T20:36:00+00:00",
+  "generated_at": "2026-08-24T20:37:16+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-08-24T18:24:06+00:00",
+    "built_at": "2026-08-24T20:37:00+00:00",
     "rows": [
       {
         "market_spread": -6.5,
@@ -28,7 +28,7 @@
             "price": -110,
             "model_number": 54.3,
             "edge_points": 7.8,
-            "edge_sigma": 2.37,
+            "edge_sigma": 2.38,
             "floor_confidence": 7.1
           }
         ],
@@ -74,7 +74,7 @@
             "price": -105,
             "model_number": 50.1,
             "edge_points": -6.4,
-            "edge_sigma": -1.94,
+            "edge_sigma": -1.95,
             "floor_confidence": 6.4
           }
         ],
@@ -156,7 +156,7 @@
             "price": -110,
             "model_number": 48.1,
             "edge_points": -6.4,
-            "edge_sigma": -1.94,
+            "edge_sigma": -1.95,
             "floor_confidence": 6.4
           }
         ],
@@ -185,7 +185,7 @@
             "price": -105,
             "model_number": 55.1,
             "edge_points": -6.4,
-            "edge_sigma": -1.94,
+            "edge_sigma": -1.95,
             "floor_confidence": 6.4
           },
           {
@@ -272,7 +272,7 @@
             "price": -110,
             "model_number": 54.1,
             "edge_points": -5.4,
-            "edge_sigma": -1.64,
+            "edge_sigma": -1.65,
             "floor_confidence": 6.0
           }
         ],
@@ -330,8 +330,8 @@
             "price": -115,
             "model_number": 56.4,
             "edge_points": 4.9,
-            "edge_sigma": 1.49,
-            "floor_confidence": 5.7
+            "edge_sigma": 1.5,
+            "floor_confidence": 5.8
           }
         ],
         "movement": {}
@@ -492,7 +492,7 @@
       },
       {
         "market_spread": -23.5,
-        "market_total": 49.5,
+        "market_total": 48.5,
         "event_id": "f089e3d943a34a9c4fe1808568b96529",
         "kickoff": "2026-09-03T23:00:00Z",
         "matchup": "Akron Zips @ Wake Forest Demon Deacons",
@@ -520,16 +520,21 @@
             "market": "total",
             "period": "full",
             "side": "Under",
-            "market_line": 49.5,
-            "bet_line": 49.5,
-            "price": -106,
+            "market_line": 48.5,
+            "bet_line": 48.5,
+            "price": -105,
             "model_number": 45.8,
-            "edge_points": -3.7,
-            "edge_sigma": -1.12,
-            "floor_confidence": 5.2
+            "edge_points": -2.7,
+            "edge_sigma": -0.82,
+            "floor_confidence": 4.7
           }
         ],
-        "movement": {}
+        "movement": {
+          "total": {
+            "from": 49.5,
+            "to": 48.5
+          }
+        }
       },
       {
         "market_spread": -9.5,
@@ -595,7 +600,7 @@
             "price": -115,
             "model_number": 56.4,
             "edge_points": 3.9,
-            "edge_sigma": 1.18,
+            "edge_sigma": 1.19,
             "floor_confidence": 5.3
           }
         ],
@@ -631,6 +636,35 @@
         "movement": {}
       },
       {
+        "market_spread": -10.5,
+        "market_total": 50.5,
+        "event_id": "073bba47dc105fcd66913e74f281ae96",
+        "kickoff": "2026-09-05T23:30:00Z",
+        "matchup": "Clemson Tigers @ LSU Tigers",
+        "home_team": "LSU Tigers",
+        "away_team": "Clemson Tigers",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
+        "neutral_site": false,
+        "projected_spread": -9.9,
+        "projected_total": 46.9,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 50.5,
+            "bet_line": 50.5,
+            "price": -102,
+            "model_number": 46.9,
+            "edge_points": -3.6,
+            "edge_sigma": -1.1,
+            "floor_confidence": 5.2
+          }
+        ],
+        "movement": {}
+      },
+      {
         "market_spread": -5.5,
         "market_total": 48.5,
         "event_id": "24941bb5e2e6f79d944530b0b8ea4be5",
@@ -650,7 +684,7 @@
             "side": "Hawai'i",
             "market_line": -5.5,
             "bet_line": 5.5,
-            "price": -104,
+            "price": -110,
             "model_number": -2.6,
             "edge_points": 2.9,
             "edge_sigma": 1.06,
@@ -665,7 +699,7 @@
             "price": -110,
             "model_number": 51.7,
             "edge_points": 3.2,
-            "edge_sigma": 0.97,
+            "edge_sigma": 0.98,
             "floor_confidence": 5.0
           }
         ],
@@ -699,40 +733,57 @@
             "price": -108,
             "model_number": 44.0,
             "edge_points": -3.5,
-            "edge_sigma": -1.06,
+            "edge_sigma": -1.07,
             "floor_confidence": 5.1
           }
         ],
         "movement": {}
       },
       {
-        "market_spread": -10.5,
-        "market_total": 50.5,
-        "event_id": "073bba47dc105fcd66913e74f281ae96",
-        "kickoff": "2026-09-05T23:30:00Z",
-        "matchup": "Clemson Tigers @ LSU Tigers",
-        "home_team": "LSU Tigers",
-        "away_team": "Clemson Tigers",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
+        "market_spread": -13.5,
+        "market_total": 54.5,
+        "event_id": "85b9f3dfd3a9deeaaa046572f9b4fbeb",
+        "kickoff": "2026-09-05T23:00:00Z",
+        "matchup": "Florida International Panthers @ South Florida Bulls",
+        "home_team": "South Florida Bulls",
+        "away_team": "Florida International Panthers",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
         "neutral_site": false,
-        "projected_spread": -9.9,
-        "projected_total": 46.9,
+        "projected_spread": -15.2,
+        "projected_total": 57.9,
         "candidates": [
           {
             "market": "total",
             "period": "full",
-            "side": "Under",
-            "market_line": 50.5,
-            "bet_line": 50.5,
-            "price": -102,
-            "model_number": 46.9,
-            "edge_points": -3.6,
-            "edge_sigma": -1.09,
+            "side": "Over",
+            "market_line": 54.5,
+            "bet_line": 54.5,
+            "price": -115,
+            "model_number": 57.9,
+            "edge_points": 3.4,
+            "edge_sigma": 1.04,
             "floor_confidence": 5.1
+          },
+          {
+            "market": "spread",
+            "period": "full",
+            "side": "South Florida",
+            "market_line": -13.5,
+            "bet_line": -13.5,
+            "price": -110,
+            "model_number": -15.2,
+            "edge_points": -1.7,
+            "edge_sigma": -0.62,
+            "floor_confidence": 4.4
           }
         ],
-        "movement": {}
+        "movement": {
+          "spread": {
+            "from": -12.5,
+            "to": -13.5
+          }
+        }
       },
       {
         "market_spread": -26.5,
@@ -757,7 +808,7 @@
             "price": -108,
             "model_number": 55.0,
             "edge_points": -3.5,
-            "edge_sigma": -1.06,
+            "edge_sigma": -1.07,
             "floor_confidence": 5.1
           }
         ],
@@ -820,7 +871,7 @@
             "price": -110,
             "model_number": 59.7,
             "edge_points": 3.2,
-            "edge_sigma": 0.97,
+            "edge_sigma": 0.98,
             "floor_confidence": 5.0
           }
         ],
@@ -859,52 +910,6 @@
           }
         ],
         "movement": {}
-      },
-      {
-        "market_spread": -13.5,
-        "market_total": 54.5,
-        "event_id": "85b9f3dfd3a9deeaaa046572f9b4fbeb",
-        "kickoff": "2026-09-05T23:00:00Z",
-        "matchup": "Florida International Panthers @ South Florida Bulls",
-        "home_team": "South Florida Bulls",
-        "away_team": "Florida International Panthers",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
-        "neutral_site": false,
-        "projected_spread": -15.2,
-        "projected_total": 57.9,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Over",
-            "market_line": 54.5,
-            "bet_line": 54.5,
-            "price": -115,
-            "model_number": 57.9,
-            "edge_points": 3.4,
-            "edge_sigma": 1.03,
-            "floor_confidence": 5.0
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "South Florida",
-            "market_line": -13.5,
-            "bet_line": -13.5,
-            "price": -110,
-            "model_number": -15.2,
-            "edge_points": -1.7,
-            "edge_sigma": -0.62,
-            "floor_confidence": 4.4
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -12.5,
-            "to": -13.5
-          }
-        }
       },
       {
         "market_spread": 2.5,
@@ -999,7 +1004,7 @@
             "price": -110,
             "model_number": 54.6,
             "edge_points": 3.1,
-            "edge_sigma": 0.94,
+            "edge_sigma": 0.95,
             "floor_confidence": 4.9
           }
         ],
@@ -1091,7 +1096,7 @@
             "price": -115,
             "model_number": 48.4,
             "edge_points": 2.9,
-            "edge_sigma": 0.88,
+            "edge_sigma": 0.89,
             "floor_confidence": 4.8
           }
         ],
@@ -1462,15 +1467,15 @@
         "movement": {}
       }
     ],
-    "fetched_at": "2026-08-24T18:24:03+00:00",
-    "age_hours": 2.2,
+    "fetched_at": "2026-08-24T20:36:58+00:00",
+    "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
     "held": []
   },
   "running": {
-    "updated_at": "2026-08-24T20:28:07+00:00",
-    "board_fetched_at": "2026-08-24T18:24:03+00:00",
+    "updated_at": "2026-08-24T20:37:00+00:00",
+    "board_fetched_at": "2026-08-24T20:36:58+00:00",
     "season": 2026,
     "week": 1,
     "card": [
@@ -1482,14 +1487,14 @@
         "line": 46.5,
         "price": -110,
         "confidence": 7.1,
-        "sigma": 2.37,
+        "sigma": 2.38,
         "edge_points": 7.8,
         "model_number": 54.3,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 7.1,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true
@@ -1509,7 +1514,7 @@
         "first_confidence": 6.8,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 2,
         "peak_rank": 2,
         "on_board": true
@@ -1529,7 +1534,7 @@
         "first_confidence": 6.6,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 3,
         "peak_rank": 3,
         "on_board": true
@@ -1549,7 +1554,7 @@
         "first_confidence": 6.5,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 4,
         "peak_rank": 4,
         "on_board": true
@@ -1562,14 +1567,14 @@
         "line": 54.5,
         "price": -110,
         "confidence": 6.4,
-        "sigma": -1.94,
+        "sigma": -1.95,
         "edge_points": -6.4,
         "model_number": 48.1,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 6.4,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 5,
         "peak_rank": 5,
         "on_board": true
@@ -1582,14 +1587,14 @@
         "line": 56.5,
         "price": -105,
         "confidence": 6.4,
-        "sigma": -1.94,
+        "sigma": -1.95,
         "edge_points": -6.4,
         "model_number": 50.1,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 6.4,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 1,
+        "days_tracked": 2,
         "rank": 6,
         "peak_rank": 6,
         "on_board": true
@@ -1602,13 +1607,13 @@
     "cap": 7.5,
     "publish": 8.0,
     "spread_sigma": 2.724,
-    "total_sigma": 3.292,
+    "total_sigma": 3.276,
     "sample": 63
   },
   "live": null,
   "lock_id": null,
-  "board_fetched_at": "2026-08-24T18:24:03+00:00",
-  "credits_remaining": 423,
+  "board_fetched_at": "2026-08-24T20:36:58+00:00",
+  "credits_remaining": 420,
   "live_threshold": 8.0,
   "target_picks": 6,
   "breakeven": 52.4,
