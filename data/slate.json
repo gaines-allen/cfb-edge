@@ -1,12 +1,12 @@
 {
-  "built_at": "2026-08-23T18:14:42+00:00",
+  "built_at": "2026-08-24T14:20:26+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-23T18:14:40+00:00",
+  "board_fetched_at": "2026-08-24T14:20:23+00:00",
   "warning": null,
   "games_on_board": 110,
-  "games_with_candidates": 41,
+  "games_with_candidates": 42,
   "games_dropped": [
     "Albany @ Buffalo Bulls",
     "Bethune-Cookman Wildcats @ UCF Knights",
@@ -109,14 +109,14 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-23T18:14:41+00:00",
+    "measured_at": "2026-08-24T14:20:25+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 63,
-      "bias": -0.89,
+      "bias": -0.906,
       "median": -0.7,
-      "sigma": 3.268
+      "sigma": 3.277
     },
     "spreads": {
       "n": 63,
@@ -176,7 +176,7 @@
           "price": -110,
           "model_number": 54.3,
           "edge_points": 7.8,
-          "edge_sigma": 2.39,
+          "edge_sigma": 2.38,
           "floor_confidence": 7.1
         }
       ]
@@ -230,7 +230,7 @@
           "price": -110,
           "model_number": 48.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.96,
+          "edge_sigma": -1.95,
           "floor_confidence": 6.4
         },
         {
@@ -296,7 +296,7 @@
           "price": -105,
           "model_number": 50.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.96,
+          "edge_sigma": -1.95,
           "floor_confidence": 6.4
         },
         {
@@ -362,7 +362,7 @@
           "price": -105,
           "model_number": 55.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.96,
+          "edge_sigma": -1.95,
           "floor_confidence": 6.4
         },
         {
@@ -668,8 +668,8 @@
           "price": -110,
           "model_number": 55.8,
           "edge_points": -4.7,
-          "edge_sigma": -1.44,
-          "floor_confidence": 5.7
+          "edge_sigma": -1.43,
+          "floor_confidence": 5.6
         },
         {
           "market": "spread",
@@ -734,7 +734,7 @@
           "price": -110,
           "model_number": 58.8,
           "edge_points": 4.3,
-          "edge_sigma": 1.32,
+          "edge_sigma": 1.31,
           "floor_confidence": 5.5
         },
         {
@@ -797,7 +797,7 @@
           "side": "Sacramento State",
           "market_line": -9.5,
           "bet_line": 9.5,
-          "price": -104,
+          "price": -105,
           "model_number": -5.4,
           "edge_points": 4.1,
           "edge_sigma": 1.51,
@@ -1550,7 +1550,7 @@
           "price": -115,
           "model_number": 48.4,
           "edge_points": 2.9,
-          "edge_sigma": 0.89,
+          "edge_sigma": 0.88,
           "floor_confidence": 4.8
         }
       ]
@@ -1658,7 +1658,7 @@
           "price": -105,
           "model_number": 50.7,
           "edge_points": -2.8,
-          "edge_sigma": -0.86,
+          "edge_sigma": -0.85,
           "floor_confidence": 4.8
         }
       ]
@@ -1709,10 +1709,10 @@
           "side": "Over",
           "market_line": 47.5,
           "bet_line": 47.5,
-          "price": -110,
+          "price": -112,
           "model_number": 50.2,
           "edge_points": 2.7,
-          "edge_sigma": 0.83,
+          "edge_sigma": 0.82,
           "floor_confidence": 4.7
         },
         {
@@ -1886,7 +1886,7 @@
           "price": -115,
           "model_number": 45.9,
           "edge_points": -2.6,
-          "edge_sigma": -0.8,
+          "edge_sigma": -0.79,
           "floor_confidence": 4.7
         },
         {
@@ -1900,6 +1900,60 @@
           "edge_points": 2.1,
           "edge_sigma": 0.77,
           "floor_confidence": 4.7
+        }
+      ]
+    },
+    {
+      "event_id": "9bbc04340f2b3f77756a22bc44e1a4a4",
+      "kickoff": "2026-08-29T23:00:00Z",
+      "matchup": "New Mexico State Aggies @ Florida State Seminoles",
+      "home_team": "Florida State Seminoles",
+      "away_team": "New Mexico State Aggies",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Florida State",
+        "away_team": "New Mexico State",
+        "projected_spread": -29.5,
+        "projected_total": 51.1,
+        "projected_h1_spread": -16.2,
+        "projected_h1_total": 24.0,
+        "hfa_applied": 2.2,
+        "inputs": {
+          "home_rating": 9.18,
+          "away_rating": -17.5,
+          "home_points": 32.1,
+          "away_points": 18.1,
+          "home_components": {
+            "sp": 9.1,
+            "sp_off": 29.8,
+            "sp_def": 20.4,
+            "fpi": 9.319
+          },
+          "away_components": {
+            "sp": -18.5,
+            "sp_off": 15.9,
+            "sp_def": 34.4,
+            "fpi": -15.705
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 53.5,
+          "bet_line": 53.5,
+          "price": -110,
+          "model_number": 51.1,
+          "edge_points": -2.4,
+          "edge_sigma": -0.73,
+          "floor_confidence": 4.6
         }
       ]
     },
