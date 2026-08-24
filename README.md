@@ -99,6 +99,50 @@ semantic: a column of SP+ offense ratings whose median sits near 0 is a
 differential whatever it is called, and a CFBD team name the ESPN map can
 shorten is carrying a mascot whatever the docs say.
 
+## Confidence, and what it is
+
+Every lean carries a number from 1 to 10, and it is not a separate opinion
+from the edge. It is the edge, restated.
+
+The model has a number for a game and the book has a number. The gap is the
+edge in points. Points mislead across markets, because totals swing wider
+than spreads, so the gap is divided by the dispersion measured that week
+between model and market. That gives a sigma. Confidence is that sigma on a
+human scale: `3.5 + 1.5 x sigma`, capped at 7.5.
+
+So edge in points, sigma, and confidence are one fact in three costumes.
+The site leads with confidence and shows the other two beneath it, and
+`scripts/build_site.py` reads the dispersion out of
+`data/model_calibration.json` at build time rather than carrying numbers in
+the copy, since it is remeasured every week.
+
+What the range actually looks like, on a real 110 game board: the middle
+lean runs about 1 sigma, a 5.0. The top tenth reach 1.9, about 6.4. The
+best thing on the board sits near 2.4, a 7.1. Nothing has reached 3 sigma,
+and anything that did would more likely be a broken rating than an edge.
+The cap at 7.5 sits below the 8.0 publish line on purpose, so nothing the
+model computes can put a play on the card by itself.
+
+## The running card
+
+`scripts/build_running_card.py` tracks the 6 leans the model likes best
+right now and writes `data/running_card.json`. It runs in the daily job
+after the slate and before the page, appending one observation per lean per
+pull.
+
+These are leans and not picks. Everything on it sits under the publish line
+by construction, and the page says so.
+
+The movement is the product. A lean enters at one number and the market
+moves toward it through the week, which closes the gap and drops the
+confidence. When a lean leaves the top 6 it does not vanish: it moves to a
+list of what fell off, carrying the number it entered at and the number it
+holds now. A card that silently reshuffles is how a tout claims they were
+never wrong.
+
+The card also says when its 6 leans cover fewer than 6 games, because the
+same game twice is one opinion sold twice.
+
 ## The week
 
 Monday at 2 PM Eastern the full slate goes up: every game as a collapsible

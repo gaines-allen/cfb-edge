@@ -77,7 +77,10 @@ def test_the_helpline_is_not_in_character():
 
 
 def test_every_voice_key_the_template_asks_for_exists():
-    used = set(re.findall(r"V\.([a-z_]+)", B.HTML))
+    # Digits belong in the class. Without them V.edge_body_5 is read as
+    # the key edge_body_, which does not exist, and the test fails on its
+    # own regex rather than on anything real.
+    used = set(re.findall(r"V\.([a-z_0-9]+)", B.HTML))
     missing = sorted(used - set(B.VOICE))
     assert missing == [], f"template reads VOICE keys that do not exist: {missing}"
 

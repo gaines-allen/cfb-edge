@@ -95,11 +95,21 @@ jobs:
         run: |
           python3 scripts/make_slate.py --season "${{ inputs.season || '2026' }}"
 
+      # Track the top 6 leans and how they move. Runs after the slate so
+      # it reads today's numbers, and before the page so the site renders
+      # what it just recorded.
+      - name: Update the running card
+        id: running
+        continue-on-error: true
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: python3 scripts/build_running_card.py
+
       - name: Check the grading math and the name matcher
         run: python3 scripts/selftest.py
 
       - name: Report what failed
-        if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure' || steps.slate.outcome == 'failure' || steps.calibrate.outcome == 'failure'
+        if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure' || steps.slate.outcome == 'failure' || steps.calibrate.outcome == 'failure' || steps.running.outcome == 'failure'
         run: |
           echo "### A step did not finish clean" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -107,6 +117,7 @@ jobs:
           echo "Grading: ${{ steps.grade.outcome }}" >> $GITHUB_STEP_SUMMARY
           echo "Calibration: ${{ steps.calibrate.outcome }}" >> $GITHUB_STEP_SUMMARY
           echo "Slate build: ${{ steps.slate.outcome }}" >> $GITHUB_STEP_SUMMARY
+          echo "Running card: ${{ steps.running.outcome }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Usual causes: ODDS_API_KEY or CFBD_API_KEY missing from repository secrets, the monthly credit quota is spent, or a school name failed to map between sources. Open the failing step's log. A name mapping failure lists the exact spelling and gets fixed in scripts/lib/teams.py, never by hand-editing data." >> $GITHUB_STEP_SUMMARY
 

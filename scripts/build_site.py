@@ -19,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
+from lib.model import load_calibration  # noqa: E402
 from lib.teams import canonical, load_logos  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
@@ -138,6 +139,61 @@ VOICE = {
              "than typed in by someone having a good week.",
 
     "page_title": "Steve. The card, and the record.",
+    "running_heading": "The running card",
+    "running_note": "The 6 leans I like best right now, not picks. These "
+                    "move. A number the market has caught up to stops "
+                    "being worth anything, so what was good Monday is "
+                    "often gone by Thursday, and I'd rather show you that "
+                    "than quietly swap it out.",
+    "running_empty": "Nothing tracked yet. This fills in once the board "
+                     "is up and I've had a day to watch it move.",
+    "running_new": "new today",
+    "running_since": "tracked {days} days",
+    "running_stacked": "Worth saying: those 6 leans cover {games} games, "
+                       "not 6. When a game shows up twice it is one "
+                       "opinion sold to you twice, and the second one is "
+                       "not a free roll.",
+    "running_dropped_heading": "Fell off",
+    "running_dropped_note": "These held a top 6 spot earlier in the week "
+                            "and don't now. Usually that means the market "
+                            "moved to my number, which is the market doing "
+                            "its job and me having nothing left to say.",
+
+    # The explainer. Every figure in it comes from the live measurement,
+    # so the copy cannot drift from the arithmetic it is describing.
+    "edge_heading": "What confidence actually means",
+    "edge_body_1": "Every lean carries a number from 1 to 10. Here is "
+                   "exactly how it is built, because a number you cannot "
+                   "interrogate is a number you should not trust.",
+    "edge_body_2": "I have a number for a game and the book has a number. "
+                   "The gap between them is the edge, in points. Points "
+                   "lie, though. Six points on a total is not the same "
+                   "animal as six points on a spread, because totals swing "
+                   "wider than spreads do.",
+    "edge_body_3": "So I divide that gap by how far my number and the "
+                   "book's normally sit apart. That gives a sigma. Right "
+                   "now, measured across {sample} games, that gap runs "
+                   "{spread_sigma} points on a spread and {total_sigma} on "
+                   "a total. So six points on a total is under 2 sigma. "
+                   "Sounds enormous. Is not.",
+    "edge_body_4": "Confidence is that sigma on a 1 to 10 scale: 3.5, plus "
+                   "1.5 for every sigma. That is the whole formula. "
+                   "Confidence and edge are one fact stated twice, so if "
+                   "you only want to look at one number, look at this one.",
+    "edge_body_5": "What counts as good, on this board: the middle lean "
+                   "runs about 1 sigma, which is a 5. The top tenth reach "
+                   "1.9, about a 6.4. The best thing on the whole board "
+                   "sits at 2.4, a 7.1. Anything past 3 sigma has never "
+                   "once been a real edge here. That is a broken rating, "
+                   "and I would sooner assume I am wrong than assume the "
+                   "market left 4 touchdowns lying on the table.",
+    "edge_body_6": "And the ceiling. This number stops at {cap} however "
+                   "big the gap gets, and the publish line is {publish}. "
+                   "Nothing I compute can put a play on the card by "
+                   "itself. That last half point has to come from "
+                   "something the model cannot see, and that is the entire "
+                   "point of the thing.",
+
     "board_heading": "This week's board",
     "board_note": "Every game on the slate, my number next to theirs, "
                   "whether or not it made the card. If you like something "
@@ -375,6 +431,58 @@ def board_rows() -> list[dict]:
 # more.
 MAX_BOARD_AGE_HOURS = 26
 
+RUNNING_FILE = store.DATA / "running_card.json"
+
+
+def running_card() -> dict | None:
+    """
+    The 6 leans the model likes best right now, with what each looked like
+    when it first appeared. The movement is the point: a lean the market
+    has caught up to is no longer a lean, and saying so is the difference
+    between tracking edge and remembering a hunch.
+    """
+    raw = store._load(RUNNING_FILE, None)
+    if not raw or not raw.get("card"):
+        return None
+    leans = raw.get("leans", {})
+
+    def shape(key):
+        e = leans.get(key)
+        if not e:
+            return None
+        moved_conf = None
+        if e.get("first_confidence") is not None \
+                and e.get("confidence") is not None:
+            moved_conf = round(e["confidence"] - e["first_confidence"], 1)
+        moved_line = None
+        if e.get("first_line") is not None and e.get("line") is not None \
+                and e["first_line"] != e["line"]:
+            moved_line = {"from": e["first_line"], "to": e["line"]}
+        return {
+            "matchup": e.get("matchup"), "side": e.get("side"),
+            "market": e.get("market"), "period": e.get("period"),
+            "line": e.get("line"), "price": e.get("price"),
+            "confidence": e.get("confidence"), "sigma": e.get("sigma"),
+            "edge_points": e.get("edge_points"),
+            "model_number": e.get("model_number"),
+            "first_seen": e.get("first_seen"),
+            "first_confidence": e.get("first_confidence"),
+            "moved_confidence": moved_conf, "moved_line": moved_line,
+            "days_tracked": len(e.get("history") or []),
+            "rank": e.get("rank"), "peak_rank": e.get("peak_rank"),
+            "on_board": e.get("on_board", True),
+        }
+
+    card = [c for c in (shape(k) for k in raw["card"]) if c]
+    dropped = [c for c in (shape(k) for k in raw.get("dropped", [])) if c]
+    dropped.sort(key=lambda c: c.get("confidence") or 0, reverse=True)
+    return {"updated_at": raw.get("updated_at"),
+            "board_fetched_at": raw.get("board_fetched_at"),
+            "season": raw.get("season"), "week": raw.get("week"),
+            "card": card, "dropped": dropped[:4],
+            "tracked": len(leans)}
+
+
 LIVE_FILE = store.DATA / "live_scores.json"
 LIVE_FRESH_MINUTES = 90
 
@@ -474,6 +582,16 @@ def build_payload() -> dict:
     return {
         "generated_at": store.now_iso(),
         "board": board_rows(),
+        "running": running_card(),
+        # The scale the site explains, read off the live measurement rather
+        # than written into the copy, since dispersion moves every week.
+        "scale": {
+            "cap": 7.5,
+            "publish": store.LIVE_THRESHOLD,
+            "spread_sigma": (load_calibration().get("spreads") or {}).get("sigma"),
+            "total_sigma": (load_calibration().get("totals") or {}).get("sigma"),
+            "sample": (load_calibration().get("spreads") or {}).get("n"),
+        },
         "live": live_strip(picks),
         "lock_id": lock,
         "board_fetched_at": board.get("fetched_at"),
@@ -718,6 +836,54 @@ HTML = """<!doctype html>
   .chart { margin: 4px 0 6px; }
   svg { display: block; width: 100%; height: auto; }
 
+  /* ------------------------------------------- the running card */
+  .lean {
+    display: flex; align-items: center; gap: 16px; padding: 14px 4px;
+    border-bottom: 1px solid #22314a;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .lean:last-child { border-bottom: 0; }
+  .conf {
+    flex: none; width: 62px; text-align: center;
+  }
+  .conf .n {
+    font-size: 27px; font-weight: 800; line-height: 1;
+    font-variant-numeric: tabular-nums; color: var(--gold-2);
+  }
+  .conf .lbl {
+    font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--dim); margin-top: 3px;
+  }
+  .leanbody { flex: 1 1 auto; min-width: 0; }
+  .leanplay { font-size: 16px; font-weight: 700; color: var(--cream); }
+  .leanmeta {
+    font-size: 12px; color: var(--dim); margin-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .leanmove { font-size: 12px; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .up { color: #7ecf84; } .down { color: #ec8478; } .flat { color: var(--dim); }
+  .lean.gone { opacity: .55; }
+  .dropped { margin-top: 26px; }
+  .dropped h3 {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--dim); margin: 0 0 6px;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+
+  /* ------------------------------------------------ the explainer */
+  .edge p { max-width: 64ch; }
+  .scale {
+    display: flex; gap: 0; margin: 18px 0 8px; flex-wrap: wrap;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .rung { padding: 8px 18px; border-left: 2px solid #22314a; }
+  .rung:first-child { border-left: 0; padding-left: 0; }
+  .rung .v { font-size: 21px; font-weight: 800; color: var(--gold-2);
+             font-variant-numeric: tabular-nums; }
+  .rung .k { font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+             color: var(--dim); margin-top: 2px; }
+  .rung.bar .v { color: var(--cream); }
+
   /* ------------------------------------------------ the board */
   .game {
     border-bottom: 1px solid #22314a;
@@ -819,6 +985,12 @@ HTML = """<!doctype html>
   <h2 id="card-h">The card</h2>
   <div id="card"></div>
 
+  <h2 id="running-h">The running card</h2>
+  <div id="running"></div>
+
+  <h2 id="edge-h">What confidence actually means</h2>
+  <div id="edge"></div>
+
   <h2 id="board-h">The board</h2>
   <div id="board"></div>
 
@@ -860,7 +1032,8 @@ const el = id => document.getElementById(id);
 const num = (n, d = 2) => (n == null ? "n/a" : Number(n).toFixed(d));
 const signed = (n, d = 2) => (n == null ? "n/a" : (n > 0 ? "+" : "") + Number(n).toFixed(d));
 
-for (const [id, key] of [["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
+for (const [id, key] of [["running-h","running_heading"],["edge-h","edge_heading"],
+  ["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
   ["cal-h","calibration_heading"],["cum-h","cumulative_heading"],
   ["wk-h","weekly_heading"],["split-h","split_heading"],
   ["fac-h","factors_heading"],["les-h","lessons_heading"]]) {
@@ -1050,6 +1223,77 @@ if ((DATA.lessons || []).length) {
 } else hide("les");
 
 
+
+
+
+/* ------------------------------------------------- the running card */
+(function renderRunning() {
+  const R = DATA.running;
+  if (!R || !R.card || !R.card.length) { hide("running"); return; }
+  const fmt = c => c.market === "total"
+    ? `${esc(c.side)} ${c.line}`
+    : `${esc(c.side)} ${c.line > 0 ? "+" : ""}${c.line}`;
+  const move = c => {
+    if (c.days_tracked <= 1) return `<span class="flat">${esc(V.running_new)}</span>`;
+    const d = c.moved_confidence;
+    const cls = d > 0 ? "up" : d < 0 ? "down" : "flat";
+    const arrow = d > 0 ? "&uarr;" : d < 0 ? "&darr;" : "&rarr;";
+    const line = c.moved_line
+      ? ` &middot; line ${c.moved_line.from} to ${c.moved_line.to}` : "";
+    return `<span class="${cls}">${arrow} from ${num(c.first_confidence, 1)}` +
+           `</span> <span class="flat">${esc(
+             V.running_since.replace("{days}", c.days_tracked))}${line}</span>`;
+  };
+  const row = (c, gone) => `<div class="lean ${gone ? "gone" : ""}">
+    <div class="conf"><div class="n">${num(c.confidence, 1)}</div>
+      <div class="lbl">conf</div></div>
+    <div class="leanbody">
+      <div class="leanplay">${fmt(c)} <span class="price">${
+        c.price > 0 ? "+" : ""}${esc(c.price)}</span></div>
+      <div class="leanmeta">${esc(c.matchup)} &middot; ${esc(c.market)} ${
+        esc(c.period)} &middot; my number ${c.model_number} &middot; ${
+        c.sigma == null ? "n/a" : Math.abs(c.sigma).toFixed(2)}&sigma;</div>
+      <div class="leanmove">${move(c)}</div>
+    </div></div>`;
+  const dropped = (R.dropped || []).length
+    ? `<div class="dropped"><h3>${esc(V.running_dropped_heading)}</h3>` +
+      R.dropped.map(c => row(c, true)).join("") +
+      say(V.running_dropped_note, "quiet") + `</div>`
+    : "";
+  const games = new Set(R.card.map(c => c.matchup)).size;
+  const stacked = games < R.card.length
+    ? say(V.running_stacked.replace("{games}", games), "quiet")
+    : "";
+  el("running").innerHTML =
+    `<p class="quiet" style="margin-bottom:14px">${esc(V.running_note)}</p>` +
+    R.card.map(c => row(c, false)).join("") + stacked + dropped;
+})();
+
+/* ---------------------------------------------------- the explainer */
+(function renderEdge() {
+  const sc = DATA.scale || {};
+  const fill = t => t
+    .replace("{sample}", sc.sample == null ? "the board" : sc.sample)
+    .replace("{spread_sigma}", sc.spread_sigma == null ? "about 3" : sc.spread_sigma)
+    .replace("{total_sigma}", sc.total_sigma == null ? "about 3" : sc.total_sigma)
+    .replace("{cap}", Number(sc.cap).toFixed(1))
+    .replace("{publish}", Number(sc.publish).toFixed(1));
+  const rungs = [
+    ["1.0&sigma;", "5.0", "typical lean"],
+    ["1.9&sigma;", "6.4", "top tenth"],
+    ["2.4&sigma;", "7.1", "best on the board"],
+    ["&mdash;", Number(sc.cap).toFixed(1), "my ceiling"],
+    ["&mdash;", Number(sc.publish).toFixed(1), "publish line"],
+  ];
+  el("edge").innerHTML = `<div class="edge">` +
+    [1, 2, 3, 4].map(i => say(fill(V["edge_body_" + i]))).join("") +
+    `<div class="scale">${rungs.map(([sig, val, lbl], i) => `
+      <div class="rung ${i >= 3 ? "bar" : ""}">
+        <div class="v">${val}</div>
+        <div class="k">${sig} &middot; ${lbl}</div>
+      </div>`).join("")}</div>` +
+    say(fill(V.edge_body_5)) + say(fill(V.edge_body_6)) + `</div>`;
+})();
 
 /* ------------------------------------------------------- the board */
 (function renderBoard() {
