@@ -198,14 +198,17 @@ def check_card(picks: list[dict], now: datetime | None = None) -> list[str]:
         errs.append(f"card risks {staked} units. The weekly ceiling is "
                     f"{MAX_UNITS_PER_WEEK}.")
 
-    # Two bets on the same game and market are one bet at twice the stake.
-    seen: dict[tuple, int] = {}
+    # One opinion per game. Keying this on game and market let a spread
+    # and a total on the same matchup both through, which is the same
+    # read priced two ways: a card of 6 that is really 4 opinions, staked
+    # as though it were 6 independent ones.
+    seen: dict[str, int] = {}
     for i, p in enumerate(live):
-        key = (p.get("event_id"), p.get("market"), p.get("period"))
+        key = p.get("event_id")
         if key in seen:
-            errs.append(f"[{i}] {p.get('matchup')} repeats "
-                        f"{p.get('market')}/{p.get('period')} already taken at "
-                        f"index {seen[key]}. That is 1 position at twice the size.")
+            errs.append(f"[{i}] {p.get('matchup')} is already on the card at "
+                        f"index {seen[key]}. Two markets on one game is one "
+                        f"opinion at twice the size. Take the stronger.")
         seen[key] = i
 
     return errs

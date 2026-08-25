@@ -120,10 +120,24 @@ def main() -> int:
     for key, entry in leans.items():
         entry["on_board"] = key in today
 
+    # One opinion per game. A spread lean and a total lean on the same
+    # matchup are not two reads, they are one read sold twice, and six
+    # plays that are really four opinions is a smaller and more
+    # correlated book than the unit count claims. The weaker one stays
+    # in the file, keeps its history and its rank, and is marked so the
+    # page can say it was set aside rather than never seen.
     ranked = sorted(
         (e for e in leans.values() if e.get("on_board")),
         key=lambda e: -float(e.get("confidence") or 0))
-    for i, e in enumerate(ranked):
+    spoken_for = set()
+    for e in ranked:
+        ev = e.get("event_id")
+        e["second_opinion"] = ev in spoken_for
+        spoken_for.add(ev)
+
+    for i, e in enumerate(
+            [e for e in ranked if not e["second_opinion"]]
+            + [e for e in ranked if e["second_opinion"]]):
         e["rank"] = i + 1
     for e in leans.values():
         if not e.get("on_board"):

@@ -205,9 +205,22 @@ def test_the_same_game_and_market_cannot_be_taken_twice():
     assert any("twice the size" in e for e in bad)
 
 
-def test_the_same_game_on_a_different_market_is_allowed():
+def test_the_same_game_on_a_different_market_is_one_opinion_not_two():
+    """
+    A spread and a total on one matchup read the same game twice. Six
+    plays that are really four opinions is a smaller and more correlated
+    book than the unit count says, and the staking math assumes six.
+    """
     card = [pick(event_id="same", market="spread"),
             pick(event_id="same", market="total", side="Over", line=52.5)]
+    errs = check_card(card, now=NOW)
+    assert len(errs) == 1
+    assert "one opinion at twice the size" in errs[0]
+
+
+def test_two_different_games_are_two_opinions():
+    card = [pick(event_id="a", market="spread"),
+            pick(event_id="b", market="total", side="Over", line=52.5)]
     assert check_card(card, now=NOW) == []
 
 
