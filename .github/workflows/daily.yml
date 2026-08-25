@@ -112,8 +112,20 @@ jobs:
           RUN_ID: ${{ github.run_id }}
         run: python3 scripts/build_running_card.py
 
+      # This gate runs against the data just rebuilt, not the data in the
+      # commit, which is the point: bad numbers must not reach the page.
+      # So when it trips, the failing test names are the diagnosis, and a
+      # bare exit code sends whoever is on it digging through a log.
       - name: Check the grading math and the name matcher
-        run: python3 scripts/selftest.py
+        run: |
+          set -o pipefail
+          if ! python3 scripts/selftest.py -q 2>&1 | tee /tmp/selftest.txt; then
+            grep -E '^(FAILED|ERROR)' /tmp/selftest.txt | head -25 \
+              | while read -r line; do echo "::error::$line"; done
+            tail -3 /tmp/selftest.txt | while read -r line; do
+              echo "::error::$line"; done
+            exit 1
+          fi
 
       - name: Report what failed
         if: steps.odds.outcome == 'failure' || steps.grade.outcome == 'failure' || steps.slate.outcome == 'failure' || steps.calibrate.outcome == 'failure' || steps.running.outcome == 'failure'
