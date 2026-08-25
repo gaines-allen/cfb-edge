@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T12:39:07+00:00",
+  "generated_at": "2026-08-25T12:42:53+00:00",
   "board": {
     "week": 1,
     "season": 2026,
@@ -442,7 +442,7 @@
       }
     ],
     "fetched_at": "2026-08-24T20:36:58+00:00",
-    "age_hours": 16.0,
+    "age_hours": 16.1,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -701,6 +701,361 @@
   "by_period": [],
   "by_factor": [],
   "by_research": [],
+  "backtest": {
+    "overall": {
+      "games": 6078,
+      "wins": 2929,
+      "losses": 3040,
+      "pushes": 109,
+      "decided": 5969,
+      "win_pct": 49.1,
+      "interval_95": [
+        47.8,
+        50.3
+      ],
+      "verdict": "below_breakeven"
+    },
+    "by_market": {
+      "spread": {
+        "games": 3163,
+        "wins": 1495,
+        "losses": 1609,
+        "pushes": 59,
+        "decided": 3104,
+        "win_pct": 48.2,
+        "interval_95": [
+          46.4,
+          49.9
+        ],
+        "verdict": "below_breakeven"
+      },
+      "total": {
+        "games": 2915,
+        "wins": 1434,
+        "losses": 1431,
+        "pushes": 50,
+        "decided": 2865,
+        "win_pct": 50.1,
+        "interval_95": [
+          48.2,
+          51.9
+        ],
+        "verdict": "below_breakeven"
+      }
+    },
+    "by_edge": {
+      "0 to 1.5": {
+        "games": 683,
+        "wins": 327,
+        "losses": 343,
+        "pushes": 13,
+        "decided": 670,
+        "win_pct": 48.8,
+        "interval_95": [
+          45.0,
+          52.6
+        ],
+        "verdict": "no_signal"
+      },
+      "1.5 to 3": {
+        "games": 732,
+        "wins": 345,
+        "losses": 373,
+        "pushes": 14,
+        "decided": 718,
+        "win_pct": 48.1,
+        "interval_95": [
+          44.4,
+          51.7
+        ],
+        "verdict": "below_breakeven"
+      },
+      "3 to 4.5": {
+        "games": 675,
+        "wins": 310,
+        "losses": 353,
+        "pushes": 12,
+        "decided": 663,
+        "win_pct": 46.8,
+        "interval_95": [
+          43.0,
+          50.6
+        ],
+        "verdict": "below_breakeven"
+      },
+      "4.5 to 6": {
+        "games": 661,
+        "wins": 327,
+        "losses": 323,
+        "pushes": 11,
+        "decided": 650,
+        "win_pct": 50.3,
+        "interval_95": [
+          46.5,
+          54.1
+        ],
+        "verdict": "no_signal"
+      },
+      "6 to 9": {
+        "games": 1075,
+        "wins": 518,
+        "losses": 541,
+        "pushes": 16,
+        "decided": 1059,
+        "win_pct": 48.9,
+        "interval_95": [
+          45.9,
+          51.9
+        ],
+        "verdict": "below_breakeven"
+      },
+      "9+": {
+        "games": 2252,
+        "wins": 1102,
+        "losses": 1107,
+        "pushes": 43,
+        "decided": 2209,
+        "win_pct": 49.9,
+        "interval_95": [
+          47.8,
+          52.0
+        ],
+        "verdict": "below_breakeven"
+      }
+    },
+    "by_market_and_edge": {
+      "spread": {
+        "0 to 1.5": {
+          "games": 399,
+          "wins": 185,
+          "losses": 207,
+          "pushes": 7,
+          "decided": 392,
+          "win_pct": 47.2,
+          "interval_95": [
+            42.3,
+            52.1
+          ],
+          "verdict": "below_breakeven"
+        },
+        "1.5 to 3": {
+          "games": 419,
+          "wins": 190,
+          "losses": 220,
+          "pushes": 9,
+          "decided": 410,
+          "win_pct": 46.3,
+          "interval_95": [
+            41.6,
+            51.2
+          ],
+          "verdict": "below_breakeven"
+        },
+        "3 to 4.5": {
+          "games": 381,
+          "wins": 170,
+          "losses": 203,
+          "pushes": 8,
+          "decided": 373,
+          "win_pct": 45.6,
+          "interval_95": [
+            40.6,
+            50.7
+          ],
+          "verdict": "below_breakeven"
+        },
+        "4.5 to 6": {
+          "games": 393,
+          "wins": 188,
+          "losses": 197,
+          "pushes": 8,
+          "decided": 385,
+          "win_pct": 48.8,
+          "interval_95": [
+            43.9,
+            53.8
+          ],
+          "verdict": "no_signal"
+        },
+        "6 to 9": {
+          "games": 597,
+          "wins": 301,
+          "losses": 286,
+          "pushes": 10,
+          "decided": 587,
+          "win_pct": 51.3,
+          "interval_95": [
+            47.2,
+            55.3
+          ],
+          "verdict": "no_signal"
+        },
+        "9+": {
+          "games": 974,
+          "wins": 461,
+          "losses": 496,
+          "pushes": 17,
+          "decided": 957,
+          "win_pct": 48.2,
+          "interval_95": [
+            45.0,
+            51.3
+          ],
+          "verdict": "below_breakeven"
+        }
+      },
+      "total": {
+        "0 to 1.5": {
+          "games": 284,
+          "wins": 142,
+          "losses": 136,
+          "pushes": 6,
+          "decided": 278,
+          "win_pct": 51.1,
+          "interval_95": [
+            45.2,
+            56.9
+          ],
+          "verdict": "no_signal"
+        },
+        "1.5 to 3": {
+          "games": 313,
+          "wins": 155,
+          "losses": 153,
+          "pushes": 5,
+          "decided": 308,
+          "win_pct": 50.3,
+          "interval_95": [
+            44.8,
+            55.9
+          ],
+          "verdict": "no_signal"
+        },
+        "3 to 4.5": {
+          "games": 294,
+          "wins": 140,
+          "losses": 150,
+          "pushes": 4,
+          "decided": 290,
+          "win_pct": 48.3,
+          "interval_95": [
+            42.6,
+            54.0
+          ],
+          "verdict": "no_signal"
+        },
+        "4.5 to 6": {
+          "games": 268,
+          "wins": 139,
+          "losses": 126,
+          "pushes": 3,
+          "decided": 265,
+          "win_pct": 52.5,
+          "interval_95": [
+            46.4,
+            58.4
+          ],
+          "verdict": "no_signal"
+        },
+        "6 to 9": {
+          "games": 478,
+          "wins": 217,
+          "losses": 255,
+          "pushes": 6,
+          "decided": 472,
+          "win_pct": 46.0,
+          "interval_95": [
+            41.5,
+            50.5
+          ],
+          "verdict": "below_breakeven"
+        },
+        "9+": {
+          "games": 1278,
+          "wins": 641,
+          "losses": 611,
+          "pushes": 26,
+          "decided": 1252,
+          "win_pct": 51.2,
+          "interval_95": [
+            48.4,
+            54.0
+          ],
+          "verdict": "no_signal"
+        }
+      }
+    },
+    "by_season": {
+      "2021": {
+        "games": 1453,
+        "wins": 679,
+        "losses": 750,
+        "pushes": 24,
+        "decided": 1429,
+        "win_pct": 47.5,
+        "interval_95": [
+          44.9,
+          50.1
+        ],
+        "verdict": "below_breakeven"
+      },
+      "2022": {
+        "games": 1445,
+        "wins": 714,
+        "losses": 707,
+        "pushes": 24,
+        "decided": 1421,
+        "win_pct": 50.2,
+        "interval_95": [
+          47.6,
+          52.8
+        ],
+        "verdict": "no_signal"
+      },
+      "2023": {
+        "games": 1586,
+        "wins": 762,
+        "losses": 793,
+        "pushes": 31,
+        "decided": 1555,
+        "win_pct": 49.0,
+        "interval_95": [
+          46.5,
+          51.5
+        ],
+        "verdict": "below_breakeven"
+      },
+      "2024": {
+        "games": 1594,
+        "wins": 774,
+        "losses": 790,
+        "pushes": 30,
+        "decided": 1564,
+        "win_pct": 49.5,
+        "interval_95": [
+          47.0,
+          52.0
+        ],
+        "verdict": "below_breakeven"
+      }
+    },
+    "gradient": {
+      "buckets_with_enough_sample": 6,
+      "narrowest": 48.8,
+      "widest": 49.9,
+      "monotonic": false,
+      "spread_between_ends": 1.1
+    },
+    "median_edge": 6.7,
+    "seasons": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "ratings_lag": "each season priced off the prior season's ratings, so this is a floor and not a replica of the live model",
+    "generated_at": "2026-08-25T12:39:34+00:00"
+  },
   "lessons": [],
   "picks": [],
   "proven": false,

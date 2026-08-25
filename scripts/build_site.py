@@ -294,6 +294,30 @@ VOICE = {
                      "keeps score too: picks with research against picks "
                      "without, and every outlet I have leaned on.",
     "col_research": "Where it came from",
+    "col_gap": "How far apart",
+    "col_hit": "Hit rate",
+    "backtest_heading": "What happened when I tested this",
+    "backtest_note": "I ran the model over {seasons} finished seasons and "
+                     "graded it against the closing number. {n} games. It "
+                     "hit {pct} percent, and the honest range on that is "
+                     "{lo} to {hi}. You need 52.5 to break even. So the "
+                     "whole range sits under the bar, which is not a small "
+                     "sample being coy, it is a result.",
+    "backtest_gradient": "The part that matters most is the column above. "
+                         "If my edge were real, the games I disagreed with "
+                         "the book about most would win the most. They do "
+                         "not. The narrowest gaps hit {narrow} percent and "
+                         "the widest hit {wide}, which means the size of a "
+                         "disagreement is telling you almost nothing.",
+    "backtest_caveat": "One thing in my favour, and I am not going to "
+                       "oversell it. Ratings published at the end of a "
+                       "season are built from that season's results, so "
+                       "using them to call that season's games is reading "
+                       "the answers. Each season here is priced off the "
+                       "year before instead, which is a colder read than "
+                       "the live model gets. So this is a floor, not the "
+                       "same test. It is still the only real evidence "
+                       "anywhere on this page, and it says no.",
     "factors_empty": "This fills in once picks settle. Then we find out "
                      "which of my reasons were reasons and which were "
                      "vibes.",
@@ -308,7 +332,22 @@ VOICE = {
                 "paper until the record clears the bar that says I beat "
                 "the vig, and if it never clears, it never gets staked "
                 "and I will say so in the same size type.",
-    "no_signal": "Too few picks to mean anything.",
+    "unproven_tested": "Read this first, it is the least fun paragraph "
+                       "here. I tested this model against {n} finished "
+                       "games and it hit {pct} percent against the closing "
+                       "number, when you need 52.5 to break even. Worse, "
+                       "the games I disagreed with the book about most did "
+                       "not win any more often than the ones I barely "
+                       "disagreed on, so the confidence number next to "
+                       "each pick has not earned the weight it looks like "
+                       "it carries. Nothing here is staked with money and "
+                       "nothing will be until that changes. The full "
+                       "numbers are at the bottom under the accounting, "
+                       "and I would rather you read them than take my "
+                       "word for any of this.",
+    "no_signal": "Can't tell either way.",
+    "verdict_losing": "Loses money.",
+    "verdict_winning": "Makes money.",
     "no_signal_long": "Before anyone gets excited, that record hasn't "
                       "decided enough games to mean a thing. Swing a "
                       "couple of results either way and it covers "
@@ -917,6 +956,7 @@ def build_payload() -> dict:
         "by_period": breakdown(settled, "period"),
         "by_factor": by_factor,
         "by_research": by_research,
+        "backtest": store._load(store.DATA / "backtest.json", None),
         "lessons": (memory.get("lessons") or [])[:12],
         "picks": [
             {
@@ -1396,6 +1436,9 @@ HTML = """<!doctype html>
     <h3 id="res-h">Whether the research is worth anything</h3>
     <div id="res"></div>
 
+    <h3 id="bt-h">What happened when I tested this</h3>
+    <div id="bt"></div>
+
     <h3 id="les-h">What I got wrong</h3>
     <div id="les"></div>
   </details>
@@ -1427,6 +1470,7 @@ for (const [id, key] of [["running-h","running_heading"],["edge-h","edge_heading
   ["cal-h","calibration_heading"],["cum-h","cumulative_heading"],
   ["wk-h","weekly_heading"],["split-h","split_heading"],
   ["fac-h","factors_heading"],["res-h","research_heading"],
+  ["bt-h","backtest_heading"],
   ["les-h","lessons_heading"]]) {
   if (el(id)) el(id).textContent = V[key];
 }
@@ -1442,9 +1486,15 @@ function say(text, cls) {
 // failure than a card wrongly hidden.
 (function renderStatus() {
   if (DATA.proven) return;
-  const o = DATA.overall || {};
-  el("status").innerHTML =
-    `<p class="unproven">${esc(V.unproven.replace("{n}", o.decided || 0))}</p>`;
+  const o = DATA.overall || {}, bt = DATA.backtest;
+  const failed = bt && bt.overall
+    && bt.overall.verdict === "below_breakeven";
+  const copy = failed
+    ? V.unproven_tested
+        .replace("{n}", bt.overall.decided.toLocaleString())
+        .replace("{pct}", num(bt.overall.win_pct))
+    : V.unproven.replace("{n}", o.decided || 0);
+  el("status").innerHTML = `<p class="unproven">${esc(copy)}</p>`;
 })();
 
 function cardWindow() {
@@ -1604,10 +1654,14 @@ function table(cols, rows, emptyText) {
   return `<table><thead><tr>${cols.map(c => `<th>${esc(c[0])}</th>`).join("")}</tr></thead>
     <tbody>${rows.map(r => `<tr>${cols.map(c => `<td>${c[1](r)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
 }
-const sigCell = r => r.verdict && r.verdict !== "beats_breakeven"
-  && r.verdict !== "below_breakeven"
-  ? `<span class="nosig">${esc(V.no_signal)}</span>`
-  : esc(r.reading || "");
+const sigCell = r => {
+  if (r.verdict === "below_breakeven")
+    return `<span class="neg">${esc(V.verdict_losing)}</span>`;
+  if (r.verdict === "beats_breakeven")
+    return `<span class="pos">${esc(V.verdict_winning)}</span>`;
+  if (r.verdict) return `<span class="nosig">${esc(V.no_signal)}</span>`;
+  return esc(r.reading || "");
+};
 
 if ((DATA.weekly || []).length) {
   el("wk").innerHTML = table([
@@ -1650,6 +1704,31 @@ if ((DATA.by_research || []).length) {
     [V.col_reading, sigCell],
   ], DATA.by_research, V.research_empty);
 } else hide("res");
+
+const BT = DATA.backtest;
+if (BT && BT.overall && BT.overall.decided) {
+  const rows = Object.entries(BT.by_edge || {})
+    .map(([label, b]) => ({label, ...b}))
+    .filter(r => r.decided);
+  const g = BT.gradient || {};
+  el("bt").innerHTML =
+    say(V.backtest_note
+      .replace("{n}", BT.overall.decided.toLocaleString())
+      .replace("{seasons}", (BT.seasons || []).length)
+      .replace("{pct}", num(BT.overall.win_pct))
+      .replace("{lo}", num((BT.overall.interval_95 || [])[0]))
+      .replace("{hi}", num((BT.overall.interval_95 || [])[1]))) +
+    table([
+      [V.col_gap, r => esc(r.label) + " pts"],
+      [V.col_plays, r => esc(r.decided.toLocaleString())],
+      [V.col_hit, r => num(r.win_pct) + "%"],
+      [V.col_reading, sigCell],
+    ], rows, "") +
+    say(V.backtest_gradient
+      .replace("{narrow}", num(g.narrowest))
+      .replace("{wide}", num(g.widest))) +
+    say(V.backtest_caveat, "quiet");
+} else hide("bt");
 
 if ((DATA.lessons || []).length) {
   el("les").innerHTML = DATA.lessons.map(l =>
@@ -1878,7 +1957,8 @@ el("warn").textContent = V.disclaimer;
 (function foldEmpties() {
   for (const [fold, ids] of [
     ["board-fold", ["board"]],
-    ["ledger-fold", ["cal", "cum", "wk", "split", "fac", "res", "les"]],
+    ["ledger-fold", ["cal", "cum", "wk", "split", "fac", "res", "bt",
+                     "les"]],
   ]) {
     const alive = ids.some(id => {
       const h = el(id + "-h"), b = el(id);
