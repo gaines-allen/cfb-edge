@@ -556,9 +556,17 @@ def test_the_board_carries_short_names_for_the_favourite_label():
         pytest.skip("no board built")
     assert any(r.get("home_short") for r in rows)
     # The short name comes off the model, never off a guess at the mascot.
+    #
+    # Compared on the normalized key rather than as a substring. The two
+    # names come from different sources and punctuate differently: CFBD
+    # writes Hawai'i with the okina, the odds board writes Hawaii Rainbow
+    # Warriors, and a raw "in" check calls that a bug. It is the same
+    # school, which is the entire reason normalize() exists.
+    from lib.teams import normalize
     for r in rows:
         if r.get("home_short"):
-            assert r["home_short"] in r["home_team"]
+            assert normalize(r["home_team"]).startswith(
+                normalize(r["home_short"])), r["home_team"]
 
 
 def test_each_board_team_keeps_its_logo_beside_its_name():
