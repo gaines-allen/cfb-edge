@@ -11,6 +11,7 @@ that the handicapper reads before the next slate.
 from __future__ import annotations
 
 import argparse
+from urllib.parse import urlparse
 import json
 import sys
 from pathlib import Path
@@ -29,6 +30,7 @@ from lib.scoring import (  # noqa: E402
     payout,
     summarize,
 )
+from lib.store import LIVE_THRESHOLD  # noqa: E402
 from lib.teams import canonical, normalize, suggest  # noqa: E402
 
 
@@ -129,12 +131,66 @@ def rebuild_memory(picks: list[dict], season: int) -> dict:
         sorted(scorecard.items(), key=lambda kv: kv[1]["units"], reverse=True)
     )
 
+    _research_scorecard(mem, live)
+
     seasons = sorted({p.get("season") for p in picks if p.get("season")})
     mem["seasons_tracked"] = seasons
     mem["overall"] = summarize(live)
     mem["overall_including_shadow"] = summarize(graded)
     store.save_memory(mem)
     return mem
+
+
+def _research_scorecard(mem: dict, picks: list[dict]) -> None:
+    """
+    How the research layer has actually done.
+
+    The ratings model caps at 7.5 and the publish line is 8.0, so research
+    is the only thing that can put a play on the card, and it was the only
+    layer with nothing grading it. Two questions: does a pick with
+    research beat one without, and do the outlets being cited predict
+    anything.
+
+    verify_sources.py already proves a quote is on the page it claims. It
+    cannot prove the quote supports the pick, that the outlet is any good,
+    or that nobody went looking for whatever would clear the gate. Only
+    the record answers that, so the record keeps score of it.
+    """
+    live = [p for p in picks
+            if float(p.get("confidence", 0) or 0) >= LIVE_THRESHOLD
+            and p.get("result") in ("win", "loss", "push")]
+    card: dict[str, dict] = {}
+
+    def bucket(where: str, p: dict) -> None:
+        b = card.setdefault(where, {"picks": 0, "wins": 0, "losses": 0,
+                                    "pushes": 0, "units": 0.0})
+        b["picks"] += 1
+        b[{"win": "wins", "loss": "losses"}.get(p["result"], "pushes")] += 1
+        b["units"] = round(b["units"] + float(p.get("units_net", 0) or 0), 2)
+
+    for p in live:
+        srcs = p.get("sources") or []
+        bucket("researched" if srcs else "model only", p)
+        # A set, so citing one outlet 3 times in a pick is 1 pick for that
+        # outlet rather than 3, which would let a favourite source inflate
+        # its own sample.
+        for host in sorted({_host(sp.get("url")) for sp in srcs} - {""}):
+            bucket(f"source: {host}", p)
+
+    for b in card.values():
+        decided = b["wins"] + b["losses"]
+        b["win_pct"] = round(100.0 * b["wins"] / decided, 1) if decided else 0.0
+        annotate(b)
+    mem["research_scorecard"] = dict(
+        sorted(card.items(), key=lambda kv: kv[1]["units"], reverse=True))
+
+
+def _host(url) -> str:
+    """The domain a source came from, for keeping score by outlet."""
+    try:
+        return (urlparse(str(url)).hostname or "").lower().removeprefix("www.")
+    except (ValueError, AttributeError):
+        return ""
 
 
 def main() -> int:

@@ -284,6 +284,16 @@ VOICE = {
     "split_empty": "Nothing settled to split yet.",
 
     "factors_heading": "What my reasons have been worth",
+    "research_heading": "Whether the research is worth anything",
+    "research_empty": "Nothing has settled, so there is no way to tell yet.",
+    "research_note": "The model stops at 7.5 and the card starts at 8.0, so "
+                     "research is the only thing that can put a play up. "
+                     "That makes it the layer most worth checking and the "
+                     "one easiest to fool, because a determined search "
+                     "finds a supporting quote for almost anything. So it "
+                     "keeps score too: picks with research against picks "
+                     "without, and every outlet I have leaned on.",
+    "col_research": "Where it came from",
     "factors_empty": "This fills in once picks settle. Then we find out "
                      "which of my reasons were reasons and which were "
                      "vibes.",
@@ -864,6 +874,11 @@ def build_payload() -> dict:
         by_factor.append({"factor": name, **b})
     by_factor.sort(key=lambda r: r.get("units", 0), reverse=True)
 
+    by_research = [{"factor": name, **b}
+                   for name, b in (memory.get("research_scorecard")
+                                   or {}).items()]
+    by_research.sort(key=lambda r: r.get("units", 0), reverse=True)
+
     pick_rows = [p for p in picks]
     lock = lock_id(picks, current[0], current[1])
 
@@ -901,6 +916,7 @@ def build_payload() -> dict:
         "by_market": breakdown(settled, "market"),
         "by_period": breakdown(settled, "period"),
         "by_factor": by_factor,
+        "by_research": by_research,
         "lessons": (memory.get("lessons") or [])[:12],
         "picks": [
             {
@@ -1377,6 +1393,9 @@ HTML = """<!doctype html>
     <h3 id="fac-h">What my reasons have been worth</h3>
     <div id="fac"></div>
 
+    <h3 id="res-h">Whether the research is worth anything</h3>
+    <div id="res"></div>
+
     <h3 id="les-h">What I got wrong</h3>
     <div id="les"></div>
   </details>
@@ -1407,7 +1426,8 @@ for (const [id, key] of [["running-h","running_heading"],["edge-h","edge_heading
   ["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
   ["cal-h","calibration_heading"],["cum-h","cumulative_heading"],
   ["wk-h","weekly_heading"],["split-h","split_heading"],
-  ["fac-h","factors_heading"],["les-h","lessons_heading"]]) {
+  ["fac-h","factors_heading"],["res-h","research_heading"],
+  ["les-h","lessons_heading"]]) {
   if (el(id)) el(id).textContent = V[key];
 }
 
@@ -1620,6 +1640,16 @@ if ((DATA.by_factor || []).length) {
     [V.col_reading, sigCell],
   ], DATA.by_factor, V.factors_empty);
 } else hide("fac");
+
+if ((DATA.by_research || []).length) {
+  el("res").innerHTML = say(V.research_note, "quiet") + table([
+    [V.col_research, r => esc(r.factor)],
+    [V.col_plays, r => esc(r.picks)],
+    [V.stat_record, r => `${esc(r.wins)}-${esc(r.losses)}`],
+    [V.col_units, r => signed(r.units)],
+    [V.col_reading, sigCell],
+  ], DATA.by_research, V.research_empty);
+} else hide("res");
 
 if ((DATA.lessons || []).length) {
   el("les").innerHTML = DATA.lessons.map(l =>
@@ -1848,7 +1878,7 @@ el("warn").textContent = V.disclaimer;
 (function foldEmpties() {
   for (const [fold, ids] of [
     ["board-fold", ["board"]],
-    ["ledger-fold", ["cal", "cum", "wk", "split", "fac", "les"]],
+    ["ledger-fold", ["cal", "cum", "wk", "split", "fac", "res", "les"]],
   ]) {
     const alive = ids.some(id => {
       const h = el(id + "-h"), b = el(id);

@@ -1,0 +1,57 @@
+name: Backtest
+
+# Does disagreeing with the market predict anything. Everything else here
+# assumes it does, and nothing until now checked.
+#
+# This costs CFBD credits and the answer only moves when a season ends, so
+# it does not run on a schedule. It runs when asked, and once on the push
+# that changes this file, so the first answer does not wait on somebody
+# remembering to click it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      seasons:
+        description: "Seasons to test, space separated"
+        default: "2021 2022 2023 2024"
+  push:
+    paths:
+      - ".github/workflows/backtest.yml"
+      - "scripts/backtest.py"
+
+concurrency:
+  group: backtest
+  cancel-in-progress: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Score the model against closing lines
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          python3 scripts/backtest.py --seasons ${{ github.event.inputs.seasons || '2021 2022 2023 2024' }}
+
+      - name: Commit the result
+        run: |
+          git config user.name "cfb-edge-bot"
+          git config user.email "actions@github.com"
+          git add data/backtest.json
+          if git diff --staged --quiet; then
+            echo "Nothing moved."
+          else
+            git commit -m "Backtest: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi

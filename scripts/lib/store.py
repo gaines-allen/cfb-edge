@@ -214,6 +214,7 @@ DEFAULT_MEMORY = {
     "by_period": [],
     "by_role": [],
     "factor_scorecard": {},
+    "research_scorecard": {},
     "lessons": [],
     "active_adjustments": [],
     "notes": (

@@ -339,3 +339,42 @@ def test_every_deploying_workflow_asks_for_pages_write(name):
         pytest.skip(f"{name} does not deploy")
     assert "pages: write" in text
     assert "id-token: write" in text
+
+
+# ---------------------------------------------------------------------
+# The backtest workflow
+#
+# It answers the question the rest of the system assumes, so it has to be
+# runnable without waiting on a schedule, and it must not quietly become
+# a daily job that burns credits for an answer that only moves when a
+# season ends.
+# ---------------------------------------------------------------------
+
+BACKTEST = (WORKFLOWS / "backtest.yml").read_text()
+
+
+def test_the_backtest_can_be_run_on_demand():
+    assert "workflow_dispatch" in BACKTEST
+
+
+def test_the_backtest_is_not_on_a_schedule():
+    """
+    The answer changes when a season ends, not overnight, and each run
+    spends CFBD credits on 4 seasons of games, lines and ratings.
+
+    Read off the parsed triggers rather than the file text. Grepping for
+    the word caught the comment explaining why there is no schedule.
+    """
+    import yaml
+    doc = yaml.safe_load(BACKTEST)
+    triggers = doc[True] if True in doc else doc["on"]
+    assert "schedule" not in triggers
+
+
+def test_the_backtest_only_fires_on_its_own_files():
+    assert 'scripts/backtest.py' in BACKTEST
+    assert '.github/workflows/backtest.yml' in BACKTEST
+
+
+def test_the_backtest_gets_the_key_it_needs():
+    assert "CFBD_API_KEY" in BACKTEST
