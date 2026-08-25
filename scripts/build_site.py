@@ -122,8 +122,11 @@ VOICE = {
     "kicker": "College football picks",
     "logo": "steve.png",
     "sign_off": "Steve",
-    "tagline": "Six plays. Every number. Every result, including the ones "
-               "that make me look like an idiot.",
+    # Describes what the page does rather than promising disclosure it
+    # does not make. Every clause here is checkable against the page:
+    # the slate goes up, the leans move daily, 6 plays land Friday.
+    "tagline": "The whole slate every week. Six plays on Friday. Every "
+               "line watched in between, so you see what moved and when.",
     "subhead": "Nothing goes up under 8.0 out of 10, and the card is posted "
                "before kickoff, so I can't quietly improve it afterwards. "
                "Neither can you.",
