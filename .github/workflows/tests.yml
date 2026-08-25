@@ -37,10 +37,21 @@ jobs:
 
       # Called the same way the daily job calls it, so the wrapper the
       # workflow depends on is itself under test.
+      # A red X and "exit code 1" says nothing without opening the run.
+      # Echoing the failing test names as annotations puts them on the
+      # commit and in the API, which is where anyone debugging looks first.
       - name: Run the suite
         env:
           RUN_ID: ${{ github.run_id }}
-        run: python3 scripts/selftest.py -q
+        run: |
+          set -o pipefail
+          if ! python3 scripts/selftest.py -q 2>&1 | tee /tmp/pytest.txt; then
+            grep -E '^(FAILED|ERROR)' /tmp/pytest.txt | head -25 \
+              | while read -r line; do echo "::error::$line"; done
+            tail -3 /tmp/pytest.txt | while read -r line; do
+              echo "::error::$line"; done
+            exit 1
+          fi
 
       # No key is needed to run the tests, and none is provided here. The
       # suite replays captured fixtures, so a pull request from a fork runs
