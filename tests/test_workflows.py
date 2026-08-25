@@ -410,13 +410,18 @@ def test_every_import_the_suite_needs_is_declared():
     """
     Walks the real import graph with ast rather than a regex, because a
     regex over the source matched prose inside docstrings and reported a
-    module named "the". And it locates the standard library by asking
-    importlib where a module lives, because sys.stdlib_module_names only
-    exists from 3.10 and CI runs 3.9 as well.
+    module named "the".
+
+    Third party is decided by whether a module lives in site-packages,
+    which is the only part of this that holds across versions. Asking
+    whether it sits under the stdlib path does not: from 3.11 os and io
+    are frozen into the interpreter and report an origin of "frozen", so
+    that check called them undeclared dependencies and failed CI while
+    passing here. sys.stdlib_module_names, the obvious answer, arrived in
+    3.10 and CI still runs 3.9.
     """
     import ast
     import importlib.util
-    import sysconfig
 
     declared = {
         re.split(r"[><=~\[]", line, 1)[0].strip().lower().replace("-", "_")
@@ -426,20 +431,23 @@ def test_every_import_the_suite_needs_is_declared():
     # Import name where it differs from the name pip installs under.
     aliases = {"yaml": "pyyaml", "dateutil": "python_dateutil",
                "bs4": "beautifulsoup4"}
-    stdlib_dir = sysconfig.get_paths()["stdlib"]
     local = {p.stem for p in (ROOT / "scripts").rglob("*.py")}
     local |= {p.stem for p in (ROOT / "tests").rglob("*.py")}
     local |= {"lib", "conftest"}
 
-    def is_stdlib(name: str) -> bool:
-        if name in sys.builtin_module_names:
-            return True
+    def is_third_party(name: str) -> bool:
         try:
             spec = importlib.util.find_spec(name)
         except (ImportError, ValueError, ModuleNotFoundError):
-            return False
+            # Not importable here at all, so a runner will not have it
+            # either unless it is declared.
+            return True
+        if spec is None:
+            return True
         origin = getattr(spec, "origin", None) or ""
-        return origin == "built-in" or origin.startswith(stdlib_dir)
+        paths = list(getattr(spec, "submodule_search_locations", None) or [])
+        where = " ".join([origin] + paths)
+        return "site-packages" in where or "dist-packages" in where
 
     missing = set()
     for path in sorted(list((ROOT / "tests").rglob("*.py"))
@@ -453,7 +461,9 @@ def test_every_import_the_suite_needs_is_declared():
                 if node.module:
                     names.add(node.module.split(".")[0])
         for mod in names:
-            if mod in local or mod == "__future__" or is_stdlib(mod):
+            if mod in local or mod == "__future__":
+                continue
+            if not is_third_party(mod):
                 continue
             if aliases.get(mod, mod).lower() not in declared:
                 missing.add(f"{mod} (in {path.name})")
