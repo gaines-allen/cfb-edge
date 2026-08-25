@@ -1,2 +1,7 @@
 requests>=2.31.0
 pytest>=8.0.0
+
+# Workflow files are YAML, so the tests that check them parse YAML rather
+# than grepping. Grepping for "schedule" once matched the comment saying
+# there was no schedule.
+pyyaml>=6.0

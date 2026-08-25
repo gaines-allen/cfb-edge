@@ -10,6 +10,7 @@ is a boundary that quietly widens.
 from __future__ import annotations
 
 import re
+import sys
 
 import pytest
 
@@ -391,3 +392,71 @@ def test_the_daily_run_can_be_forced_between_schedules():
     triggers = doc[True] if True in doc else doc["on"]
     assert ".github/refresh-now" in triggers["push"]["paths"]
     assert len(triggers["push"]["paths"]) == 1
+
+
+# ---------------------------------------------------------------------
+# The environment
+#
+# pyyaml was imported by 2 tests here and declared nowhere. It happened to
+# be installed locally, so the suite passed on this machine and failed on
+# every CI runner for 4 commits, which also took the daily job down with
+# it, because that job runs the same suite before it will publish.
+#
+# A test passing locally and failing in CI is the worst failure mode
+# available: it looks like the code is fine.
+# ---------------------------------------------------------------------
+
+def test_every_import_the_suite_needs_is_declared():
+    """
+    Walks the real import graph with ast rather than a regex, because a
+    regex over the source matched prose inside docstrings and reported a
+    module named "the". And it locates the standard library by asking
+    importlib where a module lives, because sys.stdlib_module_names only
+    exists from 3.10 and CI runs 3.9 as well.
+    """
+    import ast
+    import importlib.util
+    import sysconfig
+
+    declared = {
+        re.split(r"[><=~\[]", line, 1)[0].strip().lower().replace("-", "_")
+        for line in (ROOT / "requirements.txt").read_text().splitlines()
+        if line.strip() and not line.startswith("#")
+    }
+    # Import name where it differs from the name pip installs under.
+    aliases = {"yaml": "pyyaml", "dateutil": "python_dateutil",
+               "bs4": "beautifulsoup4"}
+    stdlib_dir = sysconfig.get_paths()["stdlib"]
+    local = {p.stem for p in (ROOT / "scripts").rglob("*.py")}
+    local |= {p.stem for p in (ROOT / "tests").rglob("*.py")}
+    local |= {"lib", "conftest"}
+
+    def is_stdlib(name: str) -> bool:
+        if name in sys.builtin_module_names:
+            return True
+        try:
+            spec = importlib.util.find_spec(name)
+        except (ImportError, ValueError, ModuleNotFoundError):
+            return False
+        origin = getattr(spec, "origin", None) or ""
+        return origin == "built-in" or origin.startswith(stdlib_dir)
+
+    missing = set()
+    for path in sorted(list((ROOT / "tests").rglob("*.py"))
+                       + list((ROOT / "scripts").rglob("*.py"))):
+        tree = ast.parse(path.read_text(), filename=str(path))
+        names = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                names |= {a.name.split(".")[0] for a in node.names}
+            elif isinstance(node, ast.ImportFrom) and node.level == 0:
+                if node.module:
+                    names.add(node.module.split(".")[0])
+        for mod in names:
+            if mod in local or mod == "__future__" or is_stdlib(mod):
+                continue
+            if aliases.get(mod, mod).lower() not in declared:
+                missing.add(f"{mod} (in {path.name})")
+    assert not missing, (
+        f"imported but absent from requirements.txt: {sorted(missing)}. "
+        f"This passes locally and fails on every runner.")
