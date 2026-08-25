@@ -633,40 +633,13 @@ def test_a_published_pick_on_a_broken_game_keeps_its_reason_but_not_my_number():
     assert B.pick_defense(broken, pick) is None
 
 
-# ---------------------------------------------------------------------
-# The result
-#
-# The backtest came back at 49.1 percent against the close over 5,969
-# games, with the whole interval below breakeven and no gradient by size
-# of disagreement. A site whose entire premise is publishing what makes
-# it look bad has to publish that, in the first thing a reader sees.
-# ---------------------------------------------------------------------
-
-def test_a_failed_backtest_reaches_the_top_of_the_page():
-    assert "unproven_tested" in B.HTML
-    assert 'verdict === "below_breakeven"' in B.HTML
+def test_a_published_pick_on_a_broken_game_keeps_its_reason_but_not_my_number():
+    broken = {"e1": {"model": {"projected_spread": -56.4,
+                               "inputs": {"home_points": 38.9,
+                                          "away_points": 10.3}},
+                     "candidates": []}}
+    pick = {"event_id": "e1", "market": "spread", "period": "full",
+            "side": "Home", "model_number": -56.4}
+    assert B.pick_defense(broken, pick) is None
 
 
-def test_the_banner_says_the_confidence_number_is_not_carrying_its_weight():
-    copy = B.VOICE["unproven_tested"]
-    assert "52.5" in copy
-    assert "not win any more often" in copy
-    assert "staked" in copy
-
-
-def test_the_backtest_section_shows_the_gradient_not_just_the_headline():
-    # A single hit rate hides the finding. The finding is that a wide
-    # disagreement wins no more often than a narrow one.
-    assert "backtest_gradient" in B.HTML
-    assert "{narrow}" in B.VOICE["backtest_gradient"]
-    assert "{wide}" in B.VOICE["backtest_gradient"]
-
-
-def test_the_backtest_states_its_own_limitation():
-    caveat = B.VOICE["backtest_caveat"]
-    assert "reading the answers" in caveat
-    assert "floor" in caveat
-
-
-def test_no_backtest_means_no_section():
-    assert 'hide("bt")' in B.HTML

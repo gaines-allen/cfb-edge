@@ -378,3 +378,16 @@ def test_the_backtest_only_fires_on_its_own_files():
 
 def test_the_backtest_gets_the_key_it_needs():
     assert "CFBD_API_KEY" in BACKTEST
+
+
+def test_the_daily_run_can_be_forced_between_schedules():
+    """
+    A model change makes the stored slate wrong until the next 2 PM pull,
+    and waiting hours for a page to stop being wrong is not an option.
+    Scoped to one file so an ordinary push never spends API credits.
+    """
+    import yaml
+    doc = yaml.safe_load(DAILY)
+    triggers = doc[True] if True in doc else doc["on"]
+    assert ".github/refresh-now" in triggers["push"]["paths"]
+    assert len(triggers["push"]["paths"]) == 1

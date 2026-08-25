@@ -21,6 +21,13 @@ on:
     # rebuilds calibration and the factor scorecard, and the results page
     # is up by the time anyone checks it over coffee.
     - cron: "0 13 * * 0"
+  # Touch .github/refresh-now and push to force a full rebuild between
+  # scheduled runs. Scoped to that one file so an ordinary push never
+  # spends API credits, and useful when a model change means the stored
+  # slate is wrong until the next 2 PM pull.
+  push:
+    paths:
+      - ".github/refresh-now"
   workflow_dispatch:
     inputs:
       markets:
