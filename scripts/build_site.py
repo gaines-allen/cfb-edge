@@ -218,6 +218,8 @@ VOICE = {
                         "argues with itself is worth nothing to you: "
                         "{games}. I'd rather show you an empty row than "
                         "two of my own numbers that can't both be right.",
+    "board_open": "Open the whole slate",
+    "ledger_open": "Open the full accounting",
     "board_moved": "Moved",
     "board_kick": "Kickoff",
     "board_my_spread": "My spread",
@@ -289,6 +291,13 @@ VOICE = {
     "lessons_heading": "What I got wrong",
     "lessons_empty": "Nothing to own up to yet. Give it a week.",
 
+    "paper_stake": "Paper",
+    "unproven": "Read this first. {n} of my picks have been graded, which "
+                "is not enough to tell whether I am good or lucky, so "
+                "nothing here is staked with money. Every play is on "
+                "paper until the record clears the bar that says I beat "
+                "the vig, and if it never clears, it never gets staked "
+                "and I will say so in the same size type.",
     "no_signal": "Too few picks to mean anything.",
     "no_signal_long": "Before anyone gets excited, that record hasn't "
                       "decided enough games to mean a thing. Swing a "
@@ -934,6 +943,8 @@ def build_payload() -> dict:
     }
     # Same treatment the running card gets: the ratings caveat sits once
     # above the card rather than under every ticket.
+    payload["proven"] = (payload.get("overall", {}) or {}).get(
+        "verdict") == "beats_breakeven"
     payload["card_caveat"] = hoist_built(
         [p["defense"] for p in payload["picks"] if p.get("live")])
     return payload
@@ -1168,6 +1179,29 @@ HTML = """<!doctype html>
     font-variant-numeric: tabular-nums;
   }
   .leanmove { font-size: 12px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .unproven {
+    max-width: 60ch; margin: 22px auto 0; padding: 14px 18px;
+    border: 1px solid var(--gold-2); border-radius: 2px;
+    color: var(--cream); font-size: 14px; line-height: 1.6;
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    background: rgba(201,169,97,.07);
+  }
+  .fold { margin: 0 0 34px; }
+  .fold > summary {
+    list-style: none; cursor: pointer; padding: 12px 0;
+    border-top: 1px solid #22314a; border-bottom: 1px solid #22314a;
+  }
+  .fold > summary::-webkit-details-marker { display: none; }
+  .foldlabel {
+    font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 12px;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--gold-2);
+  }
+  .foldlabel::before { content: "+ "; }
+  .fold[open] > summary .foldlabel::before { content: "\2212 "; }
+  .fold > summary:hover { background: rgba(201,169,97,.05); }
+  .fold h3 {
+    font-size: 20px; margin: 30px 0 10px; color: var(--cream);
+  }
   .caveat.dark { color: #6b5a2e; border-left-color: #b39a55; }
   .caveat {
     font-size: 13px; color: var(--gold-2); margin: 0 0 18px;
@@ -1304,6 +1338,7 @@ HTML = """<!doctype html>
     <img src="__LOGO__" alt="__NAME__, __KICKER__">
     <p class="tagline">__TAGLINE__</p>
     <p class="subhead">__SUBHEAD__</p>
+    <div id="status"></div>
     <div class="rule"></div>
   </header>
 
@@ -1316,28 +1351,35 @@ HTML = """<!doctype html>
   <div id="running"></div>
 
   <h2 id="board-h">The board</h2>
-  <div id="board"></div>
+  <details class="fold" id="board-fold">
+    <summary><span class="foldlabel">__BOARD_OPEN__</span></summary>
+    <div id="board"></div>
+  </details>
 
   <h2 id="book-h">The book</h2>
   <div id="book"></div>
 
-  <h2 id="cal-h">Do my numbers mean anything</h2>
-  <div id="cal"></div>
+  <details class="fold" id="ledger-fold">
+    <summary><span class="foldlabel">__LEDGER_OPEN__</span></summary>
 
-  <h2 id="cum-h">Where you would be</h2>
-  <div id="cum"></div>
+    <h3 id="cal-h">Do my numbers mean anything</h3>
+    <div id="cal"></div>
 
-  <h2 id="wk-h">Week by week</h2>
-  <div id="wk"></div>
+    <h3 id="cum-h">Where you would be</h3>
+    <div id="cum"></div>
 
-  <h2 id="split-h">Where it came from</h2>
-  <div id="split"></div>
+    <h3 id="wk-h">Week by week</h3>
+    <div id="wk"></div>
 
-  <h2 id="fac-h">What my reasons have been worth</h2>
-  <div id="fac"></div>
+    <h3 id="split-h">Where it came from</h3>
+    <div id="split"></div>
 
-  <h2 id="les-h">What I got wrong</h2>
-  <div id="les"></div>
+    <h3 id="fac-h">What my reasons have been worth</h3>
+    <div id="fac"></div>
+
+    <h3 id="les-h">What I got wrong</h3>
+    <div id="les"></div>
+  </details>
 
   <h2 id="edge-h">What confidence actually means</h2>
   <div id="edge"></div>
@@ -1378,6 +1420,13 @@ function say(text, cls) {
 // Friday's card, and one in London at 2am Friday is not owed it either.
 // If the lookup fails, show: a section wrongly visible is a smaller
 // failure than a card wrongly hidden.
+(function renderStatus() {
+  if (DATA.proven) return;
+  const o = DATA.overall || {};
+  el("status").innerHTML =
+    `<p class="unproven">${esc(V.unproven.replace("{n}", o.decided || 0))}</p>`;
+})();
+
 function cardWindow() {
   try {
     const day = new Date().toLocaleDateString("en-US",
@@ -1416,7 +1465,9 @@ function ticket(p) {
       : ""}
     <div class="meta">
       <span>Confidence <b>${num(p.confidence, 1)}</b></span>
-      <span>Stake <b>${num(p.units, 1)}u</b></span>
+      <span>${DATA.proven
+        ? `Stake <b>${num(p.units, 1)}u</b>`
+        : `<b>${esc(V.paper_stake)}</b> ${num(p.units, 1)}u`}</span>
       ${p.model_number != null ? `<span>My number <b>${num(p.model_number, 1)}</b></span>` : ""}
       ${p.clv_points != null ? `<span>Closing line value <b>${signed(p.clv_points, 1)}</b></span>` : ""}
       ${p.final_score ? `<span>Final <b>${esc(p.final_score)}</b></span>` : ""}
@@ -1447,7 +1498,8 @@ function ticket(p) {
     : "";
   el("card").innerHTML =
     `<p class="weekline">Season ${esc(cur.season)} &middot; Week ${esc(cur.week)} &middot; ` +
-    `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${num(staked, 1)} units</p>` +
+    `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${
+      num(staked, 1)} units${DATA.proven ? "" : " on paper"}</p>` +
     (DATA.card_caveat
       ? `<p class="caveat dark">${esc(DATA.card_caveat)}</p>` : "") +
     `<div class="tickets">${lockHtml}${rest.map(ticket).join("")}</div>` +
@@ -1793,6 +1845,20 @@ el("prov").textContent = DATA.board_fetched_at
   : V.provenance_noboard;
 el("about").textContent = V.about;
 el("warn").textContent = V.disclaimer;
+(function foldEmpties() {
+  for (const [fold, ids] of [
+    ["board-fold", ["board"]],
+    ["ledger-fold", ["cal", "cum", "wk", "split", "fac", "les"]],
+  ]) {
+    const alive = ids.some(id => {
+      const h = el(id + "-h"), b = el(id);
+      return b && getComputedStyle(b).display !== "none"
+        && (!h || getComputedStyle(h).display !== "none");
+    });
+    if (!alive && el(fold)) el(fold).style.display = "none";
+  }
+})();
+
 </script>
 </body>
 </html>
@@ -1820,6 +1886,8 @@ def main() -> int:
             .replace("__SUBHEAD__", VOICE["subhead"])
             .replace("__KICKER__", VOICE["kicker"])
             .replace("__LOGO__", VOICE["logo"])
+            .replace("__BOARD_OPEN__", VOICE["board_open"])
+            .replace("__LEDGER_OPEN__", VOICE["ledger_open"])
             .replace("__PAGE_TITLE__", VOICE["page_title"]))
     store.write_text(SITE / "index.html", html)
 

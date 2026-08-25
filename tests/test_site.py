@@ -27,7 +27,9 @@ from lib import model  # noqa: E402
 # Every __PLACEHOLDER__ the template contains, read off the template
 # rather than listed by hand. A new one added to the markup and forgotten
 # in main() would otherwise ship unreplaced with no test to catch it.
-PLACEHOLDERS = sorted(set(re.findall(r"__[A-Z]+__", B.HTML)))
+# [A-Z_]+ rather than [A-Z]+, which silently skipped every
+# placeholder with an underscore in it, __PAGE_TITLE__ included.
+PLACEHOLDERS = sorted(set(re.findall(r"__[A-Z_]+__", B.HTML)))
 
 
 def render(payload: dict) -> str:
