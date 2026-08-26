@@ -1,0 +1,104 @@
+name: Watchdog
+
+# Nobody was looking.
+#
+# On 26 August the 2 PM job failed a gate, published nothing, and the page
+# sat 28 hours stale for 3 hours. The gate was right to refuse and the page
+# was right to take the board down. Both facts sat there unread.
+#
+# This reads them. It asks the outcome question first, whether the page a
+# reader loads right now is current, because that catches every cause at
+# once: a failed run, a run that went green and published nothing, a broken
+# deploy, a cron that stopped firing, an expired secret. Then it opens an
+# issue, which emails whoever watches the repo, and closes it when the site
+# recovers so a healthy repo has no open alarm.
+
+on:
+  schedule:
+    # 4 PM and 8 PM Eastern. The daily pull is 2 PM, so the first is a
+    # close check on today's run and the second catches a late failure
+    # before the night is gone.
+    - cron: "0 20 * * *"
+    - cron: "0 0 * * *"
+  # And immediately when one of the jobs that publishes gives up, which
+  # says the same thing hours earlier and names the step.
+  workflow_run:
+    workflows: ["Daily update", "Weekly card", "Saturday tracking"]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ask whether the live page is current
+        id: check
+        run: |
+          LAST=$(curl -s -H "Authorization: Bearer ${{ github.token }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/daily.yml/runs?per_page=1&status=completed" \
+            | python3 -c "import json,sys; r=json.load(sys.stdin).get('workflow_runs') or [{}]; print(r[0].get('conclusion') or '')")
+          echo "last daily run: $LAST"
+          set +e
+          python3 scripts/healthcheck.py --last-run "$LAST" > /tmp/health.json
+          echo "healthy=$?" >> $GITHUB_OUTPUT
+          set -e
+          cat /tmp/health.json
+          {
+            echo 'report<<REPORT'
+            python3 -c "
+          import json
+          d = json.load(open('/tmp/health.json'))
+          print('Checked ' + d['checked_at'] + '.')
+          print()
+          for p in d['problems']:
+              print('- ' + p)
+          print()
+          age = d['page_age_hours']
+          print('Page age: ' + ('unknown' if age is None else str(age) + ' hours') + '.')
+          print('Last Daily update run: ' + str(d['last_run'] or 'unknown') + '.')
+          "
+            echo 'REPORT'
+          } >> $GITHUB_OUTPUT
+
+      - name: Raise the alarm
+        if: steps.check.outputs.healthy != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="Site is not current"
+          EXISTING=$(gh issue list --state open --search "$TITLE in:title" \
+            --json number --jq '.[0].number // empty')
+          BODY="${{ steps.check.outputs.report }}
+
+          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          This closes itself once the live page is current again."
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+      - name: Stand down
+        if: steps.check.outputs.healthy == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --state open --search "Site is not current in:title" \
+              --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Live page is current again. ${{ steps.check.outputs.report }}"
+          done

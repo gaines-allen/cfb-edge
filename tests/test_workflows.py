@@ -510,3 +510,78 @@ def test_the_thursday_run_still_only_takes_the_early_games():
 
 def test_a_game_already_published_is_never_rated_twice():
     assert "already carrying a published pick" in RESEARCH
+
+
+# ---------------------------------------------------------------------
+# The watchdog
+#
+# Added after 26 August, when a failed run published nothing and the page
+# sat stale for 3 hours with nobody looking. A watchdog that reports
+# healthy when it cannot tell is worse than none, so these check the ways
+# it could go quiet.
+# ---------------------------------------------------------------------
+
+WATCHDOG = (WORKFLOWS / "watchdog.yml").read_text()
+
+
+def workflow_names() -> set:
+    import yaml
+    names = set()
+    for f in WORKFLOWS.glob("*.yml"):
+        doc = yaml.safe_load(f.read_text())
+        if doc and doc.get("name"):
+            names.add(doc["name"])
+    return names
+
+
+def test_every_workflow_the_watchdog_waits_on_actually_exists():
+    """
+    A workflow_run trigger naming a workflow that does not exist never
+    fires and never says so. The first draft watched "Track scores". The
+    file is called track-scores.yml and the workflow is named "Saturday
+    tracking", so the one trigger meant to catch a silent failure would
+    itself have failed silently.
+    """
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    triggers = doc[True] if True in doc else doc["on"]
+    watched = set(triggers["workflow_run"]["workflows"])
+    missing = watched - workflow_names()
+    assert not missing, f"watching workflows that do not exist: {missing}"
+
+
+def test_the_watchdog_watches_everything_that_publishes():
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    triggers = doc[True] if True in doc else doc["on"]
+    watched = set(triggers["workflow_run"]["workflows"])
+    # Any workflow that can write to the repo is one whose failure means
+    # the page did not move.
+    for name, f in (("Daily update", "daily.yml"),
+                    ("Weekly card", "weekly-card.yml"),
+                    ("Saturday tracking", "track-scores.yml")):
+        assert name in watched, f"{f} can publish and is unwatched"
+
+
+def test_the_watchdog_can_open_and_close_an_issue():
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    assert doc["jobs"]["check"]["permissions"].get("issues") == "write"
+    assert "gh issue create" in WATCHDOG
+    assert "gh issue close" in WATCHDOG
+    # One alarm at a time, reopened as a comment rather than a second
+    # issue, or a week of downtime becomes a week of duplicate mail.
+    assert "gh issue comment" in WATCHDOG
+
+
+def test_the_watchdog_runs_on_its_own_schedule_too():
+    """
+    workflow_run only fires when a run finishes. A cron that stops firing
+    altogether, or Pages failing to deploy a successful build, produces no
+    run to hang a trigger on.
+    """
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    triggers = doc[True] if True in doc else doc["on"]
+    assert triggers.get("schedule")
+    assert len(triggers["schedule"]) >= 2
