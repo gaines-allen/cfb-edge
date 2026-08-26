@@ -28,9 +28,20 @@ research genuinely likes it, and a game you passed on still shows on the
 site's board with the model's numbers, so anyone who wants it can bet it
 themselves.
 
-`scope full`, or no scope, is the whole slate. Skip any game already
-carrying a published pick in `data/picks.json` from an earlier run this
-week, and do not re-rate it.
+`scope full`, or no scope, is the coming weekend. Rate only games kicking
+within 4 days of now, and skip any game already carrying a published pick
+in `data/picks.json` from an earlier run this week.
+
+The 4 day window matters because a CFBD week is not always a weekend.
+Week 1 of 2026 runs 29 August to 8 September and holds two separate
+weekends, 44 games. Taking the whole week on the Friday before the first
+one would publish a card on 28 August whose plays mostly kick on 5
+September, 8 days out, against lines that will move several times before
+anyone can act on them. The card is for the weekend in front of it. The
+rest of the week gets its own card the following Friday.
+
+Every other week of the season fits inside the window anyway, so this
+only changes week 1 and any other stretch the calendar folds together.
 
 ## The job
 

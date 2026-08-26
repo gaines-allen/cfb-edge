@@ -470,3 +470,43 @@ def test_every_import_the_suite_needs_is_declared():
     assert not missing, (
         f"imported but absent from requirements.txt: {sorted(missing)}. "
         f"This passes locally and fails on every runner.")
+
+
+# ---------------------------------------------------------------------
+# What the Friday card covers
+#
+# A CFBD week is not always a weekend. Week 1 of 2026 spans 29 August to
+# 8 September and holds 44 games across two weekends. Handing the whole
+# week to the Friday run would publish a card on 28 August whose plays
+# mostly kick on 5 September.
+# ---------------------------------------------------------------------
+
+RESEARCH = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
+
+
+def para(anchor: str) -> str:
+    """
+    One scope paragraph, flattened.
+
+    Anchored on the sentence rather than the bare token, because both
+    tokens also appear in the line listing them and slicing from there
+    returned "`scope thursday` or".
+    """
+    start = RESEARCH.index(anchor)
+    end = RESEARCH.index("\n\n## ", start)
+    return " ".join(RESEARCH[start:end].split())
+
+
+def test_the_friday_card_covers_the_coming_weekend_not_the_whole_week():
+    full = para("`scope full`, or no scope,")
+    assert "within 4 days" in full
+    assert "whole slate" not in full
+
+
+def test_the_thursday_run_still_only_takes_the_early_games():
+    thu = para("`scope thursday` is the early run")
+    assert "kicking before Friday" in thu
+
+
+def test_a_game_already_published_is_never_rated_twice():
+    assert "already carrying a published pick" in RESEARCH

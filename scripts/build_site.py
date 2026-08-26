@@ -151,6 +151,11 @@ VOICE = {
                     "scroll: a total needs a wider gap than a spread to "
                     "mean the same thing, so these are not simply ranked "
                     "by points apart.",
+    "running_stale": "These come off the same lines the board does, and "
+                     "those are too old to stand behind right now, so the "
+                     "leans are down until the next pull lands. Showing "
+                     "you a number I would not bet myself is how this "
+                     "turns into every other picks page.",
     "running_empty": "Nothing tracked yet. This fills in once the board "
                      "is up and I've had a day to watch it move.",
     "running_new": "new today",
@@ -1359,6 +1364,7 @@ HTML = """<!doctype html>
   <div id="running"></div>
 
   <h2 id="board-h">The board</h2>
+  <div id="board-alert"></div>
   <details class="fold" id="board-fold">
     <summary><span class="foldlabel">__BOARD_OPEN__</span></summary>
     <div id="board"></div>
@@ -1410,6 +1416,26 @@ const V = __VOICE__;
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g,
   c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el = id => document.getElementById(id);
+const MAX_BOARD_AGE_HOURS = __MAX_BOARD_AGE__;
+
+// Age measured against the reader's clock, not the build's.
+//
+// DATA.board.stale was decided in Python when the page was made, and a
+// page is only made when the job succeeds. So a job that stops running
+// leaves the last good page up forever, reporting 0 hours on lines that
+// could be a week old. The one case the check exists for is the one case
+// it could not see.
+function boardAgeHours() {
+  const at = (DATA.board || {}).fetched_at;
+  if (!at) return null;
+  const t = Date.parse(at);
+  return Number.isNaN(t) ? null : (Date.now() - t) / 3600000;
+}
+function boardStale() {
+  const age = boardAgeHours();
+  return Boolean((DATA.board || {}).stale) || age == null
+    || age > MAX_BOARD_AGE_HOURS;
+}
 const half = n => (Math.round(Number(n) * 2) / 2).toFixed(1);
 const num = n => (n == null ? "n/a" : half(n));
 const signed = n => (n == null ? "n/a"
@@ -1653,6 +1679,10 @@ if ((DATA.lessons || []).length) {
 (function renderRunning() {
   const R = DATA.running;
   if (!R || !R.card || !R.card.length) { hide("running"); return; }
+  if (boardStale()) {
+    el("running").innerHTML = say(V.running_stale);
+    return;
+  }
   const fmt = c => c.market === "total"
     ? `${esc(c.side)} ${c.line}`
     : `${esc(c.side)} ${c.line > 0 ? "+" : ""}${c.line}`;
@@ -1741,9 +1771,12 @@ if ((DATA.lessons || []).length) {
 (function renderBoard() {
   const b = DATA.board || {};
   const rows = b.rows || [];
-  if (b.stale) {
-    el("board").innerHTML = say(
-      V.board_stale.replace("{age}", b.age_hours == null ? "unknown" : b.age_hours));
+  if (boardStale()) {
+    const age = boardAgeHours();
+    el("board-alert").innerHTML = say(
+      V.board_stale.replace("{age}",
+        age == null ? "unknown" : Math.round(age)));
+    hide("board-fold");
     return;
   }
   if (!rows.length) { el("board").innerHTML = say(V.board_empty); return; }
@@ -1906,6 +1939,7 @@ def main() -> int:
             .replace("__LOGO__", VOICE["logo"])
             .replace("__BOARD_OPEN__", VOICE["board_open"])
             .replace("__LEDGER_OPEN__", VOICE["ledger_open"])
+            .replace("__MAX_BOARD_AGE__", str(MAX_BOARD_AGE_HOURS))
             .replace("__PAGE_TITLE__", VOICE["page_title"]))
     store.write_text(SITE / "index.html", html)
 

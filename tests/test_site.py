@@ -35,6 +35,10 @@ PLACEHOLDERS = sorted(set(re.findall(r"__[A-Z_]+__", B.HTML)))
 def render(payload: dict) -> str:
     html = B.HTML.replace("__DATA__", json.dumps(payload)) \
                  .replace("__VOICE__", json.dumps(B.VOICE))
+    # Not every placeholder is copy. This one carries the staleness
+    # threshold so the page and the builder cannot hold two different
+    # numbers for it.
+    html = html.replace("__MAX_BOARD_AGE__", str(B.MAX_BOARD_AGE_HOURS))
     for token in PLACEHOLDERS:
         key = token.strip("_").lower()
         if key in B.VOICE:
@@ -92,11 +96,21 @@ def test_every_placeholder_has_something_to_fill_it():
     """
     __NAME__ and friends are filled from VOICE. A template placeholder with
     no matching key would render literally on the page.
+
+    The exceptions are the ones that are not copy: the payload, the voice
+    table itself, and the staleness threshold, which is injected so the
+    page and the builder cannot end up holding two different numbers for
+    it. Each is filled explicitly in main().
     """
+    NOT_COPY = ("__DATA__", "__VOICE__", "__MAX_BOARD_AGE__")
     missing = [t for t in PLACEHOLDERS
-               if t not in ("__DATA__", "__VOICE__")
+               if t not in NOT_COPY
                and t.strip("_").lower() not in B.VOICE]
     assert missing == [], f"no VOICE key for {missing}"
+    # And every one of those is actually substituted somewhere.
+    src = (ROOT / "scripts" / "build_site.py").read_text()
+    for token in NOT_COPY:
+        assert f'"{token}"' in src, f"{token} is never filled"
 
 
 def test_no_placeholder_survives_a_render():
@@ -651,3 +665,63 @@ def test_a_published_pick_on_a_broken_game_keeps_its_reason_but_not_my_number():
     assert B.pick_defense(broken, pick) is None
 
 
+
+
+# ---------------------------------------------------------------------
+# A page that stops rebuilding
+#
+# The staleness gate was decided in Python when the page was built, and a
+# page is only built when the job succeeds. So the one situation it exists
+# for, the job silently stopping, was the one situation it could not see:
+# the last good page stayed up reporting an age of 0 hours on lines that
+# could be a week old.
+# ---------------------------------------------------------------------
+
+def test_the_age_is_measured_against_the_reader_clock():
+    body = B.HTML.split("<script>", 1)[1]
+    assert "function boardAgeHours()" in body
+    assert "Date.now()" in body
+    assert "fetched_at" in body
+
+
+def test_the_gate_does_not_trust_the_flag_baked_at_build_time():
+    body = B.HTML.split("<script>", 1)[1]
+    stale = body[body.index("function boardStale()"):]
+    stale = stale[:stale.index("\n}")]
+    # The baked flag may only widen the result, never narrow it.
+    assert "||" in stale
+    assert "MAX_BOARD_AGE_HOURS" in stale
+
+
+def test_the_threshold_reaches_the_page_rather_than_being_retyped():
+    # Two copies of 26 drift apart the first time one is tuned.
+    assert "__MAX_BOARD_AGE__" in B.HTML
+    built = (ROOT / "site" / "index.html").read_text()
+    assert f"MAX_BOARD_AGE_HOURS = {B.MAX_BOARD_AGE_HOURS}" in built
+    assert "__MAX_BOARD_AGE__" not in built
+
+
+def test_a_stale_warning_is_not_hidden_behind_a_toggle():
+    # Nobody opens a drawer to discover it is empty.
+    body = B.HTML.split("<script>", 1)[1]
+    board = body[body.index("(function renderBoard()"):]
+    assert 'el("board-alert")' in board[:900]
+    assert 'hide("board-fold")' in board[:900]
+    assert '<div id="board-alert"></div>' in B.HTML
+
+
+def test_stale_lines_take_the_leans_down_too():
+    # The 6 leans are priced off the same board. If those lines cannot be
+    # stood behind, neither can anything built on top of them.
+    body = B.HTML.split("<script>", 1)[1]
+    running = body[body.index("(function renderRunning()"):]
+    assert "boardStale()" in running[:1200]
+    assert "V.running_stale" in running[:1200]
+
+
+def test_the_shared_check_is_defined_before_either_section_uses_it():
+    body = B.HTML.split("<script>", 1)[1]
+    assert body.index("function boardStale()") \
+        < body.index("(function renderRunning()")
+    assert body.index("function boardStale()") \
+        < body.index("(function renderBoard()")

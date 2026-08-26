@@ -378,7 +378,12 @@ def test_a_missing_board_reads_as_stale():
 def test_the_page_speaks_when_the_board_is_down():
     assert "board_stale" in B.VOICE and "{age}" in B.VOICE["board_stale"]
     assert "board_held" in B.VOICE and "{games}" in B.VOICE["board_held"]
-    assert "b.stale" in B.HTML
+    # The check reads the timestamp against the reader's clock rather
+    # than the flag stamped in at build time, because a page only gets
+    # built when the job succeeds and the flag cannot report a job that
+    # stopped running.
+    assert "function boardStale()" in B.HTML
+    assert "fetched_at" in B.HTML
 
 
 def test_the_build_output_names_what_was_held():
