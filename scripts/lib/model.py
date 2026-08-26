@@ -195,8 +195,14 @@ def project_game(home: str, away: str, book: dict[str, dict],
             # A projection below a shutout is not a projection. Clamping
             # breaks the agreement above, which is why coherent() checks
             # the result rather than trusting it.
-            home_points = max(home_points, 0.0)
-            away_points = max(away_points, 0.0)
+            # Rounded once, here, so the gate below and the numbers the
+            # page prints are the same numbers. They were not: the gate
+            # measured the unrounded projection while inputs published the
+            # rounded one, and a game sitting within a tenth of the
+            # tolerance passed the gate and then failed the check that the
+            # published halves agree. Hawai'i and UNLV, 26 August.
+            home_points = round(max(home_points, 0.0), 1)
+            away_points = round(max(away_points, 0.0), 1)
             total = round(home_points + away_points, 1)
         except (TypeError, ValueError):
             total = home_points = away_points = None
@@ -231,8 +237,8 @@ def project_game(home: str, away: str, book: dict[str, dict],
         inputs={
             "home_rating": round(hr, 2) if hr is not None else None,
             "away_rating": round(ar, 2) if ar is not None else None,
-            "home_points": round(home_points, 1) if home_points is not None else None,
-            "away_points": round(away_points, 1) if away_points is not None else None,
+            "home_points": home_points,
+            "away_points": away_points,
             "home_components": book.get(home, {}),
             "away_components": book.get(away, {}),
         },

@@ -212,3 +212,32 @@ def test_the_card_never_carries_one_game_twice():
     running = (B.build_payload().get("running") or {}).get("card") or []
     games = [(c.get("home_team"), c.get("away_team")) for c in running]
     assert len(games) == len(set(games)), games
+
+
+def test_the_gate_measures_the_numbers_the_page_prints():
+    """
+    The gate decided on the unrounded projection while the page published
+    the rounded one, so the two held different values for the same
+    quantity and were compared against the same 4.0 threshold. A game
+    within a tenth of the line passed the gate and then failed the check
+    that its published halves agree, which took the daily publish down on
+    26 August over Hawai'i and UNLV.
+
+    Rounded once at the source now, so there is one number.
+    """
+    for g, p in projections():
+        if p.coherence_gap is None:
+            continue
+        hp, ap = p.inputs["home_points"], p.inputs["away_points"]
+        from_published = abs((hp - ap) - (-p.projected_spread))
+        assert abs(from_published - p.coherence_gap) < 1e-9, g["matchup"]
+
+
+def test_published_points_are_already_rounded():
+    # If inputs carried more precision than the page shows, the gate and
+    # the display would drift apart again the moment one of them rounded.
+    for _, p in projections():
+        for side in ("home_points", "away_points"):
+            v = p.inputs.get(side)
+            if v is not None:
+                assert round(v, 1) == v, f"{side} is {v}"
