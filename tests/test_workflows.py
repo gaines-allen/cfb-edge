@@ -584,4 +584,38 @@ def test_the_watchdog_runs_on_its_own_schedule_too():
     doc = yaml.safe_load(WATCHDOG)
     triggers = doc[True] if True in doc else doc["on"]
     assert triggers.get("schedule")
-    assert len(triggers["schedule"]) >= 2
+    # Frequency is covered by
+    # test_the_watchdog_checks_often_enough_to_catch_a_skipped_run. What
+    # matters here is that it does not depend on another workflow running
+    # in order to notice that no workflow ran.
+
+
+def test_the_watchdog_never_recovers_from_its_own_trigger():
+    """
+    A failing daily job leaves the page old. Recovering on workflow_run
+    would dispatch that job again the instant it failed, and again after
+    that, forever. Recovery is limited to scheduled and manual checks.
+    """
+    step = WATCHDOG[WATCHDOG.index("Pull the data the scheduler skipped"):]
+    step = step[:step.index("- name: Raise the alarm")]
+    assert "github.event_name != 'workflow_run'" in step
+    assert "gh workflow run daily.yml" in step
+
+
+def test_the_watchdog_may_dispatch_a_workflow():
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    assert doc["jobs"]["check"]["permissions"].get("actions") == "write"
+
+
+def test_the_watchdog_checks_often_enough_to_catch_a_skipped_run():
+    """
+    Its own crons are as best effort as the ones it watches. On 27 August
+    the midnight check fired at 08:37, so two checks a day meant a single
+    slip removed most of the day's coverage.
+    """
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    triggers = doc[True] if True in doc else doc["on"]
+    crons = [c["cron"] for c in triggers["schedule"]]
+    assert any("*/4" in c or "*/3" in c or "*/2" in c for c in crons), crons

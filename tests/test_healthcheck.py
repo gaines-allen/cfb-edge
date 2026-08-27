@@ -133,3 +133,51 @@ def test_the_report_names_the_age_so_it_can_be_acted_on():
     v = H.verdict(page("2026-08-25T00:00:00+00:00"), NOW, "success")
     assert v["page_age_hours"] == 46.0
     assert str(v["page_age_hours"]) in v["problems"][0]
+
+
+# ------------------------------------------------------ pulling it back
+
+def test_recovery_starts_before_readers_lose_the_board():
+    """
+    GitHub cron is best effort. On 27 August the 2 PM pull did not fire at
+    all, which is documented behaviour under load. Waiting for a scheduler
+    that already skipped is how a daily promise quietly becomes a
+    sometimes promise.
+    """
+    assert H.RECOVER_AFTER_HOURS < H.MAX_PAGE_AGE_HOURS
+    # And with real room, so recovery has time to run before the board
+    # goes down rather than racing it.
+    assert H.MAX_PAGE_AGE_HOURS - H.RECOVER_AFTER_HOURS >= 4
+
+
+def test_a_normal_day_never_triggers_a_pull():
+    # The daily job refreshes every 24 hours, so a healthy page is only
+    # ever a few hours old when checked. If ordinary freshness tripped
+    # recovery this would double every day's API spend.
+    v = H.verdict(page("2026-08-26T18:00:00+00:00"), NOW, "success")
+    assert not v["should_recover"]
+
+
+def test_an_ageing_page_triggers_a_pull_while_still_healthy():
+    when = NOW + timedelta(hours=17)
+    v = H.verdict(page("2026-08-26T18:00:00+00:00"), when, "success")
+    assert v["healthy"], "should still be serving readers"
+    assert v["should_recover"], "and already pulling the next board"
+
+
+def test_a_stale_page_triggers_a_pull_too():
+    when = NOW + timedelta(hours=30)
+    v = H.verdict(page("2026-08-26T18:00:00+00:00"), when, "failure")
+    assert not v["healthy"]
+    assert v["should_recover"]
+
+
+@pytest.mark.parametrize("html", [None, "<html>404</html>",
+                                  "const DATA = {bad};\n"])
+def test_a_fault_a_pull_cannot_fix_does_not_trigger_one(html):
+    # An unreachable site or an unparseable page is not a stale board.
+    # Firing a data pull at it spends credits on the wrong problem and
+    # tells nobody anything.
+    v = H.verdict(html, NOW, "failure")
+    assert not v["healthy"]
+    assert not v["should_recover"]

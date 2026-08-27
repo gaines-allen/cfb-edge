@@ -45,6 +45,19 @@ SITE = "https://gaines-allen.github.io/cfb-edge/"
 # mistake that took the daily publish down twice on 26 August.
 from build_site import MAX_BOARD_AGE_HOURS as MAX_PAGE_AGE_HOURS  # noqa: E402
 
+# How old the page has to get before the watchdog stops waiting for the
+# scheduler and pulls the data itself.
+#
+# GitHub cron is best effort. On this repo scheduled runs normally fire 14
+# to 89 minutes late, and on 27 August the 2 PM run did not fire at all,
+# which is documented behaviour under load rather than a fault. A site
+# that promises a daily refresh cannot rest on that alone.
+#
+# Set below the staleness limit so recovery starts before readers lose the
+# board, and high enough that a normal day never reaches it, so this costs
+# an extra pull only on a day the scheduler already skipped.
+RECOVER_AFTER_HOURS = MAX_PAGE_AGE_HOURS - 6
+
 
 def board_fetched_at(html: str) -> str | None:
     """The timestamp the page itself carries for its lines."""
@@ -105,12 +118,20 @@ def verdict(html: str | None, now: datetime,
             f"The last Daily update run ended in {last_run}, so nothing was "
             f"committed or deployed.")
 
+    # Worth pulling the data rather than only saying so. Only when the
+    # page is genuinely ageing: an unreachable site or a missing timestamp
+    # is a different fault and firing a data pull at it would spend
+    # credits on a problem it cannot fix.
+    recover = age is not None and age > RECOVER_AFTER_HOURS
+
     return {
         "healthy": not problems,
         "checked_at": now.isoformat(timespec="seconds"),
         "page_age_hours": None if age is None else round(age, 1),
         "last_run": last_run,
         "problems": problems,
+        "should_recover": recover,
+        "recover_after_hours": RECOVER_AFTER_HOURS,
     }
 
 

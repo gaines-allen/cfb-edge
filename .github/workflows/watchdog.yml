@@ -15,11 +15,12 @@ name: Watchdog
 
 on:
   schedule:
-    # 4 PM and 8 PM Eastern. The daily pull is 2 PM, so the first is a
-    # close check on today's run and the second catches a late failure
-    # before the night is gone.
-    - cron: "0 20 * * *"
-    - cron: "0 0 * * *"
+    # Every 4 hours. Two checks a day was not enough: the watchdog's own
+    # crons are as best effort as the ones it watches, and on 27 August
+    # its midnight check fired at 08:37. Six attempts a day means a
+    # skipped one costs coverage rather than removing it. A check that
+    # finds nothing wrong is a curl and a script, and spends nothing.
+    - cron: "0 */4 * * *"
   # And immediately when one of the jobs that publishes gives up, which
   # says the same thing hours earlier and names the step.
   workflow_run:
@@ -37,7 +38,9 @@ jobs:
     permissions:
       contents: read
       issues: write
-      actions: read
+      # write, because this does more than report now. See the recovery
+      # step below.
+      actions: write
     steps:
       - uses: actions/checkout@v4
 
@@ -57,6 +60,8 @@ jobs:
           echo "healthy=$?" >> $GITHUB_OUTPUT
           set -e
           cat /tmp/health.json
+          echo "recover=$(python3 -c "
+          import json; print(str(json.load(open('/tmp/health.json'))['should_recover']).lower())")" >> $GITHUB_OUTPUT
           {
             echo 'report<<REPORT'
             python3 -c "
@@ -73,6 +78,25 @@ jobs:
           "
             echo 'REPORT'
           } >> $GITHUB_OUTPUT
+
+      # GitHub cron is best effort. Scheduled runs here normally fire 14
+      # to 89 minutes late, and on 27 August the 2 PM pull did not fire at
+      # all. Rather than wait for a scheduler that already skipped, pull
+      # the data. This starts 6 hours before readers would lose the board.
+      #
+      # Never on workflow_run. A failing daily job leaves the page old, so
+      # recovering from its own completion event would dispatch it again
+      # the moment it failed, and again after that. Recovery only from a
+      # scheduled or manual check, which caps it at one attempt per cycle.
+      - name: Pull the data the scheduler skipped
+        if: |
+          github.event_name != 'workflow_run' &&
+          steps.check.outputs.recover == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Page is past the recovery threshold. Dispatching daily.yml."
+          gh workflow run daily.yml --ref main
 
       - name: Raise the alarm
         if: steps.check.outputs.healthy != '0'
