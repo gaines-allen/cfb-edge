@@ -653,3 +653,29 @@ def test_a_push_run_of_the_card_takes_the_full_scope():
     scope = WEEKLY[WEEKLY.index('SCOPE="full"'):]
     scope = scope[:scope.index("claude -p")]
     assert "github.event_name }}\" = \"schedule\"" in scope
+
+
+def test_a_refused_pull_request_never_strands_the_card():
+    """
+    On 27 August every step passed, the branch went up with a valid card
+    on it, and gh pr create was refused because the repository has "Allow
+    GitHub Actions to create and approve pull requests" turned off, which
+    is the default. The step exited 1 with no explanation and the card sat
+    on a branch nobody knew existed.
+
+    The branch is pushed before this runs, so a refusal is a missing
+    button rather than lost work. It has to say which button.
+    """
+    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
+    assert "compare/main..." in step, "must print where to open it by hand"
+    assert "::error::" in step, "must annotate, not just exit 1"
+    assert "GITHUB_STEP_SUMMARY" in step
+    assert "Workflow" in step and "permissions" in step, \
+        "must name the setting that fixes it"
+    # And still fail, so the watchdog and the run list show it as broken.
+    assert "exit 1" in step
+
+
+def test_the_branch_is_pushed_before_the_pull_request_is_attempted():
+    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
+    assert step.index('git push origin "$BRANCH"') < step.index("gh pr create")

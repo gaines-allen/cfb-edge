@@ -336,6 +336,39 @@ jobs:
           print(s["note"] + "\n")
           print("Nothing here is published until this merges.\n")
           PY
-          gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
-                       --body-file pr_body.md \
-                       --base main --head "$BRANCH"
+          # The branch is pushed and the card is safe on it before this
+          # runs, so a refusal here is a missing button rather than lost
+          # work. Say which button.
+          #
+          # 27 August: everything upstream of this passed, the branch went
+          # up, and the call was refused because the repository has "Allow
+          # GitHub Actions to create and approve pull requests" turned off,
+          # which is the default. The step exited 1 with no explanation and
+          # a valid card sat on a branch nobody knew about.
+          COMPARE="${{ github.server_url }}/${{ github.repository }}/compare/main...$BRANCH?expand=1"
+          if gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
+                          --body-file pr_body.md \
+                          --base main --head "$BRANCH" 2> pr_err.txt; then
+            echo "Pull request opened." >> "$GITHUB_STEP_SUMMARY"
+          else
+            REASON=$(tr -d '\n' < pr_err.txt | head -c 400)
+            {
+              echo "### The card is ready but the pull request was refused"
+              echo
+              echo "The card is committed on branch \`$BRANCH\` and nothing"
+              echo "is lost. Open it here:"
+              echo
+              echo "$COMPARE"
+              echo
+              echo "GitHub said: $REASON"
+              echo
+              echo "If that mentions permission to create pull requests, the"
+              echo "fix is one checkbox: Settings, Actions, General, Workflow"
+              echo "permissions, allow GitHub Actions to create and approve"
+              echo "pull requests."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Card is ready on $BRANCH but the pull request was refused. Open it at $COMPARE"
+            echo "::error::GitHub said: $REASON"
+            cat pr_body.md
+            exit 1
+          fi
