@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-27T20:51:43+00:00",
+  "generated_at": "2026-08-27T21:09:42+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-08-27T20:51:19+00:00",
+    "built_at": "2026-08-27T21:00:42+00:00",
     "rows": [
       {
         "market_spread": -3.5,
@@ -1840,8 +1840,8 @@
         }
       }
     ],
-    "fetched_at": "2026-08-27T20:51:13+00:00",
-    "age_hours": 0.0,
+    "fetched_at": "2026-08-27T21:00:09+00:00",
+    "age_hours": 0.2,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -2167,9 +2167,9 @@
     "sample": 63
   },
   "live": null,
-  "lock_id": null,
-  "board_fetched_at": "2026-08-27T20:51:13+00:00",
-  "credits_remaining": 387,
+  "lock_id": "c034b6b643b9",
+  "board_fetched_at": "2026-08-27T21:00:09+00:00",
+  "credits_remaining": 384,
   "live_threshold": 8.0,
   "target_picks": 6,
   "breakeven": 52.4,
@@ -2207,13 +2207,34 @@
     "interval_95": null,
     "reading": "Nothing has graded yet, so there is nothing to read."
   },
-  "pending_count": 0,
-  "weeks": [],
+  "pending_count": 1,
+  "weeks": [
+    {
+      "season": 2026,
+      "week": 1
+    }
+  ],
   "current": {
-    "season": null,
-    "week": null
+    "season": 2026,
+    "week": 1
   },
-  "weekly": [],
+  "weekly": [
+    {
+      "season": 2026,
+      "week": 1,
+      "picks": 0,
+      "pending": 1,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": 0,
+      "risked": 0,
+      "roi": 0.0,
+      "avg_clv": null,
+      "beat_close_pct": null
+    }
+  ],
   "cumulative": [],
   "calibration": [],
   "by_market": [],
@@ -2221,7 +2242,315 @@
   "by_factor": [],
   "by_research": [],
   "lessons": [],
-  "picks": [],
+  "picks": [
+    {
+      "id": "c034b6b643b9",
+      "season": 2026,
+      "week": 1,
+      "matchup": "North Carolina Tar Heels @ TCU Horned Frogs",
+      "kickoff": "2026-08-29T16:00:00Z",
+      "title": "North Carolina Tar Heels +8.5",
+      "title_full": "North Carolina Tar Heels +8.5, full game, -105",
+      "side": "North Carolina Tar Heels",
+      "market": "Spread",
+      "period": "Full game",
+      "line": 8.5,
+      "price": -105,
+      "confidence": 8.1,
+      "units": 1.0,
+      "model_number": -4.9,
+      "edge": -13.4,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "TCU is laying 8.5 in the first FBS game of the season while starting Jaden Craig, a Harvard transfer who has never taken a Big 12 snap, and doing it under a new offensive coordinator hired from UConn after Josh Hoover left for Indiana. The blended ratings make this TCU by 4.9 on a neutral field in Dublin, so the market sits 3.6 points past the model, and most of that gap is the 48 to 14 result in Chapel Hill last September rather than anything about the 2026 rosters. North Carolina answered with Billy Edwards Jr., who started a full season at Maryland and threw for 2,881 yards, which is more FBS production than TCU now has at the position. Taking 8.5 puts both 7 and 8 behind the number in a game the model prices at under a touchdown. What would make me wrong is the North Carolina defense, because Steve Belichick has been on medical leave since 6 August with no return date and the staff is handling the defense as a group, and if that shows up as blown coverage against TCU's returning offensive line then 8.5 will not be enough.",
+      "factors": [
+        "coaching_change",
+        "line_value",
+        "market_overreaction",
+        "rating_edge"
+      ],
+      "sources": [
+        {
+          "url": "https://sports.yahoo.com/college-football/article/week-0-what-to-watch-unc-looks-for-revenge-against-tcu-nc-state-virginia-open-with-acc-matchup-185338432.html",
+          "publisher": "Yahoo Sports",
+          "date": "2026-08-27",
+          "claim": "TCU opens with Harvard transfer Jaden Craig at quarterback after losing Josh Hoover to Indiana, so the offense that won 48 to 14 last year is not the offense taking the field.",
+          "quote": "TCU will be led by Harvard transfer quarterback Jaden Craig after Josh Hoover left for Indiana in the offseason."
+        },
+        {
+          "url": "https://www.wral.com/sports/north-carolina-billy-edwards-jr-starting-quarterback-bill-belichick-august-2026/",
+          "publisher": "WRAL",
+          "date": "2026-08-21",
+          "claim": "North Carolina named Billy Edwards Jr., an experienced FBS starter, as its quarterback for the TCU opener.",
+          "quote": "North Carolina football head coach Bill Belichick tabbed veteran quarterback Billy Edwards Jr. as the Tar Heels' starter for the season opener against TCU, confirming a report from earlier in the week."
+        },
+        {
+          "url": "https://www.yardbarker.com/college_football/articles/bill_belichick_announces_bad_news_for_unc_days_before_week_0_opener_against_tcu/s1_17730_44214838",
+          "publisher": "Yardbarker",
+          "date": "2026-08-24",
+          "claim": "North Carolina goes into the opener without defensive coordinator Steve Belichick, who has been on medical leave since 6 August, with the defensive staff covering his duties collectively. This is the stated risk on the pick, not support for it.",
+          "quote": "The staff is expected to handle the defense as a group for now."
+        }
+      ],
+      "defense": {
+        "line": "On my sheet TCU wins this by 5.0, neutral field, nobody gets a bump. Straight off the ratings that's 4.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "",
+        "unusual": "",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "On my sheet TCU wins this by 5.0, neutral field, nobody gets a bump. Straight off the ratings that's 4.5, and I nudge it for the way my numbers have been landing against the book. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": true
+    },
+    {
+      "id": "baec07b3309b",
+      "season": 2026,
+      "week": 1,
+      "matchup": "NC State Wolfpack @ Virginia Cavaliers",
+      "kickoff": "2026-08-29T19:30:00Z",
+      "title": "Under 52.5",
+      "title_full": "Under 52.5, full game, -110",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 52.5,
+      "price": -110,
+      "confidence": 6.5,
+      "units": 0.0,
+      "model_number": 50.9,
+      "edge": -1.6,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Virginia opens with 16 players listed out on the initial ACC report, and while the headline number oversells it, the four names missing from the receiver room and the kicker are the ones that matter to a total. Beau Pribula is new to the offense and throwing to backups, the model already sits at 50.9 against a market 52.5, and a team without its kicker converts drives into fewer points than the number assumes. I rate this well short of live because 1.6 points is not an edge and because NC State returns CJ Bailey, who threw for more than 3,100 yards last season and can carry a total on his own. What would make me wrong is Bailey turning Virginia's thin secondary depth into a track meet.",
+      "factors": [
+        "injury_edge",
+        "rating_edge"
+      ],
+      "sources": [
+        {
+          "url": "https://www.si.com/college/virginia/football/virginia-releases-first-availability-report-ahead-of-saturday-s-game-vs-nc-state-01m10ehxrjec",
+          "publisher": "Sports Illustrated",
+          "date": "2026-08-27",
+          "claim": "Virginia listed 16 players out on the first ACC injury report of the week, including four receivers and the kicker, though only Rico Flores is a starter or second-teamer.",
+          "quote": "Wednesday's initial ACC weekly injury report listed 16 Cavaliers as out against the Wolfpack."
+        }
+      ],
+      "defense": {
+        "line": "Pencil me in for Virginia 25.0, NC State 23.0. Adds up to 51.0. Straight off the ratings that's 47.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 52.5.",
+        "unusual": "That leaves 1.5 points between us, which is nothing special, I see gaps like that all day.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Pencil me in for Virginia 25.0, NC State 23.0. Adds up to 51.0. Straight off the ratings that's 47.5, and I nudge it for the way my numbers have been landing against the book. Book's asking 52.5. That leaves 1.5 points between us, which is nothing special, I see gaps like that all day. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    },
+    {
+      "id": "b675886d710a",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Jacksonville State Gamecocks @ North Dakota State Bison",
+      "kickoff": "2026-08-29T21:30:00Z",
+      "title": "Over 46.5",
+      "title_full": "Over 46.5, full game, -110",
+      "side": "Over",
+      "market": "Total",
+      "period": "Full game",
+      "line": 46.5,
+      "price": -110,
+      "confidence": 6.3,
+      "units": 0.0,
+      "model_number": 56.0,
+      "edge": 9.5,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "The model wants this Over by 9.5 points, which is the largest total edge on the board, and the game is indoors at the Fargodome between a North Dakota State offense that averaged 41.1 points per game last season and a Jacksonville State team that went 9-5. The reason I am not treating that edge as real is that North Dakota State's scoring rate was compiled in the FCS and this is the program's FBS debut, so the input driving the model number is the input least likely to carry over. A 9.5 point disagreement usually means the model is wrong rather than the market, and September openers are where that is most often true. What would make me wrong in the other direction is the Bison offense translating intact, in which case 46.5 is far too low and I have left a real number on the table.",
+      "factors": [
+        "pace_mismatch",
+        "rating_edge"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "Pencil me in for North Dakota State 29.0, Jacksonville State 23.5. Adds up to 56.0. Straight off the ratings that's 53.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 46.5.",
+        "unusual": "That leaves 9.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Pencil me in for North Dakota State 29.0, Jacksonville State 23.5. Adds up to 56.0. Straight off the ratings that's 53.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 46.5. That leaves 9.5 points between us, which is a bigger gap than most games on my board. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    },
+    {
+      "id": "a13a9c311ebc",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Sacramento State Hornets @ Eastern Michigan Eagles",
+      "kickoff": "2026-08-29T22:30:00Z",
+      "title": "Sacramento State Hornets +9.5",
+      "title_full": "Sacramento State Hornets +9.5, full game, -104",
+      "side": "Sacramento State Hornets",
+      "market": "Spread",
+      "period": "Full game",
+      "line": 9.5,
+      "price": -104,
+      "confidence": 6.2,
+      "units": 0.0,
+      "model_number": -5.4,
+      "edge": -14.9,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "The ratings make Eastern Michigan by 5.4 and the market is at 9.5, which reads like 4.1 points of value on the road dog until you check what Sacramento State actually is this week. The Hornets are making their FBS debut under first-year head coach Alonzo Carter with Carson Conklin, a Fresno State transfer, at quarterback, so the carryover ratings that produce the model number describe a different program than the one travelling to Ypsilanti. Eastern Michigan is not good and allowed a nation worst 232 rushing yards per game, which is the one path to a cover, but Noah Kim is a returning starter and the Eagles know their own offense. What would make me wrong is Carter's team running the ball straight at the worst run defense in the country and keeping this inside a touchdown.",
+      "factors": [
+        "coaching_change",
+        "rating_edge"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "Give me Eastern Michigan minus 5.5 on this one, 2.0 of which is just for sleeping at home. Straight off the ratings that's 5.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "",
+        "unusual": "",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Give me Eastern Michigan minus 5.5 on this one, 2.0 of which is just for sleeping at home. Straight off the ratings that's 5.0, and I nudge it for the way my numbers have been landing against the book. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    },
+    {
+      "id": "a8653a525797",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Hawaii Rainbow Warriors @ Stanford Cardinal",
+      "kickoff": "2026-08-29T23:00:00Z",
+      "title": "Over 48.5",
+      "title_full": "Over 48.5, full game, -118",
+      "side": "Over",
+      "market": "Total",
+      "period": "Full game",
+      "line": 48.5,
+      "price": -118,
+      "confidence": 7.4,
+      "units": 0.0,
+      "model_number": 50.9,
+      "edge": 2.4,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Stanford finished last in the country against the pass last season at 289 yards allowed per game and now faces Micah Alejado, who was eighth nationally at 282.4 passing yards per game and second in FBS in completions per game. That is the one matchup on this board where a returning starter meets the exact weakness he is built to attack, and the model has the total at 50.9 against a market number of 48.5. What holds this under 8.0 is the other half of the game, because Stanford has a new head coach and an unsettled quarterback and the market is pricing its passing game near 190 yards, so the Cardinal may not hold up their end of the scoreboard. Paying 118 on a 2.4 point edge also eats most of the value. What would make me wrong is Stanford grinding the clock with the run and Hawaii's completions coming underneath for short yardage.",
+      "factors": [
+        "rating_edge",
+        "scheme_mismatch"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "I got Stanford for 24.5 and Hawai'i for 23.0. Call it 51.0 on the scoreboard. Straight off the ratings that's 47.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 48.5.",
+        "unusual": "That leaves 2.5 points between us, which is nothing special, I see gaps like that all day.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "I got Stanford for 24.5 and Hawai'i for 23.0. Call it 51.0 on the scoreboard. Straight off the ratings that's 47.5, and I nudge it for the way my numbers have been landing against the book. Book's asking 48.5. That leaves 2.5 points between us, which is nothing special, I see gaps like that all day. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    },
+    {
+      "id": "27845b46512a",
+      "season": 2026,
+      "week": 1,
+      "matchup": "New Mexico State Aggies @ Florida State Seminoles",
+      "kickoff": "2026-08-29T23:00:00Z",
+      "title": "New Mexico State Aggies +32.5",
+      "title_full": "New Mexico State Aggies +32.5, full game, -115",
+      "side": "New Mexico State Aggies",
+      "market": "Spread",
+      "period": "Full game",
+      "line": 32.5,
+      "price": -115,
+      "confidence": 6.1,
+      "units": 0.0,
+      "model_number": -29.5,
+      "edge": -62.0,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "The model has Florida State by 29.5 and the market is at 32.5, so the number is 3 points rich on a home favourite that has missed a bowl in consecutive seasons. The argument against the dog is that Mike Norvell needs a fast start badly enough that Florida State has every reason to keep the starters on the field into the fourth quarter, and New Mexico State went 1-5 on the road last season under Tony Sanchez. Laying 115 on the dog side of a number this large also means a single garbage time score decides it, which is not a spot where a 3 point model edge survives contact. What would make me wrong is Florida State emptying the bench up 35 in the third quarter, which is the normal outcome when a program is protecting its depth for a real schedule.",
+      "factors": [
+        "garbage_time_fade",
+        "rating_edge"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "Give me Florida State minus 29.5 on this one, 2.0 of which is just for sleeping at home. Straight off the ratings that's 29.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "",
+        "unusual": "",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Give me Florida State minus 29.5 on this one, 2.0 of which is just for sleeping at home. Straight off the ratings that's 29.0, and I nudge it for the way my numbers have been landing against the book. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    },
+    {
+      "id": "7dc881dd0126",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Memphis Tigers @ UNLV Rebels",
+      "kickoff": "2026-08-30T02:00:00Z",
+      "title": "UNLV Rebels -4.5",
+      "title_full": "UNLV Rebels -4.5, full game, -105",
+      "side": "UNLV Rebels",
+      "market": "Spread",
+      "period": "Full game",
+      "line": -4.5,
+      "price": -105,
+      "confidence": 7.6,
+      "units": 0.0,
+      "model_number": -6.2,
+      "edge": -1.7,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Memphis had still not named a starting quarterback two days before kickoff, and the two candidates are Marcus Stokes, who spent last season throwing for West Florida in the Gulf South Conference, and Air Noland, who has 13 career passing yards. That offense is also breaking in Charles Huff as head coach and Kevin Decker as coordinator, while the ratings still carry the 2,673 yards Brendon Lewis threw for last season and Lewis is gone. UNLV counters with Jackson Arnold, who has real FBS starting experience from Auburn, at home in Allegiant Stadium, and the model already wants the Rebels by 6.2 against a market number of 4.5. I am keeping this below 8.0 because UNLV is rotating two quarterbacks itself, which is not how a team that knows its answer opens a season. What would make me wrong is Stokes translating a Division II arm to the American immediately, which is exactly the outcome Huff is hiding by not naming him.",
+      "factors": [
+        "coaching_change",
+        "rating_edge",
+        "situational"
+      ],
+      "sources": [
+        {
+          "url": "https://www.actionnews5.com/2026/08/27/tigers-prep-critical-season-opener-unlv-this-weekend/",
+          "publisher": "Action News 5",
+          "date": "2026-08-26",
+          "claim": "Memphis had not named a starting quarterback between Marcus Stokes and Air Noland going into the opener, under first-year head coach Charles Huff.",
+          "quote": "Obviously at the end of the game, everybody's gonna know who the starting quarterback is."
+        }
+      ],
+      "defense": {
+        "line": "I make it UNLV by 6.0, 2.0 of which is just for sleeping at home. Straight off the ratings that's 5.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "",
+        "unusual": "",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "I make it UNLV by 6.0, 2.0 of which is just for sleeping at home. Straight off the ratings that's 5.5, and I nudge it for the way my numbers have been landing against the book. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "live": false
+    }
+  ],
   "proven": false,
   "card_caveat": null
 }
