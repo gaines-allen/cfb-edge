@@ -98,6 +98,37 @@ jobs:
           echo "Page is past the recovery threshold. Dispatching daily.yml."
           gh workflow run daily.yml --ref main
 
+      # The card is the week's one deliverable and its schedule has the
+      # worst record of any here: 2 windows since it was added, 0 runs. A
+      # missed daily pull costs a day of freshness. A missed Friday costs
+      # the card, and there is no second chance before kickoff.
+      #
+      # So on a Thursday or Friday, past the hour it was due, if no run
+      # has started today, start one. It opens a pull request and
+      # publishes nothing, so the cost of a spurious run is a draft nobody
+      # merges.
+      - name: Start the card if its schedule skipped
+        if: github.event_name != 'workflow_run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DOW=$(date -u +%u)
+          HOUR=$(date -u +%H)
+          if [ "$DOW" != "4" ] && [ "$DOW" != "5" ]; then
+            echo "Not a card day."; exit 0
+          fi
+          if [ "$HOUR" -lt 18 ]; then
+            echo "Card is not due yet today."; exit 0
+          fi
+          TODAY=$(date -u +%Y-%m-%d)
+          RAN=$(gh run list --workflow weekly-card.yml --limit 20 \
+            --json createdAt --jq "[.[] | select(.createdAt | startswith(\"$TODAY\"))] | length")
+          if [ "$RAN" != "0" ]; then
+            echo "Card already ran today ($RAN run(s))."; exit 0
+          fi
+          echo "No card run today and it is past due. Starting one."
+          gh workflow run weekly-card.yml --ref main
+
       - name: Raise the alarm
         if: steps.check.outputs.healthy != '0'
         env:

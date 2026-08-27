@@ -20,6 +20,19 @@ on:
     # below, because schedule events cannot carry inputs.
     - cron: "0 18 * * 4"
     - cron: "0 18 * * 5"
+  # Touch .github/run-card and push to start a run now.
+  #
+  # This workflow has had 2 scheduled windows since it was added and fired
+  # on neither. GitHub schedules are best effort and get dropped under
+  # load, which is survivable for a daily pull and not survivable for the
+  # one beat of the week the site is built around. A push trigger scoped
+  # to a single file is a lever that does not depend on their scheduler.
+  #
+  # A push run takes the full scope, the same as Friday, because the
+  # Thursday narrowing is derived from the schedule event below.
+  push:
+    paths:
+      - ".github/run-card"
   workflow_dispatch:
     inputs:
       season:

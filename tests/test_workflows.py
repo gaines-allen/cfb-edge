@@ -619,3 +619,37 @@ def test_the_watchdog_checks_often_enough_to_catch_a_skipped_run():
     triggers = doc[True] if True in doc else doc["on"]
     crons = [c["cron"] for c in triggers["schedule"]]
     assert any("*/4" in c or "*/3" in c or "*/2" in c for c in crons), crons
+
+
+def test_the_card_can_be_started_without_the_scheduler():
+    """
+    The weekly card had 2 scheduled windows since it was added and fired
+    on neither. A missed daily pull costs a day of freshness. A missed
+    Friday costs the card, with no second chance before kickoff.
+    """
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    triggers = doc[True] if True in doc else doc["on"]
+    assert ".github/run-card" in triggers["push"]["paths"]
+    assert len(triggers["push"]["paths"]) == 1, "must not fire on any push"
+    assert "workflow_dispatch" in triggers
+
+
+def test_the_watchdog_starts_the_card_when_its_schedule_skips():
+    step = WATCHDOG[WATCHDOG.index("Start the card if its schedule skipped"):]
+    step = step[:step.index("- name: Raise the alarm")]
+    # Only on card days, only once due, and only if nothing ran already.
+    assert 'DOW=$(date -u +%u)' in step
+    assert '"$HOUR" -lt 18' in step
+    assert "gh workflow run weekly-card.yml" in step
+    assert "already ran today" in step
+    # Same loop guard as the data recovery above.
+    assert "github.event_name != 'workflow_run'" in step
+
+
+def test_a_push_run_of_the_card_takes_the_full_scope():
+    # The Thursday narrowing is derived from the schedule event, so a
+    # manually started run must behave like Friday and rate the weekend.
+    scope = WEEKLY[WEEKLY.index('SCOPE="full"'):]
+    scope = scope[:scope.index("claude -p")]
+    assert "github.event_name }}\" = \"schedule\"" in scope
