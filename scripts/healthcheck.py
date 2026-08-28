@@ -85,7 +85,8 @@ def age_hours(stamp: str | None, now: datetime) -> float | None:
 
 def verdict(html: str | None, now: datetime,
             last_run: str | None = None,
-            max_age: float = MAX_PAGE_AGE_HOURS) -> dict:
+            max_age: float = MAX_PAGE_AGE_HOURS,
+            last_card: str | None = None) -> dict:
     """
     Healthy or not, and why, in words a person can act on.
 
@@ -118,6 +119,16 @@ def verdict(html: str | None, now: datetime,
             f"The last Daily update run ended in {last_run}, so nothing was "
             f"committed or deployed.")
 
+    # The card is the week's one deliverable and it is invisible to a page
+    # age check, because a card that never opens still leaves yesterday's
+    # board sitting there looking current. On 27 August the card failed
+    # twice and the watchdog reported healthy both times.
+    if last_card and last_card.lower() not in ("success", "skipped", ""):
+        problems.append(
+            f"The last Weekly card run ended in {last_card}. The research "
+            f"may be finished and sitting on a branch, so check the run "
+            f"summary for a compare link before starting another.")
+
     # Worth pulling the data rather than only saying so. Only when the
     # page is genuinely ageing: an unreachable site or a missing timestamp
     # is a different fault and firing a data pull at it would spend
@@ -129,6 +140,7 @@ def verdict(html: str | None, now: datetime,
         "checked_at": now.isoformat(timespec="seconds"),
         "page_age_hours": None if age is None else round(age, 1),
         "last_run": last_run,
+        "last_card": last_card,
         "problems": problems,
         "should_recover": recover,
         "recover_after_hours": RECOVER_AFTER_HOURS,
@@ -149,6 +161,8 @@ def main() -> int:
     ap.add_argument("--url", default=SITE)
     ap.add_argument("--last-run", default=None,
                     help="conclusion of the most recent Daily update run")
+    ap.add_argument("--last-card", default=None,
+                    help="conclusion of the most recent Weekly card run")
     ap.add_argument("--max-age", type=float, default=MAX_PAGE_AGE_HOURS)
     ap.add_argument("--page", default=None,
                     help="read a local file instead of fetching, for tests")
@@ -157,7 +171,7 @@ def main() -> int:
     html = (open(args.page).read() if args.page
             else fetch(f"{args.url}?cb={int(datetime.now().timestamp())}"))
     out = verdict(html, datetime.now(timezone.utc), args.last_run,
-                  args.max_age)
+                  args.max_age, args.last_card)
     print(json.dumps(out, indent=2))
     return 0 if out["healthy"] else 1
 

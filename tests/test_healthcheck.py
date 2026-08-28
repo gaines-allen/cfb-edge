@@ -181,3 +181,43 @@ def test_a_fault_a_pull_cannot_fix_does_not_trigger_one(html):
     v = H.verdict(html, NOW, "failure")
     assert not v["healthy"]
     assert not v["should_recover"]
+
+
+# ------------------------------------------------------------- the card
+
+def test_a_failed_card_is_reported_even_when_the_page_is_current():
+    """
+    The card is invisible to a page age check. A card that never opens
+    leaves yesterday's board sitting there looking perfectly current, so
+    on 27 August the card failed twice and the watchdog called it healthy
+    both times.
+    """
+    v = H.verdict(page("2026-08-26T20:00:00+00:00"), NOW, "success",
+                  last_card="failure")
+    assert not v["healthy"]
+    assert any("Weekly card" in p for p in v["problems"])
+
+
+def test_the_card_warning_says_the_work_may_already_be_done():
+    # It usually is. Everything upstream of the pull request passes and
+    # the branch is pushed, so the failure mode is a card sitting on a
+    # branch rather than research that has to be paid for again.
+    v = H.verdict(page("2026-08-26T20:00:00+00:00"), NOW, "success",
+                  last_card="failure")
+    problem = [p for p in v["problems"] if "Weekly card" in p][0]
+    assert "sitting on a branch" in problem
+    assert "before starting another" in problem
+
+
+@pytest.mark.parametrize("conclusion", ["success", "skipped", "", None])
+def test_a_card_that_did_not_fail_is_left_alone(conclusion):
+    v = H.verdict(page("2026-08-26T20:00:00+00:00"), NOW, "success",
+                  last_card=conclusion)
+    assert v["healthy"], v["problems"]
+
+
+def test_a_failed_card_does_not_trigger_a_data_pull():
+    # Wrong remedy. The board is current; it is the card that is stuck.
+    v = H.verdict(page("2026-08-26T20:00:00+00:00"), NOW, "success",
+                  last_card="failure")
+    assert not v["should_recover"]
