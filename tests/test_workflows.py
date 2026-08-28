@@ -588,10 +588,24 @@ def card_steps() -> list:
 
 
 def step_index(fragment: str) -> int:
-    for i, st in enumerate(card_steps()):
-        if fragment.lower() in (st.get("name") or "").lower():
+    """
+    Exact name first, substring only as a fallback.
+
+    A substring match quietly found the wrong step the moment a second one
+    contained the word "published", and 4 tests started asserting against
+    the rehearsal summary instead of the publish.
+    """
+    steps = card_steps()
+    for i, st in enumerate(steps):
+        if (st.get("name") or "").lower() == fragment.lower():
             return i
-    raise AssertionError(f"no step matching {fragment!r}")
+    hits = [i for i, st in enumerate(steps)
+            if fragment.lower() in (st.get("name") or "").lower()]
+    assert hits, f"no step matching {fragment!r}"
+    assert len(hits) == 1, (
+        f"{fragment!r} matches {[steps[i]['name'] for i in hits]}, "
+        f"name the step exactly")
+    return hits[0]
 
 
 def test_nothing_is_published_before_the_gates_have_run():
@@ -673,3 +687,50 @@ def test_the_watchdog_knows_each_card_is_due_at_a_different_hour():
     step = step[:step.index("- name: Raise the alarm")]
     assert "4) DUE=18" in step and "5) DUE=21" in step, \
         "one hour for both would start Friday early or recover Thursday late"
+
+
+def test_the_pipeline_can_be_rehearsed_without_publishing():
+    """
+    The card goes straight to the site now, which collapsed "run it and
+    see" and "put it live" into one action. Touching run-card-dry runs
+    research, validation and source verification and stops before the
+    ledger is written.
+    """
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    triggers = doc[True] if True in doc else doc["on"]
+    assert ".github/run-card-dry" in triggers["push"]["paths"]
+    dry = doc["jobs"]["card"]["env"]["DRY"]
+    # A file created for the first time lands in added, not modified.
+    assert "head_commit.modified" in dry and "head_commit.added" in dry
+
+    steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
+    for name in ("Log the card and rebuild the page", "Publish"):
+        assert "env.DRY != 'true'" in steps[name]["if"], name
+    # And the gates themselves must NOT be skipped, or the rehearsal
+    # proves nothing about the thing it is rehearsing.
+    for name in ("Fail if the agent wrote outside its lane",
+                 "Validate the card", "Verify every cited source"):
+        assert "DRY" not in (steps[name].get("if") or ""), name
+
+
+def test_a_rehearsal_still_leaves_something_to_read():
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
+    assert "env.DRY == 'true'" in steps["Keep whatever the run produced"]["if"]
+    assert "Say what a rehearsal would have published" in steps
+
+
+def test_a_summary_that_breaks_cannot_fail_a_published_card():
+    """
+    The card is live the moment the push lands. Anything after that which
+    can raise would report a published card as a failed run, and send
+    someone looking for a fault that is not there.
+    """
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
+    body = steps["Publish"]["run"]
+    after_push = body[body.index("PUBLISHED=1"):]
+    assert "|| true" in after_push

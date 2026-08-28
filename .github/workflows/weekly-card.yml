@@ -43,6 +43,11 @@ on:
   push:
     paths:
       - ".github/run-card"
+      # The same run with the publish removed. Since the card now goes
+      # straight to the site, "run it and see" and "put it live" became
+      # the same action, and there has to be a way to exercise the whole
+      # pipeline without that.
+      - ".github/run-card-dry"
   workflow_dispatch:
     inputs:
       season:
@@ -72,6 +77,13 @@ concurrency:
 
 jobs:
   card:
+    # Research, validate and verify, then stop. Set by the dispatch input
+    # or by which trigger file was touched. A new file lands in added
+    # rather than modified, so both are checked.
+    env:
+      DRY: ${{ inputs.research_only == true
+            || contains(github.event.head_commit.modified, '.github/run-card-dry')
+            || contains(github.event.head_commit.added, '.github/run-card-dry') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -250,7 +262,7 @@ jobs:
           fi
           python3 scripts/validate_card.py --file picks_draft.json --json \
             | tee validation.json
-          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY" || true
           import json
           v = json.load(open("validation.json"))
           print("\n### Card validation\n")
@@ -283,7 +295,7 @@ jobs:
           PY
 
       - name: Keep whatever the run produced
-        if: failure()
+        if: failure() || env.DRY == 'true' 
         uses: actions/upload-artifact@v4
         with:
           name: run-output
@@ -295,7 +307,7 @@ jobs:
             research.json
 
       - name: Log the card and rebuild the page
-        if: steps.validate.outputs.no_card != 'true' && inputs.research_only != true
+        if: steps.validate.outputs.no_card != 'true' && env.DRY != 'true'
         env:
           RUN_ID: ${{ github.run_id }}
         run: |
@@ -309,8 +321,37 @@ jobs:
             --season "$SEASON" ${WEEK:+--week "$WEEK"}
           python3 scripts/build_site.py
 
+      - name: Say what a rehearsal would have published
+        if: env.DRY == 'true'
+        run: |
+          {
+            echo "### Rehearsal, nothing published"
+            echo
+            python3 -c "
+          import json
+          v = json.load(open('validation.json'))
+          s = json.load(open('verification.json'))
+          print(f\"Would publish {v['live']} live picks, {v['units_at_risk']} units.\")
+          print()
+          print(f\"{s['sources_verified']} of {s['sources_checked']} sources confirmed.\")
+          for line in s.get('unverified_on_live_picks', []):
+              print(f'- Unverified: {line}')
+          for w in v.get('warnings', []):
+              print(f'- Warning: {w}')
+          " || echo "(could not summarise, see the artifact)"
+            echo
+            echo "Draft:"
+            echo '```'
+            python3 -c "
+          import json
+          for p in json.load(open('picks_draft.json')):
+              print(f\"{p['confidence']}  {p['matchup'][:36]:38} {p['market']}/{p['side'][:18]}\")
+          " || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Publish
-        if: steps.validate.outputs.no_card != 'true' && inputs.research_only != true
+        if: steps.validate.outputs.no_card != 'true' && env.DRY != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -349,7 +390,7 @@ jobs:
             echo "::error::Card is built and committed locally but could not be pushed to main."
             exit 1
           fi
-          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY" || true
           import json
           v = json.load(open("validation.json"))
           s = json.load(open("verification.json"))
