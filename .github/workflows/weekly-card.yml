@@ -2,24 +2,34 @@ name: Weekly card
 
 # The research half, run unattended. The daily job does the deterministic
 # work and stops, because making a pick needs an agent that can read an
-# injury report. This runs that agent, validates what it produced, and opens
-# a pull request. It never writes to main and never publishes on its own.
+# injury report. This runs that agent, validates what it produced, and
+# publishes.
 #
-# The boundary matters more than anything else here. The agent writes one
-# file, picks_draft.json, which is gitignored scratch. Deterministic code
-# then checks the card against scripts/lib/card_rules.py, and only a card
-# that passes reaches data/picks.json. A person merges the pull request.
+# The boundary matters more than anything else here, and it is not the
+# publish step. The agent writes one file, picks_draft.json, which is
+# gitignored scratch, and a lane check fails the run if it touched
+# anything else. Deterministic code then decides what qualifies:
+# card_rules.py for confidence, staking, ceilings and one opinion per
+# game, verify_sources.py to open every cited page and confirm the quote
+# is really on it. Only a card that passes all of that reaches
+# data/picks.json. A card that fails publishes nothing.
 
 on:
   schedule:
-    # Thursday and Friday at 14:00 Eastern. Thursday's run is scoped to
-    # games kicking before Friday evening, so a Thursday game the research
-    # actually likes publishes ahead of its kickoff instead of after it.
-    # Friday's run is the full card, ready for the 6 PM Eastern publish
-    # once the pull request is merged. The scope is derived from the day
-    # below, because schedule events cannot carry inputs.
+    # Thursday 14:00 Eastern, scoped to games kicking before Friday
+    # evening, so a Thursday game the research likes goes up ahead of its
+    # own kickoff rather than after it.
+    #
+    # Friday 17:00 Eastern for the full card. It used to run at 14:00 to
+    # leave 4 hours to review a pull request before the 6 PM publish.
+    # Nothing is reviewed now, so the run moved to the publish instead: a
+    # 45 minute research pass started at 17:00 lands before 6 PM with
+    # lines 4 hours fresher than they used to be.
+    #
+    # The scope is derived from the weekday below, because schedule events
+    # cannot carry inputs.
     - cron: "0 18 * * 4"
-    - cron: "0 18 * * 5"
+    - cron: "0 21 * * 5"
   # Touch .github/run-card and push to start a run now.
   #
   # This workflow has had 2 scheduled windows since it was added and fired
@@ -55,11 +65,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
-  # Opening a pull request depends on a repository setting this workflow
-  # cannot turn on. Opening an issue does not, and the watchdog has been
-  # doing it reliably, so an issue is the delivery route that always works.
-  issues: write
 
 concurrency:
   group: weekly-card
@@ -304,91 +309,56 @@ jobs:
             --season "$SEASON" ${WEEK:+--week "$WEEK"}
           python3 scripts/build_site.py
 
-      - name: Open a pull request
+      - name: Publish
         if: steps.validate.outputs.no_card != 'true' && inputs.research_only != true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BRANCH="card/$(date -u +'%Y-week%V')-${{ github.run_id }}"
+          # Straight to main, at the owner's direction, after 3 weeks where
+          # the pull request was the only thing standing between a finished
+          # card and the site and it never once opened on its own.
+          #
+          # What stands between the agent and the page is not this step. It
+          # is everything above it, and none of it moved: the agent writes
+          # picks_draft.json and nothing else, a lane check fails the run if
+          # it touched anything it should not have, card_rules.py decides
+          # what qualifies rather than the agent, and verify_sources.py
+          # opens every cited page and confirms the quote is really on it. A
+          # card that fails any of those publishes nothing, which is the
+          # gate that was always doing the work.
           git config user.name "cfb-edge-bot"
           git config user.email "actions@github.com"
-          git checkout -b "$BRANCH"
           git add data site
           if git diff --staged --quiet; then
-            echo "Nothing to publish." >> "$GITHUB_STEP_SUMMARY"
+            echo "Nothing changed, nothing to publish." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           git commit -m "Weekly card: $(date -u +'%Y-%m-%d')"
-          git push origin "$BRANCH"
-          python3 - <<'PY' > pr_body.md
+          # main moves under this job. The daily pull commits on its own
+          # schedule and a 45 minute research run is long enough to collide
+          # with one, so rebase and retry rather than failing at the last
+          # step with the card already built.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              PUBLISHED=1; break
+            fi
+            echo "main moved, retrying ($attempt)"
+            sleep 5
+          done
+          if [ -z "$PUBLISHED" ]; then
+            echo "::error::Card is built and committed locally but could not be pushed to main."
+            exit 1
+          fi
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           v = json.load(open("validation.json"))
           s = json.load(open("verification.json"))
-          print("The handicapper researched the slate. This card cleared "
-                "every rule in `scripts/lib/card_rules.py`, and every cited "
-                "sentence below was found on the page it came from.\n")
+          print("### Published\n")
           print(f"{v['live']} live picks, {v['units_at_risk']} units at risk, "
                 f"{s['sources_verified']} of {s['sources_checked']} sources "
                 f"confirmed.\n")
-          if s["unverified_on_live_picks"]:
-              print("## Read these before merging\n")
-              for line in s["unverified_on_live_picks"]:
-                  print(f"- {line}\n")
+          for line in s.get("unverified_on_live_picks", []):
+              print(f"- Unverified: {line}\n")
           for w in v.get("warnings", []):
-              print(f"Warning: {w}\n")
-          print("## What the machine did not check\n")
-          print(s["note"] + "\n")
-          print("Nothing here is published until this merges.\n")
+              print(f"- Warning: {w}\n")
           PY
-          # The branch is pushed and the card is safe on it before this
-          # runs, so a refusal here is a missing button rather than lost
-          # work. Say which button.
-          #
-          # 27 August: everything upstream of this passed, the branch went
-          # up, and the call was refused because the repository has "Allow
-          # GitHub Actions to create and approve pull requests" turned off,
-          # which is the default. The step exited 1 with no explanation and
-          # a valid card sat on a branch nobody knew about.
-          COMPARE="${{ github.server_url }}/${{ github.repository }}/compare/main...$BRANCH?expand=1"
-          SUMMARY=$(python3 -c "import json; v=json.load(open('validation.json')); print(f\"{v['live']} live picks, {v['units_at_risk']} units at risk.\")")
-          if gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
-                          --body-file pr_body.md \
-                          --base main --head "$BRANCH" 2> pr_err.txt; then
-            echo "Pull request opened. $SUMMARY" >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
-          # Refused. That is a repository setting rather than a broken
-          # card, and the card is already committed on the branch, so
-          # deliver it the way that does work instead of stranding it.
-          # The human gate is unchanged. Nothing publishes until a merge.
-          REASON=$(tr -d '\n' < pr_err.txt | head -c 300)
-          {
-            echo "$SUMMARY"
-            echo
-            echo "**Open the pull request:** $COMPARE"
-            echo
-            cat pr_body.md
-            echo
-            echo "---"
-            echo
-            echo "GitHub refused to open the pull request itself:"
-            echo "\`$REASON\`"
-            echo
-            echo "To have it opened automatically next time, enable Settings,"
-            echo "Actions, General, Workflow permissions, allow GitHub Actions"
-            echo "to create and approve pull requests. Until then the card"
-            echo "arrives here, which works the same way."
-          } > issue_body.md
-          if gh issue create --title "Card ready to publish: $(date -u +'%Y-%m-%d')" \
-                             --body-file issue_body.md; then
-            {
-              echo "### Card delivered as an issue"
-              echo
-              echo "$SUMMARY Open it: $COMPARE"
-            } >> "$GITHUB_STEP_SUMMARY"
-            echo "::warning::Pull request refused. Card delivered as an issue. $COMPARE"
-            exit 0
-          fi
-          echo "::error::Card is on $BRANCH but could not be delivered. Open it at $COMPARE"
-          cat pr_body.md
-          exit 1

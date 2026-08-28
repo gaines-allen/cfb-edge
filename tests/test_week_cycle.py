@@ -236,8 +236,11 @@ def test_the_site_updates_daily_at_2pm_eastern():
 
 
 def test_the_card_researches_thursday_and_friday():
+    # Thursday 14:00 Eastern for the early card, Friday 17:00 for the full
+    # one. Friday moved from 14:00 when the pull request went away: it was
+    # early to leave review time, and there is nothing to review now.
     assert '"0 18 * * 4"' in WEEKLY
-    assert '"0 18 * * 5"' in WEEKLY
+    assert '"0 21 * * 5"' in WEEKLY
     assert '"30 13 * * 3"' not in WEEKLY, "the Wednesday cron survived"
 
 

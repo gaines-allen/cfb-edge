@@ -118,11 +118,17 @@ jobs:
         run: |
           DOW=$(date -u +%u)
           HOUR=$(date -u +%H)
-          if [ "$DOW" != "4" ] && [ "$DOW" != "5" ]; then
-            echo "Not a card day."; exit 0
-          fi
-          if [ "$HOUR" -lt 18 ]; then
-            echo "Card is not due yet today."; exit 0
+          # Thursday's early card is due 18:00 UTC, Friday's full card
+          # 21:00. Using one hour for both would either start Friday's run
+          # 3 hours early on stale lines, or leave Thursday's recovery too
+          # late for a Thursday night kickoff.
+          case "$DOW" in
+            4) DUE=18 ;;
+            5) DUE=21 ;;
+            *) echo "Not a card day."; exit 0 ;;
+          esac
+          if [ "$HOUR" -lt "$DUE" ]; then
+            echo "Card is not due yet today (due ${DUE}:00 UTC)."; exit 0
           fi
           TODAY=$(date -u +%Y-%m-%d)
           RAN=$(gh run list --workflow weekly-card.yml --limit 20 \

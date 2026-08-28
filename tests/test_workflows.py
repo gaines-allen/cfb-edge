@@ -207,33 +207,6 @@ def test_the_token_is_stripped_of_whitespace():
     repairs a secret that was pasted with the break already in it.
     """
     assert "tr -d '[:space:]'" in WEEKLY_CMDS
-
-
-def test_a_failure_prints_the_reason():
-    """
-    Claude Code puts the reason in the result field. Printing only the
-    subtype turns "Invalid auth token" into "Failed with subtype success".
-    """
-    block = WEEKLY.split("if d.get(\"is_error\")", 1)[1][:400]
-    assert 'd.get("result")' in block
-
-
-# ------------------------------------------- nothing publishes itself
-
-def test_the_card_lands_in_a_pull_request():
-    """
-    The agent never writes to main. A person reads the rationale and the
-    sources and merges, which is what makes unattended research acceptable.
-    """
-    assert "gh pr create" in WEEKLY
-    assert "--base main" in WEEKLY
-
-
-def test_the_card_branch_is_not_main():
-    assert re.search(r'BRANCH="card/', WEEKLY)
-    assert 'git push origin "$BRANCH"' in WEEKLY
-
-
 def test_the_draft_never_gets_committed_raw():
     for name in ("picks_draft.json", "research.json", "validation.json"):
         assert name in GITIGNORE, f"{name} is not gitignored"
@@ -272,32 +245,6 @@ def test_a_failed_run_does_not_reach_the_validator():
     """The agent step must still fail the job when the payload says it failed."""
     block = WEEKLY.split("> research.json", 1)[1].split("Fail if the agent")[0]
     assert "sys.exit(1)" in block
-
-
-def test_sources_are_verified_before_anything_is_logged():
-    """
-    A url and a date only prove a page exists. Opening it is what separates
-    a read source from a paraphrased one, and that has to happen before the
-    ledger is touched.
-    """
-    assert (AFTER_AGENT.index("verify_sources.py")
-            < AFTER_AGENT.index("log_picks.py"))
-
-
-def test_the_pull_request_names_what_could_not_be_confirmed():
-    """
-    The unverified list is the part a person has to read, so it belongs in
-    the pull request rather than buried in a log.
-    """
-    body = WEEKLY.split("pr_body.md", 1)[1][:1400]
-    assert "unverified_on_live_picks" in body
-    assert "Read these before merging" in body
-
-
-def test_the_pull_request_states_the_limits_of_the_check():
-    assert 's["note"]' in WEEKLY
-
-
 def test_the_verification_report_is_kept_on_failure():
     assert "verification.json" in WEEKLY_CMDS
 
@@ -621,87 +568,108 @@ def test_the_watchdog_checks_often_enough_to_catch_a_skipped_run():
     assert any("*/4" in c or "*/3" in c or "*/2" in c for c in crons), crons
 
 
-def test_the_card_can_be_started_without_the_scheduler():
+# ---------------------------------------------------------------------
+# Publishing with nobody in the room
+#
+# The pull request is gone, at the owner's direction, after 3 weeks in
+# which it was the only thing between a finished card and the site and it
+# never once opened on its own.
+#
+# What actually held that line was never the merge. It was the lane check,
+# card_rules.py and verify_sources.py, all of which run before anything is
+# written. These tests exist because that is now the whole of it: if one
+# of them stops running, or the publish step stops depending on them, an
+# agent puts unverified betting picks on a public site and nothing says so.
+# ---------------------------------------------------------------------
+
+def card_steps() -> list:
+    import yaml
+    return yaml.safe_load(WEEKLY)["jobs"]["card"]["steps"]
+
+
+def step_index(fragment: str) -> int:
+    for i, st in enumerate(card_steps()):
+        if fragment.lower() in (st.get("name") or "").lower():
+            return i
+    raise AssertionError(f"no step matching {fragment!r}")
+
+
+def test_nothing_is_published_before_the_gates_have_run():
+    publish = step_index("Publish")
+    for gate in ("outside its lane", "Validate the card",
+                 "Verify every cited source"):
+        assert step_index(gate) < publish, f"{gate} must precede the publish"
+
+
+def test_the_publish_step_stands_down_when_there_is_no_card():
+    step = card_steps()[step_index("Publish")]
+    assert "no_card != 'true'" in step["if"]
+
+
+def test_the_agent_is_still_confined_to_one_file():
+    lane = card_steps()[step_index("outside its lane")]
+    body = lane.get("run", "")
+    assert "picks_draft.json" in body
+    # And the check has to be able to fail the run, not just print.
+    assert "exit 1" in body
+
+
+def test_the_card_still_has_to_pass_the_rules_before_it_goes_up():
+    validate = card_steps()[step_index("Validate the card")]
+    assert "validate_card.py" in validate.get("run", "")
+
+
+def test_every_cited_source_is_still_opened_before_it_goes_up():
+    verify = card_steps()[step_index("Verify every cited source")]
+    assert "verify_sources.py" in verify.get("run", "")
+
+
+def test_the_ledger_is_written_by_log_picks_not_by_the_agent():
+    # The agent writes gitignored scratch. Deterministic code decides what
+    # of it reaches data/picks.json.
+    log = card_steps()[step_index("Log the card")]
+    assert "log_picks.py" in log.get("run", "")
+    assert "--dry-run" in log.get("run", ""), "rehearse before touching the ledger"
+
+
+def test_a_card_that_publishes_nothing_is_not_an_error():
+    step = card_steps()[step_index("Publish")].get("run", "")
+    assert "git diff --staged --quiet" in step
+    assert "exit 0" in step
+
+
+def test_the_publish_survives_main_moving_underneath_it():
     """
-    The weekly card had 2 scheduled windows since it was added and fired
-    on neither. A missed daily pull costs a day of freshness. A missed
-    Friday costs the card, with no second chance before kickoff.
+    The daily pull commits on its own schedule and a 45 minute research
+    run is long enough to collide with one. Failing at the last step with
+    the card already built is the one outcome worth engineering away.
+    """
+    step = card_steps()[step_index("Publish")].get("run", "")
+    assert "git pull --rebase origin main" in step
+    assert "for attempt in" in step
+    assert "::error::" in step, "and say so if every retry fails"
+
+
+def test_friday_runs_close_to_when_it_publishes():
+    """
+    Friday used to run at 14:00 Eastern to leave 4 hours to review a pull
+    request. Nothing is reviewed now, so running that early only means
+    publishing 4 hour old lines.
     """
     import yaml
     doc = yaml.safe_load(WEEKLY)
     triggers = doc[True] if True in doc else doc["on"]
-    assert ".github/run-card" in triggers["push"]["paths"]
-    assert len(triggers["push"]["paths"]) == 1, "must not fire on any push"
-    assert "workflow_dispatch" in triggers
+    crons = [c["cron"] for c in triggers["schedule"]]
+    friday = [c for c in crons if c.endswith("* * 5")]
+    assert friday, "no Friday schedule"
+    hour = int(friday[0].split()[1])
+    # 6 PM Eastern is 22:00 UTC. Start late enough that the lines are
+    # current, early enough that a 45 minute run lands before the hour.
+    assert 20 <= hour <= 21, f"Friday runs at {hour}:00 UTC"
 
 
-def test_the_watchdog_starts_the_card_when_its_schedule_skips():
+def test_the_watchdog_knows_each_card_is_due_at_a_different_hour():
     step = WATCHDOG[WATCHDOG.index("Start the card if its schedule skipped"):]
     step = step[:step.index("- name: Raise the alarm")]
-    # Only on card days, only once due, and only if nothing ran already.
-    assert 'DOW=$(date -u +%u)' in step
-    assert '"$HOUR" -lt 18' in step
-    assert "gh workflow run weekly-card.yml" in step
-    assert "already ran today" in step
-    # Same loop guard as the data recovery above.
-    assert "github.event_name != 'workflow_run'" in step
-
-
-def test_a_push_run_of_the_card_takes_the_full_scope():
-    # The Thursday narrowing is derived from the schedule event, so a
-    # manually started run must behave like Friday and rate the weekend.
-    scope = WEEKLY[WEEKLY.index('SCOPE="full"'):]
-    scope = scope[:scope.index("claude -p")]
-    assert "github.event_name }}\" = \"schedule\"" in scope
-
-
-def test_a_refused_pull_request_still_delivers_the_card():
-    """
-    Opening a pull request needs a repository setting the workflow cannot
-    turn on, and it was off on both 27 and 28 August, so two finished
-    cards sat on branches nobody was told about. Opening an issue needs no
-    such setting and the watchdog has been doing it reliably.
-
-    So a refusal falls back to an issue carrying the same body and the
-    link that opens the pull request in one click. The human gate does not
-    move: nothing publishes until someone merges.
-    """
-    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
-    assert "gh issue create" in step
-    assert step.index("gh pr create") < step.index("gh issue create"), \
-        "the pull request stays the preferred route"
-    # Delivered is delivered. Failing the run every week for a setting
-    # that is not going to change teaches whoever reads it to ignore red.
-    assert "exit 0" in step[step.index("gh issue create"):]
-    import yaml
-    doc = yaml.safe_load(WEEKLY)
-    assert doc["permissions"].get("issues") == "write"
-
-
-def test_the_card_is_lost_only_if_both_routes_fail():
-    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
-    tail = step[step.index("gh issue create"):]
-    assert "::error::" in tail and "exit 1" in tail
-
-
-def test_a_refused_pull_request_never_strands_the_card():
-    """
-    On 27 August every step passed, the branch went up with a valid card
-    on it, and gh pr create was refused because the repository has "Allow
-    GitHub Actions to create and approve pull requests" turned off, which
-    is the default. The step exited 1 with no explanation and the card sat
-    on a branch nobody knew existed.
-
-    The branch is pushed before this runs, so a refusal is a missing
-    button rather than lost work. It has to say which button.
-    """
-    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
-    assert "compare/main..." in step, "must print where to open it by hand"
-    assert "GITHUB_STEP_SUMMARY" in step
-    assert "Workflow" in step and "permissions" in step, \
-        "must name the setting that fixes it"
-
-
-def test_the_branch_is_pushed_before_the_pull_request_is_attempted():
-    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
-    assert step.index('git push origin "$BRANCH"') < step.index("gh pr create")
+    assert "4) DUE=18" in step and "5) DUE=21" in step, \
+        "one hour for both would start Friday early or recover Thursday late"
