@@ -22,7 +22,10 @@ from __future__ import annotations
 import re
 from datetime import datetime, timedelta, timezone
 
-LIVE_THRESHOLD = 8.0
+# Imported, not repeated. Two copies of one threshold drift the
+# first time either is tuned, and this file and store.py both
+# decide whether a pick is live.
+from .store import LIVE_THRESHOLD  # noqa: E402
 MAX_LIVE_PICKS = 6
 MAX_UNITS_PER_PICK = 2.0
 MAX_UNITS_PER_WEEK = 12.0
@@ -112,15 +115,19 @@ def check_pick(pick: dict, i: int, now: datetime | None = None) -> list[str]:
     if not live:
         return errs
 
-    # The core rule. Everything above 8.0 has to be earned with research the
-    # model cannot do, so a published pick supported only by the rating gap
-    # is the exact thing the 7.5 cap exists to prevent.
+    # The core rule, and the one that actually protects the line. Anything
+    # published has to be earned with research the model cannot do, so a
+    # live pick supported only by the rating gap is the exact thing the
+    # 7.5 cap exists to prevent. This keys off live rather than off a
+    # number, which is why lowering the publish line does not open the
+    # door the cap was built to hold shut.
     beyond_ratings = factors - {RATINGS_ONLY}
     if not beyond_ratings:
         errs.append(
             f"{label}: published at {conf} on {RATINGS_ONLY} alone. The "
             f"ratings model caps at 7.5 on purpose. Name the researched "
-            f"reason the market is wrong or drop this below 8.0.")
+            f"reason the market is wrong or drop this below "
+            f"{LIVE_THRESHOLD}.")
 
     if not sources:
         errs.append(f"{label}: published at {conf} with no sources. Every "

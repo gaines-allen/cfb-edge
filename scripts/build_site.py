@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
 from lib.model import COHERENCE_TOLERANCE, load_calibration  # noqa: E402
+from lib.store import LIVE_THRESHOLD  # noqa: E402
 from lib.teams import canonical, load_logos  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
@@ -127,7 +128,7 @@ VOICE = {
     # the slate goes up, the leans move daily, 6 plays land Friday.
     "tagline": "The whole slate every week. Six plays on Friday. Every "
                "line watched in between, so you see what moved and when.",
-    "subhead": "Nothing goes up under 8.0 out of 10, and the card is posted "
+    "subhead": "Nothing goes up under {publish} out of 10, and the card is posted "
                "before kickoff, so I can't quietly improve it afterwards. "
                "Neither can you.",
 
@@ -276,7 +277,8 @@ VOICE = {
                          "and no evidence.",
     "calibration_note": "Shadow picks under the publish line are in here on "
                         "purpose. That's how the line gets tested instead "
-                        "of assumed. Units on the below-8 row are pretend, "
+                        "of assumed. Units on the rows under {publish} are "
+                        "pretend, "
                         "because I don't stake what I don't publish.",
 
     "cumulative_heading": "Where you would be",
@@ -294,7 +296,7 @@ VOICE = {
     "factors_heading": "What my reasons have been worth",
     "research_heading": "Whether the research is worth anything",
     "research_empty": "Nothing has settled, so there is no way to tell yet.",
-    "research_note": "The model stops at 7.5 and the card starts at 8.0, so "
+    "research_note": "The model stops at 7.5 and the card starts at {publish}, so "
                      "research is the only thing that can put a play up. "
                      "That makes it the layer most worth checking and the "
                      "one easiest to fool, because a determined search "
@@ -853,6 +855,18 @@ def lock_id(picks: list[dict], season, week) -> str | None:
     return field[0].get("id")
 
 
+def fill_publish(text: str) -> str:
+    """
+    Put the live publish line into the copy.
+
+    The number was typed into 3 sentences and lived in 2 more places in
+    code. Lowering it once would have left the page promising a bar it no
+    longer holds, which is the fifth time in a week one quantity in two
+    places has caused a fault here.
+    """
+    return text.replace("{publish}", f"{LIVE_THRESHOLD:.1f}")
+
+
 def build_payload() -> dict:
     picks = store.load_picks()
     slate_by_event = {g["event_id"]: g
@@ -966,6 +980,7 @@ def build_payload() -> dict:
     # above the card rather than under every ticket.
     payload["proven"] = (payload.get("overall", {}) or {}).get(
         "verdict") == "beats_breakeven"
+    payload["voice_publish"] = f"{LIVE_THRESHOLD:.1f}"
     payload["card_caveat"] = hoist_built(
         [p["defense"] for p in payload["picks"] if p.get("live")])
     return payload
@@ -1934,7 +1949,7 @@ def main() -> int:
             .replace("__VOICE__", json.dumps(VOICE, separators=(",", ":")))
             .replace("__NAME__", VOICE["name"])
             .replace("__TAGLINE__", VOICE["tagline"])
-            .replace("__SUBHEAD__", VOICE["subhead"])
+            .replace("__SUBHEAD__", fill_publish(VOICE["subhead"]))
             .replace("__KICKER__", VOICE["kicker"])
             .replace("__LOGO__", VOICE["logo"])
             .replace("__BOARD_OPEN__", VOICE["board_open"])

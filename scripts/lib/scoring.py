@@ -12,6 +12,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
+from .store import LIVE_THRESHOLD
+
 Outcome = Literal["win", "loss", "push", "pending", "void"]
 
 
@@ -172,7 +174,11 @@ def confidence_bucket(conf: float) -> str:
         return "8.5-8.9"
     if c >= 8.0:
         return "8.0-8.4"
-    return "below-8"
+    if c >= 7.5:
+        return "7.5-7.9"
+    if c >= LIVE_THRESHOLD:
+        return "7.0-7.4"
+    return "below-7"
 
 
 def summarize(picks: list[dict]) -> dict:
@@ -212,7 +218,11 @@ def calibration_table(picks: list[dict]) -> list[dict]:
     Did an 8 win less often than a 10? This is the table that answers it,
     and the one the handicapper is required to read before making picks.
     """
-    order = ["9.5-10", "9.0-9.4", "8.5-8.9", "8.0-8.4", "below-8"]
+    # Split at the publish line. Rows above it are staked money and rows
+    # below are shadow picks, and a table that mixed them would answer a
+    # different question than the one it claims to.
+    order = ["9.5-10", "9.0-9.4", "8.5-8.9", "8.0-8.4", "7.5-7.9",
+             "7.0-7.4", "below-7"]
     buckets: dict[str, list[dict]] = {k: [] for k in order}
     for p in picks:
         if p.get("result") not in ("win", "loss", "push"):

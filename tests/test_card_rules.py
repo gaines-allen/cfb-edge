@@ -68,7 +68,7 @@ def test_ratings_alone_cannot_publish():
 
 def test_ratings_alone_is_fine_below_the_threshold():
     """Shadow picks exist to test the threshold, so they carry no such bar."""
-    assert errs(pick(confidence=7.4, factors=["rating_edge"], sources=[])) == []
+    assert errs(pick(confidence=6.4, factors=["rating_edge"], sources=[])) == []
 
 
 def test_a_live_pick_needs_sources():
@@ -320,4 +320,4 @@ def test_a_trivial_quote_is_rejected():
 
 
 def test_a_shadow_pick_needs_no_quote():
-    assert errs(pick(confidence=7.2, factors=["rating_edge"], sources=[])) == []
+    assert errs(pick(confidence=6.2, factors=["rating_edge"], sources=[])) == []

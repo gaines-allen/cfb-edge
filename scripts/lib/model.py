@@ -22,6 +22,18 @@ from pathlib import Path
 # page ends up saying a team wins by 56 and by 28 in the same column.
 COHERENCE_TOLERANCE = 4.0
 
+# The ceiling on what the ratings model may claim for itself, deliberately
+# short of certainty. It exists so a published pick always rests on
+# something the model cannot see, and card_rules.py enforces the other
+# half by refusing any live pick whose only factor is the rating gap.
+#
+# That refusal is the rule. This number used to sit below the publish line
+# as well, which made the rule look like arithmetic, and on 28 August the
+# line moved to 7.0 and the arithmetic stopped holding while the rule did
+# not. Do not raise this to close that gap.
+CONFIDENCE_CAP = 7.5
+UNCALIBRATED_CAP = 6.5
+
 CALIBRATION_FILE = Path(__file__).resolve().parents[2] / "data" / "model_calibration.json"
 
 # Home field in FBS has compressed over the last decade. This is a starting
@@ -282,9 +294,9 @@ def suggested_confidence(edge_pts: float | None, market: str,
         # Uncalibrated. Fall back to a blunt points scale and cap it lower,
         # since we have no idea how unusual this gap is.
         base = 4.0 + min(abs(edge_pts), 10.0) * 0.20
-        return round(min(base, 6.5), 1)
+        return round(min(base, UNCALIBRATED_CAP), 1)
 
     base = 3.5 + min(abs(z), 4.0) * 1.5
     if not ratings_complete:
         base -= 0.8
-    return round(min(base, 7.5), 1)
+    return round(min(base, CONFIDENCE_CAP), 1)

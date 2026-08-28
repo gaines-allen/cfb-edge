@@ -92,7 +92,7 @@ def test_a_broken_url_does_not_become_an_outlet():
 def test_shadow_picks_stay_out_of_it():
     # Below the publish line is not a published pick, and folding it in
     # would let unstaked plays flatter the record that gates staking.
-    card = score([pick("win", 0.0, [src("https://espn.com/a")], conf=7.0),
+    card = score([pick("win", 0.0, [src("https://espn.com/a")], conf=6.0),
                   pick("loss", -1.0, [src("https://espn.com/b")])])
     assert card["researched"]["picks"] == 1
     assert card["researched"]["losses"] == 1

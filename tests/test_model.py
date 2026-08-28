@@ -62,8 +62,32 @@ def test_confidence_caps_at_exactly_7_5():
     assert suggested_confidence(40.0, "spread", calibration=cal) == 7.5
 
 
-def test_cap_sits_below_the_live_threshold():
-    assert 7.5 < LIVE_THRESHOLD == 8.0
+def test_the_ratings_model_can_never_publish_on_its_own():
+    """
+    This used to assert 7.5 < LIVE_THRESHOLD == 8.0, which made the rule
+    a consequence of arithmetic: the model could not reach the publish
+    line, so it could not publish. Lowering the line to 7.0 on 28 August
+    put the 7.5 cap above it and that reasoning stopped holding.
+
+    The rule itself did not depend on the arithmetic. card_rules.py
+    refuses any live pick whose only factor is the rating gap, whatever
+    its confidence. Test the property rather than the coincidence that
+    used to imply it.
+    """
+    from lib.card_rules import RATINGS_ONLY, check_pick
+
+    ratings_only = {
+        "matchup": "A @ B", "market": "spread", "period": "full",
+        "side": "A", "line": -3.5, "price": -110,
+        "confidence": 9.9, "units": 1.0,
+        "rationale": "x" * 60,
+        "factors": {RATINGS_ONLY: True},
+        "sources": [],
+    }
+    errors = check_pick(ratings_only, 0)
+    assert any(RATINGS_ONLY in e for e in errors), errors
+    # And the cap is still where it was, for the reason it was put there.
+    assert model.CONFIDENCE_CAP == 7.5
 
 
 @pytest.mark.parametrize("edge", EDGES)

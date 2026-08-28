@@ -139,7 +139,7 @@ def test_one_verified_source_carries_the_pick_but_the_rest_are_named():
 
 
 def test_a_shadow_pick_is_reported_but_never_blocks():
-    rep = verify([pick(7.2, [source()])], fetcher=fake(None, "http 404"))
+    rep = verify([pick(6.2, [source()])], fetcher=fake(None, "http 404"))
     assert rep["passed"] is True
     assert rep["unverified_on_live_picks"] == []
 

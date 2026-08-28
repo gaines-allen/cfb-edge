@@ -32,7 +32,16 @@ RESULTS = DATA / "results.json"
 # A pick only goes live at this confidence or above. Everything below is
 # still recorded as a shadow pick so the model can find out whether the
 # threshold is set in the right place.
-LIVE_THRESHOLD = 8.0
+# The publish line. A pick at or above this is staked and goes on the
+# card; below it rides as a shadow pick that is graded but not staked.
+#
+# Lowered from 8.0 on 28 August. What stops the ratings model publishing
+# on its own is not this number, it is the rule in card_rules.py that a
+# live pick must name a researched factor beyond the rating gap and cite
+# a source that verify_sources.py can open and confirm. That rule keys off
+# whether a pick is live, not off any particular value here, so it holds
+# at 7.0 exactly as it held at 8.0.
+LIVE_THRESHOLD = 7.0
 TARGET_PICKS = 6
 
 
