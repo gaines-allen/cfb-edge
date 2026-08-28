@@ -1,47 +1,60 @@
 {
-  "built_at": "2026-08-28T01:53:23+00:00",
+  "built_at": "2026-08-28T17:39:08+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-28T01:53:19+00:00",
+  "board_fetched_at": "2026-08-28T17:39:05+00:00",
   "warning": null,
-  "games_on_board": 97,
+  "games_on_board": 110,
   "games_with_candidates": 46,
   "games_dropped": [
     "Albany @ Buffalo Bulls",
     "Bethune-Cookman Wildcats @ UCF Knights",
     "Merrimack Warriors @ Delaware Blue Hens",
+    "West Georgia Wolves @ Kennesaw State Owls",
     "Arkansas Pine Bluff Golden Lions @ Missouri Tigers",
+    "Eastern Illinois Panthers @ Minnesota Golden Gophers",
     "Idaho Vandals @ Utah Utes",
     "North Carolina A&T Aggies @ Georgia State Panthers",
     "Indiana State Sycamores @ Purdue Boilermakers",
+    "LIU Sharks @ Kansas Jayhawks",
     "Bryant Bulldogs @ Army Black Knights",
     "Tarleton State Texans @ Bowling Green Falcons",
+    "Lafayette Leopards @ UConn Huskies",
     "New Hampshire Wildcats @ Syracuse Orange",
     "Duquesne Dukes @ Air Force Falcons",
     "Southeast Missouri State Redhawks @ Iowa State Cyclones",
+    "Youngstown St Penguins @ Kentucky Wildcats",
     "Rhode Island Rams @ Temple Owls",
     "Tennessee State Tigers @ Georgia Bulldogs",
+    "Maine Black Bears @ Appalachian State Mountaineers",
     "Citadel Bulldogs @ Charlotte 49ers",
     "Fordham Rams @ North Dakota State Bison",
     "Furman Paladins @ Tennessee Volunteers",
+    "Towson Tigers @ Navy Midshipmen",
     "UT Rio Grande Valley Vaqueros @ UTSA Roadrunners",
     "North Alabama Lions @ Arkansas Razorbacks",
     "Alcorn State Braves @ Southern Mississippi Golden Eagles",
     "Norfolk State Spartans @ Old Dominion Monarchs",
     "Abilene Christian Wildcats @ Texas Tech Red Raiders",
     "Austin Peay Governors @ Vanderbilt Commodores",
+    "Charleston Southern Buccaneers @ Georgia Southern Eagles",
     "Eastern Kentucky Colonels @ Jacksonville State Gamecocks",
+    "Houston Baptist Huskies @ Rice Owls",
     "Idaho State Bengals @ Utah State Aggies",
     "Nicholls State Colonels @ Kansas State Wildcats",
+    "Murray State Racers @ Middle Tennessee Blue Raiders",
+    "Southeastern Louisiana Lions @ South Alabama Jaguars",
     "Northwestern State Demons @ Louisiana Tech Bulldogs",
     "VMI Keydets @ Virginia Tech Hokies",
     "Utah Tech Trailblazers @ BYU Cougars",
     "Lamar Cardinals @ Louisiana Ragin Cajuns",
     "South Dakota State Jackrabbits @ Northwestern Wildcats",
+    "Mercyhurst Lakers @ New Mexico State Aggies",
     "Northern Arizona Lumberjacks @ Arizona Wildcats",
     "Portland State Vikings @ San Diego State Aztecs",
-    "Morgan State Bears @ Arizona State Sun Devils"
+    "Morgan State Bears @ Arizona State Sun Devils",
+    "Mississippi Valley State Delta Devils @ Sacramento State Hornets"
   ],
   "games_outside_week": 13,
   "unrated_schools": [
@@ -52,17 +65,26 @@
     "Austin Peay Governors",
     "Bethune-Cookman Wildcats",
     "Bryant Bulldogs",
+    "Charleston Southern Buccaneers",
     "Citadel Bulldogs",
     "Duquesne Dukes",
+    "Eastern Illinois Panthers",
     "Eastern Kentucky Colonels",
     "Fordham Rams",
     "Furman Paladins",
+    "Houston Baptist Huskies",
     "Idaho State Bengals",
     "Idaho Vandals",
     "Indiana State Sycamores",
+    "LIU Sharks",
+    "Lafayette Leopards",
     "Lamar Cardinals",
+    "Maine Black Bears",
+    "Mercyhurst Lakers",
     "Merrimack Warriors",
+    "Mississippi Valley State Delta Devils",
     "Morgan State Bears",
+    "Murray State Racers",
     "New Hampshire Wildcats",
     "Nicholls State Colonels",
     "Norfolk State Spartans",
@@ -74,29 +96,33 @@
     "Rhode Island Rams",
     "South Dakota State Jackrabbits",
     "Southeast Missouri State Redhawks",
+    "Southeastern Louisiana Lions",
     "Tarleton State Texans",
     "Tennessee State Tigers",
+    "Towson Tigers",
     "UT Rio Grande Valley Vaqueros",
     "Utah Tech Trailblazers",
-    "VMI Keydets"
+    "VMI Keydets",
+    "West Georgia Wolves",
+    "Youngstown St Penguins"
   ],
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-28T01:53:22+00:00",
+    "measured_at": "2026-08-28T17:39:07+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 63,
-      "bias": -3.197,
+      "bias": -3.213,
       "median": -3.8,
-      "sigma": 5.533
+      "sigma": 5.55
     },
     "spreads": {
       "n": 63,
       "bias": 0.632,
       "median": 1.1,
-      "sigma": 2.78
+      "sigma": 2.79
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -152,7 +178,7 @@
           "price": -106,
           "model_number": 35.4,
           "edge_points": -12.1,
-          "edge_sigma": -2.19,
+          "edge_sigma": -2.18,
           "floor_confidence": 6.8
         }
       ]
@@ -208,8 +234,8 @@
           "price": -110,
           "model_number": 43.6,
           "edge_points": -10.9,
-          "edge_sigma": -1.97,
-          "floor_confidence": 6.5
+          "edge_sigma": -1.96,
+          "floor_confidence": 6.4
         },
         {
           "market": "spread",
@@ -220,7 +246,7 @@
           "price": -110,
           "model_number": -23.0,
           "edge_points": 5.5,
-          "edge_sigma": 1.98,
+          "edge_sigma": 1.97,
           "floor_confidence": 6.5
         }
       ]
@@ -276,7 +302,7 @@
           "price": -110,
           "model_number": 65.0,
           "edge_points": 10.5,
-          "edge_sigma": 1.9,
+          "edge_sigma": 1.89,
           "floor_confidence": 6.3
         },
         {
@@ -341,10 +367,10 @@
           "side": "Under",
           "market_line": 51.5,
           "bet_line": 51.5,
-          "price": -110,
+          "price": -114,
           "model_number": 41.1,
           "edge_points": -10.4,
-          "edge_sigma": -1.88,
+          "edge_sigma": -1.87,
           "floor_confidence": 6.3
         }
       ]
@@ -468,7 +494,7 @@
           "price": -110,
           "model_number": 56.0,
           "edge_points": 9.5,
-          "edge_sigma": 1.72,
+          "edge_sigma": 1.71,
           "floor_confidence": 6.1
         }
       ]
@@ -524,7 +550,7 @@
           "price": -108,
           "model_number": 39.0,
           "edge_points": -9.5,
-          "edge_sigma": -1.72,
+          "edge_sigma": -1.71,
           "floor_confidence": 6.1
         },
         {
@@ -784,7 +810,7 @@
           "price": -110,
           "model_number": -13.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.62,
+          "edge_sigma": -1.61,
           "floor_confidence": 5.9
         }
       ]
@@ -908,8 +934,76 @@
           "price": -106,
           "model_number": -20.7,
           "edge_points": 2.8,
-          "edge_sigma": 1.01,
+          "edge_sigma": 1.0,
           "floor_confidence": 5.0
+        }
+      ]
+    },
+    {
+      "event_id": "7356f9bad07c48fc6b78f52e38c85c11",
+      "kickoff": "2026-09-05T00:00:00Z",
+      "matchup": "UTEP Miners @ Oklahoma Sooners",
+      "home_team": "Oklahoma Sooners",
+      "away_team": "UTEP Miners",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Oklahoma",
+        "away_team": "UTEP",
+        "projected_spread": -39.6,
+        "projected_total": 44.3,
+        "projected_h1_spread": -21.8,
+        "projected_h1_total": 20.8,
+        "hfa_applied": 2.2,
+        "coherence_gap": 2.3,
+        "inputs": {
+          "home_rating": 18.44,
+          "away_rating": -18.34,
+          "home_points": 39.2,
+          "away_points": 1.9,
+          "home_components": {
+            "sp": 18.8,
+            "sp_off": 32.1,
+            "sp_def": 13.7,
+            "fpi": 17.782
+          },
+          "away_components": {
+            "sp": -19.3,
+            "sp_off": 15.2,
+            "sp_def": 34.1,
+            "fpi": -16.605
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 50.5,
+          "bet_line": 50.5,
+          "price": -110,
+          "model_number": 44.3,
+          "edge_points": -6.2,
+          "edge_sigma": -1.12,
+          "floor_confidence": 5.2
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "UTEP",
+          "market_line": -41.5,
+          "bet_line": 41.5,
+          "price": -105,
+          "model_number": -39.6,
+          "edge_points": 1.9,
+          "edge_sigma": 0.68,
+          "floor_confidence": 4.5
         }
       ]
     },
@@ -1020,7 +1114,7 @@
           "price": -110,
           "model_number": -15.8,
           "edge_points": 5.7,
-          "edge_sigma": 2.05,
+          "edge_sigma": 2.04,
           "floor_confidence": 6.6
         }
       ]
@@ -1076,76 +1170,8 @@
           "price": -104,
           "model_number": -15.8,
           "edge_points": -5.3,
-          "edge_sigma": -1.91,
-          "floor_confidence": 6.4
-        }
-      ]
-    },
-    {
-      "event_id": "7356f9bad07c48fc6b78f52e38c85c11",
-      "kickoff": "2026-09-05T00:00:00Z",
-      "matchup": "UTEP Miners @ Oklahoma Sooners",
-      "home_team": "Oklahoma Sooners",
-      "away_team": "UTEP Miners",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Oklahoma",
-        "away_team": "UTEP",
-        "projected_spread": -39.6,
-        "projected_total": 44.3,
-        "projected_h1_spread": -21.8,
-        "projected_h1_total": 20.8,
-        "hfa_applied": 2.2,
-        "coherence_gap": 2.3,
-        "inputs": {
-          "home_rating": 18.44,
-          "away_rating": -18.34,
-          "home_points": 39.2,
-          "away_points": 1.9,
-          "home_components": {
-            "sp": 18.8,
-            "sp_off": 32.1,
-            "sp_def": 13.7,
-            "fpi": 17.782
-          },
-          "away_components": {
-            "sp": -19.3,
-            "sp_off": 15.2,
-            "sp_def": 34.1,
-            "fpi": -16.605
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 49.5,
-          "bet_line": 49.5,
-          "price": -106,
-          "model_number": 44.3,
-          "edge_points": -5.2,
-          "edge_sigma": -0.94,
-          "floor_confidence": 4.9
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "UTEP",
-          "market_line": -41.5,
-          "bet_line": 41.5,
-          "price": -105,
-          "model_number": -39.6,
-          "edge_points": 1.9,
-          "edge_sigma": 0.68,
-          "floor_confidence": 4.5
+          "edge_sigma": -1.9,
+          "floor_confidence": 6.3
         }
       ]
     },
@@ -1312,7 +1338,7 @@
           "price": -118,
           "model_number": 10.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.62,
+          "edge_sigma": -1.61,
           "floor_confidence": 5.9
         },
         {
@@ -1392,7 +1418,7 @@
           "price": -105,
           "model_number": -24.7,
           "edge_points": 2.8,
-          "edge_sigma": 1.01,
+          "edge_sigma": 1.0,
           "floor_confidence": 5.0
         }
       ]
@@ -1448,7 +1474,7 @@
           "price": -114,
           "model_number": 46.1,
           "edge_points": -4.4,
-          "edge_sigma": -0.8,
+          "edge_sigma": -0.79,
           "floor_confidence": 4.7
         },
         {
@@ -1460,7 +1486,7 @@
           "price": -110,
           "model_number": -14.2,
           "edge_points": 2.3,
-          "edge_sigma": 0.83,
+          "edge_sigma": 0.82,
           "floor_confidence": 4.7
         }
       ]
@@ -1516,7 +1542,7 @@
           "price": -115,
           "model_number": 44.2,
           "edge_points": -4.3,
-          "edge_sigma": -0.78,
+          "edge_sigma": -0.77,
           "floor_confidence": 4.7
         },
         {
@@ -1584,7 +1610,7 @@
           "price": -112,
           "model_number": -32.8,
           "edge_points": -4.3,
-          "edge_sigma": -1.55,
+          "edge_sigma": -1.54,
           "floor_confidence": 5.8
         },
         {
@@ -1652,7 +1678,7 @@
           "price": -105,
           "model_number": 43.2,
           "edge_points": -4.3,
-          "edge_sigma": -0.78,
+          "edge_sigma": -0.77,
           "floor_confidence": 4.7
         },
         {
@@ -1717,7 +1743,7 @@
           "side": "Sacramento State",
           "market_line": -9.5,
           "bet_line": 9.5,
-          "price": -104,
+          "price": -108,
           "model_number": -5.4,
           "edge_points": 4.1,
           "edge_sigma": 1.47,
@@ -1832,7 +1858,7 @@
           "price": -105,
           "model_number": 49.7,
           "edge_points": -3.8,
-          "edge_sigma": -0.69,
+          "edge_sigma": -0.68,
           "floor_confidence": 4.5
         },
         {
@@ -1900,7 +1926,7 @@
           "price": -110,
           "model_number": 55.7,
           "edge_points": -3.8,
-          "edge_sigma": -0.69,
+          "edge_sigma": -0.68,
           "floor_confidence": 4.5
         }
       ]
@@ -2009,7 +2035,7 @@
           "side": "North Carolina",
           "market_line": -8.5,
           "bet_line": 8.5,
-          "price": -110,
+          "price": -108,
           "model_number": -4.9,
           "edge_points": 3.6,
           "edge_sigma": 1.29,
@@ -2068,7 +2094,7 @@
           "price": -104,
           "model_number": -35.4,
           "edge_points": 3.1,
-          "edge_sigma": 1.12,
+          "edge_sigma": 1.11,
           "floor_confidence": 5.2
         },
         {
@@ -2077,7 +2103,7 @@
           "side": "Under",
           "market_line": 61.5,
           "bet_line": 61.5,
-          "price": -114,
+          "price": -110,
           "model_number": 58.9,
           "edge_points": -2.6,
           "edge_sigma": -0.47,
@@ -2136,7 +2162,7 @@
           "price": -110,
           "model_number": -37.4,
           "edge_points": 3.1,
-          "edge_sigma": 1.12,
+          "edge_sigma": 1.11,
           "floor_confidence": 5.2
         },
         {
@@ -2337,7 +2363,7 @@
           "side": "Troy",
           "market_line": -16.5,
           "bet_line": -16.5,
-          "price": -110,
+          "price": -115,
           "model_number": -18.3,
           "edge_points": -1.8,
           "edge_sigma": -0.65,
@@ -2408,8 +2434,8 @@
           "price": -114,
           "model_number": 56.3,
           "edge_points": 2.8,
-          "edge_sigma": 0.51,
-          "floor_confidence": 4.3
+          "edge_sigma": 0.5,
+          "floor_confidence": 4.2
         }
       ]
     },
@@ -2585,11 +2611,23 @@
           "side": "Over",
           "market_line": 48.5,
           "bet_line": 48.5,
-          "price": -118,
+          "price": -110,
           "model_number": 50.9,
           "edge_points": 2.4,
           "edge_sigma": 0.43,
           "floor_confidence": 4.1
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Hawai'i",
+          "market_line": -4.5,
+          "bet_line": 4.5,
+          "price": -115,
+          "model_number": -2.6,
+          "edge_points": 1.9,
+          "edge_sigma": 0.68,
+          "floor_confidence": 4.5
         }
       ]
     },
