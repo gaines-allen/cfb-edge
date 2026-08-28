@@ -700,25 +700,42 @@ def test_the_pipeline_can_be_rehearsed_without_publishing():
     doc = yaml.safe_load(WEEKLY)
     triggers = doc[True] if True in doc else doc["on"]
     assert ".github/run-card-dry" in triggers["push"]["paths"]
-    dry = doc["jobs"]["card"]["env"]["DRY"]
-    # A file created for the first time lands in added, not modified.
-    assert "head_commit.modified" in dry and "head_commit.added" in dry
 
     steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
+    # Read off the commit, not the event payload. The payload version
+    # evaluated false on a commit that plainly added the file, and
+    # published a card that was meant to be a rehearsal.
+    mode = steps["Decide whether this is a rehearsal"]["run"]
+    assert "git log -1 --name-only" in mode
+    assert "grep -qx '.github/run-card-dry'" in mode, \
+        "-qx, so a path merely containing the name cannot match"
+    assert "inputs.research_only" in mode
+
     for name in ("Log the card and rebuild the page", "Publish"):
-        assert "env.DRY != 'true'" in steps[name]["if"], name
+        assert "steps.mode.outputs.dry != 'true'" in steps[name]["if"], name
     # And the gates themselves must NOT be skipped, or the rehearsal
     # proves nothing about the thing it is rehearsing.
     for name in ("Fail if the agent wrote outside its lane",
                  "Validate the card", "Verify every cited source"):
-        assert "DRY" not in (steps[name].get("if") or ""), name
+        assert "mode" not in (steps[name].get("if") or ""), name
+
+
+def test_the_rehearsal_flag_is_decided_before_anything_runs():
+    # It gates the last 2 steps, so deciding it late would work. Deciding
+    # it first means the run says which mode it is in before spending 15
+    # minutes and 6 dollars finding out.
+    import yaml
+    names = [st.get("name") for st in
+             yaml.safe_load(WEEKLY)["jobs"]["card"]["steps"] if st.get("name")]
+    assert names[0] == "Decide whether this is a rehearsal"
 
 
 def test_a_rehearsal_still_leaves_something_to_read():
     import yaml
     doc = yaml.safe_load(WEEKLY)
     steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
-    assert "env.DRY == 'true'" in steps["Keep whatever the run produced"]["if"]
+    assert "steps.mode.outputs.dry == 'true'" in \
+        steps["Keep whatever the run produced"]["if"]
     assert "Say what a rehearsal would have published" in steps
 
 

@@ -77,13 +77,6 @@ concurrency:
 
 jobs:
   card:
-    # Research, validate and verify, then stop. Set by the dispatch input
-    # or by which trigger file was touched. A new file lands in added
-    # rather than modified, so both are checked.
-    env:
-      DRY: ${{ inputs.research_only == true
-            || contains(github.event.head_commit.modified, '.github/run-card-dry')
-            || contains(github.event.head_commit.added, '.github/run-card-dry') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -102,6 +95,24 @@ jobs:
 
       # The suite gates everything downstream. A broken grader or a changed
       # upstream shape must stop the run before an agent reasons off it.
+      # Whether this run publishes. Read off the commit rather than the
+      # event payload, because the payload version evaluated false on a
+      # commit that plainly added the file and published a card that was
+      # meant to be a rehearsal. git log is the same question asked of
+      # something that can be checked by hand.
+      - name: Decide whether this is a rehearsal
+        id: mode
+        run: |
+          DRY=false
+          if [ "${{ inputs.research_only }}" = "true" ]; then
+            DRY=true
+          elif git log -1 --name-only --pretty=format: \
+               | grep -qx '.github/run-card-dry'; then
+            DRY=true
+          fi
+          echo "dry=$DRY" >> "$GITHUB_OUTPUT"
+          echo "Rehearsal: $DRY" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Check the suite first
         run: python3 scripts/selftest.py -q
 
@@ -295,7 +306,7 @@ jobs:
           PY
 
       - name: Keep whatever the run produced
-        if: failure() || env.DRY == 'true' 
+        if: failure() || steps.mode.outputs.dry == 'true' 
         uses: actions/upload-artifact@v4
         with:
           name: run-output
@@ -307,7 +318,7 @@ jobs:
             research.json
 
       - name: Log the card and rebuild the page
-        if: steps.validate.outputs.no_card != 'true' && env.DRY != 'true'
+        if: steps.validate.outputs.no_card != 'true' && steps.mode.outputs.dry != 'true'
         env:
           RUN_ID: ${{ github.run_id }}
         run: |
@@ -322,7 +333,7 @@ jobs:
           python3 scripts/build_site.py
 
       - name: Say what a rehearsal would have published
-        if: env.DRY == 'true'
+        if: steps.mode.outputs.dry == 'true'
         run: |
           {
             echo "### Rehearsal, nothing published"
@@ -351,7 +362,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish
-        if: steps.validate.outputs.no_card != 'true' && env.DRY != 'true'
+        if: steps.validate.outputs.no_card != 'true' && steps.mode.outputs.dry != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
