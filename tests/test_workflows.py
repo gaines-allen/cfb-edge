@@ -655,6 +655,35 @@ def test_a_push_run_of_the_card_takes_the_full_scope():
     assert "github.event_name }}\" = \"schedule\"" in scope
 
 
+def test_a_refused_pull_request_still_delivers_the_card():
+    """
+    Opening a pull request needs a repository setting the workflow cannot
+    turn on, and it was off on both 27 and 28 August, so two finished
+    cards sat on branches nobody was told about. Opening an issue needs no
+    such setting and the watchdog has been doing it reliably.
+
+    So a refusal falls back to an issue carrying the same body and the
+    link that opens the pull request in one click. The human gate does not
+    move: nothing publishes until someone merges.
+    """
+    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
+    assert "gh issue create" in step
+    assert step.index("gh pr create") < step.index("gh issue create"), \
+        "the pull request stays the preferred route"
+    # Delivered is delivered. Failing the run every week for a setting
+    # that is not going to change teaches whoever reads it to ignore red.
+    assert "exit 0" in step[step.index("gh issue create"):]
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    assert doc["permissions"].get("issues") == "write"
+
+
+def test_the_card_is_lost_only_if_both_routes_fail():
+    step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
+    tail = step[step.index("gh issue create"):]
+    assert "::error::" in tail and "exit 1" in tail
+
+
 def test_a_refused_pull_request_never_strands_the_card():
     """
     On 27 August every step passed, the branch went up with a valid card
@@ -668,12 +697,9 @@ def test_a_refused_pull_request_never_strands_the_card():
     """
     step = WEEKLY[WEEKLY.index("- name: Open a pull request"):]
     assert "compare/main..." in step, "must print where to open it by hand"
-    assert "::error::" in step, "must annotate, not just exit 1"
     assert "GITHUB_STEP_SUMMARY" in step
     assert "Workflow" in step and "permissions" in step, \
         "must name the setting that fixes it"
-    # And still fail, so the watchdog and the run list show it as broken.
-    assert "exit 1" in step
 
 
 def test_the_branch_is_pushed_before_the_pull_request_is_attempted():

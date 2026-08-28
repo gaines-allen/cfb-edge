@@ -56,6 +56,10 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # Opening a pull request depends on a repository setting this workflow
+  # cannot turn on. Opening an issue does not, and the watchdog has been
+  # doing it reliably, so an issue is the delivery route that always works.
+  issues: write
 
 concurrency:
   group: weekly-card
@@ -346,29 +350,45 @@ jobs:
           # which is the default. The step exited 1 with no explanation and
           # a valid card sat on a branch nobody knew about.
           COMPARE="${{ github.server_url }}/${{ github.repository }}/compare/main...$BRANCH?expand=1"
+          SUMMARY=$(python3 -c "import json; v=json.load(open('validation.json')); print(f\"{v['live']} live picks, {v['units_at_risk']} units at risk.\")")
           if gh pr create --title "Weekly card: $(date -u +'%Y-%m-%d')" \
                           --body-file pr_body.md \
                           --base main --head "$BRANCH" 2> pr_err.txt; then
-            echo "Pull request opened." >> "$GITHUB_STEP_SUMMARY"
-          else
-            REASON=$(tr -d '\n' < pr_err.txt | head -c 400)
-            {
-              echo "### The card is ready but the pull request was refused"
-              echo
-              echo "The card is committed on branch \`$BRANCH\` and nothing"
-              echo "is lost. Open it here:"
-              echo
-              echo "$COMPARE"
-              echo
-              echo "GitHub said: $REASON"
-              echo
-              echo "If that mentions permission to create pull requests, the"
-              echo "fix is one checkbox: Settings, Actions, General, Workflow"
-              echo "permissions, allow GitHub Actions to create and approve"
-              echo "pull requests."
-            } >> "$GITHUB_STEP_SUMMARY"
-            echo "::error::Card is ready on $BRANCH but the pull request was refused. Open it at $COMPARE"
-            echo "::error::GitHub said: $REASON"
-            cat pr_body.md
-            exit 1
+            echo "Pull request opened. $SUMMARY" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
+          # Refused. That is a repository setting rather than a broken
+          # card, and the card is already committed on the branch, so
+          # deliver it the way that does work instead of stranding it.
+          # The human gate is unchanged. Nothing publishes until a merge.
+          REASON=$(tr -d '\n' < pr_err.txt | head -c 300)
+          {
+            echo "$SUMMARY"
+            echo
+            echo "**Open the pull request:** $COMPARE"
+            echo
+            cat pr_body.md
+            echo
+            echo "---"
+            echo
+            echo "GitHub refused to open the pull request itself:"
+            echo "\`$REASON\`"
+            echo
+            echo "To have it opened automatically next time, enable Settings,"
+            echo "Actions, General, Workflow permissions, allow GitHub Actions"
+            echo "to create and approve pull requests. Until then the card"
+            echo "arrives here, which works the same way."
+          } > issue_body.md
+          if gh issue create --title "Card ready to publish: $(date -u +'%Y-%m-%d')" \
+                             --body-file issue_body.md; then
+            {
+              echo "### Card delivered as an issue"
+              echo
+              echo "$SUMMARY Open it: $COMPARE"
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::warning::Pull request refused. Card delivered as an issue. $COMPARE"
+            exit 0
+          fi
+          echo "::error::Card is on $BRANCH but could not be delivered. Open it at $COMPARE"
+          cat pr_body.md
+          exit 1
