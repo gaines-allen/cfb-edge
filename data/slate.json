@@ -1,14 +1,16 @@
 {
-  "built_at": "2026-08-29T01:17:47+00:00",
+  "built_at": "2026-08-29T15:04:24+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-29T01:17:45+00:00",
+  "board_fetched_at": "2026-08-29T15:04:21+00:00",
   "warning": null,
-  "games_on_board": 105,
+  "games_on_board": 110,
   "games_with_candidates": 46,
   "games_dropped": [
+    "Albany @ Buffalo Bulls",
     "Bethune-Cookman Wildcats @ UCF Knights",
+    "Merrimack Warriors @ Delaware Blue Hens",
     "West Georgia Wolves @ Kennesaw State Owls",
     "Arkansas Pine Bluff Golden Lions @ Missouri Tigers",
     "Eastern Illinois Panthers @ Minnesota Golden Gophers",
@@ -19,12 +21,15 @@
     "Bryant Bulldogs @ Army Black Knights",
     "Tarleton State Texans @ Bowling Green Falcons",
     "Lafayette Leopards @ UConn Huskies",
+    "New Hampshire Wildcats @ Syracuse Orange",
     "Duquesne Dukes @ Air Force Falcons",
     "Southeast Missouri State Redhawks @ Iowa State Cyclones",
     "Youngstown St Penguins @ Kentucky Wildcats",
+    "Rhode Island Rams @ Temple Owls",
     "Tennessee State Tigers @ Georgia Bulldogs",
     "Maine Black Bears @ Appalachian State Mountaineers",
     "Citadel Bulldogs @ Charlotte 49ers",
+    "Fordham Rams @ North Dakota State Bison",
     "Furman Paladins @ Tennessee Volunteers",
     "Towson Tigers @ Navy Midshipmen",
     "UT Rio Grande Valley Vaqueros @ UTSA Roadrunners",
@@ -54,6 +59,7 @@
   "games_outside_week": 13,
   "unrated_schools": [
     "Abilene Christian Wildcats",
+    "Albany",
     "Alcorn State Braves",
     "Arkansas Pine Bluff Golden Lions",
     "Austin Peay Governors",
@@ -64,6 +70,7 @@
     "Duquesne Dukes",
     "Eastern Illinois Panthers",
     "Eastern Kentucky Colonels",
+    "Fordham Rams",
     "Furman Paladins",
     "Houston Baptist Huskies",
     "Idaho State Bengals",
@@ -74,9 +81,11 @@
     "Lamar Cardinals",
     "Maine Black Bears",
     "Mercyhurst Lakers",
+    "Merrimack Warriors",
     "Mississippi Valley State Delta Devils",
     "Morgan State Bears",
     "Murray State Racers",
+    "New Hampshire Wildcats",
     "Nicholls State Colonels",
     "Norfolk State Spartans",
     "North Alabama Lions",
@@ -84,6 +93,7 @@
     "Northern Arizona Lumberjacks",
     "Northwestern State Demons",
     "Portland State Vikings",
+    "Rhode Island Rams",
     "South Dakota State Jackrabbits",
     "Southeast Missouri State Redhawks",
     "Southeastern Louisiana Lions",
@@ -99,20 +109,20 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-29T01:17:46+00:00",
+    "measured_at": "2026-08-29T15:04:23+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 63,
-      "bias": -3.229,
+      "bias": -3.244,
       "median": -3.8,
-      "sigma": 5.562
+      "sigma": 5.574
     },
     "spreads": {
       "n": 63,
-      "bias": 0.632,
-      "median": 1.1,
-      "sigma": 2.79
+      "bias": 0.6,
+      "median": 1.0,
+      "sigma": 2.77
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -168,7 +178,7 @@
           "price": -106,
           "model_number": 35.4,
           "edge_points": -12.1,
-          "edge_sigma": -2.18,
+          "edge_sigma": -2.17,
           "floor_confidence": 6.8
         }
       ]
@@ -236,7 +246,7 @@
           "price": -110,
           "model_number": -23.0,
           "edge_points": 5.5,
-          "edge_sigma": 1.97,
+          "edge_sigma": 1.99,
           "floor_confidence": 6.5
         }
       ]
@@ -292,7 +302,7 @@
           "price": -110,
           "model_number": 65.0,
           "edge_points": 10.5,
-          "edge_sigma": 1.89,
+          "edge_sigma": 1.88,
           "floor_confidence": 6.3
         },
         {
@@ -484,8 +494,8 @@
           "price": -110,
           "model_number": 56.0,
           "edge_points": 9.5,
-          "edge_sigma": 1.71,
-          "floor_confidence": 6.1
+          "edge_sigma": 1.7,
+          "floor_confidence": 6.0
         }
       ]
     },
@@ -540,8 +550,8 @@
           "price": -108,
           "model_number": 39.0,
           "edge_points": -9.5,
-          "edge_sigma": -1.71,
-          "floor_confidence": 6.1
+          "edge_sigma": -1.7,
+          "floor_confidence": 6.0
         },
         {
           "market": "spread",
@@ -552,7 +562,7 @@
           "price": -105,
           "model_number": -26.9,
           "edge_points": -2.4,
-          "edge_sigma": -0.86,
+          "edge_sigma": -0.87,
           "floor_confidence": 4.8
         }
       ]
@@ -676,7 +686,7 @@
           "price": -105,
           "model_number": 60.1,
           "edge_points": 8.6,
-          "edge_sigma": 1.55,
+          "edge_sigma": 1.54,
           "floor_confidence": 5.8
         }
       ]
@@ -800,7 +810,7 @@
           "price": -110,
           "model_number": -13.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.61,
+          "edge_sigma": -1.62,
           "floor_confidence": 5.9
         }
       ]
@@ -924,7 +934,7 @@
           "price": -106,
           "model_number": -20.7,
           "edge_points": 2.8,
-          "edge_sigma": 1.0,
+          "edge_sigma": 1.01,
           "floor_confidence": 5.0
         }
       ]
@@ -992,7 +1002,7 @@
           "price": -105,
           "model_number": -39.6,
           "edge_points": 1.9,
-          "edge_sigma": 0.68,
+          "edge_sigma": 0.69,
           "floor_confidence": 4.5
         }
       ]
@@ -1104,7 +1114,7 @@
           "price": -110,
           "model_number": -15.8,
           "edge_points": 5.7,
-          "edge_sigma": 2.04,
+          "edge_sigma": 2.06,
           "floor_confidence": 6.6
         }
       ]
@@ -1160,8 +1170,8 @@
           "price": -104,
           "model_number": -15.8,
           "edge_points": -5.3,
-          "edge_sigma": -1.9,
-          "floor_confidence": 6.3
+          "edge_sigma": -1.91,
+          "floor_confidence": 6.4
         }
       ]
     },
@@ -1216,7 +1226,7 @@
           "price": -114,
           "model_number": 56.6,
           "edge_points": 5.1,
-          "edge_sigma": 0.92,
+          "edge_sigma": 0.91,
           "floor_confidence": 4.9
         }
       ]
@@ -1272,8 +1282,76 @@
           "price": -110,
           "model_number": 63.6,
           "edge_points": 5.1,
-          "edge_sigma": 0.92,
+          "edge_sigma": 0.91,
           "floor_confidence": 4.9
+        }
+      ]
+    },
+    {
+      "event_id": "9bbc04340f2b3f77756a22bc44e1a4a4",
+      "kickoff": "2026-08-29T23:00:00Z",
+      "matchup": "New Mexico State Aggies @ Florida State Seminoles",
+      "home_team": "Florida State Seminoles",
+      "away_team": "New Mexico State Aggies",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Florida State",
+        "away_team": "New Mexico State",
+        "projected_spread": -29.5,
+        "projected_total": 49.7,
+        "projected_h1_spread": -16.2,
+        "projected_h1_total": 23.4,
+        "hfa_applied": 2.2,
+        "coherence_gap": 1.6,
+        "inputs": {
+          "home_rating": 9.18,
+          "away_rating": -17.5,
+          "home_points": 37.2,
+          "away_points": 9.3,
+          "home_components": {
+            "sp": 9.1,
+            "sp_off": 29.8,
+            "sp_def": 20.4,
+            "fpi": 9.319
+          },
+          "away_components": {
+            "sp": -18.5,
+            "sp_off": 15.9,
+            "sp_def": 34.4,
+            "fpi": -15.705
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 54.5,
+          "bet_line": 54.5,
+          "price": -114,
+          "model_number": 49.7,
+          "edge_points": -4.8,
+          "edge_sigma": -0.86,
+          "floor_confidence": 4.8
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "New Mexico State",
+          "market_line": -31.5,
+          "bet_line": 31.5,
+          "price": -115,
+          "model_number": -29.5,
+          "edge_points": 2.0,
+          "edge_sigma": 0.72,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -1328,7 +1406,7 @@
           "price": -110,
           "model_number": 48.8,
           "edge_points": -4.7,
-          "edge_sigma": -0.85,
+          "edge_sigma": -0.84,
           "floor_confidence": 4.8
         }
       ]
@@ -1384,7 +1462,7 @@
           "price": -118,
           "model_number": 10.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.61,
+          "edge_sigma": -1.62,
           "floor_confidence": 5.9
         },
         {
@@ -1464,7 +1542,7 @@
           "price": -105,
           "model_number": -24.7,
           "edge_points": 2.8,
-          "edge_sigma": 1.0,
+          "edge_sigma": 1.01,
           "floor_confidence": 5.0
         }
       ]
@@ -1532,7 +1610,7 @@
           "price": -110,
           "model_number": -14.2,
           "edge_points": 2.3,
-          "edge_sigma": 0.82,
+          "edge_sigma": 0.83,
           "floor_confidence": 4.7
         }
       ]
@@ -1656,7 +1734,7 @@
           "price": -112,
           "model_number": -32.8,
           "edge_points": -4.3,
-          "edge_sigma": -1.54,
+          "edge_sigma": -1.55,
           "floor_confidence": 5.8
         },
         {
@@ -1789,10 +1867,10 @@
           "side": "Sacramento State",
           "market_line": -9.5,
           "bet_line": 9.5,
-          "price": -108,
+          "price": -110,
           "model_number": -5.4,
           "edge_points": 4.1,
-          "edge_sigma": 1.47,
+          "edge_sigma": 1.48,
           "floor_confidence": 5.7
         }
       ]
@@ -1848,76 +1926,8 @@
           "price": -104,
           "model_number": -16.6,
           "edge_points": 3.9,
-          "edge_sigma": 1.4,
+          "edge_sigma": 1.41,
           "floor_confidence": 5.6
-        }
-      ]
-    },
-    {
-      "event_id": "9bbc04340f2b3f77756a22bc44e1a4a4",
-      "kickoff": "2026-08-29T23:00:00Z",
-      "matchup": "New Mexico State Aggies @ Florida State Seminoles",
-      "home_team": "Florida State Seminoles",
-      "away_team": "New Mexico State Aggies",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Florida State",
-        "away_team": "New Mexico State",
-        "projected_spread": -29.5,
-        "projected_total": 49.7,
-        "projected_h1_spread": -16.2,
-        "projected_h1_total": 23.4,
-        "hfa_applied": 2.2,
-        "coherence_gap": 1.6,
-        "inputs": {
-          "home_rating": 9.18,
-          "away_rating": -17.5,
-          "home_points": 37.2,
-          "away_points": 9.3,
-          "home_components": {
-            "sp": 9.1,
-            "sp_off": 29.8,
-            "sp_def": 20.4,
-            "fpi": 9.319
-          },
-          "away_components": {
-            "sp": -18.5,
-            "sp_off": 15.9,
-            "sp_def": 34.4,
-            "fpi": -15.705
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 53.5,
-          "bet_line": 53.5,
-          "price": -108,
-          "model_number": 49.7,
-          "edge_points": -3.8,
-          "edge_sigma": -0.68,
-          "floor_confidence": 4.5
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "New Mexico State",
-          "market_line": -32.5,
-          "bet_line": 32.5,
-          "price": -115,
-          "model_number": -29.5,
-          "edge_points": 3.0,
-          "edge_sigma": 1.08,
-          "floor_confidence": 5.1
         }
       ]
     },
@@ -1978,62 +1988,6 @@
       ]
     },
     {
-      "event_id": "2c288580da16e12d35355f2548721be6",
-      "kickoff": "2026-08-29T16:00:00Z",
-      "matchup": "North Carolina Tar Heels @ TCU Horned Frogs",
-      "home_team": "TCU Horned Frogs",
-      "away_team": "North Carolina Tar Heels",
-      "neutral_site": true,
-      "model": {
-        "home_team": "TCU",
-        "away_team": "North Carolina",
-        "projected_spread": -4.9,
-        "projected_total": 47.9,
-        "projected_h1_spread": -2.7,
-        "projected_h1_total": 22.5,
-        "hfa_applied": 0.0,
-        "coherence_gap": 1.6,
-        "inputs": {
-          "home_rating": 8.32,
-          "away_rating": 4.0,
-          "home_points": 25.6,
-          "away_points": 19.1,
-          "home_components": {
-            "sp": 9.4,
-            "sp_off": 31.4,
-            "sp_def": 21.8,
-            "fpi": 6.366
-          },
-          "away_components": {
-            "sp": 3.5,
-            "sp_off": 24.3,
-            "sp_def": 21.2,
-            "fpi": 4.91
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "North Carolina",
-          "market_line": -8.5,
-          "bet_line": 8.5,
-          "price": -110,
-          "model_number": -4.9,
-          "edge_points": 3.6,
-          "edge_sigma": 1.29,
-          "floor_confidence": 5.4
-        }
-      ]
-    },
-    {
       "event_id": "3313dcc5e91f9a2dda995a5e36e55f52",
       "kickoff": "2026-08-29T19:00:00Z",
       "matchup": "San Jose State Spartans @ USC Trojans",
@@ -2081,10 +2035,10 @@
           "side": "San Jos\u00e9 State",
           "market_line": -38.5,
           "bet_line": 38.5,
-          "price": -104,
+          "price": -108,
           "model_number": -35.4,
           "edge_points": 3.1,
-          "edge_sigma": 1.11,
+          "edge_sigma": 1.12,
           "floor_confidence": 5.2
         },
         {
@@ -2093,7 +2047,7 @@
           "side": "Under",
           "market_line": 61.5,
           "bet_line": 61.5,
-          "price": -110,
+          "price": -108,
           "model_number": 58.9,
           "edge_points": -2.6,
           "edge_sigma": -0.47,
@@ -2152,7 +2106,7 @@
           "price": -110,
           "model_number": -37.4,
           "edge_points": 3.1,
-          "edge_sigma": 1.11,
+          "edge_sigma": 1.12,
           "floor_confidence": 5.2
         },
         {
@@ -2164,7 +2118,7 @@
           "price": -110,
           "model_number": 58.2,
           "edge_points": 2.7,
-          "edge_sigma": 0.49,
+          "edge_sigma": 0.48,
           "floor_confidence": 4.2
         }
       ]
@@ -2412,7 +2366,7 @@
           "price": -106,
           "model_number": -1.4,
           "edge_points": -2.9,
-          "edge_sigma": -1.04,
+          "edge_sigma": -1.05,
           "floor_confidence": 5.1
         },
         {
@@ -2480,7 +2434,7 @@
           "price": -105,
           "model_number": 55.2,
           "edge_points": 2.7,
-          "edge_sigma": 0.49,
+          "edge_sigma": 0.48,
           "floor_confidence": 4.2
         }
       ]
@@ -2554,6 +2508,62 @@
       ]
     },
     {
+      "event_id": "2c288580da16e12d35355f2548721be6",
+      "kickoff": "2026-08-29T16:00:00Z",
+      "matchup": "North Carolina Tar Heels @ TCU Horned Frogs",
+      "home_team": "TCU Horned Frogs",
+      "away_team": "North Carolina Tar Heels",
+      "neutral_site": true,
+      "model": {
+        "home_team": "TCU",
+        "away_team": "North Carolina",
+        "projected_spread": -4.9,
+        "projected_total": 47.9,
+        "projected_h1_spread": -2.7,
+        "projected_h1_total": 22.5,
+        "hfa_applied": 0.0,
+        "coherence_gap": 1.6,
+        "inputs": {
+          "home_rating": 8.32,
+          "away_rating": 4.0,
+          "home_points": 25.6,
+          "away_points": 19.1,
+          "home_components": {
+            "sp": 9.4,
+            "sp_off": 31.4,
+            "sp_def": 21.8,
+            "fpi": 6.366
+          },
+          "away_components": {
+            "sp": 3.5,
+            "sp_off": 24.3,
+            "sp_def": 21.2,
+            "fpi": 4.91
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "North Carolina",
+          "market_line": -7.5,
+          "bet_line": 7.5,
+          "price": -112,
+          "model_number": -4.9,
+          "edge_points": 2.6,
+          "edge_sigma": 0.94,
+          "floor_confidence": 4.9
+        }
+      ]
+    },
+    {
       "event_id": "24941bb5e2e6f79d944530b0b8ea4be5",
       "kickoff": "2026-08-29T23:00:00Z",
       "matchup": "Hawaii Rainbow Warriors @ Stanford Cardinal",
@@ -2601,7 +2611,7 @@
           "side": "Over",
           "market_line": 48.5,
           "bet_line": 48.5,
-          "price": -105,
+          "price": -115,
           "model_number": 50.9,
           "edge_points": 2.4,
           "edge_sigma": 0.43,
@@ -2616,7 +2626,7 @@
           "price": -115,
           "model_number": -2.6,
           "edge_points": 1.9,
-          "edge_sigma": 0.68,
+          "edge_sigma": 0.69,
           "floor_confidence": 4.5
         }
       ]
@@ -2684,7 +2694,7 @@
           "price": -115,
           "model_number": 54.7,
           "edge_points": 2.2,
-          "edge_sigma": 0.4,
+          "edge_sigma": 0.39,
           "floor_confidence": 4.1
         }
       ]
