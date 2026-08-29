@@ -725,3 +725,18 @@ def test_the_shared_check_is_defined_before_either_section_uses_it():
         < body.index("(function renderRunning()")
     assert body.index("function boardStale()") \
         < body.index("(function renderBoard()")
+
+
+def test_the_public_record_counts_the_card_and_nothing_else():
+    """
+    Every game of the week is scored by scripts/review_week.py so the
+    model can be learned from on 40 games instead of 2. None of that is
+    the record. What Steve is graded on publicly is the card: the live
+    picks, the ones that were published before kickoff with units on them.
+    """
+    src = (ROOT / "scripts" / "build_site.py").read_text()
+    line = next(ln for ln in src.splitlines() if "settled = [" in ln)
+    assert "live" in line, line
+    # And the review must not be able to reach the ledger at all.
+    review = (ROOT / "scripts" / "review_week.py").read_text()
+    assert "picks.json" not in review and "load_picks" not in review

@@ -127,3 +127,40 @@ Prose, no bullet lists. No em dashes. No summary paragraph at the end that
 restates what you just said, end on the last real finding. Numbers with
 context: "4-2, plus 2.35 units, ROI 26 percent on 9 units risked" beats
 "a strong week."
+
+## The rest of the week
+
+The card is 2 or 6 picks. That is the public record and the only thing
+Steve is graded on, and it is nowhere near enough evidence to learn
+anything from before January.
+
+Every other game on the board is a free test of the same model, already
+paid for, already played. `scripts/review_week.py` scores all of them and
+writes `data/week_review.json`: the model's number against the actual
+result on every game, worst miss first, with the misses split by whether
+the model made it a blowout or a close game.
+
+Read that file every week and do the research the arithmetic cannot.
+
+Take the 5 worst misses and find out what happened in each. Not "the model
+was 18 points off" but why: a quarterback who did not play, a team that
+emptied its bench at half, weather, a scheme change, a number that was
+stale before kickoff. Search for it the same way the handicapper would.
+Cite what you find. If a miss has no explanation beyond the model being
+wrong, say that plainly, because that is the more useful finding.
+
+Then look for the pattern, which matters more than any single game. The
+summary block splits error on big spreads from error on close games. If
+the model is only wrong on blowouts, that is a garbage time problem and it
+does not touch the picks, since nothing gets bet at those numbers. If it
+is wrong everywhere by the same sign, the calibration bias is stale. If
+totals miss in one direction all week, say so with the number.
+
+Write what you find into the lessons in `data/memory.json`, and mark
+clearly which lessons come from the card and which come from the wider
+slate. A lesson drawn from 40 games is worth more than one drawn from 2,
+and the handicapper should be able to tell them apart.
+
+What you must not do: nothing in `data/week_review.json` settles anything.
+It cannot make a pick a win or a loss, it never enters the record, and it
+never appears on the site as performance. The card is the record.

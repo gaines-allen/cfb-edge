@@ -105,6 +105,15 @@ jobs:
       # Track the top 6 leans and how they move. Runs after the slate so
       # it reads today's numbers, and before the page so the site renders
       # what it just recorded.
+      # Every game of the week against the model, not only the 2 it bet.
+      # Settles nothing and publishes nothing: the card is the record.
+      # This is the evidence a lesson gets written from, because 2 graded
+      # picks a week is not enough to learn anything from before January.
+      - name: Score the model against every result
+        id: review
+        continue-on-error: true
+        run: python3 scripts/review_week.py
+
       - name: Update the running card
         id: running
         continue-on-error: true

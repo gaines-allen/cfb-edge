@@ -751,3 +751,35 @@ def test_a_summary_that_breaks_cannot_fail_a_published_card():
     body = steps["Publish"]["run"]
     after_push = body[body.index("PUBLISHED=1"):]
     assert "|| true" in after_push
+
+
+def test_the_grader_researches_the_whole_slate_not_only_the_card():
+    """
+    The card is 2 picks and the public record. The board is 40 games and
+    the evidence. A grader that only reads the card learns nothing until
+    January.
+    """
+    grader = (ROOT / ".claude" / "agents" / "grader.md").read_text()
+    assert "week_review.json" in grader
+    assert "5 worst misses" in grader
+    # And it must not confuse the two.
+    assert "The card is the record" in grader
+
+
+def test_the_review_runs_before_the_page_is_rebuilt():
+    import yaml
+    doc = yaml.safe_load(DAILY)
+    names = [s.get("name") for s in doc["jobs"]["update"]["steps"] if s.get("name")]
+    assert "Score the model against every result" in names
+    assert names.index("Score the model against every result") < \
+        names.index("Rebuild the page")
+
+
+def test_a_failed_review_cannot_stop_the_publish():
+    # It is evidence for the grader, not a gate. A bad week of name
+    # matching must not take the daily page down with it.
+    import yaml
+    doc = yaml.safe_load(DAILY)
+    step = next(s for s in doc["jobs"]["update"]["steps"]
+                if s.get("name") == "Score the model against every result")
+    assert step.get("continue-on-error") is True
