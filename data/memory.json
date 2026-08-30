@@ -1,9 +1,74 @@
 {
-  "updated_at": "2026-08-30T13:34:58+00:00",
+  "updated_at": "2026-08-30T13:38:27+00:00",
   "seasons_tracked": [
     2026
   ],
   "calibration": [
+    {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -1.0,
+      "risked": 1.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "bucket": "7.5-7.9",
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -1.0,
+      "risked": 1.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "bucket": "7.0-7.4",
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "picks": 5,
+      "wins": 2,
+      "losses": 3,
+      "pushes": 0,
+      "win_pct": 40.0,
+      "units": -1.11,
+      "risked": 5.0,
+      "roi": -22.2,
+      "avg_clv": 0.0,
+      "beat_close_pct": 20.0,
+      "bucket": "below-7",
+      "verdict": "no_signal",
+      "decided": 5,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        11.8,
+        76.9
+      ],
+      "reading": "5 decided. The 95% interval 11.8 to 76.9 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
+  "by_market": [
     {
       "picks": 2,
       "wins": 0,
@@ -13,9 +78,9 @@
       "units": -2.0,
       "risked": 2.0,
       "roi": -100.0,
-      "avg_clv": -0.5,
+      "avg_clv": 0.0,
       "beat_close_pct": 0.0,
-      "bucket": "below-7",
+      "market": "spread",
       "verdict": "no_signal",
       "decided": 2,
       "breakeven_pct": 52.4,
@@ -26,26 +91,122 @@
       "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
     }
   ],
-  "by_market": [],
-  "by_period": [],
-  "by_role": [],
-  "factor_scorecard": {},
+  "by_period": [
+    {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -2.0,
+      "risked": 2.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "period": "full",
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
+  "by_role": [
+    {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -2.0,
+      "risked": 2.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "side_role": "n/a",
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
+  "factor_scorecard": {
+    "rating_edge": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "coaching_change": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "line_value": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "injury_edge": {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "units": -2.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  },
   "lessons": [],
   "active_adjustments": [],
   "notes": "Written by the grader after each slate settles. The handicapper is required to read this file before rating any pick. Empty until the first week grades.",
   "overall": {
-    "picks": 0,
-    "wins": 0,
-    "losses": 0,
-    "pushes": 0,
-    "win_pct": 0.0,
-    "units": 0,
-    "risked": 0,
-    "roi": 0.0,
-    "avg_clv": null,
-    "beat_close_pct": null
-  },
-  "overall_including_shadow": {
     "picks": 2,
     "wins": 0,
     "losses": 2,
@@ -54,8 +215,133 @@
     "units": -2.0,
     "risked": 2.0,
     "roi": -100.0,
-    "avg_clv": -0.5,
+    "avg_clv": 0.0,
     "beat_close_pct": 0.0
   },
-  "research_scorecard": {}
+  "overall_including_shadow": {
+    "picks": 7,
+    "wins": 2,
+    "losses": 5,
+    "pushes": 0,
+    "win_pct": 28.6,
+    "units": -3.11,
+    "risked": 7.0,
+    "roi": -44.43,
+    "avg_clv": 0.0,
+    "beat_close_pct": 14.3
+  },
+  "research_scorecard": {
+    "source: gostanford.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "source: hawaiiathletics.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "source: ktop1490.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "source: jingletree.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "source: scacchoops.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "source: si.com": {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    "researched": {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "units": -2.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  }
 }

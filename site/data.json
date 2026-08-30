@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-30T13:35:22+00:00",
+  "generated_at": "2026-08-30T13:38:48+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-08-30T13:35:01+00:00",
+    "built_at": "2026-08-30T13:38:29+00:00",
     "rows": [
       {
         "market_spread": -3.5,
@@ -1537,7 +1537,7 @@
         }
       }
     ],
-    "fetched_at": "2026-08-30T13:34:58+00:00",
+    "fetched_at": "2026-08-30T13:38:26+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -1556,8 +1556,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-08-30T13:35:01+00:00",
-    "board_fetched_at": "2026-08-30T13:34:58+00:00",
+    "updated_at": "2026-08-30T13:38:29+00:00",
+    "board_fetched_at": "2026-08-30T13:38:26+00:00",
     "season": 2026,
     "week": 1,
     "card": [
@@ -1576,7 +1576,7 @@
         "first_confidence": 5.1,
         "moved_confidence": 1.6,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -1608,7 +1608,7 @@
         "first_confidence": 6.6,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 2,
         "peak_rank": 2,
         "on_board": true,
@@ -1640,7 +1640,7 @@
         "first_confidence": 6.5,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 3,
         "peak_rank": 3,
         "on_board": true,
@@ -1672,7 +1672,7 @@
         "first_confidence": 5.5,
         "moved_confidence": 0.9,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 4,
         "peak_rank": 4,
         "on_board": true,
@@ -1704,7 +1704,7 @@
         "first_confidence": 6.4,
         "moved_confidence": -0.2,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 5,
         "peak_rank": 4,
         "on_board": true,
@@ -1739,7 +1739,7 @@
           "from": 50.5,
           "to": 51.5
         },
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": 6,
         "peak_rank": 5,
         "on_board": true,
@@ -1840,7 +1840,7 @@
         "first_confidence": 6.4,
         "moved_confidence": -0.1,
         "moved_line": null,
-        "days_tracked": 13,
+        "days_tracked": 14,
         "rank": null,
         "peak_rank": 2,
         "on_board": true,
@@ -1901,29 +1901,12 @@
   },
   "live": null,
   "lock_id": "5afedb05e61f",
-  "board_fetched_at": "2026-08-30T13:34:58+00:00",
-  "credits_remaining": 343,
+  "board_fetched_at": "2026-08-30T13:38:26+00:00",
+  "credits_remaining": 340,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
   "overall": {
-    "picks": 0,
-    "wins": 0,
-    "losses": 0,
-    "pushes": 0,
-    "win_pct": 0.0,
-    "units": 0,
-    "risked": 0,
-    "roi": 0.0,
-    "avg_clv": null,
-    "beat_close_pct": null,
-    "verdict": "no_data",
-    "decided": 0,
-    "breakeven_pct": 52.4,
-    "interval_95": null,
-    "reading": "Nothing has graded yet, so there is nothing to read."
-  },
-  "overall_shadow": {
     "picks": 2,
     "wins": 0,
     "losses": 2,
@@ -1932,7 +1915,7 @@
     "units": -2.0,
     "risked": 2.0,
     "roi": -100.0,
-    "avg_clv": -0.5,
+    "avg_clv": 0.0,
     "beat_close_pct": 0.0,
     "verdict": "no_signal",
     "decided": 2,
@@ -1942,6 +1925,26 @@
       65.8
     ],
     "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+  },
+  "overall_shadow": {
+    "picks": 5,
+    "wins": 2,
+    "losses": 3,
+    "pushes": 0,
+    "win_pct": 40.0,
+    "units": -1.11,
+    "risked": 5.0,
+    "roi": -22.2,
+    "avg_clv": 0.0,
+    "beat_close_pct": 20.0,
+    "verdict": "no_signal",
+    "decided": 5,
+    "breakeven_pct": 52.4,
+    "interval_95": [
+      11.8,
+      76.9
+    ],
+    "reading": "5 decided. The 95% interval 11.8 to 76.9 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
   },
   "pending_count": 0,
   "weeks": [
@@ -1958,21 +1961,104 @@
     {
       "season": 2026,
       "week": 1,
-      "picks": 0,
+      "picks": 2,
       "pending": 0,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "pushes": 0,
       "win_pct": 0.0,
-      "units": 0,
-      "risked": 0,
-      "roi": 0.0,
-      "avg_clv": null,
-      "beat_close_pct": null
+      "units": -2.0,
+      "risked": 2.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0
     }
   ],
-  "cumulative": [],
+  "cumulative": [
+    {
+      "n": 1,
+      "units": -1.0,
+      "week": 1,
+      "label": "W1 NC State Wolfpack",
+      "result": "loss"
+    },
+    {
+      "n": 2,
+      "units": -2.0,
+      "week": 1,
+      "label": "W1 Hawaii Rainbow Warriors",
+      "result": "loss"
+    }
+  ],
   "calibration": [
+    {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -1.0,
+      "risked": 1.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "bucket": "7.5-7.9",
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it.",
+      "breakeven": 52.4
+    },
+    {
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -1.0,
+      "risked": 1.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "bucket": "7.0-7.4",
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it.",
+      "breakeven": 52.4
+    },
+    {
+      "picks": 5,
+      "wins": 2,
+      "losses": 3,
+      "pushes": 0,
+      "win_pct": 40.0,
+      "units": -1.11,
+      "risked": 5.0,
+      "roi": -22.2,
+      "avg_clv": 0.0,
+      "beat_close_pct": 20.0,
+      "bucket": "below-7",
+      "verdict": "no_signal",
+      "decided": 5,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        11.8,
+        76.9
+      ],
+      "reading": "5 decided. The 95% interval 11.8 to 76.9 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it.",
+      "breakeven": 52.4
+    }
+  ],
+  "by_market": [
     {
       "picks": 2,
       "wins": 0,
@@ -1982,9 +2068,9 @@
       "units": -2.0,
       "risked": 2.0,
       "roi": -100.0,
-      "avg_clv": -0.5,
+      "avg_clv": 0.0,
       "beat_close_pct": 0.0,
-      "bucket": "below-7",
+      "market": "spread",
       "verdict": "no_signal",
       "decided": 2,
       "breakeven_pct": 52.4,
@@ -1992,14 +2078,223 @@
         0.0,
         65.8
       ],
-      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it.",
-      "breakeven": 52.4
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
     }
   ],
-  "by_market": [],
-  "by_period": [],
-  "by_factor": [],
-  "by_research": [],
+  "by_period": [
+    {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -2.0,
+      "risked": 2.0,
+      "roi": -100.0,
+      "avg_clv": 0.0,
+      "beat_close_pct": 0.0,
+      "period": "full",
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
+  "by_factor": [
+    {
+      "factor": "rating_edge",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "coaching_change",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "line_value",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "injury_edge",
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "units": -2.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
+  "by_research": [
+    {
+      "factor": "source: gostanford.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "source: hawaiiathletics.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "source: ktop1490.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "source: jingletree.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "source: scacchoops.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "source: si.com",
+      "picks": 1,
+      "wins": 0,
+      "losses": 1,
+      "pushes": 0,
+      "units": -1.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 1,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        79.3
+      ],
+      "reading": "1 decided. The 95% interval 0.0 to 79.3 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    },
+    {
+      "factor": "researched",
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "units": -2.0,
+      "win_pct": 0.0,
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
   "lessons": [],
   "picks": [
     {
@@ -2021,9 +2316,9 @@
       "edge": -3.6,
       "close_line": 7.5,
       "clv_points": 1.0,
-      "result": "void",
-      "result_label": "VOID",
-      "units_net": 0.0,
+      "result": "win",
+      "result_label": "WIN",
+      "units_net": 0.926,
       "final_score": "North Carolina 15 - TCU 10",
       "rationale": "The ratings model has this at 4.9 on a neutral field in Dublin and the market has moved the other way, from 7.5 to 8.5 with the moneyline going 330 to 360, which is the market telling me the carryover ratings are stale. Search results describe North Carolina arriving without its defensive coordinator, who is on medical leave, and without its general manager, who is on administrative leave, but I could not open those pages to confirm the wording, so I am not treating either as established and I am keeping this well below the publish line. A second year program that turned over most of its roster is exactly where last season's numbers lie to you. I am wrong if the 3.6 points the model sees are real and the off field news is noise, which is the case for taking the points here.",
       "factors": [
@@ -2053,9 +2348,9 @@
       "edge": -3.1,
       "close_line": 38.5,
       "clv_points": 0.0,
-      "result": "void",
-      "result_label": "VOID",
-      "units_net": 0.0,
+      "result": "win",
+      "result_label": "WIN",
+      "units_net": 0.962,
       "final_score": "San Jos\u00e9 State 26 - USC 42",
       "rationale": "The model wants 35.4 and the market is laying 38.5, so there are 3.1 points here, and San Jose State starts an experienced quarterback in Luke Weaver rather than the walk on a number this size usually implies. Numbers above four touchdowns are also where a favourite's own clock management does the covering, and USC has no reason to chase points in the fourth quarter of an opener. What keeps it a shadow pick is that I found no researched reason the market is wrong, only the rating gap, and the gap alone is what the 7.5 cap exists to refuse. I am wrong if USC treats this as a statement game and the reserves keep scoring.",
       "factors": [
@@ -2086,9 +2381,9 @@
       "edge": null,
       "close_line": 4.5,
       "clv_points": 0.0,
-      "result": "void",
-      "result_label": "VOID",
-      "units_net": 0.0,
+      "result": "loss",
+      "result_label": "LOSS",
+      "units_net": -1.0,
       "final_score": "NC State 8 - Virginia 34",
       "rationale": "Virginia's first ACC availability report of the season lists 16 players out, and four of them are wide receivers, including Rico Flores, the projected top target, who spent training camp on a hamstring. The same report takes out the placekicker, which is worth real points in a game the market prices inside five, and NC State comes the other way returning CJ Bailey. make_slate found no candidate here, so the ratings model agrees with the market inside 1.5 points and this pick rests entirely on the report. Against that, the number has already moved from 5.5 to 4.5 and the moneyline from 220 to 178 since Wednesday, and the hook costs 115, so most of the news is in the price. I am wrong if that point the market already gave back was the whole edge and Virginia's remaining receivers hold up.",
       "factors": [
@@ -2205,9 +2500,9 @@
       "edge": -1.9,
       "close_line": 4.5,
       "clv_points": 0.0,
-      "result": "void",
-      "result_label": "VOID",
-      "units_net": 0.0,
+      "result": "loss",
+      "result_label": "LOSS",
+      "units_net": -1.0,
       "final_score": "Hawai'i 27 - Stanford 37",
       "rationale": "Stanford's starting quarterback has not played in a game in nearly 20 months. Davis Warren tore his right ACL in the ReliaQuest Bowl to end the 2024 season, sat out all of 2025, and was named the starter only in the final week of camp, in front of a head coach working his first game and two new coordinators. Hawai'i brings back Micah Alejado, who threw for 3,106 yards and 24 touchdowns last season, and a staff in its fifth year, so the side with the settled quarterback is the one getting points. The number opened at 5.5, traded to 3.5 on Wednesday and sits at 4.5 today, so this is the best price available since the move. I am wrong if Warren plays like the quarterback who started nine games for Michigan in 2024, and the risk is on my own side too, because Hawai'i has to replace 17 starters and the model only likes this by 1.9 points.",
       "factors": [
@@ -2301,9 +2596,9 @@
       "edge": -1.7,
       "close_line": -4.5,
       "clv_points": 0.0,
-      "result": "void",
-      "result_label": "VOID",
-      "units_net": 0.0,
+      "result": "loss",
+      "result_label": "LOSS",
+      "units_net": -1.0,
       "final_score": "Memphis 27 - UNLV 21",
       "rationale": "Memphis has not named a starting quarterback three days before its first game under a first year head coach, with two transfers still splitting the job, while UNLV named Jackson Arnold and kept Dan Mullen and most of its staff. The model likes UNLV by 1.7 points and the number has come from 5.5 to 4.5, so the price is better than it was a week ago. What stops this from going live is that the move is money on Memphis rather than a stale line, and UNLV's own game notes say the Rebels return seven starters, so the continuity argument is thinner than it reads from the outside. I am wrong if Memphis settles on a quarterback who plays well immediately, which is exactly what the market appears to be betting on.",
       "factors": [
