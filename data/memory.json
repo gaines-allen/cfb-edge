@@ -1,9 +1,31 @@
 {
-  "updated_at": "2026-08-29T20:08:57+00:00",
+  "updated_at": "2026-08-30T13:31:27+00:00",
   "seasons_tracked": [
     2026
   ],
-  "calibration": [],
+  "calibration": [
+    {
+      "picks": 2,
+      "wins": 0,
+      "losses": 2,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": -2.0,
+      "risked": 2.0,
+      "roi": -100.0,
+      "avg_clv": -0.5,
+      "beat_close_pct": 0.0,
+      "bucket": "below-7",
+      "verdict": "no_signal",
+      "decided": 2,
+      "breakeven_pct": 52.4,
+      "interval_95": [
+        0.0,
+        65.8
+      ],
+      "reading": "2 decided. The 95% interval 0.0 to 65.8 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
+    }
+  ],
   "by_market": [],
   "by_period": [],
   "by_role": [],
@@ -24,16 +46,16 @@
     "beat_close_pct": null
   },
   "overall_including_shadow": {
-    "picks": 0,
+    "picks": 2,
     "wins": 0,
-    "losses": 0,
+    "losses": 2,
     "pushes": 0,
     "win_pct": 0.0,
-    "units": 0,
-    "risked": 0,
-    "roi": 0.0,
-    "avg_clv": null,
-    "beat_close_pct": null
+    "units": -2.0,
+    "risked": 2.0,
+    "roi": -100.0,
+    "avg_clv": -0.5,
+    "beat_close_pct": 0.0
   },
   "research_scorecard": {}
 }
