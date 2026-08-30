@@ -126,11 +126,9 @@ VOICE = {
     # Describes what the page does rather than promising disclosure it
     # does not make. Every clause here is checkable against the page:
     # the slate goes up, the leans move daily, 6 plays land Friday.
-    "tagline": "The whole slate every week. Six plays on Friday. Every "
-               "line watched in between, so you see what moved and when.",
-    "subhead": "Nothing goes up under {publish} out of 10, and the card is posted "
-               "before kickoff, so I can't quietly improve it afterwards. "
-               "Neither can you.",
+    "tagline": "I watch the whole board. I yell when a number is wrong.",
+    "subhead": "Friday gets the bets. Every other day gets the argument. "
+               "Nothing reaches the card below {publish}, and every posted line stays put.",
 
     # Openly a persona. A page built on not overclaiming cannot open by
     # implying a real handicapper is behind it, and the joke lands better
@@ -142,8 +140,8 @@ VOICE = {
              "figure about the record is computed from the ledger rather "
              "than typed in by someone having a good week.",
 
-    "page_title": "Steve. The card, and the record.",
-    "running_heading": "Best bets",
+    "page_title": "Steve's Bar Tab | College football picks",
+    "running_heading": "Steve's short list",
     "running_note": "The {n} I like best right now, not picks. These "
                     "move. A number the market has caught up to stops "
                     "being worth anything, so what was good Monday is "
@@ -174,7 +172,7 @@ VOICE = {
 
     # The explainer. Every figure in it comes from the live measurement,
     # so the copy cannot drift from the arithmetic it is describing.
-    "edge_heading": "What confidence actually means",
+    "edge_heading": "How loud is Steve?",
     "edge_body_1": "Every lean carries a number from 1 to 10. Here's how "
                    "I build it, because if you can't take a number apart "
                    "you've got no business betting it.",
@@ -207,7 +205,7 @@ VOICE = {
                    "something the model cannot see, and that is the entire "
                    "point of the thing.",
 
-    "board_heading": "This week's board",
+    "board_heading": "The TV wall",
     "board_note": "Every game on the slate, my number next to theirs, "
                   "whether or not it made the card. Strongest lean at the "
                   "top, weakest at the bottom, so the further you scroll "
@@ -227,8 +225,8 @@ VOICE = {
                         "argues with itself is worth nothing to you: "
                         "{games}. I'd rather show you an empty row than "
                         "two of my own numbers that can't both be right.",
-    "board_open": "Open the whole slate",
-    "ledger_open": "Open the full accounting",
+    "board_open": "Turn on every game",
+    "ledger_open": "Open Steve's bar tab",
     "board_moved": "Moved",
     "board_kick": "Kickoff",
     "board_my_spread": "My spread",
@@ -239,7 +237,7 @@ VOICE = {
     "board_lean": "Where I lean",
     "board_no_lean": "Priced right. No lean.",
 
-    "lock_title": "The Lock of the Week",
+    "lock_title": "Steve won't shut up about this one",
     "lock_note": "The Lock is whichever play I'm most confident in. It "
                  "gets the crown, not extra units, because doubling a bet "
                  "is how confident men go broke.",
@@ -254,7 +252,7 @@ VOICE = {
     "live_tied": "dead even",
     "live_final": "final",
 
-    "card_heading": "The card",
+    "card_heading": "The napkin",
     # The empty state shows all week before Friday, so it has to cover 2
     # truths at once: early in the week the card is not built yet, and
     # after Friday an empty card means the board was priced right.
@@ -267,7 +265,7 @@ VOICE = {
                   "fair. It doesn't mean I was out golfing.",
     "card_pending": "Still running",
 
-    "book_heading": "The book",
+    "book_heading": "The receipts",
     "book_empty": "Nothing has settled, so there's nothing to brag about "
                   "and nothing to apologize for. Ask me Sunday night.",
 
@@ -1442,34 +1440,183 @@ HTML = """<!doctype html>
     .stat { padding-right: 18px; margin-right: 18px; }
     .ticket { padding: 22px 20px 18px; }
   }
+
+  /* The data obeys the grid. Steve does not. */
+  html { scroll-behavior: smooth; }
+  body {
+    overflow-x: hidden;
+    background:
+      radial-gradient(900px 520px at 88% 2%, rgba(128,57,34,.22), transparent 68%),
+      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+      var(--navy);
+    background-size: auto, 68px 100%, auto;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    opacity: .12; mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1220px; padding: 0 38px 110px; }
+  .topbar {
+    position: sticky; top: 0; z-index: 20; min-height: 54px;
+    display: flex; align-items: center; justify-content: space-between; gap: 22px;
+    margin: 0 -38px; padding: 0 38px; border-bottom: 1px solid rgba(201,169,97,.24);
+    background: rgba(14,26,47,.94); backdrop-filter: blur(12px);
+    font: 700 11px/1 ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+    letter-spacing: .13em; text-transform: uppercase;
+  }
+  .bar-name { color: var(--cream); white-space: nowrap; }
+  .bar-name i { color: var(--gold-2); font-style: normal; }
+  nav { display: flex; align-items: center; gap: clamp(14px, 3vw, 34px); }
+  nav a { color: var(--dim); text-decoration: none; padding: 21px 0 18px; }
+  nav a:hover, nav a:focus-visible { color: var(--gold-2); }
+  header {
+    min-height: 590px; display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(320px, .94fr);
+    align-items: center; gap: 28px; position: relative; text-align: left; padding: 66px 0 78px;
+    border-bottom: 1px solid rgba(201,169,97,.25); overflow: hidden;
+  }
+  .hero-copy { position: relative; z-index: 2; padding-left: clamp(0px, 3vw, 34px); }
+  .eyebrow {
+    margin: 0 0 17px; color: var(--gold); font: 800 11px/1.2 ui-sans-serif, sans-serif;
+    letter-spacing: .2em; text-transform: uppercase;
+  }
+  .tagline {
+    max-width: 11ch; margin: 0; font-size: clamp(46px, 6.6vw, 88px); line-height: .91;
+    letter-spacing: -.045em; text-wrap: initial;
+  }
+  .subhead { max-width: 49ch; margin: 28px 0 0; font-size: 16px; line-height: 1.55; }
+  .hero-art { position: relative; align-self: stretch; display: grid; place-items: center; }
+  header img { width: min(460px, 45vw); transform: rotate(2.2deg); }
+  .hero-art::before {
+    content: "HE HAS A NUMBER"; position: absolute; right: -34px; top: 56px;
+    color: rgba(224,196,137,.1); font: 900 clamp(56px, 8vw, 126px)/.78 ui-sans-serif, sans-serif;
+    letter-spacing: -.07em; width: 5ch; transform: rotate(5deg); text-align: right;
+  }
+  .rule { display: none; }
+  .bar-note {
+    position: relative; width: min(330px, 80vw); margin: 26px 2% 4px auto;
+    padding: 18px 22px; color: #302715; background: var(--gold-2);
+    font: 800 16px/1.35 ui-sans-serif, -apple-system, sans-serif;
+    transform: rotate(1.2deg); box-shadow: 7px 8px 0 rgba(0,0,0,.22);
+  }
+  .bar-note::after {
+    content: ""; position: absolute; left: 24px; bottom: -14px;
+    border: 15px solid transparent; border-top-color: var(--gold-2); border-left: 0;
+  }
+  h2 {
+    display: block; width: max-content; max-width: 100%; margin: 104px 0 24px; padding: 0;
+    background: transparent; box-shadow: none; color: var(--cream);
+    font: 900 clamp(38px, 5vw, 67px)/.96 ui-sans-serif, -apple-system, sans-serif;
+    letter-spacing: -.055em; text-transform: none;
+  }
+  h2::before { content: ""; display: block; width: 62px; height: 7px; margin: 0 0 13px; background: var(--gold); transform: rotate(-2deg); }
+  h2::after { display: none; }
+  #card-h { margin-left: 3%; }
+  #card, #livewrap { width: min(920px, 92%); margin-left: 3%; }
+  #running-h { margin-left: 18%; }
+  #running { width: min(860px, 76%); margin-left: 18%; }
+  #board-h { margin-left: 1%; }
+  #board-alert, #board-fold { width: 100%; }
+  #book-h, #book, #ledger-fold { margin-left: 11%; width: min(980px, 86%); }
+  #edge-h, #edge { margin-left: 29%; width: min(700px, 68%); }
+  .tickets { gap: 38px; }
+  .ticket { border-radius: 0; padding: 34px 38px 26px; }
+  .ticket:nth-of-type(even) { width: 92%; margin-left: 8%; transform: rotate(.25deg); }
+  .ticket.lock { transform: rotate(-.35deg); }
+  .badge { border-radius: 2px; }
+  .lockbanner { text-align: left; margin: 0 0 13px -18px; transform: rotate(-1deg); }
+  .lean { display: grid; grid-template-columns: 1fr; padding: 27px 0 29px; }
+  .lean:nth-of-type(2n) { width: 88%; margin-left: 9%; }
+  .leanhead { align-items: flex-start; }
+  .conf { width: 92px; text-align: left; }
+  .conf .n { font-size: 46px; }
+  .leanbody { padding-left: 110px; }
+  .leanplay { font-size: 24px; }
+  .game summary { min-height: 78px; padding: 16px 12px; }
+  .game:nth-child(even) { background: rgba(255,255,255,.018); }
+  .stats { border-top: 1px solid #26364f; border-bottom: 1px solid #26364f; padding: 24px 0; }
+  footer { width: min(900px, 82%); margin-left: auto; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 18px 76px; }
+    .topbar { margin: 0 -18px; padding: 0 18px; overflow-x: auto; }
+    .bar-name { display: none; }
+    nav { width: 100%; justify-content: space-between; gap: 16px; }
+    nav a { font-size: 10px; }
+    header { min-height: auto; grid-template-columns: 1fr; padding: 48px 0 56px; gap: 12px; }
+    .hero-copy { padding-left: 0; }
+    .tagline { font-size: clamp(43px, 14vw, 70px); max-width: 10ch; }
+    .hero-art { min-height: 330px; justify-items: end; }
+    header img { width: min(380px, 92vw); }
+    .hero-art::before { right: -6px; top: 10px; font-size: 78px; }
+    .bar-note { margin-top: 8px; }
+    h2 { margin-top: 78px; font-size: clamp(38px, 12vw, 56px); }
+    #card-h, #card, #livewrap, #running-h, #running, #board-h, #board-alert,
+    #board-fold, #book-h, #book, #ledger-fold, #edge-h, #edge, footer {
+      width: 100%; margin-left: 0;
+    }
+    .ticket, .ticket:nth-of-type(even) { width: 100%; margin-left: 0; padding: 28px 21px 22px; }
+    .ticket:nth-of-type(even), .ticket.lock { transform: none; }
+    .lockbanner { margin-left: 0; }
+    .lean:nth-of-type(2n) { width: 100%; margin-left: 0; }
+    .leanhead { gap: 8px; }
+    .conf { width: 68px; }
+    .conf .n { font-size: 38px; }
+    .leanbody { padding-left: 76px; }
+    .gnums { display: none; }
+    .gkick { width: auto; }
+    .gbody { padding-left: 4px; overflow-x: auto; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    .fold { max-width: 100%; overflow: hidden; }
+    .stat { flex: 1 1 33%; padding: 5px 12px; margin: 0; }
+    .stat:first-child { padding-left: 12px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <div class="topbar">
+    <div class="bar-name"><i>Steve's</i> College Football Bar</div>
+    <nav aria-label="Jump to a section">
+      <a href="#card-h">Napkin</a>
+      <a href="#running-h">Short list</a>
+      <a href="#board-h">TV wall</a>
+      <a href="#book-h">Receipts</a>
+    </nav>
+  </div>
+
   <header>
-    <img src="__LOGO__" alt="__NAME__, __KICKER__">
-    <p class="tagline">__TAGLINE__</p>
-    <p class="subhead">__SUBHEAD__</p>
-    <div class="rule"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">The loud end of the bar</p>
+      <p class="tagline">__TAGLINE__</p>
+      <p class="subhead">__SUBHEAD__</p>
+    </div>
+    <div class="hero-art">
+      <img src="__LOGO__" alt="__NAME__, __KICKER__">
+    </div>
   </header>
+
+  <aside class="bar-note">The book has 55 games. Steve has opinions about six. This is restraint.</aside>
 
   <div id="livewrap"></div>
 
-  <h2 id="card-h">The card</h2>
+  <h2 id="card-h">The napkin</h2>
   <div id="card"></div>
 
-  <h2 id="running-h">The running card</h2>
+  <h2 id="running-h">Steve's short list</h2>
   <div id="running"></div>
 
-  <h2 id="board-h">The board</h2>
+  <h2 id="board-h">The TV wall</h2>
   <div id="board-alert"></div>
   <details class="fold" id="board-fold">
     <summary><span class="foldlabel">__BOARD_OPEN__</span></summary>
     <div id="board"></div>
   </details>
 
-  <h2 id="book-h">The book</h2>
+  <aside class="bar-note">You can argue with the picks. You cannot argue with the receipt.</aside>
+
+  <h2 id="book-h">The receipts</h2>
   <div id="book"></div>
 
   <details class="fold" id="ledger-fold">
@@ -1498,7 +1645,7 @@ HTML = """<!doctype html>
     <div id="les"></div>
   </details>
 
-  <h2 id="edge-h">What confidence actually means</h2>
+  <h2 id="edge-h">How loud is Steve?</h2>
   <div id="edge"></div>
 
   <footer>
