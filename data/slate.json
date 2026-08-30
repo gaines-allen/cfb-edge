@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-08-30T13:43:43+00:00",
+  "built_at": "2026-08-30T17:11:43+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-30T13:43:41+00:00",
+  "board_fetched_at": "2026-08-30T17:11:36+00:00",
   "warning": null,
   "games_on_board": 102,
   "games_with_candidates": 39,
@@ -109,14 +109,14 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-30T13:43:42+00:00",
+    "measured_at": "2026-08-30T17:11:41+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 55,
-      "bias": -3.538,
+      "bias": -3.502,
       "median": -3.9,
-      "sigma": 5.603
+      "sigma": 5.662
     },
     "spreads": {
       "n": 55,
@@ -178,8 +178,8 @@
           "price": -106,
           "model_number": 35.7,
           "edge_points": -11.8,
-          "edge_sigma": -2.11,
-          "floor_confidence": 6.7
+          "edge_sigma": -2.08,
+          "floor_confidence": 6.6
         }
       ]
     },
@@ -234,7 +234,7 @@
           "price": -110,
           "model_number": 65.3,
           "edge_points": 10.8,
-          "edge_sigma": 1.93,
+          "edge_sigma": 1.91,
           "floor_confidence": 6.4
         },
         {
@@ -302,7 +302,7 @@
           "price": -110,
           "model_number": 43.9,
           "edge_points": -10.6,
-          "edge_sigma": -1.89,
+          "edge_sigma": -1.87,
           "floor_confidence": 6.3
         },
         {
@@ -316,6 +316,75 @@
           "edge_points": 5.7,
           "edge_sigma": 2.0,
           "floor_confidence": 6.5
+        }
+      ]
+    },
+    {
+      "event_id": "57c73afe255c44ef3e19b52dc9557ea8",
+      "kickoff": "2026-09-05T23:00:00Z",
+      "matchup": "Arkansas State Red Wolves @ Memphis Tigers",
+      "home_team": "Memphis Tigers",
+      "away_team": "Arkansas State Red Wolves",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Memphis",
+        "away_team": "Arkansas State",
+        "projected_spread": -13.7,
+        "projected_total": 63.6,
+        "projected_h1_spread": -7.5,
+        "projected_h1_total": 29.9,
+        "hfa_applied": 2.2,
+        "coherence_gap": 2.2,
+        "inputs": {
+          "home_rating": 0.38,
+          "away_rating": -10.73,
+          "home_points": 35.8,
+          "away_points": 24.3,
+          "home_components": {
+            "sp": 0.3,
+            "sp_off": 29,
+            "sp_def": 29.2,
+            "fpi": 0.02,
+            "elo": 1541
+          },
+          "away_components": {
+            "sp": -11.6,
+            "sp_off": 22.1,
+            "sp_def": 33.8,
+            "fpi": -9.153
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 3,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 53.5,
+          "bet_line": 53.5,
+          "price": -110,
+          "model_number": 63.6,
+          "edge_points": 10.1,
+          "edge_sigma": 1.78,
+          "floor_confidence": 6.2
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Memphis",
+          "market_line": -9.5,
+          "bet_line": -9.5,
+          "price": -110,
+          "model_number": -13.7,
+          "edge_points": -4.2,
+          "edge_sigma": -1.48,
+          "floor_confidence": 5.7
         }
       ]
     },
@@ -370,7 +439,7 @@
           "price": -114,
           "model_number": 41.4,
           "edge_points": -10.1,
-          "edge_sigma": -1.8,
+          "edge_sigma": -1.78,
           "floor_confidence": 6.2
         }
       ]
@@ -426,8 +495,8 @@
           "price": -108,
           "model_number": 39.3,
           "edge_points": -9.2,
-          "edge_sigma": -1.64,
-          "floor_confidence": 6.0
+          "edge_sigma": -1.62,
+          "floor_confidence": 5.9
         },
         {
           "market": "spread",
@@ -494,7 +563,7 @@
           "price": -115,
           "model_number": 63.6,
           "edge_points": 9.1,
-          "edge_sigma": 1.62,
+          "edge_sigma": 1.61,
           "floor_confidence": 5.9
         },
         {
@@ -562,77 +631,8 @@
           "price": -105,
           "model_number": 60.4,
           "edge_points": 8.9,
-          "edge_sigma": 1.59,
+          "edge_sigma": 1.57,
           "floor_confidence": 5.9
-        }
-      ]
-    },
-    {
-      "event_id": "57c73afe255c44ef3e19b52dc9557ea8",
-      "kickoff": "2026-09-05T23:00:00Z",
-      "matchup": "Arkansas State Red Wolves @ Memphis Tigers",
-      "home_team": "Memphis Tigers",
-      "away_team": "Arkansas State Red Wolves",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Memphis",
-        "away_team": "Arkansas State",
-        "projected_spread": -13.7,
-        "projected_total": 63.6,
-        "projected_h1_spread": -7.5,
-        "projected_h1_total": 29.9,
-        "hfa_applied": 2.2,
-        "coherence_gap": 2.2,
-        "inputs": {
-          "home_rating": 0.38,
-          "away_rating": -10.73,
-          "home_points": 35.8,
-          "away_points": 24.3,
-          "home_components": {
-            "sp": 0.3,
-            "sp_off": 29,
-            "sp_def": 29.2,
-            "fpi": 0.02,
-            "elo": 1541
-          },
-          "away_components": {
-            "sp": -11.6,
-            "sp_off": 22.1,
-            "sp_def": 33.8,
-            "fpi": -9.153
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 3,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 55.5,
-          "bet_line": 55.5,
-          "price": -110,
-          "model_number": 63.6,
-          "edge_points": 8.1,
-          "edge_sigma": 1.45,
-          "floor_confidence": 5.7
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Memphis",
-          "market_line": -9.5,
-          "bet_line": -9.5,
-          "price": -110,
-          "model_number": -13.7,
-          "edge_points": -4.2,
-          "edge_sigma": -1.48,
-          "floor_confidence": 5.7
         }
       ]
     },
@@ -687,7 +687,7 @@
           "price": -115,
           "model_number": 60.5,
           "edge_points": 8.0,
-          "edge_sigma": 1.43,
+          "edge_sigma": 1.41,
           "floor_confidence": 5.6
         }
       ]
@@ -743,7 +743,7 @@
           "price": -110,
           "model_number": 39.6,
           "edge_points": -7.9,
-          "edge_sigma": -1.41,
+          "edge_sigma": -1.4,
           "floor_confidence": 5.6
         }
       ]
@@ -799,7 +799,7 @@
           "price": -110,
           "model_number": 61.8,
           "edge_points": 6.3,
-          "edge_sigma": 1.12,
+          "edge_sigma": 1.11,
           "floor_confidence": 5.2
         }
       ]
@@ -855,7 +855,7 @@
           "price": -105,
           "model_number": 44.5,
           "edge_points": -6.0,
-          "edge_sigma": -1.07,
+          "edge_sigma": -1.06,
           "floor_confidence": 5.1
         },
         {
@@ -923,7 +923,7 @@
           "price": -110,
           "model_number": 44.6,
           "edge_points": -5.9,
-          "edge_sigma": -1.05,
+          "edge_sigma": -1.04,
           "floor_confidence": 5.1
         },
         {
@@ -1047,7 +1047,7 @@
           "price": -115,
           "model_number": 49.1,
           "edge_points": -5.4,
-          "edge_sigma": -0.96,
+          "edge_sigma": -0.95,
           "floor_confidence": 4.9
         }
       ]
@@ -1103,7 +1103,7 @@
           "price": -114,
           "model_number": 56.9,
           "edge_points": 5.4,
-          "edge_sigma": 0.96,
+          "edge_sigma": 0.95,
           "floor_confidence": 4.9
         }
       ]
@@ -1161,7 +1161,7 @@
           "price": -110,
           "model_number": 63.9,
           "edge_points": 5.4,
-          "edge_sigma": 0.96,
+          "edge_sigma": 0.95,
           "floor_confidence": 4.9
         }
       ]
@@ -1341,7 +1341,7 @@
           "price": -104,
           "model_number": 43.3,
           "edge_points": -4.2,
-          "edge_sigma": -0.75,
+          "edge_sigma": -0.74,
           "floor_confidence": 4.6
         },
         {
@@ -1465,7 +1465,7 @@
           "price": -114,
           "model_number": 46.4,
           "edge_points": -4.1,
-          "edge_sigma": -0.73,
+          "edge_sigma": -0.72,
           "floor_confidence": 4.6
         },
         {
@@ -1545,7 +1545,7 @@
           "price": -110,
           "model_number": 58.8,
           "edge_points": 3.3,
-          "edge_sigma": 0.59,
+          "edge_sigma": 0.58,
           "floor_confidence": 4.4
         }
       ]
@@ -1806,7 +1806,7 @@
           "price": -110,
           "model_number": 58.5,
           "edge_points": 3.0,
-          "edge_sigma": 0.54,
+          "edge_sigma": 0.53,
           "floor_confidence": 4.3
         }
       ]
@@ -1998,7 +1998,7 @@
           "price": -105,
           "model_number": 55.5,
           "edge_points": 3.0,
-          "edge_sigma": 0.54,
+          "edge_sigma": 0.53,
           "floor_confidence": 4.3
         }
       ]
@@ -2109,7 +2109,7 @@
           "side": "Under",
           "market_line": 54.5,
           "bet_line": 54.5,
-          "price": -115,
+          "price": -110,
           "model_number": 51.9,
           "edge_points": -2.6,
           "edge_sigma": -0.46,
@@ -2237,7 +2237,7 @@
           "price": -115,
           "model_number": 55.0,
           "edge_points": 2.5,
-          "edge_sigma": 0.45,
+          "edge_sigma": 0.44,
           "floor_confidence": 4.2
         },
         {

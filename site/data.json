@@ -1,42 +1,10 @@
 {
-  "generated_at": "2026-08-30T13:44:08+00:00",
+  "generated_at": "2026-08-30T17:12:01+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-08-30T13:43:43+00:00",
+    "built_at": "2026-08-30T17:11:43+00:00",
     "rows": [
-      {
-        "market_spread": -3.5,
-        "market_total": 47.5,
-        "event_id": "ddf45575d5d07af2872a07618f9f7867",
-        "kickoff": "2026-09-05T22:00:00Z",
-        "matchup": "Wyoming Cowboys @ Colorado State Rams",
-        "home_team": "Colorado State Rams",
-        "away_team": "Wyoming Cowboys",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
-        "neutral_site": false,
-        "projected_spread": -2.3,
-        "projected_total": 35.7,
-        "home_short": "Colorado State",
-        "away_short": "Wyoming",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 47.5,
-            "bet_line": 47.5,
-            "price": -106,
-            "model_number": 35.7,
-            "edge_points": -11.8,
-            "edge_sigma": -2.11,
-            "floor_confidence": 6.7
-          }
-        ],
-        "movement": {}
-      },
       {
         "market_spread": -21.5,
         "market_total": 56.5,
@@ -73,6 +41,38 @@
             "to": 56.5
           }
         }
+      },
+      {
+        "market_spread": -3.5,
+        "market_total": 47.5,
+        "event_id": "ddf45575d5d07af2872a07618f9f7867",
+        "kickoff": "2026-09-05T22:00:00Z",
+        "matchup": "Wyoming Cowboys @ Colorado State Rams",
+        "home_team": "Colorado State Rams",
+        "away_team": "Wyoming Cowboys",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
+        "neutral_site": false,
+        "projected_spread": -2.3,
+        "projected_total": 35.7,
+        "home_short": "Colorado State",
+        "away_short": "Wyoming",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 47.5,
+            "bet_line": 47.5,
+            "price": -106,
+            "model_number": 35.7,
+            "edge_points": -11.8,
+            "edge_sigma": -2.08,
+            "floor_confidence": 6.6
+          }
+        ],
+        "movement": {}
       },
       {
         "market_spread": -28.5,
@@ -112,7 +112,7 @@
             "price": -110,
             "model_number": 43.9,
             "edge_points": -10.6,
-            "edge_sigma": -1.89,
+            "edge_sigma": -1.87,
             "floor_confidence": 6.3
           }
         ],
@@ -144,7 +144,7 @@
             "price": -110,
             "model_number": 65.3,
             "edge_points": 10.8,
-            "edge_sigma": 1.93,
+            "edge_sigma": 1.91,
             "floor_confidence": 6.4
           },
           {
@@ -168,6 +168,55 @@
           "total": {
             "from": 53.5,
             "to": 54.5
+          }
+        }
+      },
+      {
+        "market_spread": -9.5,
+        "market_total": 53.5,
+        "event_id": "57c73afe255c44ef3e19b52dc9557ea8",
+        "kickoff": "2026-09-05T23:00:00Z",
+        "matchup": "Arkansas State Red Wolves @ Memphis Tigers",
+        "home_team": "Memphis Tigers",
+        "away_team": "Arkansas State Red Wolves",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2032.png",
+        "neutral_site": false,
+        "projected_spread": -13.7,
+        "projected_total": 63.6,
+        "home_short": "Memphis",
+        "away_short": "Arkansas State",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Over",
+            "market_line": 53.5,
+            "bet_line": 53.5,
+            "price": -110,
+            "model_number": 63.6,
+            "edge_points": 10.1,
+            "edge_sigma": 1.78,
+            "floor_confidence": 6.2
+          },
+          {
+            "market": "spread",
+            "period": "full",
+            "side": "Memphis",
+            "market_line": -9.5,
+            "bet_line": -9.5,
+            "price": -110,
+            "model_number": -13.7,
+            "edge_points": -4.2,
+            "edge_sigma": -1.48,
+            "floor_confidence": 5.7
+          }
+        ],
+        "movement": {
+          "total": {
+            "from": 55.5,
+            "to": 53.5
           }
         }
       },
@@ -197,7 +246,7 @@
             "price": -114,
             "model_number": 41.4,
             "edge_points": -10.1,
-            "edge_sigma": -1.8,
+            "edge_sigma": -1.78,
             "floor_confidence": 6.2
           }
         ],
@@ -271,8 +320,8 @@
             "price": -108,
             "model_number": 39.3,
             "edge_points": -9.2,
-            "edge_sigma": -1.64,
-            "floor_confidence": 6.0
+            "edge_sigma": -1.62,
+            "floor_confidence": 5.9
           },
           {
             "market": "spread",
@@ -324,7 +373,7 @@
             "price": -105,
             "model_number": 60.4,
             "edge_points": 8.9,
-            "edge_sigma": 1.59,
+            "edge_sigma": 1.57,
             "floor_confidence": 5.9
           }
         ],
@@ -356,7 +405,7 @@
             "price": -115,
             "model_number": 63.6,
             "edge_points": 9.1,
-            "edge_sigma": 1.62,
+            "edge_sigma": 1.61,
             "floor_confidence": 5.9
           },
           {
@@ -461,50 +510,6 @@
         "movement": {}
       },
       {
-        "market_spread": -9.5,
-        "market_total": 55.5,
-        "event_id": "57c73afe255c44ef3e19b52dc9557ea8",
-        "kickoff": "2026-09-05T23:00:00Z",
-        "matchup": "Arkansas State Red Wolves @ Memphis Tigers",
-        "home_team": "Memphis Tigers",
-        "away_team": "Arkansas State Red Wolves",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2032.png",
-        "neutral_site": false,
-        "projected_spread": -13.7,
-        "projected_total": 63.6,
-        "home_short": "Memphis",
-        "away_short": "Arkansas State",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Over",
-            "market_line": 55.5,
-            "bet_line": 55.5,
-            "price": -110,
-            "model_number": 63.6,
-            "edge_points": 8.1,
-            "edge_sigma": 1.45,
-            "floor_confidence": 5.7
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "Memphis",
-            "market_line": -9.5,
-            "bet_line": -9.5,
-            "price": -110,
-            "model_number": -13.7,
-            "edge_points": -4.2,
-            "edge_sigma": -1.48,
-            "floor_confidence": 5.7
-          }
-        ],
-        "movement": {}
-      },
-      {
         "market_spread": -28.5,
         "market_total": 55.5,
         "event_id": "61a35dab6017f6f7de74fab10707197c",
@@ -542,7 +547,7 @@
             "price": -110,
             "model_number": 58.8,
             "edge_points": 3.3,
-            "edge_sigma": 0.59,
+            "edge_sigma": 0.58,
             "floor_confidence": 4.4
           }
         ],
@@ -579,7 +584,7 @@
             "price": -115,
             "model_number": 60.5,
             "edge_points": 8.0,
-            "edge_sigma": 1.43,
+            "edge_sigma": 1.41,
             "floor_confidence": 5.6
           }
         ],
@@ -611,7 +616,7 @@
             "price": -110,
             "model_number": 39.6,
             "edge_points": -7.9,
-            "edge_sigma": -1.41,
+            "edge_sigma": -1.4,
             "floor_confidence": 5.6
           }
         ],
@@ -652,7 +657,7 @@
             "price": -110,
             "model_number": 61.8,
             "edge_points": 6.3,
-            "edge_sigma": 1.12,
+            "edge_sigma": 1.11,
             "floor_confidence": 5.2
           }
         ],
@@ -701,7 +706,7 @@
             "price": -110,
             "model_number": 58.5,
             "edge_points": 3.0,
-            "edge_sigma": 0.54,
+            "edge_sigma": 0.53,
             "floor_confidence": 4.3
           }
         ],
@@ -738,7 +743,7 @@
             "price": -110,
             "model_number": 44.6,
             "edge_points": -5.9,
-            "edge_sigma": -1.05,
+            "edge_sigma": -1.04,
             "floor_confidence": 5.1
           },
           {
@@ -799,7 +804,7 @@
             "price": -104,
             "model_number": 43.3,
             "edge_points": -4.2,
-            "edge_sigma": -0.75,
+            "edge_sigma": -0.74,
             "floor_confidence": 4.6
           }
         ],
@@ -831,7 +836,7 @@
             "price": -105,
             "model_number": 44.5,
             "edge_points": -6.0,
-            "edge_sigma": -1.07,
+            "edge_sigma": -1.06,
             "floor_confidence": 5.1
           },
           {
@@ -917,7 +922,7 @@
             "price": -115,
             "model_number": 49.1,
             "edge_points": -5.4,
-            "edge_sigma": -0.96,
+            "edge_sigma": -0.95,
             "floor_confidence": 4.9
           }
         ],
@@ -954,7 +959,7 @@
             "price": -114,
             "model_number": 56.9,
             "edge_points": 5.4,
-            "edge_sigma": 0.96,
+            "edge_sigma": 0.95,
             "floor_confidence": 4.9
           }
         ],
@@ -991,7 +996,7 @@
             "price": -110,
             "model_number": 63.9,
             "edge_points": 5.4,
-            "edge_sigma": 0.96,
+            "edge_sigma": 0.95,
             "floor_confidence": 4.9
           }
         ],
@@ -1086,7 +1091,7 @@
             "side": "Under",
             "market_line": 54.5,
             "bet_line": 54.5,
-            "price": -115,
+            "price": -110,
             "model_number": 51.9,
             "edge_points": -2.6,
             "edge_sigma": -0.46,
@@ -1142,7 +1147,7 @@
             "price": -114,
             "model_number": 46.4,
             "edge_points": -4.1,
-            "edge_sigma": -0.73,
+            "edge_sigma": -0.72,
             "floor_confidence": 4.6
           }
         ],
@@ -1186,7 +1191,7 @@
             "price": -115,
             "model_number": 55.0,
             "edge_points": 2.5,
-            "edge_sigma": 0.45,
+            "edge_sigma": 0.44,
             "floor_confidence": 4.2
           }
         ],
@@ -1429,7 +1434,7 @@
             "price": -105,
             "model_number": 55.5,
             "edge_points": 3.0,
-            "edge_sigma": 0.54,
+            "edge_sigma": 0.53,
             "floor_confidence": 4.3
           }
         ],
@@ -1537,7 +1542,7 @@
         }
       }
     ],
-    "fetched_at": "2026-08-30T13:43:41+00:00",
+    "fetched_at": "2026-08-30T17:11:36+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -1556,43 +1561,11 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-08-30T13:43:44+00:00",
-    "board_fetched_at": "2026-08-30T13:43:41+00:00",
+    "updated_at": "2026-08-30T17:11:44+00:00",
+    "board_fetched_at": "2026-08-30T17:11:36+00:00",
     "season": 2026,
     "week": 1,
     "card": [
-      {
-        "matchup": "Wyoming Cowboys @ Colorado State Rams",
-        "side": "Under",
-        "market": "total",
-        "period": "full",
-        "line": 47.5,
-        "price": -106,
-        "confidence": 6.7,
-        "sigma": -2.11,
-        "edge_points": -11.8,
-        "model_number": 35.7,
-        "first_seen": "2026-08-24T18:24:03+00:00",
-        "first_confidence": 5.1,
-        "moved_confidence": 1.6,
-        "moved_line": null,
-        "days_tracked": 15,
-        "rank": 1,
-        "peak_rank": 1,
-        "on_board": true,
-        "kickoff": "2026-09-05T22:00:00Z",
-        "home_team": "Colorado State Rams",
-        "away_team": "Wyoming Cowboys",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
-        "defense": {
-          "line": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.5 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 47.5.",
-          "unusual": "That leaves 12.0 points between us, which puts it in the top tenth of anything I'm looking at.",
-          "built": "",
-          "text": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.5 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 47.5. That leaves 12.0 points between us, which puts it in the top tenth of anything I'm looking at."
-        }
-      },
       {
         "matchup": "Coastal Carolina Chanticleers @ West Virginia Mountaineers",
         "side": "Coastal Carolina",
@@ -1608,9 +1581,9 @@
         "first_confidence": 6.6,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 15,
-        "rank": 2,
-        "peak_rank": 2,
+        "days_tracked": 16,
+        "rank": 1,
+        "peak_rank": 1,
         "on_board": true,
         "kickoff": "2026-09-05T16:00:00Z",
         "home_team": "West Virginia Mountaineers",
@@ -1623,6 +1596,38 @@
           "unusual": "That leaves 6.0 points between us, which puts it in the top tenth of anything I'm looking at.",
           "built": "",
           "text": "I make it West Virginia by 15.5, 2.0 of which is just for sleeping at home. Straight off the ratings that's 15.0, and I nudge it for the way my numbers have been landing against the book. Book's got it at 21.5. That leaves 6.0 points between us, which puts it in the top tenth of anything I'm looking at."
+        }
+      },
+      {
+        "matchup": "Wyoming Cowboys @ Colorado State Rams",
+        "side": "Under",
+        "market": "total",
+        "period": "full",
+        "line": 47.5,
+        "price": -106,
+        "confidence": 6.6,
+        "sigma": -2.08,
+        "edge_points": -11.8,
+        "model_number": 35.7,
+        "first_seen": "2026-08-24T18:24:03+00:00",
+        "first_confidence": 5.1,
+        "moved_confidence": 1.5,
+        "moved_line": null,
+        "days_tracked": 16,
+        "rank": 2,
+        "peak_rank": 1,
+        "on_board": true,
+        "kickoff": "2026-09-05T22:00:00Z",
+        "home_team": "Colorado State Rams",
+        "away_team": "Wyoming Cowboys",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
+        "defense": {
+          "line": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.5 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book.",
+          "against": "Book's asking 47.5.",
+          "unusual": "That leaves 12.0 points between us, which puts it in the top tenth of anything I'm looking at.",
+          "built": "",
+          "text": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.5 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 47.5. That leaves 12.0 points between us, which puts it in the top tenth of anything I'm looking at."
         }
       },
       {
@@ -1640,7 +1645,7 @@
         "first_confidence": 6.5,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 15,
+        "days_tracked": 16,
         "rank": 3,
         "peak_rank": 3,
         "on_board": true,
@@ -1665,14 +1670,14 @@
         "line": 54.5,
         "price": -110,
         "confidence": 6.4,
-        "sigma": 1.93,
+        "sigma": 1.91,
         "edge_points": 10.8,
         "model_number": 65.3,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 5.5,
         "moved_confidence": 0.9,
         "moved_line": null,
-        "days_tracked": 15,
+        "days_tracked": 16,
         "rank": 4,
         "peak_rank": 4,
         "on_board": true,
@@ -1704,7 +1709,7 @@
         "first_confidence": 6.4,
         "moved_confidence": -0.2,
         "moved_line": null,
-        "days_tracked": 15,
+        "days_tracked": 16,
         "rank": 5,
         "peak_rank": 4,
         "on_board": true,
@@ -1729,7 +1734,7 @@
         "line": 51.5,
         "price": -114,
         "confidence": 6.2,
-        "sigma": -1.8,
+        "sigma": -1.78,
         "edge_points": -10.1,
         "model_number": 41.4,
         "first_seen": "2026-08-24T18:24:03+00:00",
@@ -1739,7 +1744,7 @@
           "from": 50.5,
           "to": 51.5
         },
-        "days_tracked": 15,
+        "days_tracked": 16,
         "rank": 6,
         "peak_rank": 5,
         "on_board": true,
@@ -1833,14 +1838,14 @@
         "line": 54.5,
         "price": -110,
         "confidence": 6.3,
-        "sigma": -1.89,
+        "sigma": -1.87,
         "edge_points": -10.6,
         "model_number": 43.9,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 6.4,
         "moved_confidence": -0.1,
         "moved_line": null,
-        "days_tracked": 15,
+        "days_tracked": 16,
         "rank": null,
         "peak_rank": 2,
         "on_board": true,
@@ -1896,13 +1901,13 @@
     "cap": 7.5,
     "publish": 7.0,
     "spread_gap": 2.845,
-    "total_gap": 5.603,
+    "total_gap": 5.662,
     "sample": 55
   },
   "live": null,
   "lock_id": "5afedb05e61f",
-  "board_fetched_at": "2026-08-30T13:43:41+00:00",
-  "credits_remaining": 337,
+  "board_fetched_at": "2026-08-30T17:11:36+00:00",
+  "credits_remaining": 334,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
