@@ -142,10 +142,14 @@ def test_the_review_cannot_touch_the_record():
         assert forbidden not in src, forbidden
 
 
-def test_it_writes_only_its_own_file():
+def test_it_writes_only_its_own_files():
+    # Its review and its archive, and nothing else. The ledger in
+    # particular must stay out of reach.
     src = (ROOT / "scripts" / "review_week.py").read_text()
     saves = [ln for ln in src.splitlines() if "_save(" in ln]
-    assert saves and all("REVIEW_FILE" in ln for ln in saves), saves
+    assert saves
+    for ln in saves:
+        assert "REVIEW_FILE" in ln or "ARCHIVE_FILE" in ln, ln
 
 
 def test_a_dry_run_writes_nothing(tmp_path):
@@ -237,3 +241,61 @@ def test_canonical_is_given_the_school_list_it_needs():
     assert R.key_for("Hawaii Rainbow Warriors") == R.key_for("Hawai'i")
     assert R.key_for("NC State Wolfpack") == R.key_for("NC State")
     assert R.key_for("Ohio") != R.key_for("Ohio State")
+
+
+# ---------------------------------------------------------------------
+# The slate forgets
+#
+# make_slate rebuilds daily from the games still to come, so a game drops
+# off the moment it kicks. Reviewing the current slate against last
+# weekend's finals compares next week's fixtures to last week's results
+# and matches nothing. It scored 0 of 39 and reported a clean run.
+# ---------------------------------------------------------------------
+
+def test_a_game_is_archived_the_first_time_the_model_prices_it():
+    slate = {"season": 2026, "week": 1, "slate": [
+        {**game(), "event_id": "e1", "kickoff": "2026-08-29T19:45:00Z"}]}
+    a = archive_of(slate)
+    assert "e1" in a["games"]
+    assert a["games"]["e1"]["model"]["projected_spread"] == -7.0
+
+
+def test_the_first_number_stands():
+    """
+    What was believed going in, not a number tuned as the week went on.
+    """
+    slate = {"season": 2026, "week": 1, "slate": [
+        {**game(spread=-7.0), "event_id": "e1"}]}
+    first = archive_of(slate)
+    later = {"season": 2026, "week": 1, "slate": [
+        {**game(spread=-21.0), "event_id": "e1"}]}
+    second = R.archive(later, first)
+    assert second["games"]["e1"]["model"]["projected_spread"] == -7.0
+
+
+def test_a_played_game_is_still_reviewable_after_it_leaves_the_slate():
+    played = {"season": 2026, "week": 1, "slate": [
+        {**game(matchup="Stanford @ Hawaii Rainbow Warriors",
+                home="Hawaii Rainbow Warriors", away="Stanford", spread=-7.0),
+         "event_id": "e1"}]}
+    arch = archive_of(played)
+    # Next build drops it and carries only an upcoming fixture.
+    upcoming = {"season": 2026, "week": 1, "slate": [
+        {**game(matchup="A @ B", home="B", away="A"), "event_id": "e2"}]}
+    out = R.review(upcoming, [final(home="Hawai'i", away="Stanford",
+                                    hs=27, as_=37)], arch, week=1)
+    assert out["games_scored"] == 1, out["games_unmatched"]
+
+
+def test_the_archive_does_not_drag_in_another_week():
+    arch = {"games": {"old": {
+        "season": 2026, "week": 1, "matchup": "X @ Y",
+        "home_team": "Y", "away_team": "X",
+        "model": {"projected_spread": -3.0, "projected_total": 50.0}}}}
+    out = R.review({"slate": []}, [], arch, week=2)
+    assert out["games_scored"] == 0
+    assert out["games_unmatched"] == []
+
+
+def archive_of(slate):
+    return R.archive(slate, None)

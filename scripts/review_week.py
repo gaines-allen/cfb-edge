@@ -32,6 +32,8 @@ from lib.runlog import RunLog  # noqa: E402
 from lib.teams import canonical, load_logos, normalize  # noqa: E402
 
 REVIEW_FILE = store.DATA / "week_review.json"
+# Every game the model has ever priced, kept because the slate does not.
+ARCHIVE_FILE = store.DATA / "model_archive.json"
 
 
 @functools.lru_cache(maxsize=1)
@@ -60,6 +62,40 @@ def key_for(name) -> str:
     to spell the same.
     """
     return canonical(str(name), _known()) or normalize(str(name))
+
+
+def archive(slate: dict, prior: dict | None = None) -> dict:
+    """
+    Remember what the model said, because the slate forgets.
+
+    make_slate rebuilds daily from the games still to come, so a game
+    drops off the moment it kicks. Reviewing the current slate against
+    last weekend's finals compares next week's fixtures to last week's
+    results and matches nothing, which is exactly what it did: 0 of 39,
+    reported as a clean run.
+
+    The first number stands. A game is written once, on the first day the
+    model priced it, so this is what was actually believed going in
+    rather than a number tuned as the week went on.
+    """
+    out = dict((prior or {}).get("games") or {})
+    for g in slate.get("slate", []):
+        ev = g.get("event_id")
+        if not ev or ev in out:
+            continue
+        m = g.get("model") or {}
+        if m.get("projected_spread") is None and m.get("projected_total") is None:
+            continue
+        out[ev] = {
+            "season": slate.get("season"), "week": slate.get("week"),
+            "matchup": g.get("matchup"),
+            "home_team": g.get("home_team"), "away_team": g.get("away_team"),
+            "kickoff": g.get("kickoff"),
+            "first_seen": store.now_iso(),
+            "model": {"projected_spread": m.get("projected_spread"),
+                      "projected_total": m.get("projected_total")},
+        }
+    return {"updated_at": store.now_iso(), "games": out}
 
 
 def index_results(games: list[dict]) -> dict:
@@ -154,10 +190,25 @@ def summarize(rows: list[dict]) -> dict:
     }
 
 
-def review(slate: dict, results: list[dict]) -> dict:
+def review(slate: dict, results: list[dict], archived: dict | None = None,
+           week=None) -> dict:
+    """
+    Score against everything the model has priced, not only what is still
+    on the board. `slate` is accepted for the shape its games use; the
+    archive is what makes a played game reviewable at all.
+    """
     idx = index_results(results)
+    games = list(slate.get("slate", []))
+    seen = {g.get("event_id") for g in games}
+    for ev, a in ((archived or {}).get("games") or {}).items():
+        if ev in seen:
+            continue
+        if week is not None and a.get("week") != week:
+            continue
+        games.append(a)
+
     rows, unmatched = [], []
-    for g in slate.get("slate", []):
+    for g in games:
         home, away = g.get("home_team"), g.get("away_team")
         final = idx.get((key_for(home or ""), key_for(away or "")))
         if not final:
@@ -190,7 +241,12 @@ def main() -> int:
     results = store._load(store.DATA / "results.json", {})
     games = results.get("games", []) if isinstance(results, dict) else results
 
-    out = review(slate, games or [])
+    prior = store._load(ARCHIVE_FILE, {})
+    arch = archive(slate, prior)
+    if not args.dry_run:
+        store._save(ARCHIVE_FILE, arch)
+
+    out = review(slate, games or [], arch, week=slate.get("week"))
     log.event("week_reviewed", season=out["season"], week=out["week"],
               scored=out["games_scored"], unmatched=len(out["games_unmatched"]))
     if args.dry_run:
