@@ -11,6 +11,7 @@ that the handicapper reads before the next slate.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 import json
 import sys
@@ -222,9 +223,12 @@ def main() -> int:
     cfbd = CFBDClient(log=log)
     idx: dict = {}
     known: set[str] = set()
+    fetched: list[dict] = []
     for wk in weeks:
         try:
-            i, k = build_result_index(cfbd.games(args.season, week=wk))
+            games = cfbd.games(args.season, week=wk)
+            fetched.extend(games)
+            i, k = build_result_index(games)
             idx.update(i)
             known.update(k)
         except ShapeError as e:
@@ -237,6 +241,15 @@ def main() -> int:
         except CFBDError as e:
             log.error(str(e), week=wk)
             print(f"WARNING: could not load week {wk}: {e}", file=sys.stderr)
+
+    # Keep what was fetched. The finals were being pulled, used in memory
+    # and dropped, so data/results.json sat at {} while every consumer of
+    # it read an empty file and reported nothing wrong. review_week.py
+    # scored 0 of 39 games for exactly this reason.
+    if fetched:
+        store._save(store.DATA / "results.json",
+                    {"season": args.season, "weeks": weeks,
+                     "fetched_at": store.now_iso(), "games": fetched})
 
     graded_now, unmatched = 0, []
     for p in pending:
@@ -278,6 +291,33 @@ def main() -> int:
     }
     if not args.quiet:
         print(json.dumps(out, indent=2))
+
+    # A pick whose game has finished and is still pending is the same
+    # failure as an unmatched one: it quietly leaves the record instead of
+    # scoring against it. On 30 August both card picks sat pending after
+    # their games were over, the step reported success, and nothing said a
+    # word. Annotate it so the run list carries the reason.
+    stale = []
+    for pk in picks:
+        if pk.get("result") != "pending" or not pk.get("live"):
+            continue
+        ko = pk.get("kickoff")
+        if not ko:
+            continue
+        try:
+            when = datetime.fromisoformat(str(ko).replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone.utc)
+        hours = (datetime.now(timezone.utc) - when).total_seconds() / 3600
+        if hours > 6:
+            stale.append(f"{pk['matchup']} ({hours:.0f}h past kickoff)")
+    if stale:
+        print(f"::warning::{len(stale)} published pick(s) still pending well "
+              f"after kickoff: " + "; ".join(stale), file=sys.stderr)
+        for line in stale:
+            print(f"STILL PENDING: {line}", file=sys.stderr)
 
     if unmatched:
         # An unmatched pick never settles. It sits pending forever, quietly

@@ -167,3 +167,41 @@ def test_mean_error_keeps_its_sign_but_absolute_error_does_not():
     s = R.review(slate, results)["summary"]["spread"]
     assert s["mean_error"] == 0.0
     assert s["mean_absolute_error"] == 4.0
+
+
+# ---------------------------------------------------------------------
+# The file has to actually be written
+#
+# grade_results fetched the finals, used them in memory and dropped them,
+# so data/results.json sat at {} from the first day. Every consumer read
+# an empty file and reported nothing wrong. This scored 0 of 39 games on
+# 30 August for exactly that reason and looked like it had run fine.
+# ---------------------------------------------------------------------
+
+def test_grading_persists_what_it_fetched():
+    src = (ROOT / "scripts" / "grade_results.py").read_text()
+    assert 'results.json' in src, "the finals must be written down"
+    assert "fetched.extend(games)" in src
+
+
+def test_the_review_reads_what_grading_writes():
+    grading = (ROOT / "scripts" / "grade_results.py").read_text()
+    review = (ROOT / "scripts" / "review_week.py").read_text()
+    assert 'results.json' in grading and 'results.json' in review
+    # And on the same shape, or the reader silently sees nothing.
+    assert '"games": fetched' in grading
+    assert '.get("games", [])' in review
+
+
+def test_a_finished_game_still_pending_is_annotated():
+    src = (ROOT / "scripts" / "grade_results.py").read_text()
+    assert "::warning::" in src
+    assert "still pending well" in src
+    # 6 hours, so a long game or a slow feed does not cry wolf.
+    assert "hours > 6" in src
+
+
+def test_an_empty_results_file_is_not_reported_as_a_clean_review():
+    out = R.review({"slate": [game()]}, [])
+    assert out["games_scored"] == 0
+    assert out["games_unmatched"], "an unscored game must be named"
