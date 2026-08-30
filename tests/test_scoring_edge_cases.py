@@ -11,7 +11,9 @@ from __future__ import annotations
 
 import json
 
-from conftest import FIXTURES
+import pytest
+
+from conftest import FIXTURES, ROOT
 from lib.scoring import grade_pick, half_points
 
 
@@ -90,3 +92,65 @@ def test_a_full_game_pick_settles_on_a_shortened_game():
     pick = {"market": "spread", "period": "full",
             "side": g["homeTeam"], "line": -24.5}
     assert grade_pick(pick, game) == "win"
+
+
+# ---------------------------------------------------------------------
+# Names across sources
+#
+# 30 August: the ledger stored the odds board's "Hawaii Rainbow Warriors"
+# and "NC State Wolfpack", CFBD stored "Hawai'i" and "NC State", and
+# grade_pick compared them as strings. Both picks lost, both were voided,
+# and a 0 and 2 week was recorded as no result at all.
+#
+# An error that flatters the record is the worst kind available here.
+# ---------------------------------------------------------------------
+
+def _game(home, away, hs, as_):
+    return {"home_team": home, "away_team": away,
+            "home_score": hs, "away_score": as_, "completed": True}
+
+
+def _spread(side, line=4.5):
+    return {"market": "spread", "period": "full", "side": side, "line": line}
+
+
+@pytest.mark.parametrize("side", [
+    "Hawaii Rainbow Warriors", "Hawai'i", "Hawaii"])
+def test_a_dog_that_lost_outright_is_a_loss_however_it_is_spelled(side):
+    g = _game("Stanford", "Hawai'i", 37, 27)
+    assert grade_pick(_spread(side), g) == "loss"
+
+
+def test_the_mascot_name_from_the_odds_board_still_grades():
+    g = _game("Virginia", "NC State", 34, 8)
+    assert grade_pick(_spread("NC State Wolfpack"), g) == "loss"
+
+
+def test_a_cover_is_still_a_win_across_spellings():
+    # Lost by 3 while getting 4.5.
+    g = _game("Stanford", "Hawai'i", 24, 21)
+    assert grade_pick(_spread("Hawaii Rainbow Warriors"), g) == "win"
+
+
+def test_a_name_that_cannot_be_placed_still_voids():
+    # Voiding beats guessing which team was bet. Ohio and Ohio State are
+    # different schools and a prefix rule would have called them one.
+    g = _game("Ohio State", "Michigan", 30, 10)
+    assert grade_pick(_spread("Ohio"), g) == "void"
+
+
+def test_a_team_not_in_the_game_at_all_voids():
+    g = _game("Virginia", "NC State", 34, 8)
+    assert grade_pick(_spread("Alabama Crimson Tide"), g) == "void"
+
+
+def test_a_void_is_not_a_settled_result_and_stays_gradeable():
+    """
+    The ledger freezes what a pick was and what it settled as. A void is
+    not a settlement, it is a failure to reach one, so it has to stay
+    eligible once the reason it failed is fixed. Otherwise 2 losses sit
+    permanently outside the record because of a name spelling.
+    """
+    src = (ROOT / "scripts" / "grade_results.py").read_text()
+    assert 'UNRESOLVED = ("pending", "void")' in src
+    assert 'p.get("result") in UNRESOLVED' in src

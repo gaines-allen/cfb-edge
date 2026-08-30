@@ -207,7 +207,8 @@ def main() -> int:
     store.set_dry_run(args.dry_run, log)
 
     picks = store.load_picks()
-    pending = [p for p in picks if p.get("result") == "pending"]
+    UNRESOLVED = ("pending", "void")
+    pending = [p for p in picks if p.get("result") in UNRESOLVED]
 
     if not pending:
         mem = rebuild_memory(picks, args.season)
@@ -284,7 +285,8 @@ def main() -> int:
 
     out = {
         "graded": graded_now,
-        "still_pending": sum(1 for p in picks if p.get("result") == "pending"),
+        "still_pending": sum(1 for p in picks
+                             if p.get("result") in UNRESOLVED),
         "unmatched": sorted(set(unmatched)),
         "record_live": mem.get("overall", {}),
         "calibration": mem.get("calibration", []),

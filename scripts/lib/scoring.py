@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 from .store import LIVE_THRESHOLD
+from .teams import canonical
 
 Outcome = Literal["win", "loss", "push", "pending", "void"]
 
@@ -97,6 +98,20 @@ def grade_moneyline(team_score: int, opp_score: int) -> Outcome:
     return "push"
 
 
+def _same_team(a, b) -> bool:
+    """
+    Whether 2 names refer to one school, across sources that spell it
+    differently. Exact first, then the mascot map. Never a prefix: that
+    accepts "Ohio" for "Ohio State", which are different schools.
+    """
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    ca, cb = canonical(str(a)), canonical(str(b))
+    return bool(ca) and ca == cb
+
+
 def grade_pick(pick: dict, game: dict) -> Outcome:
     """
     pick:  {"market": "spread"|"total"|"moneyline",
@@ -122,10 +137,22 @@ def grade_pick(pick: dict, game: dict) -> Outcome:
     if market == "total":
         return grade_total(hs, as_, float(pick["line"]), pick["side"])
 
+    # Which side of this game the pick is on.
+    #
+    # The ledger stores the odds board's name and CFBD stores its own:
+    # "Hawaii Rainbow Warriors" against "Hawai'i", "NC State Wolfpack"
+    # against "NC State". Compared as strings these match nothing, and on
+    # 30 August that voided 2 picks that had both plainly lost, so a 0 and
+    # 2 week was recorded as no result at all. An error that flatters the
+    # record is the worst kind this system can make.
+    #
+    # Resolved through canonical(), which is the mascot map, not a guess.
+    # A name it cannot place still voids, because voiding beats guessing
+    # which team was bet.
     side = pick["side"]
-    is_home = side == game["home_team"]
-    if not is_home and side != game["away_team"]:
-        return "void"  # team name did not match the game, do not guess
+    is_home = _same_team(side, game["home_team"])
+    if not is_home and not _same_team(side, game["away_team"]):
+        return "void"
 
     team, opp = (hs, as_) if is_home else (as_, hs)
 
