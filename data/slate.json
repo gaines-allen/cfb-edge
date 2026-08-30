@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-08-30T17:11:43+00:00",
+  "built_at": "2026-08-30T20:16:16+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-30T17:11:36+00:00",
+  "board_fetched_at": "2026-08-30T20:16:12+00:00",
   "warning": null,
   "games_on_board": 102,
   "games_with_candidates": 39,
@@ -109,7 +109,7 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-30T17:11:41+00:00",
+    "measured_at": "2026-08-30T20:16:14+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
@@ -120,9 +120,9 @@
     },
     "spreads": {
       "n": 55,
-      "bias": 0.447,
+      "bias": 0.465,
       "median": 0.7,
-      "sigma": 2.845
+      "sigma": 2.82
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -137,12 +137,12 @@
       "model": {
         "home_team": "Colorado State",
         "away_team": "Wyoming",
-        "projected_spread": -2.3,
+        "projected_spread": -2.4,
         "projected_total": 35.7,
         "projected_h1_spread": -1.3,
         "projected_h1_total": 16.8,
         "hfa_applied": 2.2,
-        "coherence_gap": 3.7,
+        "coherence_gap": 3.8,
         "inputs": {
           "home_rating": -11.87,
           "away_rating": -11.61,
@@ -193,12 +193,12 @@
       "model": {
         "home_team": "Penn State",
         "away_team": "Marshall",
-        "projected_spread": -26.3,
+        "projected_spread": -26.4,
         "projected_total": 65.3,
         "projected_h1_spread": -14.5,
         "projected_h1_total": 30.7,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.3,
+        "coherence_gap": 2.4,
         "inputs": {
           "home_rating": 15.31,
           "away_rating": -8.41,
@@ -244,10 +244,10 @@
           "market_line": -24.5,
           "bet_line": -24.5,
           "price": -110,
-          "model_number": -26.3,
-          "edge_points": -1.8,
-          "edge_sigma": -0.63,
-          "floor_confidence": 4.4
+          "model_number": -26.4,
+          "edge_points": -1.9,
+          "edge_sigma": -0.67,
+          "floor_confidence": 4.5
         }
       ]
     },
@@ -261,12 +261,12 @@
       "model": {
         "home_team": "Alabama",
         "away_team": "East Carolina",
-        "projected_spread": -22.8,
+        "projected_spread": -22.9,
         "projected_total": 43.9,
-        "projected_h1_spread": -12.5,
+        "projected_h1_spread": -12.6,
         "projected_h1_total": 20.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.6,
+        "coherence_gap": 2.7,
         "inputs": {
           "home_rating": 18.5,
           "away_rating": -1.68,
@@ -312,9 +312,9 @@
           "market_line": -28.5,
           "bet_line": 28.5,
           "price": -110,
-          "model_number": -22.8,
-          "edge_points": 5.7,
-          "edge_sigma": 2.0,
+          "model_number": -22.9,
+          "edge_points": 5.6,
+          "edge_sigma": 1.99,
           "floor_confidence": 6.5
         }
       ]
@@ -329,12 +329,12 @@
       "model": {
         "home_team": "Memphis",
         "away_team": "Arkansas State",
-        "projected_spread": -13.7,
+        "projected_spread": -13.8,
         "projected_total": 63.6,
-        "projected_h1_spread": -7.5,
+        "projected_h1_spread": -7.6,
         "projected_h1_total": 29.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.2,
+        "coherence_gap": 2.3,
         "inputs": {
           "home_rating": 0.38,
           "away_rating": -10.73,
@@ -380,11 +380,11 @@
           "side": "Memphis",
           "market_line": -9.5,
           "bet_line": -9.5,
-          "price": -110,
-          "model_number": -13.7,
-          "edge_points": -4.2,
-          "edge_sigma": -1.48,
-          "floor_confidence": 5.7
+          "price": -115,
+          "model_number": -13.8,
+          "edge_points": -4.3,
+          "edge_sigma": -1.52,
+          "floor_confidence": 5.8
         }
       ]
     },
@@ -398,12 +398,12 @@
       "model": {
         "home_team": "LSU",
         "away_team": "Clemson",
-        "projected_spread": -9.7,
+        "projected_spread": -9.8,
         "projected_total": 41.4,
-        "projected_h1_spread": -5.3,
+        "projected_h1_spread": -5.4,
         "projected_h1_total": 19.5,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.2,
+        "coherence_gap": 2.3,
         "inputs": {
           "home_rating": 20.27,
           "away_rating": 13.21,
@@ -454,12 +454,12 @@
       "model": {
         "home_team": "Wake Forest",
         "away_team": "Akron",
-        "projected_spread": -26.7,
+        "projected_spread": -26.8,
         "projected_total": 39.3,
         "projected_h1_spread": -14.7,
         "projected_h1_total": 18.5,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.9,
+        "coherence_gap": 1.0,
         "inputs": {
           "home_rating": 3.39,
           "away_rating": -20.74,
@@ -505,9 +505,9 @@
           "market_line": -24.5,
           "bet_line": -24.5,
           "price": -105,
-          "model_number": -26.7,
-          "edge_points": -2.2,
-          "edge_sigma": -0.77,
+          "model_number": -26.8,
+          "edge_points": -2.3,
+          "edge_sigma": -0.82,
           "floor_confidence": 4.7
         }
       ]
@@ -522,12 +522,12 @@
       "model": {
         "home_team": "South Florida",
         "away_team": "Florida International",
-        "projected_spread": -15.0,
+        "projected_spread": -15.1,
         "projected_total": 63.6,
-        "projected_h1_spread": -8.2,
+        "projected_h1_spread": -8.3,
         "projected_h1_total": 29.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.3,
+        "coherence_gap": 2.4,
         "inputs": {
           "home_rating": -1.43,
           "away_rating": -13.81,
@@ -573,10 +573,10 @@
           "market_line": -13.5,
           "bet_line": -13.5,
           "price": -110,
-          "model_number": -15.0,
-          "edge_points": -1.5,
-          "edge_sigma": -0.53,
-          "floor_confidence": 4.3
+          "model_number": -15.1,
+          "edge_points": -1.6,
+          "edge_sigma": -0.57,
+          "floor_confidence": 4.4
         }
       ]
     },
@@ -590,12 +590,12 @@
       "model": {
         "home_team": "Duke",
         "away_team": "Tulane",
-        "projected_spread": -9.4,
+        "projected_spread": -9.5,
         "projected_total": 60.4,
         "projected_h1_spread": -5.2,
         "projected_h1_total": 28.4,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.7,
+        "coherence_gap": 0.6,
         "inputs": {
           "home_rating": 4.87,
           "away_rating": -1.96,
@@ -646,12 +646,12 @@
       "model": {
         "home_team": "James Madison",
         "away_team": "Liberty",
-        "projected_spread": -7.5,
+        "projected_spread": -7.6,
         "projected_total": 60.5,
-        "projected_h1_spread": -4.1,
+        "projected_h1_spread": -4.2,
         "projected_h1_total": 28.4,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.9,
+        "coherence_gap": 3.0,
         "inputs": {
           "home_rating": -1.3,
           "away_rating": -6.17,
@@ -702,12 +702,12 @@
       "model": {
         "home_team": "Nebraska",
         "away_team": "Ohio",
-        "projected_spread": -22.2,
+        "projected_spread": -22.3,
         "projected_total": 39.6,
-        "projected_h1_spread": -12.2,
+        "projected_h1_spread": -12.3,
         "projected_h1_total": 18.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.7,
+        "coherence_gap": 1.8,
         "inputs": {
           "home_rating": 9.14,
           "away_rating": -10.43,
@@ -758,12 +758,12 @@
       "model": {
         "home_team": "Illinois",
         "away_team": "UAB",
-        "projected_spread": -28.3,
+        "projected_spread": -28.4,
         "projected_total": 61.8,
         "projected_h1_spread": -15.6,
         "projected_h1_total": 29.0,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.4,
+        "coherence_gap": 1.5,
         "inputs": {
           "home_rating": 8.94,
           "away_rating": -16.77,
@@ -814,12 +814,12 @@
       "model": {
         "home_team": "Washington",
         "away_team": "Washington State",
-        "projected_spread": -20.5,
+        "projected_spread": -20.6,
         "projected_total": 44.5,
         "projected_h1_spread": -11.3,
         "projected_h1_total": 20.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.3,
+        "coherence_gap": 0.4,
         "inputs": {
           "home_rating": 13.69,
           "away_rating": -4.21,
@@ -865,10 +865,10 @@
           "market_line": -23.5,
           "bet_line": 23.5,
           "price": -106,
-          "model_number": -20.5,
-          "edge_points": 3.0,
-          "edge_sigma": 1.05,
-          "floor_confidence": 5.1
+          "model_number": -20.6,
+          "edge_points": 2.9,
+          "edge_sigma": 1.03,
+          "floor_confidence": 5.0
         }
       ]
     },
@@ -882,12 +882,12 @@
       "model": {
         "home_team": "Oklahoma",
         "away_team": "UTEP",
-        "projected_spread": -39.4,
+        "projected_spread": -39.5,
         "projected_total": 44.6,
         "projected_h1_spread": -21.7,
         "projected_h1_total": 21.0,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.1,
+        "coherence_gap": 2.2,
         "inputs": {
           "home_rating": 18.44,
           "away_rating": -18.34,
@@ -933,9 +933,9 @@
           "market_line": -41.5,
           "bet_line": 41.5,
           "price": -105,
-          "model_number": -39.4,
-          "edge_points": 2.1,
-          "edge_sigma": 0.74,
+          "model_number": -39.5,
+          "edge_points": 2.0,
+          "edge_sigma": 0.71,
           "floor_confidence": 4.6
         }
       ]
@@ -950,12 +950,12 @@
       "model": {
         "home_team": "West Virginia",
         "away_team": "Coastal Carolina",
-        "projected_spread": -15.6,
+        "projected_spread": -15.7,
         "projected_total": 56.8,
         "projected_h1_spread": -8.6,
         "projected_h1_total": 26.7,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.7,
+        "coherence_gap": 2.8,
         "inputs": {
           "home_rating": -0.77,
           "away_rating": -13.77,
@@ -989,9 +989,9 @@
           "market_line": -21.5,
           "bet_line": 21.5,
           "price": -110,
-          "model_number": -15.6,
-          "edge_points": 5.9,
-          "edge_sigma": 2.07,
+          "model_number": -15.7,
+          "edge_points": 5.8,
+          "edge_sigma": 2.06,
           "floor_confidence": 6.6
         }
       ]
@@ -1006,12 +1006,12 @@
       "model": {
         "home_team": "South Carolina",
         "away_team": "Kent State",
-        "projected_spread": -35.7,
+        "projected_spread": -35.8,
         "projected_total": 49.1,
-        "projected_h1_spread": -19.6,
+        "projected_h1_spread": -19.7,
         "projected_h1_total": 23.1,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.7,
+        "coherence_gap": 1.8,
         "inputs": {
           "home_rating": 12.28,
           "away_rating": -20.79,
@@ -1062,12 +1062,12 @@
       "model": {
         "home_team": "Cincinnati",
         "away_team": "Boston College",
-        "projected_spread": -8.7,
+        "projected_spread": -8.8,
         "projected_total": 56.9,
         "projected_h1_spread": -4.8,
         "projected_h1_total": 26.7,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.9,
+        "coherence_gap": 3.0,
         "inputs": {
           "home_rating": 3.5,
           "away_rating": -2.56,
@@ -1109,64 +1109,6 @@
       ]
     },
     {
-      "event_id": "df569f05eeee15a5fdf95bd5ce086d6d",
-      "kickoff": "2026-09-06T02:00:00Z",
-      "matchup": "UNLV Rebels @ Hawaii Rainbow Warriors",
-      "home_team": "Hawaii Rainbow Warriors",
-      "away_team": "UNLV Rebels",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Hawai'i",
-        "away_team": "UNLV",
-        "projected_spread": 2.6,
-        "projected_total": 63.9,
-        "projected_h1_spread": 1.4,
-        "projected_h1_total": 30.0,
-        "hfa_applied": 2.2,
-        "coherence_gap": 4.0,
-        "inputs": {
-          "home_rating": -2.95,
-          "away_rating": 2.24,
-          "home_points": 26.9,
-          "away_points": 33.5,
-          "home_components": {
-            "sp": -2.6,
-            "sp_off": 25.9,
-            "sp_def": 29.1,
-            "fpi": -4.027,
-            "elo": 1454
-          },
-          "away_components": {
-            "sp": 3.6,
-            "sp_off": 31.4,
-            "sp_def": 28,
-            "fpi": -0.382,
-            "elo": 1566
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 3,
-          "ratings_present_away": 3,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 58.5,
-          "bet_line": 58.5,
-          "price": -110,
-          "model_number": 63.9,
-          "edge_points": 5.4,
-          "edge_sigma": 0.95,
-          "floor_confidence": 4.9
-        }
-      ]
-    },
-    {
       "event_id": "0434161af1b45c8a61dac5ba00210af1",
       "kickoff": "2026-09-06T02:00:00Z",
       "matchup": "Central Michigan Chippewas @ New Mexico Lobos",
@@ -1176,12 +1118,12 @@
       "model": {
         "home_team": "New Mexico",
         "away_team": "Central Michigan",
-        "projected_spread": -15.6,
+        "projected_spread": -15.7,
         "projected_total": 47.1,
         "projected_h1_spread": -8.6,
         "projected_h1_total": 22.1,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.2,
+        "coherence_gap": 1.3,
         "inputs": {
           "home_rating": -1.26,
           "away_rating": -14.28,
@@ -1215,78 +1157,10 @@
           "market_line": -10.5,
           "bet_line": -10.5,
           "price": -104,
-          "model_number": -15.6,
-          "edge_points": -5.1,
-          "edge_sigma": -1.79,
-          "floor_confidence": 6.2
-        }
-      ]
-    },
-    {
-      "event_id": "2da3627714934ad966d548980bb69658",
-      "kickoff": "2026-09-05T19:45:00Z",
-      "matchup": "Oklahoma State Cowboys @ Tulsa Golden Hurricane",
-      "home_team": "Tulsa Golden Hurricane",
-      "away_team": "Oklahoma State Cowboys",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Tulsa",
-        "away_team": "Oklahoma State",
-        "projected_spread": 10.2,
-        "projected_total": 57.9,
-        "projected_h1_spread": 5.6,
-        "projected_h1_total": 27.2,
-        "hfa_applied": 2.2,
-        "coherence_gap": 3.0,
-        "inputs": {
-          "home_rating": -7.12,
-          "away_rating": 5.63,
-          "home_points": 20.6,
-          "away_points": 33.8,
-          "home_components": {
-            "sp": -6.1,
-            "sp_off": 24.2,
-            "sp_def": 30.9,
-            "fpi": -8.963
-          },
-          "away_components": {
-            "sp": 6.9,
-            "sp_off": 29.9,
-            "sp_def": 23.4,
-            "fpi": 3.345
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Tulsa",
-          "market_line": 14.5,
-          "bet_line": 14.5,
-          "price": -122,
-          "model_number": 10.2,
-          "edge_points": -4.3,
-          "edge_sigma": -1.51,
-          "floor_confidence": 5.8
-        },
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 60.5,
-          "bet_line": 60.5,
-          "price": -110,
-          "model_number": 57.9,
-          "edge_points": -2.6,
-          "edge_sigma": -0.46,
-          "floor_confidence": 4.2
+          "model_number": -15.7,
+          "edge_points": -5.2,
+          "edge_sigma": -1.84,
+          "floor_confidence": 6.3
         }
       ]
     },
@@ -1300,12 +1174,12 @@
       "model": {
         "home_team": "Michigan",
         "away_team": "Western Michigan",
-        "projected_spread": -24.5,
+        "projected_spread": -24.6,
         "projected_total": 43.3,
         "projected_h1_spread": -13.5,
         "projected_h1_total": 20.4,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.5,
+        "coherence_gap": 1.6,
         "inputs": {
           "home_rating": 16.6,
           "away_rating": -5.3,
@@ -1351,45 +1225,45 @@
           "market_line": -27.5,
           "bet_line": 27.5,
           "price": -105,
-          "model_number": -24.5,
-          "edge_points": 3.0,
-          "edge_sigma": 1.05,
-          "floor_confidence": 5.1
+          "model_number": -24.6,
+          "edge_points": 2.9,
+          "edge_sigma": 1.03,
+          "floor_confidence": 5.0
         }
       ]
     },
     {
-      "event_id": "4289d82f1cd4747962ff68c9098c6dcc",
-      "kickoff": "2026-09-05T16:00:00Z",
-      "matchup": "Oregon State Beavers @ Houston Cougars",
-      "home_team": "Houston Cougars",
-      "away_team": "Oregon State Beavers",
+      "event_id": "61a35dab6017f6f7de74fab10707197c",
+      "kickoff": "2026-09-05T23:30:00Z",
+      "matchup": "UL Monroe Warhawks @ Mississippi State Bulldogs",
+      "home_team": "Mississippi State Bulldogs",
+      "away_team": "UL Monroe Warhawks",
       "neutral_site": false,
       "model": {
-        "home_team": "Houston",
-        "away_team": "Oregon State",
-        "projected_spread": -16.4,
-        "projected_total": 50.8,
-        "projected_h1_spread": -9.0,
-        "projected_h1_total": 23.9,
+        "home_team": "Mississippi State",
+        "away_team": "UL Monroe",
+        "projected_spread": -32.7,
+        "projected_total": 58.8,
+        "projected_h1_spread": -18.0,
+        "projected_h1_total": 27.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 3.7,
+        "coherence_gap": 0.2,
         "inputs": {
-          "home_rating": 7.3,
-          "away_rating": -6.49,
-          "home_points": 30.0,
-          "away_points": 17.3,
+          "home_rating": 4.54,
+          "away_rating": -25.46,
+          "home_points": 43.9,
+          "away_points": 11.4,
           "home_components": {
-            "sp": 7.4,
-            "sp_off": 30.9,
-            "sp_def": 23.1,
-            "fpi": 7.12
+            "sp": 4.8,
+            "sp_off": 30.8,
+            "sp_def": 26.5,
+            "fpi": 4.082
           },
           "away_components": {
-            "sp": -5.6,
-            "sp_off": 21.2,
-            "sp_def": 26.1,
-            "fpi": -8.101
+            "sp": -28.9,
+            "sp_off": 11.9,
+            "sp_def": 40.1,
+            "fpi": -19.255
           }
         },
         "confidence_inputs": {
@@ -1403,14 +1277,26 @@
         {
           "market": "spread",
           "period": "full",
-          "side": "Oregon State",
-          "market_line": -20.5,
-          "bet_line": 20.5,
-          "price": -104,
-          "model_number": -16.4,
-          "edge_points": 4.1,
-          "edge_sigma": 1.44,
+          "side": "Mississippi State",
+          "market_line": -28.5,
+          "bet_line": -28.5,
+          "price": -112,
+          "model_number": -32.7,
+          "edge_points": -4.2,
+          "edge_sigma": -1.49,
           "floor_confidence": 5.7
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 55.5,
+          "bet_line": 55.5,
+          "price": -110,
+          "model_number": 58.8,
+          "edge_points": 3.3,
+          "edge_sigma": 0.58,
+          "floor_confidence": 4.4
         }
       ]
     },
@@ -1424,12 +1310,12 @@
       "model": {
         "home_team": "Pittsburgh",
         "away_team": "Miami (OH)",
-        "projected_spread": -14.0,
+        "projected_spread": -14.1,
         "projected_total": 46.4,
-        "projected_h1_spread": -7.7,
+        "projected_h1_spread": -7.8,
         "projected_h1_total": 21.8,
         "hfa_applied": 2.2,
-        "coherence_gap": 3.3,
+        "coherence_gap": 3.4,
         "inputs": {
           "home_rating": 6.35,
           "away_rating": -5.07,
@@ -1475,78 +1361,10 @@
           "market_line": -16.5,
           "bet_line": 16.5,
           "price": -110,
-          "model_number": -14.0,
-          "edge_points": 2.5,
-          "edge_sigma": 0.88,
+          "model_number": -14.1,
+          "edge_points": 2.4,
+          "edge_sigma": 0.85,
           "floor_confidence": 4.8
-        }
-      ]
-    },
-    {
-      "event_id": "61a35dab6017f6f7de74fab10707197c",
-      "kickoff": "2026-09-05T23:30:00Z",
-      "matchup": "UL Monroe Warhawks @ Mississippi State Bulldogs",
-      "home_team": "Mississippi State Bulldogs",
-      "away_team": "UL Monroe Warhawks",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Mississippi State",
-        "away_team": "UL Monroe",
-        "projected_spread": -32.6,
-        "projected_total": 58.8,
-        "projected_h1_spread": -17.9,
-        "projected_h1_total": 27.6,
-        "hfa_applied": 2.2,
-        "coherence_gap": 0.1,
-        "inputs": {
-          "home_rating": 4.54,
-          "away_rating": -25.46,
-          "home_points": 43.9,
-          "away_points": 11.4,
-          "home_components": {
-            "sp": 4.8,
-            "sp_off": 30.8,
-            "sp_def": 26.5,
-            "fpi": 4.082
-          },
-          "away_components": {
-            "sp": -28.9,
-            "sp_off": 11.9,
-            "sp_def": 40.1,
-            "fpi": -19.255
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Mississippi State",
-          "market_line": -28.5,
-          "bet_line": -28.5,
-          "price": -112,
-          "model_number": -32.6,
-          "edge_points": -4.1,
-          "edge_sigma": -1.44,
-          "floor_confidence": 5.7
-        },
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 55.5,
-          "bet_line": 55.5,
-          "price": -110,
-          "model_number": 58.8,
-          "edge_points": 3.3,
-          "edge_sigma": 0.58,
-          "floor_confidence": 4.4
         }
       ]
     },
@@ -1560,12 +1378,12 @@
       "model": {
         "home_team": "Stanford",
         "away_team": "Miami",
-        "projected_spread": 21.5,
+        "projected_spread": 21.4,
         "projected_total": 44.5,
         "projected_h1_spread": 11.8,
         "projected_h1_total": 20.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.9,
+        "coherence_gap": 2.0,
         "inputs": {
           "home_rating": -2.13,
           "away_rating": 21.94,
@@ -1611,11 +1429,67 @@
           "side": "Stanford",
           "market_line": 23.5,
           "bet_line": 23.5,
-          "price": -106,
-          "model_number": 21.5,
-          "edge_points": -2.0,
-          "edge_sigma": -0.7,
-          "floor_confidence": 4.5
+          "price": -110,
+          "model_number": 21.4,
+          "edge_points": -2.1,
+          "edge_sigma": -0.74,
+          "floor_confidence": 4.6
+        }
+      ]
+    },
+    {
+      "event_id": "4289d82f1cd4747962ff68c9098c6dcc",
+      "kickoff": "2026-09-05T16:00:00Z",
+      "matchup": "Oregon State Beavers @ Houston Cougars",
+      "home_team": "Houston Cougars",
+      "away_team": "Oregon State Beavers",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Houston",
+        "away_team": "Oregon State",
+        "projected_spread": -16.5,
+        "projected_total": 50.8,
+        "projected_h1_spread": -9.1,
+        "projected_h1_total": 23.9,
+        "hfa_applied": 2.2,
+        "coherence_gap": 3.8,
+        "inputs": {
+          "home_rating": 7.3,
+          "away_rating": -6.49,
+          "home_points": 30.0,
+          "away_points": 17.3,
+          "home_components": {
+            "sp": 7.4,
+            "sp_off": 30.9,
+            "sp_def": 23.1,
+            "fpi": 7.12
+          },
+          "away_components": {
+            "sp": -5.6,
+            "sp_off": 21.2,
+            "sp_def": 26.1,
+            "fpi": -8.101
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Oregon State",
+          "market_line": -20.5,
+          "bet_line": 20.5,
+          "price": -104,
+          "model_number": -16.5,
+          "edge_points": 4.0,
+          "edge_sigma": 1.42,
+          "floor_confidence": 5.6
         }
       ]
     },
@@ -1629,12 +1503,12 @@
       "model": {
         "home_team": "Notre Dame",
         "away_team": "Wisconsin",
-        "projected_spread": -22.5,
+        "projected_spread": -22.6,
         "projected_total": 43.5,
         "projected_h1_spread": -12.4,
         "projected_h1_total": 20.4,
         "hfa_applied": 0.0,
-        "coherence_gap": 0.3,
+        "coherence_gap": 0.4,
         "inputs": {
           "home_rating": 26.27,
           "away_rating": 4.16,
@@ -1680,10 +1554,10 @@
           "market_line": -20.5,
           "bet_line": -20.5,
           "price": -115,
-          "model_number": -22.5,
-          "edge_points": -2.0,
-          "edge_sigma": -0.7,
-          "floor_confidence": 4.5
+          "model_number": -22.6,
+          "edge_points": -2.1,
+          "edge_sigma": -0.74,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -1697,12 +1571,12 @@
       "model": {
         "home_team": "Auburn",
         "away_team": "Baylor",
-        "projected_spread": -7.3,
+        "projected_spread": -7.4,
         "projected_total": 56.0,
-        "projected_h1_spread": -4.0,
+        "projected_h1_spread": -4.1,
         "projected_h1_total": 26.3,
         "hfa_applied": 0.0,
-        "coherence_gap": 0.8,
+        "coherence_gap": 0.7,
         "inputs": {
           "home_rating": 11.68,
           "away_rating": 4.77,
@@ -1735,11 +1609,79 @@
           "side": "Under",
           "market_line": 59.5,
           "bet_line": 59.5,
-          "price": -110,
+          "price": -115,
           "model_number": 56.0,
           "edge_points": -3.5,
           "edge_sigma": -0.62,
           "floor_confidence": 4.4
+        }
+      ]
+    },
+    {
+      "event_id": "2da3627714934ad966d548980bb69658",
+      "kickoff": "2026-09-05T19:45:00Z",
+      "matchup": "Oklahoma State Cowboys @ Tulsa Golden Hurricane",
+      "home_team": "Tulsa Golden Hurricane",
+      "away_team": "Oklahoma State Cowboys",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Tulsa",
+        "away_team": "Oklahoma State",
+        "projected_spread": 10.1,
+        "projected_total": 57.9,
+        "projected_h1_spread": 5.6,
+        "projected_h1_total": 27.2,
+        "hfa_applied": 2.2,
+        "coherence_gap": 3.1,
+        "inputs": {
+          "home_rating": -7.12,
+          "away_rating": 5.63,
+          "home_points": 20.6,
+          "away_points": 33.8,
+          "home_components": {
+            "sp": -6.1,
+            "sp_off": 24.2,
+            "sp_def": 30.9,
+            "fpi": -8.963
+          },
+          "away_components": {
+            "sp": 6.9,
+            "sp_off": 29.9,
+            "sp_def": 23.4,
+            "fpi": 3.345
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Tulsa",
+          "market_line": 13.5,
+          "bet_line": 13.5,
+          "price": -102,
+          "model_number": 10.1,
+          "edge_points": -3.4,
+          "edge_sigma": -1.21,
+          "floor_confidence": 5.3
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 60.5,
+          "bet_line": 60.5,
+          "price": -110,
+          "model_number": 57.9,
+          "edge_points": -2.6,
+          "edge_sigma": -0.46,
+          "floor_confidence": 4.2
         }
       ]
     },
@@ -1753,12 +1695,12 @@
       "model": {
         "home_team": "Indiana",
         "away_team": "North Texas",
-        "projected_spread": -37.2,
+        "projected_spread": -37.3,
         "projected_total": 58.5,
         "projected_h1_spread": -20.5,
         "projected_h1_total": 27.5,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.6,
+        "coherence_gap": 0.7,
         "inputs": {
           "home_rating": 24.85,
           "away_rating": -9.74,
@@ -1792,9 +1734,9 @@
           "market_line": -40.5,
           "bet_line": 40.5,
           "price": -110,
-          "model_number": -37.2,
-          "edge_points": 3.3,
-          "edge_sigma": 1.16,
+          "model_number": -37.3,
+          "edge_points": 3.2,
+          "edge_sigma": 1.13,
           "floor_confidence": 5.2
         },
         {
@@ -1821,12 +1763,12 @@
       "model": {
         "home_team": "Troy",
         "away_team": "Sam Houston",
-        "projected_spread": -18.1,
+        "projected_spread": -18.2,
         "projected_total": 56.7,
         "projected_h1_spread": -10.0,
         "projected_h1_total": 26.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.7,
+        "coherence_gap": 0.8,
         "inputs": {
           "home_rating": -7.77,
           "away_rating": -23.29,
@@ -1872,10 +1814,10 @@
           "market_line": -16.5,
           "bet_line": -16.5,
           "price": -115,
-          "model_number": -18.1,
-          "edge_points": -1.6,
-          "edge_sigma": -0.56,
-          "floor_confidence": 4.3
+          "model_number": -18.2,
+          "edge_points": -1.7,
+          "edge_sigma": -0.6,
+          "floor_confidence": 4.4
         }
       ]
     },
@@ -1889,12 +1831,12 @@
       "model": {
         "home_team": "California",
         "away_team": "UCLA",
-        "projected_spread": -1.2,
+        "projected_spread": -1.3,
         "projected_total": 56.6,
         "projected_h1_spread": -0.7,
         "projected_h1_total": 26.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 3.3,
+        "coherence_gap": 3.4,
         "inputs": {
           "home_rating": 2.24,
           "away_rating": 3.64,
@@ -1940,10 +1882,10 @@
           "market_line": 1.5,
           "bet_line": 1.5,
           "price": -106,
-          "model_number": -1.2,
-          "edge_points": -2.7,
-          "edge_sigma": -0.95,
-          "floor_confidence": 4.9
+          "model_number": -1.3,
+          "edge_points": -2.8,
+          "edge_sigma": -0.99,
+          "floor_confidence": 5.0
         }
       ]
     },
@@ -1957,12 +1899,12 @@
       "model": {
         "home_team": "Oregon",
         "away_team": "Boise State",
-        "projected_spread": -25.7,
+        "projected_spread": -25.8,
         "projected_total": 55.5,
-        "projected_h1_spread": -14.1,
+        "projected_h1_spread": -14.2,
         "projected_h1_total": 26.1,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.1,
+        "coherence_gap": 2.2,
         "inputs": {
           "home_rating": 27.8,
           "away_rating": 4.72,
@@ -2013,12 +1955,12 @@
       "model": {
         "home_team": "Michigan State",
         "away_team": "Toledo",
-        "projected_spread": -11.0,
+        "projected_spread": -11.1,
         "projected_total": 46.8,
         "projected_h1_spread": -6.1,
         "projected_h1_total": 22.0,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.3,
+        "coherence_gap": 0.2,
         "inputs": {
           "home_rating": 1.51,
           "away_rating": -6.91,
@@ -2069,12 +2011,12 @@
       "model": {
         "home_team": "Eastern Michigan",
         "away_team": "San Jos\u00e9 State",
-        "projected_spread": -1.1,
+        "projected_spread": -1.2,
         "projected_total": 51.9,
-        "projected_h1_spread": -0.6,
+        "projected_h1_spread": -0.7,
         "projected_h1_total": 24.4,
         "hfa_applied": 2.2,
-        "coherence_gap": 2.1,
+        "coherence_gap": 2.2,
         "inputs": {
           "home_rating": -14.51,
           "away_rating": -13.06,
@@ -2122,10 +2064,10 @@
           "market_line": -3.5,
           "bet_line": 3.5,
           "price": -110,
-          "model_number": -1.1,
-          "edge_points": 2.4,
-          "edge_sigma": 0.84,
-          "floor_confidence": 4.8
+          "model_number": -1.2,
+          "edge_points": 2.3,
+          "edge_sigma": 0.82,
+          "floor_confidence": 4.7
         }
       ]
     },
@@ -2139,12 +2081,12 @@
       "model": {
         "home_team": "USC",
         "away_team": "Fresno State",
-        "projected_spread": -19.9,
+        "projected_spread": -20.0,
         "projected_total": 50.8,
-        "projected_h1_spread": -10.9,
+        "projected_h1_spread": -11.0,
         "projected_h1_total": 23.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.4,
+        "coherence_gap": 0.5,
         "inputs": {
           "home_rating": 15.51,
           "away_rating": -1.79,
@@ -2179,10 +2121,10 @@
           "market_line": -22.5,
           "bet_line": 22.5,
           "price": -110,
-          "model_number": -19.9,
-          "edge_points": 2.6,
-          "edge_sigma": 0.91,
-          "floor_confidence": 4.9
+          "model_number": -20.0,
+          "edge_points": 2.5,
+          "edge_sigma": 0.89,
+          "floor_confidence": 4.8
         }
       ]
     },
@@ -2196,12 +2138,12 @@
       "model": {
         "home_team": "Texas A&M",
         "away_team": "Missouri State",
-        "projected_spread": -39.1,
+        "projected_spread": -39.2,
         "projected_total": 55.0,
-        "projected_h1_spread": -21.5,
+        "projected_h1_spread": -21.6,
         "projected_h1_total": 25.8,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.8,
+        "coherence_gap": 0.7,
         "inputs": {
           "home_rating": 20.58,
           "away_rating": -15.94,
@@ -2247,10 +2189,10 @@
           "market_line": -41.5,
           "bet_line": 41.5,
           "price": -115,
-          "model_number": -39.1,
-          "edge_points": 2.4,
-          "edge_sigma": 0.84,
-          "floor_confidence": 4.8
+          "model_number": -39.2,
+          "edge_points": 2.3,
+          "edge_sigma": 0.82,
+          "floor_confidence": 4.7
         }
       ]
     },
@@ -2264,12 +2206,12 @@
       "model": {
         "home_team": "Florida State",
         "away_team": "SMU",
-        "projected_spread": 1.2,
+        "projected_spread": 1.1,
         "projected_total": 52.3,
-        "projected_h1_spread": 0.7,
+        "projected_h1_spread": 0.6,
         "projected_h1_total": 24.6,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.8,
+        "coherence_gap": 1.9,
         "inputs": {
           "home_rating": 7.9,
           "away_rating": 11.75,
@@ -2304,10 +2246,10 @@
           "market_line": 3.5,
           "bet_line": 3.5,
           "price": -115,
-          "model_number": 1.2,
-          "edge_points": -2.3,
-          "edge_sigma": -0.81,
-          "floor_confidence": 4.7
+          "model_number": 1.1,
+          "edge_points": -2.4,
+          "edge_sigma": -0.85,
+          "floor_confidence": 4.8
         }
       ]
     },
@@ -2321,12 +2263,12 @@
       "model": {
         "home_team": "Georgia Tech",
         "away_team": "Colorado",
-        "projected_spread": -5.8,
+        "projected_spread": -5.9,
         "projected_total": 52.7,
         "projected_h1_spread": -3.2,
         "projected_h1_total": 24.8,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.6,
+        "coherence_gap": 1.7,
         "inputs": {
           "home_rating": 5.29,
           "away_rating": 2.07,
@@ -2368,62 +2310,6 @@
       ]
     },
     {
-      "event_id": "247137e181f9ff51165c0283d6d56987",
-      "kickoff": "2026-09-05T23:45:00Z",
-      "matchup": "Florida Atlantic Owls @ Florida Gators",
-      "home_team": "Florida Gators",
-      "away_team": "Florida Atlantic Owls",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Florida",
-        "away_team": "Florida Atlantic",
-        "projected_spread": -25.2,
-        "projected_total": 57.7,
-        "projected_h1_spread": -13.9,
-        "projected_h1_total": 27.1,
-        "hfa_applied": 2.2,
-        "coherence_gap": 4.0,
-        "inputs": {
-          "home_rating": 14.62,
-          "away_rating": -7.94,
-          "home_points": 37.7,
-          "away_points": 16.5,
-          "home_components": {
-            "sp": 15.2,
-            "sp_off": 30.4,
-            "sp_def": 15.8,
-            "fpi": 13.575
-          },
-          "away_components": {
-            "sp": -6.1,
-            "sp_off": 27.7,
-            "sp_def": 34.3,
-            "fpi": -11.256
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 59.5,
-          "bet_line": 59.5,
-          "price": -106,
-          "model_number": 57.7,
-          "edge_points": -1.8,
-          "edge_sigma": -0.32,
-          "floor_confidence": 4.0
-        }
-      ]
-    },
-    {
       "event_id": "9bb89639201454f186964f5b86365760",
       "kickoff": "2026-09-05T16:30:00Z",
       "matchup": "Ball State Cardinals @ Ohio State Buckeyes",
@@ -2433,12 +2319,12 @@
       "model": {
         "home_team": "Ohio State",
         "away_team": "Ball State",
-        "projected_spread": -56.2,
+        "projected_spread": -56.3,
         "projected_total": 54.2,
-        "projected_h1_spread": -30.9,
+        "projected_h1_spread": -31.0,
         "projected_h1_total": 25.5,
         "hfa_applied": 2.2,
-        "coherence_gap": 5.5,
+        "coherence_gap": 5.6,
         "inputs": {
           "home_rating": 31.26,
           "away_rating": -22.31,
@@ -2476,12 +2362,12 @@
       "model": {
         "home_team": "Texas",
         "away_team": "Texas State",
-        "projected_spread": -29.7,
+        "projected_spread": -29.8,
         "projected_total": 70.3,
-        "projected_h1_spread": -16.3,
+        "projected_h1_spread": -16.4,
         "projected_h1_total": 33.0,
         "hfa_applied": 2.2,
-        "coherence_gap": 5.1,
+        "coherence_gap": 5.2,
         "inputs": {
           "home_rating": 24.27,
           "away_rating": -2.87,
@@ -2503,6 +2389,94 @@
         "confidence_inputs": {
           "ratings_present_home": 2,
           "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": true,
+      "candidates": []
+    },
+    {
+      "event_id": "247137e181f9ff51165c0283d6d56987",
+      "kickoff": "2026-09-05T23:45:00Z",
+      "matchup": "Florida Atlantic Owls @ Florida Gators",
+      "home_team": "Florida Gators",
+      "away_team": "Florida Atlantic Owls",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Florida",
+        "away_team": "Florida Atlantic",
+        "projected_spread": -25.3,
+        "projected_total": 57.7,
+        "projected_h1_spread": -13.9,
+        "projected_h1_total": 27.1,
+        "hfa_applied": 2.2,
+        "coherence_gap": 4.1,
+        "inputs": {
+          "home_rating": 14.62,
+          "away_rating": -7.94,
+          "home_points": 37.7,
+          "away_points": 16.5,
+          "home_components": {
+            "sp": 15.2,
+            "sp_off": 30.4,
+            "sp_def": 15.8,
+            "fpi": 13.575
+          },
+          "away_components": {
+            "sp": -6.1,
+            "sp_off": 27.7,
+            "sp_def": 34.3,
+            "fpi": -11.256
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": true,
+      "candidates": []
+    },
+    {
+      "event_id": "df569f05eeee15a5fdf95bd5ce086d6d",
+      "kickoff": "2026-09-06T02:00:00Z",
+      "matchup": "UNLV Rebels @ Hawaii Rainbow Warriors",
+      "home_team": "Hawaii Rainbow Warriors",
+      "away_team": "UNLV Rebels",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Hawai'i",
+        "away_team": "UNLV",
+        "projected_spread": 2.5,
+        "projected_total": 63.9,
+        "projected_h1_spread": 1.4,
+        "projected_h1_total": 30.0,
+        "hfa_applied": 2.2,
+        "coherence_gap": 4.1,
+        "inputs": {
+          "home_rating": -2.95,
+          "away_rating": 2.24,
+          "home_points": 26.9,
+          "away_points": 33.5,
+          "home_components": {
+            "sp": -2.6,
+            "sp_off": 25.9,
+            "sp_def": 29.1,
+            "fpi": -4.027,
+            "elo": 1454
+          },
+          "away_components": {
+            "sp": 3.6,
+            "sp_off": 31.4,
+            "sp_def": 28,
+            "fpi": -0.382,
+            "elo": 1566
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 3,
+          "ratings_present_away": 3,
           "calibrated": true
         }
       },
