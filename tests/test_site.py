@@ -740,3 +740,100 @@ def test_the_public_record_counts_the_card_and_nothing_else():
     # And the review must not be able to reach the ledger at all.
     review = (ROOT / "scripts" / "review_week.py").read_text()
     assert "picks.json" not in review and "load_picks" not in review
+
+
+# ---------------------------------------------------------------------
+# Consistency
+#
+# 30 August: the card read "NC State +4.5" and best bets read "NC State
+# 13.5" on the same page. Both numbers were true. The card froze at the
+# price taken on the 28th, the board moved 9 points by the 29th, and
+# nothing said which was which. Best bets was also still recommending
+# that game 18 hours after kickoff, and Memphis at UNLV 11 hours after.
+#
+# Two true numbers with nothing distinguishing them is a contradiction to
+# everyone except the person who wrote the code.
+# ---------------------------------------------------------------------
+
+def _running(entries, now_offset_hours=24):
+    import datetime as dt
+    when = (dt.datetime.now(dt.timezone.utc)
+            + dt.timedelta(hours=now_offset_hours)).isoformat()
+    leans, keys = {}, []
+    for i, e in enumerate(entries):
+        k = f"k{i}"
+        leans[k] = {"matchup": e.get("matchup", f"A{i} @ H{i}"),
+                    "home_team": e.get("home", f"H{i}"),
+                    "away_team": e.get("away", f"A{i}"),
+                    "side": "Over", "market": "total", "period": "full",
+                    "line": e.get("line", 50.0), "price": -110,
+                    "confidence": e.get("conf", 6.0),
+                    "kickoff": e.get("kickoff", when),
+                    "history": [{}], "rank": i + 1, "on_board": True}
+        keys.append(k)
+    return {"card": keys, "leans": leans, "dropped": []}
+
+
+def test_a_game_that_already_kicked_is_not_a_best_bet(tmp_path, monkeypatch):
+    import datetime as dt
+    past = (dt.datetime.now(dt.timezone.utc)
+            - dt.timedelta(hours=3)).isoformat()
+    raw = _running([{"kickoff": past}, {}])
+    monkeypatch.setattr(B.store, "_load",
+                        lambda p, d=None: raw if "running" in str(p) else {})
+    out = B.running_card()
+    assert out is None or len(out["card"]) == 1
+
+
+def test_the_running_card_gives_a_second_read_no_rank():
+    src = (ROOT / "scripts" / "build_running_card.py").read_text()
+    block = src[src.index("Only a first opinion gets a rank"):]
+    block = block[:block.index("# Best rank")] if "# Best rank" in block else block
+    assert 'e["rank"] = None' in block
+    assert "second_opinion" in block
+
+
+def test_the_page_enforces_one_pick_per_game_itself():
+    # The file is written by another script on another schedule.
+    src = (ROOT / "scripts" / "build_site.py").read_text()
+    assert "spoken_for" in src
+    block = src[src.index("One pick per game, enforced again here"):]
+    assert "continue" in block[:600]
+
+
+def test_a_moved_line_is_labelled_rather_than_left_to_look_like_a_typo():
+    assert "board_line_now" in B.HTML or "p.board_line" in B.HTML
+    copy = B.VOICE["pick_line_moved"]
+    assert "{taken}" in copy and "{now}" in copy
+    assert "graded at the price it went up at" in copy
+
+
+def test_the_board_line_is_only_reported_when_it_actually_moved():
+    slate = {"e1": {"candidates": [
+        {"market": "spread", "period": "full", "side": "NC State",
+         "bet_line": 4.5}]}}
+    same = {"event_id": "e1", "market": "spread", "period": "full",
+            "side": "NC State Wolfpack", "line": 4.5}
+    assert B.board_line_now(slate, same) is None
+    moved = {**same, "line": 13.5}
+    assert B.board_line_now(slate, moved) == 4.5
+
+
+def test_a_full_name_and_a_short_name_are_the_same_side():
+    # The ledger stores "NC State Wolfpack", a candidate stores "NC State".
+    # An exact match found nothing, so the card showed no model number and
+    # could not tell its line had moved 9 points.
+    assert B.same_side("NC State", "NC State Wolfpack")
+    assert B.same_side("Hawai'i", "Hawaii Rainbow Warriors")
+    assert B.same_side("Ohio State", "Ohio State Buckeyes")
+    assert B.same_side("Over", "Over")
+    assert not B.same_side("Over", "Under")
+    assert not B.same_side(None, "Over")
+    # Resolved through the mascot map, never by prefix. A prefix rule
+    # accepts NC State Wolfpack and also accepts Ohio for Ohio State,
+    # which is the exact failure teams.py refuses to allow.
+    assert not B.same_side("Ohio", "Ohio State")
+    src = (ROOT / "scripts" / "build_site.py").read_text()
+    block = src[src.index("def same_side("):src.index("def board_line_now(")]
+    assert "canonical(" in block
+    assert "startswith" not in block

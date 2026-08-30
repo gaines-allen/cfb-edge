@@ -135,10 +135,16 @@ def main() -> int:
         e["second_opinion"] = ev in spoken_for
         spoken_for.add(ev)
 
-    for i, e in enumerate(
-            [e for e in ranked if not e["second_opinion"]]
-            + [e for e in ranked if e["second_opinion"]]):
+    # Only a first opinion gets a rank, and rank is what puts a lean on
+    # the card. Ranking the second one last merely made it unlikely to
+    # appear, which is not a rule, it is a coincidence that holds until a
+    # thin week. A second read on a game already spoken for keeps its
+    # history and stays off the card.
+    for i, e in enumerate([e for e in ranked if not e["second_opinion"]]):
         e["rank"] = i + 1
+    for e in ranked:
+        if e["second_opinion"]:
+            e["rank"] = None
     for e in leans.values():
         if not e.get("on_board"):
             e["rank"] = None

@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib import store  # noqa: E402
 from lib.model import COHERENCE_TOLERANCE, load_calibration  # noqa: E402
 from lib.store import LIVE_THRESHOLD  # noqa: E402
-from lib.teams import canonical, load_logos  # noqa: E402
+from lib.teams import canonical, load_logos, normalize  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
     annotate, breakdown, calibration_table, summarize,
@@ -355,6 +355,9 @@ VOICE = {
                           "The Odds API, ratings and results from "
                           "CollegeFootballData.",
 
+    "pick_line_moved": "Booked at {taken}. The number is {now} now, so "
+                       "this is graded at the price it went up at, not "
+                       "the one you are looking at.",
     "pick_numbers": "Here's the math I did before I liked it.",
     "sources_heading": "Where I got it",
     "sources_note": "Every link was opened and the quoted line checked "
@@ -680,6 +683,52 @@ def hoist_built(defenses: list) -> str | None:
     return shared
 
 
+def same_side(a, b) -> bool:
+    """
+    Whether two side labels name the same bet.
+
+    The ledger stores the odds board's full name, "NC State Wolfpack", and
+    a candidate stores the model's short one, "NC State". An exact match
+    silently found nothing, which is why the card showed no model number
+    and could not tell its line had moved 9 points.
+
+    Resolved through canonical(), the same mascot map the logos use, not
+    by prefix. A prefix rule accepts "NC State Wolfpack" and also accepts
+    "Ohio" for "Ohio State", which are different schools. That is the
+    exact failure teams.py refuses to allow, and it does not become safe
+    for being written somewhere else. Over and Under match as themselves.
+    """
+    if a is None or b is None:
+        return False
+    if a == b:
+        return True
+    known = set(load_logos())
+    ca, cb = canonical(str(a), known), canonical(str(b), known)
+    return bool(ca) and ca == cb
+
+
+def board_line_now(slate_by_event: dict, p: dict):
+    """
+    Today's number for a pick, when it is not the number that was taken.
+
+    NC State went up at +4.5 on 28 August and the board was +13.5 by the
+    29th. Both true, 9 points apart, sitting on the same page with nothing
+    saying one was the entry price. Returns None when they agree, so the
+    page only speaks up when there is something to explain.
+    """
+    g = slate_by_event.get(p.get("event_id"))
+    if not g or p.get("line") is None:
+        return None
+    cand = next((c for c in g.get("candidates") or []
+                 if c.get("market") == p.get("market")
+                 and c.get("period") == p.get("period")
+                 and same_side(c.get("side"), p.get("side"))), None)
+    now = (cand or {}).get("bet_line")
+    if now is None:
+        return None
+    return None if abs(float(now) - float(p["line"])) < 0.25 else now
+
+
 def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
     """
     The same case, for a pick that made the published card.
@@ -698,7 +747,7 @@ def pick_defense(slate_by_event: dict, p: dict) -> dict | None:
     cand = next((c for c in g.get("candidates") or []
                  if c.get("market") == p.get("market")
                  and c.get("period") == p.get("period")
-                 and c.get("side") == p.get("side")), None)
+                 and same_side(c.get("side"), p.get("side"))), None)
     line = (cand or {}).get("market_line")
     if line is None and p.get("market") != "moneyline":
         line = p.get("close_line")
@@ -761,6 +810,7 @@ def running_card() -> dict | None:
             "days_tracked": len(e.get("history") or []),
             "rank": e.get("rank"), "peak_rank": e.get("peak_rank"),
             "on_board": e.get("on_board", True),
+            "kickoff": e.get("kickoff"),
             "home_team": g.get("home_team"), "away_team": g.get("away_team"),
             "home_logo": logos.get(
                 canonical(g.get("home_team") or "", known_locations) or ""),
@@ -771,7 +821,36 @@ def running_card() -> dict | None:
                               e.get("model_number"), e.get("edge_points")),
         }
 
-    card = [c for c in (shape(k) for k in raw["card"]) if c]
+    # A lean on a game that has kicked is not a lean, it is a memory.
+    # Best bets carried NC State at Virginia for 18 hours after kickoff
+    # and Memphis at UNLV for 11, recommending numbers nobody could take.
+    # The board hides a game the moment it starts and this has to match,
+    # or the same page tells you a game is unavailable and worth betting.
+    def not_started(c):
+        import datetime as _dt
+        k = c.get("kickoff")
+        if not k:
+            return True
+        try:
+            when = _dt.datetime.fromisoformat(str(k).replace("Z", "+00:00"))
+        except ValueError:
+            return True
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=_dt.timezone.utc)
+        return when > _dt.datetime.now(_dt.timezone.utc)
+
+    # One pick per game, enforced again here rather than trusted. The
+    # file is written by another script on another schedule, and the page
+    # is the last thing between a duplicate and a reader.
+    card, spoken_for = [], set()
+    for c in (shape(k) for k in raw["card"]):
+        if not c or not not_started(c):
+            continue
+        key = (c.get("home_team"), c.get("away_team"), c.get("matchup"))
+        if key in spoken_for:
+            continue
+        spoken_for.add(key)
+        card.append(c)
     dropped = [c for c in (shape(k) for k in raw.get("dropped", [])) if c]
     if not card:
         return None
@@ -971,6 +1050,7 @@ def build_payload() -> dict:
                 # The model's own case, next to the researched reason. A
                 # pick defended only by prose is one you cannot check.
                 "defense": pick_defense(slate_by_event, p),
+                "board_line": board_line_now(slate_by_event, p),
                 "live": p.get("live"),
             }
             for p in sorted(picks, key=lambda x: (x.get("kickoff") or ""))
@@ -1118,6 +1198,10 @@ HTML = """<!doctype html>
     font-family: ui-sans-serif, -apple-system, sans-serif;
   }
   .why { margin: 0 0 16px; max-width: 62ch; color: #223049; font-size: 17px; }
+  .why.moved {
+    font-size: 14px; color: #6b5a2e; border-left: 2px solid #b39a55;
+    padding-left: 14px; font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
   .why.numbers {
     font-size: 14px; color: #4a5468; border-left: 2px solid #d9cdb2;
     padding-left: 14px; font-family: ui-sans-serif, -apple-system, sans-serif;
@@ -1506,6 +1590,11 @@ function ticket(p) {
       ${badge}
     </div>
     <div class="matchup">${esc(p.matchup)} &middot; ${esc(p.market)} ${esc(p.period)}</div>
+    ${p.board_line == null ? "" : `<p class="why moved">${
+      esc(V.pick_line_moved)
+        .replace("{taken}", p.title)
+        .replace("{now}", p.market === "Total" ? num(p.board_line)
+                                               : signed(p.board_line))}</p>`}
     ${p.rationale ? `<p class="why">${esc(p.rationale)}</p>` : ""}
     ${p.defense && p.defense.text
       ? `<p class="why numbers">${esc(V.pick_numbers)} ${esc(p.defense.text)}</p>`
