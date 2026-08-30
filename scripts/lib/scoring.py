@@ -9,11 +9,12 @@ find out whether a "9" is actually a 9.
 
 from __future__ import annotations
 
+import functools
 from dataclasses import dataclass
 from typing import Literal
 
 from .store import LIVE_THRESHOLD
-from .teams import canonical
+from .teams import canonical, load_logos
 
 Outcome = Literal["win", "loss", "push", "pending", "void"]
 
@@ -98,6 +99,18 @@ def grade_moneyline(team_score: int, opp_score: int) -> Outcome:
     return "push"
 
 
+@functools.lru_cache(maxsize=1)
+def _known_schools() -> frozenset:
+    """
+    Read once. canonical() without this returns None for most of the
+    board, so a Colorado State pick would void the same way Hawaii did.
+    """
+    try:
+        return frozenset(load_logos())
+    except Exception:
+        return frozenset()
+
+
 def _same_team(a, b) -> bool:
     """
     Whether 2 names refer to one school, across sources that spell it
@@ -108,7 +121,8 @@ def _same_team(a, b) -> bool:
         return False
     if a == b:
         return True
-    ca, cb = canonical(str(a)), canonical(str(b))
+    known = _known_schools()
+    ca, cb = canonical(str(a), known), canonical(str(b), known)
     return bool(ca) and ca == cb
 
 

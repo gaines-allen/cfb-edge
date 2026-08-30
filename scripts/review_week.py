@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import functools
 import statistics as st
 import sys
 from pathlib import Path
@@ -28,13 +29,49 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
-from lib.teams import normalize  # noqa: E402
+from lib.teams import canonical, load_logos, normalize  # noqa: E402
 
 REVIEW_FILE = store.DATA / "week_review.json"
 
 
+@functools.lru_cache(maxsize=1)
+def _known() -> frozenset:
+    """
+    The school list canonical() resolves against, read once.
+
+    Without it canonical returns None for most of the board, including
+    "Colorado State Rams", and the fallback then keeps the mascot in the
+    key while CFBD does not. Every consumer of canonical in this repo
+    passes this set. Two that did not both failed silently.
+    """
+    return frozenset(load_logos())
+
+
+def key_for(name) -> str:
+    """
+    One school, one key, across sources that spell it differently.
+
+    canonical() is the mascot map and resolves the odds board's "Hawaii
+    Rainbow Warriors" and CFBD's "Hawai'i" to the same school. It returns
+    None for anything it cannot place, and a lot of the FCS opponents on
+    an early season board are not in it, so those fall back to the folded
+    text. Falling back keeps them scored instead of silently dropped, and
+    it cannot create a false match: 2 schools it cannot place still have
+    to spell the same.
+    """
+    return canonical(str(name), _known()) or normalize(str(name))
+
+
 def index_results(games: list[dict]) -> dict:
-    """Finals keyed by normalized home and away, the way grading does it."""
+    """
+    Finals keyed by the canonical school, the way grading does it.
+
+    Keyed on normalize() first, which folds punctuation but keeps the
+    mascot, so CFBD's "Hawai'i" and the odds board's "Hawaii Rainbow
+    Warriors" landed in different buckets and 39 of 39 games went
+    unmatched. canonical() is the mascot map and resolves both to one
+    school. A name it cannot place is left out rather than guessed at.
+    """
     idx = {}
     for g in games:
         home = g.get("homeTeam") or g.get("home_team")
@@ -45,7 +82,7 @@ def index_results(games: list[dict]) -> dict:
             continue
         if not g.get("completed", True):
             continue
-        idx[(normalize(home), normalize(away))] = {
+        idx[(key_for(home), key_for(away))] = {
             "home_score": float(hp), "away_score": float(ap)}
     return idx
 
@@ -122,7 +159,7 @@ def review(slate: dict, results: list[dict]) -> dict:
     rows, unmatched = [], []
     for g in slate.get("slate", []):
         home, away = g.get("home_team"), g.get("away_team")
-        final = idx.get((normalize(home or ""), normalize(away or "")))
+        final = idx.get((key_for(home or ""), key_for(away or "")))
         if not final:
             unmatched.append(g.get("matchup"))
             continue

@@ -101,12 +101,31 @@ def test_the_worst_miss_comes_first():
     assert out["games"][0]["matchup"] == "A1 @ H1"
 
 
-def test_names_that_punctuate_differently_still_match():
-    # The same okina that broke the daily publish on 26 August.
-    slate = {"slate": [game(matchup="Ghost @ Hawai'i",
-                            home="Hawai'i", away="Ghost")]}
-    out = R.review(slate, [final(home="Hawaii Rainbow Warriors", away="Ghost")])
-    assert out["games_scored"] == 0 or out["games_unmatched"] == []
+def test_the_odds_board_name_matches_the_cfbd_name():
+    """
+    The slate carries the odds board's name and the finals carry CFBD's.
+    Keyed on normalize() these landed in different buckets and 39 of 39
+    games went unmatched while the run reported success.
+    """
+    slate = {"slate": [game(matchup="Stanford @ Hawaii Rainbow Warriors",
+                            home="Hawaii Rainbow Warriors", away="Stanford")]}
+    out = R.review(slate, [final(home="Hawai'i", away="Stanford",
+                                 hs=27, as_=37)])
+    assert out["games_scored"] == 1, out["games_unmatched"]
+
+
+def test_two_schools_it_cannot_place_still_have_to_spell_the_same():
+    # The fallback keeps early season FCS opponents scoreable. It must not
+    # become a way for 2 different schools to match.
+    slate = {"slate": [game(matchup="Ghost @ Nowhere U",
+                            home="Nowhere U", away="Ghost")]}
+    assert R.review(slate, [final(home="Ohio State", away="Ghost")])["games_scored"] == 0
+    assert R.review(slate, [final(home="Nowhere U", away="Ghost")])["games_scored"] == 1
+
+
+def test_the_mascot_map_still_wins_over_the_fallback():
+    assert R.key_for("Ohio") != R.key_for("Ohio State")
+    assert R.key_for("Hawai'i") == R.key_for("Hawaii Rainbow Warriors")
 
 
 # ------------------------------------------------------- the separation
@@ -205,3 +224,16 @@ def test_an_empty_results_file_is_not_reported_as_a_clean_review():
     out = R.review({"slate": [game()]}, [])
     assert out["games_scored"] == 0
     assert out["games_unmatched"], "an unscored game must be named"
+
+
+def test_canonical_is_given_the_school_list_it_needs():
+    """
+    canonical() without the known set returns None for most of the board,
+    including "Colorado State Rams", and the fallback then keeps the
+    mascot in the key while CFBD does not. Every other consumer in this
+    repo passes it. The 2 that did not both failed silently.
+    """
+    assert R.key_for("Colorado State Rams") == R.key_for("Colorado State")
+    assert R.key_for("Hawaii Rainbow Warriors") == R.key_for("Hawai'i")
+    assert R.key_for("NC State Wolfpack") == R.key_for("NC State")
+    assert R.key_for("Ohio") != R.key_for("Ohio State")

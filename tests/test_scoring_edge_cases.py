@@ -154,3 +154,11 @@ def test_a_void_is_not_a_settled_result_and_stays_gradeable():
     src = (ROOT / "scripts" / "grade_results.py").read_text()
     assert 'UNRESOLVED = ("pending", "void")' in src
     assert 'p.get("result") in UNRESOLVED' in src
+
+
+def test_a_school_needing_the_full_list_still_grades():
+    # canonical() without the known set returns None for most of the
+    # board, so this voided the same way Hawaii did.
+    g = _game("Colorado State", "Wyoming", 30, 10)
+    assert grade_pick(_spread("Colorado State Rams", -3.5), g) == "win"
+    assert grade_pick(_spread("Wyoming Cowboys", 3.5), g) == "loss"
