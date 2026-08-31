@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib import store  # noqa: E402
 from lib.model import COHERENCE_TOLERANCE, load_calibration  # noqa: E402
 from lib.store import LIVE_THRESHOLD  # noqa: E402
-from lib.teams import canonical, load_logos, normalize  # noqa: E402
+from lib.teams import canonical, load_logos, normalize, strip_mascot  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 from lib.scoring import (  # noqa: E402
     annotate, breakdown, calibration_table, summarize,
@@ -126,9 +126,9 @@ VOICE = {
     # Describes what the page does rather than promising disclosure it
     # does not make. Every clause here is checkable against the page:
     # the slate goes up, the leans move daily, 6 plays land Friday.
-    "tagline": "I watch the whole board. I yell when a number is wrong.",
-    "subhead": "Friday gets the bets. Every other day gets the argument. "
-               "Nothing reaches the card below {publish}, and every posted line stays put.",
+    "tagline": "0-2. Down two units.",
+    "subhead": "Hawai'i got buried and NC State scored eight damn points. The board is "
+               "innocent. I am currently the idiot.",
 
     # Openly a persona. A page built on not overclaiming cannot open by
     # implying a real handicapper is behind it, and the joke lands better
@@ -141,77 +141,34 @@ VOICE = {
              "than typed in by someone having a good week.",
 
     "page_title": "Steve's Bar Tab | College football picks",
-    "running_heading": "Steve's short list",
-    "running_note": "The {n} I like best right now, not picks. These "
-                    "move. A number the market has caught up to stops "
-                    "being worth anything, so what was good Monday is "
-                    "often gone by Thursday, and I'd rather show you that "
-                    "than quietly swap it out. One thing before you "
-                    "scroll: a total needs a wider gap than a spread to "
-                    "mean the same thing, so these are not simply ranked "
-                    "by points apart.",
-    "running_stale": "These come off the same lines the board does, and "
-                     "those are too old to stand behind right now, so the "
-                     "leans are down until the next pull lands. Showing "
-                     "you a number I would not bet myself is how this "
-                     "turns into every other picks page.",
-    "running_empty": "Nothing tracked yet. This fills in once the board "
-                     "is up and I've had a day to watch it move.",
+    "running_heading": "Six arguments before kickoff",
+    "running_note": "Six leans. Not picks. These are still on the bar, so yell now.",
+    "running_stale": "These lines are old. I am loud, not stupid. Come back after the next pull.",
+    "running_empty": "Nothing yet. Either the board is late or I finally learned restraint.",
     "running_new": "new today",
     "running_held": "holding",
     "running_since": "tracked {days} days",
-    "running_stacked": "Worth saying: those 6 leans cover {games} games, "
-                       "not 6. When a game shows up twice it is one "
-                       "opinion sold to you twice, and the second one is "
-                       "not a free roll.",
-    "running_dropped_heading": "Fell off",
-    "running_dropped_note": "These held a top 6 spot earlier in the week "
-                            "and don't now. Usually that means the market "
-                            "moved to my number, which is the market doing "
-                            "its job and me having nothing left to say.",
+    "running_stacked": "Six leans, {games} games. One game snuck in twice. Nice try.",
+    "running_dropped_heading": "The book sobered up",
+    "running_dropped_note": "I liked these earlier. The line moved. Argument over.",
 
     # The explainer. Every figure in it comes from the live measurement,
     # so the copy cannot drift from the arithmetic it is describing.
-    "edge_heading": "How loud is Steve?",
-    "edge_body_1": "Every lean carries a number from 1 to 10. Here's how "
-                   "I build it, because if you can't take a number apart "
-                   "you've got no business betting it.",
-    "edge_body_2": "I have a number for a game and the book has a number. "
-                   "The gap between them is the edge, in points. Points "
-                   "lie, though. Six points on a total is not the same "
-                   "animal as six points on a spread, because totals swing "
-                   "wider than spreads do.",
-    "edge_body_3": "So I measure how far off I usually am, and score the "
-                   "gap against that. Across {sample} games this week my "
-                   "spread numbers sit about {spread_gap} points from the "
-                   "book and my totals about {total_gap}. So six points on "
-                   "a total is not even twice my normal miss. Sounds "
-                   "enormous. It isn't.",
-    "edge_body_4": "Confidence turns that into a 1 to 10. A gap the size "
-                   "of my usual miss is a 5. Every extra miss worth of gap "
-                   "adds another 1.5. That's the whole formula, there's no "
-                   "second page. Confidence and edge are one fact said "
-                   "twice, so if you only want to look at one number, look "
-                   "at this one.",
-    "edge_body_5": "What counts as good on this board. The middle lean is "
-                   "a 5. The top tenth get to 6.5. The best thing up there "
-                   "right now is a 7. If something ever came back a 9 I'd "
-                   "assume my ratings broke before I'd assume the book left "
-                   "four touchdowns lying on the table.",
-    "edge_body_6": "And the ceiling. This number stops at {cap} however "
-                   "big the gap gets, and the publish line is {publish}. "
-                   "Nothing I compute can put a play on the card by "
-                   "itself. That last half point has to come from "
-                   "something the model cannot see, and that is the entire "
-                   "point of the thing.",
+    "edge_heading": "Confidence, since you asked",
+    "edge_body_1": "The book has a number. I have one too. The gap is the argument.",
+    "edge_body_2": "Totals swing more than spreads, so six points means less on a total. "
+                   "I divide the gap by the usual miss for that market.",
+    "edge_body_3": "This week the usual miss is {spread_gap} points on spreads and "
+                   "{total_gap} on totals across {sample} games. That is one fact said "
+                   "twice because the markets move differently.",
+    "edge_body_4": "One usual miss gets a 5. Each extra miss adds 1.5. The formula stops at {cap}.",
+    "edge_body_5": "A 5 is ordinary. A 6.5 is near the top of this board. A 7 has my attention.",
+    "edge_body_6": "The formula stops at {cap}. The publish line is {publish}. Math "
+                   "cannot clear it alone. A live bet needs current reporting.",
 
     "board_heading": "The TV wall",
-    "board_note": "Every game on the slate, my number next to theirs, "
-                  "whether or not it made the card. Strongest lean at the "
-                  "top, weakest at the bottom, so the further you scroll "
-                  "the less I have to say. If you like something I passed "
-                  "on, that's your money and your business.",
-    "board_empty": "No board yet. It goes up Monday of game week.",
+    "board_note": "My number next to theirs. The loud stuff is up top.",
+    "board_empty": "No board. Go bother the bartender.",
     "board_stale": "The lines I have are {age} hours old, and I don't post "
                    "a number I can't stand behind. The board is down until "
                    "the next pull lands. That's not caution theater, that's "
@@ -225,8 +182,8 @@ VOICE = {
                         "argues with itself is worth nothing to you: "
                         "{games}. I'd rather show you an empty row than "
                         "two of my own numbers that can't both be right.",
-    "board_open": "Turn on every game",
-    "ledger_open": "Open Steve's bar tab",
+    "board_open": "Turn on all {count} games",
+    "ledger_open": "Open the ugly math",
     "board_moved": "Moved",
     "board_kick": "Kickoff",
     "board_my_spread": "My spread",
@@ -237,10 +194,8 @@ VOICE = {
     "board_lean": "Where I lean",
     "board_no_lean": "Priced right. No lean.",
 
-    "lock_title": "Steve won't shut up about this one",
-    "lock_note": "The Lock is whichever play I'm most confident in. It "
-                 "gets the crown, not extra units, because doubling a bet "
-                 "is how confident men go broke.",
+    "lock_title": "The one I yelled loudest",
+    "lock_note": "The crown changes the volume. The stake stays put.",
 
     "live_heading": "Saturday, live",
     "live_note": "Scores update through the afternoon while games run. "
@@ -252,7 +207,7 @@ VOICE = {
     "live_tied": "dead even",
     "live_final": "final",
 
-    "card_heading": "The napkin",
+    "card_heading": "The card",
     # The empty state shows all week before Friday, so it has to cover 2
     # truths at once: early in the week the card is not built yet, and
     # after Friday an empty card means the board was priced right.
@@ -261,11 +216,10 @@ VOICE = {
                   "Friday by 6. If nothing's here after that, the board's "
                   "priced right and I'm not inventing a play to fill the "
                   "space.",
-    "card_short": "That's the card. A short week means the numbers were "
-                  "fair. It doesn't mean I was out golfing.",
+    "card_short": "Two bets. Both got smoked. Friday owes me a chair.",
     "card_pending": "Still running",
 
-    "book_heading": "The receipts",
+    "book_heading": "The damage",
     "book_empty": "Nothing has settled, so there's nothing to brag about "
                   "and nothing to apologize for. Ask me Sunday night.",
 
@@ -314,15 +268,10 @@ VOICE = {
     "no_signal": "Can't tell either way.",
     "verdict_losing": "Loses money.",
     "verdict_winning": "Makes money.",
-    "no_signal_long": "Before anyone gets excited, that record hasn't "
-                      "decided enough games to mean a thing. Swing a "
-                      "couple of results either way and it covers "
-                      "everything from losing money to printing it, "
-                      "including the 52.5 percent you need just to break "
-                      "even. So it's as consistent with me being lucky as "
-                      "with me being good. I post it anyway, because a guy "
-                      "who only shows you the good stretch is selling "
-                      "something.",
+    "no_signal_long": "Two games prove almost nothing. The 95 percent range still crosses "
+                      "the 52.4 percent break-even line. Call it 52.5 with a dull pencil. "
+                      "I could still be lucky. Good has not made the trip yet. That "
+                      "caveat belongs down here, where it cannot hide the bill.",
     "no_signal_short": "Same warning as above. Not enough has decided for "
                        "these bars to be worth the ink.",
 
@@ -357,10 +306,9 @@ VOICE = {
                        "this is graded at the price it went up at, not "
                        "the one you are looking at.",
     "pick_numbers": "Here's the math I did before I liked it.",
-    "sources_heading": "Where I got it",
-    "sources_note": "Every link was opened and the quoted line checked "
-                    "against the page before the pick went up. If I say a "
-                    "coach said it, something went and read the page.",
+    "sources_heading": "Receipts",
+    "sources_note": "Every live pick has a current source. Open the receipts if you want "
+                    "the paperwork.",
 
     # Deliberately straight. Nobody should have to get past a bit to find
     # the helpline.
@@ -810,6 +758,13 @@ def running_card() -> dict | None:
             "on_board": e.get("on_board", True),
             "kickoff": e.get("kickoff"),
             "home_team": g.get("home_team"), "away_team": g.get("away_team"),
+            # The school without the mascot, so Steve can name the other
+            # side in a sentence without saying "West Virginia
+            # Mountaineers is laying 21.5". strip_mascot is the same map
+            # the logos resolve through, so the short name is never
+            # guessed here.
+            "home_school": strip_mascot(g.get("home_team") or "") or None,
+            "away_school": strip_mascot(g.get("away_team") or "") or None,
             "home_logo": logos.get(
                 canonical(g.get("home_team") or "", known_locations) or ""),
             "away_logo": logos.get(
@@ -1571,6 +1526,335 @@ HTML = """<!doctype html>
     .stat { flex: 1 1 33%; padding: 5px 12px; margin: 0; }
     .stat:first-child { padding-left: 12px; }
   }
+
+  /* Second pass: a scoreboard, a bar tab and six arguments. */
+  :root {
+    --navy: #090b0e;
+    --navy-2: #12161b;
+    --green: #151a18;
+    --green-2: #303631;
+    --cream: #f2e8cf;
+    --paper: #eadfbe;
+    --ink: #0c0e10;
+    --ink-2: #31343a;
+    --dim: #9e9a8e;
+    --gold: #ff4f24;
+    --gold-2: #ff6a44;
+    --loss: #ff4f24;
+    --win: #77ad75;
+  }
+  body {
+    color: var(--cream);
+    background:
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      radial-gradient(900px 420px at 78% 0%, rgba(255,79,36,.15), transparent 70%),
+      #090b0e;
+    background-size: 100% 44px, auto, auto;
+  }
+  body::before { opacity: .09; }
+  .wrap { max-width: 1380px; padding: 0 46px 120px; }
+  .topbar {
+    min-height: 58px; margin: 0 -46px; padding: 0 46px;
+    border-bottom: 4px solid var(--cream); background: rgba(9,11,14,.96);
+    backdrop-filter: none;
+  }
+  .bar-name { font-weight: 950; letter-spacing: .04em; }
+  .bar-name i { color: var(--gold); }
+  nav a { color: var(--cream); padding: 22px 0 18px; border-bottom: 4px solid transparent; }
+  nav a:hover, nav a:focus-visible { color: var(--gold); border-bottom-color: var(--gold); }
+
+  header.scoreboard-hero {
+    min-height: 470px; grid-template-columns: minmax(0, 1fr) 190px 270px;
+    gap: 0; padding: 50px 0 46px; border-bottom: 8px solid var(--gold);
+    overflow: visible;
+  }
+  .hero-copy { padding: 0; }
+  .eyebrow {
+    margin: 0 0 14px; color: var(--gold); font-size: 13px; letter-spacing: .16em;
+  }
+  .tagline {
+    max-width: 8.2ch; margin: 0; color: var(--cream);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(72px, 8.7vw, 132px); font-weight: 900; line-height: .82;
+    letter-spacing: -.035em; text-transform: uppercase;
+  }
+  .subhead {
+    max-width: 47ch; margin: 27px 0 0; color: var(--cream);
+    font-family: Georgia, "Times New Roman", serif; font-size: 21px; line-height: 1.35;
+  }
+  .hero-record {
+    align-self: center; display: grid; gap: 0; margin: 0 20px 0 8px;
+    padding: 19px 14px 14px; color: #090b0e; background: var(--gold);
+    border: 4px solid var(--cream); box-shadow: 8px 8px 0 #000;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-align: center; transform: rotate(1.4deg);
+  }
+  .hero-record span:first-child { font-size: 72px; line-height: .85; }
+  .hero-record span:last-child { margin-top: 11px; font-size: 29px; line-height: 1; }
+  .hero-art { min-width: 0; align-self: center; justify-items: end; }
+  .hero-art::before { display: none; }
+  header img { width: min(300px, 24vw); transform: rotate(3deg); }
+
+  h2, #card-h, #running-h, #board-h, #book-h, #edge-h {
+    width: auto; max-width: none; margin: 110px 0 28px; padding: 17px 0 0;
+    color: var(--cream); background: transparent; border-top: 8px solid var(--cream);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(54px, 7vw, 96px); line-height: .88; letter-spacing: -.025em;
+    text-transform: uppercase; box-shadow: none;
+    scroll-margin-top: 84px;
+  }
+  h2::before, h2::after { display: none; }
+  .weekline {
+    margin: 0 0 16px; color: var(--gold); font-weight: 900; font-size: 13px;
+  }
+  #card, #livewrap { width: 100%; margin: 0; }
+  #running-h { width: 82%; margin-left: 12%; }
+  #running { width: 88%; margin-left: 8%; display: grid; grid-template-columns: 1fr 1fr; column-gap: 58px; }
+  #board-h, #board-alert, #board-fold { width: 100%; margin-left: 0; }
+  #book-h, #book { width: 100%; margin-left: 0; }
+
+  .tickets { gap: 58px; }
+  .ticket, .ticket:nth-of-type(even) {
+    width: 100%; margin: 0; border-radius: 0; transform: none;
+  }
+  .ticket.lock {
+    padding: 46px 50px 38px; color: var(--ink); border: 7px solid var(--gold);
+    background-color: var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 31px, rgba(12,14,16,.055) 31px 32px),
+      radial-gradient(circle at 84% 13%, rgba(99,69,22,.10) 0 7%, transparent 7.5%);
+    box-shadow: 14px 14px 0 rgba(0,0,0,.58); transform: rotate(-.18deg);
+  }
+  .ticket.lock::after { height: 0; }
+  .ticket:not(.lock) {
+    width: 82%; margin-left: 13%; padding: 38px 0 15px; color: var(--cream);
+    background: transparent; border: 0; border-top: 5px solid var(--cream);
+    box-shadow: none;
+  }
+  .ticket:not(.lock)::before, .ticket:not(.lock)::after { display: none; }
+  .lockbanner {
+    width: max-content; margin: -68px 0 26px -24px; padding: 8px 14px;
+    color: #090b0e; background: var(--gold); font: 950 12px/1 ui-sans-serif, sans-serif;
+    letter-spacing: .14em; text-align: left; text-transform: uppercase; transform: rotate(-1.4deg);
+  }
+  .tick-top { align-items: flex-start; gap: 18px; }
+  .play {
+    flex: 1 1 520px; color: var(--ink); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(57px, 7vw, 102px); font-weight: 900; line-height: .88;
+    letter-spacing: -.02em; text-transform: uppercase;
+  }
+  .ticket:not(.lock) .play { color: var(--cream); font-size: clamp(43px, 5vw, 70px); }
+  .result-stamp {
+    flex: none; padding: 9px 12px 7px; color: var(--cream); background: var(--ink);
+    font: 950 16px/1 ui-sans-serif, sans-serif; letter-spacing: .08em; text-transform: uppercase;
+    transform: rotate(1deg);
+  }
+  .result-stamp.loss { background: var(--loss); color: #090b0e; }
+  .ticket:not(.lock) .result-stamp { color: #090b0e; background: var(--gold); }
+  .matchup {
+    margin: 15px 0 22px; color: #59564d; font-size: 12px; font-weight: 800;
+  }
+  .ticket:not(.lock) .matchup { color: var(--dim); }
+  .why {
+    max-width: 47ch; margin: 0 0 26px; color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif; font-size: 25px; line-height: 1.35;
+  }
+  .ticket:not(.lock) .why { max-width: 53ch; color: var(--cream); font-size: 21px; }
+  .pick-facts {
+    display: flex; flex-wrap: wrap; gap: 8px 25px; padding-top: 15px;
+    border-top: 2px solid rgba(12,14,16,.24); color: #514e46;
+    font: 13px/1.4 ui-sans-serif, sans-serif; font-variant-numeric: tabular-nums;
+  }
+  .ticket:not(.lock) .pick-facts { color: var(--dim); border-top-color: #34383e; }
+  .pick-facts b { color: inherit; }
+  .srcs {
+    margin-top: 15px; color: #56534b; font: 12px/1.6 ui-sans-serif, sans-serif;
+  }
+  .srcs summary { width: max-content; cursor: pointer; color: inherit; font-weight: 900; text-transform: uppercase; }
+  .srcs div { margin-top: 7px; }
+  .srcs a { color: inherit; border-bottom-color: currentColor; }
+  .ticket:not(.lock) .srcs { color: var(--dim); }
+  .card-afterword { margin: 22px 0 0 13%; color: var(--gold); font: 800 14px/1.4 ui-sans-serif, sans-serif; }
+
+  .lean, .lean:nth-of-type(2n) {
+    width: 100%; margin: 0; padding: 27px 0 34px; display: grid;
+    grid-template-columns: 62px minmax(0, 1fr); gap: 17px; border-top: 4px solid var(--cream);
+    border-bottom: 0; font-family: ui-sans-serif, sans-serif;
+  }
+  .lean:nth-child(3), .lean:nth-child(4) { margin-top: 38px; }
+  .lean:nth-child(5), .lean:nth-child(6) { margin-top: 38px; }
+  .lean-index {
+    color: var(--gold); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 50px; line-height: .9;
+  }
+  .lean-argument { min-width: 0; }
+  .teams { flex-direction: row; align-items: center; gap: 9px; }
+  .team { gap: 7px; }
+  .team img { width: 28px; height: 28px; }
+  .team .nm { font-size: 12px; line-height: 1.15; color: var(--dim); }
+  .vs { padding: 0; font-size: 9px; }
+  .leanplay {
+    margin: 17px 0 0; color: var(--cream); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(31px, 3.2vw, 47px); line-height: .92; text-transform: uppercase;
+  }
+  .leanplay .price { color: var(--gold); font: 800 13px/1 ui-sans-serif, sans-serif; }
+  .leandef { max-width: 38ch; margin: 13px 0 0; color: var(--cream); font: 18px/1.42 Georgia, serif; }
+  .leanmeta { margin-top: 13px; color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+
+  #board-fold {
+    border: 4px solid var(--cream); background: rgba(9,11,14,.84);
+  }
+  #board-fold > summary { padding: 18px 22px; border: 0; background: var(--cream); }
+  #board-fold .foldlabel { color: var(--ink); font-weight: 950; }
+  #board { padding: 0 20px 16px; }
+  .game { border-bottom: 2px solid #34383e; }
+  .game summary { min-height: 70px; padding: 13px 4px; }
+  .game summary:hover { background: rgba(255,79,36,.08); }
+  .gcaret, .glean b, .gmove { color: var(--gold); }
+  .gnums .lbl, .gkick { color: var(--dim); }
+
+  .damage-copy {
+    max-width: 21ch; margin: 0; padding: 35px 0 42px; color: var(--gold);
+    border-bottom: 8px solid var(--gold);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(55px, 7.3vw, 104px); line-height: .91; letter-spacing: -.02em;
+    text-transform: uppercase;
+  }
+
+  /* The tab. A scoreboard, not a set of cards: hard rules across the top
+     and bottom, one line per settled ticket, and the number that hurt sat
+     on the right where a bar tab puts it. */
+  .tab {
+    margin: 0; border-bottom: 4px solid var(--cream);
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+  }
+  .tab-row {
+    display: grid; align-items: baseline; gap: 4px 20px;
+    grid-template-columns: minmax(0, 1fr) auto 82px 92px;
+    padding: 19px 0; border-top: 2px solid #34383e;
+    font-variant-numeric: tabular-nums;
+  }
+  .tab-row:first-child { border-top: 4px solid var(--cream); }
+  .tab-play {
+    min-width: 0; color: var(--cream);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(23px, 2.4vw, 35px); line-height: 1;
+    letter-spacing: -.01em; text-transform: uppercase;
+  }
+  .tab-score { color: var(--dim); font-size: 13px; }
+  .tab-res {
+    font-size: 13px; font-weight: 900; letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .tab-units { font-size: 25px; font-weight: 900; text-align: right; }
+  .tab-row.loss .tab-res, .tab-row.loss .tab-units { color: var(--gold); }
+  .tab-row.win .tab-res, .tab-row.win .tab-units { color: var(--win); }
+  .tab-row.push .tab-res, .tab-row.push .tab-units { color: var(--dim); }
+  .tab-row.total { border-top: 4px solid var(--cream); }
+  .tab-row.total .tab-play {
+    color: var(--dim); font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: 12px; font-weight: 900; letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .tab-row.total .tab-res { color: var(--cream); }
+  .tab-row.total .tab-units { color: var(--gold); font-size: 31px; }
+
+  .method {
+    width: 94%; margin: 130px 0 0 3%; border: 6px solid var(--gold); background: #0f1216;
+  }
+  .method > summary {
+    list-style: none; cursor: pointer; padding: 26px 30px; color: #090b0e; background: var(--gold);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(31px, 4vw, 54px); line-height: .95; text-transform: uppercase;
+  }
+  .method > summary::-webkit-details-marker { display: none; }
+  .method > summary::before { content: "+ "; }
+  .method[open] > summary::before { content: "- "; }
+  .method-body { padding: 4px 34px 38px; }
+  .method #edge-h {
+    margin: 58px 0 25px; padding-top: 13px; border-top-width: 5px;
+    font-size: clamp(42px, 5vw, 68px);
+  }
+  .method #edge, .method #ledger-fold, .method footer { width: 100%; margin-left: 0; }
+  .method h3 {
+    margin: 54px 0 14px; color: var(--cream); font: 900 25px/1.05 ui-sans-serif, sans-serif;
+    letter-spacing: -.02em;
+  }
+  .method-copy {
+    max-width: 64ch; margin: 35px 0 0; padding: 18px 0;
+    border-top: 2px solid #383d44; border-bottom: 2px solid #383d44;
+    color: var(--dim); font: 14px/1.5 ui-sans-serif, sans-serif;
+  }
+  .edge p { font-size: 17px; }
+  .scale { border-top: 2px solid #383d44; border-bottom: 2px solid #383d44; padding: 15px 0; }
+  .stats { margin-top: 10px; }
+  footer { width: 100%; margin: 75px 0 0; }
+
+  @media (max-width: 900px) {
+    header.scoreboard-hero { grid-template-columns: minmax(0, 1fr) 160px; }
+    .hero-art { display: none; }
+    .hero-record span:first-child { font-size: 60px; }
+    #running-h, #running { width: 100%; margin-left: 0; }
+    #running { column-gap: 34px; }
+    .ticket:not(.lock) { width: 92%; margin-left: 8%; }
+  }
+  @media (max-width: 680px) {
+    .wrap { padding: 0 18px 80px; }
+    .topbar { margin: 0 -18px; padding: 0 18px; min-height: 54px; overflow-x: auto; }
+    nav { justify-content: flex-start; min-width: max-content; gap: 20px; }
+    nav a { font-size: 10px; }
+    header.scoreboard-hero {
+      min-height: 0; grid-template-columns: 1fr; gap: 24px; padding: 42px 0 45px;
+    }
+    .tagline { max-width: 7.5ch; font-size: clamp(60px, 21vw, 86px); }
+    .subhead { font-size: 18px; }
+    .hero-record { width: 138px; margin: 0 0 0 auto; padding: 14px 10px 10px; }
+    .hero-record span:first-child { font-size: 54px; }
+    .hero-record span:last-child { font-size: 23px; }
+    h2, #card-h, #running-h, #board-h, #book-h {
+      margin-top: 82px; padding-top: 12px; border-top-width: 6px;
+      font-size: clamp(49px, 17vw, 72px);
+    }
+    .ticket.lock { padding: 38px 20px 26px; border-width: 5px; box-shadow: 8px 8px 0 #000; }
+    .lockbanner { margin: -57px 0 22px -9px; }
+    .play, .ticket:not(.lock) .play { font-size: clamp(42px, 14vw, 60px); }
+    .result-stamp { font-size: 13px; }
+    .why, .ticket:not(.lock) .why { font-size: 19px; }
+    .ticket:not(.lock) { width: 100%; margin-left: 0; }
+    .pick-facts { display: grid; gap: 6px; }
+    .card-afterword { margin-left: 0; }
+    #running { grid-template-columns: 1fr; }
+    .lean:nth-child(n) { margin-top: 0; }
+    .lean { grid-template-columns: 48px minmax(0, 1fr); gap: 12px; padding-bottom: 28px; }
+    .lean-index { font-size: 40px; }
+    /* At this width the row wraps and strands the "at" beside the away
+       team, sitting high off the baseline. Stack the three instead, so
+       the matchup reads down the column the way it reads across on a
+       wider screen. */
+    .teams { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .vs { padding: 0; font-size: 9px; line-height: 1; }
+    .team img { width: 24px; height: 24px; }
+    .team .nm { font-size: 11px; }
+    .leanplay { font-size: 34px; }
+    .leandef { font-size: 17px; }
+    #board { padding: 0 10px 12px; }
+    .gnums { display: none; }
+    .gkick { width: auto; }
+    .gbody { padding-left: 2px; overflow-x: auto; }
+    .method { width: 100%; margin-left: 0; border-width: 4px; }
+    .method > summary { padding: 21px 18px; font-size: 34px; }
+    .method-body { padding: 2px 16px 28px; }
+    .tab-row { grid-template-columns: minmax(0, 1fr) auto; gap: 5px 14px; padding: 16px 0; }
+    .tab-play { grid-column: 1 / -1; font-size: 31px; }
+    .tab-score { grid-column: 1; font-size: 12px; }
+    .tab-res { grid-column: 1; }
+    .tab-units { grid-column: 2; grid-row: 2 / 4; align-self: center; font-size: 23px; }
+    .tab-row.total .tab-units { font-size: 27px; }
+    .rung { flex: 1 1 33%; padding: 8px 10px; }
+    .stats { gap: 18px 0; }
+    .stat, .stat:first-child { flex: 1 1 50%; padding: 5px 10px; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+  }
 </style>
 </head>
 <body>
@@ -1579,32 +1863,34 @@ HTML = """<!doctype html>
   <div class="topbar">
     <div class="bar-name"><i>Steve's</i> College Football Bar</div>
     <nav aria-label="Jump to a section">
-      <a href="#card-h">Napkin</a>
-      <a href="#running-h">Short list</a>
+      <a href="#card-h">The card</a>
+      <a href="#running-h">Arguments</a>
       <a href="#board-h">TV wall</a>
-      <a href="#book-h">Receipts</a>
+      <a href="#book-h">Damage</a>
     </nav>
   </div>
 
-  <header>
+  <header class="scoreboard-hero">
     <div class="hero-copy">
-      <p class="eyebrow">The loud end of the bar</p>
-      <p class="tagline">__TAGLINE__</p>
+      <p class="eyebrow">Week one &middot; final</p>
+      <h1 class="tagline">__TAGLINE__</h1>
       <p class="subhead">__SUBHEAD__</p>
+    </div>
+    <div class="hero-record" aria-label="Current record">
+      <span id="hero-record">0-2</span>
+      <span id="hero-units">-2.0u</span>
     </div>
     <div class="hero-art">
       <img src="__LOGO__" alt="__NAME__, __KICKER__">
     </div>
   </header>
 
-  <aside class="bar-note">The book has 55 games. Steve has opinions about six. This is restraint.</aside>
-
   <div id="livewrap"></div>
 
-  <h2 id="card-h">The napkin</h2>
+  <h2 id="card-h">The card</h2>
   <div id="card"></div>
 
-  <h2 id="running-h">Steve's short list</h2>
+  <h2 id="running-h">Six arguments before kickoff</h2>
   <div id="running"></div>
 
   <h2 id="board-h">The TV wall</h2>
@@ -1614,13 +1900,19 @@ HTML = """<!doctype html>
     <div id="board"></div>
   </details>
 
-  <aside class="bar-note">You can argue with the picks. You cannot argue with the receipt.</aside>
-
-  <h2 id="book-h">The receipts</h2>
+  <h2 id="book-h">The damage</h2>
   <div id="book"></div>
 
-  <details class="fold" id="ledger-fold">
-    <summary><span class="foldlabel">__LEDGER_OPEN__</span></summary>
+  <details class="method" id="method-fold">
+    <summary>Fine. Here's how the damn thing works.</summary>
+    <div class="method-body">
+
+    <p class="method-copy" id="source-policy"></p>
+
+    <h3>All the ugly numbers</h3>
+    <div id="record-details"></div>
+
+    <div id="ledger-fold">
 
     <h3 id="cal-h">Do my numbers mean anything</h3>
     <div id="cal"></div>
@@ -1643,16 +1935,18 @@ HTML = """<!doctype html>
 
     <h3 id="les-h">What I got wrong</h3>
     <div id="les"></div>
+    </div>
+
+    <h2 id="edge-h">Confidence, since you asked</h2>
+    <div id="edge"></div>
+
+    <footer>
+      <p id="about" class="warn"></p>
+      <div id="prov"></div>
+      <p class="warn" id="warn"></p>
+    </footer>
+    </div>
   </details>
-
-  <h2 id="edge-h">How loud is Steve?</h2>
-  <div id="edge"></div>
-
-  <footer>
-    <p id="about" class="warn"></p>
-    <div id="prov"></div>
-    <p class="warn" id="warn"></p>
-  </footer>
 
 </div>
 <script>
@@ -1720,42 +2014,45 @@ function hide(id) {
 }
 
 /* ---------------------------------------------------------- the card */
-function ticket(p) {
+const PICK_TAKES = {
+  "5afedb05e61f": "Stanford laid 4.5 with a quarterback whose right knee had played as much football as I had for 20 months. Hawai'i had Micah Alejado, the same staff, and 4.5 points in its pocket. I took the Warriors. They lost by 10. Put that one on my tab.",
+  "5273616f44e1": "Virginia put 16 players on the out list. Four were receivers. So was the kicker. NC State had CJ Bailey and 4.5 points. I took it. The Wolfpack scored eight damn points and lost by 26. That ticket got smoked.",
+};
+
+function ticket(p, featured) {
   const r = p.result || "pending";
   const settled = ["win","loss","push"].includes(r);
-  const badge = settled
-    ? `<span class="badge ${r}">${esc(p.result_label)} ${signed(p.units_net)}u</span>`
-    : `<span class="badge pending">${esc(V.card_pending)}</span>`;
+  const result = settled
+    ? `${esc(p.result_label)} ${signed(p.units_net)}u`
+    : esc(V.card_pending);
   const srcs = (p.sources || []).filter(s => s && s.url).map(s =>
     `<a href="${esc(s.url)}" target="_blank" rel="noopener">${
       esc(s.publisher || new URL(s.url).hostname)}</a>`).join(" &middot; ");
+  const facts = [
+    `Confidence <b>${num(p.confidence)}</b>`,
+    `Stake <b>${num(p.units)}u</b>`,
+    p.model_number == null ? "" : `My number <b>${num(p.model_number)}</b>`,
+    p.board_line == null ? "" : `Now <b>${p.market === "Total" ? num(p.board_line) : signed(p.board_line)}</b>`,
+    p.clv_points == null ? "" : `CLV <b>${signed(p.clv_points)}</b>`,
+    p.final_score ? `Final <b>${esc(p.final_score)}</b>` : "",
+  ].filter(Boolean);
+  const take = PICK_TAKES[p.id] || (p.defense && p.defense.text
+    ? p.defense.text : p.rationale) || "I took the number. The number can defend itself.";
+  const modelCaseLabel = p.defense && p.defense.text ? V.pick_numbers : "";
   return `
-  <div class="ticket ${settled ? r : ""}">
+  <article class="ticket ${featured ? "lock " : ""}${settled ? r : ""}"
+           data-model-case-label="${esc(modelCaseLabel)}">
+    ${featured ? `<div class="lockbanner">${esc(V.lock_title)}</div>` : ""}
     <div class="tick-top">
       <span class="play">${esc(p.title)}</span>
-      <span class="price">${p.price > 0 ? "+" : ""}${esc(p.price)}</span>
-      ${badge}
+      <span class="result-stamp ${r}">${result}</span>
     </div>
-    <div class="matchup">${esc(p.matchup)} &middot; ${esc(p.market)} ${esc(p.period)}</div>
-    ${p.board_line == null ? "" : `<p class="why moved">${
-      esc(V.pick_line_moved)
-        .replace("{taken}", p.title)
-        .replace("{now}", p.market === "Total" ? num(p.board_line)
-                                               : signed(p.board_line))}</p>`}
-    ${p.rationale ? `<p class="why">${esc(p.rationale)}</p>` : ""}
-    ${p.defense && p.defense.text
-      ? `<p class="why numbers">${esc(V.pick_numbers)} ${esc(p.defense.text)}</p>`
-      : ""}
-    <div class="meta">
-      <span>Confidence <b>${num(p.confidence, 1)}</b></span>
-      <span>Stake <b>${num(p.units, 1)}u</b></span>
-      ${p.model_number != null ? `<span>My number <b>${num(p.model_number, 1)}</b></span>` : ""}
-      ${p.clv_points != null ? `<span>Closing line value <b>${signed(p.clv_points, 1)}</b></span>` : ""}
-      ${p.final_score ? `<span>Final <b>${esc(p.final_score)}</b></span>` : ""}
-    </div>
-    ${srcs ? `<div class="srcs">${esc(V.sources_heading)}: ${srcs}</div>` : ""}
-    <div class="sign">&mdash; ${esc(V.sign_off)}</div>
-  </div>`;
+    <div class="matchup">${esc(p.matchup)} &middot; ${esc(p.market)} ${esc(p.period)} &middot; ${
+      p.price > 0 ? "+" : ""}${esc(p.price)}</div>
+    <p class="why">${esc(take)}</p>
+    <div class="pick-facts">${facts.map(f => `<span>${f}</span>`).join("")}</div>
+    ${srcs ? `<details class="srcs"><summary>${esc(V.sources_heading)}</summary><div>${srcs}</div></details>` : ""}
+  </article>`;
 }
 
 (function renderCard() {
@@ -1772,37 +2069,62 @@ function ticket(p) {
   // pick of the week, and here it only gets the crown and the top slot.
   const lock = live.find(p => p.id === DATA.lock_id);
   const rest = live.filter(p => p.id !== DATA.lock_id);
-  const lockHtml = lock
-    ? `<div class="lockbanner"><span>${esc(V.lock_title)}</span></div>` +
-      ticket(lock).replace('class="ticket', 'class="ticket lock') +
-      `<p class="quiet" style="margin:10px 0 4px">${esc(V.lock_note)}</p>`
-    : "";
+  const lockHtml = lock ? ticket(lock, true) : "";
   el("card").innerHTML =
     `<p class="weekline">Season ${esc(cur.season)} &middot; Week ${esc(cur.week)} &middot; ` +
     `${live.length} ${live.length === 1 ? "play" : "plays"} &middot; ${
-      num(staked, 1)} units</p>` +
-    (DATA.card_caveat
-      ? `<p class="caveat dark">${esc(DATA.card_caveat)}</p>` : "") +
-    `<div class="tickets">${lockHtml}${rest.map(ticket).join("")}</div>` +
-    (live.length < DATA.target_picks ? say(V.card_short, "quiet") : "") +
-    `<p class="quiet" style="margin-top:10px">${esc(V.sources_note)}</p>`;
+      num(staked)} units</p>` +
+    `<div class="tickets">${lockHtml}${rest.map(p => ticket(p, false)).join("")}</div>` +
+    (live.length < DATA.target_picks ? say(V.card_short, "card-afterword") : "");
 })();
 
 /* ---------------------------------------------------------- the book */
 (function renderBook() {
   const o = DATA.overall || {};
   if (!o.picks) { hide("book"); return; }
+  const record = `${o.wins}-${o.losses}${o.pushes ? "-" + o.pushes : ""}`;
+  if (el("hero-record")) el("hero-record").textContent = record;
+  if (el("hero-units")) el("hero-units").textContent = `${signed(o.units)}u`;
+  // The headline here used to be the hero sentence, printed a second time
+  // at twice the size, behind a hardcoded test for the 0-2 record. So the
+  // loudest repetition on the page was the page repeating itself, and the
+  // line was going to quietly turn into something else the moment a third
+  // pick settled. This reads off the ledger instead, and says the part the
+  // hero does not: what is on the tab.
+  const damage = !o.wins
+    ? `${record}. Nothing cashed. Here is the tab.`
+    : o.units < 0
+      ? `${record}. ${num(Math.abs(o.units))} units gone. Here is the tab.`
+      : o.units > 0
+        ? `${record}. Up ${num(o.units)}. The tab is finally on the other side.`
+        : `${record}. Dead even. Here is the tab.`;
+  const settled = (DATA.picks || []).filter(p =>
+    p.live && (p.result === "win" || p.result === "loss" || p.result === "push"));
+  const tab = settled.length ? `<div class="tab">` + settled.map(p => `
+      <div class="tab-row ${esc(p.result)}">
+        <div class="tab-play">${esc(p.title)}</div>
+        <div class="tab-score">${p.final_score ? esc(p.final_score) : ""}</div>
+        <div class="tab-res">${esc(p.result_label)}</div>
+        <div class="tab-units">${signed(p.units_net)}u</div>
+      </div>`).join("") + `
+      <div class="tab-row total">
+        <div class="tab-play">${settled.length} settled</div>
+        <div class="tab-score"></div>
+        <div class="tab-res">${esc(record)}</div>
+        <div class="tab-units">${signed(o.units)}u</div>
+      </div></div>` : "";
+  el("book").innerHTML = `<p class="damage-copy">${esc(damage)}</p>` + tab;
   const upLabel = (o.units < 0) ? V.stat_units_down : V.stat_units;
   const stats = [
     [upLabel, signed(o.units), true, o.units],
-    [V.stat_record, `${o.wins}-${o.losses}${o.pushes ? "-" + o.pushes : ""}`, false, null],
+    [V.stat_record, record, false, null],
     [V.stat_winrate, o.win_pct != null ? o.win_pct + "%" : "n/a", false, null],
     [V.stat_roi, o.roi != null ? signed(o.roi, 1) + "%" : "n/a", false, o.roi],
     [V.stat_clv, o.avg_clv != null ? signed(o.avg_clv, 2) : "n/a", false, o.avg_clv],
     [V.stat_close, o.beat_close_pct != null ? o.beat_close_pct + "%" : "n/a", false, null],
     [V.stat_pending, DATA.pending_count, false, null],
   ];
-  el("book").innerHTML =
+  el("record-details").innerHTML =
     `<div class="stats">${stats.map(([k, v, big, sign]) => `
       <div class="stat ${big ? "big" : ""}">
         <div class="k">${esc(k)}</div>
@@ -1937,59 +2259,96 @@ if ((DATA.lessons || []).length) {
   const fmt = c => c.market === "total"
     ? `${esc(c.side)} ${c.line}`
     : `${esc(c.side)} ${c.line > 0 ? "+" : ""}${c.line}`;
-  const move = c => {
-    if (c.days_tracked <= 1) return `<span class="flat">${esc(V.running_new)}</span>`;
-    const d = c.moved_confidence;
-    const cls = d > 0 ? "up" : d < 0 ? "down" : "flat";
-    const arrow = d > 0 ? "&uarr;" : d < 0 ? "&darr;" : "&rarr;";
-    const line = c.moved_line
-      ? ` &middot; line ${c.moved_line.from} to ${c.moved_line.to}` : "";
-    // Once both figures round to the same half point, "from 7.0" on a
-    // row already showing 7.0 claims a move that did not happen.
-    const from = num(c.first_confidence) === num(c.confidence)
-      ? `<span class="flat">${esc(V.running_held)}</span>`
-      : `<span class="${cls}">${arrow} from ${num(c.first_confidence)}</span>`;
-    return `${from} <span class="flat">${esc(
-      V.running_since.replace("{days}", c.days_tracked))}${line}</span>`;
-  };
   const badge = (src, name) => `<div class="team">${
     src ? `<img src="${esc(src)}" alt="${esc(name)}" loading="lazy">`
         : ""}<span class="nm">${esc(name)}</span></div>`;
-  const row = (c, gone) => `<div class="lean ${gone ? "gone" : ""}">
-    <div class="leanhead">
-      <div class="conf"><div class="n">${num(c.confidence, 1)}</div>
-        <div class="lbl">conf</div></div>
+  // Steve's case for a lean, built only out of the numbers on its own row.
+  //
+  // The previous version picked a sentence by card position and wrote the
+  // team names into the templates as literals, so slot 2 said "West
+  // Virginia" and slot 3 said "Alabama" whatever games were actually
+  // sitting there. Reorder the card and it argued the wrong game. Every
+  // clause below resolves from the pick. Position only rotates which
+  // shape gets used, so six leans in a row do not read like six copies of
+  // one sentence.
+  //
+  // The gap is subtracted from the two numbers actually printed rather
+  // than read off edge_points. Those two disagree by a rounding step, and
+  // a reader who checks 15.5 against 10.5 and gets told 5.1 has been
+  // handed a reason to distrust every other number on the page.
+  const shapeFor = (pool, c, i) => {
+    const key = `${c.matchup}|${c.side}|${c.market}`;
+    let h = 0;
+    for (let n = 0; n < key.length; n++) h = (h * 31 + key.charCodeAt(n)) >>> 0;
+    return pool[(h + i) % pool.length];
+  };
+  const leanTake = (c, i) => {
+    if (c.line == null || c.model_number == null) {
+      return `I like ${c.side} here and the book has not talked me out of it.`;
+    }
+    const book = num(Math.abs(c.line));
+    const mine = num(Math.abs(c.model_number));
+    const gap = half(Math.abs(Number(book) - Number(mine))).replace(/[.]0$/, "");
+    const home = c.home_school || c.home_team;
+    const away = c.away_school || c.away_team;
+
+    if (c.market === "total") {
+      return shapeFor(c.side === "Over" ? [
+        `I have ${mine} points in this game. The book stopped at ${book}. Over, before somebody checks the math.`,
+        `${away} and ${home} are supposed to stay under ${book}. I make it ${mine}. Over.`,
+        `The book is ${gap} points light on this one. My number is ${mine}. Over.`,
+      ] : [
+        `The book wants ${book} out of ${away} and ${home}. I have ${mine}. Under.`,
+        `I make this game ${mine}. They hung ${book}. Somebody is ${gap} points off and it is not me. Under.`,
+        `${book} is a lot of scoring to ask these two for. My number says ${mine}. Under.`,
+      ], c, i);
+    }
+
+    // A positive line means the side is getting points, so the book's
+    // favourite is the other team on the row. The opponent is matched on
+    // the mascot-stripped school name, never on a prefix, and a row that
+    // will not resolve falls through to a shape that names nobody.
+    const foe = c.side === away ? home : (c.side === home ? away : null);
+    if (c.line > 0) {
+      if (!foe) {
+        return `The book is asking ${book} here. I have ${mine}. Give me ${c.side} and the points.`;
+      }
+      return shapeFor([
+        `${foe} is laying ${book}. I make it ${mine}. Give me ${c.side} and the points.`,
+        `${book} is a lot of furniture to move. I have ${foe} by ${mine}. ${c.side} plus the points.`,
+        `I have ${foe} by ${mine} and the book is asking ${book}. That is ${gap} points somebody left on the bar. Take ${c.side}.`,
+      ], c, i);
+    }
+    return shapeFor([
+      `${c.side} is only laying ${book}. I have them by ${mine}. Lay it.`,
+      `The book will sell you ${c.side} at ${book}. My number says ${mine}. Lay the number.`,
+      `${gap} points of charity sitting here. They have ${c.side} at ${book}, I have them by ${mine}. Lay it.`,
+    ], c, i);
+  };
+  const movement = c => c.moved_line
+    ? ` &middot; line ${num(c.moved_line.from)} to ${num(c.moved_line.to)}`
+    : "";
+  const indexOf = c => Math.max(0, R.card.indexOf(c));
+  const row = (c, gone) => `<div class="lean ${gone ? "gone" : ""}"
+    data-model-case="${c.defense && c.defense.text ? "available" : "none"}">
+    <div class="lean-index">${String(indexOf(c) + 1).padStart(2, "0")}</div>
+    <div class="lean-argument">
       <div class="teams">
         ${badge(c.away_logo, c.away_team || c.matchup)}
         <span class="vs">at</span>
         ${badge(c.home_logo, c.home_team || "")}
       </div>
-    </div>
-    <div class="leanbody">
-      <div class="leanplay">${fmt(c)} <span class="price">${
-        c.price > 0 ? "+" : ""}${esc(c.price)}</span></div>
-      ${c.defense && c.defense.text
-        ? `<div class="leandef">${esc(c.defense.text)}</div>` : ""}
-      <div class="leanmeta">${esc(c.market)} ${esc(c.period)} &middot; my
-        number ${num(c.model_number)}${c.edge_points == null ? "" :
-        ` &middot; ${num(Math.abs(c.edge_points))} points apart`}</div>
-      <div class="leanmove">${move(c)}</div>
+      <h3 class="leanplay">${fmt(c)}</h3>
+      <p class="leandef">${esc(leanTake(c, indexOf(c)))}</p>
+      <div class="leanmeta">${num(c.confidence)} confidence &middot; ${
+        esc(c.period)} &middot; ${c.price > 0 ? "+" : ""}${esc(c.price)}${movement(c)}</div>
     </div></div>`;
-  const dropped = (R.dropped || []).length
-    ? `<div class="dropped"><h3>${esc(V.running_dropped_heading)}</h3>` +
-      R.dropped.map(c => row(c, true)).join("") +
-      say(V.running_dropped_note, "quiet") + `</div>`
-    : "";
   const games = new Set(R.card.map(c => c.matchup)).size;
   const stacked = games < R.card.length
     ? say(V.running_stacked.replace("{games}", games), "quiet")
     : "";
-  const caveat = R.caveat ? `<p class="caveat">${esc(R.caveat)}</p>` : "";
-  const note = V.running_note.replace("{n}",
-    R.card.length === 1 ? "one lean" : `${R.card.length} leans`);
   el("running").innerHTML =
-    `<p class="quiet" style="margin-bottom:14px">${esc(note)}</p>` +
-    caveat + R.card.map(c => row(c, false)).join("") + stacked + dropped;
+    R.card.map(c => row(c, false)).join("") + stacked;
 })();
 
 /* ---------------------------------------------------- the explainer */
@@ -2147,6 +2506,7 @@ el("prov").textContent = DATA.board_fetched_at
   : V.provenance_noboard;
 el("about").textContent = V.about;
 el("warn").textContent = V.disclaimer;
+el("source-policy").textContent = V.sources_note;
 (function foldEmpties() {
   for (const [fold, ids] of [
     ["board-fold", ["board"]],
@@ -2182,13 +2542,22 @@ def main() -> int:
     # swapping who speaks is a change to VOICE and nothing else.
     html = (HTML
             .replace("__DATA__", json.dumps(payload, separators=(",", ":")))
-            .replace("__VOICE__", json.dumps(VOICE, separators=(",", ":")))
+            # Every line Steve says, not just the subhead. calibration_note
+            # and research_note both carry {publish} and both went to the
+            # browser raw, so the page printed the placeholder at a reader
+            # in two places. Filling the whole dict here is the point of
+            # fill_publish: one quantity, one substitution, no sentence
+            # left holding a brace.
+            .replace("__VOICE__", json.dumps(
+                {k: fill_publish(v) if isinstance(v, str) else v
+                 for k, v in VOICE.items()}, separators=(",", ":")))
             .replace("__NAME__", VOICE["name"])
             .replace("__TAGLINE__", VOICE["tagline"])
             .replace("__SUBHEAD__", fill_publish(VOICE["subhead"]))
             .replace("__KICKER__", VOICE["kicker"])
             .replace("__LOGO__", VOICE["logo"])
-            .replace("__BOARD_OPEN__", VOICE["board_open"])
+            .replace("__BOARD_OPEN__", VOICE["board_open"].format(
+                count=len(payload["board"].get("rows") or [])))
             .replace("__LEDGER_OPEN__", VOICE["ledger_open"])
             .replace("__MAX_BOARD_AGE__", str(MAX_BOARD_AGE_HOURS))
             .replace("__PAGE_TITLE__", VOICE["page_title"]))
