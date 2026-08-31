@@ -2276,13 +2276,34 @@ if ((DATA.lessons || []).length) {
   // than read off edge_points. Those two disagree by a rounding step, and
   // a reader who checks 15.5 against 10.5 and gets told 5.1 has been
   // handed a reason to distrust every other number on the page.
-  const shapeFor = (pool, c, i) => {
-    const key = `${c.matchup}|${c.side}|${c.market}`;
+  //
+  // The shape rotates by a lean's position among the leans that share its
+  // pool, not by its position on the card. Hashing each matchup on its own
+  // let two unders collide the first time the card reordered, and the page
+  // said "is a lot of scoring to ask these two for" twice in six rows.
+  // Counting within the pool cannot collide until there are more leans of
+  // one kind than there are ways to say it.
+  const poolKey = c => c.market === "total"
+    ? (c.side === "Over" ? "over" : "under")
+    : (c.line > 0 ? "dog" : "fav");
+  const cardSeed = (() => {
+    const key = R.card.map(c => c.matchup).join("|");
     let h = 0;
     for (let n = 0; n < key.length; n++) h = (h * 31 + key.charCodeAt(n)) >>> 0;
-    return pool[(h + i) % pool.length];
-  };
-  const leanTake = (c, i) => {
+    return h;
+  })();
+  const poolOrdinal = (() => {
+    const seen = {}, out = new Map();
+    for (const c of R.card) {
+      const k = poolKey(c);
+      seen[k] = seen[k] || 0;
+      out.set(c, seen[k]++);
+    }
+    return out;
+  })();
+  const shapeFor = (pool, c) =>
+    pool[(cardSeed + (poolOrdinal.get(c) || 0)) % pool.length];
+  const leanTake = c => {
     if (c.line == null || c.model_number == null) {
       return `I like ${c.side} here and the book has not talked me out of it.`;
     }
@@ -2301,7 +2322,7 @@ if ((DATA.lessons || []).length) {
         `The book wants ${book} out of ${away} and ${home}. I have ${mine}. Under.`,
         `I make this game ${mine}. They hung ${book}. Somebody is ${gap} points off and it is not me. Under.`,
         `${book} is a lot of scoring to ask these two for. My number says ${mine}. Under.`,
-      ], c, i);
+      ], c);
     }
 
     // A positive line means the side is getting points, so the book's
@@ -2317,13 +2338,13 @@ if ((DATA.lessons || []).length) {
         `${foe} is laying ${book}. I make it ${mine}. Give me ${c.side} and the points.`,
         `${book} is a lot of furniture to move. I have ${foe} by ${mine}. ${c.side} plus the points.`,
         `I have ${foe} by ${mine} and the book is asking ${book}. That is ${gap} points somebody left on the bar. Take ${c.side}.`,
-      ], c, i);
+      ], c);
     }
     return shapeFor([
       `${c.side} is only laying ${book}. I have them by ${mine}. Lay it.`,
       `The book will sell you ${c.side} at ${book}. My number says ${mine}. Lay the number.`,
       `${gap} points of charity sitting here. They have ${c.side} at ${book}, I have them by ${mine}. Lay it.`,
-    ], c, i);
+    ], c);
   };
   const movement = c => c.moved_line
     ? ` &middot; line ${num(c.moved_line.from)} to ${num(c.moved_line.to)}`
@@ -2339,7 +2360,7 @@ if ((DATA.lessons || []).length) {
         ${badge(c.home_logo, c.home_team || "")}
       </div>
       <h3 class="leanplay">${fmt(c)}</h3>
-      <p class="leandef">${esc(leanTake(c, indexOf(c)))}</p>
+      <p class="leandef">${esc(leanTake(c))}</p>
       <div class="leanmeta">${num(c.confidence)} confidence &middot; ${
         esc(c.period)} &middot; ${c.price > 0 ? "+" : ""}${esc(c.price)}${movement(c)}</div>
     </div></div>`;
