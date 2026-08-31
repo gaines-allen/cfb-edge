@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-08-31T18:15:33+00:00",
+  "built_at": "2026-08-31T22:10:19+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-08-31T18:14:43+00:00",
+  "board_fetched_at": "2026-08-31T22:10:16+00:00",
   "warning": null,
   "games_on_board": 102,
   "games_with_candidates": 38,
@@ -109,20 +109,20 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-08-31T18:15:24+00:00",
+    "measured_at": "2026-08-31T22:10:18+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 55,
-      "bias": -3.047,
+      "bias": -3.029,
       "median": -3.2,
-      "sigma": 5.839
+      "sigma": 5.862
     },
     "spreads": {
       "n": 55,
-      "bias": 0.429,
-      "median": 0.7,
-      "sigma": 2.837
+      "bias": 0.356,
+      "median": 0.5,
+      "sigma": 2.705
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -178,7 +178,7 @@
           "price": -112,
           "model_number": 64.8,
           "edge_points": 12.3,
-          "edge_sigma": 2.11,
+          "edge_sigma": 2.1,
           "floor_confidence": 6.7
         },
         {
@@ -190,8 +190,8 @@
           "price": -110,
           "model_number": -26.3,
           "edge_points": -1.8,
-          "edge_sigma": -0.63,
-          "floor_confidence": 4.4
+          "edge_sigma": -0.67,
+          "floor_confidence": 4.5
         }
       ]
     },
@@ -246,7 +246,7 @@
           "price": -114,
           "model_number": 63.1,
           "edge_points": 11.6,
-          "edge_sigma": 1.99,
+          "edge_sigma": 1.98,
           "floor_confidence": 6.5
         },
         {
@@ -255,10 +255,10 @@
           "side": "South Florida",
           "market_line": -13.5,
           "bet_line": -13.5,
-          "price": -110,
+          "price": -115,
           "model_number": -15.0,
           "edge_points": -1.5,
-          "edge_sigma": -0.53,
+          "edge_sigma": -0.55,
           "floor_confidence": 4.3
         }
       ]
@@ -314,7 +314,7 @@
           "price": -110,
           "model_number": 35.2,
           "edge_points": -11.3,
-          "edge_sigma": -1.94,
+          "edge_sigma": -1.93,
           "floor_confidence": 6.4
         }
       ]
@@ -371,20 +371,20 @@
           "price": -106,
           "model_number": 63.1,
           "edge_points": 10.6,
-          "edge_sigma": 1.82,
+          "edge_sigma": 1.81,
           "floor_confidence": 6.2
         },
         {
           "market": "spread",
           "period": "full",
           "side": "Memphis",
-          "market_line": -9.5,
-          "bet_line": -9.5,
-          "price": -120,
+          "market_line": -11.5,
+          "bet_line": -11.5,
+          "price": -110,
           "model_number": -13.7,
-          "edge_points": -4.2,
-          "edge_sigma": -1.48,
-          "floor_confidence": 5.7
+          "edge_points": -2.2,
+          "edge_sigma": -0.81,
+          "floor_confidence": 4.7
         }
       ]
     },
@@ -439,7 +439,7 @@
           "price": -114,
           "model_number": 40.9,
           "edge_points": -10.6,
-          "edge_sigma": -1.82,
+          "edge_sigma": -1.81,
           "floor_confidence": 6.2
         }
       ]
@@ -495,20 +495,20 @@
           "price": -114,
           "model_number": 43.4,
           "edge_points": -10.1,
-          "edge_sigma": -1.73,
+          "edge_sigma": -1.72,
           "floor_confidence": 6.1
         },
         {
           "market": "spread",
           "period": "full",
           "side": "East Carolina",
-          "market_line": -28.5,
-          "bet_line": 28.5,
-          "price": -110,
+          "market_line": -27.5,
+          "bet_line": 27.5,
+          "price": -102,
           "model_number": -22.8,
-          "edge_points": 5.7,
-          "edge_sigma": 2.01,
-          "floor_confidence": 6.5
+          "edge_points": 4.7,
+          "edge_sigma": 1.74,
+          "floor_confidence": 6.1
         }
       ]
     },
@@ -563,7 +563,7 @@
           "price": -115,
           "model_number": 38.8,
           "edge_points": -9.7,
-          "edge_sigma": -1.66,
+          "edge_sigma": -1.65,
           "floor_confidence": 6.0
         },
         {
@@ -572,10 +572,10 @@
           "side": "Wake Forest",
           "market_line": -24.5,
           "bet_line": -24.5,
-          "price": -105,
+          "price": -114,
           "model_number": -26.7,
           "edge_points": -2.2,
-          "edge_sigma": -0.78,
+          "edge_sigma": -0.81,
           "floor_confidence": 4.7
         }
       ]
@@ -626,13 +626,13 @@
           "market": "total",
           "period": "full",
           "side": "Over",
-          "market_line": 50.5,
-          "bet_line": 50.5,
-          "price": -112,
+          "market_line": 51.5,
+          "bet_line": 51.5,
+          "price": -105,
           "model_number": 60.0,
-          "edge_points": 9.5,
-          "edge_sigma": 1.63,
-          "floor_confidence": 5.9
+          "edge_points": 8.5,
+          "edge_sigma": 1.45,
+          "floor_confidence": 5.7
         }
       ]
     },
@@ -687,8 +687,8 @@
           "price": -105,
           "model_number": 59.9,
           "edge_points": 8.4,
-          "edge_sigma": 1.44,
-          "floor_confidence": 5.7
+          "edge_sigma": 1.43,
+          "floor_confidence": 5.6
         }
       ]
     },
@@ -743,20 +743,8 @@
           "price": -115,
           "model_number": 39.1,
           "edge_points": -7.4,
-          "edge_sigma": -1.27,
+          "edge_sigma": -1.26,
           "floor_confidence": 5.4
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Ohio",
-          "market_line": -24.5,
-          "bet_line": 24.5,
-          "price": -110,
-          "model_number": -22.2,
-          "edge_points": 2.3,
-          "edge_sigma": 0.81,
-          "floor_confidence": 4.7
         }
       ]
     },
@@ -813,6 +801,62 @@
           "edge_points": 6.9,
           "edge_sigma": 1.18,
           "floor_confidence": 5.3
+        }
+      ]
+    },
+    {
+      "event_id": "1697069330d0343bdf7930ac0b0c3863",
+      "kickoff": "2026-09-04T01:00:00Z",
+      "matchup": "UAB Blazers @ Illinois Fighting Illini",
+      "home_team": "Illinois Fighting Illini",
+      "away_team": "UAB Blazers",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Illinois",
+        "away_team": "UAB",
+        "projected_spread": -28.3,
+        "projected_total": 61.3,
+        "projected_h1_spread": -15.6,
+        "projected_h1_total": 28.8,
+        "hfa_applied": 2.2,
+        "coherence_gap": 1.4,
+        "inputs": {
+          "home_rating": 8.94,
+          "away_rating": -16.77,
+          "home_points": 42.6,
+          "away_points": 15.7,
+          "home_components": {
+            "sp": 10.4,
+            "sp_off": 32,
+            "sp_def": 22.1,
+            "fpi": 6.315
+          },
+          "away_components": {
+            "sp": -17.5,
+            "sp_off": 20.6,
+            "sp_def": 37.6,
+            "fpi": -15.451
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 54.5,
+          "bet_line": 54.5,
+          "price": -112,
+          "model_number": 61.3,
+          "edge_points": 6.8,
+          "edge_sigma": 1.16,
+          "floor_confidence": 5.2
         }
       ]
     },
@@ -879,8 +923,8 @@
           "price": -106,
           "model_number": -20.5,
           "edge_points": 3.0,
-          "edge_sigma": 1.06,
-          "floor_confidence": 5.1
+          "edge_sigma": 1.11,
+          "floor_confidence": 5.2
         }
       ]
     },
@@ -932,11 +976,11 @@
           "side": "Under",
           "market_line": 50.5,
           "bet_line": 50.5,
-          "price": -110,
+          "price": -105,
           "model_number": 44.1,
           "edge_points": -6.4,
-          "edge_sigma": -1.1,
-          "floor_confidence": 5.2
+          "edge_sigma": -1.09,
+          "floor_confidence": 5.1
         },
         {
           "market": "spread",
@@ -947,64 +991,8 @@
           "price": -105,
           "model_number": -39.4,
           "edge_points": 2.1,
-          "edge_sigma": 0.74,
-          "floor_confidence": 4.6
-        }
-      ]
-    },
-    {
-      "event_id": "185883640e8f90f283915ddadb0230a3",
-      "kickoff": "2026-09-05T16:00:00Z",
-      "matchup": "Coastal Carolina Chanticleers @ West Virginia Mountaineers",
-      "home_team": "West Virginia Mountaineers",
-      "away_team": "Coastal Carolina Chanticleers",
-      "neutral_site": false,
-      "model": {
-        "home_team": "West Virginia",
-        "away_team": "Coastal Carolina",
-        "projected_spread": -15.6,
-        "projected_total": 56.3,
-        "projected_h1_spread": -8.6,
-        "projected_h1_total": 26.5,
-        "hfa_applied": 2.2,
-        "coherence_gap": 2.7,
-        "inputs": {
-          "home_rating": -0.77,
-          "away_rating": -13.77,
-          "home_points": 33.1,
-          "away_points": 20.2,
-          "home_components": {
-            "sp": -1.3,
-            "sp_off": 25.3,
-            "sp_def": 26.6,
-            "fpi": 0.197
-          },
-          "away_components": {
-            "sp": -14.7,
-            "sp_off": 20.6,
-            "sp_def": 34.8,
-            "fpi": -12.093
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Coastal Carolina",
-          "market_line": -21.5,
-          "bet_line": 21.5,
-          "price": -110,
-          "model_number": -15.6,
-          "edge_points": 5.9,
-          "edge_sigma": 2.08,
-          "floor_confidence": 6.6
+          "edge_sigma": 0.78,
+          "floor_confidence": 4.7
         }
       ]
     },
@@ -1065,62 +1053,6 @@
       ]
     },
     {
-      "event_id": "1697069330d0343bdf7930ac0b0c3863",
-      "kickoff": "2026-09-04T01:00:00Z",
-      "matchup": "UAB Blazers @ Illinois Fighting Illini",
-      "home_team": "Illinois Fighting Illini",
-      "away_team": "UAB Blazers",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Illinois",
-        "away_team": "UAB",
-        "projected_spread": -28.3,
-        "projected_total": 61.3,
-        "projected_h1_spread": -15.6,
-        "projected_h1_total": 28.8,
-        "hfa_applied": 2.2,
-        "coherence_gap": 1.4,
-        "inputs": {
-          "home_rating": 8.94,
-          "away_rating": -16.77,
-          "home_points": 42.6,
-          "away_points": 15.7,
-          "home_components": {
-            "sp": 10.4,
-            "sp_off": 32,
-            "sp_def": 22.1,
-            "fpi": 6.315
-          },
-          "away_components": {
-            "sp": -17.5,
-            "sp_off": 20.6,
-            "sp_def": 37.6,
-            "fpi": -15.451
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 55.5,
-          "bet_line": 55.5,
-          "price": -105,
-          "model_number": 61.3,
-          "edge_points": 5.8,
-          "edge_sigma": 0.99,
-          "floor_confidence": 5.0
-        }
-      ]
-    },
-    {
       "event_id": "965fa47588c773e6753d409fc1020dec",
       "kickoff": "2026-09-05T23:00:00Z",
       "matchup": "Western Michigan Broncos @ Michigan Wolverines",
@@ -1171,7 +1103,7 @@
           "price": -110,
           "model_number": 42.8,
           "edge_points": -5.7,
-          "edge_sigma": -0.98,
+          "edge_sigma": -0.97,
           "floor_confidence": 5.0
         },
         {
@@ -1183,8 +1115,8 @@
           "price": -105,
           "model_number": -24.5,
           "edge_points": 3.0,
-          "edge_sigma": 1.06,
-          "floor_confidence": 5.1
+          "edge_sigma": 1.11,
+          "floor_confidence": 5.2
         }
       ]
     },
@@ -1239,7 +1171,63 @@
           "price": -104,
           "model_number": -15.6,
           "edge_points": -5.1,
-          "edge_sigma": -1.8,
+          "edge_sigma": -1.89,
+          "floor_confidence": 6.3
+        }
+      ]
+    },
+    {
+      "event_id": "185883640e8f90f283915ddadb0230a3",
+      "kickoff": "2026-09-05T16:00:00Z",
+      "matchup": "Coastal Carolina Chanticleers @ West Virginia Mountaineers",
+      "home_team": "West Virginia Mountaineers",
+      "away_team": "Coastal Carolina Chanticleers",
+      "neutral_site": false,
+      "model": {
+        "home_team": "West Virginia",
+        "away_team": "Coastal Carolina",
+        "projected_spread": -15.6,
+        "projected_total": 56.3,
+        "projected_h1_spread": -8.6,
+        "projected_h1_total": 26.5,
+        "hfa_applied": 2.2,
+        "coherence_gap": 2.7,
+        "inputs": {
+          "home_rating": -0.77,
+          "away_rating": -13.77,
+          "home_points": 33.1,
+          "away_points": 20.2,
+          "home_components": {
+            "sp": -1.3,
+            "sp_off": 25.3,
+            "sp_def": 26.6,
+            "fpi": 0.197
+          },
+          "away_components": {
+            "sp": -14.7,
+            "sp_off": 20.6,
+            "sp_def": 34.8,
+            "fpi": -12.093
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Coastal Carolina",
+          "market_line": -20.5,
+          "bet_line": 20.5,
+          "price": -105,
+          "model_number": -15.6,
+          "edge_points": 4.9,
+          "edge_sigma": 1.81,
           "floor_confidence": 6.2
         }
       ]
@@ -1350,7 +1338,7 @@
           "side": "Under",
           "market_line": 47.5,
           "bet_line": 47.5,
-          "price": -105,
+          "price": -110,
           "model_number": 43.0,
           "edge_points": -4.5,
           "edge_sigma": -0.77,
@@ -1365,8 +1353,8 @@
           "price": -115,
           "model_number": -22.5,
           "edge_points": -2.0,
-          "edge_sigma": -0.7,
-          "floor_confidence": 4.5
+          "edge_sigma": -0.74,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -1432,10 +1420,10 @@
           "side": "San Jos\u00e9 State",
           "market_line": -3.5,
           "bet_line": 3.5,
-          "price": -110,
+          "price": -124,
           "model_number": -1.1,
           "edge_points": 2.4,
-          "edge_sigma": 0.85,
+          "edge_sigma": 0.89,
           "floor_confidence": 4.8
         }
       ]
@@ -1491,8 +1479,8 @@
           "price": -104,
           "model_number": -16.4,
           "edge_points": 4.1,
-          "edge_sigma": 1.45,
-          "floor_confidence": 5.7
+          "edge_sigma": 1.52,
+          "floor_confidence": 5.8
         }
       ]
     },
@@ -1547,8 +1535,8 @@
           "price": -112,
           "model_number": -32.6,
           "edge_points": -4.1,
-          "edge_sigma": -1.45,
-          "floor_confidence": 5.7
+          "edge_sigma": -1.52,
+          "floor_confidence": 5.8
         },
         {
           "market": "total",
@@ -1628,8 +1616,8 @@
           "price": -114,
           "model_number": 21.5,
           "edge_points": -3.0,
-          "edge_sigma": -1.06,
-          "floor_confidence": 5.1
+          "edge_sigma": -1.11,
+          "floor_confidence": 5.2
         }
       ]
     },
@@ -1740,8 +1728,8 @@
           "price": -110,
           "model_number": -37.2,
           "edge_points": 3.3,
-          "edge_sigma": 1.16,
-          "floor_confidence": 5.2
+          "edge_sigma": 1.22,
+          "floor_confidence": 5.3
         },
         {
           "market": "total",
@@ -1805,11 +1793,11 @@
           "side": "Tulsa",
           "market_line": 13.5,
           "bet_line": 13.5,
-          "price": -102,
+          "price": -110,
           "model_number": 10.2,
           "edge_points": -3.3,
-          "edge_sigma": -1.16,
-          "floor_confidence": 5.2
+          "edge_sigma": -1.22,
+          "floor_confidence": 5.3
         }
       ]
     },
@@ -1932,8 +1920,8 @@
           "price": -115,
           "model_number": -18.1,
           "edge_points": -1.6,
-          "edge_sigma": -0.56,
-          "floor_confidence": 4.3
+          "edge_sigma": -0.59,
+          "floor_confidence": 4.4
         }
       ]
     },
@@ -1988,8 +1976,8 @@
           "price": -106,
           "model_number": -1.2,
           "edge_points": -2.7,
-          "edge_sigma": -0.95,
-          "floor_confidence": 4.9
+          "edge_sigma": -1.0,
+          "floor_confidence": 5.0
         },
         {
           "market": "total",
@@ -2000,7 +1988,7 @@
           "price": -114,
           "model_number": 56.1,
           "edge_points": 2.6,
-          "edge_sigma": 0.45,
+          "edge_sigma": 0.44,
           "floor_confidence": 4.2
         }
       ]
@@ -2056,7 +2044,7 @@
           "price": -110,
           "model_number": 45.9,
           "edge_points": -2.6,
-          "edge_sigma": -0.45,
+          "edge_sigma": -0.44,
           "floor_confidence": 4.2
         },
         {
@@ -2068,64 +2056,8 @@
           "price": -105,
           "model_number": -14.0,
           "edge_points": 2.5,
-          "edge_sigma": 0.88,
-          "floor_confidence": 4.8
-        }
-      ]
-    },
-    {
-      "event_id": "19db717a66097e6d3fb887ae8cf3aaae",
-      "kickoff": "2026-09-05T23:00:00Z",
-      "matchup": "Missouri State Bears @ Texas A&M Aggies",
-      "home_team": "Texas A&M Aggies",
-      "away_team": "Missouri State Bears",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Texas A&M",
-        "away_team": "Missouri State",
-        "projected_spread": -39.1,
-        "projected_total": 54.5,
-        "projected_h1_spread": -21.5,
-        "projected_h1_total": 25.6,
-        "hfa_applied": 2.2,
-        "coherence_gap": 0.8,
-        "inputs": {
-          "home_rating": 20.58,
-          "away_rating": -15.94,
-          "home_points": 45.7,
-          "away_points": 5.8,
-          "home_components": {
-            "sp": 20.9,
-            "sp_off": 37.6,
-            "sp_def": 16.4,
-            "fpi": 20.002
-          },
-          "away_components": {
-            "sp": -19.1,
-            "sp_off": 16.4,
-            "sp_def": 35.1,
-            "fpi": -10.255
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Missouri State",
-          "market_line": -41.5,
-          "bet_line": 41.5,
-          "price": -115,
-          "model_number": -39.1,
-          "edge_points": 2.4,
-          "edge_sigma": 0.85,
-          "floor_confidence": 4.8
+          "edge_sigma": 0.92,
+          "floor_confidence": 4.9
         }
       ]
     },
@@ -2237,8 +2169,8 @@
           "price": -115,
           "model_number": 1.2,
           "edge_points": -2.3,
-          "edge_sigma": -0.81,
-          "floor_confidence": 4.7
+          "edge_sigma": -0.85,
+          "floor_confidence": 4.8
         },
         {
           "market": "total",
@@ -2362,7 +2294,63 @@
           "price": -105,
           "model_number": -19.9,
           "edge_points": 1.6,
-          "edge_sigma": 0.56,
+          "edge_sigma": 0.59,
+          "floor_confidence": 4.4
+        }
+      ]
+    },
+    {
+      "event_id": "05c2e060c97c538faeee8237a0bd60f0",
+      "kickoff": "2026-09-05T00:00:00Z",
+      "matchup": "Toledo Rockets @ Michigan State Spartans",
+      "home_team": "Michigan State Spartans",
+      "away_team": "Toledo Rockets",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Michigan State",
+        "away_team": "Toledo",
+        "projected_spread": -11.0,
+        "projected_total": 46.3,
+        "projected_h1_spread": -6.1,
+        "projected_h1_total": 21.8,
+        "hfa_applied": 2.2,
+        "coherence_gap": 0.3,
+        "inputs": {
+          "home_rating": 1.51,
+          "away_rating": -6.91,
+          "home_points": 27.3,
+          "away_points": 16.0,
+          "home_components": {
+            "sp": 2.2,
+            "sp_off": 27.7,
+            "sp_def": 25.1,
+            "fpi": 0.281
+          },
+          "away_components": {
+            "sp": -9.1,
+            "sp_off": 17.9,
+            "sp_def": 26.6,
+            "fpi": -2.972
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Michigan State",
+          "market_line": -9.5,
+          "bet_line": -9.5,
+          "price": -115,
+          "model_number": -11.0,
+          "edge_points": -1.5,
+          "edge_sigma": -0.55,
           "floor_confidence": 4.3
         }
       ]
