@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T19:09:37+00:00",
+  "generated_at": "2026-09-02T20:16:24+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-09-02T18:59:45+00:00",
+    "built_at": "2026-09-02T20:16:04+00:00",
     "rows": [
       {
         "market_spread": -21.5,
@@ -96,6 +96,47 @@
         }
       },
       {
+        "market_spread": -14.5,
+        "market_total": 51.5,
+        "event_id": "85b9f3dfd3a9deeaaa046572f9b4fbeb",
+        "kickoff": "2026-09-05T23:00:00Z",
+        "matchup": "Florida International Panthers @ South Florida Bulls",
+        "home_team": "South Florida Bulls",
+        "away_team": "Florida International Panthers",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
+        "neutral_site": false,
+        "projected_spread": -15.0,
+        "projected_total": 63.1,
+        "home_short": "South Florida",
+        "away_short": "Florida International",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Over",
+            "market_line": 51.5,
+            "bet_line": 51.5,
+            "price": -112,
+            "model_number": 63.1,
+            "edge_points": 11.6,
+            "edge_sigma": 1.97,
+            "floor_confidence": 6.5
+          }
+        ],
+        "movement": {
+          "spread": {
+            "from": -12.5,
+            "to": -14.5
+          },
+          "total": {
+            "from": 54.5,
+            "to": 51.5
+          }
+        }
+      },
+      {
         "market_spread": -2.5,
         "market_total": 46.5,
         "event_id": "ddf45575d5d07af2872a07618f9f7867",
@@ -133,47 +174,6 @@
           "total": {
             "from": 47.5,
             "to": 46.5
-          }
-        }
-      },
-      {
-        "market_spread": -14.5,
-        "market_total": 51.5,
-        "event_id": "85b9f3dfd3a9deeaaa046572f9b4fbeb",
-        "kickoff": "2026-09-05T23:00:00Z",
-        "matchup": "Florida International Panthers @ South Florida Bulls",
-        "home_team": "South Florida Bulls",
-        "away_team": "Florida International Panthers",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
-        "neutral_site": false,
-        "projected_spread": -15.0,
-        "projected_total": 63.1,
-        "home_short": "South Florida",
-        "away_short": "Florida International",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Over",
-            "market_line": 51.5,
-            "bet_line": 51.5,
-            "price": -112,
-            "model_number": 63.1,
-            "edge_points": 11.6,
-            "edge_sigma": 1.96,
-            "floor_confidence": 6.4
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -12.5,
-            "to": -14.5
-          },
-          "total": {
-            "from": 54.5,
-            "to": 51.5
           }
         }
       },
@@ -396,7 +396,7 @@
             "side": "Over",
             "market_line": 50.5,
             "bet_line": 50.5,
-            "price": -110,
+            "price": -106,
             "model_number": 60.0,
             "edge_points": 9.5,
             "edge_sigma": 1.61,
@@ -1569,8 +1569,8 @@
         "movement": {}
       }
     ],
-    "fetched_at": "2026-09-02T18:59:42+00:00",
-    "age_hours": 0.2,
+    "fetched_at": "2026-09-02T20:16:00+00:00",
+    "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -1588,8 +1588,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-02T18:59:45+00:00",
-    "board_fetched_at": "2026-09-02T18:59:42+00:00",
+    "updated_at": "2026-09-02T20:16:05+00:00",
+    "board_fetched_at": "2026-09-02T20:16:00+00:00",
     "season": 2026,
     "week": 1,
     "card": [
@@ -1608,7 +1608,7 @@
         "first_confidence": 6.6,
         "moved_confidence": 0.1,
         "moved_line": null,
-        "days_tracked": 22,
+        "days_tracked": 23,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -1645,7 +1645,7 @@
           "from": 54.5,
           "to": 52.5
         },
-        "days_tracked": 22,
+        "days_tracked": 23,
         "rank": 2,
         "peak_rank": 1,
         "on_board": true,
@@ -1662,6 +1662,43 @@
           "unusual": "That leaves 12.5 points between us, which puts it in the top tenth of anything I'm looking at.",
           "built": "",
           "text": "Pencil me in for Penn State 43.0, Marshall 19.0. Adds up to 65.0. Straight off the ratings that's 62.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 52.5. That leaves 12.5 points between us, which puts it in the top tenth of anything I'm looking at."
+        }
+      },
+      {
+        "matchup": "Florida International Panthers @ South Florida Bulls",
+        "side": "Over",
+        "market": "total",
+        "period": "full",
+        "line": 51.5,
+        "price": -112,
+        "confidence": 6.5,
+        "sigma": 1.97,
+        "edge_points": 11.6,
+        "model_number": 63.1,
+        "first_seen": "2026-08-24T18:24:03+00:00",
+        "first_confidence": 5.0,
+        "moved_confidence": 1.5,
+        "moved_line": {
+          "from": 54.5,
+          "to": 51.5
+        },
+        "days_tracked": 23,
+        "rank": 3,
+        "peak_rank": 2,
+        "on_board": true,
+        "kickoff": "2026-09-05T23:00:00Z",
+        "home_team": "South Florida Bulls",
+        "away_team": "Florida International Panthers",
+        "home_school": "South Florida",
+        "away_school": "Florida International",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
+        "defense": {
+          "line": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book.",
+          "against": "Book's asking 51.5.",
+          "unusual": "That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at.",
+          "built": "",
+          "text": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 51.5. That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at."
         }
       },
       {
@@ -1682,8 +1719,8 @@
           "from": 47.5,
           "to": 46.5
         },
-        "days_tracked": 22,
-        "rank": 3,
+        "days_tracked": 23,
+        "rank": 4,
         "peak_rank": 1,
         "on_board": true,
         "kickoff": "2026-09-05T22:00:00Z",
@@ -1702,43 +1739,6 @@
         }
       },
       {
-        "matchup": "Florida International Panthers @ South Florida Bulls",
-        "side": "Over",
-        "market": "total",
-        "period": "full",
-        "line": 51.5,
-        "price": -112,
-        "confidence": 6.4,
-        "sigma": 1.96,
-        "edge_points": 11.6,
-        "model_number": 63.1,
-        "first_seen": "2026-08-24T18:24:03+00:00",
-        "first_confidence": 5.0,
-        "moved_confidence": 1.4,
-        "moved_line": {
-          "from": 54.5,
-          "to": 51.5
-        },
-        "days_tracked": 22,
-        "rank": 4,
-        "peak_rank": 2,
-        "on_board": true,
-        "kickoff": "2026-09-05T23:00:00Z",
-        "home_team": "South Florida Bulls",
-        "away_team": "Florida International Panthers",
-        "home_school": "South Florida",
-        "away_school": "Florida International",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
-        "defense": {
-          "line": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 51.5.",
-          "unusual": "That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at.",
-          "built": "",
-          "text": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 51.5. That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at."
-        }
-      },
-      {
         "matchup": "Central Michigan Chippewas @ New Mexico Lobos",
         "side": "New Mexico",
         "market": "spread",
@@ -1753,7 +1753,7 @@
         "first_confidence": 6.4,
         "moved_confidence": -0.1,
         "moved_line": null,
-        "days_tracked": 22,
+        "days_tracked": 23,
         "rank": 5,
         "peak_rank": 4,
         "on_board": true,
@@ -1790,7 +1790,7 @@
           "from": 55.5,
           "to": 52.5
         },
-        "days_tracked": 22,
+        "days_tracked": 23,
         "rank": 6,
         "peak_rank": 2,
         "on_board": true,
@@ -1900,7 +1900,7 @@
           "from": 28.5,
           "to": 27.5
         },
-        "days_tracked": 22,
+        "days_tracked": 23,
         "rank": 7,
         "peak_rank": 3,
         "on_board": true,
@@ -1960,13 +1960,13 @@
     "cap": 7.5,
     "publish": 7.0,
     "spread_gap": 2.74,
-    "total_gap": 5.904,
+    "total_gap": 5.902,
     "sample": 55
   },
   "live": null,
   "lock_id": "5afedb05e61f",
-  "board_fetched_at": "2026-09-02T18:59:42+00:00",
-  "credits_remaining": 491,
+  "board_fetched_at": "2026-09-02T20:16:00+00:00",
+  "credits_remaining": 488,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,

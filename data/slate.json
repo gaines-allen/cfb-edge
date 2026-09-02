@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-02T18:59:45+00:00",
+  "built_at": "2026-09-02T20:16:04+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-02T18:59:42+00:00",
+  "board_fetched_at": "2026-09-02T20:16:00+00:00",
   "warning": null,
   "games_on_board": 102,
   "games_with_candidates": 38,
@@ -109,14 +109,14 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-02T18:59:43+00:00",
+    "measured_at": "2026-09-02T20:16:03+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 55,
-      "bias": -3.029,
-      "median": -3.5,
-      "sigma": 5.904
+      "bias": -2.993,
+      "median": -3.3,
+      "sigma": 5.902
     },
     "spreads": {
       "n": 55,
@@ -246,8 +246,8 @@
           "price": -112,
           "model_number": 63.1,
           "edge_points": 11.6,
-          "edge_sigma": 1.96,
-          "floor_confidence": 6.4
+          "edge_sigma": 1.97,
+          "floor_confidence": 6.5
         }
       ]
     },
@@ -548,7 +548,7 @@
           "side": "Over",
           "market_line": 50.5,
           "bet_line": 50.5,
-          "price": -110,
+          "price": -106,
           "model_number": 60.0,
           "edge_points": 9.5,
           "edge_sigma": 1.61,
