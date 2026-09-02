@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T21:07:18+00:00",
+  "generated_at": "2026-09-02T21:32:53+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-09-02T20:16:04+00:00",
+    "built_at": "2026-09-02T21:19:32+00:00",
     "rows": [
       {
         "market_spread": -21.5,
@@ -1569,8 +1569,8 @@
         "movement": {}
       }
     ],
-    "fetched_at": "2026-09-02T20:16:00+00:00",
-    "age_hours": 0.9,
+    "fetched_at": "2026-09-02T21:19:29+00:00",
+    "age_hours": 0.2,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -1964,9 +1964,9 @@
     "sample": 55
   },
   "live": null,
-  "lock_id": "5afedb05e61f",
-  "board_fetched_at": "2026-09-02T20:16:00+00:00",
-  "credits_remaining": 488,
+  "lock_id": "4fe6597357f4",
+  "board_fetched_at": "2026-09-02T21:19:29+00:00",
+  "credits_remaining": 482,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
@@ -2010,7 +2010,7 @@
     ],
     "reading": "7 decided. The 95% interval 15.8 to 75.0 contains the 52.4 breakeven, so this record is consistent with having no edge either way. Do not act on it."
   },
-  "pending_count": 0,
+  "pending_count": 1,
   "weeks": [
     {
       "season": 2026,
@@ -2026,7 +2026,7 @@
       "season": 2026,
       "week": 1,
       "picks": 2,
-      "pending": 0,
+      "pending": 1,
       "wins": 0,
       "losses": 2,
       "pushes": 0,
@@ -2713,6 +2713,284 @@
       ],
       "sources": [],
       "defense": null,
+      "board_line": null,
+      "live": false
+    },
+    {
+      "id": "2fc5cd923c57",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Akron Zips @ Wake Forest Demon Deacons",
+      "kickoff": "2026-09-03T23:00:00Z",
+      "title": "Under 48.5",
+      "title_full": "Under 48.5, full game, -110",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 48.5,
+      "price": -110,
+      "confidence": 6.5,
+      "units": 1.0,
+      "model_number": 38.8,
+      "edge": -9.7,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Wake Forest opens with Gio Lopez, a first year starter after transferring from North Carolina, and Akron's intended starter Reese Poffenbarger carries an unresolved eligibility question that may leave Braydon Roggow taking the snaps on a Thursday night. The model reads this total at 38.8 against a market number of 48.5. I did not open a page confirming the eligibility situation, so that claim is unconfirmed and the rating reflects that rather than assuming it. Two unproven quarterbacks in an opener is the same argument I am already making elsewhere on this card, which is a further reason to leave it as a shadow. I am wrong if Wake Forest scores at will against a Mid American defense and the game is decided by halftime.",
+      "factors": [
+        "rating_edge",
+        "situational"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "I got Wake Forest for 31.0 and Akron for 5.0. Call it 39.0 on the scoreboard. Straight off the ratings that's 36.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 48.5.",
+        "unusual": "That leaves 9.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "I got Wake Forest for 31.0 and Akron for 5.0. Call it 39.0 on the scoreboard. Straight off the ratings that's 36.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 48.5. That leaves 9.5 points between us, which is a bigger gap than most games on my board. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "board_line": null,
+      "live": false
+    },
+    {
+      "id": "7008a9710cc2",
+      "season": 2026,
+      "week": 1,
+      "matchup": "East Carolina Pirates @ Alabama Crimson Tide",
+      "kickoff": "2026-09-05T16:00:00Z",
+      "title": "Under 52.5",
+      "title_full": "Under 52.5, full game, -110",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 52.5,
+      "price": -110,
+      "confidence": 6.6,
+      "units": 1.0,
+      "model_number": 43.4,
+      "edge": -9.1,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Alabama hands the offense to Keelon Russell for his first career start behind a run game that finished 125th nationally last season, and East Carolina arrives having replaced most of a 9-4 roster. The model reads the total at 43.4 against a market number of 52.5. I could not open the preview carrying East Carolina's returning production figure, so I am not citing it and I am not rating this on it. The reason this stays a shadow rather than a play is that a five star making a first start at home against a Group of Five defense is the softest possible landing spot, and Alabama alone can reach 40. I am wrong if Russell is efficient early and Alabama scores on its first four possessions.",
+      "factors": [
+        "rating_edge",
+        "situational"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "I got Alabama for 30.5 and East Carolina for 10.0. Call it 43.5 on the scoreboard. Straight off the ratings that's 40.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 52.5.",
+        "unusual": "That leaves 9.0 points between us, which is a bigger gap than most games on my board.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "I got Alabama for 30.5 and East Carolina for 10.0. Call it 43.5 on the scoreboard. Straight off the ratings that's 40.5, and I nudge it for the way my numbers have been landing against the book. Book's asking 52.5. That leaves 9.0 points between us, which is a bigger gap than most games on my board. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "board_line": null,
+      "live": false
+    },
+    {
+      "id": "01632bde757f",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Marshall Thundering Herd @ Penn State Nittany Lions",
+      "kickoff": "2026-09-05T19:30:00Z",
+      "title": "Over 52.5",
+      "title_full": "Over 52.5, full game, -105",
+      "side": "Over",
+      "market": "Total",
+      "period": "Full game",
+      "line": 52.5,
+      "price": -105,
+      "confidence": 6.4,
+      "units": 1.0,
+      "model_number": 64.8,
+      "edge": 12.3,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "This is the largest total gap on the board at 12.3 points, with the model at 64.8 against a market number of 52.5, and unlike most of the board the research does not cut against it. Penn State starts Rocco Becht, who made 39 starts at Iowa State, and Marshall returns Carlos Del Rio-Wilson, the Sun Belt preseason offensive player of the year who ran for 660 yards last season. What holds it down is that Matt Campbell is in his first game at Penn State and new staffs open conservatively, and a 24.5 point favorite that leads comfortably will shorten the second half. I am wrong if Penn State empties the bench up 28 and the fourth quarter is a running clock.",
+      "factors": [
+        "rating_edge"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "Pencil me in for Penn State 43.0, Marshall 19.0. Adds up to 65.0. Straight off the ratings that's 62.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 52.5.",
+        "unusual": "That leaves 12.5 points between us, which puts it in the top tenth of anything I'm looking at.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Pencil me in for Penn State 43.0, Marshall 19.0. Adds up to 65.0. Straight off the ratings that's 62.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 52.5. That leaves 12.5 points between us, which puts it in the top tenth of anything I'm looking at. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "board_line": null,
+      "live": false
+    },
+    {
+      "id": "4fe6597357f4",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Wyoming Cowboys @ Colorado State Rams",
+      "kickoff": "2026-09-05T22:00:00Z",
+      "title": "Under 46.5",
+      "title_full": "Under 46.5, full game, -118",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 46.5,
+      "price": -118,
+      "confidence": 8.0,
+      "units": 1.0,
+      "model_number": 35.2,
+      "edge": -11.3,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Neither team has a quarterback the other has seen. Colorado State is in year one under Jim Mora, who has kept the job open between transfers Hauss Hejny and K'saan Farrar since March and has said the decision does not have to be made until kickoff, and Wyoming answers with Tyler Hughes, who arrived from William and Mary in January and has never taken an FBS snap. The blended ratings put this game at 35.2 points against a market number of 46.5, the second largest total gap on the board, and both offenses grade in the mid teens while both defenses return more of their work. I am paying -118 on a number that already fell from 47.5 to 46.5, so the cheap side of this move is gone and I am agreeing with money rather than beating it, which is what holds this at 8.0 instead of higher. Hughes ran for 670 yards at William and Mary, and a mobile quarterback who plays clean in his first FBS start is the version of this game that goes over.",
+      "factors": [
+        "coaching_change",
+        "rating_edge",
+        "situational"
+      ],
+      "sources": [
+        {
+          "url": "https://collegian.com/articles/sports/2026/08/category-sports-qb1-questions-csu-footballs-starting-quarterback-battle-enters-final-stretch/",
+          "publisher": "The Rocky Mountain Collegian",
+          "date": "2026-08-27",
+          "claim": "Colorado State's two quarterback candidates are both transfers who have been competing for the job since March, with no starter named.",
+          "quote": "Hejny and Farrar, the transfer QBs, have been competing since March for the starting position during the kickoff game Sept. 5 against Wyoming."
+        },
+        {
+          "url": "https://collegian.com/articles/sports/2026/08/category-sports-qb1-questions-csu-footballs-starting-quarterback-battle-enters-final-stretch/",
+          "publisher": "The Rocky Mountain Collegian",
+          "date": "2026-08-27",
+          "claim": "Mora has said he does not have to name a starting quarterback until kickoff of the opener.",
+          "quote": "We don't have to make that decision until kickoff before the first game"
+        },
+        {
+          "url": "https://gowyo.com/news/2026/8/31/football-cowboys-head-to-border-war-rival-colorado-state-for-season-opener-on-saturday.aspx",
+          "publisher": "University of Wyoming Athletics",
+          "date": "2026-08-31",
+          "claim": "Colorado State is installing a new system under a first year head coach.",
+          "quote": "Colorado State is entering its first season under head coach Jim Mora."
+        },
+        {
+          "url": "https://7220sports.com/wyoming-football-tyler-hughes-quarterback/",
+          "publisher": "7220 Sports",
+          "date": "2026-08-24",
+          "claim": "Wyoming's starting quarterback is an FCS transfer who arrived in January and has never played an FBS snap.",
+          "quote": "Hughes, who last season at William and Mary, threw for 2,330 yards and 20 touchdowns, arrived in Laramie in January via the NCAA Transfer Portal."
+        }
+      ],
+      "defense": {
+        "line": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.0 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 46.5.",
+        "unusual": "That leaves 11.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "I got Colorado State for 15.5 and Wyoming for 17.0. Call it 35.0 on the scoreboard. Straight off the ratings that's 32.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 46.5. That leaves 11.5 points between us, which is a bigger gap than most games on my board. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "33d7dc789ad4",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Florida International Panthers @ South Florida Bulls",
+      "kickoff": "2026-09-05T23:00:00Z",
+      "title": "Over 51.5",
+      "title_full": "Over 51.5, full game, -112",
+      "side": "Over",
+      "market": "Total",
+      "period": "Full game",
+      "line": 51.5,
+      "price": -112,
+      "confidence": 6.0,
+      "units": 1.0,
+      "model_number": 63.1,
+      "edge": 11.6,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "The model reads this total at 63.1 against a market number of 51.5, an 11.6 point gap that survives the calibration adjustment. I did no research on either roster beyond the ratings, so this is logged as a pure model candidate and rated accordingly rather than talked up to the card. It is here because the grader needs the model's raw total edges tracked to find out whether they are worth anything, and September totals off carryover ratings are exactly the cell with no data in it. I am wrong if either offense is worse than last season's rating, which is the common case for a model running on carryover numbers.",
+      "factors": [
+        "rating_edge"
+      ],
+      "sources": [],
+      "defense": {
+        "line": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 51.5.",
+        "unusual": "That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Way I see it, South Florida hangs 36.5 and Florida International answers with 23.5. That's 63.0 between them. Straight off the ratings that's 60.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 51.5. That leaves 11.5 points between us, which puts it in the top tenth of anything I'm looking at. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
+      "board_line": null,
+      "live": false
+    },
+    {
+      "id": "432f6ee92505",
+      "season": 2026,
+      "week": 1,
+      "matchup": "Clemson Tigers @ LSU Tigers",
+      "kickoff": "2026-09-05T23:30:00Z",
+      "title": "Under 50.5",
+      "title_full": "Under 50.5, full game, -105",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 50.5,
+      "price": -105,
+      "confidence": 6.9,
+      "units": 1.0,
+      "model_number": 40.9,
+      "edge": -9.6,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Clemson starts Christopher Vizzina, whose only meaningful college sample is one home loss to SMU last October, and he opens on the road at night in Tiger Stadium against an SEC defense. LSU is rebuilding around Lane Kiffin in his first game there with over half the roster new, so both offenses are less settled than either defense. The model says 40.9 against a market number of 50.5. What keeps this off the card is that Sam Leavitt is an established starter rather than an unknown and Kiffin offenses score at a high rate, so the LSU half of the under argument is much weaker than the Clemson half, and 50.5 is not a high number for two ranked teams. I am wrong if Leavitt is comfortable early and LSU turns the Clemson quarterback over into short fields.",
+      "factors": [
+        "coaching_change",
+        "rating_edge",
+        "situational"
+      ],
+      "sources": [
+        {
+          "url": "https://www.si.com/college/clemson/football/clemson-football-names-starting-quarterback-for-week-1-christopher-vizzina-tait-reynolds",
+          "publisher": "Sports Illustrated",
+          "date": "2026-09-01",
+          "claim": "Clemson's starting quarterback has one meaningful game of college experience.",
+          "quote": "Vizzina's only sample size comes from a home loss to SMU back in October, throwing for 317 yards and three touchdowns."
+        },
+        {
+          "url": "https://www.si.com/college/lsu/football/lane-kiffin-was-clear-on-what-he-wants-from-lsu-vs-clemson",
+          "publisher": "Sports Illustrated",
+          "date": "2026-09-01",
+          "claim": "Kiffin expects the opener's environment and emotion to be a discipline problem for a new roster.",
+          "quote": "That'll be a challenge, especially with the emotions of this game and the first game in the stadium and at night, so we'll talk extensively about that throughout the week."
+        }
+      ],
+      "defense": {
+        "line": "Way I see it, LSU hangs 22.5 and Clemson answers with 15.0. That's 41.0 between them. Straight off the ratings that's 38.0, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's asking 50.5.",
+        "unusual": "That leaves 9.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+        "text": "Way I see it, LSU hangs 22.5 and Clemson answers with 15.0. That's 41.0 between them. Straight off the ratings that's 38.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 50.5. That leaves 9.5 points between us, which is a bigger gap than most games on my board. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
+      },
       "board_line": null,
       "live": false
     }
