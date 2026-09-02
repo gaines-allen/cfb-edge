@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-02T21:19:32+00:00",
+  "built_at": "2026-09-02T22:26:44+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-02T21:19:29+00:00",
+  "board_fetched_at": "2026-09-02T22:26:42+00:00",
   "warning": null,
   "games_on_board": 102,
   "games_with_candidates": 38,
@@ -109,7 +109,7 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-02T21:19:31+00:00",
+    "measured_at": "2026-09-02T22:26:43+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
@@ -120,9 +120,9 @@
     },
     "spreads": {
       "n": 55,
-      "bias": 0.375,
+      "bias": 0.356,
       "median": 0.2,
-      "sigma": 2.74
+      "sigma": 2.75
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -190,7 +190,7 @@
           "price": -102,
           "model_number": -26.3,
           "edge_points": -1.8,
-          "edge_sigma": -0.66,
+          "edge_sigma": -0.65,
           "floor_confidence": 4.5
         }
       ]
@@ -553,6 +553,18 @@
           "edge_points": 9.5,
           "edge_sigma": 1.61,
           "floor_confidence": 5.9
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "James Madison",
+          "market_line": -5.5,
+          "bet_line": -5.5,
+          "price": -108,
+          "model_number": -7.5,
+          "edge_points": -2.0,
+          "edge_sigma": -0.73,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -619,7 +631,7 @@
           "price": -104,
           "model_number": -22.8,
           "edge_points": 4.7,
-          "edge_sigma": 1.72,
+          "edge_sigma": 1.71,
           "floor_confidence": 6.1
         }
       ]
@@ -755,8 +767,8 @@
           "price": -115,
           "model_number": -39.4,
           "edge_points": 2.1,
-          "edge_sigma": 0.77,
-          "floor_confidence": 4.7
+          "edge_sigma": 0.76,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -1287,7 +1299,7 @@
           "price": -104,
           "model_number": -15.6,
           "edge_points": -5.1,
-          "edge_sigma": -1.86,
+          "edge_sigma": -1.85,
           "floor_confidence": 6.3
         }
       ]
@@ -1467,8 +1479,8 @@
           "price": -106,
           "model_number": -16.4,
           "edge_points": 4.1,
-          "edge_sigma": 1.5,
-          "floor_confidence": 5.8
+          "edge_sigma": 1.49,
+          "floor_confidence": 5.7
         }
       ]
     },
@@ -1523,8 +1535,8 @@
           "price": -112,
           "model_number": -32.6,
           "edge_points": -4.1,
-          "edge_sigma": -1.5,
-          "floor_confidence": 5.8
+          "edge_sigma": -1.49,
+          "floor_confidence": 5.7
         },
         {
           "market": "total",
@@ -1976,7 +1988,7 @@
           "price": -105,
           "model_number": -1.2,
           "edge_points": -2.7,
-          "edge_sigma": -0.99,
+          "edge_sigma": -0.98,
           "floor_confidence": 5.0
         },
         {
