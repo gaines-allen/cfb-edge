@@ -2057,8 +2057,26 @@ function ticket(p, featured) {
 
 (function renderCard() {
   const cur = DATA.current || {};
+  // The card is what is coming, plus the weekend just gone while its
+  // results are still the story. The week number alone cannot do this.
+  // CFBD week 1 runs 29 August to 8 September, so 2 separate weekends
+  // share it, and on Wednesday the card was still presenting the
+  // previous Saturday's settled losses as this week's plays.
+  //
+  // 48 hours past kickoff keeps a Saturday card up through Sunday, when
+  // its results are what people came for, and drops it by Monday, when
+  // the next one starts being built. The record keeps every pick
+  // forever regardless. This is only what the card section shows.
+  const CARD_TAIL_HOURS = 48;
+  const stillCurrent = p => {
+    if (!p.kickoff) return true;
+    const ko = Date.parse(p.kickoff);
+    if (Number.isNaN(ko)) return true;
+    return (Date.now() - ko) / 36e5 < CARD_TAIL_HOURS;
+  };
   const live = (DATA.picks || []).filter(p =>
-    p.live && p.season === cur.season && p.week === cur.week);
+    p.live && p.season === cur.season && p.week === cur.week
+    && stillCurrent(p));
   if (!live.length) {
     if (!cardWindow()) { hide("card"); return; }
     el("card").innerHTML = say(V.card_empty);

@@ -837,3 +837,36 @@ def test_a_full_name_and_a_short_name_are_the_same_side():
     block = src[src.index("def same_side("):src.index("def board_line_now(")]
     assert "canonical(" in block
     assert "startswith" not in block
+
+
+def test_the_card_does_not_show_a_weekend_that_is_over():
+    """
+    CFBD week 1 runs 29 August to 8 September, so 2 separate weekends
+    share a week number. Filtering the card on the week alone meant that
+    on Wednesday it still presented the previous Saturday's settled
+    losses as this week's plays, while best bets correctly looked ahead.
+    """
+    body = B.HTML.split("<script>", 1)[1]
+    block = body[body.index("const CARD_TAIL_HOURS"):]
+    assert "CARD_TAIL_HOURS = 48" in block[:200]
+    assert "stillCurrent(p)" in block[:900]
+    # A pick with no kickoff must still show. Hiding a real pick is worse
+    # than showing a stale one.
+    assert "if (!p.kickoff) return true;" in block
+    assert "Number.isNaN(ko)) return true;" in block
+
+
+def test_the_tail_keeps_saturday_up_through_sunday():
+    # Long enough that a Saturday card survives Sunday morning grading,
+    # short enough to be gone by Monday.
+    body = B.HTML.split("<script>", 1)[1]
+    tail = int(body.split("CARD_TAIL_HOURS = ")[1].split(";")[0])
+    assert 36 <= tail <= 60
+
+
+def test_the_record_is_not_filtered_by_recency():
+    # The card section is a view. The record counts every settled pick
+    # for the season and must never inherit this window.
+    src = (ROOT / "scripts" / "build_site.py").read_text()
+    line = next(ln for ln in src.splitlines() if "settled = [" in ln)
+    assert "kickoff" not in line and "TAIL" not in line
