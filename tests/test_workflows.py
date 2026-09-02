@@ -708,25 +708,40 @@ def test_the_pipeline_can_be_rehearsed_without_publishing():
     import yaml
     doc = yaml.safe_load(WEEKLY)
     triggers = doc[True] if True in doc else doc["on"]
-    assert ".github/run-card-dry" in triggers["push"]["paths"]
+    assert triggers["push"]["paths"] == [".github/run-card"]
 
     steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
-    # Read off the commit, not the event payload. The payload version
-    # evaluated false on a commit that plainly added the file, and
-    # published a card that was meant to be a rehearsal.
     mode = steps["Decide whether this is a rehearsal"]["run"]
-    assert "git log -1 --name-only" in mode
-    assert "grep -qx '.github/run-card-dry'" in mode, \
-        "-qx, so a path merely containing the name cannot match"
+
+    # Decided from the trigger file's contents. It used to ask git which
+    # files the last commit touched, and checkout takes a depth 1 clone,
+    # so git cannot diff that commit and lists every tracked file. The
+    # rehearsal marker was one of them, so every run matched and
+    # published nothing, scheduled runs included.
+    assert "git log" not in mode, "must not depend on git history"
+    assert "grep -qi rehearsal .github/run-card" in mode
     assert "inputs.research_only" in mode
 
     for name in ("Log the card and rebuild the page", "Publish"):
         assert "steps.mode.outputs.dry != 'true'" in steps[name]["if"], name
-    # And the gates themselves must NOT be skipped, or the rehearsal
-    # proves nothing about the thing it is rehearsing.
+    # The gates themselves must NOT be skipped, or the rehearsal proves
+    # nothing about the thing it is rehearsing.
     for name in ("Fail if the agent wrote outside its lane",
                  "Validate the card", "Verify every cited source"):
         assert "mode" not in (steps[name].get("if") or ""), name
+
+
+def test_a_scheduled_card_can_never_be_a_rehearsal():
+    """
+    Nothing touches the trigger file on the way to a Wednesday, so its
+    contents are whatever the last manual run left behind. A schedule that
+    inherited that would quietly stop publishing.
+    """
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    steps = {st.get("name"): st for st in doc["jobs"]["card"]["steps"]}
+    mode = steps["Decide whether this is a rehearsal"]["run"]
+    assert 'github.event_name }}" = "push"' in mode
 
 
 def test_the_rehearsal_flag_is_decided_before_anything_runs():

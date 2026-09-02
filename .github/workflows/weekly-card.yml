@@ -41,11 +41,9 @@ on:
   push:
     paths:
       - ".github/run-card"
-      # The same run with the publish removed. Since the card now goes
-      # straight to the site, "run it and see" and "put it live" became
-      # the same action, and there has to be a way to exercise the whole
-      # pipeline without that.
-      - ".github/run-card-dry"
+      # Put the word rehearsal in that file to exercise the whole
+      # pipeline without publishing. It used to be a second file, but the
+      # check for which file changed could not survive a shallow clone.
   workflow_dispatch:
     inputs:
       season:
@@ -93,23 +91,31 @@ jobs:
 
       # The suite gates everything downstream. A broken grader or a changed
       # upstream shape must stop the run before an agent reasons off it.
-      # Whether this run publishes. Read off the commit rather than the
-      # event payload, because the payload version evaluated false on a
-      # commit that plainly added the file and published a card that was
-      # meant to be a rehearsal. git log is the same question asked of
-      # something that can be checked by hand.
+      # Whether this run publishes. Read off the trigger file's contents
+      # and nothing else.
+      #
+      # This asked git which files the last commit touched. checkout takes
+      # a depth 1 clone, so that commit has no parent, git cannot diff it,
+      # and the command lists all 266 tracked files rather than the 1 that
+      # changed. `.github/run-card-dry` was one of them, so every run
+      # matched and published nothing. A scheduled card would have done
+      # the same, silently, every week.
+      #
+      # A schedule can never be a rehearsal whatever the file says,
+      # because nothing touches that file on the way to a Wednesday.
       - name: Decide whether this is a rehearsal
         id: mode
         run: |
           DRY=false
           if [ "${{ inputs.research_only }}" = "true" ]; then
             DRY=true
-          elif git log -1 --name-only --pretty=format: \
-               | grep -qx '.github/run-card-dry'; then
+          elif [ "${{ github.event_name }}" = "push" ] \
+               && grep -qi rehearsal .github/run-card 2>/dev/null; then
             DRY=true
           fi
           echo "dry=$DRY" >> "$GITHUB_OUTPUT"
-          echo "Rehearsal: $DRY" >> "$GITHUB_STEP_SUMMARY"
+          echo "Rehearsal: $DRY (event ${{ github.event_name }})" \
+            >> "$GITHUB_STEP_SUMMARY"
 
       - name: Check the suite first
         run: python3 scripts/selftest.py -q
