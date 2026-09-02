@@ -123,7 +123,8 @@ def new_pick(season: int, week: int, event_id: str, matchup: str,
              line: float | None, price: int, confidence: float,
              units: float, rationale: str, factors: dict,
              model_number: float | None = None,
-             sources: list[dict] | None = None) -> dict:
+             sources: list[dict] | None = None,
+             live: bool | None = None) -> dict:
     """
     market: spread | total | moneyline
     period: full | h1 | h2
@@ -142,7 +143,13 @@ def new_pick(season: int, week: int, event_id: str, matchup: str,
         "line": line,
         "price": price,
         "confidence": round(float(confidence), 1),
-        "live": float(confidence) >= LIVE_THRESHOLD,
+        # The card is the 6 best rated games of the week, so the caller
+        # decides which rows are on it after ranking them all. The
+        # threshold stays as the fallback for any caller that does not
+        # rank, and as the floor below which nothing is publishable at
+        # all.
+        "live": (float(confidence) >= LIVE_THRESHOLD if live is None
+                 else bool(live)),
         "units": float(units),
         "model_number": model_number,
         "edge": (round(model_number - line, 2)

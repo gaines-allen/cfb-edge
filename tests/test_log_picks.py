@@ -118,18 +118,65 @@ def test_stale_research_is_refused(tmp_path, board_event):
     assert "last week's reasoning" in proc.stderr
 
 
-def test_a_seventh_live_pick_is_refused(tmp_path, board_event):
-    event, spread = board_event
+def seven_games(rows_wanted=7):
     board = json.loads((ROOT / "data" / "board.json").read_text())
     rows = []
-    for g in board["games"][:7]:
+    for g in board["games"]:
         sp = next((l for l in g["lines"]
                    if l["market"] == "spreads" and l["side"] == g["home_team"]), None)
         if sp:
-            rows.append(draft_row(g, sp))
-    proc = run_log(tmp_path, rows[:7], "--dry-run")
-    assert proc.returncode == 3
-    assert "ceiling" in proc.stderr
+            rows.append((g, sp))
+        if len(rows) == rows_wanted:
+            break
+    return rows
+
+
+def test_the_card_is_the_six_highest_and_the_rest_are_shadow(tmp_path, board_event):
+    """
+    Seven rated games used to be refused as one over the ceiling. The card
+    is the 6 best rated of whatever was researched, so the 7th is not an
+    error, it is the first shadow pick.
+    """
+    games = seven_games(7)
+    rows = [draft_row(g, sp, confidence=c)
+            for (g, sp), c in zip(games, (8.4, 7.9, 7.6, 7.2, 6.8, 6.5, 6.1))]
+    proc = run_log(tmp_path, rows, "--dry-run")
+    assert proc.returncode == 0, proc.stderr
+    out = json.loads(proc.stdout)
+    assert out["live_picks"] == 6
+    assert out["shadow_picks"] == 1
+    assert out["units_at_risk"] == 6.0
+
+
+def test_the_lowest_rated_is_the_one_left_off(tmp_path, board_event):
+    games = seven_games(7)
+    confs = (8.4, 7.9, 7.6, 7.2, 6.8, 6.5, 6.1)
+    rows = [draft_row(g, sp, confidence=c) for (g, sp), c in zip(games, confs)]
+    proc = run_log(tmp_path, rows, "--dry-run")
+    out = json.loads(proc.stdout)
+    on_card = " ".join(out["card"])
+    assert "(6.1," not in on_card
+    assert "(6.5," in on_card
+
+
+def test_two_markets_on_one_game_fill_one_slot(tmp_path, board_event):
+    """
+    One opinion per game. A spread and a total on the same matchup are one
+    read priced two ways, and the second must not spend a card slot.
+    """
+    games = seven_games(6)
+    rows = [draft_row(g, sp, confidence=c)
+            for (g, sp), c in zip(games, (8.4, 7.9, 7.6, 7.2, 6.8, 6.5))]
+    g0, sp0 = games[0]
+    tot = next((l for l in g0["lines"] if l["market"] == "totals" and l["side"] == "Over"), None)
+    if tot:
+        rows.append(draft_row(g0, sp0, market="total", side="Over",
+                              line=tot["point"], price=tot["price"], confidence=8.0))
+    proc = run_log(tmp_path, rows, "--dry-run")
+    assert proc.returncode == 0, proc.stderr
+    out = json.loads(proc.stdout)
+    assert out["live_picks"] == 6
+    assert sum(1 for c in out["card"] if g0["home_team"] in c) <= 1
 
 
 def test_an_event_not_on_the_board_is_refused(tmp_path, board_event):

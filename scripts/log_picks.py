@@ -118,6 +118,27 @@ def main() -> int:
     board = store.load_board()
     board_index = {g["event_id"]: g for g in board.get("games", [])}
 
+    # The card is the 6 best rated games of the week, decided here and
+    # then validated, in that order. Validating first meant card_rules
+    # judged every row that cleared the line as live, saw 2 markets on 1
+    # game both live, and refused the card that the ranking below would
+    # have made legal a moment later.
+    #
+    # One opinion per game, so a second market on a matchup already taken
+    # cannot occupy a slot.
+    ranked = sorted(draft, key=lambda d: -float(d.get("confidence") or 0))
+    games: set = set()
+    on_card = 0
+    for d in ranked:
+        take = on_card < store.TARGET_PICKS and d.get("event_id") not in games
+        d["live"] = take
+        if take:
+            games.add(d.get("event_id"))
+            on_card += 1
+            d["units"] = units_for(float(d.get("confidence") or 0))
+        else:
+            d["units"] = 0.0
+
     errors: list[str] = []
     for i, d in enumerate(draft):
         errors.extend(validate(d, board_index, i))
@@ -164,12 +185,13 @@ def main() -> int:
             line=(float(d["line"]) if d.get("line") is not None else None),
             price=int(d["price"]),
             confidence=conf,
-            units=float(d.get("units", units_for(conf))),
+            units=float(d["units"]),
             rationale=d["rationale"].strip(),
             factors={t: True for t in (d.get("factors") or [])},
             model_number=(float(d["model_number"])
                           if d.get("model_number") is not None else None),
             sources=d.get("sources") or [],
+            live=d["live"],
         ))
 
     live = [p for p in new_rows if p["live"]]
@@ -190,16 +212,12 @@ def main() -> int:
         ],
     }
 
-    if len(live) > store.TARGET_PICKS:
+    if len(live) < store.TARGET_PICKS:
         summary["note"] = (
-            f"{len(live)} plays cleared {store.LIVE_THRESHOLD}, target is "
-            f"{store.TARGET_PICKS}. Keeping all of them, but check whether the "
-            "bar is being applied honestly."
-        )
-    elif len(live) < store.TARGET_PICKS:
-        summary["note"] = (
-            f"Only {len(live)} plays cleared {store.LIVE_THRESHOLD}. That is the "
-            "correct outcome when the slate is priced well. Do not pad the card."
+            f"Only {len(live)} games on the card against a target of "
+            f"{store.TARGET_PICKS}. The card is the 6 best rated games, so "
+            f"fewer than 6 means the research rated fewer than 6 distinct "
+            f"games, not that the bar was high."
         )
 
     if args.dry_run:

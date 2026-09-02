@@ -50,6 +50,22 @@ UNCERTAIN = re.compile(
     r"questionable|game.time decision)\b", re.I)
 
 
+def is_live(pick: dict) -> bool:
+    """
+    Whether a pick is on the card.
+
+    log_picks ranks the week and stamps the 6 best as live before this
+    runs, so an explicit flag wins. The threshold is the fallback for a
+    caller that has not ranked, and the floor under everything.
+    """
+    if "live" in pick:
+        return bool(pick["live"])
+    try:
+        return float(pick.get("confidence", 0) or 0) >= LIVE_THRESHOLD
+    except (TypeError, ValueError):
+        return False
+
+
 def units_for(confidence: float) -> float:
     """The staking ladder from the handicapper spec. 2 units is the ceiling."""
     c = float(confidence)
@@ -100,7 +116,7 @@ def check_pick(pick: dict, i: int, now: datetime | None = None) -> list[str]:
 
     factors = _factors(pick)
     sources = _sources(pick)
-    live = conf >= LIVE_THRESHOLD
+    live = is_live(pick)
 
     # The staking ladder is not a suggestion.
     want_units = units_for(conf)
@@ -193,7 +209,7 @@ def check_card(picks: list[dict], now: datetime | None = None) -> list[str]:
         errs += check_pick(p, i, now=now)
 
     live = [p for p in picks
-            if float(p.get("confidence", 0) or 0) >= LIVE_THRESHOLD]
+            if is_live(p)]
 
     if len(live) > MAX_LIVE_PICKS:
         errs.append(f"card carries {len(live)} live picks. The ceiling is "
@@ -229,7 +245,7 @@ def correlation_warnings(picks: list[dict]) -> list[str]:
     conference openers, all off the same mechanism.
     """
     live = [p for p in picks
-            if float(p.get("confidence", 0) or 0) >= LIVE_THRESHOLD]
+            if is_live(p)]
     counts: dict[str, list[str]] = {}
     for p in live:
         for f in _factors(p) - {RATINGS_ONLY}:

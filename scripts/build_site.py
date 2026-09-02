@@ -141,16 +141,6 @@ VOICE = {
              "than typed in by someone having a good week.",
 
     "page_title": "Steve's Bar Tab | College football picks",
-    "running_heading": "Six arguments before kickoff",
-    "running_note": "Six leans. Not picks. These are still on the bar, so yell now.",
-    "running_stale": "These lines are old. I am loud, not stupid. Come back after the next pull.",
-    "running_empty": "Nothing yet. Either the board is late or I finally learned restraint.",
-    "running_new": "new today",
-    "running_held": "holding",
-    "running_since": "tracked {days} days",
-    "running_stacked": "Six leans, {games} games. One game snuck in twice. Nice try.",
-    "running_dropped_heading": "The book sobered up",
-    "running_dropped_note": "I liked these earlier. The line moved. Argument over.",
 
     # The explainer. Every figure in it comes from the live measurement,
     # so the copy cannot drift from the arithmetic it is describing.
@@ -1863,7 +1853,6 @@ HTML = """<!doctype html>
     <div class="bar-name"><i>Steve's</i> College Football Bar</div>
     <nav aria-label="Jump to a section">
       <a href="#card-h">The card</a>
-      <a href="#running-h">Arguments</a>
       <a href="#board-h">TV wall</a>
       <a href="#book-h">Damage</a>
     </nav>
@@ -1889,8 +1878,6 @@ HTML = """<!doctype html>
   <h2 id="card-h">The card</h2>
   <div id="card"></div>
 
-  <h2 id="running-h">Six arguments before kickoff</h2>
-  <div id="running"></div>
 
   <h2 id="board-h">The TV wall</h2>
   <div id="board-alert"></div>
@@ -1980,7 +1967,7 @@ const num = n => (n == null ? "n/a" : half(n));
 const signed = n => (n == null ? "n/a"
   : (Number(n) > 0 ? "+" : "") + half(n));
 
-for (const [id, key] of [["running-h","running_heading"],["edge-h","edge_heading"],
+for (const [id, key] of [["edge-h","edge_heading"],
   ["board-h","board_heading"],["card-h","card_heading"],["book-h","book_heading"],
   ["cal-h","calibration_heading"],["cum-h","cumulative_heading"],
   ["wk-h","weekly_heading"],["split-h","split_heading"],
@@ -2260,134 +2247,6 @@ if ((DATA.lessons || []).length) {
     `<p class="said">${esc(l.lesson)}</p>` +
     `<p class="quiet">Week ${esc(l.week)}, ${esc(l.season)}.</p>`).join("");
 } else hide("les");
-
-
-
-
-
-/* ------------------------------------------------- the running card */
-(function renderRunning() {
-  const R = DATA.running;
-  if (!R || !R.card || !R.card.length) { hide("running"); return; }
-  if (boardStale()) {
-    el("running").innerHTML = say(V.running_stale);
-    return;
-  }
-  const fmt = c => c.market === "total"
-    ? `${esc(c.side)} ${c.line}`
-    : `${esc(c.side)} ${c.line > 0 ? "+" : ""}${c.line}`;
-  const badge = (src, name) => `<div class="team">${
-    src ? `<img src="${esc(src)}" alt="${esc(name)}" loading="lazy">`
-        : ""}<span class="nm">${esc(name)}</span></div>`;
-  // Steve's case for a lean, built only out of the numbers on its own row.
-  //
-  // The previous version picked a sentence by card position and wrote the
-  // team names into the templates as literals, so slot 2 said "West
-  // Virginia" and slot 3 said "Alabama" whatever games were actually
-  // sitting there. Reorder the card and it argued the wrong game. Every
-  // clause below resolves from the pick. Position only rotates which
-  // shape gets used, so six leans in a row do not read like six copies of
-  // one sentence.
-  //
-  // The gap is subtracted from the two numbers actually printed rather
-  // than read off edge_points. Those two disagree by a rounding step, and
-  // a reader who checks 15.5 against 10.5 and gets told 5.1 has been
-  // handed a reason to distrust every other number on the page.
-  //
-  // The shape rotates by a lean's position among the leans that share its
-  // pool, not by its position on the card. Hashing each matchup on its own
-  // let two unders collide the first time the card reordered, and the page
-  // said "is a lot of scoring to ask these two for" twice in six rows.
-  // Counting within the pool cannot collide until there are more leans of
-  // one kind than there are ways to say it.
-  const poolKey = c => c.market === "total"
-    ? (c.side === "Over" ? "over" : "under")
-    : (c.line > 0 ? "dog" : "fav");
-  const cardSeed = (() => {
-    const key = R.card.map(c => c.matchup).join("|");
-    let h = 0;
-    for (let n = 0; n < key.length; n++) h = (h * 31 + key.charCodeAt(n)) >>> 0;
-    return h;
-  })();
-  const poolOrdinal = (() => {
-    const seen = {}, out = new Map();
-    for (const c of R.card) {
-      const k = poolKey(c);
-      seen[k] = seen[k] || 0;
-      out.set(c, seen[k]++);
-    }
-    return out;
-  })();
-  const shapeFor = (pool, c) =>
-    pool[(cardSeed + (poolOrdinal.get(c) || 0)) % pool.length];
-  const leanTake = c => {
-    if (c.line == null || c.model_number == null) {
-      return `I like ${c.side} here and the book has not talked me out of it.`;
-    }
-    const book = num(Math.abs(c.line));
-    const mine = num(Math.abs(c.model_number));
-    const gap = half(Math.abs(Number(book) - Number(mine))).replace(/[.]0$/, "");
-    const home = c.home_school || c.home_team;
-    const away = c.away_school || c.away_team;
-
-    if (c.market === "total") {
-      return shapeFor(c.side === "Over" ? [
-        `I have ${mine} points in this game. The book stopped at ${book}. Over, before somebody checks the math.`,
-        `${away} and ${home} are supposed to stay under ${book}. I make it ${mine}. Over.`,
-        `The book is ${gap} points light on this one. My number is ${mine}. Over.`,
-      ] : [
-        `The book wants ${book} out of ${away} and ${home}. I have ${mine}. Under.`,
-        `I make this game ${mine}. They hung ${book}. Somebody is ${gap} points off and it is not me. Under.`,
-        `${book} is a lot of scoring to ask these two for. My number says ${mine}. Under.`,
-      ], c);
-    }
-
-    // A positive line means the side is getting points, so the book's
-    // favourite is the other team on the row. The opponent is matched on
-    // the mascot-stripped school name, never on a prefix, and a row that
-    // will not resolve falls through to a shape that names nobody.
-    const foe = c.side === away ? home : (c.side === home ? away : null);
-    if (c.line > 0) {
-      if (!foe) {
-        return `The book is asking ${book} here. I have ${mine}. Give me ${c.side} and the points.`;
-      }
-      return shapeFor([
-        `${foe} is laying ${book}. I make it ${mine}. Give me ${c.side} and the points.`,
-        `${book} is a lot of furniture to move. I have ${foe} by ${mine}. ${c.side} plus the points.`,
-        `I have ${foe} by ${mine} and the book is asking ${book}. That is ${gap} points somebody left on the bar. Take ${c.side}.`,
-      ], c);
-    }
-    return shapeFor([
-      `${c.side} is only laying ${book}. I have them by ${mine}. Lay it.`,
-      `The book will sell you ${c.side} at ${book}. My number says ${mine}. Lay the number.`,
-      `${gap} points of charity sitting here. They have ${c.side} at ${book}, I have them by ${mine}. Lay it.`,
-    ], c);
-  };
-  const movement = c => c.moved_line
-    ? ` &middot; line ${num(c.moved_line.from)} to ${num(c.moved_line.to)}`
-    : "";
-  const indexOf = c => Math.max(0, R.card.indexOf(c));
-  const row = (c, gone) => `<div class="lean ${gone ? "gone" : ""}"
-    data-model-case="${c.defense && c.defense.text ? "available" : "none"}">
-    <div class="lean-index">${String(indexOf(c) + 1).padStart(2, "0")}</div>
-    <div class="lean-argument">
-      <div class="teams">
-        ${badge(c.away_logo, c.away_team || c.matchup)}
-        <span class="vs">at</span>
-        ${badge(c.home_logo, c.home_team || "")}
-      </div>
-      <h3 class="leanplay">${fmt(c)}</h3>
-      <p class="leandef">${esc(leanTake(c))}</p>
-      <div class="leanmeta">${num(c.confidence)} confidence &middot; ${
-        esc(c.period)} &middot; ${c.price > 0 ? "+" : ""}${esc(c.price)}${movement(c)}</div>
-    </div></div>`;
-  const games = new Set(R.card.map(c => c.matchup)).size;
-  const stacked = games < R.card.length
-    ? say(V.running_stacked.replace("{games}", games), "quiet")
-    : "";
-  el("running").innerHTML =
-    R.card.map(c => row(c, false)).join("") + stacked;
-})();
 
 /* ---------------------------------------------------- the explainer */
 (function renderEdge() {

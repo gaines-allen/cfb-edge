@@ -188,24 +188,6 @@ def test_two_runs_on_one_pull_do_not_double_the_history(tmp_path):
 
 # ------------------------------------------- what the page shows
 
-def test_the_page_says_leans_are_not_picks():
-    note = B.VOICE["running_note"].lower()
-    assert "not picks" in note
-
-
-def test_stacked_games_are_called_out():
-    """
-    6 leans across 4 games is not 6 independent bets, and the page says so
-    rather than letting the count imply more than it holds.
-    """
-    assert "{games}" in B.VOICE["running_stacked"]
-    assert "new Set(R.card.map" in B.HTML
-
-
-def test_the_running_card_hides_when_empty():
-    assert 'hide("running")' in B.HTML
-
-
 def test_the_daily_job_updates_the_running_card():
     daily = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
     assert "build_running_card.py" in daily

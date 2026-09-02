@@ -76,7 +76,7 @@ the system failing.
 Read `data/slate.json`. It carries a blended SP+, FPI, SRS and Elo projection
 for every game on the board, the FanDuel number beside it, the points of
 disagreement, the z score, and a floor confidence. That floor is built from
-the rating gap alone and caps at 7.5, below the 8.0 publish threshold, on
+the rating gap alone and caps at 7.5, below where a pick can stand, on
 purpose. It is your anchor, not your pick.
 
 Then do the work the model cannot. For each game worth chasing, find out why
@@ -89,13 +89,52 @@ the six inputs, and follow its hard rules exactly.
 In September the ratings are mostly last season's carryover, so returning
 production is the honest tiebreaker and it is not in the model. Check it.
 
+## What to research on every team
+
+Both teams, every game you rate, before you write a number. The point of
+a 6 pick card is that all 6 got this, not that the top 2 did.
+
+Against the spread. The record this season and last, and the split as a
+favorite against as an underdog. A team that covers as a dog and folds as
+a favorite is telling you something the ratings cannot.
+
+Home and road. Points scored and allowed at home against on the road,
+this season and last. Some teams are 10 points worse away from home and
+the home field number in the model is a flat 2.2 for everyone.
+
+The defense. Yards and points allowed per game, and the trend over the
+last 4 games rather than the season average, because a defense that has
+lost 2 starters is not the defense the season average describes.
+
+The coaches. How each head coach has done in big games, as a favorite, as
+an underdog, and against this opponent if there is history. Whether the
+staff changed this year, and where the new coordinators came from.
+
+Travel. Distance, time zones crossed, a short week, a body clock kickoff
+for a west coast team playing at noon eastern, or the second road game in
+a row. Altitude where it applies.
+
+Injuries and depth. Who is out, who is questionable, who came back, and
+at which positions. A backup quarterback is a different game. A backup
+right guard usually is not.
+
+Recent results. The last 3 games for each, with the score and the line,
+so you can see whether a team is covering or just winning, and whether an
+upset last week has a hangover in it.
+
+Cite a source for the facts that carry the pick. The record against the
+spread, the injury, the coaching history, whichever of these is the reason
+you rated the game where you did. The validator opens every page and
+checks the quote is there.
+
+
 ## What the validator will reject
 
-Anything at 8.0 or above whose only factor is `rating_edge`. The ratings
+Any pick on the card whose only factor is `rating_edge`. The ratings
 model caps at 7.5 so it can never publish on its own, and restating its
 number at 8.1 walks around that cap.
 
-Anything at 8.0 or above with no sources. Every source needs a url, a date,
+Any pick on the card with no sources. Every source needs a url, a date,
 and a quote, and a date older than 14 days counts as reusing last week's
 reasoning.
 
@@ -108,7 +147,7 @@ whose sources cannot be confirmed stops the run.
 
 So do not cite a page you have not read, and do not reconstruct a quote from
 memory. If you cannot fetch a page, either drop the claim or keep the pick
-below 8.0 and say in the rationale that the source could not be opened.
+off the card and say in the rationale that the source could not be opened.
 
 What the check cannot do is tell whether the page is accurate, whether the
 quote is in context, or whether the outlet is any good. A person reads the
@@ -130,8 +169,17 @@ Say in your summary whether you meant it.
 
 ## The draft format
 
-A JSON list. Include everything you rated 6.0 and up, not only what cleared
-8.0, because the shadow picks are how the threshold gets tested.
+A JSON list of at least 6 games, each a different matchup, every one
+researched to the standard above. The card is the 6 highest rated of
+them, chosen by deterministic code after you finish, and all 6 publish.
+So there is no such thing as a pick you can rate lightly because it
+probably will not make it. Rate more than 6 if the slate has more than 6
+worth the work, because a 7th fully researched game is what fills a slot
+when 2 of your top 6 turn out to be the same matchup.
+
+Include anything else you rated at 6.0 and up with whatever research it
+got. Those are shadow picks, tracked but not staked, and they are how the
+scale gets tested against results.
 
     [
       {
@@ -156,8 +204,10 @@ A JSON list. Include everything you rated 6.0 and up, not only what cleared
       }
     ]
 
-Units follow confidence: 8.0 to 8.4 is 1 unit, 8.5 to 8.9 is 1.5, 9.0 and
-above is 2. Never more than 2.
+Units follow confidence: below 8.5 is 1 unit, 8.5 to 8.9 is 1.5, 9.0 and
+above is 2. Never more than 2. A card of 6 at 1 unit each is 6 units, half
+the weekly ceiling, so the ceiling only binds when several picks are
+rated 8.5 and up.
 
 Use only these factor tags: rating_edge, injury_edge, line_value, home_field,
 situational, pace_mismatch, weather, momentum_mechanism, market_overreaction,
@@ -166,11 +216,12 @@ revenge_spot, lookahead_spot.
 
 ## When you are done
 
-Print a short summary: how many you rated, how many cleared 8.0, the total
-units, and one line on anything you decided against and why. If nothing
-cleared 8.0, write an empty list and say that. A week with no card is a
-normal outcome and padding it is the fastest way to turn a good model into a
-losing one.
+Print a short summary: how many you rated, which 6 you expect to make the
+card, the total units, and one line on anything you decided against and
+why. The card is always 6. What varies is how confident those 6 are, and
+the number on each one is where that honesty lives, not in whether it was
+published. A 6.4 on the card is a 6.4, staked at 1 unit, and the record
+will say what a 6.4 was worth.
 
 Prose in the rationale, no bullet lists, no em dashes, numbers over
 adjectives.

@@ -489,14 +489,6 @@ def test_a_caveat_that_differs_by_row_stays_on_the_rows():
     assert all(r["built"] for r in rows)
 
 
-def test_the_running_card_row_shows_both_teams_and_their_logos():
-    row = re.search(r"const row = \(c, gone\).*?\n    </div></div>`;",
-                    B.HTML, re.S).group(0)
-    for field in ("c.away_team", "c.home_team", "c.away_logo", "c.home_logo",
-                  "c.defense"):
-        assert field in row, field
-
-
 def test_the_published_ticket_carries_the_model_case_too():
     assert "p.defense && p.defense.text" in B.HTML
     assert "V.pick_numbers" in B.HTML
@@ -715,23 +707,6 @@ def test_a_stale_warning_is_not_hidden_behind_a_toggle():
     assert '<div id="board-alert"></div>' in B.HTML
 
 
-def test_stale_lines_take_the_leans_down_too():
-    # The 6 leans are priced off the same board. If those lines cannot be
-    # stood behind, neither can anything built on top of them.
-    body = B.HTML.split("<script>", 1)[1]
-    running = body[body.index("(function renderRunning()"):]
-    assert "boardStale()" in running[:1200]
-    assert "V.running_stale" in running[:1200]
-
-
-def test_the_shared_check_is_defined_before_either_section_uses_it():
-    body = B.HTML.split("<script>", 1)[1]
-    assert body.index("function boardStale()") \
-        < body.index("(function renderRunning()")
-    assert body.index("function boardStale()") \
-        < body.index("(function renderBoard()")
-
-
 def test_the_public_record_counts_the_card_and_nothing_else():
     """
     Every game of the week is scored by scripts/review_week.py so the
@@ -875,3 +850,18 @@ def test_the_record_is_not_filtered_by_recency():
     src = (ROOT / "scripts" / "build_site.py").read_text()
     line = next(ln for ln in src.splitlines() if "settled = [" in ln)
     assert "kickoff" not in line and "TAIL" not in line
+
+
+def test_there_is_one_card_and_no_leans_section():
+    """
+    The page carried a second list, 6 daily leans that moved with the
+    lines, above the card. One card on Wednesday, 6 fully researched
+    picks, tracked all week. The leans section is gone and cannot come
+    back by accident.
+    """
+    assert 'id="running"' not in B.HTML
+    assert 'id="running-h"' not in B.HTML
+    assert "renderRunning" not in B.HTML
+    assert "Six arguments" not in B.HTML
+    nav = B.HTML[B.HTML.index("<nav"):B.HTML.index("</nav>")] if "<nav" in B.HTML else ""
+    assert "#running-h" not in nav
