@@ -428,7 +428,10 @@ def test_every_import_the_suite_needs_is_declared():
 # mostly kick on 5 September.
 # ---------------------------------------------------------------------
 
-RESEARCH = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
+_RESEARCH_RAW = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
+# Collapsed, because the file is hard wrapped and a phrase that reads as
+# one line in the prose is split across two in the bytes.
+RESEARCH = " ".join(_RESEARCH_RAW.split())
 
 
 def para(anchor: str) -> str:
@@ -444,15 +447,27 @@ def para(anchor: str) -> str:
     return " ".join(RESEARCH[start:end].split())
 
 
-def test_the_friday_card_covers_the_coming_weekend_not_the_whole_week():
-    full = para("`scope full`, or no scope,")
-    assert "within 4 days" in full
-    assert "whole slate" not in full
+def test_the_card_covers_the_coming_weekend_not_the_whole_week():
+    assert "within 5 days" in RESEARCH
+    assert "whole slate" not in RESEARCH
+    # A CFBD week can hold 2 weekends. Taking it all at once publishes
+    # plays that kick 8 days out against lines nobody can act on yet.
+    assert "8 days out" in RESEARCH
 
 
-def test_the_thursday_run_still_only_takes_the_early_games():
-    thu = para("`scope thursday` is the early run")
-    assert "kicking before Friday" in thu
+def test_the_window_reaches_sunday_from_a_wednesday():
+    """
+    It was 4 days, measured from a Friday. Moving the card 2 days earlier
+    without moving the window would have cut Sunday off the card.
+    """
+    assert "5 days is what a Wednesday needs" in RESEARCH
+    assert "scope thursday" not in RESEARCH
+
+
+def test_thursday_games_are_rated_on_the_same_bar_as_the_rest():
+    # They used to get their own pass, scoped to them alone, run the
+    # afternoon they kicked.
+    assert "same bar as everything" in RESEARCH
 
 
 def test_a_game_already_published_is_never_rated_twice():
@@ -664,29 +679,23 @@ def test_the_publish_survives_main_moving_underneath_it():
     assert "::error::" in step, "and say so if every retry fails"
 
 
-def test_friday_runs_close_to_when_it_publishes():
+def test_the_card_is_one_run_on_wednesday():
     """
-    Friday used to run at 14:00 Eastern to leave 4 hours to review a pull
-    request. Nothing is reviewed now, so running that early only means
-    publishing 4 hour old lines.
+    2 runs became 1. A Thursday night game used to be rated the same
+    afternoon it kicked; Wednesday gives it more than a day.
     """
     import yaml
     doc = yaml.safe_load(WEEKLY)
     triggers = doc[True] if True in doc else doc["on"]
     crons = [c["cron"] for c in triggers["schedule"]]
-    friday = [c for c in crons if c.endswith("* * 5")]
-    assert friday, "no Friday schedule"
-    hour = int(friday[0].split()[1])
-    # 6 PM Eastern is 22:00 UTC. Start late enough that the lines are
-    # current, early enough that a 45 minute run lands before the hour.
-    assert 20 <= hour <= 21, f"Friday runs at {hour}:00 UTC"
+    assert crons == ["0 18 * * 3"], crons
 
 
-def test_the_watchdog_knows_each_card_is_due_at_a_different_hour():
+def test_the_watchdog_recovers_the_card_on_the_day_it_is_due():
     step = WATCHDOG[WATCHDOG.index("Start the card if its schedule skipped"):]
     step = step[:step.index("- name: Raise the alarm")]
-    assert "4) DUE=18" in step and "5) DUE=21" in step, \
-        "one hour for both would start Friday early or recover Thursday late"
+    assert '"$DOW" != "3"' in step, "must only fire on Wednesday"
+    assert "DUE=18" in step
 
 
 def test_the_pipeline_can_be_rehearsed_without_publishing():
@@ -783,3 +792,14 @@ def test_a_failed_review_cannot_stop_the_publish():
     step = next(s for s in doc["jobs"]["update"]["steps"]
                 if s.get("name") == "Score the model against every result")
     assert step.get("continue-on-error") is True
+
+
+def test_the_agent_is_told_nobody_reviews_it():
+    """
+    The prompt still said a person merges a pull request, which stopped
+    being true when the card moved to publishing itself. An agent told a
+    human is downstream is an agent told its mistakes get caught.
+    """
+    assert "pull request" not in RESEARCH
+    assert "Nobody reads it before it goes live" in RESEARCH
+    assert "card_rules" in RESEARCH

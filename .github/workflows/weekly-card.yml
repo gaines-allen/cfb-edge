@@ -16,20 +16,18 @@ name: Weekly card
 
 on:
   schedule:
-    # Thursday 14:00 Eastern, scoped to games kicking before Friday
-    # evening, so a Thursday game the research likes goes up ahead of its
-    # own kickoff rather than after it.
+    # Wednesday 14:00 Eastern, one card for the whole week.
     #
-    # Friday 17:00 Eastern for the full card. It used to run at 14:00 to
-    # leave 4 hours to review a pull request before the 6 PM publish.
-    # Nothing is reviewed now, so the run moved to the publish instead: a
-    # 45 minute research pass started at 17:00 lands before 6 PM with
-    # lines 4 hours fresher than they used to be.
+    # It ran Thursday and again Friday, which meant a Thursday night game
+    # got its card the same afternoon it kicked, and the rest of the week
+    # waited for Friday. Wednesday covers both: a Thursday game goes up
+    # more than a day ahead instead of hours, and the Saturday slate is
+    # still 3 days out, which is early enough that the lines move but late
+    # enough that the injury news that matters is out.
     #
-    # The scope is derived from the weekday below, because schedule events
-    # cannot carry inputs.
-    - cron: "0 18 * * 4"
-    - cron: "0 21 * * 5"
+    # The whole week is one card now, so there is no early and late scope
+    # to derive from the weekday any more.
+    - cron: "0 18 * * 3"
   # Touch .github/run-card and push to start a run now.
   #
   # This workflow has had 2 scheduled windows since it was added and fired
@@ -172,12 +170,8 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN="$(printf '%s' "$CLAUDE_CODE_OAUTH_TOKEN" | tr -d '[:space:]')"
           export CLAUDE_CODE_OAUTH_TOKEN
           set -o pipefail
-          # Thursday runs are scoped to the early games. Friday and manual
-          # runs take the whole slate.
+          # One card, the whole week, Thursday night through Sunday.
           SCOPE="full"
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%u)" = "4" ]; then
-            SCOPE="thursday"
-          fi
           claude -p "/research-card season ${{ inputs.season || '2026' }} week ${{ inputs.week || 'current' }} scope $SCOPE" \
             --model opus \
             --permission-mode dontAsk \

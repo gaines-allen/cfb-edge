@@ -343,9 +343,14 @@ def test_the_card_and_board_keep_their_empty_lines():
 
 
 def test_the_card_stays_down_until_the_day_it_is_promised():
+    """
+    The card publishes Wednesday afternoon and covers Thursday night
+    through Sunday, so Monday and Tuesday are the only days an empty card
+    section is scaffolding rather than news.
+    """
     body = B.HTML.split("<script>", 1)[1]
     assert "function cardWindow()" in body
-    assert '["Fri", "Sat", "Sun"]' in body
+    assert '["Wed", "Thu", "Fri", "Sat", "Sun"]' in body
     # The window gates the empty state only. A Thursday game that earns
     # its place brings the card back on its own.
     card = body[body.index("if (!live.length) {"):]

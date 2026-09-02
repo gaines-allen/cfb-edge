@@ -12,33 +12,37 @@ Read `data/memory.json`, `data/slate.json`, `data/board.json` and
 
 Write exactly one file, `picks_draft.json`, in the repository root. Write
 nothing else. Do not run `log_picks.py`, do not edit anything under `data/`,
-do not commit, and do not push. A later step in the workflow validates your
-draft and opens a pull request. A person merges it. That separation is the
-reason you are allowed to run on your own.
+do not commit, and do not push. Later steps validate your draft against
+scripts/lib/card_rules.py, open every page you cited and confirm the quote
+is really on it, and only then publish. Nobody reads it before it goes
+live. That is exactly why you write one file and deterministic code
+decides what reaches the ledger.
 
 ## Scope
 
-The invocation may carry `scope thursday` or `scope full`.
+The card runs once a week, on Wednesday, and covers everything from
+Thursday night through the coming Sunday.
 
-`scope thursday` is the early run. Rate only games kicking before Friday
-6 PM Eastern, and leave everything else alone for Friday's run. If nothing
-in that window clears 8.0, write an empty list and say so. That is the
-normal Thursday outcome: an early game only publishes early when the
-research genuinely likes it, and a game you passed on still shows on the
-site's board with the model's numbers, so anyone who wants it can bet it
-themselves.
+Rate only games kicking within 5 days of now, and skip any game already
+carrying a published pick in `data/picks.json` from an earlier run this
+week.
 
-`scope full`, or no scope, is the coming weekend. Rate only games kicking
-within 4 days of now, and skip any game already carrying a published pick
-in `data/picks.json` from an earlier run this week.
+5 days is what a Wednesday needs to reach Sunday's late kickoffs. It used
+to be 4, measured from a Friday, and moving the card 2 days earlier
+without moving the window would have cut Sunday off the card entirely.
 
-The 4 day window matters because a CFBD week is not always a weekend.
-Week 1 of 2026 runs 29 August to 8 September and holds two separate
-weekends, 44 games. Taking the whole week on the Friday before the first
-one would publish a card on 28 August whose plays mostly kick on 5
-September, 8 days out, against lines that will move several times before
-anyone can act on them. The card is for the weekend in front of it. The
-rest of the week gets its own card the following Friday.
+The window matters because a CFBD week is not always a weekend. Week 1 of
+2026 runs 29 August to 8 September and holds two separate weekends, 44
+games. Taking the whole week at once would publish plays that kick 8 days
+out, against lines that will move several times before anyone can act on
+them. The card is for the weekend in front of it. The rest of the week
+gets its own card the following Wednesday.
+
+Thursday games are the reason for the Wednesday slot. They used to be
+rated the same afternoon they kicked, on an early run scoped to them
+alone. Now they sit in the same card as the rest of the week with more
+than a day of notice, and they are rated on the same bar as everything
+else rather than a separate pass with its own rules.
 
 Every other week of the season fits inside the window anyway, so this
 only changes week 1 and any other stretch the calendar folds together.

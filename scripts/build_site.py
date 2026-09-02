@@ -125,7 +125,7 @@ VOICE = {
     "sign_off": "Steve",
     # Describes what the page does rather than promising disclosure it
     # does not make. Every clause here is checkable against the page:
-    # the slate goes up, the leans move daily, 6 plays land Friday.
+    # the slate goes up, the leans move daily, the card lands Wednesday.
     "tagline": "0-2. Down two units.",
     "subhead": "Hawai'i got buried and NC State scored eight damn points. The board is "
                "innocent. I am currently the idiot.",
@@ -208,15 +208,14 @@ VOICE = {
     "live_final": "final",
 
     "card_heading": "The card",
-    # The empty state shows all week before Friday, so it has to cover 2
-    # truths at once: early in the week the card is not built yet, and
-    # after Friday an empty card means the board was priced right.
-    "card_empty": "The card gets built through the week. A Thursday game "
-                  "that earns a spot goes up early, and the rest lands "
-                  "Friday by 6. If nothing's here after that, the board's "
-                  "priced right and I'm not inventing a play to fill the "
-                  "space.",
-    "card_short": "Two bets. Both got smoked. Friday owes me a chair.",
+    # Shown Wednesday through Sunday, so it has to cover 2 truths at
+    # once: before the card lands it is not built yet, and after it lands
+    # an empty card means the board was priced right.
+    "card_empty": "The card lands Wednesday afternoon and covers Thursday "
+                  "night through Sunday. If nothing's here after that, "
+                  "the board's priced right and I'm not inventing a play "
+                  "to fill the space.",
+    "card_short": "Two bets. Both got smoked. This week owes me a chair.",
     "card_pending": "Still running",
 
     "book_heading": "The damage",
@@ -1995,15 +1994,15 @@ function say(text, cls) {
 }
 
 // The week is quoted in Eastern everywhere on this page, so the day has
-// to be Eastern too. A reader in Los Angeles at 9pm Thursday is not owed
-// Friday's card, and one in London at 2am Friday is not owed it either.
+// to be Eastern too. A reader in Los Angeles at 9pm Tuesday is not owed
+// Wednesday's card, and one in London at 2am Wednesday is not either.
 // If the lookup fails, show: a section wrongly visible is a smaller
 // failure than a card wrongly hidden.
 function cardWindow() {
   try {
     const day = new Date().toLocaleDateString("en-US",
       { timeZone: "America/New_York", weekday: "short" });
-    return ["Fri", "Sat", "Sun"].includes(day);
+    return ["Wed", "Thu", "Fri", "Sat", "Sun"].includes(day);
   } catch (e) {
     return true;
   }

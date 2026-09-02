@@ -118,15 +118,13 @@ jobs:
         run: |
           DOW=$(date -u +%u)
           HOUR=$(date -u +%H)
-          # Thursday's early card is due 18:00 UTC, Friday's full card
-          # 21:00. Using one hour for both would either start Friday's run
-          # 3 hours early on stale lines, or leave Thursday's recovery too
-          # late for a Thursday night kickoff.
-          case "$DOW" in
-            4) DUE=18 ;;
-            5) DUE=21 ;;
-            *) echo "Not a card day."; exit 0 ;;
-          esac
+          # The card is due Wednesday 18:00 UTC. It used to run Thursday
+          # and Friday at different hours, which needed a lookup. One
+          # card, one day, one hour.
+          if [ "$DOW" != "3" ]; then
+            echo "Not a card day."; exit 0
+          fi
+          DUE=18
           if [ "$HOUR" -lt "$DUE" ]; then
             echo "Card is not due yet today (due ${DUE}:00 UTC)."; exit 0
           fi

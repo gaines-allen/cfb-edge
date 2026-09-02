@@ -11,6 +11,7 @@ by the wrong form of a name.
 from __future__ import annotations
 
 import json
+import yaml
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -235,17 +236,26 @@ def test_the_site_updates_daily_at_2pm_eastern():
     assert '"0 18 * * *"' in DAILY
 
 
-def test_the_card_researches_thursday_and_friday():
-    # Thursday 14:00 Eastern for the early card, Friday 17:00 for the full
-    # one. Friday moved from 14:00 when the pull request went away: it was
-    # early to leave review time, and there is nothing to review now.
-    assert '"0 18 * * 4"' in WEEKLY
-    assert '"0 21 * * 5"' in WEEKLY
-    assert '"30 13 * * 3"' not in WEEKLY, "the Wednesday cron survived"
+def test_the_card_researches_on_wednesday():
+    """
+    Wednesday 14:00 Eastern. A Thursday night game used to be rated the
+    same afternoon it kicked; now it goes up more than a day ahead.
+    """
+    doc = yaml.safe_load(WEEKLY)
+    on = doc[True] if True in doc else doc["on"]
+    crons = [c["cron"] for c in on["schedule"]]
+    assert crons == ["0 18 * * 3"], crons
 
 
-def test_thursday_runs_are_scoped():
-    assert 'SCOPE="thursday"' in WEEKLY
+
+def test_the_card_runs_one_scope_for_the_whole_week():
+    """
+    It used to split: a Thursday pass scoped to games kicking that night,
+    then a Friday pass for the rest. Moving the card to Wednesday covers
+    both in one card, so there is no early and late scope to derive.
+    """
+    assert 'SCOPE="full"' in WEEKLY
+    assert 'SCOPE="thursday"' not in WEEKLY
     assert "scope $SCOPE" in WEEKLY
 
 
@@ -264,12 +274,11 @@ def test_the_tracker_workflow_cannot_reach_the_ledger():
 
 
 def test_scope_is_documented_for_the_agent():
-    cmd = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
-    assert "scope thursday" in cmd
-    assert "before Friday" in cmd
+    doc = (ROOT / ".claude" / "commands" / "research-card.md").read_text()
+    assert "within 5 days" in doc
+    assert "Thursday night through the coming Sunday" in doc
 
 
-# ------------------------------------------------- the staleness gate
 
 def gate_with(board_file, slate_file):
     """Run board_rows against injected board and slate payloads."""
