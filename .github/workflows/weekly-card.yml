@@ -73,6 +73,8 @@ concurrency:
 
 jobs:
   card:
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -362,6 +364,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish
+        id: publish
         if: steps.validate.outputs.no_card != 'true' && steps.mode.outputs.dry != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -414,3 +417,31 @@ jobs:
           for w in v.get("warnings", []):
               print(f"- Warning: {w}\n")
           PY
+          echo "published=true" >> "$GITHUB_OUTPUT"
+
+  # The Publish step pushes with the default GITHUB_TOKEN, and GitHub does
+  # not start workflows from pushes made with that token. So deploy.yml,
+  # which the site normally relies on, never fires for a card commit. The
+  # first 6 pick card committed at 22:38 and the live page still said
+  # 22:24 an hour later. The daily run deploys itself for the same reason;
+  # this does the same, and only when something was actually published.
+  deploy:
+    needs: card
+    if: needs.card.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

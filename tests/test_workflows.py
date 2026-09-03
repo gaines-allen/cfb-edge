@@ -818,3 +818,25 @@ def test_the_agent_is_told_nobody_reviews_it():
     assert "pull request" not in RESEARCH
     assert "Nobody reads it before it goes live" in RESEARCH
     assert "card_rules" in RESEARCH
+
+
+def test_the_card_deploys_itself():
+    """
+    The Publish step pushes with the default GITHUB_TOKEN, and GitHub does
+    not start workflows from pushes made with that token, so deploy.yml
+    never fires for a card commit. The first 6 pick card committed at
+    22:38 and the live page still said 22:24 an hour later.
+    """
+    import yaml
+    doc = yaml.safe_load(WEEKLY)
+    dep = doc["jobs"]["deploy"]
+    assert dep["needs"] == "card"
+    assert dep["permissions"].get("pages") == "write"
+    assert dep["permissions"].get("id-token") == "write"
+    assert any("deploy-pages" in str(s.get("uses")) for s in dep["steps"])
+    # Only after a real publish. A rehearsal or an empty card has nothing
+    # to deploy, and deploying the previous state would look like success.
+    assert "needs.card.outputs.published == 'true'" in dep["if"]
+    pub = next(s for s in doc["jobs"]["card"]["steps"] if s.get("name") == "Publish")
+    assert pub.get("id") == "publish"
+    assert 'echo "published=true"' in pub["run"]
