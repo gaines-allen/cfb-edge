@@ -24,8 +24,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from lib import store  # noqa: E402
 from lib.card_rules import (  # noqa: E402
-    LIVE_THRESHOLD, check_card, correlation_warnings, units_for,
+    LIVE_THRESHOLD, check_card, correlation_warnings, select_card, units_for,
 )
 from lib.runlog import RunLog  # noqa: E402
 
@@ -37,6 +38,9 @@ def main() -> int:
                     help="machine readable result for the workflow summary")
     ap.add_argument("--dry-run", action="store_true",
                     help="accepted for symmetry, this script never writes")
+    ap.add_argument("--season", type=int, default=2026)
+    ap.add_argument("--week", type=int, default=None,
+                    help="defaults to the slate's week, as log_picks does")
     args = ap.parse_args()
 
     log = RunLog("validate_card", dry_run=args.dry_run)
@@ -59,11 +63,22 @@ def main() -> int:
         print("ERROR: the draft must be a JSON list of picks", file=sys.stderr)
         return 2
 
+    # The same selection log_picks will make, made here first, so the
+    # rules are checked against the card that will actually be logged and
+    # not against every rated row as if it were live.
+    week = args.week
+    if week is None:
+        slate_path = store.DATA / "slate.json"
+        if slate_path.exists():
+            week = json.loads(slate_path.read_text()).get("week")
+    this_week = [p for p in store.load_picks()
+                 if p.get("season") == args.season and p.get("week") == week]
+    select_card(picks, this_week)
+
     errors = check_card(picks)
     warnings = correlation_warnings(picks)
 
-    live = [p for p in picks
-            if float(p.get("confidence", 0) or 0) >= LIVE_THRESHOLD]
+    live = [p for p in picks if p.get("live")]
     shadow = [p for p in picks if p not in live]
     staked = sum(units_for(p.get("confidence", 8.0)) for p in live)
 

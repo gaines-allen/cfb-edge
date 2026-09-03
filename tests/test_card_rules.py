@@ -266,10 +266,14 @@ def today_card(n, **over):
 def run_gate(tmp_path, card):
     draft = tmp_path / "picks_draft.json"
     draft.write_text(json.dumps(card))
+    import os
+    (tmp_path / "picks.json").write_text("[]")
+    env = dict(os.environ)
+    env["CFB_EDGE_PICKS"] = str(tmp_path / "picks.json")
     return subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "validate_card.py"),
          "--file", str(draft), "--json"],
-        capture_output=True, text=True, cwd=str(ROOT))
+        capture_output=True, env=env, text=True, cwd=str(ROOT))
 
 
 def test_the_gate_accepts_a_clean_card(tmp_path):

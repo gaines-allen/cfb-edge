@@ -25,7 +25,7 @@ from datetime import datetime, timedelta, timezone
 # Imported, not repeated. Two copies of one threshold drift the
 # first time either is tuned, and this file and store.py both
 # decide whether a pick is live.
-from .store import LIVE_THRESHOLD  # noqa: E402
+from .store import LIVE_THRESHOLD, TARGET_PICKS  # noqa: E402
 MAX_LIVE_PICKS = 6
 MAX_UNITS_PER_PICK = 2.0
 MAX_UNITS_PER_WEEK = 12.0
@@ -103,6 +103,46 @@ def _parse_date(value) -> datetime | None:
 
 
 # ------------------------------------------------------------ per pick
+
+def select_card(draft: list[dict], existing_week: list[dict]) -> list[dict]:
+    """
+    Decide which drafted rows are the card. Mutates and returns the draft.
+
+    The card is the 6 best rated games of the week, one opinion per game,
+    counting what the ledger already holds for the week toward the 6.
+    Rows already in the ledger are never touched: they froze when they
+    were written, and a game already live there counts as occupied so one
+    opinion per game holds across runs and not only within one.
+
+    This is the single place that decision is made. validate_card runs it
+    before check_card, and log_picks runs it before logging, so the two
+    can never disagree about what is live. The first version ranked in
+    log_picks only, after validation had already run against the raw
+    draft with the threshold as its idea of live, and a second market at
+    8.0 on a game already taken was flagged as a duplicate, failing the
+    whole card.
+    """
+    already = {(p["event_id"], p["market"], p["period"], p["side"])
+               for p in existing_week}
+    games: set = {p["event_id"] for p in existing_week if p.get("live")}
+    on_card = len(games)
+    fresh = [d for d in draft
+             if (d["event_id"], d["market"], d["period"], d["side"]) not in already]
+    for d in draft:
+        if d not in fresh:
+            d["live"] = False
+            d["units"] = 0.0
+    for d in sorted(fresh, key=lambda d: -float(d.get("confidence") or 0)):
+        take = on_card < TARGET_PICKS and d.get("event_id") not in games
+        d["live"] = take
+        if take:
+            games.add(d.get("event_id"))
+            on_card += 1
+            d["units"] = units_for(float(d.get("confidence") or 0))
+        else:
+            d["units"] = 0.0
+    return draft
+
 
 def check_pick(pick: dict, i: int, now: datetime | None = None) -> list[str]:
     now = now or datetime.now(timezone.utc)

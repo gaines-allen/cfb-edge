@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import uuid
 from datetime import datetime, timezone
+import os
 from pathlib import Path
 from typing import Any
 
@@ -23,7 +24,10 @@ from .runlog import RunLog
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
-PICKS = DATA / "picks.json"
+# Tests point this at a temp file to seed a ledger. Nothing in
+# production sets it, and dry runs never write, so the override cannot
+# reach the real ledger by accident.
+PICKS = Path(os.environ.get("CFB_EDGE_PICKS", str(DATA / "picks.json")))
 LINE_HISTORY = DATA / "line_history.json"
 MEMORY = DATA / "memory.json"
 BOARD = DATA / "board.json"

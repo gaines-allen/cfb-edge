@@ -57,12 +57,21 @@ def draft_row(event, spread, **over):
 
 
 def run_log(tmp_path, rows, *extra):
+    """
+    Against an empty ledger. log_picks now reads the ledger before it
+    ranks, to count what the week already holds toward the 6. Run against
+    the real data/picks.json, every test here would start the week with
+    however many picks are actually live right now, and pass or fail with
+    the calendar.
+    """
     import os
     draft = tmp_path / "picks_draft.json"
     draft.write_text(json.dumps(rows))
+    (tmp_path / "picks.json").write_text("[]")
     env = dict(os.environ)
     env.pop("CFBD_API_KEY", None)
     env.pop("ODDS_API_KEY", None)
+    env["CFB_EDGE_PICKS"] = str(tmp_path / "picks.json")
     return subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "log_picks.py"),
          "--file", str(draft), "--season", "2026", "--week", "1", *extra],
@@ -206,3 +215,127 @@ def test_a_pick_with_no_sources_still_records_an_empty_list():
         market="spread", period="full", side="B", line=-6.5, price=-110,
         confidence=7.2, units=1.0, rationale="r", factors={})
     assert row["sources"] == []
+
+
+def run_log_with_ledger(tmp_path, rows, ledger, *extra):
+    """run_log against a seeded ledger instead of the real one."""
+    import os
+    draft = tmp_path / "picks_draft.json"
+    draft.write_text(json.dumps(rows))
+    led = tmp_path / "picks.json"
+    led.write_text(json.dumps(ledger))
+    env = dict(os.environ)
+    env.pop("CFBD_API_KEY", None)
+    env.pop("ODDS_API_KEY", None)
+    env["CFB_EDGE_PICKS"] = str(led)
+    return subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "log_picks.py"),
+         "--file", str(draft), "--season", "2026", "--week", "1", *extra],
+        capture_output=True, text=True, cwd=str(ROOT), env=env)
+
+
+def test_a_second_run_fills_the_card_up_to_six_not_past_it(tmp_path, board_event):
+    """
+    The morning run logged 1 live pick and 1 shadow. The afternoon run
+    rated 7 games including both of those. Ranking the whole draft and
+    dropping duplicates afterwards spent 2 slots on rows that were then
+    skipped, and a 7.0 that should have been the 5th pick was left off.
+    Rank only what is new, and count what the ledger already holds.
+    """
+    games = seven_games(7)
+    confs = (8.4, 7.9, 7.6, 7.2, 7.0, 6.5, 6.1)
+    rows = [draft_row(g, sp, confidence=c) for (g, sp), c in zip(games, confs)]
+    # The ledger already holds the 8.4 as live and the 6.5 as shadow.
+    def logged(row, live):
+        r = dict(row); r.update({"season": 2026, "week": 1, "live": live,
+                                 "units": 1.0 if live else 0.0,
+                                 "factors": {t: True for t in row["factors"]},
+                                 "result": "pending"})
+        return r
+    ledger = [logged(rows[0], True), logged(rows[5], False)]
+    proc = run_log_with_ledger(tmp_path, rows, ledger, "--dry-run")
+    assert proc.returncode == 0, proc.stderr
+    out = json.loads(proc.stdout)
+    # 1 already live, so 5 new go live: 7.9, 7.6, 7.2, 7.0 and 6.1.
+    # The 6.5 is a duplicate of a frozen shadow row and cannot be promoted.
+    assert out["live_picks"] == 5, out
+    assert len(out["skipped_duplicates"]) == 2
+    card = " ".join(out["card"])
+    assert "(7.0," in card and "(6.1," in card
+    assert "(6.5," not in card
+
+
+def test_a_game_already_live_in_the_ledger_is_not_taken_again(tmp_path, board_event):
+    games = seven_games(3)
+    rows = [draft_row(g, sp, confidence=c) for (g, sp), c in zip(games, (8.0, 7.5, 7.0))]
+    g0, sp0 = games[0]
+    tot = next((l for l in g0["lines"] if l["market"] == "totals" and l["side"] == "Over"), None)
+    if not tot:
+        return
+    # Game 0's spread is already live from an earlier run. Its total,
+    # rated highest today, must not spend a second slot on that game.
+    ledger = [dict(rows[0], season=2026, week=1, live=True, units=1.0,
+                   factors={t: True for t in rows[0]["factors"]}, result="pending")]
+    rows.append(draft_row(g0, sp0, market="total", side="Over",
+                          line=tot["point"], price=tot["price"], confidence=8.2))
+    proc = run_log_with_ledger(tmp_path, rows[1:], ledger, "--dry-run")
+    assert proc.returncode == 0, proc.stderr
+    out = json.loads(proc.stdout)
+    assert not any("Over" in c and g0["home_team"] in c for c in out["card"])
+    assert out["live_picks"] == 2
+
+
+def run_validate(tmp_path, rows, ledger=None):
+    """validate_card against a seeded ledger, the way the workflow runs it."""
+    import os
+    draft = tmp_path / "picks_draft.json"
+    draft.write_text(json.dumps(rows))
+    (tmp_path / "picks.json").write_text(json.dumps(ledger or []))
+    env = dict(os.environ)
+    env["CFB_EDGE_PICKS"] = str(tmp_path / "picks.json")
+    return subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "validate_card.py"),
+         "--file", str(draft), "--json", "--season", "2026", "--week", "1"],
+        capture_output=True, text=True, cwd=str(ROOT), env=env)
+
+
+def test_validation_sees_the_same_card_logging_will_make(tmp_path, board_event):
+    """
+    The workflow validates before it logs. Validation used to check the
+    raw draft with the threshold as its idea of live, so a second market
+    at 8.0 on a game already taken read as a duplicate and failed the
+    whole card, even though logging would have marked it shadow. Both now
+    run the same selection first.
+    """
+    games = seven_games(6)
+    rows = [draft_row(g, sp, confidence=c)
+            for (g, sp), c in zip(games, (8.4, 7.9, 7.6, 7.2, 6.8, 6.5))]
+    g0, sp0 = games[0]
+    tot = next((l for l in g0["lines"] if l["market"] == "totals" and l["side"] == "Over"), None)
+    if not tot:
+        return
+    rows.append(draft_row(g0, sp0, market="total", side="Over",
+                          line=tot["point"], price=tot["price"], confidence=8.0))
+    proc = run_validate(tmp_path, rows)
+    assert proc.returncode == 0, proc.stderr
+    out = json.loads(proc.stdout)
+    assert out.get("live") == 6, out
+
+
+def test_validation_counts_what_the_ledger_already_holds(tmp_path, board_event):
+    games = seven_games(6)
+    rows = [draft_row(g, sp, confidence=c)
+            for (g, sp), c in zip(games, (8.4, 7.9, 7.6, 7.2, 6.8, 6.5))]
+    ledger = [dict(rows[0], season=2026, week=1, live=True, units=1.0,
+                   factors={t: True for t in rows[0]["factors"]}, result="pending")]
+    proc = run_validate(tmp_path, rows[1:], ledger)
+    assert proc.returncode == 0, proc.stderr
+    assert json.loads(proc.stdout).get("live") == 5
+
+
+def test_selection_lives_in_one_place():
+    # Two scripts deciding live two ways is how they came to disagree.
+    for name in ("log_picks.py", "validate_card.py"):
+        src = (ROOT / "scripts" / name).read_text()
+        assert "select_card(" in src, name
+        assert "ranked = sorted(" not in src, f"{name} ranks on its own"

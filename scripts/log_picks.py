@@ -22,7 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import store  # noqa: E402
-from lib.card_rules import check_card, correlation_warnings  # noqa: E402
+from lib.card_rules import select_card, check_card, correlation_warnings  # noqa: E402
 from lib.runlog import RunLog  # noqa: E402
 
 VALID_MARKETS = {"spread", "total", "moneyline"}
@@ -126,31 +126,19 @@ def main() -> int:
     #
     # One opinion per game, so a second market on a matchup already taken
     # cannot occupy a slot.
-    ranked = sorted(draft, key=lambda d: -float(d.get("confidence") or 0))
-    games: set = set()
-    on_card = 0
-    for d in ranked:
-        take = on_card < store.TARGET_PICKS and d.get("event_id") not in games
-        d["live"] = take
-        if take:
-            games.add(d.get("event_id"))
-            on_card += 1
-            d["units"] = units_for(float(d.get("confidence") or 0))
-        else:
-            d["units"] = 0.0
-
     errors: list[str] = []
     for i, d in enumerate(draft):
         errors.extend(validate(d, board_index, i))
     # The same rules the weekly workflow enforces, so a hand logged card
     # cannot walk around a gate the automated one has to clear.
-    errors += check_card(draft)
 
     if errors:
         print("Validation failed:\n" + "\n".join(errors), file=sys.stderr)
         return 3
 
     week = args.week
+
+
     if week is None:
         slate_path = store.DATA / "slate.json"
         if slate_path.exists():
@@ -159,10 +147,18 @@ def main() -> int:
         print("ERROR: pass --week, or build the slate first", file=sys.stderr)
         return 2
 
+
     existing = store.load_picks()
+    this_week = [p for p in existing
+                 if p.get("season") == args.season and p.get("week") == week]
     already = {(p["event_id"], p["market"], p["period"], p["side"])
-               for p in existing
-               if p.get("season") == args.season and p.get("week") == week}
+               for p in this_week}
+    select_card(draft, this_week)
+    card_errors = check_card(draft)
+    if card_errors:
+        print("Validation failed:\n" + "\n".join(card_errors), file=sys.stderr)
+        log.error("card rules failed", errors=card_errors)
+        return 3
 
     new_rows, skipped = [], []
     for d in draft:
