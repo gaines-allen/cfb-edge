@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-04T18:36:23+00:00",
+  "generated_at": "2026-09-04T20:01:33+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-09-04T18:35:58+00:00",
+    "built_at": "2026-09-04T20:01:09+00:00",
     "rows": [
       {
         "market_spread": -23.5,
@@ -31,7 +31,7 @@
             "price": -105,
             "model_number": 64.3,
             "edge_points": 11.8,
-            "edge_sigma": 1.99,
+            "edge_sigma": 2.0,
             "floor_confidence": 6.5
           },
           {
@@ -80,7 +80,7 @@
             "price": -115,
             "model_number": 34.7,
             "edge_points": -11.8,
-            "edge_sigma": -1.99,
+            "edge_sigma": -2.0,
             "floor_confidence": 6.5
           }
         ],
@@ -154,7 +154,7 @@
             "price": -122,
             "model_number": -22.9,
             "edge_points": 5.6,
-            "edge_sigma": 1.89,
+            "edge_sigma": 1.9,
             "floor_confidence": 6.3
           },
           {
@@ -166,7 +166,7 @@
             "price": -110,
             "model_number": 42.9,
             "edge_points": -9.6,
-            "edge_sigma": -1.62,
+            "edge_sigma": -1.63,
             "floor_confidence": 5.9
           }
         ],
@@ -256,7 +256,7 @@
             "price": -110,
             "model_number": -13.8,
             "edge_points": -3.3,
-            "edge_sigma": -1.11,
+            "edge_sigma": -1.12,
             "floor_confidence": 5.2
           }
         ],
@@ -431,55 +431,6 @@
         }
       },
       {
-        "market_spread": -41.5,
-        "market_total": 51.5,
-        "event_id": "7356f9bad07c48fc6b78f52e38c85c11",
-        "kickoff": "2026-09-05T00:00:00Z",
-        "matchup": "UTEP Miners @ Oklahoma Sooners",
-        "home_team": "Oklahoma Sooners",
-        "away_team": "UTEP Miners",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
-        "neutral_site": false,
-        "projected_spread": -39.5,
-        "projected_total": 43.6,
-        "home_short": "Oklahoma",
-        "away_short": "UTEP",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 51.5,
-            "bet_line": 51.5,
-            "price": -106,
-            "model_number": 43.6,
-            "edge_points": -7.9,
-            "edge_sigma": -1.34,
-            "floor_confidence": 5.5
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "UTEP",
-            "market_line": -41.5,
-            "bet_line": 41.5,
-            "price": -115,
-            "model_number": -39.5,
-            "edge_points": 2.0,
-            "edge_sigma": 0.68,
-            "floor_confidence": 4.5
-          }
-        ],
-        "movement": {
-          "total": {
-            "from": 49.5,
-            "to": 51.5
-          }
-        }
-      },
-      {
         "market_spread": -23.5,
         "market_total": 46.5,
         "event_id": "0b8f9bbc0bf1b04a819f0113922998b0",
@@ -627,7 +578,7 @@
             "price": -114,
             "model_number": -1.3,
             "edge_points": -3.8,
-            "edge_sigma": -1.28,
+            "edge_sigma": -1.29,
             "floor_confidence": 5.4
           },
           {
@@ -639,7 +590,7 @@
             "price": -110,
             "model_number": 55.6,
             "edge_points": 2.1,
-            "edge_sigma": 0.35,
+            "edge_sigma": 0.36,
             "floor_confidence": 4.0
           }
         ],
@@ -651,6 +602,47 @@
           "total": {
             "from": 54.5,
             "to": 53.5
+          }
+        }
+      },
+      {
+        "market_spread": -40.5,
+        "market_total": 50.5,
+        "event_id": "7356f9bad07c48fc6b78f52e38c85c11",
+        "kickoff": "2026-09-05T00:00:00Z",
+        "matchup": "UTEP Miners @ Oklahoma Sooners",
+        "home_team": "Oklahoma Sooners",
+        "away_team": "UTEP Miners",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
+        "neutral_site": false,
+        "projected_spread": -39.5,
+        "projected_total": 43.6,
+        "home_short": "Oklahoma",
+        "away_short": "UTEP",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 50.5,
+            "bet_line": 50.5,
+            "price": -105,
+            "model_number": 43.6,
+            "edge_points": -6.9,
+            "edge_sigma": -1.17,
+            "floor_confidence": 5.3
+          }
+        ],
+        "movement": {
+          "spread": {
+            "from": -41.5,
+            "to": -40.5
+          },
+          "total": {
+            "from": 49.5,
+            "to": 50.5
           }
         }
       },
@@ -729,7 +721,7 @@
             "price": -104,
             "model_number": 43.5,
             "edge_points": -7.0,
-            "edge_sigma": -1.18,
+            "edge_sigma": -1.19,
             "floor_confidence": 5.3
           },
           {
@@ -807,7 +799,7 @@
       },
       {
         "market_spread": 24.5,
-        "market_total": 47.5,
+        "market_total": 46.5,
         "event_id": "5f92cc707afed4249e1e935dbbeacb5e",
         "kickoff": "2026-09-05T01:00:00Z",
         "matchup": "Miami Hurricanes @ Stanford Cardinal",
@@ -838,13 +830,13 @@
             "market": "total",
             "period": "full",
             "side": "Under",
-            "market_line": 47.5,
-            "bet_line": 47.5,
-            "price": -108,
+            "market_line": 46.5,
+            "bet_line": 46.5,
+            "price": -110,
             "model_number": 43.5,
-            "edge_points": -4.0,
-            "edge_sigma": -0.68,
-            "floor_confidence": 4.5
+            "edge_points": -3.0,
+            "edge_sigma": -0.51,
+            "floor_confidence": 4.3
           }
         ],
         "movement": {
@@ -854,7 +846,7 @@
           },
           "total": {
             "from": 48.5,
-            "to": 47.5
+            "to": 46.5
           }
         }
       },
@@ -974,6 +966,47 @@
         }
       },
       {
+        "market_spread": -2.5,
+        "market_total": 55.5,
+        "event_id": "171952045c3039d592807265d36b60d0",
+        "kickoff": "2026-09-04T22:30:00Z",
+        "matchup": "San Jose State Spartans @ Eastern Michigan Eagles",
+        "home_team": "Eastern Michigan Eagles",
+        "away_team": "San Jose State Spartans",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
+        "neutral_site": false,
+        "projected_spread": -1.2,
+        "projected_total": 50.9,
+        "home_short": "Eastern Michigan",
+        "away_short": "San Jos\u00e9 State",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 55.5,
+            "bet_line": 55.5,
+            "price": -115,
+            "model_number": 50.9,
+            "edge_points": -4.6,
+            "edge_sigma": -0.78,
+            "floor_confidence": 4.7
+          }
+        ],
+        "movement": {
+          "spread": {
+            "from": -4.5,
+            "to": -2.5
+          },
+          "total": {
+            "from": 53.5,
+            "to": 55.5
+          }
+        }
+      },
+      {
         "market_spread": -16.5,
         "market_total": 47.5,
         "event_id": "ab601e833e1494159df16e0331dd02d4",
@@ -1011,7 +1044,7 @@
             "price": -110,
             "model_number": 45.4,
             "edge_points": -2.1,
-            "edge_sigma": -0.35,
+            "edge_sigma": -0.36,
             "floor_confidence": 4.0
           }
         ],
@@ -1068,47 +1101,6 @@
           "total": {
             "from": 47.5,
             "to": 46.5
-          }
-        }
-      },
-      {
-        "market_spread": -2.5,
-        "market_total": 54.5,
-        "event_id": "171952045c3039d592807265d36b60d0",
-        "kickoff": "2026-09-04T22:30:00Z",
-        "matchup": "San Jose State Spartans @ Eastern Michigan Eagles",
-        "home_team": "Eastern Michigan Eagles",
-        "away_team": "San Jose State Spartans",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
-        "neutral_site": false,
-        "projected_spread": -1.2,
-        "projected_total": 50.9,
-        "home_short": "Eastern Michigan",
-        "away_short": "San Jos\u00e9 State",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 54.5,
-            "bet_line": 54.5,
-            "price": -105,
-            "model_number": 50.9,
-            "edge_points": -3.6,
-            "edge_sigma": -0.61,
-            "floor_confidence": 4.4
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -4.5,
-            "to": -2.5
-          },
-          "total": {
-            "from": 53.5,
-            "to": 54.5
           }
         }
       },
@@ -1175,7 +1167,7 @@
             "price": -115,
             "model_number": -18.2,
             "edge_points": -1.7,
-            "edge_sigma": -0.57,
+            "edge_sigma": -0.58,
             "floor_confidence": 4.4
           }
         ],
@@ -1221,7 +1213,7 @@
             "side": "Under",
             "market_line": 51.5,
             "bet_line": 51.5,
-            "price": -105,
+            "price": -118,
             "model_number": 49.8,
             "edge_points": -1.7,
             "edge_sigma": -0.29,
@@ -1273,6 +1265,43 @@
         }
       },
       {
+        "market_spread": -10.5,
+        "market_total": 48.5,
+        "event_id": "05c2e060c97c538faeee8237a0bd60f0",
+        "kickoff": "2026-09-05T00:00:00Z",
+        "matchup": "Toledo Rockets @ Michigan State Spartans",
+        "home_team": "Michigan State Spartans",
+        "away_team": "Toledo Rockets",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2649.png",
+        "neutral_site": false,
+        "projected_spread": -11.1,
+        "projected_total": 45.8,
+        "home_short": "Michigan State",
+        "away_short": "Toledo",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 48.5,
+            "bet_line": 48.5,
+            "price": -118,
+            "model_number": 45.8,
+            "edge_points": -2.7,
+            "edge_sigma": -0.46,
+            "floor_confidence": 4.2
+          }
+        ],
+        "movement": {
+          "total": {
+            "from": 49.5,
+            "to": 48.5
+          }
+        }
+      },
+      {
         "market_spread": 2.5,
         "market_total": 53.5,
         "event_id": "a570687d47661da4982cfd885cdb4a44",
@@ -1303,46 +1332,9 @@
           }
         ],
         "movement": {}
-      },
-      {
-        "market_spread": -10.5,
-        "market_total": 47.5,
-        "event_id": "05c2e060c97c538faeee8237a0bd60f0",
-        "kickoff": "2026-09-05T00:00:00Z",
-        "matchup": "Toledo Rockets @ Michigan State Spartans",
-        "home_team": "Michigan State Spartans",
-        "away_team": "Toledo Rockets",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2649.png",
-        "neutral_site": false,
-        "projected_spread": -11.1,
-        "projected_total": 45.8,
-        "home_short": "Michigan State",
-        "away_short": "Toledo",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 47.5,
-            "bet_line": 47.5,
-            "price": -114,
-            "model_number": 45.8,
-            "edge_points": -1.7,
-            "edge_sigma": -0.29,
-            "floor_confidence": 3.9
-          }
-        ],
-        "movement": {
-          "total": {
-            "from": 49.5,
-            "to": 47.5
-          }
-        }
       }
     ],
-    "fetched_at": "2026-09-04T18:35:55+00:00",
+    "fetched_at": "2026-09-04T20:01:02+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -1371,8 +1363,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-04T18:35:59+00:00",
-    "board_fetched_at": "2026-09-04T18:35:55+00:00",
+    "updated_at": "2026-09-04T20:01:10+00:00",
+    "board_fetched_at": "2026-09-04T20:01:02+00:00",
     "season": 2026,
     "week": 1,
     "card": [
@@ -1384,7 +1376,7 @@
         "line": 52.5,
         "price": -105,
         "confidence": 6.5,
-        "sigma": 1.99,
+        "sigma": 2.0,
         "edge_points": 11.8,
         "model_number": 64.3,
         "first_seen": "2026-08-24T18:24:03+00:00",
@@ -1394,7 +1386,7 @@
           "from": 54.5,
           "to": 52.5
         },
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -1421,7 +1413,7 @@
         "line": 46.5,
         "price": -115,
         "confidence": 6.5,
-        "sigma": -1.99,
+        "sigma": -2.0,
         "edge_points": -11.8,
         "model_number": 34.7,
         "first_seen": "2026-08-24T18:24:03+00:00",
@@ -1431,7 +1423,7 @@
           "from": 47.5,
           "to": 46.5
         },
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 2,
         "peak_rank": 1,
         "on_board": true,
@@ -1465,7 +1457,7 @@
         "first_confidence": 6.6,
         "moved_confidence": -0.2,
         "moved_line": null,
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 3,
         "peak_rank": 1,
         "on_board": true,
@@ -1492,14 +1484,14 @@
         "line": 28.5,
         "price": -122,
         "confidence": 6.3,
-        "sigma": 1.89,
+        "sigma": 1.9,
         "edge_points": 5.6,
         "model_number": -22.9,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 6.5,
         "moved_confidence": -0.2,
         "moved_line": null,
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 4,
         "peak_rank": 3,
         "on_board": true,
@@ -1536,7 +1528,7 @@
           "from": 54.5,
           "to": 51.5
         },
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 5,
         "peak_rank": 2,
         "on_board": true,
@@ -1570,7 +1562,7 @@
         "first_confidence": 6.4,
         "moved_confidence": -0.3,
         "moved_line": null,
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 6,
         "peak_rank": 4,
         "on_board": true,
@@ -1714,7 +1706,7 @@
         "first_confidence": 5.1,
         "moved_confidence": 1.0,
         "moved_line": null,
-        "days_tracked": 26,
+        "days_tracked": 27,
         "rank": 7,
         "peak_rank": 5,
         "on_board": true,
@@ -1739,14 +1731,14 @@
   "scale": {
     "cap": 7.5,
     "publish": 7.0,
-    "spread_gap": 2.96,
-    "total_gap": 5.916,
+    "spread_gap": 2.954,
+    "total_gap": 5.907,
     "sample": 80
   },
   "live": null,
   "lock_id": "4fe6597357f4",
-  "board_fetched_at": "2026-09-04T18:35:55+00:00",
-  "credits_remaining": 470,
+  "board_fetched_at": "2026-09-04T20:01:02+00:00",
+  "credits_remaining": 467,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
