@@ -1,619 +1,11 @@
 {
-  "fetched_at": "2026-09-04T20:01:02+00:00",
+  "fetched_at": "2026-09-05T17:05:01+00:00",
   "quota": {
-    "remaining": 467,
-    "used": 33,
+    "remaining": 464,
+    "used": 36,
     "last_cost": 3
   },
   "games": [
-    {
-      "event_id": "171952045c3039d592807265d36b60d0",
-      "commence_time": "2026-09-04T22:30:00Z",
-      "home_team": "Eastern Michigan Eagles",
-      "away_team": "San Jose State Spartans",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Eastern Michigan Eagles",
-          "point": null,
-          "price": -134,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "San Jose State Spartans",
-          "point": null,
-          "price": 112,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Eastern Michigan Eagles",
-          "point": -2.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "San Jose State Spartans",
-          "point": 2.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 55.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 55.5,
-          "price": -115,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "d500b645ddca0f63d4d383778b3d5b21",
-      "commence_time": "2026-09-04T23:00:00Z",
-      "home_team": "Georgia State Panthers",
-      "away_team": "North Carolina A&T Aggies",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Georgia State Panthers",
-          "point": null,
-          "price": -8000,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "North Carolina A&T Aggies",
-          "point": null,
-          "price": 2200,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Georgia State Panthers",
-          "point": -28.5,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "North Carolina A&T Aggies",
-          "point": 28.5,
-          "price": -118,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 58.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 58.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "c424c1d6579f60f93c37698cc82f2ceb",
-      "commence_time": "2026-09-04T23:00:00Z",
-      "home_team": "Purdue Boilermakers",
-      "away_team": "Indiana State Sycamores",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "Indiana State Sycamores",
-          "point": 35.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Purdue Boilermakers",
-          "point": -35.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 56.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 56.5,
-          "price": -112,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "604ae01f960f7be32aeb554f733be590",
-      "commence_time": "2026-09-05T00:00:00Z",
-      "home_team": "Kansas Jayhawks",
-      "away_team": "LIU Sharks",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "Kansas Jayhawks",
-          "point": -43.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "LIU Sharks",
-          "point": 43.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 55.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 55.5,
-          "price": -106,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "05c2e060c97c538faeee8237a0bd60f0",
-      "commence_time": "2026-09-05T00:00:00Z",
-      "home_team": "Michigan State Spartans",
-      "away_team": "Toledo Rockets",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Michigan State Spartans",
-          "point": null,
-          "price": -430,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Toledo Rockets",
-          "point": null,
-          "price": 330,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Michigan State Spartans",
-          "point": -10.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Toledo Rockets",
-          "point": 10.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 48.5,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 48.5,
-          "price": -118,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "7356f9bad07c48fc6b78f52e38c85c11",
-      "commence_time": "2026-09-05T00:00:00Z",
-      "home_team": "Oklahoma Sooners",
-      "away_team": "UTEP Miners",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Oklahoma Sooners",
-          "point": null,
-          "price": -30000,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UTEP Miners",
-          "point": null,
-          "price": 4000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oklahoma Sooners",
-          "point": -40.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UTEP Miners",
-          "point": 40.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "a77e0c42754f1a99ae4fbea861a78408",
-      "commence_time": "2026-09-05T01:00:00Z",
-      "home_team": "USC Trojans",
-      "away_team": "Fresno State Bulldogs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Fresno State Bulldogs",
-          "point": null,
-          "price": 1100,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "USC Trojans",
-          "point": null,
-          "price": -2500,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Fresno State Bulldogs",
-          "point": 21.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "USC Trojans",
-          "point": -21.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -118,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "5f92cc707afed4249e1e935dbbeacb5e",
-      "commence_time": "2026-09-05T01:00:00Z",
-      "home_team": "Stanford Cardinal",
-      "away_team": "Miami Hurricanes",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Miami Hurricanes",
-          "point": null,
-          "price": -4500,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Stanford Cardinal",
-          "point": null,
-          "price": 1600,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Miami Hurricanes",
-          "point": -24.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Stanford Cardinal",
-          "point": 24.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 46.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 46.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "b10ebab18213ecdc575885bfa874b98d",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Alabama Crimson Tide",
-      "away_team": "East Carolina Pirates",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Alabama Crimson Tide",
-          "point": null,
-          "price": -7000,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "East Carolina Pirates",
-          "point": null,
-          "price": 2000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Alabama Crimson Tide",
-          "point": -28.5,
-          "price": 100,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "East Carolina Pirates",
-          "point": 28.5,
-          "price": -122,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "4deedbb327684841cd9aad6ffb77c3fc",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Army Black Knights",
-      "away_team": "Bryant Bulldogs",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "Army Black Knights",
-          "point": -37.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Bryant Bulldogs",
-          "point": 37.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "de634e2b9f72c5df734fcb741f2dc061",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Bowling Green Falcons",
-      "away_team": "Tarleton State Texans",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Bowling Green Falcons",
-          "point": null,
-          "price": -134,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Tarleton State Texans",
-          "point": null,
-          "price": 112,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Bowling Green Falcons",
-          "point": -2.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Tarleton State Texans",
-          "point": 2.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 48.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 48.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "185883640e8f90f283915ddadb0230a3",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "West Virginia Mountaineers",
-      "away_team": "Coastal Carolina Chanticleers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Coastal Carolina Chanticleers",
-          "point": null,
-          "price": 980,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "West Virginia Mountaineers",
-          "point": null,
-          "price": -2000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Coastal Carolina Chanticleers",
-          "point": 21.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "West Virginia Mountaineers",
-          "point": -21.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 56.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 56.5,
-          "price": -114,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "4289d82f1cd4747962ff68c9098c6dcc",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Houston Cougars",
-      "away_team": "Oregon State Beavers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Houston Cougars",
-          "point": null,
-          "price": -1800,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Oregon State Beavers",
-          "point": null,
-          "price": 920,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Houston Cougars",
-          "point": -20.5,
-          "price": -118,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oregon State Beavers",
-          "point": 20.5,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -112,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -108,
-          "book": "fanduel"
-        }
-      ]
-    },
     {
       "event_id": "e599d006aed0025ea9182d6763be6fd7",
       "commence_time": "2026-09-05T16:00:00Z",
@@ -623,186 +15,208 @@
         {
           "market": "spreads",
           "side": "Indiana Hoosiers",
-          "point": -40.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "North Texas Mean Green",
-          "point": 40.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 57.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 57.5,
-          "price": -115,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "ad4b1c809d35ea03f513ccb45746e998",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "James Madison Dukes",
-      "away_team": "Liberty Flames",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "James Madison Dukes",
-          "point": null,
-          "price": -220,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Liberty Flames",
-          "point": null,
-          "price": 180,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "James Madison Dukes",
-          "point": -6.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Liberty Flames",
-          "point": 6.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "71bac5fe0b10ac1e55892793b5ff9126",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "UConn Huskies",
-      "away_team": "Lafayette Leopards",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Lafayette Leopards",
-          "point": null,
-          "price": 860,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UConn Huskies",
-          "point": null,
-          "price": -1600,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Lafayette Leopards",
-          "point": 19.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UConn Huskies",
-          "point": -19.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "ab601e833e1494159df16e0331dd02d4",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Pittsburgh Panthers",
-      "away_team": "Miami (OH) RedHawks",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Miami (OH) RedHawks",
-          "point": null,
-          "price": 550,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Pittsburgh Panthers",
-          "point": null,
-          "price": -820,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Miami (OH) RedHawks",
-          "point": 16.5,
+          "point": -37.5,
           "price": -108,
           "book": "fanduel"
         },
         {
           "market": "spreads",
-          "side": "Pittsburgh Panthers",
-          "point": -16.5,
+          "side": "North Texas Mean Green",
+          "point": 37.5,
+          "price": -122,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 54.5,
+          "price": -125,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 54.5,
+          "price": -106,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "f7c217b83839dba1c4df08e372851916",
+      "commence_time": "2026-09-05T16:02:30Z",
+      "home_team": "Syracuse Orange",
+      "away_team": "New Hampshire Wildcats",
+      "lines": [
+        {
+          "market": "spreads",
+          "side": "New Hampshire Wildcats",
+          "point": 42.5,
+          "price": -118,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Syracuse Orange",
+          "point": -42.5,
           "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 47.5,
-          "price": -110,
+          "point": 55.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 47.5,
+          "point": 55.5,
+          "price": -114,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "de634e2b9f72c5df734fcb741f2dc061",
+      "commence_time": "2026-09-05T16:02:43Z",
+      "home_team": "Bowling Green Falcons",
+      "away_team": "Tarleton State Texans",
+      "lines": [
+        {
+          "market": "h2h",
+          "side": "Bowling Green Falcons",
+          "point": null,
+          "price": 430,
+          "book": "fanduel"
+        },
+        {
+          "market": "h2h",
+          "side": "Tarleton State Texans",
+          "point": null,
+          "price": -670,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Bowling Green Falcons",
+          "point": 10.5,
+          "price": -120,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Tarleton State Texans",
+          "point": -10.5,
           "price": -110,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 41.5,
+          "price": -104,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 41.5,
+          "price": -128,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "185883640e8f90f283915ddadb0230a3",
+      "commence_time": "2026-09-05T16:03:08Z",
+      "home_team": "West Virginia Mountaineers",
+      "away_team": "Coastal Carolina Chanticleers",
+      "lines": [
+        {
+          "market": "h2h",
+          "side": "Coastal Carolina Chanticleers",
+          "point": null,
+          "price": 4000,
+          "book": "fanduel"
+        },
+        {
+          "market": "h2h",
+          "side": "West Virginia Mountaineers",
+          "point": null,
+          "price": -100000,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Coastal Carolina Chanticleers",
+          "point": 27.5,
+          "price": -106,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "West Virginia Mountaineers",
+          "point": -27.5,
+          "price": -125,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 48.5,
+          "price": -104,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 48.5,
+          "price": -128,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "71bac5fe0b10ac1e55892793b5ff9126",
+      "commence_time": "2026-09-05T16:03:40Z",
+      "home_team": "UConn Huskies",
+      "away_team": "Lafayette Leopards",
+      "lines": [
+        {
+          "market": "spreads",
+          "side": "Lafayette Leopards",
+          "point": 41.5,
+          "price": -106,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "UConn Huskies",
+          "point": -41.5,
+          "price": -125,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 59.5,
+          "price": -106,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 59.5,
+          "price": -125,
           "book": "fanduel"
         }
       ]
     },
     {
       "event_id": "0b8f9bbc0bf1b04a819f0113922998b0",
-      "commence_time": "2026-09-05T16:00:00Z",
+      "commence_time": "2026-09-05T16:03:44Z",
       "home_team": "Nebraska Cornhuskers",
       "away_team": "Ohio Bobcats",
       "lines": [
@@ -810,78 +224,164 @@
           "market": "h2h",
           "side": "Nebraska Cornhuskers",
           "point": null,
-          "price": -4000,
+          "price": -430,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Ohio Bobcats",
           "point": null,
-          "price": 1400,
+          "price": 300,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Nebraska Cornhuskers",
-          "point": -23.5,
-          "price": -114,
+          "point": -7.5,
+          "price": -125,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Ohio Bobcats",
-          "point": 23.5,
+          "point": 7.5,
           "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 46.5,
-          "price": -106,
+          "point": 53.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 46.5,
+          "point": 53.5,
+          "price": -118,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "4289d82f1cd4747962ff68c9098c6dcc",
+      "commence_time": "2026-09-05T16:05:00Z",
+      "home_team": "Houston Cougars",
+      "away_team": "Oregon State Beavers",
+      "lines": [
+        {
+          "market": "h2h",
+          "side": "Houston Cougars",
+          "point": null,
+          "price": -1100,
+          "book": "fanduel"
+        },
+        {
+          "market": "h2h",
+          "side": "Oregon State Beavers",
+          "point": null,
+          "price": 600,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Houston Cougars",
+          "point": -14.5,
+          "price": 100,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Oregon State Beavers",
+          "point": 14.5,
+          "price": -132,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 49.5,
+          "price": 102,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 49.5,
+          "price": -136,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "4deedbb327684841cd9aad6ffb77c3fc",
+      "commence_time": "2026-09-05T16:05:39Z",
+      "home_team": "Army Black Knights",
+      "away_team": "Bryant Bulldogs",
+      "lines": [
+        {
+          "market": "spreads",
+          "side": "Army Black Knights",
+          "point": -49.5,
+          "price": -108,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Bryant Bulldogs",
+          "point": 49.5,
+          "price": -122,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 58.5,
+          "price": -114,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 58.5,
           "price": -114,
           "book": "fanduel"
         }
       ]
     },
     {
-      "event_id": "f7c217b83839dba1c4df08e372851916",
-      "commence_time": "2026-09-05T16:00:00Z",
-      "home_team": "Syracuse Orange",
-      "away_team": "New Hampshire Wildcats",
+      "event_id": "b10ebab18213ecdc575885bfa874b98d",
+      "commence_time": "2026-09-05T16:10:00Z",
+      "home_team": "Alabama Crimson Tide",
+      "away_team": "East Carolina Pirates",
       "lines": [
         {
           "market": "spreads",
-          "side": "New Hampshire Wildcats",
-          "point": 34.5,
-          "price": -112,
+          "side": "Alabama Crimson Tide",
+          "point": -31.5,
+          "price": -125,
           "book": "fanduel"
         },
         {
           "market": "spreads",
-          "side": "Syracuse Orange",
-          "point": -34.5,
-          "price": -108,
+          "side": "East Carolina Pirates",
+          "point": 31.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 55.5,
-          "price": -112,
+          "point": 62.5,
+          "price": -118,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 55.5,
-          "price": -108,
+          "point": 62.5,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -895,28 +395,78 @@
         {
           "market": "spreads",
           "side": "Ball State Cardinals",
-          "point": 49.5,
-          "price": -105,
+          "point": 51.5,
+          "price": -118,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Ohio State Buckeyes",
-          "point": -49.5,
-          "price": -115,
+          "point": -51.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 56.5,
-          "price": -106,
+          "point": 55.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 56.5,
+          "point": 55.5,
+          "price": -122,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "ab601e833e1494159df16e0331dd02d4",
+      "commence_time": "2026-09-05T16:40:00Z",
+      "home_team": "Pittsburgh Panthers",
+      "away_team": "Miami (OH) RedHawks",
+      "lines": [
+        {
+          "market": "h2h",
+          "side": "Miami (OH) RedHawks",
+          "point": null,
+          "price": 1300,
+          "book": "fanduel"
+        },
+        {
+          "market": "h2h",
+          "side": "Pittsburgh Panthers",
+          "point": null,
+          "price": -5000,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Miami (OH) RedHawks",
+          "point": 23.5,
+          "price": -122,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Pittsburgh Panthers",
+          "point": -23.5,
+          "price": -108,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 47.5,
+          "price": -114,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 47.5,
           "price": -114,
           "book": "fanduel"
         }
@@ -924,36 +474,36 @@
     },
     {
       "event_id": "994c7280c9e8dcb041c260eb2c767d4d",
-      "commence_time": "2026-09-05T16:45:00Z",
+      "commence_time": "2026-09-05T16:47:00Z",
       "home_team": "South Carolina Gamecocks",
       "away_team": "Kent State Golden Flashes",
       "lines": [
         {
           "market": "spreads",
           "side": "Kent State Golden Flashes",
-          "point": 36.5,
-          "price": -115,
+          "point": 31.5,
+          "price": -128,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "South Carolina Gamecocks",
-          "point": -36.5,
-          "price": -105,
+          "point": -31.5,
+          "price": -104,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 54.5,
-          "price": -106,
+          "point": 47.5,
+          "price": -104,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 54.5,
-          "price": -114,
+          "point": 47.5,
+          "price": -128,
           "book": "fanduel"
         }
       ]
@@ -968,49 +518,99 @@
           "market": "h2h",
           "side": "Air Force Falcons",
           "point": null,
-          "price": -10000,
+          "price": -50000,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Duquesne Dukes",
           "point": null,
-          "price": 2400,
+          "price": 3000,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Air Force Falcons",
-          "point": -28.5,
-          "price": -114,
+          "point": -31.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Duquesne Dukes",
-          "point": 28.5,
-          "price": -106,
+          "point": 31.5,
+          "price": -118,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 56.5,
-          "price": -115,
+          "point": 55.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 56.5,
-          "price": -105,
+          "point": 55.5,
+          "price": -118,
+          "book": "fanduel"
+        }
+      ]
+    },
+    {
+      "event_id": "6ba4c2cb4e23d19069d00b47716c95c9",
+      "commence_time": "2026-09-05T17:02:22Z",
+      "home_team": "Kentucky Wildcats",
+      "away_team": "Youngstown St Penguins",
+      "lines": [
+        {
+          "market": "h2h",
+          "side": "Kentucky Wildcats",
+          "point": null,
+          "price": -3000,
+          "book": "fanduel"
+        },
+        {
+          "market": "h2h",
+          "side": "Youngstown St Penguins",
+          "point": null,
+          "price": 1000,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Kentucky Wildcats",
+          "point": -21.5,
+          "price": -112,
+          "book": "fanduel"
+        },
+        {
+          "market": "spreads",
+          "side": "Youngstown St Penguins",
+          "point": 21.5,
+          "price": -118,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Over",
+          "point": 61.5,
+          "price": -102,
+          "book": "fanduel"
+        },
+        {
+          "market": "totals",
+          "side": "Under",
+          "point": 61.5,
+          "price": -130,
           "book": "fanduel"
         }
       ]
     },
     {
       "event_id": "0e7a154b072a69dce76b6403f608b476",
-      "commence_time": "2026-09-05T17:00:00Z",
+      "commence_time": "2026-09-05T17:10:00Z",
       "home_team": "Iowa State Cyclones",
       "away_team": "Southeast Missouri State Redhawks",
       "lines": [
@@ -1018,14 +618,14 @@
           "market": "h2h",
           "side": "Iowa State Cyclones",
           "point": null,
-          "price": -10000,
+          "price": -8000,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Southeast Missouri State Redhawks",
           "point": null,
-          "price": 2500,
+          "price": 2200,
           "book": "fanduel"
         },
         {
@@ -1046,64 +646,14 @@
           "market": "totals",
           "side": "Over",
           "point": 52.5,
-          "price": -112,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 52.5,
-          "price": -108,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "6ba4c2cb4e23d19069d00b47716c95c9",
-      "commence_time": "2026-09-05T17:00:00Z",
-      "home_team": "Kentucky Wildcats",
-      "away_team": "Youngstown St Penguins",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Kentucky Wildcats",
-          "point": null,
-          "price": -2300,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Youngstown St Penguins",
-          "point": null,
-          "price": 1060,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Kentucky Wildcats",
-          "point": -21.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Youngstown St Penguins",
-          "point": 21.5,
-          "price": -112,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 62.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 62.5,
-          "price": -112,
+          "price": -106,
           "book": "fanduel"
         }
       ]
@@ -1118,28 +668,28 @@
           "market": "h2h",
           "side": "Rhode Island Rams",
           "point": null,
-          "price": 490,
+          "price": 530,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Temple Owls",
           "point": null,
-          "price": -720,
+          "price": -780,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Rhode Island Rams",
           "point": 14.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Temple Owls",
           "point": -14.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         },
         {
@@ -1167,29 +717,29 @@
         {
           "market": "spreads",
           "side": "Georgia Bulldogs",
-          "point": -47.5,
+          "point": -48.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Tennessee State Tigers",
-          "point": 47.5,
+          "point": 48.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 54.5,
-          "price": -112,
+          "point": 55.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 54.5,
-          "price": -108,
+          "point": 55.5,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -1204,42 +754,42 @@
           "market": "h2h",
           "side": "Appalachian State Mountaineers",
           "point": null,
-          "price": -1400,
+          "price": -1700,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Maine Black Bears",
           "point": null,
-          "price": 800,
+          "price": 890,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Appalachian State Mountaineers",
-          "point": -18.5,
-          "price": -108,
+          "point": -20.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Maine Black Bears",
-          "point": 18.5,
-          "price": -112,
+          "point": 20.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 52.5,
-          "price": -112,
+          "point": 53.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 52.5,
-          "price": -108,
+          "point": 53.5,
+          "price": -110,
           "book": "fanduel"
         }
       ]
@@ -1354,42 +904,42 @@
           "market": "h2h",
           "side": "Boston College Eagles",
           "point": null,
-          "price": 250,
+          "price": 240,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Cincinnati Bearcats",
           "point": null,
-          "price": -315,
+          "price": -300,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Boston College Eagles",
           "point": 7.5,
-          "price": -110,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Cincinnati Bearcats",
           "point": -7.5,
-          "price": -110,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 49.5,
-          "price": -112,
+          "point": 51.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 49.5,
-          "price": -108,
+          "point": 51.5,
+          "price": -110,
           "book": "fanduel"
         }
       ]
@@ -1404,42 +954,42 @@
           "market": "h2h",
           "side": "Charlotte 49ers",
           "point": null,
-          "price": -1800,
+          "price": -2000,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Citadel Bulldogs",
           "point": null,
-          "price": 920,
+          "price": 980,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Charlotte 49ers",
-          "point": -19.5,
-          "price": -110,
+          "point": -20.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Citadel Bulldogs",
-          "point": 19.5,
-          "price": -110,
+          "point": 20.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 45.5,
-          "price": -115,
+          "point": 48.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 45.5,
-          "price": -105,
+          "point": 48.5,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -1454,14 +1004,14 @@
           "market": "h2h",
           "side": "Duke Blue Devils",
           "point": null,
-          "price": -310,
+          "price": -320,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Tulane Green Wave",
           "point": null,
-          "price": 245,
+          "price": 255,
           "book": "fanduel"
         },
         {
@@ -1481,15 +1031,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 51.5,
-          "price": -105,
+          "point": 50.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 51.5,
-          "price": -115,
+          "point": 50.5,
+          "price": -106,
           "book": "fanduel"
         }
       ]
@@ -1503,29 +1053,29 @@
         {
           "market": "spreads",
           "side": "Fordham Rams",
-          "point": 40.5,
-          "price": -105,
+          "point": 41.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "North Dakota State Bison",
-          "point": -40.5,
-          "price": -115,
+          "point": -41.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 55.5,
-          "price": -106,
+          "point": 54.5,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 55.5,
-          "price": -114,
+          "point": 54.5,
+          "price": -115,
           "book": "fanduel"
         }
       ]
@@ -1576,14 +1126,14 @@
           "market": "h2h",
           "side": "Marshall Thundering Herd",
           "point": null,
-          "price": 1280,
+          "price": 1400,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Penn State Nittany Lions",
           "point": null,
-          "price": -3500,
+          "price": -4000,
           "book": "fanduel"
         },
         {
@@ -1604,14 +1154,14 @@
           "market": "totals",
           "side": "Over",
           "point": 52.5,
-          "price": -105,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 52.5,
-          "price": -115,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -1654,14 +1204,14 @@
           "market": "totals",
           "side": "Over",
           "point": 50.5,
-          "price": -110,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 50.5,
-          "price": -110,
+          "price": -112,
           "book": "fanduel"
         }
       ]
@@ -1676,7 +1226,7 @@
           "market": "h2h",
           "side": "Texas Longhorns",
           "point": null,
-          "price": -10000,
+          "price": -8000,
           "book": "fanduel"
         },
         {
@@ -1703,14 +1253,14 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 59.5,
+          "point": 60.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 59.5,
+          "point": 60.5,
           "price": -110,
           "book": "fanduel"
         }
@@ -1739,29 +1289,29 @@
         {
           "market": "spreads",
           "side": "UT Rio Grande Valley Vaqueros",
-          "point": 29.5,
-          "price": -115,
+          "point": 28.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "UTSA Roadrunners",
-          "point": -29.5,
-          "price": -105,
+          "point": -28.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
           "point": 59.5,
-          "price": -115,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 59.5,
-          "price": -105,
+          "price": -108,
           "book": "fanduel"
         }
       ]
@@ -1783,7 +1333,7 @@
           "market": "h2h",
           "side": "Tulsa Golden Hurricane",
           "point": null,
-          "price": 440,
+          "price": 450,
           "book": "fanduel"
         },
         {
@@ -1803,15 +1353,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 59.5,
-          "price": -105,
+          "point": 57.5,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 59.5,
-          "price": -115,
+          "point": 57.5,
+          "price": -105,
           "book": "fanduel"
         }
       ]
@@ -1826,28 +1376,28 @@
           "market": "spreads",
           "side": "Arkansas Razorbacks",
           "point": -40.5,
-          "price": -110,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "North Alabama Lions",
           "point": 40.5,
-          "price": -110,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
           "point": 62.5,
-          "price": -110,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 62.5,
-          "price": -110,
+          "price": -105,
           "book": "fanduel"
         }
       ]
@@ -1876,14 +1426,14 @@
           "market": "totals",
           "side": "Over",
           "point": 44.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 44.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         }
       ]
@@ -1911,15 +1461,15 @@
         {
           "market": "spreads",
           "side": "Alcorn State Braves",
-          "point": 18.5,
-          "price": -110,
+          "point": 19.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Southern Mississippi Golden Eagles",
-          "point": -18.5,
-          "price": -110,
+          "point": -19.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
@@ -1997,14 +1547,14 @@
         {
           "market": "spreads",
           "side": "Norfolk State Spartans",
-          "point": 40.5,
+          "point": 41.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Old Dominion Monarchs",
-          "point": -40.5,
+          "point": -41.5,
           "price": -110,
           "book": "fanduel"
         },
@@ -2012,14 +1562,14 @@
           "market": "totals",
           "side": "Over",
           "point": 52.5,
-          "price": -110,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 52.5,
-          "price": -110,
+          "price": -115,
           "book": "fanduel"
         }
       ]
@@ -2070,28 +1620,28 @@
           "market": "h2h",
           "side": "Arkansas State Red Wolves",
           "point": null,
-          "price": 330,
+          "price": 340,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Memphis Tigers",
           "point": null,
-          "price": -430,
+          "price": -450,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Arkansas State Red Wolves",
           "point": 10.5,
-          "price": -110,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Memphis Tigers",
           "point": -10.5,
-          "price": -110,
+          "price": -112,
           "book": "fanduel"
         },
         {
@@ -2134,28 +1684,28 @@
           "market": "spreads",
           "side": "Austin Peay Governors",
           "point": 28.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Vanderbilt Commodores",
           "point": -28.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 60.5,
-          "price": -105,
+          "point": 59.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 60.5,
-          "price": -115,
+          "point": 59.5,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -2170,28 +1720,28 @@
           "market": "h2h",
           "side": "Charleston Southern Buccaneers",
           "point": null,
-          "price": 1600,
+          "price": 2200,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Georgia Southern Eagles",
           "point": null,
-          "price": -4500,
+          "price": -10000,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Charleston Southern Buccaneers",
-          "point": 26.5,
-          "price": -112,
+          "point": 28.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Georgia Southern Eagles",
-          "point": -26.5,
-          "price": -108,
+          "point": -28.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
@@ -2220,42 +1770,42 @@
           "market": "h2h",
           "side": "Eastern Kentucky Colonels",
           "point": null,
-          "price": 920,
+          "price": 1100,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Jacksonville State Gamecocks",
           "point": null,
-          "price": -1800,
+          "price": -2500,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Eastern Kentucky Colonels",
-          "point": 20.5,
-          "price": -108,
+          "point": 22.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Jacksonville State Gamecocks",
-          "point": -20.5,
-          "price": -112,
+          "point": -22.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 54.5,
-          "price": -110,
+          "point": 53.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 54.5,
-          "price": -110,
+          "point": 53.5,
+          "price": -106,
           "book": "fanduel"
         }
       ]
@@ -2277,7 +1827,7 @@
           "market": "h2h",
           "side": "South Florida Bulls",
           "point": null,
-          "price": -710,
+          "price": -690,
           "book": "fanduel"
         },
         {
@@ -2297,15 +1847,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 51.5,
-          "price": -112,
+          "point": 53.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 51.5,
-          "price": -108,
+          "point": 53.5,
+          "price": -112,
           "book": "fanduel"
         }
       ]
@@ -2320,14 +1870,14 @@
           "market": "h2h",
           "side": "Houston Baptist Huskies",
           "point": null,
-          "price": 1400,
+          "price": 1100,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Rice Owls",
           "point": null,
-          "price": -4000,
+          "price": -2500,
           "book": "fanduel"
         },
         {
@@ -2348,14 +1898,14 @@
           "market": "totals",
           "side": "Over",
           "point": 47.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 47.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         }
       ]
@@ -2370,42 +1920,42 @@
           "market": "h2h",
           "side": "Idaho State Bengals",
           "point": null,
-          "price": 450,
+          "price": 550,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Utah State Aggies",
           "point": null,
-          "price": -630,
+          "price": -820,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Idaho State Bengals",
-          "point": 13.5,
-          "price": -108,
+          "point": 14.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Utah State Aggies",
-          "point": -13.5,
-          "price": -112,
+          "point": -14.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 61.5,
-          "price": -110,
+          "point": 59.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 61.5,
-          "price": -110,
+          "point": 59.5,
+          "price": -112,
           "book": "fanduel"
         }
       ]
@@ -2433,15 +1983,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 54.5,
-          "price": -110,
+          "point": 55.5,
+          "price": -102,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 54.5,
-          "price": -110,
+          "point": 55.5,
+          "price": -120,
           "book": "fanduel"
         }
       ]
@@ -2506,42 +2056,42 @@
           "market": "h2h",
           "side": "Middle Tennessee Blue Raiders",
           "point": null,
-          "price": -2100,
+          "price": -2800,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Murray State Racers",
           "point": null,
-          "price": 1000,
+          "price": 1160,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Middle Tennessee Blue Raiders",
           "point": -21.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Murray State Racers",
           "point": 21.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 57.5,
-          "price": -112,
+          "point": 55.5,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 57.5,
-          "price": -108,
+          "point": 55.5,
+          "price": -114,
           "book": "fanduel"
         }
       ]
@@ -2592,14 +2142,14 @@
           "market": "h2h",
           "side": "Sam Houston State Bearkats",
           "point": null,
-          "price": 610,
+          "price": 590,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Troy Trojans",
           "point": null,
-          "price": -950,
+          "price": -900,
           "book": "fanduel"
         },
         {
@@ -2619,15 +2169,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 54.5,
-          "price": -115,
+          "point": 52.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 54.5,
-          "price": -105,
+          "point": 52.5,
+          "price": -108,
           "book": "fanduel"
         }
       ]
@@ -2642,42 +2192,42 @@
           "market": "h2h",
           "side": "South Alabama Jaguars",
           "point": null,
-          "price": -550,
+          "price": -580,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Southeastern Louisiana Lions",
           "point": null,
-          "price": 400,
+          "price": 420,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "South Alabama Jaguars",
-          "point": -12.5,
+          "point": -13.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Southeastern Louisiana Lions",
-          "point": 12.5,
-          "price": -112,
+          "point": 13.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 52.5,
-          "price": -115,
+          "point": 53.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 52.5,
-          "price": -105,
+          "point": 53.5,
+          "price": -110,
           "book": "fanduel"
         }
       ]
@@ -2755,14 +2305,14 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 55.5,
+          "point": 56.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 55.5,
+          "point": 56.5,
           "price": -110,
           "book": "fanduel"
         }
@@ -2827,29 +2377,29 @@
         {
           "market": "spreads",
           "side": "Virginia Tech Hokies",
-          "point": -55.5,
+          "point": -54.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "VMI Keydets",
-          "point": 55.5,
+          "point": 54.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 62.5,
-          "price": -112,
+          "point": 61.5,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 62.5,
-          "price": -108,
+          "point": 61.5,
+          "price": -115,
           "book": "fanduel"
         }
       ]
@@ -2928,14 +2478,14 @@
           "market": "totals",
           "side": "Over",
           "point": 61.5,
-          "price": -105,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 61.5,
-          "price": -115,
+          "price": -108,
           "book": "fanduel"
         }
       ]
@@ -2964,14 +2514,14 @@
           "market": "totals",
           "side": "Over",
           "point": 55.5,
-          "price": -114,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 55.5,
-          "price": -106,
+          "price": -108,
           "book": "fanduel"
         }
       ]
@@ -2999,29 +2549,29 @@
         {
           "market": "spreads",
           "side": "Lamar Cardinals",
-          "point": 19.5,
-          "price": -108,
+          "point": 20.5,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Louisiana Ragin Cajuns",
-          "point": -19.5,
-          "price": -112,
+          "point": -20.5,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 49.5,
-          "price": -108,
+          "point": 48.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 49.5,
-          "price": -112,
+          "point": 48.5,
+          "price": -108,
           "book": "fanduel"
         }
       ]
@@ -3036,42 +2586,42 @@
           "market": "h2h",
           "side": "Northwestern Wildcats",
           "point": null,
-          "price": -550,
+          "price": -490,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "South Dakota State Jackrabbits",
           "point": null,
-          "price": 400,
+          "price": 365,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Northwestern Wildcats",
-          "point": -13.5,
-          "price": -108,
+          "point": -12.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "South Dakota State Jackrabbits",
-          "point": 13.5,
-          "price": -112,
+          "point": 12.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 46.5,
-          "price": -114,
+          "point": 49.5,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 46.5,
-          "price": -106,
+          "point": 49.5,
+          "price": -115,
           "book": "fanduel"
         }
       ]
@@ -3099,29 +2649,29 @@
         {
           "market": "spreads",
           "side": "Mercyhurst Lakers",
-          "point": 28.5,
-          "price": -108,
+          "point": 29.5,
+          "price": -112,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "New Mexico State Aggies",
-          "point": -28.5,
-          "price": -112,
+          "point": -29.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
           "point": 51.5,
-          "price": -110,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 51.5,
-          "price": -110,
+          "price": -105,
           "book": "fanduel"
         }
       ]
@@ -3133,31 +2683,17 @@
       "away_team": "Northern Arizona Lumberjacks",
       "lines": [
         {
-          "market": "h2h",
-          "side": "Arizona Wildcats",
-          "point": null,
-          "price": -30000,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Northern Arizona Lumberjacks",
-          "point": null,
-          "price": 3000,
-          "book": "fanduel"
-        },
-        {
           "market": "spreads",
           "side": "Arizona Wildcats",
-          "point": -31.5,
-          "price": -112,
+          "point": -32.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Northern Arizona Lumberjacks",
-          "point": 31.5,
-          "price": -108,
+          "point": 32.5,
+          "price": -110,
           "book": "fanduel"
         },
         {
@@ -3258,42 +2794,42 @@
           "market": "h2h",
           "side": "Central Michigan Chippewas",
           "point": null,
-          "price": 350,
+          "price": 330,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "New Mexico Lobos",
           "point": null,
-          "price": -465,
+          "price": -430,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Central Michigan Chippewas",
           "point": 10.5,
-          "price": -105,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "New Mexico Lobos",
           "point": -10.5,
-          "price": -115,
+          "price": -110,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 46.5,
-          "price": -114,
+          "point": 47.5,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 46.5,
-          "price": -106,
+          "point": 47.5,
+          "price": -112,
           "book": "fanduel"
         }
       ]
@@ -3308,14 +2844,14 @@
           "market": "h2h",
           "side": "Hawaii Rainbow Warriors",
           "point": null,
-          "price": 125,
+          "price": 128,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "UNLV Rebels",
           "point": null,
-          "price": -150,
+          "price": -154,
           "book": "fanduel"
         },
         {
@@ -3335,15 +2871,15 @@
         {
           "market": "totals",
           "side": "Over",
-          "point": 56.5,
-          "price": -106,
+          "point": 55.5,
+          "price": -114,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 56.5,
-          "price": -114,
+          "point": 55.5,
+          "price": -106,
           "book": "fanduel"
         }
       ]
@@ -3372,14 +2908,14 @@
           "market": "totals",
           "side": "Over",
           "point": 56.5,
-          "price": -115,
+          "price": -108,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
           "point": 56.5,
-          "price": -105,
+          "price": -112,
           "book": "fanduel"
         }
       ]
@@ -3444,42 +2980,42 @@
           "market": "h2h",
           "side": "Nevada Wolf Pack",
           "point": null,
-          "price": -102,
+          "price": -106,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Western Kentucky Hilltoppers",
           "point": null,
-          "price": -118,
+          "price": -113,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Nevada Wolf Pack",
           "point": 1.5,
-          "price": -112,
+          "price": -115,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Western Kentucky Hilltoppers",
           "point": -1.5,
-          "price": -108,
+          "price": -105,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Over",
-          "point": 52.5,
-          "price": -110,
+          "point": 51.5,
+          "price": -118,
           "book": "fanduel"
         },
         {
           "market": "totals",
           "side": "Under",
-          "point": 52.5,
-          "price": -110,
+          "point": 51.5,
+          "price": -104,
           "book": "fanduel"
         }
       ]
@@ -3544,28 +3080,28 @@
           "market": "h2h",
           "side": "Louisville Cardinals",
           "point": null,
-          "price": 198,
+          "price": 205,
           "book": "fanduel"
         },
         {
           "market": "h2h",
           "side": "Ole Miss Rebels",
           "point": null,
-          "price": -240,
+          "price": -250,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Louisville Cardinals",
           "point": 6.5,
-          "price": -105,
+          "price": -104,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Ole Miss Rebels",
           "point": -6.5,
-          "price": -115,
+          "price": -118,
           "book": "fanduel"
         },
         {
@@ -3693,672 +3229,14 @@
         {
           "market": "spreads",
           "side": "Florida A&M Rattlers",
-          "point": 49.5,
+          "point": 53.5,
           "price": -110,
           "book": "fanduel"
         },
         {
           "market": "spreads",
           "side": "Miami Hurricanes",
-          "point": -49.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 56.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 56.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "b1fd8018376dcc9de4b279d8f413c5dd",
-      "commence_time": "2026-09-11T14:00:00Z",
-      "home_team": "New Mexico Lobos",
-      "away_team": "Mercyhurst Lakers",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "Mercyhurst Lakers",
-          "point": 41.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "New Mexico Lobos",
-          "point": -41.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "b008dac7f2b726219adf07d9857e2c66",
-      "commence_time": "2026-09-11T23:00:00Z",
-      "home_team": "NC State Wolfpack",
-      "away_team": "Richmond Spiders",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "NC State Wolfpack",
-          "point": null,
-          "price": -10000,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Richmond Spiders",
-          "point": null,
-          "price": 3000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "NC State Wolfpack",
-          "point": -30.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Richmond Spiders",
-          "point": 30.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "d70ad98172b9cd2090eb75ff32866e04",
-      "commence_time": "2026-09-11T23:00:00Z",
-      "home_team": "Virginia Cavaliers",
-      "away_team": "Norfolk State Spartans",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "Norfolk State Spartans",
-          "point": 43.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Virginia Cavaliers",
-          "point": -43.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "db698f29983406d35dea606edfdc5922",
-      "commence_time": "2026-09-11T23:30:00Z",
-      "home_team": "Boston College Eagles",
-      "away_team": "Rutgers Scarlet Knights",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Boston College Eagles",
-          "point": null,
-          "price": -240,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Rutgers Scarlet Knights",
-          "point": null,
-          "price": 195,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Boston College Eagles",
-          "point": -6.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Rutgers Scarlet Knights",
-          "point": 6.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "8b553ed3cc951140812595c0ac1d14b2",
-      "commence_time": "2026-09-12T00:00:00Z",
-      "home_team": "San Jose State Spartans",
-      "away_team": "Cal Poly Mustangs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Cal Poly Mustangs",
-          "point": null,
-          "price": 1160,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "San Jose State Spartans",
-          "point": null,
-          "price": -2800,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Cal Poly Mustangs",
-          "point": 21.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "San Jose State Spartans",
-          "point": -21.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "912c15dcb8dd09eacabdcb80673d9d72",
-      "commence_time": "2026-09-12T00:00:00Z",
-      "home_team": "Kansas Jayhawks",
-      "away_team": "Missouri Tigers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Kansas Jayhawks",
-          "point": null,
-          "price": 205,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Missouri Tigers",
-          "point": null,
-          "price": -255,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Kansas Jayhawks",
-          "point": 6.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Missouri Tigers",
-          "point": -6.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "6dbd3546b178b91878131862fd719e1e",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "East Carolina Pirates",
-      "away_team": "Appalachian State Mountaineers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Appalachian State Mountaineers",
-          "point": null,
-          "price": 270,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "East Carolina Pirates",
-          "point": null,
-          "price": -345,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Appalachian State Mountaineers",
-          "point": 8.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "East Carolina Pirates",
-          "point": -8.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 55.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 55.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "cad3845e3f9f9e746c4bbf45487eed02",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Texas A&M Aggies",
-      "away_team": "Arizona State Sun Devils",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Arizona State Sun Devils",
-          "point": null,
-          "price": 550,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Texas A&M Aggies",
-          "point": null,
-          "price": -820,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Arizona State Sun Devils",
-          "point": 15.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Texas A&M Aggies",
-          "point": -15.5,
-          "price": -112,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "c12cd73c4077a0265acec205a572c2ec",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Utah Utes",
-      "away_team": "Arkansas Razorbacks",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Arkansas Razorbacks",
-          "point": null,
-          "price": 285,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Utah Utes",
-          "point": null,
-          "price": -365,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Arkansas Razorbacks",
-          "point": 9.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Utah Utes",
-          "point": -9.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 56.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 56.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "a7c7e0143d5131ee3e2d78f356f0089d",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Army Black Knights",
-      "away_team": "South Florida Bulls",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Army Black Knights",
-          "point": null,
-          "price": -120,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "South Florida Bulls",
-          "point": null,
-          "price": 100,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Army Black Knights",
-          "point": -1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "South Florida Bulls",
-          "point": 1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 54.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 54.5,
-          "price": -115,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "287a959c0717526161988214cb4e01ce",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "North Carolina Tar Heels",
-      "away_team": "East Tennessee State Buccaneers",
-      "lines": [
-        {
-          "market": "spreads",
-          "side": "East Tennessee State Buccaneers",
-          "point": 35.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "North Carolina Tar Heels",
-          "point": -35.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "3b3054849b678fcfa0b6a5a9994557bf",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Kansas State Wildcats",
-      "away_team": "Washington State Cougars",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Kansas State Wildcats",
-          "point": null,
-          "price": -1400,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Washington State Cougars",
-          "point": null,
-          "price": 800,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Kansas State Wildcats",
-          "point": -18.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Washington State Cougars",
-          "point": 18.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "b38f4f63351c15767e64a76a73589574",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Michigan Wolverines",
-      "away_team": "Oklahoma Sooners",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Michigan Wolverines",
-          "point": null,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Oklahoma Sooners",
-          "point": null,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Michigan Wolverines",
-          "point": -1.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oklahoma Sooners",
-          "point": 1.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 44.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 44.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "d652c7bc0594f13ef0a2a04e31ef5666",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Oklahoma State Cowboys",
-      "away_team": "Oregon Ducks",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Oklahoma State Cowboys",
-          "point": null,
-          "price": 640,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Oregon Ducks",
-          "point": null,
-          "price": -1000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oklahoma State Cowboys",
-          "point": 17.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oregon Ducks",
-          "point": -17.5,
+          "point": -53.5,
           "price": -110,
           "book": "fanduel"
         },
@@ -4373,1606 +3251,6 @@
           "market": "totals",
           "side": "Under",
           "point": 60.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "cdbde17fe5ba072172683681026c6312",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Virginia Tech Hokies",
-      "away_team": "Old Dominion Monarchs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Old Dominion Monarchs",
-          "point": null,
-          "price": 610,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Virginia Tech Hokies",
-          "point": null,
-          "price": -950,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Old Dominion Monarchs",
-          "point": 16.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Virginia Tech Hokies",
-          "point": -16.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "eee54863c6c50d585de1919f1fca51e5",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Temple Owls",
-      "away_team": "Penn State Nittany Lions",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Penn State Nittany Lions",
-          "point": null,
-          "price": -3500,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Temple Owls",
-          "point": null,
-          "price": 1280,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Penn State Nittany Lions",
-          "point": -23.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Temple Owls",
-          "point": 23.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "5a8d98c3147d18b683d90a536e76eb64",
-      "commence_time": "2026-09-12T16:00:00Z",
-      "home_team": "Purdue Boilermakers",
-      "away_team": "Wake Forest Demon Deacons",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Purdue Boilermakers",
-          "point": null,
-          "price": 134,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Wake Forest Demon Deacons",
-          "point": null,
-          "price": -162,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Purdue Boilermakers",
-          "point": 3.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Wake Forest Demon Deacons",
-          "point": -3.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "2cb6f8436ba0f1fbcdcd7871a03466d5",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Kentucky Wildcats",
-      "away_team": "Alabama Crimson Tide",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Alabama Crimson Tide",
-          "point": null,
-          "price": -450,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Kentucky Wildcats",
-          "point": null,
-          "price": 340,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Alabama Crimson Tide",
-          "point": -10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Kentucky Wildcats",
-          "point": 10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 49.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "1427645d6020f742eece986c58bdb29d",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Syracuse Orange",
-      "away_team": "California Golden Bears",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "California Golden Bears",
-          "point": null,
-          "price": -126,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Syracuse Orange",
-          "point": null,
-          "price": 105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "California Golden Bears",
-          "point": -2.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Syracuse Orange",
-          "point": 2.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "52e9b0f6515766724ee70457912bdc18",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Illinois Fighting Illini",
-      "away_team": "Duke Blue Devils",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Duke Blue Devils",
-          "point": null,
-          "price": 240,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Illinois Fighting Illini",
-          "point": null,
-          "price": -300,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Duke Blue Devils",
-          "point": 7.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Illinois Fighting Illini",
-          "point": -7.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 54.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 54.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "db05b8a09b0efd8546a13a2cb5e457fc",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Michigan State Spartans",
-      "away_team": "Eastern Michigan Eagles",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Eastern Michigan Eagles",
-          "point": null,
-          "price": 610,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Michigan State Spartans",
-          "point": null,
-          "price": -950,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Eastern Michigan Eagles",
-          "point": 16.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Michigan State Spartans",
-          "point": -16.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "70a4d83a64789d57f114b077a570ea27",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "UConn Huskies",
-      "away_team": "Maryland Terrapins",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Maryland Terrapins",
-          "point": null,
-          "price": -385,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UConn Huskies",
-          "point": null,
-          "price": 300,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Maryland Terrapins",
-          "point": -10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UConn Huskies",
-          "point": 10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "25c198f097870d531920ba524262737d",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Minnesota Golden Gophers",
-      "away_team": "Mississippi State Bulldogs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Minnesota Golden Gophers",
-          "point": null,
-          "price": -118,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Mississippi State Bulldogs",
-          "point": null,
-          "price": -102,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Minnesota Golden Gophers",
-          "point": -1.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Mississippi State Bulldogs",
-          "point": 1.5,
-          "price": -112,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "dd880570288831c4fc55cb68f19f9667",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Pittsburgh Panthers",
-      "away_team": "UCF Knights",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Pittsburgh Panthers",
-          "point": null,
-          "price": -315,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UCF Knights",
-          "point": null,
-          "price": 250,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Pittsburgh Panthers",
-          "point": -8.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UCF Knights",
-          "point": 8.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "08c5bac0240cbc3ba996fb55a75504f2",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Texas State Bobcats",
-      "away_team": "UTSA Roadrunners",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Texas State Bobcats",
-          "point": null,
-          "price": -102,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UTSA Roadrunners",
-          "point": null,
-          "price": -118,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Texas State Bobcats",
-          "point": 1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UTSA Roadrunners",
-          "point": -1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 63.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 63.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "61700ad2942d0c633b9c6cd402964356",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "UAB Blazers",
-      "away_team": "UL Monroe Warhawks",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "UAB Blazers",
-          "point": null,
-          "price": -365,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UL Monroe Warhawks",
-          "point": null,
-          "price": 285,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UAB Blazers",
-          "point": -9.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UL Monroe Warhawks",
-          "point": 9.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 52.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "2186fba5726dbd7fee2ce72477bdaa2b",
-      "commence_time": "2026-09-12T19:30:00Z",
-      "home_team": "Washington Huskies",
-      "away_team": "Utah State Aggies",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Utah State Aggies",
-          "point": null,
-          "price": 1400,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Washington Huskies",
-          "point": null,
-          "price": -4000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Utah State Aggies",
-          "point": 24.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Washington Huskies",
-          "point": -24.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 54.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 54.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "50b6e6aec0bd3f2fcb9dc18c113ddd12",
-      "commence_time": "2026-09-12T19:45:00Z",
-      "home_team": "North Texas Mean Green",
-      "away_team": "UNLV Rebels",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "North Texas Mean Green",
-          "point": null,
-          "price": 198,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UNLV Rebels",
-          "point": null,
-          "price": -245,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "North Texas Mean Green",
-          "point": 6.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UNLV Rebels",
-          "point": -6.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 60.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 60.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "04d0c72553f17ebc22509fb1b5926600",
-      "commence_time": "2026-09-12T20:15:00Z",
-      "home_team": "Vanderbilt Commodores",
-      "away_team": "Delaware Blue Hens",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Delaware Blue Hens",
-          "point": null,
-          "price": 1200,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Vanderbilt Commodores",
-          "point": null,
-          "price": -3000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Delaware Blue Hens",
-          "point": 23.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Vanderbilt Commodores",
-          "point": -23.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 53.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
-      "commence_time": "2026-09-12T22:00:00Z",
-      "home_team": "Boise State Broncos",
-      "away_team": "Memphis Tigers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Boise State Broncos",
-          "point": null,
-          "price": -330,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Memphis Tigers",
-          "point": null,
-          "price": 260,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Boise State Broncos",
-          "point": -7.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Memphis Tigers",
-          "point": 7.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 54.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 54.5,
-          "price": -115,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "a2b7711390532d0014249f295a6d02b8",
-      "commence_time": "2026-09-12T22:00:00Z",
-      "home_team": "Florida International Panthers",
-      "away_team": "Buffalo Bulls",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Buffalo Bulls",
-          "point": null,
-          "price": 245,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Florida International Panthers",
-          "point": null,
-          "price": -310,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Buffalo Bulls",
-          "point": 7.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Florida International Panthers",
-          "point": -7.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "3cff947fac86cab5c41d4f7c0e9393ce",
-      "commence_time": "2026-09-12T22:00:00Z",
-      "home_team": "Ohio Bobcats",
-      "away_team": "Jacksonville State Gamecocks",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Jacksonville State Gamecocks",
-          "point": null,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Ohio Bobcats",
-          "point": null,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Jacksonville State Gamecocks",
-          "point": 1.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Ohio Bobcats",
-          "point": -1.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "5cc49501cef64287d2f6b5afe9526a16",
-      "commence_time": "2026-09-12T23:00:00Z",
-      "home_team": "Nebraska Cornhuskers",
-      "away_team": "Bowling Green Falcons",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Bowling Green Falcons",
-          "point": null,
-          "price": 1600,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Nebraska Cornhuskers",
-          "point": null,
-          "price": -4500,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Bowling Green Falcons",
-          "point": 25.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Nebraska Cornhuskers",
-          "point": -25.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 50.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "2fef91bee444782036d23f91abe0a5da",
-      "commence_time": "2026-09-12T23:00:00Z",
-      "home_team": "Georgia Tech Yellow Jackets",
-      "away_team": "Tennessee Volunteers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Georgia Tech Yellow Jackets",
-          "point": null,
-          "price": 340,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Tennessee Volunteers",
-          "point": null,
-          "price": -450,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Georgia Tech Yellow Jackets",
-          "point": 11.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Tennessee Volunteers",
-          "point": -11.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 54.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 54.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "a7402ec89d227ff9b9bf936a8679d313",
-      "commence_time": "2026-09-12T23:00:00Z",
-      "home_team": "Sam Houston State Bearkats",
-      "away_team": "Tulsa Golden Hurricane",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Sam Houston State Bearkats",
-          "point": null,
-          "price": 400,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Tulsa Golden Hurricane",
-          "point": null,
-          "price": -550,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Sam Houston State Bearkats",
-          "point": 12.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Tulsa Golden Hurricane",
-          "point": -12.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "14620ae05bec8eaa19ca94156c71dff2",
-      "commence_time": "2026-09-12T23:15:00Z",
-      "home_team": "UCLA Bruins",
-      "away_team": "San Diego State Aztecs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "San Diego State Aztecs",
-          "point": null,
-          "price": 320,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "UCLA Bruins",
-          "point": null,
-          "price": -420,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "San Diego State Aztecs",
-          "point": 10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "UCLA Bruins",
-          "point": -10.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 49.5,
-          "price": -105,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 49.5,
-          "price": -115,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "0633819fa9e60ac71609cd40e1596b1b",
-      "commence_time": "2026-09-12T23:30:00Z",
-      "home_team": "Iowa Hawkeyes",
-      "away_team": "Iowa State Cyclones",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Iowa Hawkeyes",
-          "point": null,
-          "price": -630,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Iowa State Cyclones",
-          "point": null,
-          "price": 450,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Iowa Hawkeyes",
-          "point": -13.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Iowa State Cyclones",
-          "point": 13.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 42.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 42.5,
-          "price": -114,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "08c34029ecc85b4a6d519f90f9082e56",
-      "commence_time": "2026-09-12T23:30:00Z",
-      "home_team": "Texas Longhorns",
-      "away_team": "Ohio State Buckeyes",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Ohio State Buckeyes",
-          "point": null,
-          "price": -104,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Texas Longhorns",
-          "point": null,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Ohio State Buckeyes",
-          "point": 1.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Texas Longhorns",
-          "point": -1.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 47.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 47.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "f0d4ea035d6edfabda0c2b298c7d42d2",
-      "commence_time": "2026-09-12T23:30:00Z",
-      "home_team": "Oregon State Beavers",
-      "away_team": "Texas Tech Red Raiders",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Oregon State Beavers",
-          "point": null,
-          "price": 2400,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Texas Tech Red Raiders",
-          "point": null,
-          "price": -10000,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oregon State Beavers",
-          "point": 29.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Texas Tech Red Raiders",
-          "point": -29.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 51.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "01e9c4d460a55375a75d025e2b1ddbf5",
-      "commence_time": "2026-09-19T16:00:00Z",
-      "home_team": "Arkansas Razorbacks",
-      "away_team": "Georgia Bulldogs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Arkansas Razorbacks",
-          "point": null,
-          "price": 580,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Georgia Bulldogs",
-          "point": null,
-          "price": -880,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Arkansas Razorbacks",
-          "point": 16.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Georgia Bulldogs",
-          "point": -16.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 55.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 55.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "65571f1cab1a260aae4a220e38dbbc1d",
-      "commence_time": "2026-09-19T23:30:00Z",
-      "home_team": "Ole Miss Rebels",
-      "away_team": "LSU Tigers",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "LSU Tigers",
-          "point": null,
-          "price": 108,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Ole Miss Rebels",
-          "point": null,
-          "price": -130,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "LSU Tigers",
-          "point": 2.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Ole Miss Rebels",
-          "point": -2.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 57.5,
-          "price": -110,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "82b83ec87fc2be5faa2e9f26ac50edef",
-      "commence_time": "2026-10-10T16:00:00Z",
-      "home_team": "Oklahoma Sooners",
-      "away_team": "Texas Longhorns",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Oklahoma Sooners",
-          "point": null,
-          "price": 180,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Texas Longhorns",
-          "point": null,
-          "price": -220,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Oklahoma Sooners",
-          "point": 6.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Texas Longhorns",
-          "point": -6.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 47.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 47.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "59f8c98dee8ce77cc17c5b4958e4f325",
-      "commence_time": "2026-10-11T00:00:00Z",
-      "home_team": "Alabama Crimson Tide",
-      "away_team": "Georgia Bulldogs",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Alabama Crimson Tide",
-          "point": null,
-          "price": 122,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Georgia Bulldogs",
-          "point": null,
-          "price": -146,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Alabama Crimson Tide",
-          "point": 2.5,
-          "price": 100,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Georgia Bulldogs",
-          "point": -2.5,
-          "price": -122,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 49.5,
-          "price": -108,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 49.5,
-          "price": -112,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "685a8722f297502fa85e4cd8c7e54b1c",
-      "commence_time": "2026-10-17T16:00:00Z",
-      "home_team": "Indiana Hoosiers",
-      "away_team": "Ohio State Buckeyes",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Indiana Hoosiers",
-          "point": null,
-          "price": -102,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Ohio State Buckeyes",
-          "point": null,
-          "price": -118,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Indiana Hoosiers",
-          "point": 1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Ohio State Buckeyes",
-          "point": -1.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 48.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 48.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "4aac00e6cc06b8905659f911419540d2",
-      "commence_time": "2026-11-08T00:30:00Z",
-      "home_team": "Notre Dame Fighting Irish",
-      "away_team": "Miami Hurricanes",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Miami Hurricanes",
-          "point": null,
-          "price": 188,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Notre Dame Fighting Irish",
-          "point": null,
-          "price": -230,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Miami Hurricanes",
-          "point": 6.5,
-          "price": -114,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Notre Dame Fighting Irish",
-          "point": -6.5,
-          "price": -106,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 55.5,
-          "price": -115,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 55.5,
-          "price": -105,
-          "book": "fanduel"
-        }
-      ]
-    },
-    {
-      "event_id": "426658869d8f93e891cad97029725975",
-      "commence_time": "2026-11-28T17:00:00Z",
-      "home_team": "Ohio State Buckeyes",
-      "away_team": "Michigan Wolverines",
-      "lines": [
-        {
-          "market": "h2h",
-          "side": "Michigan Wolverines",
-          "point": null,
-          "price": 390,
-          "book": "fanduel"
-        },
-        {
-          "market": "h2h",
-          "side": "Ohio State Buckeyes",
-          "point": null,
-          "price": -530,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Michigan Wolverines",
-          "point": 11.5,
-          "price": -102,
-          "book": "fanduel"
-        },
-        {
-          "market": "spreads",
-          "side": "Ohio State Buckeyes",
-          "point": -11.5,
-          "price": -120,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Over",
-          "point": 45.5,
-          "price": -110,
-          "book": "fanduel"
-        },
-        {
-          "market": "totals",
-          "side": "Under",
-          "point": 45.5,
           "price": -110,
           "book": "fanduel"
         }
