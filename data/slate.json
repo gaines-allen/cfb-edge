@@ -1,32 +1,32 @@
 {
-  "built_at": "2026-09-06T15:58:11+00:00",
+  "built_at": "2026-09-06T19:43:59+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-06T15:57:58+00:00",
+  "board_fetched_at": "2026-09-06T19:43:58+00:00",
   "warning": null,
   "games_on_board": 47,
-  "games_with_candidates": 3,
+  "games_with_candidates": 4,
   "games_dropped": [],
   "games_outside_week": 43,
   "unrated_schools": [],
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-06T15:58:10+00:00",
+    "measured_at": "2026-09-06T19:43:59+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
       "n": 40,
-      "bias": -2.25,
-      "median": -3.4,
-      "sigma": 6.174
+      "bias": -2.025,
+      "median": -2.9,
+      "sigma": 6.049
     },
     "spreads": {
       "n": 40,
-      "bias": 0.29,
-      "median": -0.4,
-      "sigma": 3.069
+      "bias": 0.49,
+      "median": -0.2,
+      "sigma": 3.106
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -41,12 +41,12 @@
       "model": {
         "home_team": "Washington",
         "away_team": "Washington State",
-        "projected_spread": -20.4,
-        "projected_total": 43.2,
-        "projected_h1_spread": -11.2,
-        "projected_h1_total": 20.3,
+        "projected_spread": -20.6,
+        "projected_total": 43.0,
+        "projected_h1_spread": -11.3,
+        "projected_h1_total": 20.2,
         "hfa_applied": 2.2,
-        "coherence_gap": 0.2,
+        "coherence_gap": 0.4,
         "inputs": {
           "home_rating": 13.69,
           "away_rating": -4.21,
@@ -79,11 +79,11 @@
           "side": "Under",
           "market_line": 51.5,
           "bet_line": 51.5,
-          "price": -105,
-          "model_number": 43.2,
-          "edge_points": -8.3,
-          "edge_sigma": -1.34,
-          "floor_confidence": 5.5
+          "price": -110,
+          "model_number": 43.0,
+          "edge_points": -8.5,
+          "edge_sigma": -1.41,
+          "floor_confidence": 5.6
         },
         {
           "market": "spread",
@@ -91,11 +91,11 @@
           "side": "Washington State",
           "market_line": -23.5,
           "bet_line": 23.5,
-          "price": -110,
-          "model_number": -20.4,
-          "edge_points": 3.1,
-          "edge_sigma": 1.01,
-          "floor_confidence": 5.0
+          "price": -104,
+          "model_number": -20.6,
+          "edge_points": 2.9,
+          "edge_sigma": 0.93,
+          "floor_confidence": 4.9
         }
       ]
     },
@@ -109,12 +109,12 @@
       "model": {
         "home_team": "Notre Dame",
         "away_team": "Wisconsin",
-        "projected_spread": -22.4,
-        "projected_total": 42.2,
-        "projected_h1_spread": -12.3,
-        "projected_h1_total": 19.8,
+        "projected_spread": -22.6,
+        "projected_total": 42.0,
+        "projected_h1_spread": -12.4,
+        "projected_h1_total": 19.7,
         "hfa_applied": 0.0,
-        "coherence_gap": 0.2,
+        "coherence_gap": 0.4,
         "inputs": {
           "home_rating": 26.27,
           "away_rating": 4.16,
@@ -148,22 +148,10 @@
           "market_line": 46.5,
           "bet_line": 46.5,
           "price": -110,
-          "model_number": 42.2,
-          "edge_points": -4.3,
-          "edge_sigma": -0.7,
-          "floor_confidence": 4.5
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Notre Dame",
-          "market_line": -20.5,
-          "bet_line": -20.5,
-          "price": -118,
-          "model_number": -22.4,
-          "edge_points": -1.9,
-          "edge_sigma": -0.62,
-          "floor_confidence": 4.4
+          "model_number": 42.0,
+          "edge_points": -4.5,
+          "edge_sigma": -0.74,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -177,12 +165,12 @@
       "model": {
         "home_team": "Florida State",
         "away_team": "SMU",
-        "projected_spread": 1.4,
-        "projected_total": 51.0,
-        "projected_h1_spread": 0.8,
-        "projected_h1_total": 24.0,
+        "projected_spread": 1.2,
+        "projected_total": 50.8,
+        "projected_h1_spread": 0.7,
+        "projected_h1_total": 23.9,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.6,
+        "coherence_gap": 1.8,
         "inputs": {
           "home_rating": 7.89,
           "away_rating": 11.75,
@@ -217,8 +205,64 @@
           "market_line": 53.5,
           "bet_line": 53.5,
           "price": -115,
-          "model_number": 51.0,
-          "edge_points": -2.5,
+          "model_number": 50.8,
+          "edge_points": -2.7,
+          "edge_sigma": -0.45,
+          "floor_confidence": 4.2
+        }
+      ]
+    },
+    {
+      "event_id": "4f0e1900bdc8d12bf0cc91ae291c104e",
+      "kickoff": "2026-09-06T23:30:00Z",
+      "matchup": "Louisville Cardinals @ Ole Miss Rebels",
+      "home_team": "Ole Miss Rebels",
+      "away_team": "Louisville Cardinals",
+      "neutral_site": true,
+      "model": {
+        "home_team": "Ole Miss",
+        "away_team": "Louisville",
+        "projected_spread": -6.3,
+        "projected_total": 53.1,
+        "projected_h1_spread": -3.5,
+        "projected_h1_total": 25.0,
+        "hfa_applied": 0.0,
+        "coherence_gap": 1.4,
+        "inputs": {
+          "home_rating": 16.33,
+          "away_rating": 10.51,
+          "home_points": 28.0,
+          "away_points": 23.1,
+          "home_components": {
+            "sp": 16.5,
+            "sp_off": 35.2,
+            "sp_def": 19.4,
+            "fpi": 16.029
+          },
+          "away_components": {
+            "sp": 11.1,
+            "sp_off": 30.7,
+            "sp_def": 19.8,
+            "fpi": 9.454
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 2,
+          "ratings_present_away": 2,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 55.5,
+          "bet_line": 55.5,
+          "price": -115,
+          "model_number": 53.1,
+          "edge_points": -2.4,
           "edge_sigma": -0.4,
           "floor_confidence": 4.1
         }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-06T15:58:25+00:00",
+  "generated_at": "2026-09-06T19:44:14+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-09-06T15:58:11+00:00",
+    "built_at": "2026-09-06T19:43:59+00:00",
     "rows": [
       {
         "market_spread": -23.5,
@@ -16,8 +16,8 @@
         "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
         "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
         "neutral_site": false,
-        "projected_spread": -20.4,
-        "projected_total": 43.2,
+        "projected_spread": -20.6,
+        "projected_total": 43.0,
         "home_short": "Washington",
         "away_short": "Washington State",
         "incoherent": false,
@@ -28,11 +28,11 @@
             "side": "Under",
             "market_line": 51.5,
             "bet_line": 51.5,
-            "price": -105,
-            "model_number": 43.2,
-            "edge_points": -8.3,
-            "edge_sigma": -1.34,
-            "floor_confidence": 5.5
+            "price": -110,
+            "model_number": 43.0,
+            "edge_points": -8.5,
+            "edge_sigma": -1.41,
+            "floor_confidence": 5.6
           },
           {
             "market": "spread",
@@ -40,11 +40,11 @@
             "side": "Washington State",
             "market_line": -23.5,
             "bet_line": 23.5,
-            "price": -110,
-            "model_number": -20.4,
-            "edge_points": 3.1,
-            "edge_sigma": 1.01,
-            "floor_confidence": 5.0
+            "price": -104,
+            "model_number": -20.6,
+            "edge_points": 2.9,
+            "edge_sigma": 0.93,
+            "floor_confidence": 4.9
           }
         ],
         "movement": {
@@ -59,7 +59,7 @@
         }
       },
       {
-        "market_spread": -20.5,
+        "market_spread": -21.5,
         "market_total": 46.5,
         "event_id": "b460f3aa4235ec2485f25182755304d6",
         "kickoff": "2026-09-06T23:30:00Z",
@@ -69,8 +69,8 @@
         "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
         "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
         "neutral_site": true,
-        "projected_spread": -22.4,
-        "projected_total": 42.2,
+        "projected_spread": -22.6,
+        "projected_total": 42.0,
         "home_short": "Notre Dame",
         "away_short": "Wisconsin",
         "incoherent": false,
@@ -82,25 +82,17 @@
             "market_line": 46.5,
             "bet_line": 46.5,
             "price": -110,
-            "model_number": 42.2,
-            "edge_points": -4.3,
-            "edge_sigma": -0.7,
-            "floor_confidence": 4.5
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "Notre Dame",
-            "market_line": -20.5,
-            "bet_line": -20.5,
-            "price": -118,
-            "model_number": -22.4,
-            "edge_points": -1.9,
-            "edge_sigma": -0.62,
-            "floor_confidence": 4.4
+            "model_number": 42.0,
+            "edge_points": -4.5,
+            "edge_sigma": -0.74,
+            "floor_confidence": 4.6
           }
         ],
         "movement": {
+          "spread": {
+            "from": -20.5,
+            "to": -21.5
+          },
           "total": {
             "from": 47.5,
             "to": 46.5
@@ -118,8 +110,8 @@
         "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
         "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
         "neutral_site": false,
-        "projected_spread": 1.4,
-        "projected_total": 51.0,
+        "projected_spread": 1.2,
+        "projected_total": 50.8,
         "home_short": "Florida State",
         "away_short": "SMU",
         "incoherent": false,
@@ -131,8 +123,40 @@
             "market_line": 53.5,
             "bet_line": 53.5,
             "price": -115,
-            "model_number": 51.0,
-            "edge_points": -2.5,
+            "model_number": 50.8,
+            "edge_points": -2.7,
+            "edge_sigma": -0.45,
+            "floor_confidence": 4.2
+          }
+        ],
+        "movement": {}
+      },
+      {
+        "market_spread": -6.5,
+        "market_total": 55.5,
+        "event_id": "4f0e1900bdc8d12bf0cc91ae291c104e",
+        "kickoff": "2026-09-06T23:30:00Z",
+        "matchup": "Louisville Cardinals @ Ole Miss Rebels",
+        "home_team": "Ole Miss Rebels",
+        "away_team": "Louisville Cardinals",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
+        "neutral_site": true,
+        "projected_spread": -6.3,
+        "projected_total": 53.1,
+        "home_short": "Ole Miss",
+        "away_short": "Louisville",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 55.5,
+            "bet_line": 55.5,
+            "price": -115,
+            "model_number": 53.1,
+            "edge_points": -2.4,
             "edge_sigma": -0.4,
             "floor_confidence": 4.1
           }
@@ -140,7 +164,7 @@
         "movement": {}
       }
     ],
-    "fetched_at": "2026-09-06T15:57:58+00:00",
+    "fetched_at": "2026-09-06T19:43:58+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -148,8 +172,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-06T15:58:11+00:00",
-    "board_fetched_at": "2026-09-06T15:57:58+00:00",
+    "updated_at": "2026-09-06T19:44:00+00:00",
+    "board_fetched_at": "2026-09-06T19:43:58+00:00",
     "season": 2026,
     "week": 1,
     "card": [
@@ -159,19 +183,19 @@
         "market": "total",
         "period": "full",
         "line": 51.5,
-        "price": -105,
-        "confidence": 5.5,
-        "sigma": -1.34,
-        "edge_points": -8.3,
-        "model_number": 43.2,
+        "price": -110,
+        "confidence": 5.6,
+        "sigma": -1.41,
+        "edge_points": -8.5,
+        "model_number": 43.0,
         "first_seen": "2026-08-24T18:24:03+00:00",
         "first_confidence": 4.5,
-        "moved_confidence": 1.0,
+        "moved_confidence": 1.1,
         "moved_line": {
           "from": 50.5,
           "to": 51.5
         },
-        "days_tracked": 30,
+        "days_tracked": 31,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -197,18 +221,18 @@
         "period": "full",
         "line": 46.5,
         "price": -110,
-        "confidence": 4.5,
-        "sigma": -0.7,
-        "edge_points": -4.3,
-        "model_number": 42.2,
+        "confidence": 4.6,
+        "sigma": -0.74,
+        "edge_points": -4.5,
+        "model_number": 42.0,
         "first_seen": "2026-08-25T13:24:50+00:00",
         "first_confidence": 4.7,
-        "moved_confidence": -0.2,
+        "moved_confidence": -0.1,
         "moved_line": {
           "from": 47.5,
           "to": 46.5
         },
-        "days_tracked": 28,
+        "days_tracked": 29,
         "rank": 2,
         "peak_rank": 2,
         "on_board": true,
@@ -234,15 +258,15 @@
         "period": "full",
         "line": 53.5,
         "price": -115,
-        "confidence": 4.1,
-        "sigma": -0.4,
-        "edge_points": -2.5,
-        "model_number": 51.0,
+        "confidence": 4.2,
+        "sigma": -0.45,
+        "edge_points": -2.7,
+        "model_number": 50.8,
         "first_seen": "2026-08-25T13:24:50+00:00",
         "first_confidence": 3.9,
-        "moved_confidence": 0.2,
+        "moved_confidence": 0.3,
         "moved_line": null,
-        "days_tracked": 21,
+        "days_tracked": 22,
         "rank": 3,
         "peak_rank": 3,
         "on_board": true,
@@ -259,6 +283,40 @@
           "unusual": "That leaves 2.5 points between us, which is nothing special, I see gaps like that all day.",
           "built": "",
           "text": "I got Florida State for 23.0 and SMU for 26.0. Call it 51.0 on the scoreboard. Straight off the ratings that's 49.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 53.5. That leaves 2.5 points between us, which is nothing special, I see gaps like that all day."
+        }
+      },
+      {
+        "matchup": "Louisville Cardinals @ Ole Miss Rebels",
+        "side": "Under",
+        "market": "total",
+        "period": "full",
+        "line": 55.5,
+        "price": -115,
+        "confidence": 4.1,
+        "sigma": -0.4,
+        "edge_points": -2.4,
+        "model_number": 53.1,
+        "first_seen": "2026-08-24T18:24:03+00:00",
+        "first_confidence": 4.5,
+        "moved_confidence": -0.4,
+        "moved_line": null,
+        "days_tracked": 3,
+        "rank": 4,
+        "peak_rank": 4,
+        "on_board": true,
+        "kickoff": "2026-09-06T23:30:00Z",
+        "home_team": "Ole Miss Rebels",
+        "away_team": "Louisville Cardinals",
+        "home_school": "Ole Miss",
+        "away_school": "Louisville",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
+        "defense": {
+          "line": "Way I see it, Ole Miss hangs 28.0 and Louisville answers with 23.0. That's 53.0 between them. Straight off the ratings that's 51.0, and I nudge it for the way my numbers have been landing against the book.",
+          "against": "Book's asking 55.5.",
+          "unusual": "That leaves 2.5 points between us, which is nothing special, I see gaps like that all day.",
+          "built": "",
+          "text": "Way I see it, Ole Miss hangs 28.0 and Louisville answers with 23.0. That's 53.0 between them. Straight off the ratings that's 51.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 55.5. That leaves 2.5 points between us, which is nothing special, I see gaps like that all day."
         }
       }
     ],
@@ -414,14 +472,14 @@
   "scale": {
     "cap": 7.5,
     "publish": 7.0,
-    "spread_gap": 3.069,
-    "total_gap": 6.174,
+    "spread_gap": 3.106,
+    "total_gap": 6.049,
     "sample": 40
   },
   "live": null,
   "lock_id": "4fe6597357f4",
-  "board_fetched_at": "2026-09-06T15:57:58+00:00",
-  "credits_remaining": 443,
+  "board_fetched_at": "2026-09-06T19:43:58+00:00",
+  "credits_remaining": 440,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
