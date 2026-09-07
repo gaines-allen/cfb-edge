@@ -1,107 +1,13 @@
 {
-  "generated_at": "2026-09-06T19:44:14+00:00",
+  "generated_at": "2026-09-07T16:41:57+00:00",
   "board": {
     "week": 1,
     "season": 2026,
-    "built_at": "2026-09-06T19:43:59+00:00",
+    "built_at": "2026-09-07T16:41:43+00:00",
     "rows": [
       {
-        "market_spread": -23.5,
-        "market_total": 51.5,
-        "event_id": "36c2a063d7a55e85488fbe0e89015686",
-        "kickoff": "2026-09-06T20:00:00Z",
-        "matchup": "Washington State Cougars @ Washington Huskies",
-        "home_team": "Washington Huskies",
-        "away_team": "Washington State Cougars",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
-        "neutral_site": false,
-        "projected_spread": -20.6,
-        "projected_total": 43.0,
-        "home_short": "Washington",
-        "away_short": "Washington State",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 51.5,
-            "bet_line": 51.5,
-            "price": -110,
-            "model_number": 43.0,
-            "edge_points": -8.5,
-            "edge_sigma": -1.41,
-            "floor_confidence": 5.6
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "Washington State",
-            "market_line": -23.5,
-            "bet_line": 23.5,
-            "price": -104,
-            "model_number": -20.6,
-            "edge_points": 2.9,
-            "edge_sigma": 0.93,
-            "floor_confidence": 4.9
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -22.5,
-            "to": -23.5
-          },
-          "total": {
-            "from": 50.5,
-            "to": 51.5
-          }
-        }
-      },
-      {
-        "market_spread": -21.5,
-        "market_total": 46.5,
-        "event_id": "b460f3aa4235ec2485f25182755304d6",
-        "kickoff": "2026-09-06T23:30:00Z",
-        "matchup": "Wisconsin Badgers @ Notre Dame Fighting Irish",
-        "home_team": "Notre Dame Fighting Irish",
-        "away_team": "Wisconsin Badgers",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
-        "neutral_site": true,
-        "projected_spread": -22.6,
-        "projected_total": 42.0,
-        "home_short": "Notre Dame",
-        "away_short": "Wisconsin",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 46.5,
-            "bet_line": 46.5,
-            "price": -110,
-            "model_number": 42.0,
-            "edge_points": -4.5,
-            "edge_sigma": -0.74,
-            "floor_confidence": 4.6
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -20.5,
-            "to": -21.5
-          },
-          "total": {
-            "from": 47.5,
-            "to": 46.5
-          }
-        }
-      },
-      {
         "market_spread": 2.5,
-        "market_total": 53.5,
+        "market_total": 54.5,
         "event_id": "a570687d47661da4982cfd885cdb4a44",
         "kickoff": "2026-09-07T23:30:00Z",
         "matchup": "SMU Mustangs @ Florida State Seminoles",
@@ -110,8 +16,8 @@
         "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
         "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
         "neutral_site": false,
-        "projected_spread": 1.2,
-        "projected_total": 50.8,
+        "projected_spread": 0.8,
+        "projected_total": 50.7,
         "home_short": "Florida State",
         "away_short": "SMU",
         "incoherent": false,
@@ -120,155 +26,69 @@
             "market": "total",
             "period": "full",
             "side": "Under",
-            "market_line": 53.5,
-            "bet_line": 53.5,
-            "price": -115,
-            "model_number": 50.8,
-            "edge_points": -2.7,
-            "edge_sigma": -0.45,
+            "market_line": 54.5,
+            "bet_line": 54.5,
+            "price": -110,
+            "model_number": 50.7,
+            "edge_points": -3.8,
+            "edge_sigma": -0.65,
+            "floor_confidence": 4.5
+          },
+          {
+            "market": "spread",
+            "period": "full",
+            "side": "Florida State",
+            "market_line": 2.5,
+            "bet_line": 2.5,
+            "price": -105,
+            "model_number": 0.8,
+            "edge_points": -1.7,
+            "edge_sigma": -0.49,
             "floor_confidence": 4.2
           }
         ],
-        "movement": {}
-      },
-      {
-        "market_spread": -6.5,
-        "market_total": 55.5,
-        "event_id": "4f0e1900bdc8d12bf0cc91ae291c104e",
-        "kickoff": "2026-09-06T23:30:00Z",
-        "matchup": "Louisville Cardinals @ Ole Miss Rebels",
-        "home_team": "Ole Miss Rebels",
-        "away_team": "Louisville Cardinals",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
-        "neutral_site": true,
-        "projected_spread": -6.3,
-        "projected_total": 53.1,
-        "home_short": "Ole Miss",
-        "away_short": "Louisville",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 55.5,
-            "bet_line": 55.5,
-            "price": -115,
-            "model_number": 53.1,
-            "edge_points": -2.4,
-            "edge_sigma": -0.4,
-            "floor_confidence": 4.1
+        "movement": {
+          "total": {
+            "from": 53.5,
+            "to": 54.5
           }
-        ],
-        "movement": {}
+        }
       }
     ],
-    "fetched_at": "2026-09-06T19:43:58+00:00",
+    "fetched_at": "2026-09-07T16:41:41+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
     "held": []
   },
   "running": {
-    "caveat": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-06T19:44:00+00:00",
-    "board_fetched_at": "2026-09-06T19:43:58+00:00",
+    "caveat": null,
+    "updated_at": "2026-09-07T16:41:44+00:00",
+    "board_fetched_at": "2026-09-07T16:41:41+00:00",
     "season": 2026,
     "week": 1,
     "card": [
-      {
-        "matchup": "Washington State Cougars @ Washington Huskies",
-        "side": "Under",
-        "market": "total",
-        "period": "full",
-        "line": 51.5,
-        "price": -110,
-        "confidence": 5.6,
-        "sigma": -1.41,
-        "edge_points": -8.5,
-        "model_number": 43.0,
-        "first_seen": "2026-08-24T18:24:03+00:00",
-        "first_confidence": 4.5,
-        "moved_confidence": 1.1,
-        "moved_line": {
-          "from": 50.5,
-          "to": 51.5
-        },
-        "days_tracked": 31,
-        "rank": 1,
-        "peak_rank": 1,
-        "on_board": true,
-        "kickoff": "2026-09-06T20:00:00Z",
-        "home_team": "Washington Huskies",
-        "away_team": "Washington State Cougars",
-        "home_school": "Washington",
-        "away_school": "Washington State",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
-        "defense": {
-          "line": "Pencil me in for Washington 30.5, Washington State 10.5. Adds up to 43.0. Straight off the ratings that's 41.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 51.5.",
-          "unusual": "That leaves 8.5 points between us, which is a bigger gap than most games on my board.",
-          "built": "",
-          "text": "Pencil me in for Washington 30.5, Washington State 10.5. Adds up to 43.0. Straight off the ratings that's 41.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 51.5. That leaves 8.5 points between us, which is a bigger gap than most games on my board."
-        }
-      },
-      {
-        "matchup": "Wisconsin Badgers @ Notre Dame Fighting Irish",
-        "side": "Under",
-        "market": "total",
-        "period": "full",
-        "line": 46.5,
-        "price": -110,
-        "confidence": 4.6,
-        "sigma": -0.74,
-        "edge_points": -4.5,
-        "model_number": 42.0,
-        "first_seen": "2026-08-25T13:24:50+00:00",
-        "first_confidence": 4.7,
-        "moved_confidence": -0.1,
-        "moved_line": {
-          "from": 47.5,
-          "to": 46.5
-        },
-        "days_tracked": 29,
-        "rank": 2,
-        "peak_rank": 2,
-        "on_board": true,
-        "kickoff": "2026-09-06T23:30:00Z",
-        "home_team": "Notre Dame Fighting Irish",
-        "away_team": "Wisconsin Badgers",
-        "home_school": "Notre Dame",
-        "away_school": "Wisconsin",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
-        "defense": {
-          "line": "Pencil me in for Notre Dame 31.0, Wisconsin 9.0. Adds up to 42.0. Straight off the ratings that's 40.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 46.5.",
-          "unusual": "That leaves 4.5 points between us, which is nothing special, I see gaps like that all day.",
-          "built": "",
-          "text": "Pencil me in for Notre Dame 31.0, Wisconsin 9.0. Adds up to 42.0. Straight off the ratings that's 40.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 46.5. That leaves 4.5 points between us, which is nothing special, I see gaps like that all day."
-        }
-      },
       {
         "matchup": "SMU Mustangs @ Florida State Seminoles",
         "side": "Under",
         "market": "total",
         "period": "full",
-        "line": 53.5,
-        "price": -115,
-        "confidence": 4.2,
-        "sigma": -0.45,
-        "edge_points": -2.7,
-        "model_number": 50.8,
+        "line": 54.5,
+        "price": -110,
+        "confidence": 4.5,
+        "sigma": -0.65,
+        "edge_points": -3.8,
+        "model_number": 50.7,
         "first_seen": "2026-08-25T13:24:50+00:00",
         "first_confidence": 3.9,
-        "moved_confidence": 0.3,
-        "moved_line": null,
-        "days_tracked": 22,
-        "rank": 3,
-        "peak_rank": 3,
+        "moved_confidence": 0.6,
+        "moved_line": {
+          "from": 53.5,
+          "to": 54.5
+        },
+        "days_tracked": 23,
+        "rank": 1,
+        "peak_rank": 1,
         "on_board": true,
         "kickoff": "2026-09-07T23:30:00Z",
         "home_team": "Florida State Seminoles",
@@ -278,45 +98,11 @@
         "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
         "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
         "defense": {
-          "line": "I got Florida State for 23.0 and SMU for 26.0. Call it 51.0 on the scoreboard. Straight off the ratings that's 49.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 53.5.",
-          "unusual": "That leaves 2.5 points between us, which is nothing special, I see gaps like that all day.",
-          "built": "",
-          "text": "I got Florida State for 23.0 and SMU for 26.0. Call it 51.0 on the scoreboard. Straight off the ratings that's 49.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 53.5. That leaves 2.5 points between us, which is nothing special, I see gaps like that all day."
-        }
-      },
-      {
-        "matchup": "Louisville Cardinals @ Ole Miss Rebels",
-        "side": "Under",
-        "market": "total",
-        "period": "full",
-        "line": 55.5,
-        "price": -115,
-        "confidence": 4.1,
-        "sigma": -0.4,
-        "edge_points": -2.4,
-        "model_number": 53.1,
-        "first_seen": "2026-08-24T18:24:03+00:00",
-        "first_confidence": 4.5,
-        "moved_confidence": -0.4,
-        "moved_line": null,
-        "days_tracked": 3,
-        "rank": 4,
-        "peak_rank": 4,
-        "on_board": true,
-        "kickoff": "2026-09-06T23:30:00Z",
-        "home_team": "Ole Miss Rebels",
-        "away_team": "Louisville Cardinals",
-        "home_school": "Ole Miss",
-        "away_school": "Louisville",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
-        "defense": {
-          "line": "Way I see it, Ole Miss hangs 28.0 and Louisville answers with 23.0. That's 53.0 between them. Straight off the ratings that's 51.0, and I nudge it for the way my numbers have been landing against the book.",
-          "against": "Book's asking 55.5.",
-          "unusual": "That leaves 2.5 points between us, which is nothing special, I see gaps like that all day.",
-          "built": "",
-          "text": "Way I see it, Ole Miss hangs 28.0 and Louisville answers with 23.0. That's 53.0 between them. Straight off the ratings that's 51.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 55.5. That leaves 2.5 points between us, which is nothing special, I see gaps like that all day."
+          "line": "I got Florida State for 23.0 and SMU for 26.0. Call it 50.5 on the scoreboard. Straight off the ratings that's 49.0, and I nudge it for the way my numbers have been landing against the book.",
+          "against": "Book's asking 54.5.",
+          "unusual": "That leaves 4.0 points between us, which is nothing special, I see gaps like that all day.",
+          "built": "Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly.",
+          "text": "I got Florida State for 23.0 and SMU for 26.0. Call it 50.5 on the scoreboard. Straight off the ratings that's 49.0, and I nudge it for the way my numbers have been landing against the book. Book's asking 54.5. That leaves 4.0 points between us, which is nothing special, I see gaps like that all day. Numbers come off SP+ and FPI. SRS and Elo haven't said a word yet, so I'm working off 2 opinions instead of 4. Bet it accordingly."
         }
       }
     ],
@@ -472,14 +258,14 @@
   "scale": {
     "cap": 7.5,
     "publish": 7.0,
-    "spread_gap": 3.106,
-    "total_gap": 6.049,
-    "sample": 40
+    "spread_gap": 3.464,
+    "total_gap": 5.827,
+    "sample": 47
   },
   "live": null,
   "lock_id": "4fe6597357f4",
-  "board_fetched_at": "2026-09-06T19:43:58+00:00",
-  "credits_remaining": 440,
+  "board_fetched_at": "2026-09-07T16:41:41+00:00",
+  "credits_remaining": 437,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,

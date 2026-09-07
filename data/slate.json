@@ -1,160 +1,36 @@
 {
-  "built_at": "2026-09-06T19:43:59+00:00",
+  "built_at": "2026-09-07T16:41:43+00:00",
   "season": 2026,
   "week": 1,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-06T19:43:58+00:00",
+  "board_fetched_at": "2026-09-07T16:41:41+00:00",
   "warning": null,
-  "games_on_board": 47,
-  "games_with_candidates": 4,
+  "games_on_board": 78,
+  "games_with_candidates": 1,
   "games_dropped": [],
-  "games_outside_week": 43,
+  "games_outside_week": 77,
   "unrated_schools": [],
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-06T19:43:59+00:00",
+    "measured_at": "2026-09-07T16:41:42+00:00",
     "season": 2026,
     "week": 1,
     "totals": {
-      "n": 40,
-      "bias": -2.025,
-      "median": -2.9,
-      "sigma": 6.049
+      "n": 47,
+      "bias": -1.932,
+      "median": -2.7,
+      "sigma": 5.827
     },
     "spreads": {
-      "n": 40,
-      "bias": 0.49,
-      "median": -0.2,
-      "sigma": 3.106
+      "n": 47,
+      "bias": 0.949,
+      "median": 0.4,
+      "sigma": 3.464
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
   "slate": [
-    {
-      "event_id": "36c2a063d7a55e85488fbe0e89015686",
-      "kickoff": "2026-09-06T20:00:00Z",
-      "matchup": "Washington State Cougars @ Washington Huskies",
-      "home_team": "Washington Huskies",
-      "away_team": "Washington State Cougars",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Washington",
-        "away_team": "Washington State",
-        "projected_spread": -20.6,
-        "projected_total": 43.0,
-        "projected_h1_spread": -11.3,
-        "projected_h1_total": 20.2,
-        "hfa_applied": 2.2,
-        "coherence_gap": 0.4,
-        "inputs": {
-          "home_rating": 13.69,
-          "away_rating": -4.21,
-          "home_points": 30.6,
-          "away_points": 10.4,
-          "home_components": {
-            "sp": 15.8,
-            "sp_off": 33,
-            "sp_def": 17,
-            "fpi": 9.893
-          },
-          "away_components": {
-            "sp": -4.3,
-            "sp_off": 20.4,
-            "sp_def": 24.6,
-            "fpi": -4.054
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 51.5,
-          "bet_line": 51.5,
-          "price": -110,
-          "model_number": 43.0,
-          "edge_points": -8.5,
-          "edge_sigma": -1.41,
-          "floor_confidence": 5.6
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Washington State",
-          "market_line": -23.5,
-          "bet_line": 23.5,
-          "price": -104,
-          "model_number": -20.6,
-          "edge_points": 2.9,
-          "edge_sigma": 0.93,
-          "floor_confidence": 4.9
-        }
-      ]
-    },
-    {
-      "event_id": "b460f3aa4235ec2485f25182755304d6",
-      "kickoff": "2026-09-06T23:30:00Z",
-      "matchup": "Wisconsin Badgers @ Notre Dame Fighting Irish",
-      "home_team": "Notre Dame Fighting Irish",
-      "away_team": "Wisconsin Badgers",
-      "neutral_site": true,
-      "model": {
-        "home_team": "Notre Dame",
-        "away_team": "Wisconsin",
-        "projected_spread": -22.6,
-        "projected_total": 42.0,
-        "projected_h1_spread": -12.4,
-        "projected_h1_total": 19.7,
-        "hfa_applied": 0.0,
-        "coherence_gap": 0.4,
-        "inputs": {
-          "home_rating": 26.27,
-          "away_rating": 4.16,
-          "home_points": 31.1,
-          "away_points": 8.9,
-          "home_components": {
-            "sp": 26.5,
-            "sp_off": 40.6,
-            "sp_def": 14.3,
-            "fpi": 25.856
-          },
-          "away_components": {
-            "sp": 3.8,
-            "sp_off": 21.6,
-            "sp_def": 17.5,
-            "fpi": 4.818
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 46.5,
-          "bet_line": 46.5,
-          "price": -110,
-          "model_number": 42.0,
-          "edge_points": -4.5,
-          "edge_sigma": -0.74,
-          "floor_confidence": 4.6
-        }
-      ]
-    },
     {
       "event_id": "a570687d47661da4982cfd885cdb4a44",
       "kickoff": "2026-09-07T23:30:00Z",
@@ -165,12 +41,12 @@
       "model": {
         "home_team": "Florida State",
         "away_team": "SMU",
-        "projected_spread": 1.2,
-        "projected_total": 50.8,
-        "projected_h1_spread": 0.7,
-        "projected_h1_total": 23.9,
+        "projected_spread": 0.8,
+        "projected_total": 50.7,
+        "projected_h1_spread": 0.4,
+        "projected_h1_total": 23.8,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.8,
+        "coherence_gap": 2.2,
         "inputs": {
           "home_rating": 7.89,
           "away_rating": 11.75,
@@ -202,69 +78,25 @@
           "market": "total",
           "period": "full",
           "side": "Under",
-          "market_line": 53.5,
-          "bet_line": 53.5,
-          "price": -115,
-          "model_number": 50.8,
-          "edge_points": -2.7,
-          "edge_sigma": -0.45,
-          "floor_confidence": 4.2
-        }
-      ]
-    },
-    {
-      "event_id": "4f0e1900bdc8d12bf0cc91ae291c104e",
-      "kickoff": "2026-09-06T23:30:00Z",
-      "matchup": "Louisville Cardinals @ Ole Miss Rebels",
-      "home_team": "Ole Miss Rebels",
-      "away_team": "Louisville Cardinals",
-      "neutral_site": true,
-      "model": {
-        "home_team": "Ole Miss",
-        "away_team": "Louisville",
-        "projected_spread": -6.3,
-        "projected_total": 53.1,
-        "projected_h1_spread": -3.5,
-        "projected_h1_total": 25.0,
-        "hfa_applied": 0.0,
-        "coherence_gap": 1.4,
-        "inputs": {
-          "home_rating": 16.33,
-          "away_rating": 10.51,
-          "home_points": 28.0,
-          "away_points": 23.1,
-          "home_components": {
-            "sp": 16.5,
-            "sp_off": 35.2,
-            "sp_def": 19.4,
-            "fpi": 16.029
-          },
-          "away_components": {
-            "sp": 11.1,
-            "sp_off": 30.7,
-            "sp_def": 19.8,
-            "fpi": 9.454
-          }
+          "market_line": 54.5,
+          "bet_line": 54.5,
+          "price": -110,
+          "model_number": 50.7,
+          "edge_points": -3.8,
+          "edge_sigma": -0.65,
+          "floor_confidence": 4.5
         },
-        "confidence_inputs": {
-          "ratings_present_home": 2,
-          "ratings_present_away": 2,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
         {
-          "market": "total",
+          "market": "spread",
           "period": "full",
-          "side": "Under",
-          "market_line": 55.5,
-          "bet_line": 55.5,
-          "price": -115,
-          "model_number": 53.1,
-          "edge_points": -2.4,
-          "edge_sigma": -0.4,
-          "floor_confidence": 4.1
+          "side": "Florida State",
+          "market_line": 2.5,
+          "bet_line": 2.5,
+          "price": -105,
+          "model_number": 0.8,
+          "edge_points": -1.7,
+          "edge_sigma": -0.49,
+          "floor_confidence": 4.2
         }
       ]
     }
