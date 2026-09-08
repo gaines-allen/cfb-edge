@@ -897,9 +897,35 @@ def _payload(picks, wins, losses, pushes, units):
 
 
 def test_no_record_is_ever_typed_into_the_copy():
+    """
+    Commit 7390a1b on 31 August rewrote the copy and wrote that morning's
+    record into the headline as text: "0-2. Down two units." It was true
+    when written, which is exactly why nothing looked wrong, and it was
+    still there after Sunday made it 1 and 5. Both shapes that sentence
+    took are forbidden in copy: a W-L record, and an up or down units
+    figure. Those numbers come from the ledger or they do not appear.
+    """
+    record = re.compile(r"\b\d+-\d+(-\d+)?\b\.")
+    units = re.compile(r"\b(up|down)\s+(\d+(\.\d+)?|one|two|three|four|five|six|"
+                       r"seven|eight|nine|ten)\s+units?\b", re.I)
     for key, text in B.VOICE.items():
-        assert not re.search(r"\b\d+-\d+\b\.", text), f"{key} carries a typed record"
+        assert not record.search(text), f"{key} carries a typed record: {text[:60]!r}"
+        assert not units.search(text), f"{key} carries a typed units figure: {text[:60]!r}"
     assert "tagline" not in B.VOICE and "subhead" not in B.VOICE
+
+
+def test_the_guard_would_have_caught_the_31_august_copy():
+    # The exact strings, so this cannot drift into catching only what it
+    # was tuned on.
+    record = re.compile(r"\b\d+-\d+(-\d+)?\b\.")
+    units = re.compile(r"\b(up|down)\s+(\d+(\.\d+)?|one|two|three|four|five|six|"
+                       r"seven|eight|nine|ten)\s+units?\b", re.I)
+    assert record.search("0-2. Down two units.")
+    assert units.search("0-2. Down two units.")
+    assert units.search("Down 4.0 units.") and units.search("up 1 unit today")
+    # And legitimate copy is left alone.
+    assert not units.search("12 units across the week is the ceiling")
+    assert not record.search("call it 10 to 1 against")
 
 
 def test_the_hero_is_the_ledger_rounded_like_the_rest_of_the_page():
