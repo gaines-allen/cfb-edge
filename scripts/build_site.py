@@ -126,9 +126,18 @@ VOICE = {
     # Describes what the page does rather than promising disclosure it
     # does not make. Every clause here is checkable against the page:
     # the slate goes up, the leans move daily, the card lands Wednesday.
-    "tagline": "0-2. Down two units.",
-    "subhead": "Hawai'i got buried and NC State scored eight damn points. The board is "
-               "innocent. I am currently the idiot.",
+    # Nothing about the record lives here. The hero line is computed from
+    # the ledger in hero() below, because the last version of these two
+    # strings said "0-2. Down two units." and kept saying it after the
+    # record went to 1-5. These are only what shows before anything has
+    # settled.
+    "tagline_empty": "I watch the whole board. I yell when a number is wrong.",
+    "subhead_empty": "The card lands Wednesday. Nothing reaches it below "
+                     "{publish}, and every posted line stays put.",
+    # The sentence after the record. Chosen by how the weekend went.
+    "hero_won": "The board owes me nothing this week.",
+    "hero_lost": "The board is innocent. I am currently the idiot.",
+    "hero_level": "Broke even. Nobody gets to say anything.",
 
     # Openly a persona. A page built on not overclaiming cannot open by
     # implying a real handicapper is behind it, and the joke lands better
@@ -2424,6 +2433,65 @@ el("source-policy").textContent = V.sources_note;
 """
 
 
+def hero(payload: dict) -> tuple[str, str]:
+    """
+    The headline and the line under it, computed from the ledger.
+
+    The number is the season record and units, rounded the way every other
+    figure on the page is, so it can never disagree with the tile below
+    it. The sentence is about the most recent weekend that has settled.
+    That is grouped by kickoff date and not by week, because CFBD week 1
+    holds 2 separate weekends and a week number would have called
+    August's 2 losses part of September's 1 and 3.
+
+    Both used to be typed in. "0-2. Down two units." stayed on the page
+    after the record was 1 and 5.
+    """
+    import datetime as dt
+    picks = payload.get("picks") or []
+    settled = [p for p in picks if p.get("live")
+               and p.get("result") in ("win", "loss", "push") and p.get("kickoff")]
+    if not settled:
+        return VOICE["tagline_empty"], VOICE["subhead_empty"]
+
+    o = payload.get("overall") or {}
+    w, l, pu = int(o.get("wins") or 0), int(o.get("losses") or 0), int(o.get("pushes") or 0)
+    units = float(o.get("units") or 0)
+    rec = f"{w}-{l}" + (f"-{pu}" if pu else "")
+    mag = half(abs(units))
+    unit_word = "unit" if mag == "1.0" else "units"
+    direction = "Up" if units > 0 else "Down" if units < 0 else "Level,"
+    tagline = f"{rec}. {direction} {mag} {unit_word}." if units else f"{rec}. Level."
+
+    def day(p):
+        return dt.datetime.fromisoformat(str(p["kickoff"]).replace("Z", "+00:00")).date()
+    latest = max(day(p) for p in settled)
+    weekend = [p for p in settled if (latest - day(p)).days <= 4]
+    ww = sum(1 for p in weekend if p["result"] == "win")
+    wl = sum(1 for p in weekend if p["result"] == "loss")
+    net = sum(float(p.get("units_net") or 0) for p in weekend)
+    winners = [p.get("title") or p.get("matchup") for p in weekend if p["result"] == "win"]
+    losers = [p.get("title") or p.get("matchup") for p in weekend if p["result"] == "loss"]
+
+    if ww and wl:
+        named = winners if len(winners) <= len(losers) else losers
+        verb = "cashed" if named is winners else "got smoked"
+        rest = len(weekend) - len(named)
+        line = (f"Went {ww}-{wl} on the weekend. {', '.join(named)} {verb}, "
+                f"the other {rest} did not." if rest != 1 else
+                f"Went {ww}-{wl} on the weekend. {', '.join(named)} {verb}, "
+                f"the other 1 did not.")
+    elif ww:
+        line = f"Went {ww}-0 on the weekend. Every one of them cashed."
+    elif wl:
+        line = f"Went 0-{wl} on the weekend. Not one of them got there."
+    else:
+        line = "Pushed the whole weekend."
+    closer = (VOICE["hero_won"] if net > 0 else VOICE["hero_lost"] if net < 0
+              else VOICE["hero_level"])
+    return tagline, f"{line} {closer}"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
@@ -2434,6 +2502,7 @@ def main() -> int:
     store.set_dry_run(args.dry_run, log)
 
     payload = build_payload()
+    hero_tag, hero_sub = hero(payload)
     store.write_json(SITE / "data.json", payload)
     # The character is injected, never hard coded into the markup, so
     # swapping who speaks is a change to VOICE and nothing else.
@@ -2449,8 +2518,8 @@ def main() -> int:
                 {k: fill_publish(v) if isinstance(v, str) else v
                  for k, v in VOICE.items()}, separators=(",", ":")))
             .replace("__NAME__", VOICE["name"])
-            .replace("__TAGLINE__", VOICE["tagline"])
-            .replace("__SUBHEAD__", fill_publish(VOICE["subhead"]))
+            .replace("__TAGLINE__", hero_tag)
+            .replace("__SUBHEAD__", fill_publish(hero_sub))
             .replace("__KICKER__", VOICE["kicker"])
             .replace("__LOGO__", VOICE["logo"])
             .replace("__BOARD_OPEN__", VOICE["board_open"].format(

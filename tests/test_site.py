@@ -32,9 +32,20 @@ from lib import model  # noqa: E402
 PLACEHOLDERS = sorted(set(re.findall(r"__[A-Z_]+__", B.HTML)))
 
 
+# Tokens that are not copy and so are not filled from VOICE. DATA and
+# VOICE are the payloads, MAX_BOARD_AGE is the staleness threshold, and
+# the 2 the record lives in are computed by hero() from the ledger. That
+# last pair used to be strings in VOICE, and stayed at "0-2" after the
+# record was 1 and 5.
+NOT_COPY = {"__DATA__", "__VOICE__", "__MAX_BOARD_AGE__",
+            "__TAGLINE__", "__SUBHEAD__"}
+
+
 def render(payload: dict) -> str:
+    tag, sub_ = B.hero(payload)
     html = B.HTML.replace("__DATA__", json.dumps(payload)) \
                  .replace("__VOICE__", json.dumps(B.VOICE))
+    html = html.replace("__TAGLINE__", tag).replace("__SUBHEAD__", sub_)
     # Not every placeholder is copy. This one carries the staleness
     # threshold so the page and the builder cannot hold two different
     # numbers for it.
@@ -94,24 +105,21 @@ def test_every_voice_key_the_template_asks_for_exists():
 
 def test_every_placeholder_has_something_to_fill_it():
     """
-    __NAME__ and friends are filled from VOICE. A template placeholder with
-    no matching key would render literally on the page.
-
-    The exceptions are the ones that are not copy: the payload, the voice
-    table itself, and the staleness threshold, which is injected so the
-    page and the builder cannot end up holding two different numbers for
-    it. Each is filled explicitly in main().
+    Every __TOKEN__ in the template is filled from VOICE, except the few
+    that are not copy, and each of those has to have its own filler in
+    main(). A token with no source ships to readers as a literal
+    placeholder.
     """
-    NOT_COPY = ("__DATA__", "__VOICE__", "__MAX_BOARD_AGE__")
     missing = [t for t in PLACEHOLDERS
-               if t not in NOT_COPY
-               and t.strip("_").lower() not in B.VOICE]
+               if t not in NOT_COPY and t.strip("_").lower() not in B.VOICE]
     assert missing == [], f"no VOICE key for {missing}"
-    # And every one of those is actually substituted somewhere.
     src = (ROOT / "scripts" / "build_site.py").read_text()
-    for token in NOT_COPY:
-        assert f'"{token}"' in src, f"{token} is never filled"
-
+    assert '.replace("__DATA__"' in src
+    assert '.replace("__VOICE__"' in src
+    assert '.replace("__MAX_BOARD_AGE__"' in src
+    assert "hero_tag, hero_sub = hero(payload)" in src
+    assert '.replace("__TAGLINE__", hero_tag)' in src
+    assert '.replace("__SUBHEAD__", fill_publish(hero_sub))' in src
 
 def test_no_placeholder_survives_a_render():
     html = render({"picks": [], "overall": {}, "current": {}})
@@ -865,3 +873,79 @@ def test_there_is_one_card_and_no_leans_section():
     assert "Six arguments" not in B.HTML
     nav = B.HTML[B.HTML.index("<nav"):B.HTML.index("</nav>")] if "<nav" in B.HTML else ""
     assert "#running-h" not in nav
+
+
+# ---------------------------------------------------------------------
+# The hero is computed
+#
+# It said "0-2. Down two units." and kept saying it after the record was
+# 1 and 5. It was a string in VOICE. The site's own about copy promises
+# every figure about the record is computed from the ledger rather than
+# typed in by someone having a good week, and the headline was the one
+# figure that broke that.
+# ---------------------------------------------------------------------
+
+def _pick(kick, result, title, net, live=True):
+    return {"live": live, "result": result, "kickoff": kick, "title": title,
+            "matchup": title, "units_net": net}
+
+
+def _payload(picks, wins, losses, pushes, units):
+    return {"picks": picks,
+            "overall": {"wins": wins, "losses": losses, "pushes": pushes,
+                        "units": units}}
+
+
+def test_no_record_is_ever_typed_into_the_copy():
+    for key, text in B.VOICE.items():
+        assert not re.search(r"\b\d+-\d+\b\.", text), f"{key} carries a typed record"
+    assert "tagline" not in B.VOICE and "subhead" not in B.VOICE
+
+
+def test_the_hero_is_the_ledger_rounded_like_the_rest_of_the_page():
+    picks = [_pick("2026-08-29T19:30:00Z", "loss", "NC State +4.5", -1.0),
+             _pick("2026-08-29T23:00:00Z", "loss", "Hawaii +4.5", -1.0),
+             _pick("2026-09-05T16:00:00Z", "win", "Coastal Carolina +21.5", 0.87),
+             _pick("2026-09-05T19:30:00Z", "loss", "Over 50.5", -1.0),
+             _pick("2026-09-05T22:00:00Z", "loss", "Under 46.5", -1.0),
+             _pick("2026-09-05T23:00:00Z", "loss", "East Carolina +27.5", -1.0)]
+    tag, sub = B.hero(_payload(picks, 1, 5, 0, -4.13))
+    assert tag == "1-5. Down 4.0 units."          # half point, like the tile
+    assert sub.startswith("Went 1-3 on the weekend.")
+    assert "Coastal Carolina +21.5 cashed" in sub
+    assert B.VOICE["hero_lost"] in sub
+
+
+def test_two_weekends_in_one_cfbd_week_are_not_one_weekend():
+    # August's 2 losses must not be counted into September's line.
+    picks = [_pick("2026-08-29T19:30:00Z", "loss", "A", -1.0),
+             _pick("2026-08-29T23:00:00Z", "loss", "B", -1.0),
+             _pick("2026-09-05T16:00:00Z", "win", "C", 0.9)]
+    _, sub = B.hero(_payload(picks, 1, 2, 0, -1.1))
+    assert sub.startswith("Went 1-0 on the weekend.")
+    assert "1-2" not in sub
+
+
+def test_nothing_settled_shows_the_descriptive_copy():
+    tag, sub = B.hero(_payload([], 0, 0, 0, 0))
+    assert tag == B.VOICE["tagline_empty"]
+    assert sub == B.VOICE["subhead_empty"]
+    pending = [_pick("2026-09-05T16:00:00Z", "pending", "C", 0)]
+    assert B.hero(_payload(pending, 0, 0, 0, 0))[0] == B.VOICE["tagline_empty"]
+
+
+def test_pushes_only_appear_when_there_are_any():
+    p = [_pick("2026-09-05T16:00:00Z", "win", "C", 0.9)]
+    assert B.hero(_payload(p, 3, 1, 0, 1.6))[0].startswith("3-1.")
+    assert B.hero(_payload(p, 3, 1, 1, 1.6))[0].startswith("3-1-1.")
+
+
+def test_a_winning_week_says_up_and_a_level_one_says_level():
+    p = [_pick("2026-09-05T16:00:00Z", "win", "C", 0.9)]
+    assert "Up 1.5 units" in B.hero(_payload(p, 2, 0, 0, 1.6))[0]
+    assert "Up 1.0 unit." in B.hero(_payload(p, 1, 0, 0, 1.0))[0]
+    assert B.hero(_payload(p, 1, 1, 0, 0.0))[0] == "1-1. Level."
+
+
+def test_the_meta_description_carries_the_same_line():
+    assert 'name="description" content="__TAGLINE__"' in B.HTML
