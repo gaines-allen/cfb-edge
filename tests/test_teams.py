@@ -226,3 +226,17 @@ def test_suggest_is_advisory_only():
     """
     assert "suggest" not in strip_comments_and_strings(
         _dedent(inspect.getsource(teams_mod.canonical)))
+
+
+def test_grambling_state_maps_to_cfbd_grambling():
+    """
+    The week 2 board of 9 September carried Grambling State Tigers and
+    CFBD calls the school Grambling. Unmapped, it stopped the card at
+    the refresh step twice and the daily swallowed the same exit. A
+    spelling, not a rule: nothing here may guess.
+    """
+    known = {"Grambling", "Georgia State", "Texas State", "Washington State"}
+    assert canonical("Grambling State Tigers", known) == "Grambling"
+    assert canonical("Grambling State", known) == "Grambling"
+    # And the decoys stay themselves.
+    assert canonical("Georgia State Panthers", known) == "Georgia State"

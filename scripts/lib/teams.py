@@ -44,6 +44,10 @@ def load_logos() -> dict:
 # spelling, value is every other spelling seen in the wild. Anything not
 # listed here is expected to match on normalization alone.
 VARIANTS: dict[str, list[str]] = {
+    # The odds board says Grambling State; CFBD says Grambling. First seen
+    # on the week 2 board, 9 September, where it stopped the card twice at
+    # the refresh step and the daily job swallowed the same failure.
+    "Grambling": ["Grambling State", "Grambling State Tigers"],
     "Mississippi": ["Ole Miss", "Ole Miss Rebels"],
     "Southern Mississippi": ["Southern Miss", "So Miss", "USM",
                              "Southern Mississippi Golden Eagles",

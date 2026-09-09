@@ -48,6 +48,23 @@ jobs:
         with:
           python-version: "3.11"
 
+      # A workflow_run trigger fires the instant the daily commits, and
+      # Pages has not redeployed yet, so the check read the old page and
+      # raised an alarm on the run that had just fixed it. On 9 September
+      # the site was current at 22:10:47 and this said stale at 22:11.
+      # Give the deploy up to 6 minutes to land before judging.
+      - name: Wait for the page to catch up with the run that triggered this
+        if: github.event_name == 'workflow_run'
+        run: |
+          STARTED="${{ github.event.workflow_run.created_at }}"
+          for i in $(seq 1 18); do
+            GEN=$(curl -s "https://gaines-allen.github.io/cfb-edge/?cb=$(date +%s)" \
+              | python3 -c "import re,sys,json; h=sys.stdin.read(); m=re.search(r'const DATA = (\{.*?\});\n',h,re.S); print(json.loads(m.group(1)).get('generated_at','') if m else '')")
+            if [ -n "$GEN" ] && [ "$GEN" \> "$STARTED" ]; then echo "page generated $GEN, after run start $STARTED"; exit 0; fi
+            sleep 20
+          done
+          echo "page did not catch up within 6 minutes; judging what is there"
+
       - name: Ask whether the live page is current
         id: check
         run: |

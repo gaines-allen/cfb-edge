@@ -840,3 +840,22 @@ def test_the_card_deploys_itself():
     pub = next(s for s in doc["jobs"]["card"]["steps"] if s.get("name") == "Publish")
     assert pub.get("id") == "publish"
     assert 'echo "published=true"' in pub["run"]
+
+
+def test_the_watchdog_waits_for_the_deploy_before_judging_a_fresh_run():
+    """
+    A workflow_run trigger fires the instant the daily commits, before
+    Pages has redeployed, so the check graded the old page and raised an
+    alarm on the very run that had just fixed the site. It now waits,
+    bounded, for the page to postdate the run that triggered it.
+    """
+    import yaml
+    doc = yaml.safe_load(WATCHDOG)
+    names = [s.get("name") for s in doc["jobs"]["check"]["steps"] if s.get("name")]
+    wait = "Wait for the page to catch up with the run that triggered this"
+    assert wait in names
+    assert names.index(wait) < names.index("Ask whether the live page is current")
+    step = next(s for s in doc["jobs"]["check"]["steps"] if s.get("name") == wait)
+    assert step["if"] == "github.event_name == 'workflow_run'"
+    assert "workflow_run.created_at" in step["run"]
+    assert "seq 1 18" in step["run"], "the wait must be bounded"
