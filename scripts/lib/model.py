@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, asdict
+import os
 from pathlib import Path
 
 # A blended rating and an SP+ only points split will never agree exactly,
@@ -34,7 +35,12 @@ COHERENCE_TOLERANCE = 4.0
 CONFIDENCE_CAP = 7.5
 UNCALIBRATED_CAP = 6.5
 
-CALIBRATION_FILE = Path(__file__).resolve().parents[2] / "data" / "model_calibration.json"
+# Tests point this at a fixed file so a fixture slate cannot pass or fail
+# with whatever calibration the last run left on disk. Nothing in
+# production sets it.
+CALIBRATION_FILE = Path(os.environ.get(
+    "CFB_EDGE_CALIBRATION",
+    str(Path(__file__).resolve().parents[2] / "data" / "model_calibration.json")))
 
 # Home field in FBS has compressed over the last decade. This is a starting
 # value; the grader adjusts it in memory.json once there is a sample.
@@ -173,6 +179,15 @@ def project_game(home: str, away: str, book: dict[str, dict],
     if hr is not None and ar is not None:
         # Negative means the home team is laying points.
         spread = -round((hr - ar) + applied_hfa, 1)
+    # Kept before calibration touches it. The self consistency check
+    # below has to compare the two raw halves of the model. The bias
+    # correction is a market centering offset, not a claim about the
+    # game, and folding it into the check meant the gate was measuring
+    # the calibration file instead of the model: 11 percent of a board
+    # read as incoherent at zero bias, 82 percent at a bias of 4, and
+    # on 9 September a week 2 recalibration held 18 of 47 games on a
+    # slate whose raw halves agreed.
+    raw_spread = spread
 
     # SP+ offense and defense are projected points scored and points allowed
     # against an average opponent, not differentials. So each side's expected
@@ -245,8 +260,13 @@ def project_game(home: str, away: str, book: dict[str, dict],
         hfa_applied=applied_hfa,
         coherence_gap=(
             None if None in (spread, home_points, away_points)
-            else round(abs(-spread - (home_points - away_points)), 2)),
+            else round(abs(-raw_spread - (home_points - away_points)), 2)),
         inputs={
+            # The spread before the bias correction. The coherence gap is
+            # measured on this, and the page recomputes the gap from it
+            # when a slate predates the stored flag, so both sides look
+            # at the same number.
+            "raw_spread": raw_spread,
             "home_rating": round(hr, 2) if hr is not None else None,
             "away_rating": round(ar, 2) if ar is not None else None,
             "home_points": home_points,

@@ -247,6 +247,15 @@ def run_slate(cache: Path, season=2026, week=1):
     env.pop("ODDS_API_KEY", None)
     env["CFBD_CACHE_DIR"] = str(cache)
     env["CFBD_CACHE_TTL"] = "-1"
+    # A fixed calibration. The fixture is fixed; the slate it produces has
+    # to be too. Against the file on disk this test built 0 candidates in
+    # CI on 9 September, minutes after a week 2 recalibration, and passed
+    # on the same commit locally against the week before's numbers.
+    cal = cache.parent / "calibration.json"
+    cal.write_text(json.dumps({"season": 2026, "week": 1,
+        "totals": {"n": 60, "bias": -0.9, "sigma": 3.3},
+        "spreads": {"n": 60, "bias": 0.6, "sigma": 2.7}}))
+    env["CFB_EDGE_CALIBRATION"] = str(cal)
     env["RUN_ID"] = "corrupt00001"
     return subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "make_slate.py"),

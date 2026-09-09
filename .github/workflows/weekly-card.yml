@@ -130,9 +130,19 @@ jobs:
         run: |
           WEEK="${{ inputs.week }}"
           SEASON="${{ inputs.season || '2026' }}"
-          python3 scripts/fetch_odds.py
-          python3 scripts/calibrate_model.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
-          python3 scripts/make_slate.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
+          # Each of these can stop the run with an exit code and a reason
+          # on stderr. The code reached the run list; the reason did not,
+          # and on 9 September that left "exit code 4" as the whole
+          # diagnosis. The last lines of stderr go out as an annotation.
+          say_why () {
+            if ! "$@" 2> /tmp/step_err.txt; then
+              tail -4 /tmp/step_err.txt | while read -r line; do echo "::error::$1 $2: $line"; done
+              exit 1
+            fi
+          }
+          say_why python3 scripts/fetch_odds.py
+          say_why python3 scripts/calibrate_model.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
+          say_why python3 scripts/make_slate.py --season "$SEASON" ${WEEK:+--week "$WEEK"}
 
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code

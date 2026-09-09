@@ -17,6 +17,7 @@ import math
 
 import pytest
 
+from conftest import FIXTURES
 from lib import model
 from lib.model import (
     DEFAULT_HFA, NEUTRAL_HFA, RATING_WEIGHTS, blended_rating,
@@ -282,3 +283,51 @@ def test_edge_vs_market(proj, market, want):
         assert got is None
     else:
         assert got == pytest.approx(want, abs=0.01)
+
+
+
+def test_the_coherence_gap_ignores_the_calibration_bias(tmp_path, monkeypatch):
+    """
+    The gap compares the 2 raw halves of the model. The bias correction
+    is a market centering offset and must not enter it: with it in, the
+    gate measured the calibration file. Same book, bias 0 and bias 8,
+    identical gaps.
+    """
+    import json as _json
+    book = build_rating_book(
+        [sp_row("Home", 34.0, 20.0, overall=14.0),
+         sp_row("Away", 24.0, 18.0, overall=6.0)], [], [], [])
+    def with_bias(b):
+        f = tmp_path / f"cal{b}.json"
+        f.write_text(_json.dumps({"spreads": {"bias": b, "sigma": 2.7},
+                                  "totals": {"bias": 0.0, "sigma": 3.3}}))
+        monkeypatch.setattr(model, "CALIBRATION_FILE", f)
+        return project_game("Home", "Away", book, calibrate=True, neutral=True)
+    a, b = with_bias(0.0), with_bias(8.0)
+    assert a.coherence_gap == b.coherence_gap
+    # And the correction itself still lands on the published spread.
+    assert abs(a.projected_spread - b.projected_spread) == pytest.approx(8.0, abs=0.11)
+
+
+def test_a_full_real_board_stays_under_the_gate_with_all_four_sources():
+    """
+    2023 week 5 with SP+, FPI, SRS and Elo all present: the raw halves
+    agree on almost every game. This is the board the 9 September failure
+    should have looked like, and would have, without the bias in the gap.
+    """
+    import glob, json as _json, statistics as st
+    F = str(FIXTURES / "cfbd")
+    book = build_rating_book(_json.load(open(f"{F}/sp_2023.json")),
+                             _json.load(open(f"{F}/fpi_2023.json")),
+                             _json.load(open(f"{F}/srs_2023.json")),
+                             _json.load(open(f"{F}/elo_2023_w05.json")))
+    gaps = []
+    for g in _json.load(open(f"{F}/games_2023_w05.json")):
+        h, a = g.get("homeTeam"), g.get("awayTeam")
+        if h in book and a in book:
+            p = project_game(h, a, book, neutral=bool(g.get("neutralSite")), calibrate=False)
+            if p.coherence_gap is not None:
+                gaps.append(p.coherence_gap)
+    assert len(gaps) >= 40
+    bad = sum(1 for x in gaps if x > model.COHERENCE_TOLERANCE)
+    assert bad / len(gaps) <= 0.2, f"{bad} of {len(gaps)}"

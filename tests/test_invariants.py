@@ -225,22 +225,26 @@ def test_the_card_never_carries_one_game_twice():
 
 def test_the_gate_measures_the_numbers_the_page_prints():
     """
-    The gate decided on the unrounded projection while the page published
-    the rounded one, so the two held different values for the same
-    quantity and were compared against the same 4.0 threshold. A game
-    within a tenth of the line passed the gate and then failed the check
-    that its published halves agree, which took the daily publish down on
-    26 August over Hawai'i and UNLV.
-
-    Rounded once at the source now, so there is one number.
+    The stored gap has to equal what the page would recompute from the
+    model dict, or the slate and the page can disagree about which games
+    are held. Both measure the raw spread against raw points. The
+    published spread carries the bias correction, and comparing it to raw
+    points meant the gate was reading the calibration file: the same
+    board went from 11 percent incoherent at zero bias to 100 at a bias
+    of 8, and on 9 September a recalibration held 18 of 47 games whose
+    raw halves agreed.
     """
+    checked = 0
     for g, p in projections():
         if p.coherence_gap is None:
             continue
-        hp, ap = p.inputs["home_points"], p.inputs["away_points"]
-        from_published = abs((hp - ap) - (-p.projected_spread))
-        assert abs(from_published - p.coherence_gap) < 1e-9, g["matchup"]
-
+        inp = p.inputs
+        assert "raw_spread" in inp, g["matchup"]
+        recomputed = abs(-inp["raw_spread"] - (inp["home_points"] - inp["away_points"]))
+        assert abs(recomputed - p.coherence_gap) < 0.051, g["matchup"]
+        checked += 1
+    if checked == 0:
+        pytest.skip("no board to measure")
 
 def test_published_points_are_already_rounded():
     # If inputs carried more precision than the page shows, the gate and

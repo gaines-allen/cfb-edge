@@ -335,7 +335,10 @@ def incoherent(g: dict) -> bool:
     inp = m.get("inputs") or {}
     gap = m.get("coherence_gap")
     if gap is None:
-        sp = m.get("projected_spread")
+        # The raw spread, matching how the model measures itself. The
+        # published spread carries the bias correction and comparing it
+        # to raw points reads the calibration file as incoherence.
+        sp = inp.get("raw_spread", m.get("projected_spread"))
         hp, ap = inp.get("home_points"), inp.get("away_points")
         if None in (sp, hp, ap):
             return False
