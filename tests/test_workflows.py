@@ -859,3 +859,22 @@ def test_the_watchdog_waits_for_the_deploy_before_judging_a_fresh_run():
     assert step["if"] == "github.event_name == 'workflow_run'"
     assert "workflow_run.created_at" in step["run"]
     assert "seq 1 18" in step["run"], "the wait must be bounded"
+
+
+def test_a_swallowed_daily_step_still_says_why():
+    """
+    Calibration and the slate build run continue-on-error so the page
+    keeps moving on the previous numbers. That also hid, for a day, that
+    make_slate was exiting on an unmapped school in every run: the step
+    read success and the card died on the same failure unexplained. A
+    step that is allowed to fail has to say so.
+    """
+    import yaml
+    doc = yaml.safe_load(DAILY)
+    steps = {s.get("name"): s for s in doc["jobs"]["update"]["steps"]}
+    for name, script in (("Recalibrate against the market", "calibrate_model.py"),
+                         ("Build the candidate slate", "make_slate.py")):
+        st = steps[name]
+        assert st.get("continue-on-error") is True, name
+        assert "::warning::" in st["run"], f"{name} fails silently"
+        assert script in st["run"] and "2> /tmp/err.txt" in st["run"], name

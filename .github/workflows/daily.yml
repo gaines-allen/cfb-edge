@@ -89,7 +89,17 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
-          python3 scripts/calibrate_model.py --season "${{ inputs.season || '2026' }}"
+          # continue-on-error keeps the page moving on the previous
+          # numbers when this cannot run. It also hid the reason for a
+          # day: on 9 September make_slate exited 4 on an unmapped school
+          # in every run, the step read success, and the card died on the
+          # same failure with no explanation. The reason goes out as a
+          # warning annotation now, so a green run that skipped a step
+          # says which one and why.
+          if ! python3 scripts/calibrate_model.py --season "${{ inputs.season || '2026' }}" 2> /tmp/err.txt; then
+            tail -4 /tmp/err.txt | while read -r line; do echo "::warning::calibrate_model.py skipped: $line"; done
+            exit 1
+          fi
 
       # Build the candidate slate here rather than at pick time. The
       # Wednesday handicapper session has no API keys of its own, so it
@@ -100,7 +110,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
-          python3 scripts/make_slate.py --season "${{ inputs.season || '2026' }}"
+          if ! python3 scripts/make_slate.py --season "${{ inputs.season || '2026' }}" 2> /tmp/err.txt; then
+            tail -4 /tmp/err.txt | while read -r line; do echo "::warning::make_slate.py skipped, page keeps the previous slate: $line"; done
+            exit 1
+          fi
 
       # Track the top 6 leans and how they move. Runs after the slate so
       # it reads today's numbers, and before the page so the site renders
