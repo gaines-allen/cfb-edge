@@ -261,3 +261,23 @@ def replay_env(tmp_path):
     env["CFBD_CACHE_TTL"] = "-1"
     env["RUN_ID"] = "testrun00001"
     return env
+
+
+@pytest.fixture(scope="session", autouse=True)
+def _the_build_outputs_are_not_the_suite_s_to_write():
+    """
+    The suite must not write the files the daily job builds and commits.
+    On 8 September the fixture slate test ran a real make_slate right
+    after the daily had built the day's slate, overwrote data/slate.json
+    with a 1 game fixture slate, and the daily committed that. The
+    committed slate held 1 game for a day and nobody could tell why.
+    """
+    files = [ROOT / "data" / n for n in ("slate.json", "board.json",
+             "model_calibration.json", "running_card.json")]
+    before = {f: (f.read_bytes() if f.exists() else None) for f in files}
+    yield
+    for f, b in before.items():
+        after = f.read_bytes() if f.exists() else None
+        assert after == b, (
+            f"{f.name} changed during the test run. The suite builds against"
+            " fixtures and temp files; it never writes the daily job's outputs.")

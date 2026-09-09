@@ -30,7 +30,10 @@ DATA = ROOT / "data"
 PICKS = Path(os.environ.get("CFB_EDGE_PICKS", str(DATA / "picks.json")))
 LINE_HISTORY = DATA / "line_history.json"
 MEMORY = DATA / "memory.json"
-BOARD = DATA / "board.json"
+# Tests point this at a fixture board so a fixture slate is built against
+# the lines it was captured with, not against whatever the last live pull
+# left on disk. Nothing in production sets it.
+BOARD = Path(os.environ.get("CFB_EDGE_BOARD", str(DATA / "board.json")))
 RESULTS = DATA / "results.json"
 
 # A pick only goes live at this confidence or above. Everything below is

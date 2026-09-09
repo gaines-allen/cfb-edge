@@ -237,6 +237,7 @@ def project_game(home: str, away: str, book: dict[str, dict],
     # Centre the model on the market. A constant offset is not an edge, and
     # leaving it in means every total looks like an under.
     cal = load_calibration() if calibrate else {}
+    raw_home_points, raw_away_points = home_points, away_points
     if cal:
         tb = (cal.get("totals") or {}).get("bias")
         sb = (cal.get("spreads") or {}).get("bias")
@@ -244,6 +245,24 @@ def project_game(home: str, away: str, book: dict[str, dict],
             total = round(total - float(tb), 1)
         if spread is not None and sb is not None:
             spread = round(spread - float(sb), 1)
+        # The correction has to move the per team points with the spread
+        # and the total, or the page prints 3 numbers that cannot all be
+        # true. Penn State at Temple: the gate passed the raw model at a
+        # 3.9 gap and the page then showed a calibrated spread against
+        # raw points, 4.1 apart. Derive the printed points from the
+        # printed spread and total, so what is printed agrees with itself
+        # by construction. The raw points stay in the inputs for the gate.
+        if (spread is not None and total is not None
+                and home_points is not None and away_points is not None):
+            margin = -spread
+            hp = round((total + margin) / 2.0, 1)
+            # The away side is the remainder, so the 2 printed points sum
+            # to the printed total exactly rather than each rounding on
+            # its own and drifting a tenth apart. Rounded once, here, like
+            # every other published number.
+            ap = round(total - hp, 1)
+            if hp >= 0 and ap >= 0:
+                home_points, away_points = hp, ap
 
     # First half typically carries about 47% of full-game scoring and a
     # slightly compressed spread, since blowout garbage time lands after half.
@@ -260,13 +279,17 @@ def project_game(home: str, away: str, book: dict[str, dict],
         hfa_applied=applied_hfa,
         coherence_gap=(
             None if None in (spread, home_points, away_points)
-            else round(abs(-raw_spread - (home_points - away_points)), 2)),
+            else round(abs(-raw_spread - (raw_home_points - raw_away_points)), 2)),
         inputs={
             # The spread before the bias correction. The coherence gap is
             # measured on this, and the page recomputes the gap from it
             # when a slate predates the stored flag, so both sides look
             # at the same number.
             "raw_spread": raw_spread,
+            "raw_home_points": (round(raw_home_points, 1)
+                                if raw_home_points is not None else None),
+            "raw_away_points": (round(raw_away_points, 1)
+                                if raw_away_points is not None else None),
             "home_rating": round(hr, 2) if hr is not None else None,
             "away_rating": round(ar, 2) if ar is not None else None,
             "home_points": home_points,

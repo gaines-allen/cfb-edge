@@ -240,7 +240,9 @@ def test_the_gate_measures_the_numbers_the_page_prints():
             continue
         inp = p.inputs
         assert "raw_spread" in inp, g["matchup"]
-        recomputed = abs(-inp["raw_spread"] - (inp["home_points"] - inp["away_points"]))
+        hp = inp.get("raw_home_points", inp["home_points"])
+        ap = inp.get("raw_away_points", inp["away_points"])
+        recomputed = abs(-inp["raw_spread"] - (hp - ap))
         assert abs(recomputed - p.coherence_gap) < 0.051, g["matchup"]
         checked += 1
     if checked == 0:

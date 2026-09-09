@@ -21,7 +21,7 @@ from pathlib import Path
 
 import pytest
 
-from conftest import DELETE, ROOT, corrupt, load_fixture, seed_cfbd_cache
+from conftest import DELETE, FIXTURES, ROOT, corrupt, load_fixture, seed_cfbd_cache
 from lib import schema
 from lib.schema import ShapeError
 
@@ -256,6 +256,19 @@ def run_slate(cache: Path, season=2026, week=1):
         "totals": {"n": 60, "bias": -0.9, "sigma": 3.3},
         "spreads": {"n": 60, "bias": 0.6, "sigma": 2.7}}))
     env["CFB_EDGE_CALIBRATION"] = str(cal)
+    # The board the fixture games were captured against, through the
+    # production parser. Without this the slate was built against the live
+    # data/board.json and passed only while that board still overlapped
+    # the fixture week: on 9 September it stopped overlapping, CI built 0
+    # candidates, and this machine built exactly 1 off a leftover game.
+    from lib.odds_api import OddsClient
+    client = OddsClient(api_key="fixture")
+    raw = json.loads((FIXTURES / "odds_api" / "board_current.json").read_text())
+    games = [client._parse_event(ev).to_dict() for ev in raw if client._has_book(ev)]
+    board = cache.parent / "board.json"
+    board.write_text(json.dumps({"fetched_at": "2026-08-27T18:00:00+00:00",
+                                 "games": games, "quota": {}}))
+    env["CFB_EDGE_BOARD"] = str(board)
     env["RUN_ID"] = "corrupt00001"
     return subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "make_slate.py"),
@@ -326,3 +339,18 @@ def test_no_candidate_ever_reaches_the_publish_threshold(tmp_path):
     out = json.loads(proc.stdout)
     for row in out["top"]:
         assert row["floor_conf"] < 8.0, row
+
+
+def test_the_fixture_slate_is_built_against_the_fixture_board(tmp_path):
+    """
+    Every candidate has to come from a game the fixture board carries.
+    A slate built against the live board drifts with the calendar and
+    proves nothing about the fixture.
+    """
+    cache = seed_cfbd_cache(tmp_path / "cache", 2026, 1)
+    proc = run_slate(cache)
+    assert proc.returncode == 0, proc.stderr[-600:]
+    out = json.loads(proc.stdout)
+    assert out["games_with_candidates"] > 1, out
+    for row in out.get("top", [])[:10]:
+        assert row.get("kickoff", "2026-08-29")[:10] <= "2026-09-08"

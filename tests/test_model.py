@@ -331,3 +331,33 @@ def test_a_full_real_board_stays_under_the_gate_with_all_four_sources():
     assert len(gaps) >= 40
     bad = sum(1 for x in gaps if x > model.COHERENCE_TOLERANCE)
     assert bad / len(gaps) <= 0.2, f"{bad} of {len(gaps)}"
+
+
+
+def test_the_printed_halves_agree_after_calibration(tmp_path, monkeypatch):
+    """
+    The bias correction moved the spread and the total and left the per
+    team points alone, so the page printed 3 numbers that could not all
+    be true. Penn State at Temple: gate passed at a raw gap of 3.9, page
+    showed 4.1. With the points derived from the corrected spread and
+    total, what is printed agrees with itself exactly, and the raw
+    halves the gate measures are kept as they were.
+    """
+    import json as _json
+    book = build_rating_book(
+        [sp_row("Home", 34.0, 20.0, overall=14.0),
+         sp_row("Away", 24.0, 18.0, overall=6.0)], [], [], [])
+    f = tmp_path / "cal.json"
+    f.write_text(_json.dumps({"spreads": {"bias": 3.0, "sigma": 2.7},
+                              "totals": {"bias": -2.0, "sigma": 3.3}}))
+    monkeypatch.setattr(model, "CALIBRATION_FILE", f)
+    p = project_game("Home", "Away", book, calibrate=True, neutral=True)
+    inp = p.inputs
+    printed_gap = abs(-p.projected_spread - (inp["home_points"] - inp["away_points"]))
+    # Within one rounding step: the points are rounded to a tenth once.
+    assert printed_gap == pytest.approx(0.0, abs=0.11)
+    assert inp["home_points"] + inp["away_points"] == pytest.approx(p.projected_total, abs=0.06)
+    # The gate still sees the model, not the calibration file.
+    assert inp["raw_home_points"] == pytest.approx(25.0, abs=0.05)
+    assert inp["raw_away_points"] == pytest.approx(17.0, abs=0.05)
+    assert p.coherence_gap == pytest.approx(0.0, abs=0.15)
