@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-10T18:43:39+00:00",
+  "built_at": "2026-09-10T20:12:51+00:00",
   "season": 2026,
   "week": 2,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-10T18:43:37+00:00",
+  "board_fetched_at": "2026-09-10T20:12:49+00:00",
   "warning": null,
   "games_on_board": 86,
   "games_with_candidates": 47,
@@ -89,7 +89,7 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-10T18:43:38+00:00",
+    "measured_at": "2026-09-10T20:12:50+00:00",
     "season": 2026,
     "week": 2,
     "totals": {
@@ -100,9 +100,9 @@
     },
     "spreads": {
       "n": 49,
-      "bias": 1.978,
-      "median": 0.9,
-      "sigma": 4.167
+      "bias": 1.998,
+      "median": 1.5,
+      "sigma": 4.162
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -516,7 +516,7 @@
           "price": -105,
           "model_number": -18.6,
           "edge_points": -8.1,
-          "edge_sigma": -1.94,
+          "edge_sigma": -1.95,
           "floor_confidence": 6.4
         },
         {
@@ -942,7 +942,7 @@
           "price": -110,
           "model_number": 11.1,
           "edge_points": 6.6,
-          "edge_sigma": 1.58,
+          "edge_sigma": 1.59,
           "floor_confidence": 5.9
         }
       ]
@@ -1356,7 +1356,7 @@
           "price": -102,
           "model_number": -3.4,
           "edge_points": 6.1,
-          "edge_sigma": 1.46,
+          "edge_sigma": 1.47,
           "floor_confidence": 5.7
         },
         {
@@ -1794,7 +1794,7 @@
           "price": -110,
           "model_number": -8.4,
           "edge_points": 4.1,
-          "edge_sigma": 0.98,
+          "edge_sigma": 0.99,
           "floor_confidence": 5.0
         }
       ]
@@ -2001,7 +2001,7 @@
           "price": -122,
           "model_number": -17.6,
           "edge_points": -4.1,
-          "edge_sigma": -0.98,
+          "edge_sigma": -0.99,
           "floor_confidence": 5.0
         }
       ]
@@ -2588,18 +2588,6 @@
           "edge_points": -2.9,
           "edge_sigma": -0.54,
           "floor_confidence": 4.3
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Michigan",
-          "market_line": 5.5,
-          "bet_line": 5.5,
-          "price": -110,
-          "model_number": 4.0,
-          "edge_points": -1.5,
-          "edge_sigma": -0.36,
-          "floor_confidence": 4.0
         }
       ]
     },
