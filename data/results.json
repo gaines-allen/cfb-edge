@@ -3,7 +3,7 @@
   "weeks": [
     2
   ],
-  "fetched_at": "2026-09-10T20:12:49+00:00",
+  "fetched_at": "2026-09-11T18:47:08+00:00",
   "games": [
     {
       "id": 401858213,
@@ -12,7 +12,7 @@
       "seasonType": "regular",
       "startDate": "2026-09-11T00:00:00.000Z",
       "startTimeTBD": false,
-      "completed": false,
+      "completed": true,
       "neutralSite": false,
       "conferenceGame": false,
       "attendance": null,
@@ -22,21 +22,31 @@
       "homeTeam": "Miami",
       "homeClassification": "fbs",
       "homeConference": "ACC",
-      "homePoints": null,
-      "homeLineScores": null,
-      "homePostgameWinProbability": null,
+      "homePoints": 77,
+      "homeLineScores": [
+        21,
+        28,
+        28,
+        0
+      ],
+      "homePostgameWinProbability": 0.9930822253227234,
       "homePregameElo": 1930,
       "homePostgameElo": 1930,
       "awayId": 50,
       "awayTeam": "Florida A&M",
       "awayClassification": "fcs",
       "awayConference": "SWAC",
-      "awayPoints": null,
-      "awayLineScores": null,
-      "awayPostgameWinProbability": null,
+      "awayPoints": 7,
+      "awayLineScores": [
+        0,
+        0,
+        0,
+        7
+      ],
+      "awayPostgameWinProbability": 0.006917774677276611,
       "awayPregameElo": null,
       "awayPostgameElo": null,
-      "excitementIndex": null,
+      "excitementIndex": 1.8345705305786555,
       "highlights": "",
       "notes": null,
       "playoff": null
