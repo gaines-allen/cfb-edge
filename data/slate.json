@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-11T18:47:10+00:00",
+  "built_at": "2026-09-11T20:12:01+00:00",
   "season": 2026,
   "week": 2,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-11T18:47:07+00:00",
+  "board_fetched_at": "2026-09-11T20:11:59+00:00",
   "warning": null,
   "games_on_board": 94,
   "games_with_candidates": 48,
@@ -87,20 +87,20 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-11T18:47:09+00:00",
+    "measured_at": "2026-09-11T20:12:01+00:00",
     "season": 2026,
     "week": 2,
     "totals": {
       "n": 58,
-      "bias": -1.8,
-      "median": -1.9,
-      "sigma": 5.259
+      "bias": -1.834,
+      "median": -2.15,
+      "sigma": 5.274
     },
     "spreads": {
       "n": 58,
       "bias": 1.659,
-      "median": 0.9,
-      "sigma": 4.014
+      "median": 1.2,
+      "sigma": 4.003
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -234,7 +234,7 @@
           "price": -110,
           "model_number": -18.3,
           "edge_points": -8.8,
-          "edge_sigma": -2.19,
+          "edge_sigma": -2.2,
           "floor_confidence": 6.8
         },
         {
@@ -514,7 +514,7 @@
           "price": -114,
           "model_number": 55.0,
           "edge_points": 8.5,
-          "edge_sigma": 1.62,
+          "edge_sigma": 1.61,
           "floor_confidence": 5.9
         },
         {
@@ -587,7 +587,7 @@
           "price": -110,
           "model_number": 65.0,
           "edge_points": 8.5,
-          "edge_sigma": 1.62,
+          "edge_sigma": 1.61,
           "floor_confidence": 5.9
         },
         {
@@ -660,7 +660,7 @@
           "price": -110,
           "model_number": 59.7,
           "edge_points": 8.2,
-          "edge_sigma": 1.56,
+          "edge_sigma": 1.55,
           "floor_confidence": 5.8
         }
       ]
@@ -794,7 +794,7 @@
           "price": -114,
           "model_number": 61.8,
           "edge_points": 7.3,
-          "edge_sigma": 1.39,
+          "edge_sigma": 1.38,
           "floor_confidence": 5.6
         }
       ]
@@ -867,7 +867,7 @@
           "price": -110,
           "model_number": 57.9,
           "edge_points": 3.4,
-          "edge_sigma": 0.65,
+          "edge_sigma": 0.64,
           "floor_confidence": 4.5
         }
       ]
@@ -1001,8 +1001,8 @@
           "price": -115,
           "model_number": 42.0,
           "edge_points": -6.5,
-          "edge_sigma": -1.24,
-          "floor_confidence": 5.4
+          "edge_sigma": -1.23,
+          "floor_confidence": 5.3
         }
       ]
     },
@@ -1062,7 +1062,7 @@
           "price": -102,
           "model_number": -3.1,
           "edge_points": 6.4,
-          "edge_sigma": 1.59,
+          "edge_sigma": 1.6,
           "floor_confidence": 5.9
         },
         {
@@ -1281,8 +1281,8 @@
           "price": -110,
           "model_number": -39.5,
           "edge_points": 6.0,
-          "edge_sigma": 1.49,
-          "floor_confidence": 5.7
+          "edge_sigma": 1.5,
+          "floor_confidence": 5.8
         }
       ]
     },
@@ -1506,6 +1506,79 @@
       ]
     },
     {
+      "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
+      "kickoff": "2026-09-12T22:00:00Z",
+      "matchup": "Memphis Tigers @ Boise State Broncos",
+      "home_team": "Boise State Broncos",
+      "away_team": "Memphis Tigers",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Boise State",
+        "away_team": "Memphis",
+        "projected_spread": -7.4,
+        "projected_total": 60.6,
+        "projected_h1_spread": -4.1,
+        "projected_h1_total": 28.5,
+        "hfa_applied": 2.2,
+        "coherence_gap": 1.9,
+        "inputs": {
+          "raw_spread": -5.7,
+          "raw_home_points": 31.3,
+          "raw_away_points": 27.5,
+          "home_rating": 5.7,
+          "away_rating": 2.16,
+          "home_points": 34.0,
+          "away_points": 26.6,
+          "home_components": {
+            "sp": 5.2,
+            "sp_off": 29.5,
+            "sp_def": 24.1,
+            "fpi": 7.782,
+            "elo": 1569
+          },
+          "away_components": {
+            "sp": 2.1,
+            "sp_off": 30.4,
+            "sp_def": 28.8,
+            "fpi": 2.063,
+            "elo": 1566
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 3,
+          "ratings_present_away": 3,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 55.5,
+          "bet_line": 55.5,
+          "price": -115,
+          "model_number": 60.6,
+          "edge_points": 5.1,
+          "edge_sigma": 0.97,
+          "floor_confidence": 5.0
+        },
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Memphis",
+          "market_line": -9.5,
+          "bet_line": 9.5,
+          "price": -110,
+          "model_number": -7.4,
+          "edge_points": 2.1,
+          "edge_sigma": 0.52,
+          "floor_confidence": 4.3
+        }
+      ]
+    },
+    {
       "event_id": "b1298d12169731a56fba3b484f27c005",
       "kickoff": "2026-09-13T02:30:00Z",
       "matchup": "Sacramento State Hornets @ Fresno State Bulldogs",
@@ -1631,84 +1704,11 @@
           "side": "Under",
           "market_line": 54.5,
           "bet_line": 54.5,
-          "price": -110,
+          "price": -105,
           "model_number": 51.5,
           "edge_points": -3.0,
           "edge_sigma": -0.57,
           "floor_confidence": 4.4
-        }
-      ]
-    },
-    {
-      "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
-      "kickoff": "2026-09-12T22:00:00Z",
-      "matchup": "Memphis Tigers @ Boise State Broncos",
-      "home_team": "Boise State Broncos",
-      "away_team": "Memphis Tigers",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Boise State",
-        "away_team": "Memphis",
-        "projected_spread": -7.4,
-        "projected_total": 60.6,
-        "projected_h1_spread": -4.1,
-        "projected_h1_total": 28.5,
-        "hfa_applied": 2.2,
-        "coherence_gap": 1.9,
-        "inputs": {
-          "raw_spread": -5.7,
-          "raw_home_points": 31.3,
-          "raw_away_points": 27.5,
-          "home_rating": 5.7,
-          "away_rating": 2.16,
-          "home_points": 34.0,
-          "away_points": 26.6,
-          "home_components": {
-            "sp": 5.2,
-            "sp_off": 29.5,
-            "sp_def": 24.1,
-            "fpi": 7.782,
-            "elo": 1569
-          },
-          "away_components": {
-            "sp": 2.1,
-            "sp_off": 30.4,
-            "sp_def": 28.8,
-            "fpi": 2.063,
-            "elo": 1566
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 3,
-          "ratings_present_away": 3,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 56.5,
-          "bet_line": 56.5,
-          "price": -112,
-          "model_number": 60.6,
-          "edge_points": 4.1,
-          "edge_sigma": 0.78,
-          "floor_confidence": 4.7
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Memphis",
-          "market_line": -9.5,
-          "bet_line": 9.5,
-          "price": -110,
-          "model_number": -7.4,
-          "edge_points": 2.1,
-          "edge_sigma": 0.52,
-          "floor_confidence": 4.3
         }
       ]
     },
@@ -1780,7 +1780,7 @@
           "price": -105,
           "model_number": 51.1,
           "edge_points": -3.4,
-          "edge_sigma": -0.65,
+          "edge_sigma": -0.64,
           "floor_confidence": 4.5
         }
       ]
@@ -1977,6 +1977,18 @@
           "edge_points": -3.7,
           "edge_sigma": -0.92,
           "floor_confidence": 4.9
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 55.5,
+          "bet_line": 55.5,
+          "price": -110,
+          "model_number": 53.4,
+          "edge_points": -2.1,
+          "edge_sigma": -0.4,
+          "floor_confidence": 4.1
         }
       ]
     },
@@ -2508,7 +2520,7 @@
           "side": "Under",
           "market_line": 43.5,
           "bet_line": 43.5,
-          "price": -115,
+          "price": -110,
           "model_number": 41.1,
           "edge_points": -2.4,
           "edge_sigma": -0.46,

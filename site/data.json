@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-11T18:47:31+00:00",
+  "generated_at": "2026-09-11T20:12:23+00:00",
   "board": {
     "week": 2,
     "season": 2026,
-    "built_at": "2026-09-11T18:47:10+00:00",
+    "built_at": "2026-09-11T20:12:01+00:00",
     "rows": [
       {
         "market_spread": -32.5,
@@ -84,7 +84,7 @@
             "price": -110,
             "model_number": -18.3,
             "edge_points": -8.8,
-            "edge_sigma": -2.19,
+            "edge_sigma": -2.2,
             "floor_confidence": 6.8
           },
           {
@@ -145,7 +145,7 @@
             "price": -110,
             "model_number": 57.9,
             "edge_points": 3.4,
-            "edge_sigma": 0.65,
+            "edge_sigma": 0.64,
             "floor_confidence": 4.5
           }
         ],
@@ -321,7 +321,7 @@
             "price": -114,
             "model_number": 55.0,
             "edge_points": 8.5,
-            "edge_sigma": 1.62,
+            "edge_sigma": 1.61,
             "floor_confidence": 5.9
           },
           {
@@ -374,7 +374,7 @@
             "price": -102,
             "model_number": -3.1,
             "edge_points": 6.4,
-            "edge_sigma": 1.59,
+            "edge_sigma": 1.6,
             "floor_confidence": 5.9
           },
           {
@@ -427,7 +427,7 @@
             "price": -110,
             "model_number": 65.0,
             "edge_points": 8.5,
-            "edge_sigma": 1.62,
+            "edge_sigma": 1.61,
             "floor_confidence": 5.9
           },
           {
@@ -529,7 +529,7 @@
             "price": -110,
             "model_number": 59.7,
             "edge_points": 8.2,
-            "edge_sigma": 1.56,
+            "edge_sigma": 1.55,
             "floor_confidence": 5.8
           }
         ],
@@ -570,8 +570,8 @@
             "price": -110,
             "model_number": -39.5,
             "edge_points": 6.0,
-            "edge_sigma": 1.49,
-            "floor_confidence": 5.7
+            "edge_sigma": 1.5,
+            "floor_confidence": 5.8
           }
         ],
         "movement": {
@@ -664,7 +664,7 @@
             "price": -114,
             "model_number": 61.8,
             "edge_points": 7.3,
-            "edge_sigma": 1.39,
+            "edge_sigma": 1.38,
             "floor_confidence": 5.6
           }
         ],
@@ -676,43 +676,6 @@
           "total": {
             "from": 53.5,
             "to": 54.5
-          }
-        }
-      },
-      {
-        "market_spread": 10.5,
-        "market_total": 48.5,
-        "event_id": "2cb6f8436ba0f1fbcdcd7871a03466d5",
-        "kickoff": "2026-09-12T19:30:00Z",
-        "matchup": "Alabama Crimson Tide @ Kentucky Wildcats",
-        "home_team": "Kentucky Wildcats",
-        "away_team": "Alabama Crimson Tide",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
-        "neutral_site": false,
-        "projected_spread": 9.3,
-        "projected_total": 42.0,
-        "home_short": "Kentucky",
-        "away_short": "Alabama",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Under",
-            "market_line": 48.5,
-            "bet_line": 48.5,
-            "price": -115,
-            "model_number": 42.0,
-            "edge_points": -6.5,
-            "edge_sigma": -1.24,
-            "floor_confidence": 5.4
-          }
-        ],
-        "movement": {
-          "total": {
-            "from": 49.5,
-            "to": 48.5
           }
         }
       },
@@ -762,6 +725,43 @@
           "spread": {
             "from": -25.5,
             "to": -30.5
+          }
+        }
+      },
+      {
+        "market_spread": 10.5,
+        "market_total": 48.5,
+        "event_id": "2cb6f8436ba0f1fbcdcd7871a03466d5",
+        "kickoff": "2026-09-12T19:30:00Z",
+        "matchup": "Alabama Crimson Tide @ Kentucky Wildcats",
+        "home_team": "Kentucky Wildcats",
+        "away_team": "Alabama Crimson Tide",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
+        "neutral_site": false,
+        "projected_spread": 9.3,
+        "projected_total": 42.0,
+        "home_short": "Kentucky",
+        "away_short": "Alabama",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 48.5,
+            "bet_line": 48.5,
+            "price": -115,
+            "model_number": 42.0,
+            "edge_points": -6.5,
+            "edge_sigma": -1.23,
+            "floor_confidence": 5.3
+          }
+        ],
+        "movement": {
+          "total": {
+            "from": 49.5,
+            "to": 48.5
           }
         }
       },
@@ -943,7 +943,7 @@
             "side": "Under",
             "market_line": 54.5,
             "bet_line": 54.5,
-            "price": -110,
+            "price": -105,
             "model_number": 51.5,
             "edge_points": -3.0,
             "edge_sigma": -0.57,
@@ -1068,6 +1068,59 @@
         }
       },
       {
+        "market_spread": -9.5,
+        "market_total": 55.5,
+        "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
+        "kickoff": "2026-09-12T22:00:00Z",
+        "matchup": "Memphis Tigers @ Boise State Broncos",
+        "home_team": "Boise State Broncos",
+        "away_team": "Memphis Tigers",
+        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
+        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
+        "neutral_site": false,
+        "projected_spread": -7.4,
+        "projected_total": 60.6,
+        "home_short": "Boise State",
+        "away_short": "Memphis",
+        "incoherent": false,
+        "candidates": [
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Over",
+            "market_line": 55.5,
+            "bet_line": 55.5,
+            "price": -115,
+            "model_number": 60.6,
+            "edge_points": 5.1,
+            "edge_sigma": 0.97,
+            "floor_confidence": 5.0
+          },
+          {
+            "market": "spread",
+            "period": "full",
+            "side": "Memphis",
+            "market_line": -9.5,
+            "bet_line": 9.5,
+            "price": -110,
+            "model_number": -7.4,
+            "edge_points": 2.1,
+            "edge_sigma": 0.52,
+            "floor_confidence": 4.3
+          }
+        ],
+        "movement": {
+          "spread": {
+            "from": -7.5,
+            "to": -9.5
+          },
+          "total": {
+            "from": 54.5,
+            "to": 55.5
+          }
+        }
+      },
+      {
         "market_spread": -19.5,
         "market_total": 54.5,
         "event_id": "a8283159aa27932e7a640f6158b2ca98",
@@ -1105,7 +1158,7 @@
             "price": -105,
             "model_number": 51.1,
             "edge_points": -3.4,
-            "edge_sigma": -0.65,
+            "edge_sigma": -0.64,
             "floor_confidence": 4.5
           }
         ],
@@ -1122,7 +1175,7 @@
       },
       {
         "market_spread": 23.5,
-        "market_total": 54.5,
+        "market_total": 55.5,
         "event_id": "d652c7bc0594f13ef0a2a04e31ef5666",
         "kickoff": "2026-09-12T16:00:00Z",
         "matchup": "Oregon Ducks @ Oklahoma State Cowboys",
@@ -1148,6 +1201,18 @@
             "edge_points": -3.7,
             "edge_sigma": -0.92,
             "floor_confidence": 4.9
+          },
+          {
+            "market": "total",
+            "period": "full",
+            "side": "Under",
+            "market_line": 55.5,
+            "bet_line": 55.5,
+            "price": -110,
+            "model_number": 53.4,
+            "edge_points": -2.1,
+            "edge_sigma": -0.4,
+            "floor_confidence": 4.1
           }
         ],
         "movement": {
@@ -1157,7 +1222,7 @@
           },
           "total": {
             "from": 60.5,
-            "to": 54.5
+            "to": 55.5
           }
         }
       },
@@ -1452,59 +1517,6 @@
         }
       },
       {
-        "market_spread": -9.5,
-        "market_total": 56.5,
-        "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
-        "kickoff": "2026-09-12T22:00:00Z",
-        "matchup": "Memphis Tigers @ Boise State Broncos",
-        "home_team": "Boise State Broncos",
-        "away_team": "Memphis Tigers",
-        "home_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
-        "away_logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
-        "neutral_site": false,
-        "projected_spread": -7.4,
-        "projected_total": 60.6,
-        "home_short": "Boise State",
-        "away_short": "Memphis",
-        "incoherent": false,
-        "candidates": [
-          {
-            "market": "total",
-            "period": "full",
-            "side": "Over",
-            "market_line": 56.5,
-            "bet_line": 56.5,
-            "price": -112,
-            "model_number": 60.6,
-            "edge_points": 4.1,
-            "edge_sigma": 0.78,
-            "floor_confidence": 4.7
-          },
-          {
-            "market": "spread",
-            "period": "full",
-            "side": "Memphis",
-            "market_line": -9.5,
-            "bet_line": 9.5,
-            "price": -110,
-            "model_number": -7.4,
-            "edge_points": 2.1,
-            "edge_sigma": 0.52,
-            "floor_confidence": 4.3
-          }
-        ],
-        "movement": {
-          "spread": {
-            "from": -7.5,
-            "to": -9.5
-          },
-          "total": {
-            "from": 54.5,
-            "to": 56.5
-          }
-        }
-      },
-      {
         "market_spread": 2.5,
         "market_total": 47.5,
         "event_id": "7a78c246bb38d32c3238724e57051b15",
@@ -1650,7 +1662,7 @@
             "side": "Under",
             "market_line": 43.5,
             "bet_line": 43.5,
-            "price": -115,
+            "price": -110,
             "model_number": 41.1,
             "edge_points": -2.4,
             "edge_sigma": -0.46,
@@ -1841,7 +1853,7 @@
         }
       }
     ],
-    "fetched_at": "2026-09-11T18:47:07+00:00",
+    "fetched_at": "2026-09-11T20:11:59+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -1895,8 +1907,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI and Elo. SRS haven't said a word yet, so I'm working off 3 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-11T18:47:10+00:00",
-    "board_fetched_at": "2026-09-11T18:47:07+00:00",
+    "updated_at": "2026-09-11T20:12:02+00:00",
+    "board_fetched_at": "2026-09-11T20:11:59+00:00",
     "season": 2026,
     "week": 2,
     "card": [
@@ -1918,7 +1930,7 @@
           "from": 33.5,
           "to": 32.5
         },
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -1945,7 +1957,7 @@
         "line": -9.5,
         "price": -110,
         "confidence": 6.8,
-        "sigma": -2.19,
+        "sigma": -2.2,
         "edge_points": -8.8,
         "model_number": -18.3,
         "first_seen": "2026-09-09T22:10:15+00:00",
@@ -1955,7 +1967,7 @@
           "from": -10.5,
           "to": -9.5
         },
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 2,
         "peak_rank": 2,
         "on_board": true,
@@ -1989,7 +2001,7 @@
         "first_confidence": 5.9,
         "moved_confidence": 0.2,
         "moved_line": null,
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 3,
         "peak_rank": 3,
         "on_board": true,
@@ -2023,7 +2035,7 @@
         "first_confidence": 6.1,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 4,
         "peak_rank": 4,
         "on_board": true,
@@ -2057,7 +2069,7 @@
         "first_confidence": 6.0,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 5,
         "peak_rank": 4,
         "on_board": true,
@@ -2091,7 +2103,7 @@
         "first_confidence": 5.8,
         "moved_confidence": 0.2,
         "moved_line": null,
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 6,
         "peak_rank": 6,
         "on_board": true,
@@ -2120,7 +2132,7 @@
         "line": 9.5,
         "price": -102,
         "confidence": 5.9,
-        "sigma": 1.59,
+        "sigma": 1.6,
         "edge_points": 6.4,
         "model_number": -3.1,
         "first_seen": "2026-09-09T22:10:15+00:00",
@@ -2130,7 +2142,7 @@
           "from": 10.5,
           "to": 9.5
         },
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 9,
         "peak_rank": 4,
         "on_board": true,
@@ -2167,7 +2179,7 @@
           "from": 49.5,
           "to": 50.5
         },
-        "days_tracked": 4,
+        "days_tracked": 5,
         "rank": 10,
         "peak_rank": 6,
         "on_board": true,
@@ -2193,19 +2205,19 @@
         "period": "full",
         "line": 45.5,
         "price": -110,
-        "confidence": 5.7,
-        "sigma": 1.49,
+        "confidence": 5.8,
+        "sigma": 1.5,
         "edge_points": 6.0,
         "model_number": -39.5,
         "first_seen": "2026-09-09T22:10:15+00:00",
         "first_confidence": 6.3,
-        "moved_confidence": -0.6,
+        "moved_confidence": -0.5,
         "moved_line": {
           "from": 47.5,
           "to": 45.5
         },
-        "days_tracked": 4,
-        "rank": 12,
+        "days_tracked": 5,
+        "rank": 11,
         "peak_rank": 3,
         "on_board": true,
         "kickoff": "2026-09-12T23:45:00Z",
@@ -2229,14 +2241,14 @@
   "scale": {
     "cap": 7.5,
     "publish": 7.0,
-    "spread_gap": 4.014,
-    "total_gap": 5.259,
+    "spread_gap": 4.003,
+    "total_gap": 5.274,
     "sample": 58
   },
   "live": null,
   "lock_id": "e25426373a78",
-  "board_fetched_at": "2026-09-11T18:47:07+00:00",
-  "credits_remaining": 380,
+  "board_fetched_at": "2026-09-11T20:11:59+00:00",
+  "credits_remaining": 377,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
