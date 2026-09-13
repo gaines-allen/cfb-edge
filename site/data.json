@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T22:44:56+00:00",
+  "generated_at": "2026-09-13T00:31:12+00:00",
   "board": {
     "week": 2,
     "season": 2026,
@@ -1767,7 +1767,7 @@
       }
     ],
     "fetched_at": "2026-09-12T19:01:59+00:00",
-    "age_hours": 3.7,
+    "age_hours": 5.5,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -1822,15 +1822,33 @@
     "sample": 45
   },
   "live": {
-    "fetched_at": "2026-09-12T22:44:56+00:00",
+    "fetched_at": "2026-09-13T00:31:12+00:00",
     "rows": [
+      {
+        "pick_id": "ff576e568af2",
+        "matchup": "Navy Midshipmen @ Florida Atlantic Owls",
+        "title": null,
+        "home_score": 14,
+        "away_score": 7,
+        "completed": false,
+        "covering": "not covering"
+      },
+      {
+        "pick_id": "84957a2e00e1",
+        "matchup": "Charlotte 49ers @ Ole Miss Rebels",
+        "title": null,
+        "home_score": 7,
+        "away_score": 0,
+        "completed": false,
+        "covering": "covering"
+      },
       {
         "pick_id": "72721449ddd6",
         "matchup": "California Golden Bears @ Syracuse Orange",
         "title": null,
         "home_score": 18,
-        "away_score": 14,
-        "completed": false,
+        "away_score": 21,
+        "completed": true,
         "covering": "not covering"
       }
     ]
