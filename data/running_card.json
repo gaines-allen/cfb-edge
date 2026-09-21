@@ -1,4257 +1,2077 @@
 {
-  "updated_at": "2026-09-12T19:02:08+00:00",
-  "board_fetched_at": "2026-09-12T19:01:59+00:00",
+  "updated_at": "2026-09-21T21:22:48+00:00",
+  "board_fetched_at": "2026-09-21T21:22:43+00:00",
   "season": 2026,
-  "week": 2,
+  "week": 4,
   "top_n": 6,
   "leans": {
-    "0a6b6423d89be9817a0c8cd830e8cc0d|spread|full|Southern Miss": {
-      "event_id": "0a6b6423d89be9817a0c8cd830e8cc0d",
-      "matchup": "Southern Mississippi Golden Eagles @ Auburn Tigers",
-      "kickoff": "2026-09-12T23:45:00Z",
-      "market": "spread",
+    "d9a781a64fc2c4b45290db32b5ec3f20|total|full|Over": {
+      "event_id": "d9a781a64fc2c4b45290db32b5ec3f20",
+      "matchup": "Army Black Knights @ Temple Owls",
+      "kickoff": "2026-09-25T20:00:00Z",
+      "market": "total",
       "period": "full",
-      "side": "Southern Miss",
-      "line": 32.5,
-      "market_line": -32.5,
-      "price": -105,
-      "confidence": 5.5,
-      "sigma": 1.3,
-      "edge_points": 8.7,
-      "model_number": -23.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 33.5,
+      "side": "Over",
+      "line": 48.5,
+      "market_line": 48.5,
+      "price": -110,
+      "confidence": 7.5,
+      "sigma": 2.85,
+      "edge_points": 12.2,
+      "model_number": 60.7,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 48.5,
       "first_confidence": 7.5,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 33.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 48.5,
           "confidence": 7.5,
-          "sigma": 2.79
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 33.5,
-          "confidence": 7.5,
-          "sigma": 2.74
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 33.5,
-          "confidence": 7.5,
-          "sigma": 2.74
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 32.5,
-          "confidence": 7.5,
-          "sigma": 2.67
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 32.5,
-          "confidence": 7.5,
-          "sigma": 2.67
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 32.5,
-          "confidence": 5.5,
-          "sigma": 1.3
+          "sigma": 2.85
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 9,
+      "rank": 1,
       "peak_rank": 1
     },
-    "0a6b6423d89be9817a0c8cd830e8cc0d|total|full|Under": {
-      "event_id": "0a6b6423d89be9817a0c8cd830e8cc0d",
-      "matchup": "Southern Mississippi Golden Eagles @ Auburn Tigers",
-      "kickoff": "2026-09-12T23:45:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 56.5,
-      "market_line": 56.5,
-      "price": -105,
-      "confidence": 5.1,
-      "sigma": -1.05,
-      "edge_points": -8.3,
-      "model_number": 48.2,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 56.5,
-      "first_confidence": 6.2,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 56.5,
-          "confidence": 6.2,
-          "sigma": -1.77
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 56.5,
-          "confidence": 6.2,
-          "sigma": -1.8
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 56.5,
-          "confidence": 6.2,
-          "sigma": -1.8
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 6.1,
-          "sigma": -1.73
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 56.5,
-          "confidence": 6.1,
-          "sigma": -1.73
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 56.5,
-          "confidence": 5.1,
-          "sigma": -1.05
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "f64dfff0ca497539e1d013801cca92af|total|full|Under": {
-      "event_id": "f64dfff0ca497539e1d013801cca92af",
-      "matchup": "Louisiana Tech Bulldogs @ LSU Tigers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -106,
-      "confidence": 5.0,
-      "sigma": -1.0,
-      "edge_points": -7.9,
-      "model_number": 47.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 6.0,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 6.0,
-          "sigma": -1.7
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 6.1,
-          "sigma": -1.72
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 6.1,
-          "sigma": -1.72
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 55.5,
-          "confidence": 6.0,
-          "sigma": -1.65
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 6.0,
-          "sigma": -1.65
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 5.0,
-          "sigma": -1.0
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 16,
-      "peak_rank": 4
-    },
-    "f64dfff0ca497539e1d013801cca92af|spread|full|Louisiana Tech": {
-      "event_id": "f64dfff0ca497539e1d013801cca92af",
-      "matchup": "Louisiana Tech Bulldogs @ LSU Tigers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Louisiana Tech",
-      "line": 35.5,
-      "market_line": -35.5,
-      "price": -122,
-      "confidence": 4.3,
-      "sigma": 0.52,
-      "edge_points": 3.5,
-      "model_number": -32.0,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 35.5,
-      "first_confidence": 5.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 35.5,
-          "confidence": 5.4,
-          "sigma": 1.29
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 35.5,
-          "confidence": 5.4,
-          "sigma": 1.25
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 35.5,
-          "confidence": 5.4,
-          "sigma": 1.25
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 35.5,
-          "confidence": 5.6,
-          "sigma": 1.37
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 35.5,
-          "confidence": 5.6,
-          "sigma": 1.37
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 35.5,
-          "confidence": 4.3,
-          "sigma": 0.52
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "eee54863c6c50d585de1919f1fca51e5|total|full|Over": {
-      "event_id": "eee54863c6c50d585de1919f1fca51e5",
-      "matchup": "Penn State Nittany Lions @ Temple Owls",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 50.5,
-      "market_line": 50.5,
-      "price": -115,
-      "confidence": 5.8,
-      "sigma": 1.5,
-      "edge_points": 7.9,
-      "model_number": 58.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 49.5,
-      "first_confidence": 5.8,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 49.5,
-          "confidence": 5.8,
-          "sigma": 1.55
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 49.5,
-          "confidence": 5.9,
-          "sigma": 1.57
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 49.5,
-          "confidence": 5.9,
-          "sigma": 1.57
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 50.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 50.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 6
-    },
-    "eee54863c6c50d585de1919f1fca51e5|spread|full|Temple": {
-      "event_id": "eee54863c6c50d585de1919f1fca51e5",
-      "matchup": "Penn State Nittany Lions @ Temple Owls",
-      "kickoff": "2026-09-12T16:00:00Z",
+    "d9a781a64fc2c4b45290db32b5ec3f20|spread|full|Temple": {
+      "event_id": "d9a781a64fc2c4b45290db32b5ec3f20",
+      "matchup": "Army Black Knights @ Temple Owls",
+      "kickoff": "2026-09-25T20:00:00Z",
       "market": "spread",
       "period": "full",
       "side": "Temple",
-      "line": 23.5,
-      "market_line": 23.5,
-      "price": -102,
-      "confidence": 4.6,
-      "sigma": -0.75,
-      "edge_points": -3.0,
-      "model_number": 20.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 23.5,
-      "first_confidence": 4.7,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 23.5,
-          "confidence": 4.7,
-          "sigma": -0.78
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 23.5,
-          "confidence": 4.7,
-          "sigma": -0.79
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 23.5,
-          "confidence": 4.7,
-          "sigma": -0.79
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 23.5,
-          "confidence": 4.6,
-          "sigma": -0.75
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 23.5,
-          "confidence": 4.6,
-          "sigma": -0.75
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "5cc49501cef64287d2f6b5afe9526a16|total|full|Under": {
-      "event_id": "5cc49501cef64287d2f6b5afe9526a16",
-      "matchup": "Bowling Green Falcons @ Nebraska Cornhuskers",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 50.5,
-      "market_line": 50.5,
-      "price": -112,
-      "confidence": 4.6,
-      "sigma": -0.76,
-      "edge_points": -6.0,
-      "model_number": 44.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 51.5,
-      "first_confidence": 5.8,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 51.5,
-          "confidence": 5.8,
-          "sigma": -1.53
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 51.5,
-          "confidence": 5.8,
-          "sigma": -1.55
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 51.5,
-          "confidence": 5.8,
-          "sigma": -1.55
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 50.5,
-          "confidence": 5.4,
-          "sigma": -1.29
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 50.5,
-          "confidence": 5.4,
-          "sigma": -1.29
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 50.5,
-          "confidence": 4.6,
-          "sigma": -0.76
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 22,
-      "peak_rank": 8
-    },
-    "5cc49501cef64287d2f6b5afe9526a16|spread|full|Bowling Green": {
-      "event_id": "5cc49501cef64287d2f6b5afe9526a16",
-      "matchup": "Bowling Green Falcons @ Nebraska Cornhuskers",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Bowling Green",
-      "line": 30.5,
-      "market_line": -30.5,
-      "price": -110,
-      "confidence": 4.7,
-      "sigma": 0.8,
-      "edge_points": 3.2,
-      "model_number": -27.3,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 29.5,
-      "first_confidence": 4.2,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 29.5,
-          "confidence": 4.2,
-          "sigma": 0.49
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 30.5,
-          "confidence": 4.5,
-          "sigma": 0.7
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 30.5,
-          "confidence": 4.5,
-          "sigma": 0.7
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 30.5,
-          "confidence": 4.7,
-          "sigma": 0.8
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 30.5,
-          "confidence": 4.7,
-          "sigma": 0.8
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "f5de73eb9ed5553f7de28a2730b2e700|total|full|Over": {
-      "event_id": "f5de73eb9ed5553f7de28a2730b2e700",
-      "matchup": "Navy Midshipmen @ Florida Atlantic Owls",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 58.5,
-      "market_line": 58.5,
-      "price": -115,
-      "confidence": 5.3,
-      "sigma": 1.22,
-      "edge_points": 9.6,
-      "model_number": 68.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 58.5,
-      "first_confidence": 5.8,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 58.5,
-          "confidence": 5.8,
-          "sigma": 1.53
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 59.5,
-          "confidence": 5.5,
-          "sigma": 1.36
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 59.5,
-          "confidence": 5.5,
-          "sigma": 1.36
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 58.5,
-          "confidence": 6.0,
-          "sigma": 1.67
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 58.5,
-          "confidence": 6.0,
-          "sigma": 1.67
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 58.5,
-          "confidence": 5.3,
-          "sigma": 1.22
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 11,
-      "peak_rank": 11
-    },
-    "f5de73eb9ed5553f7de28a2730b2e700|spread|full|Navy": {
-      "event_id": "f5de73eb9ed5553f7de28a2730b2e700",
-      "matchup": "Navy Midshipmen @ Florida Atlantic Owls",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Navy",
-      "line": -4.5,
-      "market_line": 4.5,
-      "price": -110,
-      "confidence": 4.6,
-      "sigma": 0.73,
-      "edge_points": 4.9,
-      "model_number": 9.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -4.5,
-      "first_confidence": 5.9,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -4.5,
-          "confidence": 5.9,
-          "sigma": 1.63
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -4.5,
-          "confidence": 5.9,
-          "sigma": 1.58
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -4.5,
-          "confidence": 5.9,
-          "sigma": 1.59
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -4.5,
-          "confidence": 6.1,
-          "sigma": 1.72
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -4.5,
-          "confidence": 6.1,
-          "sigma": 1.72
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -4.5,
-          "confidence": 4.6,
-          "sigma": 0.73
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 3
-    },
-    "c12cd73c4077a0265acec205a572c2ec|total|full|Over": {
-      "event_id": "c12cd73c4077a0265acec205a572c2ec",
-      "matchup": "Arkansas Razorbacks @ Utah Utes",
-      "kickoff": "2026-09-13T02:15:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -110,
-      "confidence": 5.3,
-      "sigma": 1.22,
-      "edge_points": 9.6,
-      "model_number": 65.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 5.8,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 5.8,
-          "sigma": 1.53
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 5.8,
-          "sigma": 1.55
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 5.8,
-          "sigma": 1.55
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 55.5,
-          "confidence": 6.0,
-          "sigma": 1.67
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 6.0,
-          "sigma": 1.67
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 5.3,
-          "sigma": 1.22
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 12,
-      "peak_rank": 6
-    },
-    "a7c7e0143d5131ee3e2d78f356f0089d|total|full|Over": {
-      "event_id": "a7c7e0143d5131ee3e2d78f356f0089d",
-      "matchup": "South Florida Bulls @ Army Black Knights",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 46.5,
-      "market_line": 46.5,
-      "price": -114,
-      "confidence": 5.9,
-      "sigma": 1.61,
-      "edge_points": 8.5,
-      "model_number": 55.0,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 46.5,
-      "first_confidence": 5.7,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 46.5,
-          "confidence": 5.7,
-          "sigma": 1.48
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 46.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 46.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 46.5,
-          "confidence": 5.9,
-          "sigma": 1.62
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 46.5,
-          "confidence": 5.9,
-          "sigma": 1.61
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 7
-    },
-    "a7c7e0143d5131ee3e2d78f356f0089d|spread|full|Army": {
-      "event_id": "a7c7e0143d5131ee3e2d78f356f0089d",
-      "matchup": "South Florida Bulls @ Army Black Knights",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Army",
-      "line": -3.5,
-      "market_line": -3.5,
-      "price": -102,
-      "confidence": 4.5,
-      "sigma": -0.7,
-      "edge_points": -2.8,
-      "model_number": -6.3,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -3.5,
-      "first_confidence": 4.6,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -3.5,
-          "confidence": 4.6,
-          "sigma": -0.73
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -3.5,
-          "confidence": 4.6,
-          "sigma": -0.74
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -3.5,
-          "confidence": 4.6,
-          "sigma": -0.74
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -3.5,
-          "confidence": 4.5,
-          "sigma": -0.7
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -3.5,
-          "confidence": 4.5,
-          "sigma": -0.7
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "2cb6f8436ba0f1fbcdcd7871a03466d5|total|full|Under": {
-      "event_id": "2cb6f8436ba0f1fbcdcd7871a03466d5",
-      "matchup": "Alabama Crimson Tide @ Kentucky Wildcats",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 47.5,
-      "market_line": 47.5,
-      "price": -115,
+      "line": 3.5,
+      "market_line": 3.5,
+      "price": -120,
       "confidence": 4.4,
-      "sigma": -0.6,
-      "edge_points": -4.7,
-      "model_number": 42.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 49.5,
-      "first_confidence": 5.7,
+      "sigma": -0.58,
+      "edge_points": -1.7,
+      "model_number": 1.8,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 3.5,
+      "first_confidence": 4.4,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 49.5,
-          "confidence": 5.7,
-          "sigma": -1.48
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 49.5,
-          "confidence": 5.8,
-          "sigma": -1.5
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 49.5,
-          "confidence": 5.8,
-          "sigma": -1.5
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 48.5,
-          "confidence": 5.4,
-          "sigma": -1.24
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 48.5,
-          "confidence": 5.3,
-          "sigma": -1.23
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 47.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 3.5,
           "confidence": 4.4,
-          "sigma": -0.6
+          "sigma": -0.58
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
-      "second_opinion": false,
-      "rank": 28,
-      "peak_rank": 11
+      "second_opinion": true,
+      "rank": null
     },
-    "61700ad2942d0c633b9c6cd402964356|spread|full|UAB": {
-      "event_id": "61700ad2942d0c633b9c6cd402964356",
-      "matchup": "UL Monroe Warhawks @ UAB Blazers",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "UAB",
-      "line": -8.5,
-      "market_line": -8.5,
-      "price": -110,
-      "confidence": 6.1,
-      "sigma": -1.76,
-      "edge_points": -11.8,
-      "model_number": -20.3,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -10.5,
-      "first_confidence": 6.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -10.5,
-          "confidence": 6.4,
-          "sigma": -1.94
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -10.5,
-          "confidence": 6.4,
-          "sigma": -1.94
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -10.5,
-          "confidence": 6.4,
-          "sigma": -1.95
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -9.5,
-          "confidence": 6.8,
-          "sigma": -2.19
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -9.5,
-          "confidence": 6.8,
-          "sigma": -2.2
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.76
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 6,
-      "peak_rank": 2
-    },
-    "61700ad2942d0c633b9c6cd402964356|total|full|Over": {
-      "event_id": "61700ad2942d0c633b9c6cd402964356",
-      "matchup": "UL Monroe Warhawks @ UAB Blazers",
-      "kickoff": "2026-09-12T19:30:00Z",
+    "1f0c9cd1941cbfe5c5ca28fa42e387d8|total|full|Under": {
+      "event_id": "1f0c9cd1941cbfe5c5ca28fa42e387d8",
+      "matchup": "Central Michigan Chippewas @ Miami Hurricanes",
+      "kickoff": "2026-09-26T22:30:00Z",
       "market": "total",
       "period": "full",
-      "side": "Over",
-      "line": 54.5,
-      "market_line": 54.5,
+      "side": "Under",
+      "line": 53.5,
+      "market_line": 53.5,
       "price": -105,
-      "confidence": 4.8,
-      "sigma": 0.85,
-      "edge_points": 6.7,
-      "model_number": 61.2,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 4.7,
+      "confidence": 7.2,
+      "sigma": -2.45,
+      "edge_points": -10.5,
+      "model_number": 43.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 53.5,
+      "first_confidence": 7.2,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": 0.81
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 5.2,
-          "sigma": 1.12
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 5.2,
-          "sigma": 1.12
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 4.8,
-          "sigma": 0.85
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 53.5,
+          "confidence": 7.2,
+          "sigma": -2.45
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "703674067da3f80611ece581818f3863|total|full|Over": {
-      "event_id": "703674067da3f80611ece581818f3863",
-      "matchup": "Middle Tennessee Blue Raiders @ Marshall Thundering Herd",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -112,
-      "confidence": 5.5,
-      "sigma": 1.3,
-      "edge_points": 10.3,
-      "model_number": 65.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 56.5,
-      "first_confidence": 5.7,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 56.5,
-          "confidence": 5.7,
-          "sigma": 1.48
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 56.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 56.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 5.9,
-          "sigma": 1.62
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 56.5,
-          "confidence": 5.9,
-          "sigma": 1.61
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 5.5,
-          "sigma": 1.3
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 10,
-      "peak_rank": 8
-    },
-    "703674067da3f80611ece581818f3863|spread|full|Middle Tennessee": {
-      "event_id": "703674067da3f80611ece581818f3863",
-      "matchup": "Middle Tennessee Blue Raiders @ Marshall Thundering Herd",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Middle Tennessee",
-      "line": 13.5,
-      "market_line": -13.5,
-      "price": -115,
-      "confidence": 4.1,
-      "sigma": 0.42,
-      "edge_points": 2.8,
-      "model_number": -10.7,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 13.5,
-      "first_confidence": 5.2,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 13.5,
-          "confidence": 5.2,
-          "sigma": 1.12
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 13.5,
-          "confidence": 5.1,
-          "sigma": 1.08
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 13.5,
-          "confidence": 5.1,
-          "sigma": 1.08
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 13.5,
-          "confidence": 5.3,
-          "sigma": 1.2
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 13.5,
-          "confidence": 5.3,
-          "sigma": 1.2
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 13.5,
-          "confidence": 4.1,
-          "sigma": 0.42
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "964916986927738c0d73842de1dd51bd|spread|full|Charlotte": {
-      "event_id": "964916986927738c0d73842de1dd51bd",
-      "matchup": "Charlotte 49ers @ Ole Miss Rebels",
-      "kickoff": "2026-09-12T23:45:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Charlotte",
-      "line": 44.5,
-      "market_line": -44.5,
-      "price": -110,
-      "confidence": 4.2,
-      "sigma": 0.45,
-      "edge_points": 3.0,
-      "model_number": -41.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 47.5,
-      "first_confidence": 6.3,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 47.5,
-          "confidence": 6.3,
-          "sigma": 1.89
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 47.5,
-          "confidence": 6.3,
-          "sigma": 1.85
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 47.5,
-          "confidence": 6.3,
-          "sigma": 1.85
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 45.5,
-          "confidence": 5.7,
-          "sigma": 1.49
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 45.5,
-          "confidence": 5.8,
-          "sigma": 1.5
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 44.5,
-          "confidence": 4.2,
-          "sigma": 0.45
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 33,
+      "rank": 3,
       "peak_rank": 3
     },
-    "52e9b0f6515766724ee70457912bdc18|total|full|Over": {
-      "event_id": "52e9b0f6515766724ee70457912bdc18",
-      "matchup": "Duke Blue Devils @ Illinois Fighting Illini",
-      "kickoff": "2026-09-12T19:30:00Z",
+    "891673ae39457f51a701ca482c2f7280|total|full|Over": {
+      "event_id": "891673ae39457f51a701ca482c2f7280",
+      "matchup": "Tulsa Golden Hurricane @ Arkansas Razorbacks",
+      "kickoff": "2026-09-27T00:00:00Z",
       "market": "total",
       "period": "full",
       "side": "Over",
       "line": 51.5,
       "market_line": 51.5,
       "price": -110,
-      "confidence": 5.2,
-      "sigma": 1.14,
-      "edge_points": 9.0,
-      "model_number": 60.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
+      "confidence": 7.0,
+      "sigma": 2.34,
+      "edge_points": 10.0,
+      "model_number": 61.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
       "first_line": 51.5,
+      "first_confidence": 7.0,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 51.5,
+          "confidence": 7.0,
+          "sigma": 2.34
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 4,
+      "peak_rank": 4
+    },
+    "891673ae39457f51a701ca482c2f7280|spread|full|Tulsa": {
+      "event_id": "891673ae39457f51a701ca482c2f7280",
+      "matchup": "Tulsa Golden Hurricane @ Arkansas Razorbacks",
+      "kickoff": "2026-09-27T00:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Tulsa",
+      "line": 7.5,
+      "market_line": -7.5,
+      "price": -122,
+      "confidence": 4.8,
+      "sigma": 0.89,
+      "edge_points": 2.6,
+      "model_number": -4.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 7.5,
+      "first_confidence": 4.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 7.5,
+          "confidence": 4.8,
+          "sigma": 0.89
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "9c5cf55e5371dd6178da97dcaef2bff5|spread|full|Penn State": {
+      "event_id": "9c5cf55e5371dd6178da97dcaef2bff5",
+      "matchup": "Wisconsin Badgers @ Penn State Nittany Lions",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Penn State",
+      "line": -9.5,
+      "market_line": -9.5,
+      "price": -122,
+      "confidence": 7.5,
+      "sigma": -2.71,
+      "edge_points": -7.9,
+      "model_number": -17.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -9.5,
+      "first_confidence": 7.5,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -9.5,
+          "confidence": 7.5,
+          "sigma": -2.71
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 2,
+      "peak_rank": 2
+    },
+    "9c5cf55e5371dd6178da97dcaef2bff5|total|full|Under": {
+      "event_id": "9c5cf55e5371dd6178da97dcaef2bff5",
+      "matchup": "Wisconsin Badgers @ Penn State Nittany Lions",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 44.5,
+      "market_line": 44.5,
+      "price": -110,
+      "confidence": 4.7,
+      "sigma": -0.77,
+      "edge_points": -3.3,
+      "model_number": 41.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 44.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 44.5,
+          "confidence": 4.7,
+          "sigma": -0.77
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "fe0fb2e29062d93898ebdd583329194d|spread|full|Jacksonville State": {
+      "event_id": "fe0fb2e29062d93898ebdd583329194d",
+      "matchup": "Middle Tennessee Blue Raiders @ Jacksonville State Gamecocks",
+      "kickoff": "2026-09-26T23:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Jacksonville State",
+      "line": -7.5,
+      "market_line": -7.5,
+      "price": -104,
+      "confidence": 7.0,
+      "sigma": -2.36,
+      "edge_points": -6.9,
+      "model_number": -14.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -7.5,
+      "first_confidence": 7.0,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -7.5,
+          "confidence": 7.0,
+          "sigma": -2.36
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 5,
+      "peak_rank": 5
+    },
+    "fe0fb2e29062d93898ebdd583329194d|total|full|Over": {
+      "event_id": "fe0fb2e29062d93898ebdd583329194d",
+      "matchup": "Middle Tennessee Blue Raiders @ Jacksonville State Gamecocks",
+      "kickoff": "2026-09-26T23:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 51.5,
+      "market_line": 51.5,
+      "price": -105,
+      "confidence": 5.7,
+      "sigma": 1.47,
+      "edge_points": 6.3,
+      "model_number": 57.8,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 51.5,
+      "first_confidence": 5.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 51.5,
+          "confidence": 5.7,
+          "sigma": 1.47
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "c843a3f97a410eedafcfbad440774ad2|total|full|Under": {
+      "event_id": "c843a3f97a410eedafcfbad440774ad2",
+      "matchup": "South Carolina Gamecocks @ Alabama Crimson Tide",
+      "kickoff": "2026-09-26T23:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 54.5,
+      "market_line": 54.5,
+      "price": -106,
+      "confidence": 5.8,
+      "sigma": -1.52,
+      "edge_points": -6.5,
+      "model_number": 48.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 54.5,
+      "first_confidence": 5.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 54.5,
+          "confidence": 5.8,
+          "sigma": -1.52
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 9,
+      "peak_rank": 9
+    },
+    "9e0eaa3fed3125ec9629a777bf077185|total|full|Over": {
+      "event_id": "9e0eaa3fed3125ec9629a777bf077185",
+      "matchup": "Liberty Flames @ Coastal Carolina Chanticleers",
+      "kickoff": "2026-09-24T23:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 52.5,
+      "market_line": 52.5,
+      "price": -110,
+      "confidence": 5.7,
+      "sigma": 1.47,
+      "edge_points": 6.3,
+      "model_number": 58.8,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 52.5,
+      "first_confidence": 5.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 52.5,
+          "confidence": 5.7,
+          "sigma": 1.47
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 13,
+      "peak_rank": 13
+    },
+    "9e0eaa3fed3125ec9629a777bf077185|spread|full|Liberty": {
+      "event_id": "9e0eaa3fed3125ec9629a777bf077185",
+      "matchup": "Liberty Flames @ Coastal Carolina Chanticleers",
+      "kickoff": "2026-09-24T23:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Liberty",
+      "line": -2.5,
+      "market_line": 2.5,
+      "price": -110,
+      "confidence": 4.3,
+      "sigma": 0.51,
+      "edge_points": 1.5,
+      "model_number": 4.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -2.5,
+      "first_confidence": 4.3,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -2.5,
+          "confidence": 4.3,
+          "sigma": 0.51
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "e257aae5483bbfc89e2c570fc9304e1c|total|full|Under": {
+      "event_id": "e257aae5483bbfc89e2c570fc9304e1c",
+      "matchup": "San Diego State Aztecs @ Toledo Rockets",
+      "kickoff": "2026-09-26T16:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 50.5,
+      "market_line": 50.5,
+      "price": -105,
+      "confidence": 5.6,
+      "sigma": -1.4,
+      "edge_points": -6.0,
+      "model_number": 44.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 50.5,
       "first_confidence": 5.6,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 51.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 50.5,
           "confidence": 5.6,
-          "sigma": 1.42
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 51.5,
-          "confidence": 5.7,
-          "sigma": 1.44
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 51.5,
-          "confidence": 5.7,
-          "sigma": 1.44
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 51.5,
-          "confidence": 5.8,
-          "sigma": 1.56
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 51.5,
-          "confidence": 5.8,
-          "sigma": 1.55
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 51.5,
-          "confidence": 5.2,
-          "sigma": 1.14
+          "sigma": -1.4
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 14,
-      "peak_rank": 11
+      "rank": 16,
+      "peak_rank": 16
     },
-    "dd880570288831c4fc55cb68f19f9667|total|full|Under": {
-      "event_id": "dd880570288831c4fc55cb68f19f9667",
-      "matchup": "UCF Knights @ Pittsburgh Panthers",
-      "kickoff": "2026-09-12T19:30:00Z",
+    "69b1a0ff5fb2c67c6627b5c8cf8368cb|total|full|Over": {
+      "event_id": "69b1a0ff5fb2c67c6627b5c8cf8368cb",
+      "matchup": "Texas Longhorns @ Tennessee Volunteers",
+      "kickoff": "2026-09-26T16:00:00Z",
       "market": "total",
       "period": "full",
-      "side": "Under",
+      "side": "Over",
       "line": 55.5,
       "market_line": 55.5,
-      "price": -110,
-      "confidence": 4.2,
-      "sigma": -0.49,
-      "edge_points": -3.9,
-      "model_number": 51.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 57.5,
+      "price": -115,
+      "confidence": 5.5,
+      "sigma": 1.33,
+      "edge_points": 5.7,
+      "model_number": 61.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 55.5,
       "first_confidence": 5.5,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 57.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 55.5,
           "confidence": 5.5,
-          "sigma": -1.33
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 57.5,
-          "confidence": 5.5,
-          "sigma": -1.35
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 57.5,
-          "confidence": 5.5,
-          "sigma": -1.35
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 5.1,
-          "sigma": -1.08
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 56.5,
-          "confidence": 5.1,
-          "sigma": -1.08
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 4.2,
-          "sigma": -0.49
+          "sigma": 1.33
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 16
-    },
-    "dd880570288831c4fc55cb68f19f9667|spread|full|Pittsburgh": {
-      "event_id": "dd880570288831c4fc55cb68f19f9667",
-      "matchup": "UCF Knights @ Pittsburgh Panthers",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Pittsburgh",
-      "line": -7.5,
-      "market_line": -7.5,
-      "price": 100,
-      "confidence": 4.4,
-      "sigma": -0.58,
-      "edge_points": -3.9,
-      "model_number": -11.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -7.5,
-      "first_confidence": 4.3,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -7.5,
-          "confidence": 4.3,
-          "sigma": -0.51
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -7.5,
-          "confidence": 4.3,
-          "sigma": -0.53
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -7.5,
-          "confidence": 4.3,
-          "sigma": -0.53
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -7.5,
-          "confidence": 4.2,
-          "sigma": -0.47
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -7.5,
-          "confidence": 4.2,
-          "sigma": -0.47
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -7.5,
-          "confidence": 4.4,
-          "sigma": -0.58
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 29,
-      "peak_rank": 29
-    },
-    "a2b7711390532d0014249f295a6d02b8|spread|full|Buffalo": {
-      "event_id": "a2b7711390532d0014249f295a6d02b8",
-      "matchup": "Buffalo Bulls @ Florida International Panthers",
-      "kickoff": "2026-09-12T22:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Buffalo",
-      "line": 10.5,
-      "market_line": -10.5,
-      "price": -114,
-      "confidence": 4.7,
-      "sigma": 0.81,
-      "edge_points": 5.4,
-      "model_number": -5.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 10.5,
-      "first_confidence": 6.1,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 10.5,
-          "confidence": 6.1,
-          "sigma": 1.75
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 9.5,
-          "confidence": 5.7,
-          "sigma": 1.46
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 9.5,
-          "confidence": 5.7,
-          "sigma": 1.47
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 9.5,
-          "confidence": 5.9,
-          "sigma": 1.59
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 9.5,
-          "confidence": 5.9,
-          "sigma": 1.6
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 10.5,
-          "confidence": 4.7,
-          "sigma": 0.81
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 19,
-      "peak_rank": 4
-    },
-    "a2b7711390532d0014249f295a6d02b8|total|full|Under": {
-      "event_id": "a2b7711390532d0014249f295a6d02b8",
-      "matchup": "Buffalo Bulls @ Florida International Panthers",
-      "kickoff": "2026-09-12T22:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 47.5,
-      "market_line": 47.5,
-      "price": -112,
-      "confidence": 3.9,
-      "sigma": -0.27,
-      "edge_points": -2.1,
-      "model_number": 45.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 47.5,
-      "first_confidence": 4.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 47.5,
-          "confidence": 4.4,
-          "sigma": -0.63
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 47.5,
-          "confidence": 4.5,
-          "sigma": -0.64
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 47.5,
-          "confidence": 4.5,
-          "sigma": -0.64
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 47.5,
-          "confidence": 4.3,
-          "sigma": -0.55
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 47.5,
-          "confidence": 4.3,
-          "sigma": -0.55
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 47.5,
-          "confidence": 3.9,
-          "sigma": -0.27
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "c9c138c45cb4d0e8a39f962795671ffb|spread|full|Kennesaw State": {
-      "event_id": "c9c138c45cb4d0e8a39f962795671ffb",
-      "matchup": "Georgia State Panthers @ Kennesaw State Owls",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Kennesaw State",
-      "line": -7.5,
-      "market_line": -7.5,
-      "price": -110,
-      "confidence": 5.7,
-      "sigma": -1.48,
-      "edge_points": -9.9,
-      "model_number": -17.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -8.5,
-      "first_confidence": 6.1,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.72
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.73
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.73
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.72
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -8.5,
-          "confidence": 6.1,
-          "sigma": -1.72
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -7.5,
-          "confidence": 5.7,
-          "sigma": -1.48
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 8,
-      "peak_rank": 4
-    },
-    "c9c138c45cb4d0e8a39f962795671ffb|total|full|Over": {
-      "event_id": "c9c138c45cb4d0e8a39f962795671ffb",
-      "matchup": "Georgia State Panthers @ Kennesaw State Owls",
-      "kickoff": "2026-09-12T23:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -106,
-      "confidence": 4.1,
-      "sigma": 0.41,
-      "edge_points": 3.2,
-      "model_number": 58.7,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 54.5,
-      "first_confidence": 4.3,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 54.5,
-          "confidence": 4.3,
-          "sigma": 0.54
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 54.5,
-          "confidence": 4.3,
-          "sigma": 0.54
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 54.5,
-          "confidence": 4.3,
-          "sigma": 0.54
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": 0.65
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": 0.64
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 4.1,
-          "sigma": 0.41
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "04d0c72553f17ebc22509fb1b5926600|total|full|Over": {
-      "event_id": "04d0c72553f17ebc22509fb1b5926600",
-      "matchup": "Delaware Blue Hens @ Vanderbilt Commodores",
-      "kickoff": "2026-09-12T20:15:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 54.5,
-      "market_line": 54.5,
-      "price": -114,
-      "confidence": 5.0,
-      "sigma": 1.03,
-      "edge_points": 8.1,
-      "model_number": 62.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 54.5,
-      "first_confidence": 5.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 54.5,
-          "confidence": 5.4,
-          "sigma": 1.26
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 54.5,
-          "confidence": 5.4,
-          "sigma": 1.27
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 54.5,
-          "confidence": 5.4,
-          "sigma": 1.27
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 5.6,
-          "sigma": 1.39
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 5.6,
-          "sigma": 1.38
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 5.0,
-          "sigma": 1.03
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 17,
-      "peak_rank": 13
-    },
-    "2186fba5726dbd7fee2ce72477bdaa2b|total|full|Under": {
-      "event_id": "2186fba5726dbd7fee2ce72477bdaa2b",
-      "matchup": "Utah State Aggies @ Washington Huskies",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -110,
-      "confidence": 4.5,
-      "sigma": -0.68,
-      "edge_points": -5.4,
-      "model_number": 50.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 5.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 5.4,
-          "sigma": -1.24
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 55.5,
-          "confidence": 5.3,
-          "sigma": -1.18
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 5.3,
-          "sigma": -1.18
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 4.5,
-          "sigma": -0.68
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 27,
-      "peak_rank": 17
-    },
-    "f0d4ea035d6edfabda0c2b298c7d42d2|total|full|Under": {
-      "event_id": "f0d4ea035d6edfabda0c2b298c7d42d2",
-      "matchup": "Texas Tech Red Raiders @ Oregon State Beavers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 53.5,
-      "market_line": 53.5,
-      "price": -110,
-      "confidence": 4.5,
-      "sigma": -0.68,
-      "edge_points": -5.4,
-      "model_number": 48.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 53.5,
-      "first_confidence": 5.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 53.5,
-          "confidence": 5.4,
-          "sigma": -1.24
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 53.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 53.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 53.5,
-          "confidence": 5.3,
-          "sigma": -1.18
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 53.5,
-          "confidence": 5.3,
-          "sigma": -1.18
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 53.5,
-          "confidence": 4.5,
-          "sigma": -0.68
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 18
-    },
-    "f0d4ea035d6edfabda0c2b298c7d42d2|spread|full|Oregon State": {
-      "event_id": "f0d4ea035d6edfabda0c2b298c7d42d2",
-      "matchup": "Texas Tech Red Raiders @ Oregon State Beavers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Oregon State",
-      "line": 26.5,
-      "market_line": 26.5,
-      "price": -120,
-      "confidence": 5.0,
-      "sigma": -1.03,
-      "edge_points": -6.9,
-      "model_number": 19.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 26.5,
-      "first_confidence": 5.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 26.5,
-          "confidence": 5.4,
-          "sigma": -1.24
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 26.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 26.5,
-          "confidence": 5.4,
-          "sigma": -1.25
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 26.5,
-          "confidence": 5.3,
-          "sigma": -1.22
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 26.5,
-          "confidence": 5.3,
-          "sigma": -1.22
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 26.5,
-          "confidence": 5.0,
-          "sigma": -1.03
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 18,
       "peak_rank": 18
     },
-    "1427645d6020f742eece986c58bdb29d|spread|full|Syracuse": {
-      "event_id": "1427645d6020f742eece986c58bdb29d",
-      "matchup": "California Golden Bears @ Syracuse Orange",
-      "kickoff": "2026-09-12T19:30:00Z",
+    "69b1a0ff5fb2c67c6627b5c8cf8368cb|spread|full|Tennessee": {
+      "event_id": "69b1a0ff5fb2c67c6627b5c8cf8368cb",
+      "matchup": "Texas Longhorns @ Tennessee Volunteers",
+      "kickoff": "2026-09-26T16:00:00Z",
       "market": "spread",
       "period": "full",
-      "side": "Syracuse",
-      "line": -3.5,
-      "market_line": -3.5,
-      "price": -108,
-      "confidence": 5.2,
-      "sigma": -1.13,
-      "edge_points": -7.6,
-      "model_number": -11.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -3.5,
-      "first_confidence": 5.6,
+      "side": "Tennessee",
+      "line": 5.5,
+      "market_line": 5.5,
+      "price": -110,
+      "confidence": 5.1,
+      "sigma": -1.06,
+      "edge_points": -3.1,
+      "model_number": 2.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 5.5,
+      "first_confidence": 5.1,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -3.5,
-          "confidence": 5.6,
-          "sigma": -1.41
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -3.5,
-          "confidence": 5.6,
-          "sigma": -1.42
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -3.5,
-          "confidence": 5.6,
-          "sigma": -1.42
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -3.5,
-          "confidence": 5.6,
-          "sigma": -1.4
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -3.5,
-          "confidence": 5.6,
-          "sigma": -1.4
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -3.5,
-          "confidence": 5.2,
-          "sigma": -1.13
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 5.5,
+          "confidence": 5.1,
+          "sigma": -1.06
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 15,
-      "peak_rank": 14
-    },
-    "1427645d6020f742eece986c58bdb29d|total|full|Under": {
-      "event_id": "1427645d6020f742eece986c58bdb29d",
-      "matchup": "California Golden Bears @ Syracuse Orange",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 56.5,
-      "market_line": 56.5,
-      "price": -106,
-      "confidence": 4.0,
-      "sigma": -0.32,
-      "edge_points": -2.5,
-      "model_number": 54.0,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 56.5,
-      "first_confidence": 4.5,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 56.5,
-          "confidence": 4.5,
-          "sigma": -0.7
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 56.5,
-          "confidence": 4.6,
-          "sigma": -0.71
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 56.5,
-          "confidence": 4.6,
-          "sigma": -0.71
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 4.4,
-          "sigma": -0.63
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 56.5,
-          "confidence": 4.4,
-          "sigma": -0.63
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 56.5,
-          "confidence": 4.0,
-          "sigma": -0.32
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "c46b118e570bf1fa1b2724f1fd7e4b24|total|full|Over": {
-      "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
-      "matchup": "Memphis Tigers @ Boise State Broncos",
-      "kickoff": "2026-09-12T22:00:00Z",
+    "f6b6590d0b66bbb4fcbb391289794963|total|full|Under": {
+      "event_id": "f6b6590d0b66bbb4fcbb391289794963",
+      "matchup": "Wake Forest Demon Deacons @ Louisville Cardinals",
+      "kickoff": "2026-09-26T16:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 58.5,
+      "market_line": 58.5,
+      "price": -105,
+      "confidence": 5.5,
+      "sigma": -1.31,
+      "edge_points": -5.6,
+      "model_number": 52.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 58.5,
+      "first_confidence": 5.5,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 58.5,
+          "confidence": 5.5,
+          "sigma": -1.31
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 19,
+      "peak_rank": 19
+    },
+    "b1cdf3ac97be67ee00a53e437e4bfa78|spread|full|Georgia Southern": {
+      "event_id": "b1cdf3ac97be67ee00a53e437e4bfa78",
+      "matchup": "Houston Cougars @ Georgia Southern Eagles",
+      "kickoff": "2026-09-26T20:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Georgia Southern",
+      "line": 18.5,
+      "market_line": 18.5,
+      "price": -110,
+      "confidence": 6.1,
+      "sigma": -1.75,
+      "edge_points": -5.1,
+      "model_number": 13.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 18.5,
+      "first_confidence": 6.1,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 18.5,
+          "confidence": 6.1,
+          "sigma": -1.75
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 6,
+      "peak_rank": 6
+    },
+    "fb1e2c999364a411be347389aec1d827|spread|full|Colorado State": {
+      "event_id": "fb1e2c999364a411be347389aec1d827",
+      "matchup": "Colorado State Rams @ UTSA Roadrunners",
+      "kickoff": "2026-09-26T16:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Colorado State",
+      "line": 13.5,
+      "market_line": -13.5,
+      "price": -115,
+      "confidence": 5.9,
+      "sigma": 1.61,
+      "edge_points": 4.7,
+      "model_number": -8.8,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 13.5,
+      "first_confidence": 5.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 13.5,
+          "confidence": 5.9,
+          "sigma": 1.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 7,
+      "peak_rank": 7
+    },
+    "c48f042c91328d4d0c6351fc82286879|spread|full|Maryland": {
+      "event_id": "c48f042c91328d4d0c6351fc82286879",
+      "matchup": "UCLA Bruins @ Maryland Terrapins",
+      "kickoff": "2026-09-26T17:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Maryland",
+      "line": 2.5,
+      "market_line": 2.5,
+      "price": -115,
+      "confidence": 5.9,
+      "sigma": -1.61,
+      "edge_points": -4.7,
+      "model_number": -2.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 2.5,
+      "first_confidence": 5.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 2.5,
+          "confidence": 5.9,
+          "sigma": -1.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 8,
+      "peak_rank": 8
+    },
+    "c48f042c91328d4d0c6351fc82286879|total|full|Under": {
+      "event_id": "c48f042c91328d4d0c6351fc82286879",
+      "matchup": "UCLA Bruins @ Maryland Terrapins",
+      "kickoff": "2026-09-26T17:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 57.5,
+      "market_line": 57.5,
+      "price": -105,
+      "confidence": 4.2,
+      "sigma": -0.47,
+      "edge_points": -2.0,
+      "model_number": 55.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 57.5,
+      "first_confidence": 4.2,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 57.5,
+          "confidence": 4.2,
+          "sigma": -0.47
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "058628758b85b178ffc5fa09416f3991|total|full|Over": {
+      "event_id": "058628758b85b178ffc5fa09416f3991",
+      "matchup": "Kansas State Wildcats @ Cincinnati Bearcats",
+      "kickoff": "2026-09-26T23:00:00Z",
       "market": "total",
       "period": "full",
       "side": "Over",
       "line": 55.5,
       "market_line": 55.5,
-      "price": -106,
-      "confidence": 4.6,
-      "sigma": 0.75,
-      "edge_points": 5.9,
-      "model_number": 61.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 54.5,
-      "first_confidence": 5.0,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 54.5,
-          "confidence": 5.0,
-          "sigma": 1.03
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 54.5,
-          "confidence": 5.1,
-          "sigma": 1.05
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 54.5,
-          "confidence": 5.1,
-          "sigma": 1.05
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 4.7,
-          "sigma": 0.78
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 5.0,
-          "sigma": 0.97
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 55.5,
-          "confidence": 4.6,
-          "sigma": 0.75
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 23,
-      "peak_rank": 22
-    },
-    "2be7c621008f4d4147868ababc385a6c|total|full|Under": {
-      "event_id": "2be7c621008f4d4147868ababc385a6c",
-      "matchup": "Rice Owls @ Notre Dame Fighting Irish",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 54.5,
-      "market_line": 54.5,
-      "price": -105,
-      "confidence": 4.0,
-      "sigma": -0.35,
-      "edge_points": -2.8,
-      "model_number": 51.7,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 4.9,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 4.9,
-          "sigma": -0.94
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 54.5,
-          "confidence": 4.7,
-          "sigma": -0.77
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 54.5,
-          "confidence": 4.7,
-          "sigma": -0.77
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": -0.68
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": -0.68
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 4.0,
-          "sigma": -0.35
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 34,
-      "peak_rank": 26
-    },
-    "2be7c621008f4d4147868ababc385a6c|spread|full|Rice": {
-      "event_id": "2be7c621008f4d4147868ababc385a6c",
-      "matchup": "Rice Owls @ Notre Dame Fighting Irish",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Rice",
-      "line": 44.5,
-      "market_line": -44.5,
-      "price": -105,
-      "confidence": 4.7,
-      "sigma": 0.82,
-      "edge_points": 3.3,
-      "model_number": -41.2,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 44.5,
-      "first_confidence": 4.6,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 44.5,
-          "confidence": 4.6,
-          "sigma": 0.75
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 44.5,
-          "confidence": 4.6,
-          "sigma": 0.72
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 44.5,
-          "confidence": 4.6,
-          "sigma": 0.72
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 44.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 44.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 30
-    },
-    "a8283159aa27932e7a640f6158b2ca98|spread|full|Georgia Southern": {
-      "event_id": "a8283159aa27932e7a640f6158b2ca98",
-      "matchup": "Georgia Southern Eagles @ Clemson Tigers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Georgia Southern",
-      "line": 19.5,
-      "market_line": -19.5,
       "price": -110,
-      "confidence": 4.0,
-      "sigma": 0.31,
-      "edge_points": 2.1,
-      "model_number": -17.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 20.5,
-      "first_confidence": 5.3,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 20.5,
-          "confidence": 5.3,
-          "sigma": 1.19
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 20.5,
-          "confidence": 5.2,
-          "sigma": 1.15
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 20.5,
-          "confidence": 5.2,
-          "sigma": 1.15
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 19.5,
-          "confidence": 5.0,
-          "sigma": 1.02
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 19.5,
-          "confidence": 5.0,
-          "sigma": 1.02
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 19.5,
-          "confidence": 4.0,
-          "sigma": 0.31
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 35,
-      "peak_rank": 20
-    },
-    "a8283159aa27932e7a640f6158b2ca98|total|full|Under": {
-      "event_id": "a8283159aa27932e7a640f6158b2ca98",
-      "matchup": "Georgia Southern Eagles @ Clemson Tigers",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 54.5,
-      "market_line": 54.5,
-      "price": -105,
-      "confidence": 4.0,
-      "sigma": -0.33,
-      "edge_points": -2.6,
-      "model_number": 51.9,
-      "first_seen": "2026-09-09T22:10:15+00:00",
+      "confidence": 5.1,
+      "sigma": 1.05,
+      "edge_points": 4.5,
+      "model_number": 60.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
       "first_line": 55.5,
-      "first_confidence": 4.8,
+      "first_confidence": 5.1,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
+          "at": "2026-09-21T21:22:43+00:00",
           "line": 55.5,
-          "confidence": 4.8,
-          "sigma": -0.9
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 4.9,
-          "sigma": -0.92
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 4.9,
-          "sigma": -0.92
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": -0.65
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 4.5,
-          "sigma": -0.64
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 4.0,
-          "sigma": -0.33
+          "confidence": 5.1,
+          "sigma": 1.05
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "5a8d98c3147d18b683d90a536e76eb64|spread|full|Purdue": {
-      "event_id": "5a8d98c3147d18b683d90a536e76eb64",
-      "matchup": "Wake Forest Demon Deacons @ Purdue Boilermakers",
-      "kickoff": "2026-09-12T16:00:00Z",
+    "058628758b85b178ffc5fa09416f3991|spread|full|Cincinnati": {
+      "event_id": "058628758b85b178ffc5fa09416f3991",
+      "matchup": "Kansas State Wildcats @ Cincinnati Bearcats",
+      "kickoff": "2026-09-26T23:00:00Z",
       "market": "spread",
       "period": "full",
-      "side": "Purdue",
-      "line": 2.5,
-      "market_line": 2.5,
-      "price": -102,
-      "confidence": 4.8,
-      "sigma": -0.87,
-      "edge_points": -3.5,
-      "model_number": -1.0,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 3.5,
-      "first_confidence": 5.2,
+      "side": "Cincinnati",
+      "line": 6.5,
+      "market_line": 6.5,
+      "price": -110,
+      "confidence": 5.5,
+      "sigma": -1.34,
+      "edge_points": -3.9,
+      "model_number": 2.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 6.5,
+      "first_confidence": 5.5,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 3.5,
-          "confidence": 5.2,
-          "sigma": -1.14
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 3.5,
-          "confidence": 5.2,
-          "sigma": -1.15
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 3.5,
-          "confidence": 5.2,
-          "sigma": -1.15
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 2.5,
-          "confidence": 4.8,
-          "sigma": -0.87
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 2.5,
-          "confidence": 4.8,
-          "sigma": -0.87
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 6.5,
+          "confidence": 5.5,
+          "sigma": -1.34
         }
       ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
       "second_opinion": false,
-      "rank": null,
-      "peak_rank": 21
+      "rank": 20,
+      "peak_rank": 20
     },
-    "5a8d98c3147d18b683d90a536e76eb64|total|full|Under": {
-      "event_id": "5a8d98c3147d18b683d90a536e76eb64",
-      "matchup": "Wake Forest Demon Deacons @ Purdue Boilermakers",
-      "kickoff": "2026-09-12T16:00:00Z",
+    "dc2fd7526ea0bba9adc09a5627b637bf|spread|full|Sacramento State": {
+      "event_id": "dc2fd7526ea0bba9adc09a5627b637bf",
+      "matchup": "UMass Minutemen @ Sacramento State Hornets",
+      "kickoff": "2026-09-27T01:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Sacramento State",
+      "line": 4.5,
+      "market_line": 4.5,
+      "price": -110,
+      "confidence": 5.8,
+      "sigma": -1.54,
+      "edge_points": -4.5,
+      "model_number": 0.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 4.5,
+      "first_confidence": 5.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 4.5,
+          "confidence": 5.8,
+          "sigma": -1.54
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 10,
+      "peak_rank": 10
+    },
+    "dc2fd7526ea0bba9adc09a5627b637bf|total|full|Under": {
+      "event_id": "dc2fd7526ea0bba9adc09a5627b637bf",
+      "matchup": "UMass Minutemen @ Sacramento State Hornets",
+      "kickoff": "2026-09-27T01:00:00Z",
       "market": "total",
       "period": "full",
       "side": "Under",
       "line": 49.5,
       "market_line": 49.5,
-      "price": -105,
-      "confidence": 4.6,
-      "sigma": -0.74,
+      "price": -115,
+      "confidence": 4.9,
+      "sigma": -0.91,
       "edge_points": -3.9,
       "model_number": 45.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 49.5,
+      "first_confidence": 4.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 49.5,
+          "confidence": 4.9,
+          "sigma": -0.91
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "271438149d3f0afb2ff01736101b5e20|spread|full|Fresno State": {
+      "event_id": "271438149d3f0afb2ff01736101b5e20",
+      "matchup": "Rice Owls @ Fresno State Bulldogs",
+      "kickoff": "2026-09-27T02:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Fresno State",
+      "line": -13.5,
+      "market_line": -13.5,
+      "price": -105,
+      "confidence": 5.8,
+      "sigma": -1.54,
+      "edge_points": -4.5,
+      "model_number": -18.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -13.5,
+      "first_confidence": 5.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -13.5,
+          "confidence": 5.8,
+          "sigma": -1.54
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 11,
+      "peak_rank": 11
+    },
+    "271438149d3f0afb2ff01736101b5e20|total|full|Under": {
+      "event_id": "271438149d3f0afb2ff01736101b5e20",
+      "matchup": "Rice Owls @ Fresno State Bulldogs",
+      "kickoff": "2026-09-27T02:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 44.5,
+      "market_line": 44.5,
+      "price": -110,
+      "confidence": 5.0,
+      "sigma": -0.98,
+      "edge_points": -4.2,
+      "model_number": 40.3,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 44.5,
+      "first_confidence": 5.0,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 44.5,
+          "confidence": 5.0,
+          "sigma": -0.98
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "9fe2a7b54748dc10ff57743cdd1b041c|spread|full|New Mexico": {
+      "event_id": "9fe2a7b54748dc10ff57743cdd1b041c",
+      "matchup": "New Mexico Lobos @ New Mexico State Aggies",
+      "kickoff": "2026-09-26T19:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "New Mexico",
+      "line": -10.5,
+      "market_line": 10.5,
+      "price": -115,
+      "confidence": 5.8,
+      "sigma": 1.51,
+      "edge_points": 4.4,
+      "model_number": 14.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -10.5,
+      "first_confidence": 5.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -10.5,
+          "confidence": 5.8,
+          "sigma": 1.51
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 12,
+      "peak_rank": 12
+    },
+    "6de44361bd6b6afc20b9bbefcc219f2a|spread|full|Illinois": {
+      "event_id": "6de44361bd6b6afc20b9bbefcc219f2a",
+      "matchup": "Illinois Fighting Illini @ Ohio State Buckeyes",
+      "kickoff": "2026-09-26T16:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Illinois",
+      "line": 27.5,
+      "market_line": -27.5,
+      "price": -115,
+      "confidence": 5.7,
+      "sigma": 1.47,
+      "edge_points": 4.3,
+      "model_number": -23.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 27.5,
+      "first_confidence": 5.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 27.5,
+          "confidence": 5.7,
+          "sigma": 1.47
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 14,
+      "peak_rank": 14
+    },
+    "6de44361bd6b6afc20b9bbefcc219f2a|total|full|Over": {
+      "event_id": "6de44361bd6b6afc20b9bbefcc219f2a",
+      "matchup": "Illinois Fighting Illini @ Ohio State Buckeyes",
+      "kickoff": "2026-09-26T16:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 53.5,
+      "market_line": 53.5,
+      "price": -110,
+      "confidence": 4.1,
+      "sigma": 0.37,
+      "edge_points": 1.6,
+      "model_number": 55.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 53.5,
+      "first_confidence": 4.1,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 53.5,
+          "confidence": 4.1,
+          "sigma": 0.37
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "4d76388c84fc859e6bae8ff267266872|spread|full|Missouri State": {
+      "event_id": "4d76388c84fc859e6bae8ff267266872",
+      "matchup": "Missouri State Bears @ SMU Mustangs",
+      "kickoff": "2026-09-27T01:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Missouri State",
+      "line": 34.5,
+      "market_line": -34.5,
+      "price": -110,
+      "confidence": 5.7,
+      "sigma": 1.44,
+      "edge_points": 4.2,
+      "model_number": -30.3,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 34.5,
+      "first_confidence": 5.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 34.5,
+          "confidence": 5.7,
+          "sigma": 1.44
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 15,
+      "peak_rank": 15
+    },
+    "4d76388c84fc859e6bae8ff267266872|total|full|Under": {
+      "event_id": "4d76388c84fc859e6bae8ff267266872",
+      "matchup": "Missouri State Bears @ SMU Mustangs",
+      "kickoff": "2026-09-27T01:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 59.5,
+      "market_line": 59.5,
+      "price": -114,
+      "confidence": 4.9,
+      "sigma": -0.93,
+      "edge_points": -4.0,
+      "model_number": 55.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 59.5,
+      "first_confidence": 4.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 59.5,
+          "confidence": 4.9,
+          "sigma": -0.93
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "886538e98f0884df3d655d9d2d2ca567|total|full|Under": {
+      "event_id": "886538e98f0884df3d655d9d2d2ca567",
+      "matchup": "Ole Miss Rebels @ Florida Gators",
+      "kickoff": "2026-09-26T19:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 60.5,
+      "market_line": 60.5,
+      "price": -105,
+      "confidence": 4.9,
+      "sigma": -0.93,
+      "edge_points": -4.0,
+      "model_number": 56.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 60.5,
+      "first_confidence": 4.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 60.5,
+          "confidence": 4.9,
+          "sigma": -0.93
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 26,
+      "peak_rank": 26
+    },
+    "008dd61e19c2456760593773da6a88ef|spread|full|James Madison": {
+      "event_id": "008dd61e19c2456760593773da6a88ef",
+      "matchup": "James Madison Dukes @ Old Dominion Monarchs",
+      "kickoff": "2026-09-26T22:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "James Madison",
+      "line": -5.5,
+      "market_line": 5.5,
+      "price": -115,
+      "confidence": 5.6,
+      "sigma": 1.37,
+      "edge_points": 4.0,
+      "model_number": 9.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -5.5,
+      "first_confidence": 5.6,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -5.5,
+          "confidence": 5.6,
+          "sigma": 1.37
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 17,
+      "peak_rank": 17
+    },
+    "008dd61e19c2456760593773da6a88ef|total|full|Under": {
+      "event_id": "008dd61e19c2456760593773da6a88ef",
+      "matchup": "James Madison Dukes @ Old Dominion Monarchs",
+      "kickoff": "2026-09-26T22:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 45.5,
+      "market_line": 45.5,
+      "price": -108,
+      "confidence": 4.2,
+      "sigma": -0.44,
+      "edge_points": -1.9,
+      "model_number": 43.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 45.5,
+      "first_confidence": 4.2,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 45.5,
+          "confidence": 4.2,
+          "sigma": -0.44
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "0c71c3230f930f30ac34160b38dbbaf0|total|full|Under": {
+      "event_id": "0c71c3230f930f30ac34160b38dbbaf0",
+      "matchup": "Texas A&M Aggies @ LSU Tigers",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 52.5,
+      "market_line": 52.5,
+      "price": -110,
+      "confidence": 4.9,
+      "sigma": -0.91,
+      "edge_points": -3.9,
+      "model_number": 48.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 52.5,
+      "first_confidence": 4.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 52.5,
+          "confidence": 4.9,
+          "sigma": -0.91
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "0c71c3230f930f30ac34160b38dbbaf0|spread|full|Texas A&M": {
+      "event_id": "0c71c3230f930f30ac34160b38dbbaf0",
+      "matchup": "Texas A&M Aggies @ LSU Tigers",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Texas A&M",
+      "line": 8.5,
+      "market_line": -8.5,
+      "price": -110,
+      "confidence": 5.2,
+      "sigma": 1.13,
+      "edge_points": 3.3,
+      "model_number": -5.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 8.5,
+      "first_confidence": 5.2,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 8.5,
+          "confidence": 5.2,
+          "sigma": 1.13
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 22,
+      "peak_rank": 22
+    },
+    "0c86537a10b805d25a4ab4f4efdd4c30|spread|full|Georgia Tech": {
+      "event_id": "0c86537a10b805d25a4ab4f4efdd4c30",
+      "matchup": "Georgia Tech Yellow Jackets @ Stanford Cardinal",
+      "kickoff": "2026-09-27T02:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Georgia Tech",
+      "line": -3.5,
+      "market_line": 3.5,
+      "price": -115,
+      "confidence": 5.3,
+      "sigma": 1.23,
+      "edge_points": 3.6,
+      "model_number": 7.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -3.5,
+      "first_confidence": 5.3,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -3.5,
+          "confidence": 5.3,
+          "sigma": 1.23
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 21,
+      "peak_rank": 21
+    },
+    "83516ad7ba3e8ef9f90498cfcaf10eb5|total|full|Over": {
+      "event_id": "83516ad7ba3e8ef9f90498cfcaf10eb5",
+      "matchup": "Oregon Ducks @ USC Trojans",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 62.5,
+      "market_line": 62.5,
+      "price": -110,
+      "confidence": 4.7,
+      "sigma": 0.82,
+      "edge_points": 3.5,
+      "model_number": 66.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 62.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 62.5,
+          "confidence": 4.7,
+          "sigma": 0.82
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "83516ad7ba3e8ef9f90498cfcaf10eb5|spread|full|USC": {
+      "event_id": "83516ad7ba3e8ef9f90498cfcaf10eb5",
+      "matchup": "Oregon Ducks @ USC Trojans",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "USC",
+      "line": 2.5,
+      "market_line": 2.5,
+      "price": 102,
+      "confidence": 5.2,
+      "sigma": -1.1,
+      "edge_points": -3.2,
+      "model_number": -0.7,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 2.5,
+      "first_confidence": 5.2,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 2.5,
+          "confidence": 5.2,
+          "sigma": -1.1
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 23,
+      "peak_rank": 23
+    },
+    "023386f1b92db2259c7d52b2f244182f|total|full|Over": {
+      "event_id": "023386f1b92db2259c7d52b2f244182f",
+      "matchup": "Nebraska Cornhuskers @ Michigan State Spartans",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 48.5,
+      "market_line": 48.5,
+      "price": -110,
+      "confidence": 4.7,
+      "sigma": 0.79,
+      "edge_points": 3.4,
+      "model_number": 51.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 48.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 48.5,
+          "confidence": 4.7,
+          "sigma": 0.79
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 30,
+      "peak_rank": 30
+    },
+    "023386f1b92db2259c7d52b2f244182f|spread|full|Nebraska": {
+      "event_id": "023386f1b92db2259c7d52b2f244182f",
+      "matchup": "Nebraska Cornhuskers @ Michigan State Spartans",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Nebraska",
+      "line": -5.5,
+      "market_line": 5.5,
+      "price": -114,
+      "confidence": 4.4,
+      "sigma": 0.62,
+      "edge_points": 1.8,
+      "model_number": 7.3,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -5.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -5.5,
+          "confidence": 4.4,
+          "sigma": 0.62
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "775ad63a769838c1e1da423293c9c60d|total|full|Under": {
+      "event_id": "775ad63a769838c1e1da423293c9c60d",
+      "matchup": "Northwestern Wildcats @ Indiana Hoosiers",
+      "kickoff": "2026-09-26T00:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 49.5,
+      "market_line": 49.5,
+      "price": -110,
+      "confidence": 4.7,
+      "sigma": -0.77,
+      "edge_points": -3.3,
+      "model_number": 46.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
       "first_line": 49.5,
       "first_confidence": 4.7,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
+          "at": "2026-09-21T21:22:43+00:00",
           "line": 49.5,
           "confidence": 4.7,
-          "sigma": -0.81
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 49.5,
-          "confidence": 4.7,
-          "sigma": -0.82
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 49.5,
-          "confidence": 4.7,
-          "sigma": -0.82
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 49.5,
-          "confidence": 4.6,
-          "sigma": -0.74
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 49.5,
-          "confidence": 4.6,
-          "sigma": -0.74
+          "sigma": -0.77
         }
       ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 31,
+      "peak_rank": 31
+    },
+    "edf8d3e3699aa5cb34c50ac7de992d37|total|full|Under": {
+      "event_id": "edf8d3e3699aa5cb34c50ac7de992d37",
+      "matchup": "Vanderbilt Commodores @ Auburn Tigers",
+      "kickoff": "2026-09-26T20:15:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 55.5,
+      "market_line": 55.5,
+      "price": -105,
+      "confidence": 4.6,
+      "sigma": -0.75,
+      "edge_points": -3.2,
+      "model_number": 52.3,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 55.5,
+      "first_confidence": 4.6,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 55.5,
+          "confidence": 4.6,
+          "sigma": -0.75
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "91ba0aefe833f0543aa43843374916f4|total|full|Over": {
-      "event_id": "91ba0aefe833f0543aa43843374916f4",
-      "matchup": "Louisiana Ragin Cajuns @ USC Trojans",
-      "kickoff": "2026-09-13T03:00:00Z",
-      "market": "total",
+    "edf8d3e3699aa5cb34c50ac7de992d37|spread|full|Vanderbilt": {
+      "event_id": "edf8d3e3699aa5cb34c50ac7de992d37",
+      "matchup": "Vanderbilt Commodores @ Auburn Tigers",
+      "kickoff": "2026-09-26T20:15:00Z",
+      "market": "spread",
       "period": "full",
-      "side": "Over",
-      "line": 59.5,
-      "market_line": 59.5,
-      "price": -105,
-      "confidence": 4.6,
-      "sigma": 0.76,
-      "edge_points": 6.0,
-      "model_number": 65.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 59.5,
-      "first_confidence": 4.8,
+      "side": "Vanderbilt",
+      "line": 9.5,
+      "market_line": -9.5,
+      "price": -110,
+      "confidence": 5.1,
+      "sigma": 1.06,
+      "edge_points": 3.1,
+      "model_number": -6.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 9.5,
+      "first_confidence": 5.1,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 59.5,
-          "confidence": 4.8,
-          "sigma": 0.87
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 59.5,
-          "confidence": 4.8,
-          "sigma": 0.88
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 59.5,
-          "confidence": 4.8,
-          "sigma": 0.88
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 59.5,
-          "confidence": 5.0,
-          "sigma": 0.99
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 59.5,
-          "confidence": 5.0,
-          "sigma": 0.99
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 59.5,
-          "confidence": 4.6,
-          "sigma": 0.76
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 9.5,
+          "confidence": 5.1,
+          "sigma": 1.06
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 24,
       "peak_rank": 24
     },
-    "91ba0aefe833f0543aa43843374916f4|spread|full|Louisiana": {
-      "event_id": "91ba0aefe833f0543aa43843374916f4",
-      "matchup": "Louisiana Ragin Cajuns @ USC Trojans",
-      "kickoff": "2026-09-13T03:00:00Z",
-      "market": "spread",
+    "11c5e9c2cf899388abd0dae30ea71db9|total|full|Over": {
+      "event_id": "11c5e9c2cf899388abd0dae30ea71db9",
+      "matchup": "South Alabama Jaguars @ Kentucky Wildcats",
+      "kickoff": "2026-09-26T16:45:00Z",
+      "market": "total",
       "period": "full",
-      "side": "Louisiana",
-      "line": 30.5,
-      "market_line": -30.5,
-      "price": -105,
-      "confidence": 3.9,
-      "sigma": 0.24,
-      "edge_points": 1.6,
-      "model_number": -28.9,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 30.5,
-      "first_confidence": 4.7,
+      "side": "Over",
+      "line": 54.5,
+      "market_line": 54.5,
+      "price": -110,
+      "confidence": 4.6,
+      "sigma": 0.72,
+      "edge_points": 3.1,
+      "model_number": 57.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 54.5,
+      "first_confidence": 4.6,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 30.5,
-          "confidence": 4.7,
-          "sigma": 0.83
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 31.5,
-          "confidence": 5.0,
-          "sigma": 1.03
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 31.5,
-          "confidence": 5.0,
-          "sigma": 1.03
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 31.5,
-          "confidence": 5.2,
-          "sigma": 1.15
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 31.5,
-          "confidence": 5.2,
-          "sigma": 1.15
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 30.5,
-          "confidence": 3.9,
-          "sigma": 0.24
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 54.5,
+          "confidence": 4.6,
+          "sigma": 0.72
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 20
+      "second_opinion": false,
+      "rank": 35,
+      "peak_rank": 35
     },
-    "d652c7bc0594f13ef0a2a04e31ef5666|total|full|Under": {
-      "event_id": "d652c7bc0594f13ef0a2a04e31ef5666",
-      "matchup": "Oregon Ducks @ Oklahoma State Cowboys",
-      "kickoff": "2026-09-12T17:30:00Z",
+    "77c3435e651e2d615870c2c25c8dbf71|total|full|Over": {
+      "event_id": "77c3435e651e2d615870c2c25c8dbf71",
+      "matchup": "Kennesaw State Owls @ Arkansas State Red Wolves",
+      "kickoff": "2026-09-26T23:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 53.5,
+      "market_line": 53.5,
+      "price": -110,
+      "confidence": 4.6,
+      "sigma": 0.72,
+      "edge_points": 3.1,
+      "model_number": 56.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 53.5,
+      "first_confidence": 4.6,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 53.5,
+          "confidence": 4.6,
+          "sigma": 0.72
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 36,
+      "peak_rank": 36
+    },
+    "0dcea769daace0b6c76434589c639b11|total|full|Under": {
+      "event_id": "0dcea769daace0b6c76434589c639b11",
+      "matchup": "Utah Utes @ Iowa State Cyclones",
+      "kickoff": "2026-09-26T19:30:00Z",
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 68.5,
-      "market_line": 68.5,
-      "price": -104,
-      "confidence": 6.2,
-      "sigma": -1.81,
-      "edge_points": -14.3,
-      "model_number": 54.2,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 57.5,
-      "first_confidence": 4.8,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 57.5,
-          "confidence": 4.8,
-          "sigma": -0.85
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 56.5,
-          "confidence": 4.5,
-          "sigma": -0.67
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 56.5,
-          "confidence": 4.5,
-          "sigma": -0.67
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 4.1,
-          "sigma": -0.4
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 68.5,
-          "confidence": 6.2,
-          "sigma": -1.81
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 31
-    },
-    "d652c7bc0594f13ef0a2a04e31ef5666|spread|full|Oklahoma State": {
-      "event_id": "d652c7bc0594f13ef0a2a04e31ef5666",
-      "matchup": "Oregon Ducks @ Oklahoma State Cowboys",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Oklahoma State",
-      "line": 23.5,
-      "market_line": 23.5,
+      "line": 49.5,
+      "market_line": 49.5,
       "price": -115,
-      "confidence": 4.9,
-      "sigma": -0.92,
-      "edge_points": -3.7,
-      "model_number": 19.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 22.5,
+      "confidence": 4.5,
+      "sigma": -0.7,
+      "edge_points": -3.0,
+      "model_number": 46.5,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 49.5,
       "first_confidence": 4.5,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 22.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 49.5,
           "confidence": 4.5,
           "sigma": -0.7
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 23.5,
-          "confidence": 4.9,
-          "sigma": -0.96
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 23.5,
-          "confidence": 4.9,
-          "sigma": -0.96
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 23.5,
-          "confidence": 4.9,
-          "sigma": -0.92
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 23.5,
-          "confidence": 4.9,
-          "sigma": -0.92
         }
       ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
       "second_opinion": false,
-      "rank": null,
-      "peak_rank": 24
+      "rank": 38,
+      "peak_rank": 38
     },
-    "14620ae05bec8eaa19ca94156c71dff2|total|full|Under": {
-      "event_id": "14620ae05bec8eaa19ca94156c71dff2",
-      "matchup": "San Diego State Aztecs @ UCLA Bruins",
-      "kickoff": "2026-09-12T23:15:00Z",
+    "32171e03f5df71b5c9057bcba40030a7|total|full|Under": {
+      "event_id": "32171e03f5df71b5c9057bcba40030a7",
+      "matchup": "TCU Horned Frogs @ UCF Knights",
+      "kickoff": "2026-09-26T19:30:00Z",
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 54.5,
-      "market_line": 54.5,
-      "price": -114,
-      "confidence": 3.9,
-      "sigma": -0.28,
-      "edge_points": -2.2,
-      "model_number": 52.3,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 4.7,
+      "line": 48.5,
+      "market_line": 48.5,
+      "price": -110,
+      "confidence": 4.5,
+      "sigma": -0.68,
+      "edge_points": -2.9,
+      "model_number": 45.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 48.5,
+      "first_confidence": 4.5,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": -0.83
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 4.8,
-          "sigma": -0.84
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 4.8,
-          "sigma": -0.84
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 4.4,
-          "sigma": -0.57
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 4.4,
-          "sigma": -0.57
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 3.9,
-          "sigma": -0.28
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 48.5,
+          "confidence": 4.5,
+          "sigma": -0.68
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "14620ae05bec8eaa19ca94156c71dff2|spread|full|San Diego State": {
-      "event_id": "14620ae05bec8eaa19ca94156c71dff2",
-      "matchup": "San Diego State Aztecs @ UCLA Bruins",
-      "kickoff": "2026-09-12T23:15:00Z",
+    "32171e03f5df71b5c9057bcba40030a7|spread|full|UCF": {
+      "event_id": "32171e03f5df71b5c9057bcba40030a7",
+      "matchup": "TCU Horned Frogs @ UCF Knights",
+      "kickoff": "2026-09-26T19:30:00Z",
       "market": "spread",
       "period": "full",
-      "side": "San Diego State",
-      "line": 13.5,
-      "market_line": -13.5,
-      "price": -110,
-      "confidence": 4.3,
-      "sigma": 0.51,
-      "edge_points": 3.4,
-      "model_number": -10.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 12.5,
+      "side": "UCF",
+      "line": 3.5,
+      "market_line": 3.5,
+      "price": -120,
+      "confidence": 4.7,
+      "sigma": -0.82,
+      "edge_points": -2.4,
+      "model_number": 1.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 3.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 3.5,
+          "confidence": 4.7,
+          "sigma": -0.82
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 32,
+      "peak_rank": 32
+    },
+    "dbc89703b51acf3b8818134a1a2a0dc2|spread|full|Troy": {
+      "event_id": "dbc89703b51acf3b8818134a1a2a0dc2",
+      "matchup": "Troy Trojans @ Utah State Aggies",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Troy",
+      "line": 3.5,
+      "market_line": -3.5,
+      "price": -120,
+      "confidence": 5.0,
+      "sigma": 0.99,
+      "edge_points": 2.9,
+      "model_number": -0.6,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 3.5,
       "first_confidence": 5.0,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 12.5,
-          "confidence": 5.0,
-          "sigma": 1.02
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 12.5,
-          "confidence": 5.0,
-          "sigma": 0.98
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 12.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 3.5,
           "confidence": 5.0,
           "sigma": 0.99
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 12.5,
-          "confidence": 5.2,
-          "sigma": 1.1
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 12.5,
-          "confidence": 5.2,
-          "sigma": 1.1
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 13.5,
-          "confidence": 4.3,
-          "sigma": 0.51
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 31,
-      "peak_rank": 21
+      "rank": 25,
+      "peak_rank": 25
     },
-    "b1298d12169731a56fba3b484f27c005|spread|full|Sacramento State": {
-      "event_id": "b1298d12169731a56fba3b484f27c005",
-      "matchup": "Sacramento State Hornets @ Fresno State Bulldogs",
-      "kickoff": "2026-09-13T02:30:00Z",
+    "f0985218c2ed146bb0295c4e9c4a0dd7|spread|full|Western Michigan": {
+      "event_id": "f0985218c2ed146bb0295c4e9c4a0dd7",
+      "matchup": "Boise State Broncos @ Western Michigan Broncos",
+      "kickoff": "2026-09-26T19:30:00Z",
       "market": "spread",
       "period": "full",
-      "side": "Sacramento State",
-      "line": 17.5,
-      "market_line": -17.5,
-      "price": -115,
-      "confidence": 3.9,
-      "sigma": 0.25,
-      "edge_points": 1.7,
-      "model_number": -15.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 18.5,
-      "first_confidence": 5.1,
+      "side": "Western Michigan",
+      "line": 7.5,
+      "market_line": 7.5,
+      "price": -120,
+      "confidence": 4.9,
+      "sigma": -0.96,
+      "edge_points": -2.8,
+      "model_number": 4.7,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 7.5,
+      "first_confidence": 4.9,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 18.5,
-          "confidence": 5.1,
-          "sigma": 1.09
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 17.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 17.5,
-          "confidence": 4.7,
-          "sigma": 0.82
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 18.5,
-          "confidence": 5.3,
-          "sigma": 1.17
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 18.5,
-          "confidence": 5.3,
-          "sigma": 1.17
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 17.5,
-          "confidence": 3.9,
-          "sigma": 0.25
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 7.5,
+          "confidence": 4.9,
+          "sigma": -0.96
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 36,
-      "peak_rank": 19
+      "rank": 27,
+      "peak_rank": 27
     },
-    "b1298d12169731a56fba3b484f27c005|total|full|Under": {
-      "event_id": "b1298d12169731a56fba3b484f27c005",
-      "matchup": "Sacramento State Hornets @ Fresno State Bulldogs",
-      "kickoff": "2026-09-13T02:30:00Z",
+    "39a3d3075172036a2b3f7d47913779b8|spread|full|Iowa": {
+      "event_id": "39a3d3075172036a2b3f7d47913779b8",
+      "matchup": "Iowa Hawkeyes @ Michigan Wolverines",
+      "kickoff": "2026-09-26T19:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Iowa",
+      "line": 5.5,
+      "market_line": -5.5,
+      "price": -110,
+      "confidence": 4.9,
+      "sigma": 0.96,
+      "edge_points": 2.8,
+      "model_number": -2.7,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 5.5,
+      "first_confidence": 4.9,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 5.5,
+          "confidence": 4.9,
+          "sigma": 0.96
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 28,
+      "peak_rank": 28
+    },
+    "39a3d3075172036a2b3f7d47913779b8|total|full|Over": {
+      "event_id": "39a3d3075172036a2b3f7d47913779b8",
+      "matchup": "Iowa Hawkeyes @ Michigan Wolverines",
+      "kickoff": "2026-09-26T19:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 37.5,
+      "market_line": 37.5,
+      "price": -118,
+      "confidence": 4.4,
+      "sigma": 0.61,
+      "edge_points": 2.6,
+      "model_number": 40.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 37.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 37.5,
+          "confidence": 4.4,
+          "sigma": 0.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "48683523200ecdbeb09a2e6eb0d0a1f7|total|full|Under": {
+      "event_id": "48683523200ecdbeb09a2e6eb0d0a1f7",
+      "matchup": "Clemson Tigers @ California Golden Bears",
+      "kickoff": "2026-09-26T02:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 50.5,
+      "market_line": 50.5,
+      "price": -110,
+      "confidence": 4.4,
+      "sigma": -0.61,
+      "edge_points": -2.6,
+      "model_number": 47.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 50.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 50.5,
+          "confidence": 4.4,
+          "sigma": -0.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "48683523200ecdbeb09a2e6eb0d0a1f7|spread|full|Clemson": {
+      "event_id": "48683523200ecdbeb09a2e6eb0d0a1f7",
+      "matchup": "Clemson Tigers @ California Golden Bears",
+      "kickoff": "2026-09-26T02:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Clemson",
+      "line": -1.5,
+      "market_line": 1.5,
+      "price": 102,
+      "confidence": 4.5,
+      "sigma": 0.65,
+      "edge_points": 1.9,
+      "model_number": 3.4,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -1.5,
+      "first_confidence": 4.5,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -1.5,
+          "confidence": 4.5,
+          "sigma": 0.65
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 39,
+      "peak_rank": 39
+    },
+    "10078e86207d952986707c1ad7dc9331|spread|full|South Florida": {
+      "event_id": "10078e86207d952986707c1ad7dc9331",
+      "matchup": "South Florida Bulls @ Bowling Green Falcons",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "South Florida",
+      "line": -17.5,
+      "market_line": 17.5,
+      "price": -110,
+      "confidence": 4.8,
+      "sigma": 0.89,
+      "edge_points": 2.6,
+      "model_number": 20.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -17.5,
+      "first_confidence": 4.8,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -17.5,
+          "confidence": 4.8,
+          "sigma": 0.89
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 29,
+      "peak_rank": 29
+    },
+    "10078e86207d952986707c1ad7dc9331|total|full|Over": {
+      "event_id": "10078e86207d952986707c1ad7dc9331",
+      "matchup": "South Florida Bulls @ Bowling Green Falcons",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 49.5,
+      "market_line": 49.5,
+      "price": -110,
+      "confidence": 4.4,
+      "sigma": 0.61,
+      "edge_points": 2.6,
+      "model_number": 52.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 49.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 49.5,
+          "confidence": 4.4,
+          "sigma": 0.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "e497e36c59bded468da11878568e7c80|total|full|Under": {
+      "event_id": "e497e36c59bded468da11878568e7c80",
+      "matchup": "Minnesota Golden Gophers @ Washington Huskies",
+      "kickoff": "2026-09-27T03:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 45.5,
+      "market_line": 45.5,
+      "price": -110,
+      "confidence": 4.4,
+      "sigma": -0.61,
+      "edge_points": -2.6,
+      "model_number": 42.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 45.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 45.5,
+          "confidence": 4.4,
+          "sigma": -0.61
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 40,
+      "peak_rank": 40
+    },
+    "fc7c77e060e8ba29a61de994be1497c0|total|full|Under": {
+      "event_id": "fc7c77e060e8ba29a61de994be1497c0",
+      "matchup": "Hawaii Rainbow Warriors @ Wyoming Cowboys",
+      "kickoff": "2026-09-26T19:00:00Z",
       "market": "total",
       "period": "full",
       "side": "Under",
       "line": 45.5,
       "market_line": 45.5,
       "price": -115,
-      "confidence": 4.1,
-      "sigma": -0.39,
-      "edge_points": -2.1,
-      "model_number": 43.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
+      "confidence": 4.4,
+      "sigma": -0.58,
+      "edge_points": -2.5,
+      "model_number": 43.0,
+      "first_seen": "2026-09-21T21:22:43+00:00",
       "first_line": 45.5,
-      "first_confidence": 4.1,
+      "first_confidence": 4.4,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
+          "at": "2026-09-21T21:22:43+00:00",
           "line": 45.5,
-          "confidence": 4.1,
-          "sigma": -0.39
+          "confidence": 4.4,
+          "sigma": -0.58
         }
       ],
-      "last_seen": "2026-09-09T22:10:15+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "25c198f097870d531920ba524262737d|total|full|Under": {
-      "event_id": "25c198f097870d531920ba524262737d",
-      "matchup": "Mississippi State Bulldogs @ Minnesota Golden Gophers",
-      "kickoff": "2026-09-12T19:35:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 54.5,
-      "market_line": 54.5,
-      "price": -105,
-      "confidence": 3.9,
-      "sigma": -0.25,
-      "edge_points": -2.0,
-      "model_number": 52.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 55.5,
-      "first_confidence": 4.7,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": -0.79
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": -0.8
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 55.5,
-          "confidence": 4.7,
-          "sigma": -0.8
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 54.5,
-          "confidence": 4.3,
-          "sigma": -0.53
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 54.5,
-          "confidence": 4.3,
-          "sigma": -0.53
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 54.5,
-          "confidence": 3.9,
-          "sigma": -0.25
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 32
-    },
-    "25c198f097870d531920ba524262737d|spread|full|Minnesota": {
-      "event_id": "25c198f097870d531920ba524262737d",
-      "matchup": "Mississippi State Bulldogs @ Minnesota Golden Gophers",
-      "kickoff": "2026-09-12T19:35:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Minnesota",
-      "line": 1.5,
-      "market_line": 1.5,
-      "price": -122,
-      "confidence": 4.7,
-      "sigma": -0.78,
-      "edge_points": -5.2,
-      "model_number": -3.7,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 1.5,
-      "first_confidence": 4.7,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 1.5,
-          "confidence": 4.7,
-          "sigma": -0.83
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 1.5,
-          "confidence": 4.8,
-          "sigma": -0.84
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 1.5,
-          "confidence": 4.8,
-          "sigma": -0.84
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 1.5,
-          "confidence": 4.7,
-          "sigma": -0.8
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 1.5,
-          "confidence": 4.7,
-          "sigma": -0.8
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 1.5,
-          "confidence": 4.7,
-          "sigma": -0.78
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 20,
-      "peak_rank": 20
+      "rank": 41,
+      "peak_rank": 41
     },
-    "0633819fa9e60ac71609cd40e1596b1b|spread|full|Iowa": {
-      "event_id": "0633819fa9e60ac71609cd40e1596b1b",
-      "matchup": "Iowa State Cyclones @ Iowa Hawkeyes",
-      "kickoff": "2026-09-12T23:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Iowa",
-      "line": -14.5,
-      "market_line": -14.5,
-      "price": -102,
-      "confidence": 4.6,
-      "sigma": -0.72,
-      "edge_points": -4.8,
-      "model_number": -19.3,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -13.5,
-      "first_confidence": 5.0,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -13.5,
-          "confidence": 5.0,
-          "sigma": -0.97
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -13.5,
-          "confidence": 5.0,
-          "sigma": -0.98
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -13.5,
-          "confidence": 5.0,
-          "sigma": -0.99
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -13.5,
-          "confidence": 4.9,
-          "sigma": -0.95
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -13.5,
-          "confidence": 4.9,
-          "sigma": -0.95
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -14.5,
-          "confidence": 4.6,
-          "sigma": -0.72
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 25,
-      "peak_rank": 25
-    },
-    "912c15dcb8dd09eacabdcb80673d9d72|spread|full|Kansas": {
-      "event_id": "912c15dcb8dd09eacabdcb80673d9d72",
-      "matchup": "Missouri Tigers @ Kansas Jayhawks",
-      "kickoff": "2026-09-12T00:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Kansas",
-      "line": 4.5,
-      "market_line": 4.5,
-      "price": -110,
-      "confidence": 4.5,
-      "sigma": -0.67,
-      "edge_points": -2.7,
-      "model_number": 1.8,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 5.5,
-      "first_confidence": 4.9,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 5.5,
-          "confidence": 4.9,
-          "sigma": -0.95
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 4.5,
-          "confidence": 4.6,
-          "sigma": -0.72
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 4.5,
-          "confidence": 4.6,
-          "sigma": -0.72
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 4.5,
-          "confidence": 4.5,
-          "sigma": -0.67
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 4.5,
-          "confidence": 4.5,
-          "sigma": -0.67
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 27
-    },
-    "cdbde17fe5ba072172683681026c6312|total|full|Under": {
-      "event_id": "cdbde17fe5ba072172683681026c6312",
-      "matchup": "Old Dominion Monarchs @ Virginia Tech Hokies",
-      "kickoff": "2026-09-12T16:10:50Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 63.5,
-      "market_line": 63.5,
-      "price": 104,
-      "confidence": 6.7,
-      "sigma": -2.1,
-      "edge_points": -16.6,
-      "model_number": 46.9,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 49.5,
-      "first_confidence": 4.6,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 49.5,
-          "confidence": 4.6,
-          "sigma": -0.72
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 49.5,
-          "confidence": 4.6,
-          "sigma": -0.73
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 49.5,
-          "confidence": 4.6,
-          "sigma": -0.73
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 48.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 48.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 63.5,
-          "confidence": 6.7,
-          "sigma": -2.1
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 4,
-      "peak_rank": 4
-    },
-    "cad3845e3f9f9e746c4bbf45487eed02|spread|full|Texas A&M": {
-      "event_id": "cad3845e3f9f9e746c4bbf45487eed02",
-      "matchup": "Arizona State Sun Devils @ Texas A&M Aggies",
-      "kickoff": "2026-09-12T16:07:35Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Texas A&M",
-      "line": -17.5,
-      "market_line": -17.5,
-      "price": -220,
-      "confidence": 4.1,
-      "sigma": -0.39,
-      "edge_points": -2.6,
-      "model_number": -20.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -14.5,
-      "first_confidence": 4.9,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -14.5,
-          "confidence": 4.9,
-          "sigma": -0.92
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -14.5,
-          "confidence": 4.9,
-          "sigma": -0.94
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -14.5,
-          "confidence": 4.9,
-          "sigma": -0.94
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -14.5,
-          "confidence": 4.8,
-          "sigma": -0.9
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -14.5,
-          "confidence": 4.8,
-          "sigma": -0.9
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -17.5,
-          "confidence": 4.1,
-          "sigma": -0.39
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 27
-    },
-    "baa1d54d3e3162e5a550681144369eee|spread|full|Hawai'i": {
-      "event_id": "baa1d54d3e3162e5a550681144369eee",
-      "matchup": "New Mexico State Aggies @ Hawaii Rainbow Warriors",
-      "kickoff": "2026-09-13T04:00:00Z",
+    "fc7c77e060e8ba29a61de994be1497c0|spread|full|Hawai'i": {
+      "event_id": "fc7c77e060e8ba29a61de994be1497c0",
+      "matchup": "Hawaii Rainbow Warriors @ Wyoming Cowboys",
+      "kickoff": "2026-09-26T19:00:00Z",
       "market": "spread",
       "period": "full",
       "side": "Hawai'i",
-      "line": -7.5,
-      "market_line": -7.5,
-      "price": -102,
-      "confidence": 4.7,
-      "sigma": -0.83,
-      "edge_points": -5.6,
-      "model_number": -13.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -7.5,
-      "first_confidence": 4.9,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -7.5,
-          "confidence": 4.9,
-          "sigma": -0.92
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -7.5,
-          "confidence": 4.9,
-          "sigma": -0.94
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -7.5,
-          "confidence": 4.9,
-          "sigma": -0.94
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -7.5,
-          "confidence": 4.8,
-          "sigma": -0.9
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -7.5,
-          "confidence": 4.8,
-          "sigma": -0.9
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -7.5,
-          "confidence": 4.7,
-          "sigma": -0.83
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 21,
-      "peak_rank": 21
-    },
-    "baa1d54d3e3162e5a550681144369eee|total|full|Over": {
-      "event_id": "baa1d54d3e3162e5a550681144369eee",
-      "matchup": "New Mexico State Aggies @ Hawaii Rainbow Warriors",
-      "kickoff": "2026-09-13T04:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 49.5,
-      "market_line": 49.5,
-      "price": -115,
+      "line": -3.5,
+      "market_line": 3.5,
+      "price": -105,
       "confidence": 4.3,
-      "sigma": 0.52,
-      "edge_points": 4.1,
-      "model_number": 53.6,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 49.5,
+      "sigma": 0.55,
+      "edge_points": 1.6,
+      "model_number": 5.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -3.5,
       "first_confidence": 4.3,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 49.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -3.5,
           "confidence": 4.3,
-          "sigma": 0.52
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 49.5,
-          "confidence": 4.3,
-          "sigma": 0.52
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 49.5,
-          "confidence": 4.3,
-          "sigma": 0.52
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 49.5,
-          "confidence": 4.4,
-          "sigma": 0.63
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 49.5,
-          "confidence": 4.4,
-          "sigma": 0.63
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 49.5,
-          "confidence": 4.3,
-          "sigma": 0.52
+          "sigma": 0.55
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "6e781bfdb712f185fb1be983bc10af15|total|full|Over": {
-      "event_id": "6e781bfdb712f185fb1be983bc10af15",
-      "matchup": "Arizona Wildcats @ BYU Cougars",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 48.5,
-      "market_line": 48.5,
-      "price": -106,
-      "confidence": 4.2,
-      "sigma": 0.47,
-      "edge_points": 3.7,
-      "model_number": 52.2,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 47.5,
-      "first_confidence": 4.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 47.5,
-          "confidence": 4.4,
-          "sigma": 0.63
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 47.5,
-          "confidence": 4.5,
-          "sigma": 0.64
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 47.5,
-          "confidence": 4.5,
-          "sigma": 0.64
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 48.5,
-          "confidence": 4.3,
-          "sigma": 0.55
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 48.5,
-          "confidence": 4.3,
-          "sigma": 0.55
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 48.5,
-          "confidence": 4.2,
-          "sigma": 0.47
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 34
-    },
-    "7a78c246bb38d32c3238724e57051b15|spread|full|Air Force": {
-      "event_id": "7a78c246bb38d32c3238724e57051b15",
-      "matchup": "North Dakota State Bison @ Air Force Falcons",
-      "kickoff": "2026-09-13T02:00:00Z",
+    "90cacdc25f25e1f13b13e031a7fee9b7|spread|full|Baylor": {
+      "event_id": "90cacdc25f25e1f13b13e031a7fee9b7",
+      "matchup": "Colorado Buffaloes @ Baylor Bears",
+      "kickoff": "2026-09-26T16:00:00Z",
       "market": "spread",
       "period": "full",
-      "side": "Air Force",
-      "line": 2.5,
-      "market_line": 2.5,
-      "price": -120,
-      "confidence": 4.6,
-      "sigma": -0.75,
-      "edge_points": -5.0,
-      "model_number": -2.5,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 2.5,
+      "side": "Baylor",
+      "line": -9.5,
+      "market_line": -9.5,
+      "price": -118,
+      "confidence": 4.7,
+      "sigma": -0.82,
+      "edge_points": -2.4,
+      "model_number": -11.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": -9.5,
       "first_confidence": 4.7,
       "history": [
         {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 2.5,
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": -9.5,
           "confidence": 4.7,
-          "sigma": -0.78
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 2.5,
-          "confidence": 4.7,
-          "sigma": -0.79
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 2.5,
-          "confidence": 4.7,
-          "sigma": -0.79
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 2.5,
-          "confidence": 4.6,
-          "sigma": -0.75
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 2.5,
-          "confidence": 4.6,
-          "sigma": -0.75
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 2.5,
-          "confidence": 4.6,
-          "sigma": -0.75
+          "sigma": -0.82
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 26,
-      "peak_rank": 26
+      "rank": 33,
+      "peak_rank": 33
     },
-    "b38f4f63351c15767e64a76a73589574|total|full|Under": {
-      "event_id": "b38f4f63351c15767e64a76a73589574",
-      "matchup": "Oklahoma Sooners @ Michigan Wolverines",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 43.5,
-      "market_line": 43.5,
-      "price": -110,
-      "confidence": 4.2,
-      "sigma": -0.46,
-      "edge_points": -2.4,
-      "model_number": 41.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 43.5,
-      "first_confidence": 4.3,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 43.5,
-          "confidence": 4.3,
-          "sigma": -0.54
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 43.5,
-          "confidence": 4.3,
-          "sigma": -0.54
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 43.5,
-          "confidence": 4.3,
-          "sigma": -0.54
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 43.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 43.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 36
-    },
-    "6dbd3546b178b91878131862fd719e1e|total|full|Under": {
-      "event_id": "6dbd3546b178b91878131862fd719e1e",
-      "matchup": "Appalachian State Mountaineers @ East Carolina Pirates",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 56.5,
-      "market_line": 56.5,
-      "price": -114,
-      "confidence": 4.1,
-      "sigma": -0.4,
-      "edge_points": -2.1,
-      "model_number": 54.4,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 56.5,
-      "first_confidence": 4.2,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 56.5,
-          "confidence": 4.2,
-          "sigma": -0.48
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 56.5,
-          "confidence": 4.2,
-          "sigma": -0.49
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 56.5,
-          "confidence": 4.2,
-          "sigma": -0.49
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 56.5,
-          "confidence": 4.1,
-          "sigma": -0.4
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 56.5,
-          "confidence": 4.1,
-          "sigma": -0.4
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 37
-    },
-    "6dbd3546b178b91878131862fd719e1e|spread|full|App State": {
-      "event_id": "6dbd3546b178b91878131862fd719e1e",
-      "matchup": "Appalachian State Mountaineers @ East Carolina Pirates",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "App State",
-      "line": 6.5,
-      "market_line": -6.5,
-      "price": -110,
-      "confidence": 4.1,
-      "sigma": 0.4,
-      "edge_points": 1.6,
-      "model_number": -4.9,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": 7.5,
-      "first_confidence": 4.4,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": 7.5,
-          "confidence": 4.4,
-          "sigma": 0.58
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 6.5,
-          "confidence": 4.1,
-          "sigma": 0.4
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 6.5,
-          "confidence": 4.1,
-          "sigma": 0.4
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null,
-      "peak_rank": 36
-    },
-    "db05b8a09b0efd8546a13a2cb5e457fc|spread|full|Michigan State": {
-      "event_id": "db05b8a09b0efd8546a13a2cb5e457fc",
-      "matchup": "Eastern Michigan Eagles @ Michigan State Spartans",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Michigan State",
-      "line": -17.5,
-      "market_line": -17.5,
-      "price": -106,
-      "confidence": 4.3,
-      "sigma": -0.54,
-      "edge_points": -3.6,
-      "model_number": -21.1,
-      "first_seen": "2026-09-09T22:10:15+00:00",
-      "first_line": -17.5,
-      "first_confidence": 4.2,
-      "history": [
-        {
-          "at": "2026-09-09T22:10:15+00:00",
-          "line": -17.5,
-          "confidence": 4.2,
-          "sigma": -0.44
-        },
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -17.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -17.5,
-          "confidence": 4.2,
-          "sigma": -0.46
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": -17.5,
-          "confidence": 4.1,
-          "sigma": -0.4
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": -17.5,
-          "confidence": 4.1,
-          "sigma": -0.4
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -17.5,
-          "confidence": 4.3,
-          "sigma": -0.54
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 32,
-      "peak_rank": 32
-    },
-    "2cb6f8436ba0f1fbcdcd7871a03466d5|spread|full|Kentucky": {
-      "event_id": "2cb6f8436ba0f1fbcdcd7871a03466d5",
-      "matchup": "Alabama Crimson Tide @ Kentucky Wildcats",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Kentucky",
-      "line": 9.5,
-      "market_line": 9.5,
-      "price": -115,
-      "confidence": 4.0,
-      "sigma": -0.33,
-      "edge_points": -2.2,
-      "model_number": 7.3,
-      "first_seen": "2026-09-10T18:43:37+00:00",
-      "first_line": 10.5,
-      "first_confidence": 4.0,
-      "history": [
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 10.5,
-          "confidence": 4.0,
-          "sigma": -0.36
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 10.5,
-          "confidence": 4.0,
-          "sigma": -0.36
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 9.5,
-          "confidence": 4.0,
-          "sigma": -0.33
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "2186fba5726dbd7fee2ce72477bdaa2b|spread|full|Utah State": {
-      "event_id": "2186fba5726dbd7fee2ce72477bdaa2b",
-      "matchup": "Utah State Aggies @ Washington Huskies",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Utah State",
-      "line": 27.5,
-      "market_line": -27.5,
-      "price": -114,
-      "confidence": 4.3,
-      "sigma": 0.55,
-      "edge_points": 2.2,
-      "model_number": -25.3,
-      "first_seen": "2026-09-10T18:43:37+00:00",
-      "first_line": 27.5,
-      "first_confidence": 4.2,
-      "history": [
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 27.5,
-          "confidence": 4.2,
-          "sigma": 0.46
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": 27.5,
-          "confidence": 4.2,
-          "sigma": 0.46
-        },
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 27.5,
-          "confidence": 4.3,
-          "sigma": 0.55
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 27.5,
-          "confidence": 4.3,
-          "sigma": 0.55
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "6e781bfdb712f185fb1be983bc10af15|spread|full|BYU": {
-      "event_id": "6e781bfdb712f185fb1be983bc10af15",
-      "matchup": "Arizona Wildcats @ BYU Cougars",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "BYU",
-      "line": -6.5,
-      "market_line": -6.5,
-      "price": -122,
-      "confidence": 4.4,
-      "sigma": -0.63,
-      "edge_points": -4.2,
-      "model_number": -10.7,
-      "first_seen": "2026-09-10T18:43:37+00:00",
-      "first_line": -7.5,
-      "first_confidence": 4.0,
-      "history": [
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": -7.5,
-          "confidence": 4.0,
-          "sigma": -0.36
-        },
-        {
-          "at": "2026-09-10T20:12:49+00:00",
-          "line": -7.5,
-          "confidence": 4.0,
-          "sigma": -0.36
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -6.5,
-          "confidence": 4.4,
-          "sigma": -0.63
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 30,
-      "peak_rank": 30
-    },
-    "b38f4f63351c15767e64a76a73589574|spread|full|Michigan": {
-      "event_id": "b38f4f63351c15767e64a76a73589574",
-      "matchup": "Oklahoma Sooners @ Michigan Wolverines",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Michigan",
-      "line": 5.5,
-      "market_line": 5.5,
-      "price": -110,
-      "confidence": 4.0,
-      "sigma": -0.36,
-      "edge_points": -1.5,
-      "model_number": 4.0,
-      "first_seen": "2026-09-10T18:43:37+00:00",
-      "first_line": 5.5,
-      "first_confidence": 4.0,
-      "history": [
-        {
-          "at": "2026-09-10T18:43:37+00:00",
-          "line": 5.5,
-          "confidence": 4.0,
-          "sigma": -0.36
-        }
-      ],
-      "last_seen": "2026-09-10T18:43:37+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "c46b118e570bf1fa1b2724f1fd7e4b24|spread|full|Memphis": {
-      "event_id": "c46b118e570bf1fa1b2724f1fd7e4b24",
-      "matchup": "Memphis Tigers @ Boise State Broncos",
-      "kickoff": "2026-09-12T22:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Memphis",
-      "line": 9.5,
-      "market_line": -9.5,
-      "price": -110,
-      "confidence": 4.3,
-      "sigma": 0.52,
-      "edge_points": 2.1,
-      "model_number": -7.4,
-      "first_seen": "2026-09-11T18:47:07+00:00",
-      "first_line": 9.5,
-      "first_confidence": 4.3,
-      "history": [
-        {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 9.5,
-          "confidence": 4.3,
-          "sigma": 0.52
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 9.5,
-          "confidence": 4.3,
-          "sigma": 0.52
-        }
-      ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": true,
-      "rank": null
-    },
-    "7a78c246bb38d32c3238724e57051b15|total|full|Over": {
-      "event_id": "7a78c246bb38d32c3238724e57051b15",
-      "matchup": "North Dakota State Bison @ Air Force Falcons",
-      "kickoff": "2026-09-13T02:00:00Z",
+    "3281b4e05dfe8a0a41afe9868a9094fa|total|full|Over": {
+      "event_id": "3281b4e05dfe8a0a41afe9868a9094fa",
+      "matchup": "Southern Mississippi Golden Eagles @ Tulane Green Wave",
+      "kickoff": "2026-09-26T23:00:00Z",
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 47.5,
-      "market_line": 47.5,
-      "price": -110,
-      "confidence": 4.0,
-      "sigma": 0.3,
+      "line": 51.5,
+      "market_line": 51.5,
+      "price": -105,
+      "confidence": 4.3,
+      "sigma": 0.56,
       "edge_points": 2.4,
-      "model_number": 49.9,
-      "first_seen": "2026-09-11T18:47:07+00:00",
-      "first_line": 47.5,
-      "first_confidence": 4.0,
+      "model_number": 53.9,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 51.5,
+      "first_confidence": 4.3,
       "history": [
         {
-          "at": "2026-09-11T18:47:07+00:00",
-          "line": 47.5,
-          "confidence": 4.0,
-          "sigma": 0.3
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 47.5,
-          "confidence": 4.0,
-          "sigma": 0.3
-        },
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 47.5,
-          "confidence": 4.0,
-          "sigma": 0.3
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 51.5,
+          "confidence": 4.3,
+          "sigma": 0.56
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
     },
-    "43ee6255542faa05e9b9853cb1c6289e|total|full|Over": {
-      "event_id": "43ee6255542faa05e9b9853cb1c6289e",
-      "matchup": "Western Kentucky Hilltoppers @ Georgia Bulldogs",
-      "kickoff": "2026-09-12T16:45:00Z",
+    "3281b4e05dfe8a0a41afe9868a9094fa|spread|full|Southern Miss": {
+      "event_id": "3281b4e05dfe8a0a41afe9868a9094fa",
+      "matchup": "Southern Mississippi Golden Eagles @ Tulane Green Wave",
+      "kickoff": "2026-09-26T23:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Southern Miss",
+      "line": 18.5,
+      "market_line": -18.5,
+      "price": -108,
+      "confidence": 4.4,
+      "sigma": 0.62,
+      "edge_points": 1.8,
+      "model_number": -16.7,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 18.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 18.5,
+          "confidence": 4.4,
+          "sigma": 0.62
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 42,
+      "peak_rank": 42
+    },
+    "bf2cffa30d89eb2ce1b4d0f91561f66d|spread|full|Purdue": {
+      "event_id": "bf2cffa30d89eb2ce1b4d0f91561f66d",
+      "matchup": "Notre Dame Fighting Irish @ Purdue Boilermakers",
+      "kickoff": "2026-09-26T18:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Purdue",
+      "line": 27.5,
+      "market_line": 27.5,
+      "price": -104,
+      "confidence": 4.7,
+      "sigma": -0.79,
+      "edge_points": -2.3,
+      "model_number": 25.2,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 27.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 27.5,
+          "confidence": 4.7,
+          "sigma": -0.79
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 34,
+      "peak_rank": 34
+    },
+    "bf2cffa30d89eb2ce1b4d0f91561f66d|total|full|Over": {
+      "event_id": "bf2cffa30d89eb2ce1b4d0f91561f66d",
+      "matchup": "Notre Dame Fighting Irish @ Purdue Boilermakers",
+      "kickoff": "2026-09-26T18:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 57.5,
+      "market_line": 57.5,
+      "price": -118,
+      "confidence": 4.1,
+      "sigma": 0.37,
+      "edge_points": 1.6,
+      "model_number": 59.1,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 57.5,
+      "first_confidence": 4.1,
+      "history": [
+        {
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 57.5,
+          "confidence": 4.1,
+          "sigma": 0.37
+        }
+      ],
+      "last_seen": "2026-09-21T21:22:43+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "d4cee1a13bc1d87828ec7809d56b9496|total|full|Over": {
+      "event_id": "d4cee1a13bc1d87828ec7809d56b9496",
+      "matchup": "Appalachian State Mountaineers @ NC State Wolfpack",
+      "kickoff": "2026-09-26T23:30:00Z",
       "market": "total",
       "period": "full",
       "side": "Over",
       "line": 55.5,
       "market_line": 55.5,
-      "price": -112,
-      "confidence": 4.0,
-      "sigma": 0.32,
-      "edge_points": 1.7,
-      "model_number": 57.2,
-      "first_seen": "2026-09-11T18:47:07+00:00",
+      "price": -110,
+      "confidence": 4.3,
+      "sigma": 0.54,
+      "edge_points": 2.3,
+      "model_number": 57.8,
+      "first_seen": "2026-09-21T21:22:43+00:00",
       "first_line": 55.5,
-      "first_confidence": 4.0,
+      "first_confidence": 4.3,
       "history": [
         {
-          "at": "2026-09-11T18:47:07+00:00",
+          "at": "2026-09-21T21:22:43+00:00",
           "line": 55.5,
-          "confidence": 4.0,
-          "sigma": 0.32
-        },
-        {
-          "at": "2026-09-11T20:11:59+00:00",
-          "line": 55.5,
-          "confidence": 4.0,
-          "sigma": 0.32
+          "confidence": 4.3,
+          "sigma": 0.54
         }
       ],
-      "last_seen": "2026-09-11T20:11:59+00:00",
-      "on_board": false,
-      "second_opinion": false,
-      "rank": null,
-      "peak_rank": 39
-    },
-    "43ee6255542faa05e9b9853cb1c6289e|total|full|Under": {
-      "event_id": "43ee6255542faa05e9b9853cb1c6289e",
-      "matchup": "Western Kentucky Hilltoppers @ Georgia Bulldogs",
-      "kickoff": "2026-09-12T16:47:21Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 83.5,
-      "market_line": 83.5,
-      "price": -160,
-      "confidence": 7.5,
-      "sigma": -3.23,
-      "edge_points": -25.5,
-      "model_number": 58.0,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 83.5,
-      "first_confidence": 7.5,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 83.5,
-          "confidence": 7.5,
-          "sigma": -3.23
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 1,
-      "peak_rank": 1
+      "rank": 43,
+      "peak_rank": 43
     },
-    "43ee6255542faa05e9b9853cb1c6289e|spread|full|Western Kentucky": {
-      "event_id": "43ee6255542faa05e9b9853cb1c6289e",
-      "matchup": "Western Kentucky Hilltoppers @ Georgia Bulldogs",
-      "kickoff": "2026-09-12T16:47:21Z",
+    "b77eb4a9bc3086105491e736c1458112|spread|full|UConn": {
+      "event_id": "b77eb4a9bc3086105491e736c1458112",
+      "matchup": "UConn Huskies @ Miami (OH) RedHawks",
+      "kickoff": "2026-09-26T19:30:00Z",
       "market": "spread",
       "period": "full",
-      "side": "Western Kentucky",
-      "line": 67.5,
-      "market_line": -67.5,
-      "price": -118,
-      "confidence": 7.5,
-      "sigma": 3.56,
-      "edge_points": 23.9,
-      "model_number": -43.6,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 67.5,
-      "first_confidence": 7.5,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 67.5,
-          "confidence": 7.5,
-          "sigma": 3.56
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "cdbde17fe5ba072172683681026c6312|spread|full|Old Dominion": {
-      "event_id": "cdbde17fe5ba072172683681026c6312",
-      "matchup": "Old Dominion Monarchs @ Virginia Tech Hokies",
-      "kickoff": "2026-09-12T16:10:50Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Old Dominion",
-      "line": 31.5,
-      "market_line": -31.5,
-      "price": -260,
-      "confidence": 5.7,
-      "sigma": 1.48,
-      "edge_points": 9.9,
-      "model_number": -21.6,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 31.5,
-      "first_confidence": 5.7,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 31.5,
-          "confidence": 5.7,
-          "sigma": 1.48
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "d652c7bc0594f13ef0a2a04e31ef5666|spread|full|Oregon": {
-      "event_id": "d652c7bc0594f13ef0a2a04e31ef5666",
-      "matchup": "Oregon Ducks @ Oklahoma State Cowboys",
-      "kickoff": "2026-09-12T17:30:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Oregon",
-      "line": -1.5,
-      "market_line": 1.5,
-      "price": -106,
-      "confidence": 7.1,
-      "sigma": 2.43,
-      "edge_points": 16.3,
-      "model_number": 17.8,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": -1.5,
-      "first_confidence": 7.1,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -1.5,
-          "confidence": 7.1,
-          "sigma": 2.43
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 2,
-      "peak_rank": 2
-    },
-    "6dbd3546b178b91878131862fd719e1e|spread|full|East Carolina": {
-      "event_id": "6dbd3546b178b91878131862fd719e1e",
-      "matchup": "Appalachian State Mountaineers @ East Carolina Pirates",
-      "kickoff": "2026-09-12T16:00:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "East Carolina",
-      "line": 8.5,
-      "market_line": 8.5,
-      "price": -106,
-      "confidence": 6.9,
-      "sigma": -2.3,
-      "edge_points": -15.4,
-      "model_number": -6.9,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 8.5,
-      "first_confidence": 6.9,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 8.5,
-          "confidence": 6.9,
-          "sigma": -2.3
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 3,
-      "peak_rank": 3
-    },
-    "b38f4f63351c15767e64a76a73589574|total|full|Over": {
-      "event_id": "b38f4f63351c15767e64a76a73589574",
-      "matchup": "Oklahoma Sooners @ Michigan Wolverines",
-      "kickoff": "2026-09-12T16:14:37Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 27.5,
-      "market_line": 27.5,
-      "price": -102,
-      "confidence": 6.2,
-      "sigma": 1.82,
-      "edge_points": 14.4,
-      "model_number": 41.9,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 27.5,
-      "first_confidence": 6.2,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 27.5,
-          "confidence": 6.2,
-          "sigma": 1.82
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 5,
-      "peak_rank": 5
-    },
-    "cad3845e3f9f9e746c4bbf45487eed02|total|full|Under": {
-      "event_id": "cad3845e3f9f9e746c4bbf45487eed02",
-      "matchup": "Arizona State Sun Devils @ Texas A&M Aggies",
-      "kickoff": "2026-09-12T16:07:35Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 64.5,
-      "market_line": 64.5,
-      "price": 122,
-      "confidence": 5.8,
-      "sigma": -1.56,
-      "edge_points": -12.3,
-      "model_number": 52.2,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 64.5,
-      "first_confidence": 5.8,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 64.5,
-          "confidence": 5.8,
-          "sigma": -1.56
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": false,
-      "rank": 7,
-      "peak_rank": 7
-    },
-    "c12cd73c4077a0265acec205a572c2ec|spread|full|Utah": {
-      "event_id": "c12cd73c4077a0265acec205a572c2ec",
-      "matchup": "Arkansas Razorbacks @ Utah Utes",
-      "kickoff": "2026-09-13T02:15:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Utah",
-      "line": -12.5,
-      "market_line": -12.5,
+      "side": "UConn",
+      "line": 3.5,
+      "market_line": -3.5,
       "price": -110,
-      "confidence": 4.2,
-      "sigma": -0.45,
-      "edge_points": -3.0,
-      "model_number": -15.5,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": -12.5,
-      "first_confidence": 4.2,
+      "confidence": 4.6,
+      "sigma": 0.75,
+      "edge_points": 2.2,
+      "model_number": -1.3,
+      "first_seen": "2026-09-21T21:22:43+00:00",
+      "first_line": 3.5,
+      "first_confidence": 4.6,
       "history": [
         {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -12.5,
-          "confidence": 4.2,
-          "sigma": -0.45
+          "at": "2026-09-21T21:22:43+00:00",
+          "line": 3.5,
+          "confidence": 4.6,
+          "sigma": 0.75
         }
       ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "3b3054849b678fcfa0b6a5a9994557bf|spread|full|Washington State": {
-      "event_id": "3b3054849b678fcfa0b6a5a9994557bf",
-      "matchup": "Washington State Cougars @ Kansas State Wildcats",
-      "kickoff": "2026-09-12T16:05:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Washington State",
-      "line": 27.5,
-      "market_line": -27.5,
-      "price": -148,
-      "confidence": 5.3,
-      "sigma": 1.22,
-      "edge_points": 8.2,
-      "model_number": -19.3,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 27.5,
-      "first_confidence": 5.3,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 27.5,
-          "confidence": 5.3,
-          "sigma": 1.22
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
+      "last_seen": "2026-09-21T21:22:43+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 13,
-      "peak_rank": 13
-    },
-    "3b3054849b678fcfa0b6a5a9994557bf|total|full|Under": {
-      "event_id": "3b3054849b678fcfa0b6a5a9994557bf",
-      "matchup": "Washington State Cougars @ Kansas State Wildcats",
-      "kickoff": "2026-09-12T16:05:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Under",
-      "line": 51.5,
-      "market_line": 51.5,
-      "price": -128,
-      "confidence": 3.9,
-      "sigma": -0.29,
-      "edge_points": -2.3,
-      "model_number": 49.2,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 51.5,
-      "first_confidence": 3.9,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 51.5,
-          "confidence": 3.9,
-          "sigma": -0.29
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "04d0c72553f17ebc22509fb1b5926600|spread|full|Vanderbilt": {
-      "event_id": "04d0c72553f17ebc22509fb1b5926600",
-      "matchup": "Delaware Blue Hens @ Vanderbilt Commodores",
-      "kickoff": "2026-09-12T20:15:00Z",
-      "market": "spread",
-      "period": "full",
-      "side": "Vanderbilt",
-      "line": -20.5,
-      "market_line": -20.5,
-      "price": -118,
-      "confidence": 4.0,
-      "sigma": -0.31,
-      "edge_points": -2.1,
-      "model_number": -22.6,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": -20.5,
-      "first_confidence": 4.0,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": -20.5,
-          "confidence": 4.0,
-          "sigma": -0.31
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
-    },
-    "db05b8a09b0efd8546a13a2cb5e457fc|total|full|Over": {
-      "event_id": "db05b8a09b0efd8546a13a2cb5e457fc",
-      "matchup": "Eastern Michigan Eagles @ Michigan State Spartans",
-      "kickoff": "2026-09-12T19:30:00Z",
-      "market": "total",
-      "period": "full",
-      "side": "Over",
-      "line": 49.5,
-      "market_line": 49.5,
-      "price": -110,
-      "confidence": 3.8,
-      "sigma": 0.19,
-      "edge_points": 1.5,
-      "model_number": 51.0,
-      "first_seen": "2026-09-12T19:01:59+00:00",
-      "first_line": 49.5,
-      "first_confidence": 3.8,
-      "history": [
-        {
-          "at": "2026-09-12T19:01:59+00:00",
-          "line": 49.5,
-          "confidence": 3.8,
-          "sigma": 0.19
-        }
-      ],
-      "last_seen": "2026-09-12T19:01:59+00:00",
-      "on_board": true,
-      "second_opinion": true,
-      "rank": null
+      "rank": 37,
+      "peak_rank": 37
     }
   },
   "card": [
-    "43ee6255542faa05e9b9853cb1c6289e|total|full|Under",
-    "d652c7bc0594f13ef0a2a04e31ef5666|spread|full|Oregon",
-    "6dbd3546b178b91878131862fd719e1e|spread|full|East Carolina",
-    "cdbde17fe5ba072172683681026c6312|total|full|Under",
-    "b38f4f63351c15767e64a76a73589574|total|full|Over",
-    "61700ad2942d0c633b9c6cd402964356|spread|full|UAB"
+    "d9a781a64fc2c4b45290db32b5ec3f20|total|full|Over",
+    "9c5cf55e5371dd6178da97dcaef2bff5|spread|full|Penn State",
+    "1f0c9cd1941cbfe5c5ca28fa42e387d8|total|full|Under",
+    "891673ae39457f51a701ca482c2f7280|total|full|Over",
+    "fe0fb2e29062d93898ebdd583329194d|spread|full|Jacksonville State",
+    "b1cdf3ac97be67ee00a53e437e4bfa78|spread|full|Georgia Southern"
   ],
   "watch": [
-    "cad3845e3f9f9e746c4bbf45487eed02|total|full|Under",
-    "c9c138c45cb4d0e8a39f962795671ffb|spread|full|Kennesaw State",
-    "0a6b6423d89be9817a0c8cd830e8cc0d|spread|full|Southern Miss",
-    "703674067da3f80611ece581818f3863|total|full|Over"
+    "fb1e2c999364a411be347389aec1d827|spread|full|Colorado State",
+    "c48f042c91328d4d0c6351fc82286879|spread|full|Maryland",
+    "c843a3f97a410eedafcfbad440774ad2|total|full|Under",
+    "dc2fd7526ea0bba9adc09a5627b637bf|spread|full|Sacramento State"
   ],
-  "dropped": [
-    "0a6b6423d89be9817a0c8cd830e8cc0d|spread|full|Southern Miss",
-    "f64dfff0ca497539e1d013801cca92af|total|full|Under",
-    "eee54863c6c50d585de1919f1fca51e5|total|full|Over",
-    "f5de73eb9ed5553f7de28a2730b2e700|spread|full|Navy",
-    "c12cd73c4077a0265acec205a572c2ec|total|full|Over",
-    "964916986927738c0d73842de1dd51bd|spread|full|Charlotte",
-    "a2b7711390532d0014249f295a6d02b8|spread|full|Buffalo",
-    "c9c138c45cb4d0e8a39f962795671ffb|spread|full|Kennesaw State"
-  ]
+  "dropped": []
 }
