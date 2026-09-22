@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-22T19:18:21+00:00",
+  "built_at": "2026-09-22T20:38:15+00:00",
   "season": 2026,
   "week": 4,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-22T19:18:19+00:00",
+  "board_fetched_at": "2026-09-22T20:38:14+00:00",
   "warning": null,
   "games_on_board": 71,
   "games_with_candidates": 55,
@@ -41,7 +41,7 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-22T19:18:20+00:00",
+    "measured_at": "2026-09-22T20:38:15+00:00",
     "season": 2026,
     "week": 4,
     "totals": {
@@ -52,9 +52,9 @@
     },
     "spreads": {
       "n": 58,
-      "bias": 1.417,
+      "bias": 1.434,
       "median": 1.65,
-      "sigma": 2.883
+      "sigma": 2.839
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -127,7 +127,7 @@
           "price": -120,
           "model_number": 1.8,
           "edge_points": -1.7,
-          "edge_sigma": -0.59,
+          "edge_sigma": -0.6,
           "floor_confidence": 4.4
         }
       ]
@@ -200,8 +200,8 @@
           "price": -122,
           "model_number": -4.9,
           "edge_points": 2.6,
-          "edge_sigma": 0.9,
-          "floor_confidence": 4.8
+          "edge_sigma": 0.92,
+          "floor_confidence": 4.9
         }
       ]
     },
@@ -334,81 +334,8 @@
           "price": -110,
           "model_number": 4.0,
           "edge_points": 1.5,
-          "edge_sigma": 0.52,
+          "edge_sigma": 0.53,
           "floor_confidence": 4.3
-        }
-      ]
-    },
-    {
-      "event_id": "9c5cf55e5371dd6178da97dcaef2bff5",
-      "kickoff": "2026-09-26T21:00:00Z",
-      "matchup": "Wisconsin Badgers @ Penn State Nittany Lions",
-      "home_team": "Penn State Nittany Lions",
-      "away_team": "Wisconsin Badgers",
-      "neutral_site": false,
-      "model": {
-        "home_team": "Penn State",
-        "away_team": "Wisconsin",
-        "projected_spread": -17.4,
-        "projected_total": 41.1,
-        "projected_h1_spread": -9.6,
-        "projected_h1_total": 19.3,
-        "hfa_applied": 2.2,
-        "coherence_gap": 2.6,
-        "inputs": {
-          "raw_spread": -16.0,
-          "raw_home_points": 26.4,
-          "raw_away_points": 13.0,
-          "home_rating": 18.6,
-          "away_rating": 4.78,
-          "home_points": 29.2,
-          "away_points": 11.9,
-          "home_components": {
-            "sp": 19.1,
-            "sp_off": 35.2,
-            "sp_def": 16.6,
-            "fpi": 18.196,
-            "elo": 1933
-          },
-          "away_components": {
-            "sp": 5.1,
-            "sp_off": 23.4,
-            "sp_def": 18.2,
-            "fpi": 4.822,
-            "elo": 1580
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 3,
-          "ratings_present_away": 3,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "Penn State",
-          "market_line": -9.5,
-          "bet_line": -9.5,
-          "price": -115,
-          "model_number": -17.4,
-          "edge_points": -7.9,
-          "edge_sigma": -2.74,
-          "floor_confidence": 7.5
-        },
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Under",
-          "market_line": 44.5,
-          "bet_line": 44.5,
-          "price": -110,
-          "model_number": 41.1,
-          "edge_points": -3.4,
-          "edge_sigma": -0.76,
-          "floor_confidence": 4.6
         }
       ]
     },
@@ -474,6 +401,79 @@
       ]
     },
     {
+      "event_id": "9c5cf55e5371dd6178da97dcaef2bff5",
+      "kickoff": "2026-09-26T21:00:00Z",
+      "matchup": "Wisconsin Badgers @ Penn State Nittany Lions",
+      "home_team": "Penn State Nittany Lions",
+      "away_team": "Wisconsin Badgers",
+      "neutral_site": false,
+      "model": {
+        "home_team": "Penn State",
+        "away_team": "Wisconsin",
+        "projected_spread": -17.4,
+        "projected_total": 41.1,
+        "projected_h1_spread": -9.6,
+        "projected_h1_total": 19.3,
+        "hfa_applied": 2.2,
+        "coherence_gap": 2.6,
+        "inputs": {
+          "raw_spread": -16.0,
+          "raw_home_points": 26.4,
+          "raw_away_points": 13.0,
+          "home_rating": 18.6,
+          "away_rating": 4.78,
+          "home_points": 29.2,
+          "away_points": 11.9,
+          "home_components": {
+            "sp": 19.1,
+            "sp_off": 35.2,
+            "sp_def": 16.6,
+            "fpi": 18.196,
+            "elo": 1933
+          },
+          "away_components": {
+            "sp": 5.1,
+            "sp_off": 23.4,
+            "sp_def": 18.2,
+            "fpi": 4.822,
+            "elo": 1580
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 3,
+          "ratings_present_away": 3,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "Penn State",
+          "market_line": -10.5,
+          "bet_line": -10.5,
+          "price": 100,
+          "model_number": -17.4,
+          "edge_points": -6.9,
+          "edge_sigma": -2.43,
+          "floor_confidence": 7.1
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Under",
+          "market_line": 44.5,
+          "bet_line": 44.5,
+          "price": -110,
+          "model_number": 41.1,
+          "edge_points": -3.4,
+          "edge_sigma": -0.76,
+          "floor_confidence": 4.6
+        }
+      ]
+    },
+    {
       "event_id": "fe0fb2e29062d93898ebdd583329194d",
       "kickoff": "2026-09-26T23:00:00Z",
       "matchup": "Middle Tennessee Blue Raiders @ Jacksonville State Gamecocks",
@@ -529,7 +529,7 @@
           "price": -104,
           "model_number": -14.4,
           "edge_points": -6.9,
-          "edge_sigma": -2.39,
+          "edge_sigma": -2.43,
           "floor_confidence": 7.1
         },
         {
@@ -675,7 +675,7 @@
           "price": -110,
           "model_number": 2.4,
           "edge_points": -3.1,
-          "edge_sigma": -1.08,
+          "edge_sigma": -1.09,
           "floor_confidence": 5.1
         }
       ]
@@ -797,7 +797,7 @@
           "price": -110,
           "model_number": 13.4,
           "edge_points": -5.1,
-          "edge_sigma": -1.77,
+          "edge_sigma": -1.8,
           "floor_confidence": 6.2
         }
       ]
@@ -858,8 +858,8 @@
           "price": -110,
           "model_number": -8.8,
           "edge_points": 4.7,
-          "edge_sigma": 1.63,
-          "floor_confidence": 5.9
+          "edge_sigma": 1.66,
+          "floor_confidence": 6.0
         }
       ]
     },
@@ -919,8 +919,8 @@
           "price": -110,
           "model_number": -0.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.56,
-          "floor_confidence": 5.8
+          "edge_sigma": -1.59,
+          "floor_confidence": 5.9
         },
         {
           "market": "total",
@@ -992,8 +992,8 @@
           "price": -115,
           "model_number": -18.0,
           "edge_points": -4.5,
-          "edge_sigma": -1.56,
-          "floor_confidence": 5.8
+          "edge_sigma": -1.59,
+          "floor_confidence": 5.9
         },
         {
           "market": "total",
@@ -1077,8 +1077,8 @@
           "price": -110,
           "model_number": 2.6,
           "edge_points": -3.9,
-          "edge_sigma": -1.35,
-          "floor_confidence": 5.5
+          "edge_sigma": -1.37,
+          "floor_confidence": 5.6
         }
       ]
     },
@@ -1150,7 +1150,7 @@
           "price": 102,
           "model_number": -0.7,
           "edge_points": -3.2,
-          "edge_sigma": -1.11,
+          "edge_sigma": -1.13,
           "floor_confidence": 5.2
         }
       ]
@@ -1211,8 +1211,8 @@
           "price": -115,
           "model_number": -23.2,
           "edge_points": 4.3,
-          "edge_sigma": 1.49,
-          "floor_confidence": 5.7
+          "edge_sigma": 1.51,
+          "floor_confidence": 5.8
         },
         {
           "market": "total",
@@ -1284,7 +1284,7 @@
           "price": -110,
           "model_number": -30.3,
           "edge_points": 4.2,
-          "edge_sigma": 1.46,
+          "edge_sigma": 1.48,
           "floor_confidence": 5.7
         },
         {
@@ -1357,7 +1357,7 @@
           "price": -115,
           "model_number": 9.5,
           "edge_points": 4.0,
-          "edge_sigma": 1.39,
+          "edge_sigma": 1.41,
           "floor_confidence": 5.6
         },
         {
@@ -1491,8 +1491,8 @@
           "price": -106,
           "model_number": -2.2,
           "edge_points": -3.7,
-          "edge_sigma": -1.28,
-          "floor_confidence": 5.4
+          "edge_sigma": -1.3,
+          "floor_confidence": 5.5
         }
       ]
     },
@@ -1552,7 +1552,7 @@
           "price": -110,
           "model_number": 7.1,
           "edge_points": 3.6,
-          "edge_sigma": 1.25,
+          "edge_sigma": 1.27,
           "floor_confidence": 5.4
         }
       ]
@@ -1625,8 +1625,8 @@
           "price": -110,
           "model_number": 20.1,
           "edge_points": 2.6,
-          "edge_sigma": 0.9,
-          "floor_confidence": 4.8
+          "edge_sigma": 0.92,
+          "floor_confidence": 4.9
         }
       ]
     },
@@ -1747,7 +1747,7 @@
           "price": -110,
           "model_number": 14.9,
           "edge_points": 3.4,
-          "edge_sigma": 1.18,
+          "edge_sigma": 1.2,
           "floor_confidence": 5.3
         }
       ]
@@ -1820,7 +1820,7 @@
           "price": -110,
           "model_number": -6.4,
           "edge_points": 3.1,
-          "edge_sigma": 1.08,
+          "edge_sigma": 1.09,
           "floor_confidence": 5.1
         }
       ]
@@ -1890,10 +1890,10 @@
           "side": "Nebraska",
           "market_line": 5.5,
           "bet_line": -5.5,
-          "price": -110,
+          "price": -114,
           "model_number": 7.3,
           "edge_points": 1.8,
-          "edge_sigma": 0.62,
+          "edge_sigma": 0.63,
           "floor_confidence": 4.4
         }
       ]
@@ -1954,7 +1954,7 @@
           "price": -112,
           "model_number": -5.2,
           "edge_points": 3.3,
-          "edge_sigma": 1.14,
+          "edge_sigma": 1.16,
           "floor_confidence": 5.2
         },
         {
@@ -2024,7 +2024,7 @@
           "side": "Under",
           "market_line": 59.5,
           "bet_line": 59.5,
-          "price": -118,
+          "price": -115,
           "model_number": 56.4,
           "edge_points": -3.1,
           "edge_sigma": -0.69,
@@ -2161,8 +2161,8 @@
           "price": -120,
           "model_number": 1.1,
           "edge_points": -2.4,
-          "edge_sigma": -0.83,
-          "floor_confidence": 4.7
+          "edge_sigma": -0.85,
+          "floor_confidence": 4.8
         }
       ]
     },
@@ -2222,7 +2222,7 @@
           "price": -122,
           "model_number": -0.6,
           "edge_points": 2.9,
-          "edge_sigma": 1.01,
+          "edge_sigma": 1.02,
           "floor_confidence": 5.0
         },
         {
@@ -2295,7 +2295,7 @@
           "price": -120,
           "model_number": 4.7,
           "edge_points": -2.8,
-          "edge_sigma": -0.97,
+          "edge_sigma": -0.99,
           "floor_confidence": 5.0
         },
         {
@@ -2368,7 +2368,7 @@
           "price": -110,
           "model_number": -2.7,
           "edge_points": 2.8,
-          "edge_sigma": 0.97,
+          "edge_sigma": 0.99,
           "floor_confidence": 5.0
         }
       ]
@@ -2441,7 +2441,7 @@
           "price": -102,
           "model_number": 3.4,
           "edge_points": 1.9,
-          "edge_sigma": 0.66,
+          "edge_sigma": 0.67,
           "floor_confidence": 4.5
         }
       ]
@@ -2563,8 +2563,8 @@
           "price": -118,
           "model_number": -11.9,
           "edge_points": -2.4,
-          "edge_sigma": -0.83,
-          "floor_confidence": 4.7
+          "edge_sigma": -0.85,
+          "floor_confidence": 4.8
         }
       ]
     },
@@ -2685,7 +2685,7 @@
           "price": -104,
           "model_number": 25.2,
           "edge_points": -2.3,
-          "edge_sigma": -0.8,
+          "edge_sigma": -0.81,
           "floor_confidence": 4.7
         }
       ]
@@ -2746,8 +2746,8 @@
           "price": -110,
           "model_number": -1.3,
           "edge_points": 2.2,
-          "edge_sigma": 0.76,
-          "floor_confidence": 4.6
+          "edge_sigma": 0.77,
+          "floor_confidence": 4.7
         },
         {
           "market": "total",
@@ -2941,7 +2941,7 @@
           "price": -108,
           "model_number": -16.7,
           "edge_points": 1.8,
-          "edge_sigma": 0.62,
+          "edge_sigma": 0.63,
           "floor_confidence": 4.4
         }
       ]
@@ -3002,7 +3002,7 @@
           "price": 100,
           "model_number": 5.1,
           "edge_points": 1.6,
-          "edge_sigma": 0.55,
+          "edge_sigma": 0.56,
           "floor_confidence": 4.3
         },
         {
