@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-23T19:15:48+00:00",
+  "built_at": "2026-09-23T20:49:32+00:00",
   "season": 2026,
   "week": 4,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-23T19:15:46+00:00",
+  "board_fetched_at": "2026-09-23T20:49:30+00:00",
   "warning": null,
   "games_on_board": 71,
   "games_with_candidates": 55,
@@ -41,14 +41,14 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-23T19:15:48+00:00",
+    "measured_at": "2026-09-23T20:49:32+00:00",
     "season": 2026,
     "week": 4,
     "totals": {
       "n": 58,
       "bias": -1.71,
       "median": -2.75,
-      "sigma": 4.471
+      "sigma": 4.46
     },
     "spreads": {
       "n": 58,
@@ -261,7 +261,7 @@
           "price": -110,
           "model_number": 42.9,
           "edge_points": -10.6,
-          "edge_sigma": -2.37,
+          "edge_sigma": -2.38,
           "floor_confidence": 7.1
         }
       ]
@@ -322,8 +322,8 @@
           "price": -115,
           "model_number": 58.7,
           "edge_points": 8.2,
-          "edge_sigma": 1.83,
-          "floor_confidence": 6.2
+          "edge_sigma": 1.84,
+          "floor_confidence": 6.3
         },
         {
           "market": "spread",
@@ -331,7 +331,7 @@
           "side": "Liberty",
           "market_line": 2.5,
           "bet_line": -2.5,
-          "price": -110,
+          "price": -118,
           "model_number": 4.0,
           "edge_points": 1.5,
           "edge_sigma": 0.52,
@@ -395,7 +395,7 @@
           "price": -114,
           "model_number": 44.4,
           "edge_points": -8.1,
-          "edge_sigma": -1.81,
+          "edge_sigma": -1.82,
           "floor_confidence": 6.2
         }
       ]
@@ -602,7 +602,7 @@
           "price": -115,
           "model_number": 61.1,
           "edge_points": 5.6,
-          "edge_sigma": 1.25,
+          "edge_sigma": 1.26,
           "floor_confidence": 5.4
         },
         {
@@ -675,7 +675,7 @@
           "price": -110,
           "model_number": 47.9,
           "edge_points": -5.6,
-          "edge_sigma": -1.25,
+          "edge_sigma": -1.26,
           "floor_confidence": 5.4
         }
       ]
@@ -1065,7 +1065,7 @@
           "price": -110,
           "model_number": 59.9,
           "edge_points": 4.4,
-          "edge_sigma": 0.98,
+          "edge_sigma": 0.99,
           "floor_confidence": 5.0
         },
         {
@@ -1079,79 +1079,6 @@
           "edge_points": -3.9,
           "edge_sigma": -1.36,
           "floor_confidence": 5.5
-        }
-      ]
-    },
-    {
-      "event_id": "83516ad7ba3e8ef9f90498cfcaf10eb5",
-      "kickoff": "2026-09-26T23:30:00Z",
-      "matchup": "Oregon Ducks @ USC Trojans",
-      "home_team": "USC Trojans",
-      "away_team": "Oregon Ducks",
-      "neutral_site": false,
-      "model": {
-        "home_team": "USC",
-        "away_team": "Oregon",
-        "projected_spread": -0.7,
-        "projected_total": 65.9,
-        "projected_h1_spread": -0.4,
-        "projected_h1_total": 31.0,
-        "hfa_applied": 2.2,
-        "coherence_gap": 1.9,
-        "inputs": {
-          "raw_spread": 0.7,
-          "raw_home_points": 30.8,
-          "raw_away_points": 33.4,
-          "home_rating": 18.56,
-          "away_rating": 21.42,
-          "home_points": 33.3,
-          "away_points": 32.6,
-          "home_components": {
-            "sp": 21.6,
-            "sp_off": 42.3,
-            "sp_def": 20.7,
-            "fpi": 15.441,
-            "elo": 1817
-          },
-          "away_components": {
-            "sp": 24.4,
-            "sp_off": 39.7,
-            "sp_def": 15.5,
-            "fpi": 19.213,
-            "elo": 1838
-          }
-        },
-        "confidence_inputs": {
-          "ratings_present_home": 3,
-          "ratings_present_away": 3,
-          "calibrated": true
-        }
-      },
-      "incoherent": false,
-      "candidates": [
-        {
-          "market": "total",
-          "period": "full",
-          "side": "Over",
-          "market_line": 61.5,
-          "bet_line": 61.5,
-          "price": -115,
-          "model_number": 65.9,
-          "edge_points": 4.4,
-          "edge_sigma": 0.98,
-          "floor_confidence": 5.0
-        },
-        {
-          "market": "spread",
-          "period": "full",
-          "side": "USC",
-          "market_line": 3.5,
-          "bet_line": 3.5,
-          "price": -120,
-          "model_number": -0.7,
-          "edge_points": -4.2,
-          "edge_sigma": -1.46,
-          "floor_confidence": 5.7
         }
       ]
     },
@@ -1213,6 +1140,79 @@
           "edge_points": 4.3,
           "edge_sigma": 1.5,
           "floor_confidence": 5.8
+        }
+      ]
+    },
+    {
+      "event_id": "83516ad7ba3e8ef9f90498cfcaf10eb5",
+      "kickoff": "2026-09-26T23:30:00Z",
+      "matchup": "Oregon Ducks @ USC Trojans",
+      "home_team": "USC Trojans",
+      "away_team": "Oregon Ducks",
+      "neutral_site": false,
+      "model": {
+        "home_team": "USC",
+        "away_team": "Oregon",
+        "projected_spread": -0.7,
+        "projected_total": 65.9,
+        "projected_h1_spread": -0.4,
+        "projected_h1_total": 31.0,
+        "hfa_applied": 2.2,
+        "coherence_gap": 1.9,
+        "inputs": {
+          "raw_spread": 0.7,
+          "raw_home_points": 30.8,
+          "raw_away_points": 33.4,
+          "home_rating": 18.56,
+          "away_rating": 21.42,
+          "home_points": 33.3,
+          "away_points": 32.6,
+          "home_components": {
+            "sp": 21.6,
+            "sp_off": 42.3,
+            "sp_def": 20.7,
+            "fpi": 15.441,
+            "elo": 1817
+          },
+          "away_components": {
+            "sp": 24.4,
+            "sp_off": 39.7,
+            "sp_def": 15.5,
+            "fpi": 19.213,
+            "elo": 1838
+          }
+        },
+        "confidence_inputs": {
+          "ratings_present_home": 3,
+          "ratings_present_away": 3,
+          "calibrated": true
+        }
+      },
+      "incoherent": false,
+      "candidates": [
+        {
+          "market": "spread",
+          "period": "full",
+          "side": "USC",
+          "market_line": 3.5,
+          "bet_line": 3.5,
+          "price": -122,
+          "model_number": -0.7,
+          "edge_points": -4.2,
+          "edge_sigma": -1.46,
+          "floor_confidence": 5.7
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 62.5,
+          "bet_line": 62.5,
+          "price": -110,
+          "model_number": 65.9,
+          "edge_points": 3.4,
+          "edge_sigma": 0.76,
+          "floor_confidence": 4.6
         }
       ]
     },
@@ -1345,7 +1345,7 @@
           "price": -115,
           "model_number": 56.5,
           "edge_points": 4.0,
-          "edge_sigma": 0.89,
+          "edge_sigma": 0.9,
           "floor_confidence": 4.8
         }
       ]
@@ -1954,7 +1954,7 @@
           "price": -105,
           "model_number": 52.2,
           "edge_points": -2.3,
-          "edge_sigma": -0.51,
+          "edge_sigma": -0.52,
           "floor_confidence": 4.3
         }
       ]
@@ -2297,6 +2297,18 @@
           "edge_points": 2.8,
           "edge_sigma": 0.97,
           "floor_confidence": 5.0
+        },
+        {
+          "market": "total",
+          "period": "full",
+          "side": "Over",
+          "market_line": 38.5,
+          "bet_line": 38.5,
+          "price": -110,
+          "model_number": 40.0,
+          "edge_points": 1.5,
+          "edge_sigma": 0.34,
+          "floor_confidence": 4.0
         }
       ]
     },
@@ -2356,7 +2368,7 @@
           "price": -110,
           "model_number": 47.8,
           "edge_points": -2.7,
-          "edge_sigma": -0.6,
+          "edge_sigma": -0.61,
           "floor_confidence": 4.4
         },
         {
@@ -2429,7 +2441,7 @@
           "price": -105,
           "model_number": 42.8,
           "edge_points": -2.7,
-          "edge_sigma": -0.6,
+          "edge_sigma": -0.61,
           "floor_confidence": 4.4
         }
       ]
@@ -2551,7 +2563,7 @@
           "price": -115,
           "model_number": 53.2,
           "edge_points": -2.3,
-          "edge_sigma": -0.51,
+          "edge_sigma": -0.52,
           "floor_confidence": 4.3
         }
       ]
