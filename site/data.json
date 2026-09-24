@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-24T19:42:50+00:00",
+  "generated_at": "2026-09-24T20:55:45+00:00",
   "board": {
     "week": 4,
     "season": 2026,
-    "built_at": "2026-09-24T19:42:25+00:00",
+    "built_at": "2026-09-24T20:55:19+00:00",
     "rows": [
       {
         "market_spread": 3.5,
@@ -31,7 +31,7 @@
             "price": -105,
             "model_number": 60.6,
             "edge_points": 12.1,
-            "edge_sigma": 2.68,
+            "edge_sigma": 2.69,
             "floor_confidence": 7.5
           },
           {
@@ -51,7 +51,7 @@
       },
       {
         "market_spread": -9.5,
-        "market_total": 44.5,
+        "market_total": 43.5,
         "event_id": "9c5cf55e5371dd6178da97dcaef2bff5",
         "kickoff": "2026-09-26T21:00:00Z",
         "matchup": "Wisconsin Badgers @ Penn State Nittany Lions",
@@ -82,16 +82,21 @@
             "market": "total",
             "period": "full",
             "side": "Under",
-            "market_line": 44.5,
-            "bet_line": 44.5,
-            "price": -108,
+            "market_line": 43.5,
+            "bet_line": 43.5,
+            "price": -105,
             "model_number": 41.1,
-            "edge_points": -3.4,
-            "edge_sigma": -0.75,
-            "floor_confidence": 4.6
+            "edge_points": -2.4,
+            "edge_sigma": -0.53,
+            "floor_confidence": 4.3
           }
         ],
-        "movement": {}
+        "movement": {
+          "total": {
+            "from": 44.5,
+            "to": 43.5
+          }
+        }
       },
       {
         "market_spread": -7.5,
@@ -212,7 +217,7 @@
             "price": -110,
             "model_number": 42.9,
             "edge_points": -10.6,
-            "edge_sigma": -2.35,
+            "edge_sigma": -2.36,
             "floor_confidence": 7.0
           }
         ],
@@ -241,10 +246,10 @@
             "side": "Over",
             "market_line": 49.5,
             "bet_line": 49.5,
-            "price": -110,
+            "price": -115,
             "model_number": 58.7,
             "edge_points": 9.2,
-            "edge_sigma": 2.04,
+            "edge_sigma": 2.05,
             "floor_confidence": 6.6
           }
         ],
@@ -281,7 +286,7 @@
             "price": -110,
             "model_number": 13.3,
             "edge_points": -5.2,
-            "edge_sigma": -1.8,
+            "edge_sigma": -1.81,
             "floor_confidence": 6.2
           }
         ],
@@ -313,7 +318,7 @@
             "price": -110,
             "model_number": 44.4,
             "edge_points": -7.1,
-            "edge_sigma": -1.57,
+            "edge_sigma": -1.58,
             "floor_confidence": 5.9
           }
         ],
@@ -394,7 +399,7 @@
             "price": -110,
             "model_number": 40.2,
             "edge_points": -4.3,
-            "edge_sigma": -0.95,
+            "edge_sigma": -0.96,
             "floor_confidence": 4.9
           }
         ],
@@ -833,7 +838,7 @@
             "price": -110,
             "model_number": 7.0,
             "edge_points": 3.5,
-            "edge_sigma": 1.21,
+            "edge_sigma": 1.22,
             "floor_confidence": 5.3
           }
         ],
@@ -919,7 +924,7 @@
             "price": -106,
             "model_number": 65.9,
             "edge_points": 3.4,
-            "edge_sigma": 0.75,
+            "edge_sigma": 0.76,
             "floor_confidence": 4.6
           }
         ],
@@ -1227,7 +1232,7 @@
             "price": -105,
             "model_number": 52.0,
             "edge_points": 2.5,
-            "edge_sigma": 0.55,
+            "edge_sigma": 0.56,
             "floor_confidence": 4.3
           }
         ],
@@ -1337,7 +1342,7 @@
             "price": -110,
             "model_number": 46.1,
             "edge_points": -3.4,
-            "edge_sigma": -0.75,
+            "edge_sigma": -0.76,
             "floor_confidence": 4.6
           }
         ],
@@ -1772,7 +1777,7 @@
         "movement": {}
       }
     ],
-    "fetched_at": "2026-09-24T19:42:23+00:00",
+    "fetched_at": "2026-09-24T20:55:17+00:00",
     "age_hours": 0.0,
     "stale": false,
     "mismatched": false,
@@ -1831,8 +1836,8 @@
   },
   "running": {
     "caveat": "Numbers come off SP+ and FPI and Elo. SRS haven't said a word yet, so I'm working off 3 opinions instead of 4. Bet it accordingly.",
-    "updated_at": "2026-09-24T19:42:27+00:00",
-    "board_fetched_at": "2026-09-24T19:42:23+00:00",
+    "updated_at": "2026-09-24T20:55:20+00:00",
+    "board_fetched_at": "2026-09-24T20:55:17+00:00",
     "season": 2026,
     "week": 4,
     "card": [
@@ -1844,14 +1849,14 @@
         "line": 48.5,
         "price": -105,
         "confidence": 7.5,
-        "sigma": 2.68,
+        "sigma": 2.69,
         "edge_points": 12.1,
         "model_number": 60.6,
         "first_seen": "2026-09-21T21:22:43+00:00",
         "first_confidence": 7.5,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 1,
         "peak_rank": 1,
         "on_board": true,
@@ -1885,7 +1890,7 @@
         "first_confidence": 7.5,
         "moved_confidence": 0.0,
         "moved_line": null,
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 2,
         "peak_rank": 2,
         "on_board": true,
@@ -1922,7 +1927,7 @@
           "from": 51.5,
           "to": 50.5
         },
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 3,
         "peak_rank": 2,
         "on_board": true,
@@ -1956,7 +1961,7 @@
         "first_confidence": 7.0,
         "moved_confidence": 0.1,
         "moved_line": null,
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 4,
         "peak_rank": 4,
         "on_board": true,
@@ -1983,14 +1988,14 @@
         "line": 53.5,
         "price": -110,
         "confidence": 7.0,
-        "sigma": -2.35,
+        "sigma": -2.36,
         "edge_points": -10.6,
         "model_number": 42.9,
         "first_seen": "2026-09-21T21:22:43+00:00",
         "first_confidence": 7.2,
         "moved_confidence": -0.2,
         "moved_line": null,
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 5,
         "peak_rank": 3,
         "on_board": true,
@@ -2015,9 +2020,9 @@
         "market": "total",
         "period": "full",
         "line": 49.5,
-        "price": -110,
+        "price": -115,
         "confidence": 6.6,
-        "sigma": 2.04,
+        "sigma": 2.05,
         "edge_points": 9.2,
         "model_number": 58.7,
         "first_seen": "2026-09-21T21:22:43+00:00",
@@ -2027,7 +2032,7 @@
           "from": 52.5,
           "to": 49.5
         },
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 6,
         "peak_rank": 6,
         "on_board": true,
@@ -2056,14 +2061,14 @@
         "line": 18.5,
         "price": -110,
         "confidence": 6.2,
-        "sigma": -1.8,
+        "sigma": -1.81,
         "edge_points": -5.2,
         "model_number": 13.3,
         "first_seen": "2026-09-21T21:22:43+00:00",
         "first_confidence": 6.1,
         "moved_confidence": 0.1,
         "moved_line": null,
-        "days_tracked": 6,
+        "days_tracked": 7,
         "rank": 7,
         "peak_rank": 6,
         "on_board": true,
@@ -2088,14 +2093,14 @@
   "scale": {
     "cap": 7.5,
     "publish": 7.0,
-    "spread_gap": 2.882,
-    "total_gap": 4.509,
+    "spread_gap": 2.88,
+    "total_gap": 4.498,
     "sample": 58
   },
   "live": null,
   "lock_id": "e25426373a78",
-  "board_fetched_at": "2026-09-24T19:42:23+00:00",
-  "credits_remaining": 169,
+  "board_fetched_at": "2026-09-24T20:55:17+00:00",
+  "credits_remaining": 166,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,

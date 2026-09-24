@@ -1,9 +1,9 @@
 {
-  "built_at": "2026-09-24T19:42:25+00:00",
+  "built_at": "2026-09-24T20:55:19+00:00",
   "season": 2026,
   "week": 4,
   "hfa": 2.2,
-  "board_fetched_at": "2026-09-24T19:42:23+00:00",
+  "board_fetched_at": "2026-09-24T20:55:17+00:00",
   "warning": null,
   "games_on_board": 71,
   "games_with_candidates": 53,
@@ -41,20 +41,20 @@
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-09-24T19:42:24+00:00",
+    "measured_at": "2026-09-24T20:55:19+00:00",
     "season": 2026,
     "week": 4,
     "totals": {
       "n": 58,
-      "bias": -1.676,
+      "bias": -1.659,
       "median": -2.5,
-      "sigma": 4.509
+      "sigma": 4.498
     },
     "spreads": {
       "n": 58,
-      "bias": 1.469,
+      "bias": 1.486,
       "median": 1.9,
-      "sigma": 2.882
+      "sigma": 2.88
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
@@ -115,7 +115,7 @@
           "price": -105,
           "model_number": 60.6,
           "edge_points": 12.1,
-          "edge_sigma": 2.68,
+          "edge_sigma": 2.69,
           "floor_confidence": 7.5
         },
         {
@@ -261,7 +261,7 @@
           "price": -110,
           "model_number": 42.9,
           "edge_points": -10.6,
-          "edge_sigma": -2.35,
+          "edge_sigma": -2.36,
           "floor_confidence": 7.0
         }
       ]
@@ -319,10 +319,10 @@
           "side": "Over",
           "market_line": 49.5,
           "bet_line": 49.5,
-          "price": -110,
+          "price": -115,
           "model_number": 58.7,
           "edge_points": 9.2,
-          "edge_sigma": 2.04,
+          "edge_sigma": 2.05,
           "floor_confidence": 6.6
         }
       ]
@@ -390,13 +390,13 @@
           "market": "total",
           "period": "full",
           "side": "Under",
-          "market_line": 44.5,
-          "bet_line": 44.5,
-          "price": -108,
+          "market_line": 43.5,
+          "bet_line": 43.5,
+          "price": -105,
           "model_number": 41.1,
-          "edge_points": -3.4,
-          "edge_sigma": -0.75,
-          "floor_confidence": 4.6
+          "edge_points": -2.4,
+          "edge_sigma": -0.53,
+          "floor_confidence": 4.3
         }
       ]
     },
@@ -456,7 +456,7 @@
           "price": -110,
           "model_number": 44.4,
           "edge_points": -7.1,
-          "edge_sigma": -1.57,
+          "edge_sigma": -1.58,
           "floor_confidence": 5.9
         }
       ]
@@ -724,7 +724,7 @@
           "price": -110,
           "model_number": 13.3,
           "edge_points": -5.2,
-          "edge_sigma": -1.8,
+          "edge_sigma": -1.81,
           "floor_confidence": 6.2
         }
       ]
@@ -992,7 +992,7 @@
           "price": -110,
           "model_number": 40.2,
           "edge_points": -4.3,
-          "edge_sigma": -0.95,
+          "edge_sigma": -0.96,
           "floor_confidence": 4.9
         }
       ]
@@ -1528,7 +1528,7 @@
           "price": -110,
           "model_number": 7.0,
           "edge_points": 3.5,
-          "edge_sigma": 1.21,
+          "edge_sigma": 1.22,
           "floor_confidence": 5.3
         }
       ]
@@ -1589,7 +1589,7 @@
           "price": -110,
           "model_number": 46.1,
           "edge_points": -3.4,
-          "edge_sigma": -0.75,
+          "edge_sigma": -0.76,
           "floor_confidence": 4.6
         }
       ]
@@ -1650,7 +1650,7 @@
           "price": -106,
           "model_number": 65.9,
           "edge_points": 3.4,
-          "edge_sigma": 0.75,
+          "edge_sigma": 0.76,
           "floor_confidence": 4.6
         },
         {
@@ -2417,7 +2417,7 @@
           "price": -105,
           "model_number": 52.0,
           "edge_points": 2.5,
-          "edge_sigma": 0.55,
+          "edge_sigma": 0.56,
           "floor_confidence": 4.3
         }
       ]
