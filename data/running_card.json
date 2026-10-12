@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-12T11:22:34+00:00",
-  "board_fetched_at": "2026-10-12T11:22:31+00:00",
+  "updated_at": "2026-10-12T23:56:20+00:00",
+  "board_fetched_at": "2026-10-12T23:56:16+00:00",
   "season": 2026,
   "week": 7,
   "top_n": 6,
@@ -12,13 +12,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 53.5,
-      "market_line": 53.5,
+      "line": 52.5,
+      "market_line": 52.5,
       "price": -114,
-      "confidence": 6.9,
-      "sigma": -2.3,
-      "edge_points": -10.0,
-      "model_number": 43.5,
+      "confidence": 6.8,
+      "sigma": -2.19,
+      "edge_points": -9.2,
+      "model_number": 43.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 53.5,
       "first_confidence": 6.9,
@@ -28,13 +28,19 @@
           "line": 53.5,
           "confidence": 6.9,
           "sigma": -2.3
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 52.5,
+          "confidence": 6.8,
+          "sigma": -2.19
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 3,
-      "peak_rank": 3
+      "rank": 2,
+      "peak_rank": 2
     },
     "473d8828a17151640834e090d9eb46e4|spread|full|Oregon State": {
       "event_id": "473d8828a17151640834e090d9eb46e4",
@@ -48,8 +54,8 @@
       "price": -110,
       "confidence": 4.4,
       "sigma": -0.57,
-      "edge_points": -1.7,
-      "model_number": -20.2,
+      "edge_points": -1.8,
+      "model_number": -20.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -18.5,
       "first_confidence": 4.4,
@@ -59,9 +65,15 @@
           "line": -18.5,
           "confidence": 4.4,
           "sigma": -0.57
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -18.5,
+          "confidence": 4.4,
+          "sigma": -0.57
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -73,13 +85,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 55.5,
-      "market_line": 55.5,
-      "price": -115,
-      "confidence": 6.7,
-      "sigma": 2.14,
-      "edge_points": 9.3,
-      "model_number": 64.8,
+      "line": 56.5,
+      "market_line": 56.5,
+      "price": -110,
+      "confidence": 6.4,
+      "sigma": 1.92,
+      "edge_points": 8.1,
+      "model_number": 64.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 55.5,
       "first_confidence": 6.7,
@@ -89,12 +101,18 @@
           "line": 55.5,
           "confidence": 6.7,
           "sigma": 2.14
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 56.5,
+          "confidence": 6.4,
+          "sigma": 1.92
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 5,
+      "rank": 7,
       "peak_rank": 5
     },
     "a9a289b7b19e28b51572d20315e6bf42|spread|full|Louisiana Tech": {
@@ -104,13 +122,13 @@
       "market": "spread",
       "period": "full",
       "side": "Louisiana Tech",
-      "line": -13.5,
-      "market_line": 13.5,
-      "price": -122,
-      "confidence": 5.6,
-      "sigma": 1.41,
-      "edge_points": 4.2,
-      "model_number": 17.7,
+      "line": -14.5,
+      "market_line": 14.5,
+      "price": -110,
+      "confidence": 5.0,
+      "sigma": 0.98,
+      "edge_points": 3.1,
+      "model_number": 17.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -13.5,
       "first_confidence": 5.6,
@@ -120,9 +138,15 @@
           "line": -13.5,
           "confidence": 5.6,
           "sigma": 1.41
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -14.5,
+          "confidence": 5.0,
+          "sigma": 0.98
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -134,13 +158,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 68.5,
-      "market_line": 68.5,
-      "price": -110,
-      "confidence": 6.3,
-      "sigma": 1.89,
-      "edge_points": 8.2,
-      "model_number": 76.7,
+      "line": 70.5,
+      "market_line": 70.5,
+      "price": -115,
+      "confidence": 5.6,
+      "sigma": 1.43,
+      "edge_points": 6.0,
+      "model_number": 76.5,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 68.5,
       "first_confidence": 6.3,
@@ -150,12 +174,18 @@
           "line": 68.5,
           "confidence": 6.3,
           "sigma": 1.89
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 70.5,
+          "confidence": 5.6,
+          "sigma": 1.43
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 6,
+      "rank": 18,
       "peak_rank": 6
     },
     "f00195614a0c305207222ba2044a9c24|spread|full|Colorado State": {
@@ -167,11 +197,11 @@
       "side": "Colorado State",
       "line": 13.5,
       "market_line": -13.5,
-      "price": -108,
-      "confidence": 4.9,
-      "sigma": 0.94,
-      "edge_points": 2.8,
-      "model_number": -10.7,
+      "price": 100,
+      "confidence": 4.8,
+      "sigma": 0.85,
+      "edge_points": 2.7,
+      "model_number": -10.8,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 13.5,
       "first_confidence": 4.9,
@@ -181,9 +211,15 @@
           "line": 13.5,
           "confidence": 4.9,
           "sigma": 0.94
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 13.5,
+          "confidence": 4.8,
+          "sigma": 0.85
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -198,10 +234,10 @@
       "line": -6.5,
       "market_line": 6.5,
       "price": -102,
-      "confidence": 7.5,
-      "sigma": 2.69,
-      "edge_points": 8.0,
-      "model_number": 14.5,
+      "confidence": 7.2,
+      "sigma": 2.49,
+      "edge_points": 7.9,
+      "model_number": 14.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -6.5,
       "first_confidence": 7.5,
@@ -211,9 +247,15 @@
           "line": -6.5,
           "confidence": 7.5,
           "sigma": 2.69
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -6.5,
+          "confidence": 7.2,
+          "sigma": 2.49
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 1,
@@ -229,10 +271,10 @@
       "line": 43.5,
       "market_line": 43.5,
       "price": -108,
-      "confidence": 4.8,
-      "sigma": -0.9,
-      "edge_points": -3.9,
-      "model_number": 39.6,
+      "confidence": 5.0,
+      "sigma": -0.97,
+      "edge_points": -4.1,
+      "model_number": 39.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 43.5,
       "first_confidence": 4.8,
@@ -242,9 +284,15 @@
           "line": 43.5,
           "confidence": 4.8,
           "sigma": -0.9
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 43.5,
+          "confidence": 5.0,
+          "sigma": -0.97
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -259,10 +307,10 @@
       "line": 48.5,
       "market_line": 48.5,
       "price": -114,
-      "confidence": 6.3,
-      "sigma": -1.84,
-      "edge_points": -8.0,
-      "model_number": 40.5,
+      "confidence": 6.4,
+      "sigma": -1.95,
+      "edge_points": -8.2,
+      "model_number": 40.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 6.3,
@@ -272,12 +320,18 @@
           "line": 48.5,
           "confidence": 6.3,
           "sigma": -1.84
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 48.5,
+          "confidence": 6.4,
+          "sigma": -1.95
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 7,
+      "rank": 8,
       "peak_rank": 7
     },
     "24244a1062254de107b2a7f5f79affe1|total|full|Under": {
@@ -287,13 +341,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 45.5,
-      "market_line": 45.5,
-      "price": -114,
-      "confidence": 6.1,
-      "sigma": -1.75,
-      "edge_points": -7.6,
-      "model_number": 37.9,
+      "line": 44.5,
+      "market_line": 44.5,
+      "price": -112,
+      "confidence": 5.9,
+      "sigma": -1.62,
+      "edge_points": -6.8,
+      "model_number": 37.7,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 45.5,
       "first_confidence": 6.1,
@@ -303,12 +357,18 @@
           "line": 45.5,
           "confidence": 6.1,
           "sigma": -1.75
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 44.5,
+          "confidence": 5.9,
+          "sigma": -1.62
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 11,
+      "rank": 14,
       "peak_rank": 11
     },
     "121ada2c134388f8cc2f26ffc54f52d1|total|full|Under": {
@@ -318,13 +378,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 48.5,
-      "market_line": 48.5,
+      "line": 47.5,
+      "market_line": 47.5,
       "price": -110,
-      "confidence": 6.0,
-      "sigma": -1.68,
-      "edge_points": -7.3,
-      "model_number": 41.2,
+      "confidence": 5.8,
+      "sigma": -1.54,
+      "edge_points": -6.5,
+      "model_number": 41.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 6.0,
@@ -334,12 +394,18 @@
           "line": 48.5,
           "confidence": 6.0,
           "sigma": -1.68
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 5.8,
+          "sigma": -1.54
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 12,
+      "rank": 16,
       "peak_rank": 12
     },
     "6af8b2523c07aebb827163640d2a865d|spread|full|Miami (OH)": {
@@ -352,10 +418,10 @@
       "line": -9.5,
       "market_line": -9.5,
       "price": -115,
-      "confidence": 7.0,
-      "sigma": -2.35,
-      "edge_points": -7.0,
-      "model_number": -16.5,
+      "confidence": 6.8,
+      "sigma": -2.23,
+      "edge_points": -7.1,
+      "model_number": -16.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -9.5,
       "first_confidence": 7.0,
@@ -365,12 +431,18 @@
           "line": -9.5,
           "confidence": 7.0,
           "sigma": -2.35
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -9.5,
+          "confidence": 6.8,
+          "sigma": -2.23
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 2,
+      "rank": 3,
       "peak_rank": 2
     },
     "6af8b2523c07aebb827163640d2a865d|total|full|Over": {
@@ -383,10 +455,10 @@
       "line": 46.5,
       "market_line": 46.5,
       "price": -115,
-      "confidence": 4.5,
-      "sigma": 0.64,
-      "edge_points": 2.8,
-      "model_number": 49.3,
+      "confidence": 4.4,
+      "sigma": 0.62,
+      "edge_points": 2.6,
+      "model_number": 49.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 46.5,
       "first_confidence": 4.5,
@@ -396,9 +468,15 @@
           "line": 46.5,
           "confidence": 4.5,
           "sigma": 0.64
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 46.5,
+          "confidence": 4.4,
+          "sigma": 0.62
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -412,11 +490,11 @@
       "side": "Under",
       "line": 53.5,
       "market_line": 53.5,
-      "price": -115,
-      "confidence": 5.9,
-      "sigma": -1.61,
-      "edge_points": -7.0,
-      "model_number": 46.5,
+      "price": -110,
+      "confidence": 6.1,
+      "sigma": -1.71,
+      "edge_points": -7.2,
+      "model_number": 46.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 53.5,
       "first_confidence": 5.9,
@@ -426,13 +504,19 @@
           "line": 53.5,
           "confidence": 5.9,
           "sigma": -1.61
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 53.5,
+          "confidence": 6.1,
+          "sigma": -1.71
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 13,
-      "peak_rank": 13
+      "rank": 9,
+      "peak_rank": 9
     },
     "006c37db6769b587a0adde2067498d53|spread|full|Toledo": {
       "event_id": "006c37db6769b587a0adde2067498d53",
@@ -441,13 +525,13 @@
       "market": "spread",
       "period": "full",
       "side": "Toledo",
-      "line": -4.5,
-      "market_line": 4.5,
-      "price": -114,
-      "confidence": 5.0,
-      "sigma": 1.01,
-      "edge_points": 3.0,
-      "model_number": 7.5,
+      "line": -5.5,
+      "market_line": 5.5,
+      "price": -122,
+      "confidence": 4.4,
+      "sigma": 0.6,
+      "edge_points": 1.9,
+      "model_number": 7.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -4.5,
       "first_confidence": 5.0,
@@ -457,9 +541,15 @@
           "line": -4.5,
           "confidence": 5.0,
           "sigma": 1.01
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -5.5,
+          "confidence": 4.4,
+          "sigma": 0.6
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -476,8 +566,8 @@
       "price": -110,
       "confidence": 5.9,
       "sigma": 1.59,
-      "edge_points": 6.9,
-      "model_number": 57.4,
+      "edge_points": 6.7,
+      "model_number": 57.2,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 50.5,
       "first_confidence": 5.9,
@@ -487,12 +577,18 @@
           "line": 50.5,
           "confidence": 5.9,
           "sigma": 1.59
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 50.5,
+          "confidence": 5.9,
+          "sigma": 1.59
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 14,
+      "rank": 15,
       "peak_rank": 14
     },
     "c92acc311e3c969f78faf7c2ec5ef5b1|spread|full|Arkansas": {
@@ -504,11 +600,11 @@
       "side": "Arkansas",
       "line": 6.5,
       "market_line": -6.5,
-      "price": -115,
-      "confidence": 4.4,
-      "sigma": 0.6,
-      "edge_points": 1.8,
-      "model_number": -4.7,
+      "price": -118,
+      "confidence": 4.3,
+      "sigma": 0.54,
+      "edge_points": 1.7,
+      "model_number": -4.8,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 6.5,
       "first_confidence": 4.4,
@@ -518,9 +614,15 @@
           "line": 6.5,
           "confidence": 4.4,
           "sigma": 0.6
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 6.5,
+          "confidence": 4.3,
+          "sigma": 0.54
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -532,13 +634,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 49.5,
-      "market_line": 49.5,
-      "price": -108,
-      "confidence": 5.9,
-      "sigma": 1.57,
-      "edge_points": 6.8,
-      "model_number": 56.3,
+      "line": 47.5,
+      "market_line": 47.5,
+      "price": -110,
+      "confidence": 6.6,
+      "sigma": 2.04,
+      "edge_points": 8.6,
+      "model_number": 56.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 49.5,
       "first_confidence": 5.9,
@@ -548,13 +650,19 @@
           "line": 49.5,
           "confidence": 5.9,
           "sigma": 1.57
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 6.6,
+          "sigma": 2.04
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 15,
-      "peak_rank": 15
+      "rank": 4,
+      "peak_rank": 4
     },
     "dd062699e8f42bd17509cfba1952e286|spread|full|New Mexico": {
       "event_id": "dd062699e8f42bd17509cfba1952e286",
@@ -565,11 +673,11 @@
       "side": "New Mexico",
       "line": -14.5,
       "market_line": 14.5,
-      "price": -102,
-      "confidence": 6.8,
-      "sigma": 2.22,
-      "edge_points": 6.6,
-      "model_number": 21.1,
+      "price": -104,
+      "confidence": 6.6,
+      "sigma": 2.05,
+      "edge_points": 6.5,
+      "model_number": 21.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -14.5,
       "first_confidence": 6.8,
@@ -579,12 +687,18 @@
           "line": -14.5,
           "confidence": 6.8,
           "sigma": 2.22
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -14.5,
+          "confidence": 6.6,
+          "sigma": 2.05
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 4,
+      "rank": 5,
       "peak_rank": 4
     },
     "dd062699e8f42bd17509cfba1952e286|total|full|Under": {
@@ -597,10 +711,10 @@
       "line": 45.5,
       "market_line": 45.5,
       "price": -112,
-      "confidence": 4.5,
-      "sigma": -0.67,
-      "edge_points": -2.9,
-      "model_number": 42.6,
+      "confidence": 4.6,
+      "sigma": -0.74,
+      "edge_points": -3.1,
+      "model_number": 42.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 45.5,
       "first_confidence": 4.5,
@@ -610,9 +724,15 @@
           "line": 45.5,
           "confidence": 4.5,
           "sigma": -0.67
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 45.5,
+          "confidence": 4.6,
+          "sigma": -0.74
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -624,13 +744,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 58.5,
-      "market_line": 58.5,
-      "price": -110,
-      "confidence": 5.7,
-      "sigma": 1.47,
-      "edge_points": 6.4,
-      "model_number": 64.9,
+      "line": 57.5,
+      "market_line": 57.5,
+      "price": -105,
+      "confidence": 6.1,
+      "sigma": 1.71,
+      "edge_points": 7.2,
+      "model_number": 64.7,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 58.5,
       "first_confidence": 5.7,
@@ -640,13 +760,19 @@
           "line": 58.5,
           "confidence": 5.7,
           "sigma": 1.47
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 57.5,
+          "confidence": 6.1,
+          "sigma": 1.71
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 16,
-      "peak_rank": 16
+      "rank": 10,
+      "peak_rank": 10
     },
     "eb7db3ae999676aa80dd5cf7dfa32c1a|spread|full|Maryland": {
       "event_id": "eb7db3ae999676aa80dd5cf7dfa32c1a",
@@ -674,7 +800,7 @@
         }
       ],
       "last_seen": "2026-10-12T11:22:31+00:00",
-      "on_board": true,
+      "on_board": false,
       "second_opinion": true,
       "rank": null
     },
@@ -690,8 +816,8 @@
       "price": -112,
       "confidence": 5.6,
       "sigma": 1.43,
-      "edge_points": 6.2,
-      "model_number": 69.7,
+      "edge_points": 6.0,
+      "model_number": 69.5,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 63.5,
       "first_confidence": 5.6,
@@ -701,9 +827,15 @@
           "line": 63.5,
           "confidence": 5.6,
           "sigma": 1.43
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 63.5,
+          "confidence": 5.6,
+          "sigma": 1.43
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 19,
@@ -718,11 +850,11 @@
       "side": "Cincinnati",
       "line": 1.5,
       "market_line": -1.5,
-      "price": -110,
-      "confidence": 5.0,
-      "sigma": 1.01,
-      "edge_points": 3.0,
-      "model_number": 1.5,
+      "price": -105,
+      "confidence": 4.9,
+      "sigma": 0.91,
+      "edge_points": 2.9,
+      "model_number": 1.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 1.5,
       "first_confidence": 5.0,
@@ -732,9 +864,15 @@
           "line": 1.5,
           "confidence": 5.0,
           "sigma": 1.01
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 1.5,
+          "confidence": 4.9,
+          "sigma": 0.91
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -746,13 +884,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 50.5,
-      "market_line": 50.5,
-      "price": -110,
-      "confidence": 5.5,
-      "sigma": -1.31,
-      "edge_points": -5.7,
-      "model_number": 44.8,
+      "line": 48.5,
+      "market_line": 48.5,
+      "price": -104,
+      "confidence": 4.9,
+      "sigma": -0.93,
+      "edge_points": -3.9,
+      "model_number": 44.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 50.5,
       "first_confidence": 5.5,
@@ -762,12 +900,18 @@
           "line": 50.5,
           "confidence": 5.5,
           "sigma": -1.31
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 48.5,
+          "confidence": 4.9,
+          "sigma": -0.93
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 21,
+      "rank": 31,
       "peak_rank": 21
     },
     "5d09c85c1d67e8f9db8db560cb038027|spread|full|Missouri": {
@@ -780,10 +924,10 @@
       "line": 6.5,
       "market_line": -6.5,
       "price": -120,
-      "confidence": 6.3,
-      "sigma": 1.85,
-      "edge_points": 5.5,
-      "model_number": -1.0,
+      "confidence": 6.0,
+      "sigma": 1.7,
+      "edge_points": 5.4,
+      "model_number": -1.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 6.5,
       "first_confidence": 6.3,
@@ -793,12 +937,18 @@
           "line": 6.5,
           "confidence": 6.3,
           "sigma": 1.85
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 6.5,
+          "confidence": 6.0,
+          "sigma": 1.7
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 8,
+      "rank": 12,
       "peak_rank": 8
     },
     "8e5b5fc6829c6204c73178807614cd97|spread|full|Texas Tech": {
@@ -808,13 +958,13 @@
       "market": "spread",
       "period": "full",
       "side": "Texas Tech",
-      "line": -15.5,
-      "market_line": -15.5,
-      "price": -110,
-      "confidence": 6.2,
-      "sigma": -1.81,
-      "edge_points": -5.4,
-      "model_number": -20.9,
+      "line": -14.5,
+      "market_line": -14.5,
+      "price": -114,
+      "confidence": 6.6,
+      "sigma": -2.05,
+      "edge_points": -6.5,
+      "model_number": -21.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -15.5,
       "first_confidence": 6.2,
@@ -824,13 +974,19 @@
           "line": -15.5,
           "confidence": 6.2,
           "sigma": -1.81
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -14.5,
+          "confidence": 6.6,
+          "sigma": -2.05
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 9,
-      "peak_rank": 9
+      "rank": 6,
+      "peak_rank": 6
     },
     "f8b421c996286807b6e7b8e4d5631f80|total|full|Under": {
       "event_id": "f8b421c996286807b6e7b8e4d5631f80",
@@ -839,13 +995,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 42.5,
-      "market_line": 42.5,
-      "price": -108,
-      "confidence": 5.4,
-      "sigma": -1.24,
-      "edge_points": -5.4,
-      "model_number": 37.1,
+      "line": 41.5,
+      "market_line": 41.5,
+      "price": -105,
+      "confidence": 5.1,
+      "sigma": -1.09,
+      "edge_points": -4.6,
+      "model_number": 36.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 42.5,
       "first_confidence": 5.4,
@@ -855,12 +1011,18 @@
           "line": 42.5,
           "confidence": 5.4,
           "sigma": -1.24
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 41.5,
+          "confidence": 5.1,
+          "sigma": -1.09
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 23,
+      "rank": 28,
       "peak_rank": 23
     },
     "f8b421c996286807b6e7b8e4d5631f80|spread|full|Penn State": {
@@ -870,13 +1032,13 @@
       "market": "spread",
       "period": "full",
       "side": "Penn State",
-      "line": 5.5,
-      "market_line": -5.5,
-      "price": -102,
-      "confidence": 4.4,
-      "sigma": 0.57,
-      "edge_points": 1.7,
-      "model_number": -3.8,
+      "line": 6.5,
+      "market_line": -6.5,
+      "price": -115,
+      "confidence": 4.7,
+      "sigma": 0.82,
+      "edge_points": 2.6,
+      "model_number": -3.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 5.5,
       "first_confidence": 4.4,
@@ -886,9 +1048,15 @@
           "line": 5.5,
           "confidence": 4.4,
           "sigma": 0.57
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 6.5,
+          "confidence": 4.7,
+          "sigma": 0.82
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -902,11 +1070,11 @@
       "side": "Under",
       "line": 40.5,
       "market_line": 40.5,
-      "price": -110,
-      "confidence": 5.4,
-      "sigma": -1.24,
-      "edge_points": -5.4,
-      "model_number": 35.1,
+      "price": -105,
+      "confidence": 5.5,
+      "sigma": -1.33,
+      "edge_points": -5.6,
+      "model_number": 34.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 40.5,
       "first_confidence": 5.4,
@@ -916,13 +1084,19 @@
           "line": 40.5,
           "confidence": 5.4,
           "sigma": -1.24
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 40.5,
+          "confidence": 5.5,
+          "sigma": -1.33
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 24,
-      "peak_rank": 24
+      "rank": 23,
+      "peak_rank": 23
     },
     "9f43906997c18b956105dded3134ef1f|spread|full|Utah": {
       "event_id": "9f43906997c18b956105dded3134ef1f",
@@ -933,11 +1107,11 @@
       "side": "Utah",
       "line": -15.5,
       "market_line": 15.5,
-      "price": -108,
-      "confidence": 6.2,
-      "sigma": 1.81,
-      "edge_points": 5.4,
-      "model_number": 20.9,
+      "price": -114,
+      "confidence": 6.0,
+      "sigma": 1.67,
+      "edge_points": 5.3,
+      "model_number": 20.8,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -15.5,
       "first_confidence": 6.2,
@@ -947,12 +1121,18 @@
           "line": -15.5,
           "confidence": 6.2,
           "sigma": 1.81
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -15.5,
+          "confidence": 6.0,
+          "sigma": 1.67
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 10,
+      "rank": 13,
       "peak_rank": 10
     },
     "9f43906997c18b956105dded3134ef1f|total|full|Under": {
@@ -965,10 +1145,10 @@
       "line": 50.5,
       "market_line": 50.5,
       "price": -112,
-      "confidence": 5.0,
-      "sigma": -1.01,
-      "edge_points": -4.4,
-      "model_number": 46.1,
+      "confidence": 5.1,
+      "sigma": -1.09,
+      "edge_points": -4.6,
+      "model_number": 45.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 50.5,
       "first_confidence": 5.0,
@@ -978,9 +1158,15 @@
           "line": 50.5,
           "confidence": 5.0,
           "sigma": -1.01
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 50.5,
+          "confidence": 5.1,
+          "sigma": -1.09
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -992,13 +1178,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 48.5,
-      "market_line": 48.5,
-      "price": -115,
-      "confidence": 5.3,
-      "sigma": -1.2,
-      "edge_points": -5.2,
-      "model_number": 43.3,
+      "line": 47.5,
+      "market_line": 47.5,
+      "price": -108,
+      "confidence": 5.1,
+      "sigma": -1.05,
+      "edge_points": -4.4,
+      "model_number": 43.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 5.3,
@@ -1008,12 +1194,18 @@
           "line": 48.5,
           "confidence": 5.3,
           "sigma": -1.2
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 5.1,
+          "sigma": -1.05
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 26,
+      "rank": 29,
       "peak_rank": 26
     },
     "4bf071db691beaf54158c801a6cf093b|spread|full|East Carolina": {
@@ -1026,10 +1218,10 @@
       "line": -4.5,
       "market_line": 4.5,
       "price": -110,
-      "confidence": 4.8,
-      "sigma": 0.84,
-      "edge_points": 2.5,
-      "model_number": 7.0,
+      "confidence": 4.6,
+      "sigma": 0.76,
+      "edge_points": 2.4,
+      "model_number": 6.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -4.5,
       "first_confidence": 4.8,
@@ -1039,9 +1231,15 @@
           "line": -4.5,
           "confidence": 4.8,
           "sigma": 0.84
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -4.5,
+          "confidence": 4.6,
+          "sigma": 0.76
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1056,10 +1254,10 @@
       "line": 49.5,
       "market_line": 49.5,
       "price": -110,
-      "confidence": 5.2,
-      "sigma": 1.1,
-      "edge_points": 4.8,
-      "model_number": 54.3,
+      "confidence": 5.1,
+      "sigma": 1.09,
+      "edge_points": 4.6,
+      "model_number": 54.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 49.5,
       "first_confidence": 5.2,
@@ -1069,9 +1267,15 @@
           "line": 49.5,
           "confidence": 5.2,
           "sigma": 1.1
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 49.5,
+          "confidence": 5.1,
+          "sigma": 1.09
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1086,10 +1290,10 @@
       "line": -3.5,
       "market_line": -3.5,
       "price": -115,
-      "confidence": 5.3,
-      "sigma": -1.21,
-      "edge_points": -3.6,
-      "model_number": -7.1,
+      "confidence": 5.2,
+      "sigma": -1.16,
+      "edge_points": -3.7,
+      "model_number": -7.2,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -3.5,
       "first_confidence": 5.3,
@@ -1099,9 +1303,15 @@
           "line": -3.5,
           "confidence": 5.3,
           "sigma": -1.21
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -3.5,
+          "confidence": 5.2,
+          "sigma": -1.16
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 27,
@@ -1117,10 +1327,10 @@
       "line": -10.5,
       "market_line": -10.5,
       "price": -110,
-      "confidence": 5.7,
-      "sigma": -1.48,
-      "edge_points": -4.4,
-      "model_number": -14.9,
+      "confidence": 5.6,
+      "sigma": -1.42,
+      "edge_points": -4.5,
+      "model_number": -15.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -10.5,
       "first_confidence": 5.7,
@@ -1130,12 +1340,18 @@
           "line": -10.5,
           "confidence": 5.7,
           "sigma": -1.48
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -10.5,
+          "confidence": 5.6,
+          "sigma": -1.42
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 17,
+      "rank": 20,
       "peak_rank": 17
     },
     "490b66058b6c826a08589c471698ce50|total|full|Over": {
@@ -1149,9 +1365,9 @@
       "market_line": 52.5,
       "price": -110,
       "confidence": 4.3,
-      "sigma": 0.55,
-      "edge_points": 2.4,
-      "model_number": 54.9,
+      "sigma": 0.52,
+      "edge_points": 2.2,
+      "model_number": 54.7,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 52.5,
       "first_confidence": 4.3,
@@ -1161,9 +1377,15 @@
           "line": 52.5,
           "confidence": 4.3,
           "sigma": 0.55
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 52.5,
+          "confidence": 4.3,
+          "sigma": 0.52
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1175,13 +1397,13 @@
       "market": "spread",
       "period": "full",
       "side": "Syracuse",
-      "line": 13.5,
-      "market_line": 13.5,
+      "line": 14.5,
+      "market_line": 14.5,
       "price": -110,
-      "confidence": 5.7,
-      "sigma": -1.48,
-      "edge_points": -4.4,
-      "model_number": 9.1,
+      "confidence": 6.1,
+      "sigma": -1.73,
+      "edge_points": -5.5,
+      "model_number": 9.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 13.5,
       "first_confidence": 5.7,
@@ -1191,13 +1413,19 @@
           "line": 13.5,
           "confidence": 5.7,
           "sigma": -1.48
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 14.5,
+          "confidence": 6.1,
+          "sigma": -1.73
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 18,
-      "peak_rank": 18
+      "rank": 11,
+      "peak_rank": 11
     },
     "f9cb1259d9221016efb7646258f2acd5|total|full|Over": {
       "event_id": "f9cb1259d9221016efb7646258f2acd5",
@@ -1210,9 +1438,9 @@
       "market_line": 56.5,
       "price": -110,
       "confidence": 4.8,
-      "sigma": 0.87,
-      "edge_points": 3.8,
-      "model_number": 60.3,
+      "sigma": 0.86,
+      "edge_points": 3.6,
+      "model_number": 60.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 56.5,
       "first_confidence": 4.8,
@@ -1222,9 +1450,15 @@
           "line": 56.5,
           "confidence": 4.8,
           "sigma": 0.87
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 56.5,
+          "confidence": 4.8,
+          "sigma": 0.86
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1236,13 +1470,13 @@
       "market": "total",
       "period": "full",
       "side": "Under",
-      "line": 46.5,
-      "market_line": 46.5,
-      "price": -114,
-      "confidence": 5.0,
-      "sigma": -0.99,
-      "edge_points": -4.3,
-      "model_number": 42.2,
+      "line": 44.5,
+      "market_line": 44.5,
+      "price": -106,
+      "confidence": 4.4,
+      "sigma": -0.59,
+      "edge_points": -2.5,
+      "model_number": 42.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 46.5,
       "first_confidence": 5.0,
@@ -1252,9 +1486,15 @@
           "line": 46.5,
           "confidence": 5.0,
           "sigma": -0.99
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 44.5,
+          "confidence": 4.4,
+          "sigma": -0.59
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1266,13 +1506,13 @@
       "market": "spread",
       "period": "full",
       "side": "UCLA",
-      "line": -3.5,
-      "market_line": -3.5,
-      "price": 100,
-      "confidence": 5.4,
-      "sigma": -1.24,
-      "edge_points": -3.7,
-      "model_number": -7.2,
+      "line": -2.5,
+      "market_line": -2.5,
+      "price": -112,
+      "confidence": 5.8,
+      "sigma": -1.51,
+      "edge_points": -4.8,
+      "model_number": -7.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -3.5,
       "first_confidence": 5.4,
@@ -1282,13 +1522,19 @@
           "line": -3.5,
           "confidence": 5.4,
           "sigma": -1.24
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -2.5,
+          "confidence": 5.8,
+          "sigma": -1.51
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 25,
-      "peak_rank": 25
+      "rank": 17,
+      "peak_rank": 17
     },
     "685a8722f297502fa85e4cd8c7e54b1c|spread|full|Indiana": {
       "event_id": "685a8722f297502fa85e4cd8c7e54b1c",
@@ -1300,10 +1546,10 @@
       "line": 3.5,
       "market_line": 3.5,
       "price": -118,
-      "confidence": 5.6,
-      "sigma": -1.41,
-      "edge_points": -4.2,
-      "model_number": -0.7,
+      "confidence": 5.5,
+      "sigma": -1.35,
+      "edge_points": -4.3,
+      "model_number": -0.8,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 3.5,
       "first_confidence": 5.6,
@@ -1313,12 +1559,18 @@
           "line": 3.5,
           "confidence": 5.6,
           "sigma": -1.41
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 3.5,
+          "confidence": 5.5,
+          "sigma": -1.35
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 20,
+      "rank": 24,
       "peak_rank": 20
     },
     "fc01e4b9ad4f39e975b7e1fd9ad124d1|total|full|Over": {
@@ -1332,9 +1584,9 @@
       "market_line": 48.5,
       "price": -118,
       "confidence": 4.9,
-      "sigma": 0.94,
-      "edge_points": 4.1,
-      "model_number": 52.6,
+      "sigma": 0.93,
+      "edge_points": 3.9,
+      "model_number": 52.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 4.9,
@@ -1344,9 +1596,15 @@
           "line": 48.5,
           "confidence": 4.9,
           "sigma": 0.94
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 48.5,
+          "confidence": 4.9,
+          "sigma": 0.93
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1358,13 +1616,13 @@
       "market": "spread",
       "period": "full",
       "side": "Northwestern",
-      "line": -8.5,
-      "market_line": 8.5,
-      "price": -106,
-      "confidence": 5.3,
-      "sigma": 1.21,
-      "edge_points": 3.6,
-      "model_number": 12.1,
+      "line": -7.5,
+      "market_line": 7.5,
+      "price": -110,
+      "confidence": 5.6,
+      "sigma": 1.42,
+      "edge_points": 4.5,
+      "model_number": 12.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -8.5,
       "first_confidence": 5.3,
@@ -1374,13 +1632,19 @@
           "line": -8.5,
           "confidence": 5.3,
           "sigma": 1.21
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -7.5,
+          "confidence": 5.6,
+          "sigma": 1.42
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 28,
-      "peak_rank": 28
+      "rank": 21,
+      "peak_rank": 21
     },
     "bd2d52fadefed8a6174e73c84cca9ce3|spread|full|BYU": {
       "event_id": "bd2d52fadefed8a6174e73c84cca9ce3",
@@ -1391,11 +1655,11 @@
       "side": "BYU",
       "line": 10.5,
       "market_line": 10.5,
-      "price": -115,
-      "confidence": 5.5,
-      "sigma": -1.31,
-      "edge_points": -3.9,
-      "model_number": 6.6,
+      "price": -118,
+      "confidence": 5.4,
+      "sigma": -1.26,
+      "edge_points": -4.0,
+      "model_number": 6.5,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 10.5,
       "first_confidence": 5.5,
@@ -1405,12 +1669,18 @@
           "line": 10.5,
           "confidence": 5.5,
           "sigma": -1.31
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 10.5,
+          "confidence": 5.4,
+          "sigma": -1.26
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 22,
+      "rank": 25,
       "peak_rank": 22
     },
     "bd2d52fadefed8a6174e73c84cca9ce3|total|full|Over": {
@@ -1422,11 +1692,11 @@
       "side": "Over",
       "line": 47.5,
       "market_line": 47.5,
-      "price": -114,
-      "confidence": 4.3,
-      "sigma": 0.51,
-      "edge_points": 2.2,
-      "model_number": 49.7,
+      "price": -105,
+      "confidence": 4.2,
+      "sigma": 0.48,
+      "edge_points": 2.0,
+      "model_number": 49.5,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 47.5,
       "first_confidence": 4.3,
@@ -1436,9 +1706,15 @@
           "line": 47.5,
           "confidence": 4.3,
           "sigma": 0.51
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 4.2,
+          "sigma": 0.48
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1453,10 +1729,10 @@
       "line": 42.5,
       "market_line": 42.5,
       "price": -110,
-      "confidence": 4.8,
-      "sigma": -0.85,
-      "edge_points": -3.7,
-      "model_number": 38.8,
+      "confidence": 4.9,
+      "sigma": -0.93,
+      "edge_points": -3.9,
+      "model_number": 38.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 42.5,
       "first_confidence": 4.8,
@@ -1466,12 +1742,19 @@
           "line": 42.5,
           "confidence": 4.8,
           "sigma": -0.85
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 42.5,
+          "confidence": 4.9,
+          "sigma": -0.93
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": true,
-      "rank": null
+      "second_opinion": false,
+      "rank": 32,
+      "peak_rank": 32
     },
     "5dd30262ad321dcff02c37d7619376e4|spread|full|Western Michigan": {
       "event_id": "5dd30262ad321dcff02c37d7619376e4",
@@ -1483,10 +1766,10 @@
       "line": -6.5,
       "market_line": 6.5,
       "price": -122,
-      "confidence": 5.0,
-      "sigma": 1.01,
-      "edge_points": 3.0,
-      "model_number": 9.5,
+      "confidence": 4.9,
+      "sigma": 0.91,
+      "edge_points": 2.9,
+      "model_number": 9.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -6.5,
       "first_confidence": 5.0,
@@ -1496,12 +1779,18 @@
           "line": -6.5,
           "confidence": 5.0,
           "sigma": 1.01
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -6.5,
+          "confidence": 4.9,
+          "sigma": 0.91
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": false,
-      "rank": 30,
+      "second_opinion": true,
+      "rank": null,
       "peak_rank": 30
     },
     "9ed02ffe3e126a8ec8846278bf18d393|total|full|Over": {
@@ -1511,13 +1800,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 53.5,
-      "market_line": 53.5,
-      "price": -108,
-      "confidence": 4.7,
-      "sigma": 0.83,
-      "edge_points": 3.6,
-      "model_number": 57.1,
+      "line": 51.5,
+      "market_line": 51.5,
+      "price": -110,
+      "confidence": 5.4,
+      "sigma": 1.28,
+      "edge_points": 5.4,
+      "model_number": 56.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 53.5,
       "first_confidence": 4.7,
@@ -1527,13 +1816,19 @@
           "line": 53.5,
           "confidence": 4.7,
           "sigma": 0.83
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 51.5,
+          "confidence": 5.4,
+          "sigma": 1.28
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 31,
-      "peak_rank": 31
+      "rank": 26,
+      "peak_rank": 26
     },
     "11430b210e5b57c938e1c95a9db5ffb2|total|full|Under": {
       "event_id": "11430b210e5b57c938e1c95a9db5ffb2",
@@ -1545,10 +1840,10 @@
       "line": 48.5,
       "market_line": 48.5,
       "price": -110,
-      "confidence": 4.7,
-      "sigma": -0.83,
-      "edge_points": -3.6,
-      "model_number": 44.9,
+      "confidence": 4.8,
+      "sigma": -0.9,
+      "edge_points": -3.8,
+      "model_number": 44.7,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 4.7,
@@ -1558,12 +1853,18 @@
           "line": 48.5,
           "confidence": 4.7,
           "sigma": -0.83
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 48.5,
+          "confidence": 4.8,
+          "sigma": -0.9
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 32,
+      "rank": 33,
       "peak_rank": 32
     },
     "66f521c79ea8a970ed062bfed392abfb|total|full|Under": {
@@ -1576,10 +1877,10 @@
       "line": 43.5,
       "market_line": 43.5,
       "price": -112,
-      "confidence": 4.6,
-      "sigma": -0.76,
-      "edge_points": -3.3,
-      "model_number": 40.2,
+      "confidence": 4.7,
+      "sigma": -0.83,
+      "edge_points": -3.5,
+      "model_number": 40.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 43.5,
       "first_confidence": 4.6,
@@ -1589,12 +1890,19 @@
           "line": 43.5,
           "confidence": 4.6,
           "sigma": -0.76
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 43.5,
+          "confidence": 4.7,
+          "sigma": -0.83
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": true,
-      "rank": null
+      "second_opinion": false,
+      "rank": 34,
+      "peak_rank": 34
     },
     "66f521c79ea8a970ed062bfed392abfb|spread|full|Jacksonville State": {
       "event_id": "66f521c79ea8a970ed062bfed392abfb",
@@ -1606,10 +1914,10 @@
       "line": -2.5,
       "market_line": -2.5,
       "price": -122,
-      "confidence": 4.7,
-      "sigma": -0.77,
-      "edge_points": -2.3,
-      "model_number": -4.8,
+      "confidence": 4.6,
+      "sigma": -0.76,
+      "edge_points": -2.4,
+      "model_number": -4.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -2.5,
       "first_confidence": 4.7,
@@ -1619,12 +1927,18 @@
           "line": -2.5,
           "confidence": 4.7,
           "sigma": -0.77
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -2.5,
+          "confidence": 4.6,
+          "sigma": -0.76
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": false,
-      "rank": 33,
+      "second_opinion": true,
+      "rank": null,
       "peak_rank": 33
     },
     "2bbbf3488a5d57c9c13ae578bad17a9d|spread|full|Sam Houston": {
@@ -1653,9 +1967,9 @@
         }
       ],
       "last_seen": "2026-10-12T11:22:31+00:00",
-      "on_board": true,
+      "on_board": false,
       "second_opinion": false,
-      "rank": 29,
+      "rank": null,
       "peak_rank": 29
     },
     "04c740fce71d3f3b8a4bdc4ea69f1281|total|full|Over": {
@@ -1669,9 +1983,9 @@
       "market_line": 58.5,
       "price": -110,
       "confidence": 4.5,
-      "sigma": 0.69,
-      "edge_points": 3.0,
-      "model_number": 61.5,
+      "sigma": 0.67,
+      "edge_points": 2.8,
+      "model_number": 61.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 58.5,
       "first_confidence": 4.5,
@@ -1681,12 +1995,18 @@
           "line": 58.5,
           "confidence": 4.5,
           "sigma": 0.69
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 58.5,
+          "confidence": 4.5,
+          "sigma": 0.67
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 36,
+      "rank": 37,
       "peak_rank": 36
     },
     "930dea051dca737443eb7aec0b650f45|total|full|Under": {
@@ -1699,10 +2019,10 @@
       "line": 46.5,
       "market_line": 46.5,
       "price": -108,
-      "confidence": 4.4,
-      "sigma": -0.6,
-      "edge_points": -2.6,
-      "model_number": 43.9,
+      "confidence": 4.5,
+      "sigma": -0.67,
+      "edge_points": -2.8,
+      "model_number": 43.7,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 46.5,
       "first_confidence": 4.4,
@@ -1712,13 +2032,19 @@
           "line": 46.5,
           "confidence": 4.4,
           "sigma": -0.6
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 46.5,
+          "confidence": 4.5,
+          "sigma": -0.67
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 39,
-      "peak_rank": 39
+      "rank": 38,
+      "peak_rank": 38
     },
     "33f259d8951535f271a8df5c790a832e|total|full|Over": {
       "event_id": "33f259d8951535f271a8df5c790a832e",
@@ -1727,13 +2053,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 56.5,
-      "market_line": 56.5,
-      "price": -110,
-      "confidence": 4.4,
-      "sigma": 0.6,
-      "edge_points": 2.6,
-      "model_number": 59.1,
+      "line": 55.5,
+      "market_line": 55.5,
+      "price": -105,
+      "confidence": 4.7,
+      "sigma": 0.81,
+      "edge_points": 3.4,
+      "model_number": 58.9,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 56.5,
       "first_confidence": 4.4,
@@ -1743,13 +2069,19 @@
           "line": 56.5,
           "confidence": 4.4,
           "sigma": 0.6
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 55.5,
+          "confidence": 4.7,
+          "sigma": 0.81
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 40,
-      "peak_rank": 40
+      "rank": 35,
+      "peak_rank": 35
     },
     "0763e3ed7ed8d646756e5849bac67b8d|spread|full|Virginia": {
       "event_id": "0763e3ed7ed8d646756e5849bac67b8d",
@@ -1758,13 +2090,13 @@
       "market": "spread",
       "period": "full",
       "side": "Virginia",
-      "line": 7.5,
-      "market_line": -7.5,
-      "price": -105,
-      "confidence": 4.7,
-      "sigma": 0.77,
-      "edge_points": 2.3,
-      "model_number": -5.2,
+      "line": 8.5,
+      "market_line": -8.5,
+      "price": -110,
+      "confidence": 5.0,
+      "sigma": 1.01,
+      "edge_points": 3.2,
+      "model_number": -5.3,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 7.5,
       "first_confidence": 4.7,
@@ -1774,13 +2106,19 @@
           "line": 7.5,
           "confidence": 4.7,
           "sigma": 0.77
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 8.5,
+          "confidence": 5.0,
+          "sigma": 1.01
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 34,
-      "peak_rank": 34
+      "rank": 30,
+      "peak_rank": 30
     },
     "b5e637cf502d6d5f408af440ea2d591d|spread|full|Wake Forest": {
       "event_id": "b5e637cf502d6d5f408af440ea2d591d",
@@ -1792,10 +2130,10 @@
       "line": -9.5,
       "market_line": 9.5,
       "price": -110,
-      "confidence": 4.6,
-      "sigma": 0.71,
-      "edge_points": 2.1,
-      "model_number": 11.6,
+      "confidence": 4.4,
+      "sigma": 0.63,
+      "edge_points": 2.0,
+      "model_number": 11.5,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -9.5,
       "first_confidence": 4.6,
@@ -1805,12 +2143,18 @@
           "line": -9.5,
           "confidence": 4.6,
           "sigma": 0.71
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -9.5,
+          "confidence": 4.4,
+          "sigma": 0.63
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 35,
+      "rank": 41,
       "peak_rank": 35
     },
     "5d147fefd2182aa2f5573ac03700a775|total|full|Over": {
@@ -1824,9 +2168,9 @@
       "market_line": 52.5,
       "price": -105,
       "confidence": 4.2,
-      "sigma": 0.48,
-      "edge_points": 2.1,
-      "model_number": 54.6,
+      "sigma": 0.45,
+      "edge_points": 1.9,
+      "model_number": 54.4,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 52.5,
       "first_confidence": 4.2,
@@ -1836,12 +2180,18 @@
           "line": 52.5,
           "confidence": 4.2,
           "sigma": 0.48
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 52.5,
+          "confidence": 4.2,
+          "sigma": 0.45
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": false,
-      "rank": 41,
+      "second_opinion": true,
+      "rank": null,
       "peak_rank": 41
     },
     "f8b5d3a4b35efebd4f010433778fd629|spread|full|James Madison": {
@@ -1855,9 +2205,9 @@
       "market_line": -11.5,
       "price": -115,
       "confidence": 4.5,
-      "sigma": -0.67,
-      "edge_points": -2.0,
-      "model_number": -13.5,
+      "sigma": -0.66,
+      "edge_points": -2.1,
+      "model_number": -13.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -11.5,
       "first_confidence": 4.5,
@@ -1867,12 +2217,18 @@
           "line": -11.5,
           "confidence": 4.5,
           "sigma": -0.67
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -11.5,
+          "confidence": 4.5,
+          "sigma": -0.66
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 37,
+      "rank": 39,
       "peak_rank": 37
     },
     "f8b5d3a4b35efebd4f010433778fd629|total|full|Over": {
@@ -1886,9 +2242,9 @@
       "market_line": 57.5,
       "price": -115,
       "confidence": 4.1,
-      "sigma": 0.41,
-      "edge_points": 1.8,
-      "model_number": 59.3,
+      "sigma": 0.38,
+      "edge_points": 1.6,
+      "model_number": 59.1,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 57.5,
       "first_confidence": 4.1,
@@ -1898,9 +2254,15 @@
           "line": 57.5,
           "confidence": 4.1,
           "sigma": 0.41
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 57.5,
+          "confidence": 4.1,
+          "sigma": 0.38
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
@@ -1931,9 +2293,9 @@
         }
       ],
       "last_seen": "2026-10-12T11:22:31+00:00",
-      "on_board": true,
+      "on_board": false,
       "second_opinion": false,
-      "rank": 42,
+      "rank": null,
       "peak_rank": 42
     },
     "56d8b3e4ae8cb9ce51d5ad6aedd5164e|spread|full|South Florida": {
@@ -1947,9 +2309,9 @@
       "market_line": -20.5,
       "price": -112,
       "confidence": 4.5,
-      "sigma": -0.67,
-      "edge_points": -2.0,
-      "model_number": -22.5,
+      "sigma": -0.66,
+      "edge_points": -2.1,
+      "model_number": -22.6,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": -20.5,
       "first_confidence": 4.5,
@@ -1959,12 +2321,18 @@
           "line": -20.5,
           "confidence": 4.5,
           "sigma": -0.67
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -20.5,
+          "confidence": 4.5,
+          "sigma": -0.66
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 38,
+      "rank": 40,
       "peak_rank": 38
     },
     "9e7a1e65bd6ffb3ff108db2a5e125170|total|full|Over": {
@@ -1977,10 +2345,10 @@
       "line": 47.5,
       "market_line": 47.5,
       "price": -105,
-      "confidence": 4.2,
-      "sigma": 0.44,
-      "edge_points": 1.9,
-      "model_number": 49.4,
+      "confidence": 4.1,
+      "sigma": 0.4,
+      "edge_points": 1.7,
+      "model_number": 49.2,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 47.5,
       "first_confidence": 4.2,
@@ -1990,12 +2358,18 @@
           "line": 47.5,
           "confidence": 4.2,
           "sigma": 0.44
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 4.1,
+          "sigma": 0.4
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 43,
+      "rank": 46,
       "peak_rank": 43
     },
     "62dd374d95f55eaaad10717b58220ce7|total|full|Over": {
@@ -2005,13 +2379,13 @@
       "market": "total",
       "period": "full",
       "side": "Over",
-      "line": 48.5,
-      "market_line": 48.5,
+      "line": 47.5,
+      "market_line": 47.5,
       "price": -110,
-      "confidence": 4.1,
-      "sigma": 0.39,
-      "edge_points": 1.7,
-      "model_number": 50.2,
+      "confidence": 4.4,
+      "sigma": 0.59,
+      "edge_points": 2.5,
+      "model_number": 50.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 48.5,
       "first_confidence": 4.1,
@@ -2021,13 +2395,19 @@
           "line": 48.5,
           "confidence": 4.1,
           "sigma": 0.39
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 4.4,
+          "sigma": 0.59
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
-      "rank": 46,
-      "peak_rank": 46
+      "rank": 42,
+      "peak_rank": 42
     },
     "43959d4bb3927439ced7a6bf26cc3c00|total|full|Over": {
       "event_id": "43959d4bb3927439ced7a6bf26cc3c00",
@@ -2038,11 +2418,11 @@
       "side": "Over",
       "line": 46.5,
       "market_line": 46.5,
-      "price": -110,
-      "confidence": 4.1,
-      "sigma": 0.39,
-      "edge_points": 1.7,
-      "model_number": 48.2,
+      "price": -114,
+      "confidence": 4.0,
+      "sigma": 0.36,
+      "edge_points": 1.5,
+      "model_number": 48.0,
       "first_seen": "2026-10-12T11:22:31+00:00",
       "first_line": 46.5,
       "first_confidence": 4.1,
@@ -2052,12 +2432,18 @@
           "line": 46.5,
           "confidence": 4.1,
           "sigma": 0.39
+        },
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 46.5,
+          "confidence": 4.0,
+          "sigma": 0.36
         }
       ],
-      "last_seen": "2026-10-12T11:22:31+00:00",
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
-      "second_opinion": false,
-      "rank": 47,
+      "second_opinion": true,
+      "rank": null,
       "peak_rank": 47
     },
     "7ebcab7b97620342a9205b32139222d1|spread|full|Kennesaw State": {
@@ -2086,9 +2472,9 @@
         }
       ],
       "last_seen": "2026-10-12T11:22:31+00:00",
-      "on_board": true,
+      "on_board": false,
       "second_opinion": false,
-      "rank": 44,
+      "rank": null,
       "peak_rank": 44
     },
     "0728226f9c1e3aace0f64536109f4d05|spread|full|Kentucky": {
@@ -2117,25 +2503,334 @@
         }
       ],
       "last_seen": "2026-10-12T11:22:31+00:00",
+      "on_board": false,
+      "second_opinion": false,
+      "rank": null,
+      "peak_rank": 45
+    },
+    "9ed02ffe3e126a8ec8846278bf18d393|spread|full|Tennessee": {
+      "event_id": "9ed02ffe3e126a8ec8846278bf18d393",
+      "matchup": "Alabama Crimson Tide @ Tennessee Volunteers",
+      "kickoff": "2026-10-17T19:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Tennessee",
+      "line": 8.5,
+      "market_line": 8.5,
+      "price": -108,
+      "confidence": 4.6,
+      "sigma": -0.76,
+      "edge_points": -2.4,
+      "model_number": 6.1,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 8.5,
+      "first_confidence": 4.6,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 8.5,
+          "confidence": 4.6,
+          "sigma": -0.76
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "43959d4bb3927439ced7a6bf26cc3c00|spread|full|Air Force": {
+      "event_id": "43959d4bb3927439ced7a6bf26cc3c00",
+      "matchup": "UNLV Rebels @ Air Force Falcons",
+      "kickoff": "2026-10-17T19:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Air Force",
+      "line": 1.5,
+      "market_line": 1.5,
+      "price": -122,
+      "confidence": 5.6,
+      "sigma": -1.38,
+      "edge_points": -4.4,
+      "model_number": -2.9,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 1.5,
+      "first_confidence": 5.6,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 1.5,
+          "confidence": 5.6,
+          "sigma": -1.38
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 22,
+      "peak_rank": 22
+    },
+    "33f259d8951535f271a8df5c790a832e|spread|full|Miami": {
+      "event_id": "33f259d8951535f271a8df5c790a832e",
+      "matchup": "Florida State Seminoles @ Miami Hurricanes",
+      "kickoff": "2026-10-17T23:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Miami",
+      "line": -21.5,
+      "market_line": -21.5,
+      "price": -104,
+      "confidence": 4.2,
+      "sigma": -0.47,
+      "edge_points": -1.5,
+      "model_number": -23.0,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": -21.5,
+      "first_confidence": 4.2,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -21.5,
+          "confidence": 4.2,
+          "sigma": -0.47
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "04c740fce71d3f3b8a4bdc4ea69f1281|spread|full|Mississippi State": {
+      "event_id": "04c740fce71d3f3b8a4bdc4ea69f1281",
+      "matchup": "Mississippi State Bulldogs @ LSU Tigers",
+      "kickoff": "2026-10-17T16:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Mississippi State",
+      "line": 13.5,
+      "market_line": -13.5,
+      "price": -104,
+      "confidence": 4.4,
+      "sigma": 0.6,
+      "edge_points": 1.9,
+      "model_number": -11.6,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 13.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 13.5,
+          "confidence": 4.4,
+          "sigma": 0.6
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "62dd374d95f55eaaad10717b58220ce7|spread|full|Delaware": {
+      "event_id": "62dd374d95f55eaaad10717b58220ce7",
+      "matchup": "Delaware Blue Hens @ Middle Tennessee Blue Raiders",
+      "kickoff": "2026-10-13T23:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Delaware",
+      "line": -1.5,
+      "market_line": 1.5,
+      "price": -110,
+      "confidence": 4.2,
+      "sigma": 0.5,
+      "edge_points": 1.6,
+      "model_number": 3.1,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": -1.5,
+      "first_confidence": 4.2,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -1.5,
+          "confidence": 4.2,
+          "sigma": 0.5
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "84fb3ff9d04d9f8c6aeb5c8cadf6fbb5|total|full|Under": {
+      "event_id": "84fb3ff9d04d9f8c6aeb5c8cadf6fbb5",
+      "matchup": "Georgia Southern Eagles @ Old Dominion Monarchs",
+      "kickoff": "2026-10-15T23:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 47.5,
+      "market_line": 47.5,
+      "price": -110,
+      "confidence": 4.3,
+      "sigma": -0.55,
+      "edge_points": -2.3,
+      "model_number": 45.2,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 47.5,
+      "first_confidence": 4.3,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 47.5,
+          "confidence": 4.3,
+          "sigma": -0.55
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 45,
       "peak_rank": 45
+    },
+    "9fe9b7a2a6f8cdab425c51e9a1b30b77|spread|full|Bowling Green": {
+      "event_id": "9fe9b7a2a6f8cdab425c51e9a1b30b77",
+      "matchup": "Ball State Cardinals @ Bowling Green Falcons",
+      "kickoff": "2026-10-17T16:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Bowling Green",
+      "line": -6.5,
+      "market_line": -6.5,
+      "price": -120,
+      "confidence": 4.6,
+      "sigma": -0.72,
+      "edge_points": -2.3,
+      "model_number": -8.8,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": -6.5,
+      "first_confidence": 4.6,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -6.5,
+          "confidence": 4.6,
+          "sigma": -0.72
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 36,
+      "peak_rank": 36
+    },
+    "5d147fefd2182aa2f5573ac03700a775|spread|full|Nebraska": {
+      "event_id": "5d147fefd2182aa2f5573ac03700a775",
+      "matchup": "Nebraska Cornhuskers @ Oregon Ducks",
+      "kickoff": "2026-10-18T03:00:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Nebraska",
+      "line": 7.5,
+      "market_line": -7.5,
+      "price": -110,
+      "confidence": 4.4,
+      "sigma": 0.6,
+      "edge_points": 1.9,
+      "model_number": -5.6,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 7.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 7.5,
+          "confidence": 4.4,
+          "sigma": 0.6
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 43,
+      "peak_rank": 43
+    },
+    "2bbbf3488a5d57c9c13ae578bad17a9d|total|full|Under": {
+      "event_id": "2bbbf3488a5d57c9c13ae578bad17a9d",
+      "matchup": "Western Kentucky Hilltoppers @ Sam Houston State Bearkats",
+      "kickoff": "2026-10-15T00:00:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 52.5,
+      "market_line": 52.5,
+      "price": -108,
+      "confidence": 4.1,
+      "sigma": -0.43,
+      "edge_points": -1.8,
+      "model_number": 50.7,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": 52.5,
+      "first_confidence": 4.1,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": 52.5,
+          "confidence": 4.1,
+          "sigma": -0.43
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 47,
+      "peak_rank": 47
+    },
+    "917d8eb9ffc25af2925d0e7e8c91a0f4|spread|full|Fresno State": {
+      "event_id": "917d8eb9ffc25af2925d0e7e8c91a0f4",
+      "matchup": "Fresno State Bulldogs @ San Diego State Aztecs",
+      "kickoff": "2026-10-18T02:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Fresno State",
+      "line": -7.5,
+      "market_line": 7.5,
+      "price": -110,
+      "confidence": 4.4,
+      "sigma": 0.57,
+      "edge_points": 1.8,
+      "model_number": 9.3,
+      "first_seen": "2026-10-12T23:56:16+00:00",
+      "first_line": -7.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-10-12T23:56:16+00:00",
+          "line": -7.5,
+          "confidence": 4.4,
+          "sigma": 0.57
+        }
+      ],
+      "last_seen": "2026-10-12T23:56:16+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 44,
+      "peak_rank": 44
     }
   },
   "card": [
     "0372910f02d1b4d9cbfef5b35bbfe439|spread|full|Pittsburgh",
-    "6af8b2523c07aebb827163640d2a865d|spread|full|Miami (OH)",
     "473d8828a17151640834e090d9eb46e4|total|full|Under",
+    "6af8b2523c07aebb827163640d2a865d|spread|full|Miami (OH)",
+    "f10a59f9dd66cb1aa169a293326449d9|total|full|Over",
     "dd062699e8f42bd17509cfba1952e286|spread|full|New Mexico",
-    "a9a289b7b19e28b51572d20315e6bf42|total|full|Over",
-    "f00195614a0c305207222ba2044a9c24|total|full|Over"
+    "8e5b5fc6829c6204c73178807614cd97|spread|full|Texas Tech"
   ],
   "watch": [
+    "a9a289b7b19e28b51572d20315e6bf42|total|full|Over",
     "e45fd12f3d9475fd0941509e7429b596|total|full|Under",
-    "5d09c85c1d67e8f9db8db560cb038027|spread|full|Missouri",
-    "8e5b5fc6829c6204c73178807614cd97|spread|full|Texas Tech",
-    "9f43906997c18b956105dded3134ef1f|spread|full|Utah"
+    "006c37db6769b587a0adde2067498d53|total|full|Under",
+    "eb7db3ae999676aa80dd5cf7dfa32c1a|total|full|Over"
   ],
-  "dropped": []
+  "dropped": [
+    "a9a289b7b19e28b51572d20315e6bf42|total|full|Over",
+    "f00195614a0c305207222ba2044a9c24|total|full|Over"
+  ]
 }
