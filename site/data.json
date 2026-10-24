@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T21:22:39+00:00",
+  "generated_at": "2026-10-24T18:30:07+00:00",
   "board": {
     "week": 8,
     "season": 2026,
@@ -1567,8 +1567,8 @@
       }
     ],
     "fetched_at": "2026-10-21T21:11:42+00:00",
-    "age_hours": 0.2,
-    "stale": false,
+    "age_hours": 69.3,
+    "stale": true,
     "mismatched": false,
     "held": [
       {
@@ -1651,7 +1651,29 @@
     "total_gap": 4.022,
     "sample": 54
   },
-  "live": null,
+  "live": {
+    "fetched_at": "2026-10-24T18:30:07+00:00",
+    "rows": [
+      {
+        "pick_id": "53a31f84cedd",
+        "matchup": "Indiana Hoosiers @ Michigan Wolverines",
+        "title": null,
+        "home_score": 0,
+        "away_score": 6,
+        "completed": false,
+        "covering": "covering"
+      },
+      {
+        "pick_id": "721d48cdb1d0",
+        "matchup": "Texas Tech Red Raiders @ Cincinnati Bearcats",
+        "title": null,
+        "home_score": 24,
+        "away_score": 15,
+        "completed": false,
+        "covering": "not covering"
+      }
+    ]
+  },
   "lock_id": "22462c9f4a95",
   "board_fetched_at": "2026-10-21T21:11:42+00:00",
   "credits_remaining": 212,
