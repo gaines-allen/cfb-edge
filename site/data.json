@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-28T21:59:42+00:00",
+  "generated_at": "2026-10-28T22:13:52+00:00",
   "board": {
     "week": 9,
     "season": 2026,
-    "built_at": "2026-10-28T21:59:23+00:00",
+    "built_at": "2026-10-28T22:08:08+00:00",
     "rows": [
       {
         "market_spread": 1.5,
@@ -1020,7 +1020,7 @@
             "side": "Over",
             "market_line": 56.5,
             "bet_line": 56.5,
-            "price": -115,
+            "price": -110,
             "model_number": 60.9,
             "edge_points": 4.4,
             "edge_sigma": 1.05,
@@ -1891,8 +1891,8 @@
         }
       }
     ],
-    "fetched_at": "2026-10-28T21:59:20+00:00",
-    "age_hours": 0.0,
+    "fetched_at": "2026-10-28T22:08:05+00:00",
+    "age_hours": 0.1,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -2242,9 +2242,9 @@
     "sample": 60
   },
   "live": null,
-  "lock_id": "22462c9f4a95",
-  "board_fetched_at": "2026-10-28T21:59:20+00:00",
-  "credits_remaining": 117,
+  "lock_id": "93c7c6f1d5ca",
+  "board_fetched_at": "2026-10-28T22:08:05+00:00",
+  "credits_remaining": 114,
   "live_threshold": 7.0,
   "target_picks": 6,
   "breakeven": 52.4,
@@ -2288,7 +2288,7 @@
     ],
     "reading": "19 decided, and the whole 95% interval 11.8 to 48.8 sits below the 52.4 needed to break even. This is evidence."
   },
-  "pending_count": 0,
+  "pending_count": 6,
   "weeks": [
     {
       "season": 2026,
@@ -2301,11 +2301,15 @@
     {
       "season": 2026,
       "week": 8
+    },
+    {
+      "season": 2026,
+      "week": 9
     }
   ],
   "current": {
     "season": 2026,
-    "week": 8
+    "week": 9
   },
   "weekly": [
     {
@@ -2352,6 +2356,21 @@
       "roi": 27.83,
       "avg_clv": 0.0,
       "beat_close_pct": 0.0
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "picks": 0,
+      "pending": 6,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "win_pct": 0.0,
+      "units": 0,
+      "risked": 0,
+      "roi": 0.0,
+      "avg_clv": null,
+      "beat_close_pct": null
     }
   ],
   "cumulative": [
@@ -4943,9 +4962,350 @@
       "defense": null,
       "board_line": null,
       "live": true
+    },
+    {
+      "id": "bb7377c2d188",
+      "season": 2026,
+      "week": 9,
+      "matchup": "Tulane Green Wave @ Charlotte 49ers",
+      "kickoff": "2026-10-30T23:00:00Z",
+      "title": "Tulane -9.5",
+      "title_full": "Tulane -9.5, full game, -114",
+      "side": "Tulane",
+      "market": "Spread",
+      "period": "Full game",
+      "line": -9.5,
+      "price": -114,
+      "confidence": 6.1,
+      "units": 1.0,
+      "model_number": 15.8,
+      "edge": 25.3,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Charlotte is 1-6 and has lost games by 32, 27, 51 and 40 points, and the model makes Tulane 15.8 better against a market that has dropped from 10.5 to 9.5 since Tulane lost 42-19 to UTSA. That 1 point move looks like a reaction to one bad Saturday rather than to news. Against it, Tulane is 3-4 and scores about 20 points a game, which is a thin offense to lay 9.5 with on the road on a Friday, and Charlotte won at Temple 38-31 within the last month. ATS records, home and road splits and both injury reports were not gathered. What beats this is Tulane's offense needing 3 scores it has rarely produced this season.",
+      "factors": [
+        "market_overreaction",
+        "rating_edge"
+      ],
+      "sources": [
+        {
+          "url": "https://sports.yahoo.com/articles/tulane-two-digit-favorite-over-150905811.html",
+          "publisher": "Yahoo Sports",
+          "date": "2026-10-27",
+          "claim": "Charlotte's record and its single win",
+          "quote": "Charlotte is 1-6 on the season, and the same 1-2 in league play as the Wave."
+        },
+        {
+          "url": "https://sports.yahoo.com/articles/tulane-two-digit-favorite-over-150905811.html",
+          "publisher": "Yahoo Sports",
+          "date": "2026-10-27",
+          "claim": "Tulane is laying double digits on the road for the first time this season",
+          "quote": "For the first time this year, the Tulane football team finds itself a double-digit favorite on the road"
+        }
+      ],
+      "defense": {
+        "line": "Give me Tulane minus 16.0 on this one, and that's after I already spot the other guy 2.0 for being at home. Straight off the ratings that's 15.5, and I nudge it for the way my numbers have been landing against the book.",
+        "against": "Book's got it at 9.5.",
+        "unusual": "That leaves 6.5 points between us, which puts it in the top tenth of anything I'm looking at.",
+        "built": "",
+        "text": "Give me Tulane minus 16.0 on this one, and that's after I already spot the other guy 2.0 for being at home. Straight off the ratings that's 15.5, and I nudge it for the way my numbers have been landing against the book. Book's got it at 9.5. That leaves 6.5 points between us, which puts it in the top tenth of anything I'm looking at."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "9992aa7baaa0",
+      "season": 2026,
+      "week": 9,
+      "matchup": "Wisconsin Badgers @ Iowa Hawkeyes",
+      "kickoff": "2026-10-31T16:00:00Z",
+      "title": "Under 36.5",
+      "title_full": "Under 36.5, full game, -110",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 36.5,
+      "price": -110,
+      "confidence": 7.0,
+      "units": 1.0,
+      "model_number": 27.9,
+      "edge": -8.6,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Iowa lost leading rusher Kamari Moulton, 541 yards on 86 carries, for the season in a 13-10 loss at Minnesota, and the next back up has 25 carries all year. Wisconsin has allowed 66 points in 6 games since its opener and Iowa allows 14.3 a game, while Wisconsin quarterback Colton Joseph threw for 58 yards in the 24-7 win over USC. The model has this at 27.9 against 36.5, but the total opened at 36.5 on 26 October, after Moulton was hurt, and has not moved, so the injury is probably already priced and the edge is mostly the model's. ATS records and home and road splits were not gathered for either team. What beats this is Iowa's 28 points a game on offense showing up at home, because Iowa scored 37 alone in this game last season.",
+      "factors": [
+        "injury_edge",
+        "rating_edge",
+        "scheme_mismatch"
+      ],
+      "sources": [
+        {
+          "url": "https://fieldlevelmedia.com/ncaaf/newly-ranked-no-25-wisconsin-preps-for-heartland-trophy-game-vs-iowa/",
+          "publisher": "Field Level Media",
+          "date": "2026-10-27",
+          "claim": "Wisconsin's defense has allowed 66 points in 6 games since its opener",
+          "quote": "Wisconsin has allowed 107 points, but just 66 in six games since the opening loss to Notre Dame."
+        },
+        {
+          "url": "https://fieldlevelmedia.com/ncaaf/newly-ranked-no-25-wisconsin-preps-for-heartland-trophy-game-vs-iowa/",
+          "publisher": "Field Level Media",
+          "date": "2026-10-27",
+          "claim": "Iowa scored 10 in its last game and has split quarterback snaps",
+          "quote": "Brown split time with Jeremy Hecklinski against Minnesota, but Ferentz said Brown would start against Wisconsin."
+        },
+        {
+          "url": "https://www.si.com/college/wisconsin/football/iowa-offense-suffers-huge-blow-ahead-of-clash-with-25-wisconsin",
+          "publisher": "Sports Illustrated",
+          "date": "2026-10-27",
+          "claim": "Iowa's leading rusher Kamari Moulton is out for the season",
+          "quote": "is out for the remainder of the season"
+        }
+      ],
+      "defense": {
+        "line": "I got Iowa for 16.0 and Wisconsin for 12.0. Call it 28.0 on the scoreboard.",
+        "against": "Book's asking 36.5.",
+        "unusual": "That leaves 8.5 points between us, which puts it in the top tenth of anything I'm looking at.",
+        "built": "",
+        "text": "I got Iowa for 16.0 and Wisconsin for 12.0. Call it 28.0 on the scoreboard. Book's asking 36.5. That leaves 8.5 points between us, which puts it in the top tenth of anything I'm looking at."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "fb38bba263d3",
+      "season": 2026,
+      "week": 9,
+      "matchup": "UAB Blazers @ South Florida Bulls",
+      "kickoff": "2026-10-31T16:00:00Z",
+      "title": "South Florida -7.5",
+      "title_full": "South Florida -7.5, full game, -108",
+      "side": "South Florida",
+      "market": "Spread",
+      "period": "Full game",
+      "line": -7.5,
+      "price": -108,
+      "confidence": 6.6,
+      "units": 1.0,
+      "model_number": -13.6,
+      "edge": -6.1,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "UAB leads the nation against the pass at 126 yards a game but ranks 122nd against the run at 190.6, and that split points at the way South Florida should play this game at home off a bye. The model makes South Florida 13.6 better against a market 7.5 that has not moved since it opened on 26 October. The problem is that South Florida rushed for 78 yards on 32 carries in its last game, a 29-2 win over Kent State, so the run game this pick needs has not shown up lately. ATS records, home and road splits and both injury reports were not gathered. What beats this is South Florida's offense staying as flat as it was against Kent State and a 1 score game going to the fourth quarter.",
+      "factors": [
+        "rating_edge",
+        "scheme_mismatch"
+      ],
+      "sources": [
+        {
+          "url": "https://www.usforacle.com/2026/10/27/preview-usf-football-faces-uab-with-conference-aspirations-still-alive/",
+          "publisher": "The Oracle",
+          "date": "2026-10-27",
+          "claim": "UAB's run defense ranks 122nd in FBS",
+          "quote": "122nd in the Football Bowl Subdivision against the run, surrendering 190.6 yards per game"
+        },
+        {
+          "url": "https://www.usforacle.com/2026/10/27/preview-usf-football-faces-uab-with-conference-aspirations-still-alive/",
+          "publisher": "The Oracle",
+          "date": "2026-10-27",
+          "claim": "South Florida's run game was poor in its last game",
+          "quote": "The Bulls rushed for just 78 yards on 32 attempts against the Golden Flashes"
+        }
+      ],
+      "defense": {
+        "line": "On my sheet South Florida wins this by 13.5, 2.0 of which is just for sleeping at home.",
+        "against": "Book's got it at 7.5.",
+        "unusual": "That leaves 6.0 points between us, which puts it in the top tenth of anything I'm looking at.",
+        "built": "",
+        "text": "On my sheet South Florida wins this by 13.5, 2.0 of which is just for sleeping at home. Book's got it at 7.5. That leaves 6.0 points between us, which puts it in the top tenth of anything I'm looking at."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "08f16b27aae4",
+      "season": 2026,
+      "week": 9,
+      "matchup": "Kansas State Wildcats @ Colorado Buffaloes",
+      "kickoff": "2026-10-31T18:00:00Z",
+      "title": "Kansas State -1.5",
+      "title_full": "Kansas State -1.5, full game, -104",
+      "side": "Kansas State",
+      "market": "Spread",
+      "period": "Full game",
+      "line": -1.5,
+      "price": -104,
+      "confidence": 6.3,
+      "units": 1.0,
+      "model_number": 8.5,
+      "edge": 10.0,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "Colorado has lost 5 straight and just gave up 598 yards in a 57-24 loss at Oklahoma State, and the model makes Kansas State 8.5 better against a market 1.5. The market has a reason the model lacks: quarterback Avery Johnson missed the 28-17 loss at Arizona State and is day-to-day, and backup Jacob Knuth has an ankle injury, so the starter is unconfirmed and that is why the line has dropped from 2.5 to 1.5. If Johnson plays, this number is too short, and if he does not, it is about right. ATS records and home and road splits were not gathered. What beats this is Johnson sitting and Kansas State's third quarterback trying to win a road game.",
+      "factors": [
+        "injury_edge",
+        "rating_edge"
+      ],
+      "sources": [
+        {
+          "url": "https://www.heartlandcollegesports.com/2026/10/28/kansas-state-colorado-prediction-pick-odds-week-9-2026/",
+          "publisher": "Heartland College Sports",
+          "date": "2026-10-28",
+          "claim": "Kansas State's starting quarterback is day-to-day",
+          "quote": "Collin Klein says Avery Johnson is day-to-day entering Colorado week."
+        },
+        {
+          "url": "https://www.heartlandcollegesports.com/2026/10/28/kansas-state-colorado-prediction-pick-odds-week-9-2026/",
+          "publisher": "Heartland College Sports",
+          "date": "2026-10-28",
+          "claim": "Colorado's defense allowed 598 yards in its last game",
+          "quote": "Colorado defense that just surrendered 598 yards to Oklahoma State"
+        }
+      ],
+      "defense": {
+        "line": "On my sheet Kansas State wins this by 8.5, and that's after I already spot the other guy 2.0 for being at home.",
+        "against": "Book's got it at 1.5.",
+        "unusual": "That leaves 7.0 points between us, which is about as far apart as me and the book ever get.",
+        "built": "",
+        "text": "On my sheet Kansas State wins this by 8.5, and that's after I already spot the other guy 2.0 for being at home. Book's got it at 1.5. That leaves 7.0 points between us, which is about as far apart as me and the book ever get."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "17026c5b67b9",
+      "season": 2026,
+      "week": 9,
+      "matchup": "UTEP Miners @ North Dakota State Bison",
+      "kickoff": "2026-10-31T19:30:00Z",
+      "title": "Under 42.5",
+      "title_full": "Under 42.5, full game, -110",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 42.5,
+      "price": -110,
+      "confidence": 6.6,
+      "units": 1.0,
+      "model_number": 38.1,
+      "edge": -4.4,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "UTEP scores 15.1 points a game and has allowed 36 sacks, last of 138 FBS teams, and it goes into the Fargodome against a North Dakota State defense that a 28 October InForum report ranks third in FBS scoring defense at 12.5 points a game. UTEP's starter EJ Colson is day-to-day according to Scotty Walden, so Raymond Moore III may start, and that status is unconfirmed. North Dakota State's own offense scored 16 against New Mexico last week, which is why I take the total at 42.5 rather than the spread at -24.5, even though the model gap is bigger on the spread. ATS records and home and road splits were not gathered. What beats this is North Dakota State's defense scoring once or twice off a line that cannot protect the quarterback, which adds points the offenses never earned.",
+      "factors": [
+        "injury_edge",
+        "rating_edge",
+        "scheme_mismatch"
+      ],
+      "sources": [
+        {
+          "url": "https://www.fergusfallsjournal.com/sports/bison-media-zone/mens-sports/utep-dealing-with-major-offensive-issues",
+          "publisher": "InForum via Fergus Falls Journal",
+          "date": "2026-10-28",
+          "claim": "UTEP's offensive line is last in FBS in sacks allowed",
+          "quote": "quarterback sacks, which ranks them 138th out of 138 FBS teams in sacks allowed per game"
+        },
+        {
+          "url": "https://www.fergusfallsjournal.com/sports/bison-media-zone/mens-sports/utep-dealing-with-major-offensive-issues",
+          "publisher": "InForum via Fergus Falls Journal",
+          "date": "2026-10-28",
+          "claim": "UTEP's starting quarterback is day-to-day",
+          "quote": "Starter EJ Colson, who has been banged up most of the season, is day-to-day this week, Walden said."
+        }
+      ],
+      "defense": {
+        "line": "I got North Dakota State for 34.0 and UTEP for 4.0. Call it 38.0 on the scoreboard.",
+        "against": "Book's asking 42.5.",
+        "unusual": "That leaves 4.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "",
+        "text": "I got North Dakota State for 34.0 and UTEP for 4.0. Call it 38.0 on the scoreboard. Book's asking 42.5. That leaves 4.5 points between us, which is a bigger gap than most games on my board."
+      },
+      "board_line": null,
+      "live": true
+    },
+    {
+      "id": "93c7c6f1d5ca",
+      "season": 2026,
+      "week": 9,
+      "matchup": "New Mexico Lobos @ San Jose State Spartans",
+      "kickoff": "2026-10-31T20:00:00Z",
+      "title": "Under 41.5",
+      "title_full": "Under 41.5, full game, -108",
+      "side": "Under",
+      "market": "Total",
+      "period": "Full game",
+      "line": 41.5,
+      "price": -108,
+      "confidence": 7.3,
+      "units": 1.0,
+      "model_number": 33.9,
+      "edge": -7.6,
+      "close_line": null,
+      "clv_points": null,
+      "result": "pending",
+      "result_label": "PENDING",
+      "units_net": 0.0,
+      "final_score": null,
+      "rationale": "San Jose State benched quarterback Daniel Rolovich during a 28-13 loss at Nevada on 24 October and went 1 for 14 on third down, and it now faces the defense New Mexico's own release calls the No. 1 scoring defense in the country. The Spartans have scored 13, 24 and 13 in their last 3 games, and the blended model puts the total at 33.9 against a market 41.5 that has not moved since it opened on 26 October. New Mexico won its last game 21-16, so the Lobos are not running teams out of the building either. Who starts at quarterback for San Jose State is not confirmed, and ATS and home and road splits were not gathered for either team. What beats this is New Mexico's turnover machine, which leads the nation in points off turnovers, handing it short fields and 2 or 3 cheap touchdowns.",
+      "factors": [
+        "injury_edge",
+        "rating_edge",
+        "scheme_mismatch"
+      ],
+      "sources": [
+        {
+          "url": "https://golobos.com/news/2026/10/27/lobos-look-to-stay-hot-head-to-san-jose",
+          "publisher": "New Mexico Athletics",
+          "date": "2026-10-27",
+          "claim": "New Mexico has the top scoring defense in FBS",
+          "quote": "No. 1 scoring defense and the No. 5 overall defense"
+        },
+        {
+          "url": "https://ground.news/article/nevada-28-san-jose-state-13",
+          "publisher": "Ground News",
+          "date": "2026-10-24",
+          "claim": "San Jose State benched its starting quarterback after offensive struggles at Nevada",
+          "quote": "Spartans head coach Ken Niumatalolo benched starting quarterback Daniel Rolovich after offensive struggles."
+        },
+        {
+          "url": "https://ground.news/article/nevada-28-san-jose-state-13",
+          "publisher": "Ground News",
+          "date": "2026-10-24",
+          "claim": "San Jose State converted 1 of 14 third downs at Nevada",
+          "quote": "The Spartans struggled offensively, going 1-for-14 on third-down conversions while Nevada led throughout the game."
+        }
+      ],
+      "defense": {
+        "line": "Pencil me in for San Jos\u00e9 State 8.0, New Mexico 26.0. Adds up to 34.0.",
+        "against": "Book's asking 41.5.",
+        "unusual": "That leaves 7.5 points between us, which is a bigger gap than most games on my board.",
+        "built": "",
+        "text": "Pencil me in for San Jos\u00e9 State 8.0, New Mexico 26.0. Adds up to 34.0. Book's asking 41.5. That leaves 7.5 points between us, which is a bigger gap than most games on my board."
+      },
+      "board_line": null,
+      "live": true
     }
   ],
   "proven": false,
   "voice_publish": "7.0",
-  "card_caveat": null
+  "card_caveat": "Numbers come off SP+ and FPI and SRS and Elo."
 }
