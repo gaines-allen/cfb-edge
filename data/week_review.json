@@ -1,81 +1,81 @@
 {
   "season": 2026,
   "week": 9,
-  "reviewed_at": "2026-10-31T19:02:20+00:00",
-  "games_scored": 9,
+  "reviewed_at": "2026-10-31T20:46:25+00:00",
+  "games_scored": 21,
   "games_unmatched": [
-    "Boston College Eagles @ Duke Blue Devils",
-    "Wisconsin Badgers @ Iowa Hawkeyes",
-    "Illinois Fighting Illini @ Maryland Terrapins",
-    "Marshall Thundering Herd @ Old Dominion Monarchs",
-    "California Golden Bears @ NC State Wolfpack",
-    "Kansas State Wildcats @ Colorado Buffaloes",
-    "Notre Dame Fighting Irish @ Navy Midshipmen",
-    "New Mexico Lobos @ San Jose State Spartans",
-    "Army Black Knights @ Memphis Tigers",
-    "UTEP Miners @ North Dakota State Bison",
+    "Southern Mississippi Golden Eagles @ UL Monroe Warhawks",
+    "Temple Owls @ East Carolina Pirates",
     "Colorado State Rams @ Utah State Aggies",
-    "UConn Huskies @ Air Force Falcons",
+    "Virginia Cavaliers @ Wake Forest Demon Deacons",
+    "UTEP Miners @ North Dakota State Bison",
+    "Louisiana Tech Bulldogs @ South Alabama Jaguars",
     "Florida International Panthers @ Liberty Flames",
+    "Stanford Cardinal @ Louisville Cardinals",
+    "Kansas State Wildcats @ Colorado Buffaloes",
+    "Utah Utes @ Cincinnati Bearcats",
+    "Northwestern Wildcats @ Oregon Ducks",
+    "Florida Gators @ Georgia Bulldogs",
+    "Kansas Jayhawks @ TCU Horned Frogs",
+    "Nevada Wolf Pack @ UCLA Bruins",
+    "Army Black Knights @ Memphis Tigers",
+    "Minnesota Golden Gophers @ Indiana Hoosiers",
+    "UConn Huskies @ Air Force Falcons",
     "Ohio State Buckeyes @ USC Trojans",
     "Texas State Bobcats @ Boise State Broncos",
-    "Oregon State Beavers @ Fresno State Bulldogs",
-    "Utah Utes @ Cincinnati Bearcats",
-    "Georgia Tech Yellow Jackets @ Pittsburgh Panthers",
-    "Auburn Tigers @ Ole Miss Rebels",
-    "Kansas Jayhawks @ TCU Horned Frogs",
-    "Mississippi State Bulldogs @ Texas Longhorns",
-    "Stanford Cardinal @ Louisville Cardinals",
-    "Minnesota Golden Gophers @ Indiana Hoosiers",
-    "Virginia Cavaliers @ Wake Forest Demon Deacons",
-    "Louisiana Tech Bulldogs @ South Alabama Jaguars",
-    "Miami Hurricanes @ North Carolina Tar Heels",
-    "Southern Mississippi Golden Eagles @ UL Monroe Warhawks",
-    "Northern Illinois Huskies @ UNLV Rebels",
-    "South Carolina Gamecocks @ Oklahoma Sooners",
-    "Washington State Cougars @ San Diego State Aztecs",
-    "Temple Owls @ East Carolina Pirates",
-    "Arizona Wildcats @ Texas Tech Red Raiders",
-    "Appalachian State Mountaineers @ Georgia Southern Eagles",
-    "Nevada Wolf Pack @ UCLA Bruins",
     "Arizona State Sun Devils @ BYU Cougars",
-    "Florida Gators @ Georgia Bulldogs",
-    "UAB Blazers @ South Florida Bulls",
-    "SMU Mustangs @ Syracuse Orange",
-    "Michigan Wolverines @ Rutgers Scarlet Knights",
+    "South Carolina Gamecocks @ Oklahoma Sooners",
+    "Oregon State Beavers @ Fresno State Bulldogs",
+    "Purdue Boilermakers @ Penn State Nittany Lions",
+    "New Mexico Lobos @ San Jose State Spartans",
+    "Georgia Tech Yellow Jackets @ Pittsburgh Panthers",
+    "Mississippi State Bulldogs @ Texas Longhorns",
+    "Miami Hurricanes @ North Carolina Tar Heels",
+    "Northern Illinois Huskies @ UNLV Rebels",
+    "Washington State Cougars @ San Diego State Aztecs",
+    "Appalachian State Mountaineers @ Georgia Southern Eagles",
     "Coastal Carolina Chanticleers @ Georgia State Panthers",
     "Oklahoma State Cowboys @ Iowa State Cyclones",
     "Missouri Tigers @ Arkansas Razorbacks",
     "Washington Huskies @ Nebraska Cornhuskers",
-    "Bowling Green Falcons @ Western Michigan Broncos",
-    "Purdue Boilermakers @ Penn State Nittany Lions",
     "Clemson Tigers @ Florida State Seminoles"
   ],
   "summary": {
     "spread": {
-      "games": 9,
-      "mean_error": 6.4,
-      "mean_absolute_error": 18.64,
-      "median_absolute_error": 18.2,
-      "worst": 32.1
+      "games": 21,
+      "mean_error": -2.8,
+      "mean_absolute_error": 15.06,
+      "median_absolute_error": 13.7,
+      "worst": -34.3
     },
     "total": {
-      "games": 9,
-      "mean_error": -1.29,
-      "mean_absolute_error": 12.42,
-      "median_absolute_error": 10.9,
+      "games": 21,
+      "mean_error": 1.6,
+      "mean_absolute_error": 10.3,
+      "median_absolute_error": 8.4,
       "worst": -25.2
     },
     "on_big_spreads": {
-      "games": 1,
-      "mean_absolute_error": 25.2
+      "games": 2,
+      "mean_absolute_error": 16.0
     },
     "on_close_games": {
-      "games": 8,
-      "mean_absolute_error": 17.82
+      "games": 19,
+      "mean_absolute_error": 14.96
     }
   },
   "games": [
+    {
+      "matchup": "Boston College Eagles @ Duke Blue Devils",
+      "home_score": 47.0,
+      "away_score": 2.0,
+      "actual_margin": 45.0,
+      "actual_total": 49.0,
+      "model_margin": 10.7,
+      "spread_error": -34.3,
+      "model_total": 48.5,
+      "total_error": -0.5
+    },
     {
       "matchup": "Baylor Bears @ UCF Knights",
       "home_score": 9.0,
@@ -99,6 +99,17 @@
       "total_error": 2.3
     },
     {
+      "matchup": "Wisconsin Badgers @ Iowa Hawkeyes",
+      "home_score": 30.0,
+      "away_score": 0.0,
+      "actual_margin": 30.0,
+      "actual_total": 30.0,
+      "model_margin": 4.4,
+      "spread_error": -25.6,
+      "model_total": 28.2,
+      "total_error": -1.8
+    },
+    {
       "matchup": "Troy Trojans @ James Madison Dukes",
       "home_score": 21.0,
       "away_score": 24.0,
@@ -108,6 +119,17 @@
       "spread_error": 25.2,
       "model_total": 49.0,
       "total_error": 4.0
+    },
+    {
+      "matchup": "Auburn Tigers @ Ole Miss Rebels",
+      "home_score": 45.0,
+      "away_score": 15.0,
+      "actual_margin": 30.0,
+      "actual_total": 60.0,
+      "model_margin": 10.4,
+      "spread_error": -19.6,
+      "model_total": 54.2,
+      "total_error": -5.8
     },
     {
       "matchup": "Jacksonville State Gamecocks @ New Mexico State Aggies",
@@ -154,6 +176,39 @@
       "total_error": -2.1
     },
     {
+      "matchup": "SMU Mustangs @ Syracuse Orange",
+      "home_score": 30.0,
+      "away_score": 27.0,
+      "actual_margin": 3.0,
+      "actual_total": 57.0,
+      "model_margin": -10.7,
+      "spread_error": -13.7,
+      "model_total": 55.4,
+      "total_error": -1.6
+    },
+    {
+      "matchup": "Marshall Thundering Herd @ Old Dominion Monarchs",
+      "home_score": 23.0,
+      "away_score": 36.0,
+      "actual_margin": -13.0,
+      "actual_total": 59.0,
+      "model_margin": -0.6,
+      "spread_error": 12.4,
+      "model_total": 45.9,
+      "total_error": -13.1
+    },
+    {
+      "matchup": "California Golden Bears @ NC State Wolfpack",
+      "home_score": 31.0,
+      "away_score": 10.0,
+      "actual_margin": 21.0,
+      "actual_total": 41.0,
+      "model_margin": 9.3,
+      "spread_error": -11.7,
+      "model_total": 61.2,
+      "total_error": 20.2
+    },
+    {
       "matchup": "Tulane Green Wave @ Charlotte 49ers",
       "home_score": 31.0,
       "away_score": 38.0,
@@ -165,6 +220,50 @@
       "total_error": -18.4
     },
     {
+      "matchup": "Notre Dame Fighting Irish @ Navy Midshipmen",
+      "home_score": 13.0,
+      "away_score": 35.0,
+      "actual_margin": -22.0,
+      "actual_total": 48.0,
+      "model_margin": -28.8,
+      "spread_error": -6.8,
+      "model_total": 60.5,
+      "total_error": 12.5
+    },
+    {
+      "matchup": "UAB Blazers @ South Florida Bulls",
+      "home_score": 30.0,
+      "away_score": 10.0,
+      "actual_margin": 20.0,
+      "actual_total": 40.0,
+      "model_margin": 13.8,
+      "spread_error": -6.2,
+      "model_total": 48.4,
+      "total_error": 8.4
+    },
+    {
+      "matchup": "Michigan Wolverines @ Rutgers Scarlet Knights",
+      "home_score": 21.0,
+      "away_score": 28.0,
+      "actual_margin": -7.0,
+      "actual_total": 49.0,
+      "model_margin": -12.8,
+      "spread_error": -5.8,
+      "model_total": 46.7,
+      "total_error": -2.3
+    },
+    {
+      "matchup": "Arizona Wildcats @ Texas Tech Red Raiders",
+      "home_score": 34.0,
+      "away_score": 26.0,
+      "actual_margin": 8.0,
+      "actual_total": 60.0,
+      "model_margin": 3.5,
+      "spread_error": -4.5,
+      "model_total": 55.4,
+      "total_error": -4.6
+    },
+    {
       "matchup": "Florida Atlantic Owls @ North Texas Mean Green",
       "home_score": 48.0,
       "away_score": 41.0,
@@ -174,6 +273,28 @@
       "spread_error": 4.4,
       "model_total": 78.1,
       "total_error": -10.9
+    },
+    {
+      "matchup": "Illinois Fighting Illini @ Maryland Terrapins",
+      "home_score": 17.0,
+      "away_score": 20.0,
+      "actual_margin": -3.0,
+      "actual_total": 37.0,
+      "model_margin": -7.2,
+      "spread_error": -4.2,
+      "model_total": 59.4,
+      "total_error": 22.4
+    },
+    {
+      "matchup": "Bowling Green Falcons @ Western Michigan Broncos",
+      "home_score": 23.0,
+      "away_score": 10.0,
+      "actual_margin": 13.0,
+      "actual_total": 33.0,
+      "model_margin": 16.7,
+      "spread_error": 3.7,
+      "model_total": 44.4,
+      "total_error": 11.4
     }
   ]
 }
