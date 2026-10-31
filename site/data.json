@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T19:02:45+00:00",
+  "generated_at": "2026-10-31T19:39:15+00:00",
   "board": {
     "week": 9,
     "season": 2026,
@@ -1721,7 +1721,7 @@
       }
     ],
     "fetched_at": "2026-10-31T19:02:04+00:00",
-    "age_hours": 0.0,
+    "age_hours": 0.6,
     "stale": false,
     "mismatched": false,
     "held": [
@@ -1765,7 +1765,47 @@
     "total_gap": 4.243,
     "sample": 60
   },
-  "live": null,
+  "live": {
+    "fetched_at": "2026-10-31T19:39:15+00:00",
+    "rows": [
+      {
+        "pick_id": "9992aa7baaa0",
+        "matchup": "Wisconsin Badgers @ Iowa Hawkeyes",
+        "title": null,
+        "home_score": 30,
+        "away_score": 0,
+        "completed": true,
+        "covering": "covering"
+      },
+      {
+        "pick_id": "17026c5b67b9",
+        "matchup": "UTEP Miners @ North Dakota State Bison",
+        "title": null,
+        "home_score": 0,
+        "away_score": 0,
+        "completed": false,
+        "covering": "covering"
+      },
+      {
+        "pick_id": "fb38bba263d3",
+        "matchup": "UAB Blazers @ South Florida Bulls",
+        "title": null,
+        "home_score": 30,
+        "away_score": 10,
+        "completed": true,
+        "covering": "not covering"
+      },
+      {
+        "pick_id": "08f16b27aae4",
+        "matchup": "Kansas State Wildcats @ Colorado Buffaloes",
+        "title": null,
+        "home_score": 7,
+        "away_score": 7,
+        "completed": false,
+        "covering": "not covering"
+      }
+    ]
+  },
   "lock_id": "93c7c6f1d5ca",
   "board_fetched_at": "2026-10-31T19:02:04+00:00",
   "credits_remaining": 105,
