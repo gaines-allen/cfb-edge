@@ -2096,5 +2096,408 @@
     "graded_at": "2026-10-31T19:02:08+00:00",
     "grader_note": null,
     "final_score": "Tulane 38 - Charlotte 31"
+  },
+  {
+    "id": "7ef4d067d4ef",
+    "season": 2026,
+    "week": 11,
+    "event_id": "8ad669f4c9b70f38fdb057c114588776",
+    "matchup": "Ole Miss Rebels @ Oklahoma Sooners",
+    "kickoff": "2026-11-14T21:15:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 49.5,
+    "price": -110,
+    "confidence": 7.8,
+    "live": true,
+    "units": 1.0,
+    "model_number": 44.0,
+    "edge": -5.5,
+    "rationale": "Oklahoma fired offensive coordinator Ben Arbuckle on 2 November with the offense 108th in scoring at 22 points a game, and tight ends coach Jason Witten is calling plays for the rest of the season. The Ole Miss side of the total is also thinner than its season numbers: running back Kewan Lacy misses a third straight game, right guard Patrick Kutas went down against Georgia, and Trinidad Chambliss has 9 interceptions, 5 of them in the last 3 games, against a Sooner defense that allows 170.7 passing yards a game, 10th nationally. The model has this at 44.0 against a market 49.5 and nothing in the news pushes the scoring up. Witten has called 1 game, so the sample on the new offense is 23 points in a 23 to 7 road win at Florida and nothing else. What would make me wrong is Oklahoma's 134th ranked tackling turning Ole Miss short passes into long plays and a 30 point Rebel output on its own.",
+    "factors": {
+      "rating_edge": true,
+      "coaching_change": true,
+      "injury_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://footballscoop.com/2026/11/02/oklahoma-fires-offensive-coordinator-ben-arbuckle",
+        "publisher": "FootballScoop",
+        "date": "2026-11-02",
+        "claim": "Oklahoma's offense ranks 108th in scoring at 22 points per game when the coordinator was fired",
+        "quote": "As a unit, Oklahoma ranked 79th in scoring a year ago and stands at 108th today, averaging a flat 22 points per game."
+      },
+      {
+        "url": "https://sports.yahoo.com/articles/oklahoma-football-fires-oc-ben-045900653.html",
+        "publisher": "Yahoo Sports",
+        "date": "2026-11-03",
+        "claim": "Jason Witten takes over play calling for the rest of the season",
+        "quote": "Tight ends coach Jason Witten will take over as interim OC for the rest of the season."
+      },
+      {
+        "url": "https://www.yardbarker.com/college_football/articles/no_19_ole_miss_needs_to_regroup_before_road_tilt_at_oklahoma/s1_17047_44548498",
+        "publisher": "Field Level Media via Yardbarker",
+        "date": "2026-11-11",
+        "claim": "Oklahoma pass defense ranks 10th nationally",
+        "quote": "the Sooners' defense comes in 10th nationally in passing yards allowed at just 170.7 per game."
+      },
+      {
+        "url": "https://www.yardbarker.com/college_football/articles/no_19_ole_miss_needs_to_regroup_before_road_tilt_at_oklahoma/s1_17047_44548498",
+        "publisher": "Field Level Media via Yardbarker",
+        "date": "2026-11-11",
+        "claim": "Ole Miss right guard Patrick Kutas was injured against Georgia",
+        "quote": "Kutas has started every game at right guard this season before being injured in the loss to Georgia."
+      },
+      {
+        "url": "https://www.yardbarker.com/college_football/articles/no_19_ole_miss_needs_to_regroup_before_road_tilt_at_oklahoma/s1_17047_44548498",
+        "publisher": "Field Level Media via Yardbarker",
+        "date": "2026-11-11",
+        "claim": "Chambliss has 9 interceptions this season, 5 in the last 3 games",
+        "quote": "After throwing just three interceptions last season, Chambliss has nine so far this season"
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "bc10ae0660dd",
+    "season": 2026,
+    "week": 11,
+    "event_id": "d466840e3c50d2fdad6fd7e799fdf921",
+    "matchup": "Minnesota Golden Gophers @ Penn State Nittany Lions",
+    "kickoff": "2026-11-15T00:00:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 41.5,
+    "price": 100,
+    "confidence": 7.4,
+    "live": true,
+    "units": 1.0,
+    "model_number": 37.1,
+    "edge": -4.4,
+    "rationale": "Minnesota has not reached 300 yards of offense in any game since 26 September, 5 straight weeks, and its run game ranks among the worst in the country, which leaves it passing into a Penn State defense that allows 297.3 yards a game, 19th nationally. Penn State has its own ceiling, with Rocco Becht in what the Star Tribune calls an underwhelming season, and the 7 p.m. kickoff forecast is dry, so this is not a weather under. The model sits at 37.1 against 41.5 and the research points the same way rather than explaining the gap away. I found no against the spread or over and under splits for either team that I could source, so the case rests on the yardage trend. What would make me wrong is a defensive or special teams touchdown, since a total this low leaves no room for one.",
+    "factors": {
+      "rating_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://sports.yahoo.com/articles/gophers-penn-state-preview-minnesotas-172210994.html",
+        "publisher": "Star Tribune via Yahoo Sports",
+        "date": "2026-11-11",
+        "claim": "Minnesota has not topped 300 yards since 26 September",
+        "quote": "The Gophers haven't topped 300 yards of offense since Sept. 26 against Washington, and they had just 326 yards in that game."
+      },
+      {
+        "url": "https://sports.yahoo.com/articles/gophers-penn-state-preview-minnesotas-172210994.html",
+        "publisher": "Star Tribune via Yahoo Sports",
+        "date": "2026-11-11",
+        "claim": "Penn State defense allows 297.3 yards per game, 19th nationally",
+        "quote": "Penn State has allowed 297.3 yards per game this season, which ranks 19th in the country."
+      },
+      {
+        "url": "https://sports.yahoo.com/articles/gophers-penn-state-preview-minnesotas-172210994.html",
+        "publisher": "Star Tribune via Yahoo Sports",
+        "date": "2026-11-11",
+        "claim": "Minnesota's rushing attack ranks near the bottom of the country",
+        "quote": "The Gophers' rushing attack has been among the worst in the country this season"
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "cc3e0c9f4ec0",
+    "season": 2026,
+    "week": 11,
+    "event_id": "83b67813ba763c65142b4238e3c44270",
+    "matchup": "James Madison Dukes @ UConn Huskies",
+    "kickoff": "2026-11-14T17:00:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "James Madison",
+    "line": -3.5,
+    "price": -120,
+    "confidence": 7.3,
+    "live": true,
+    "units": 1.0,
+    "model_number": -9.2,
+    "edge": -5.7,
+    "rationale": "JC Evans took the James Madison quarterback job back on 5 November for the first time since his opening week injury and produced 298 yards of total offense and 4 touchdowns in a 54 to 23 win over Southern Miss, so most of the Dukes' season tape was played without the starter they now have. UConn allows 26.7 points a game, 88th nationally, while James Madison allows 19.3, 29th. The model makes this James Madison by 9.2 and I could find no injury or coaching news on either side that explains a market at 3.5. The price is minus 120, which costs about 2 percentage points of win probability against a standard minus 110. What would make me wrong is that the market is reading James Madison's 2 losses in its 4 games before Southern Miss as the real team and one game from Evans as noise.",
+    "factors": {
+      "rating_edge": true,
+      "momentum_mechanism": true
+    },
+    "sources": [
+      {
+        "url": "https://www.breezejmu.org/sports/jmu-football-turns-around-second-half-struggles-downs-southern-miss-54-23/article_e60b3917-530b-4710-9e73-d871c67b62ce.html",
+        "publisher": "The Breeze",
+        "date": "2026-11-06",
+        "claim": "Evans returned as the starter for the first time since the opener",
+        "quote": "Evans has not started a game since the opener against Liberty, where he sustained an injury."
+      },
+      {
+        "url": "https://www.breezejmu.org/sports/jmu-football-turns-around-second-half-struggles-downs-southern-miss-54-23/article_e60b3917-530b-4710-9e73-d871c67b62ce.html",
+        "publisher": "The Breeze",
+        "date": "2026-11-06",
+        "claim": "Evans produced 298 yards and 4 touchdowns in his return",
+        "quote": "Evans posted 298 yards of total offense and accounted for four touchdowns, three rushing."
+      },
+      {
+        "url": "https://www.docsports.com/free-picks/football/2026/james-madison-dukes-vs-connecticut-huskies-prediction-11-14-2026-college-football-picks-best-bets-odds.html",
+        "publisher": "Doc's Sports",
+        "date": "2026-11-10",
+        "claim": "UConn allows 26.7 points per game, 88th",
+        "quote": "The Huskies are relinquishing 26.7 points per game, which puts them 88th in the country."
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "8412dbcfb843",
+    "season": 2026,
+    "week": 11,
+    "event_id": "d0327c5775ed8cc9854411f8e077af93",
+    "matchup": "California Golden Bears @ Virginia Cavaliers",
+    "kickoff": "2026-11-14T20:30:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Virginia",
+    "line": -10.5,
+    "price": 100,
+    "confidence": 7.0,
+    "live": true,
+    "units": 1.0,
+    "model_number": -15.7,
+    "edge": -5.2,
+    "rationale": "California crosses the country to the East Coast for the second time in 3 weeks and has lost 5 of its last 6 under first year coach Tosh Lupoi, while Virginia comes off a bye with running back Jekail Middlebrook and defenders Brandyn Hillman and Ethan Minter back in practice. FanDuel opened Virginia at 12.5 and the number has come down 2 points to 10.5 with no injury news on either side to justify it, which is the market selling Virginia's 3 game losing streak and the 51 to 7 loss at Wake Forest. The model makes this 15.7. Virginia losing 3 straight is a real form signal and not only noise, which is why this sits at 7.0 and not higher. What would make me wrong is Virginia's offense staying where it was in that 3 game slide, when Beau Pribula threw 1 touchdown pass.",
+    "factors": {
+      "rating_edge": true,
+      "travel": true,
+      "injury_edge": true,
+      "market_overreaction": true
+    },
+    "sources": [
+      {
+        "url": "https://www.si.com/college/virginia/football/cavaliers-open-as-double-digit-favorites-against-cal-in-week-11-matchup-01m6yprh3dbq",
+        "publisher": "Sports Illustrated",
+        "date": "2026-11-09",
+        "claim": "California's second cross country trip in 3 weeks",
+        "quote": "But the Golden Bears must travel across the country to the East Coast for the second time in three weeks."
+      },
+      {
+        "url": "https://www.si.com/college/virginia/football/cavaliers-open-as-double-digit-favorites-against-cal-in-week-11-matchup-01m6yprh3dbq",
+        "publisher": "Sports Illustrated",
+        "date": "2026-11-09",
+        "claim": "FanDuel opened Virginia at 12.5",
+        "quote": "FanDuel has installed the Cavaliers as early 12.5-point favorites."
+      },
+      {
+        "url": "https://www.si.com/college/virginia/football/cavaliers-open-as-double-digit-favorites-against-cal-in-week-11-matchup-01m6yprh3dbq",
+        "publisher": "Sports Illustrated",
+        "date": "2026-11-09",
+        "claim": "California has lost 5 of its last 6",
+        "quote": "The Bears (3-6, 2-4 ACC) are struggling just as much as the Cavaliers are, having dropped five of their last six."
+      },
+      {
+        "url": "https://www.thesabre.com/football/2026/11/11/tony-elliott-says-virginia-still-chasing-our-best-game-as-final-stretch-begins",
+        "publisher": "TheSabre",
+        "date": "2026-11-11",
+        "claim": "Virginia running back Jekail Middlebrook expected back",
+        "quote": "And Jekail (Middlebrook) should be ready to roll this week."
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "ab41afb7f9aa",
+    "season": 2026,
+    "week": 11,
+    "event_id": "73d83d88b3a35eeb4bcf8462ff2070b2",
+    "matchup": "Houston Cougars @ Colorado Buffaloes",
+    "kickoff": "2026-11-14T03:15:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Houston",
+    "line": -9.5,
+    "price": -115,
+    "confidence": 6.9,
+    "live": true,
+    "units": 1.0,
+    "model_number": -14.1,
+    "edge": -4.6,
+    "rationale": "Colorado has started Isaac Wilson since Julian Lewis was hospitalized in the last week of October, and in the 20 to 10 loss at Arizona State the Buffaloes ran for 64 yards at 1.9 a carry while Wilson took 4 sacks. Houston is 7 and 2 and Conner Weigman has 22 touchdown passes. The season long ratings behind the model still carry Lewis's games, so the 14.1 projection, if anything, flatters Colorado, yet the market sits at 9.5. Against that, Boulder is at 5,300 feet for a sea level team kicking at 8:15 p.m. Mountain time, and Colorado needs to win its last 3 to reach a bowl, so I could not find a reason the market is wrong rather than just a gap. What would make me wrong is Colorado's long injury list getting shorter, with linebacker Tyler Martinez listed questionable to return.",
+    "factors": {
+      "rating_edge": true,
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://gazette.com/2026/11/07/colorado-football-deion-sanders-brink-after-loss-to-asu/",
+        "publisher": "Colorado Springs Gazette",
+        "date": "2026-11-07",
+        "claim": "Colorado ran for 64 yards at 1.9 per carry against Arizona State",
+        "quote": "generating just 64 yards and 1.9 yards per attempt"
+      },
+      {
+        "url": "https://gazette.com/2026/11/07/colorado-football-deion-sanders-brink-after-loss-to-asu/",
+        "publisher": "Colorado Springs Gazette",
+        "date": "2026-11-07",
+        "claim": "Wilson's line against Arizona State including 4 sacks",
+        "quote": "He finished with 248 yards and one touchdown while also throwing an interception and taking four sacks."
+      },
+      {
+        "url": "https://www.yahoo.com/news/articles/quick-strike-lifts-no-17-013203656.html",
+        "publisher": "Associated Press via Yahoo",
+        "date": "2026-11-08",
+        "claim": "Weigman has 22 touchdown passes",
+        "quote": "Weigman was 17-of-24 passing for 227 yards and two touchdowns, increasing his season total to 22."
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "4631d67e93cd",
+    "season": 2026,
+    "week": 11,
+    "event_id": "873a763cc258ad94bac35324c66e361c",
+    "matchup": "Middle Tennessee Blue Raiders @ Liberty Flames",
+    "kickoff": "2026-11-14T20:30:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Liberty",
+    "line": -20.5,
+    "price": -110,
+    "confidence": 6.4,
+    "live": true,
+    "units": 1.0,
+    "model_number": -28.7,
+    "edge": -8.2,
+    "rationale": "Middle Tennessee leading rusher Antonio Martin Jr. was injured in the fourth quarter against Western Kentucky on 7 November and his status for Saturday is unconfirmed, so I am not counting it as a confirmed absence. The model makes Liberty a 28.7 point favorite against a 20.5 market, the largest gap on the board, but the research mostly explains it rather than contradicting it. Liberty led New Mexico State only 16 to 14 in the fourth quarter after settling for 3 first half field goals, Jamey Chadwell said his team got banged up, and Middle Tennessee scored 51 the same night. This is a 6.4 because the gap is real and the reasons against it are real too. What would make me wrong is Liberty's red zone trouble continuing, because a 20.5 spread needs touchdowns, not field goals.",
+    "factors": {
+      "rating_edge": true,
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://mtsusidelines.com/2026/11/07/follow-live-mtsu-football-looks-to-snap-seven-game-100-miles-of-hate-losing-streak-to-wku/",
+        "publisher": "MTSU Sidelines",
+        "date": "2026-11-07",
+        "claim": "Antonio Martin Jr. was injured against Western Kentucky",
+        "quote": "WKU stops MTSU running back Antonio Martin Jr. short on 3rd-and-1 at the 33-yard line and Martin Jr. is injured on the play."
+      },
+      {
+        "url": "https://www.wdbj7.com/2026/11/08/liberty-pulls-away-new-mexico-state-second-half-eighth-straight-win-30-14/",
+        "publisher": "WDBJ7",
+        "date": "2026-11-07",
+        "claim": "Liberty settled for 3 first half field goals against New Mexico State",
+        "quote": "overcame a slow start by getting three first half field goals from Chase Reeves"
+      },
+      {
+        "url": "https://www.aseaofred.com/liberty-shows-its-character-in-fourth-quarter-rally-pulls-away-from-new-mexico-state/",
+        "publisher": "A Sea of Red",
+        "date": "2026-11-08",
+        "claim": "Liberty came out of the New Mexico State game with injuries",
+        "quote": "We got banged up pretty good tonight."
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "4f243452ce41",
+    "season": 2026,
+    "week": 11,
+    "event_id": "107b8f81458dc555f99db1e929276a13",
+    "matchup": "Missouri Tigers @ Georgia Bulldogs",
+    "kickoff": "2026-11-14T20:30:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 47.5,
+    "price": -115,
+    "confidence": 6.2,
+    "live": false,
+    "units": 0.0,
+    "model_number": 43.0,
+    "edge": -4.5,
+    "rationale": "Missouri's defense ranks 19th in opponent EPA per rush, which matters against a Georgia offense that ran for 295 yards against Ole Miss without Chauncey Bowens and is dinged up at wide receiver. The model makes this 43.0 against 47.5 and I found no news that explains the gap. The research does not add much either, because Georgia's games are 6 and 3 to the over and Austin Simmons has thrown 18 touchdowns against 2 interceptions, so this stays a shadow at 6.2. What would make me wrong is Georgia's run game doing to Missouri what it did to Ole Miss and the clock never slowing the score down.",
+    "factors": {
+      "rating_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://www.si.com/betting/missouri-vs-georgia-prediction-odds-and-key-players-to-watch-for-college-football-week-11-2026",
+        "publisher": "Sports Illustrated",
+        "date": "2026-11-09",
+        "claim": "Missouri run defense ranks 19th in opponent EPA per rush",
+        "quote": "The Missouri defense has been one of the better units in the country, including ranking 19th in opponent EPA per rush."
+      },
+      {
+        "url": "https://www.ajc.com/sports/2026/11/georgia-football-injury-report-missouri/",
+        "publisher": "Atlanta Journal-Constitution",
+        "date": "2026-11-09",
+        "claim": "Georgia ran for 295 yards without Bowens",
+        "quote": "Even without Bowens, Georgia ran for 295 yards."
+      }
+    ],
+    "placed_at": "2026-11-12T00:08:05+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
   }
 ]
