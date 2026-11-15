@@ -1,39 +1,39 @@
 {
-  "built_at": "2026-11-15T11:34:50+00:00",
+  "built_at": "2026-11-15T19:14:08+00:00",
   "season": 2026,
   "week": 11,
   "hfa": 2.2,
-  "board_fetched_at": "2026-11-15T11:34:48+00:00",
+  "board_fetched_at": "2026-11-15T19:14:05+00:00",
   "warning": null,
-  "games_on_board": 35,
+  "games_on_board": 66,
   "games_with_candidates": 1,
   "games_dropped": [],
-  "games_outside_week": 34,
+  "games_outside_week": 65,
   "unrated_schools": [],
   "unmapped_names": {},
   "min_edge": 1.5,
   "calibration": {
-    "measured_at": "2026-11-15T11:34:50+00:00",
+    "measured_at": "2026-11-15T19:14:08+00:00",
     "season": 2026,
     "week": 11,
     "totals": {
-      "n": 35,
-      "bias": -0.174,
-      "median": -0.3,
-      "sigma": 4.694
+      "n": 66,
+      "bias": 0.28,
+      "median": -0.25,
+      "sigma": 4.79
     },
     "spreads": {
-      "n": 35,
-      "bias": 0.051,
-      "median": 0.0,
-      "sigma": 3.935
+      "n": 66,
+      "bias": -0.429,
+      "median": -0.25,
+      "sigma": 3.968
     },
     "note": "Bias is subtracted from the model number. Sigma converts a points gap into a z score. Re-measure when ratings update, which in season means weekly."
   },
   "slate": [
     {
       "event_id": "8ad669f4c9b70f38fdb057c114588776",
-      "kickoff": "2026-11-15T18:00:00Z",
+      "kickoff": "2026-11-15T18:05:00Z",
       "matchup": "Ole Miss Rebels @ Oklahoma Sooners",
       "home_team": "Oklahoma Sooners",
       "away_team": "Ole Miss Rebels",
@@ -41,34 +41,34 @@
       "model": {
         "home_team": "Oklahoma",
         "away_team": "Ole Miss",
-        "projected_spread": 3.7,
-        "projected_total": 43.6,
-        "projected_h1_spread": 2.0,
-        "projected_h1_total": 20.5,
+        "projected_spread": 4.8,
+        "projected_total": 43.1,
+        "projected_h1_spread": 2.6,
+        "projected_h1_total": 20.3,
         "hfa_applied": 2.2,
-        "coherence_gap": 1.8,
+        "coherence_gap": 1.2,
         "inputs": {
-          "raw_spread": 3.8,
+          "raw_spread": 4.4,
           "raw_home_points": 18.9,
           "raw_away_points": 24.5,
-          "home_rating": 9.61,
-          "away_rating": 15.59,
-          "home_points": 19.9,
-          "away_points": 23.7,
+          "home_rating": 9.18,
+          "away_rating": 15.79,
+          "home_points": 19.2,
+          "away_points": 23.9,
           "home_components": {
             "sp": 7.8,
             "sp_off": 22.4,
             "sp_def": 15.2,
-            "fpi": 13.602,
-            "srs": 9.3,
+            "fpi": 12.864,
+            "srs": 8.1,
             "elo": 1709
           },
           "away_components": {
             "sp": 13.5,
             "sp_off": 36.3,
             "sp_def": 23.5,
-            "fpi": 18.314,
-            "srs": 17.1,
+            "fpi": 18.448,
+            "srs": 17.9,
             "elo": 1880
           }
         },
@@ -84,25 +84,25 @@
           "market": "spread",
           "period": "full",
           "side": "Ole Miss",
-          "market_line": -2.5,
-          "bet_line": 2.5,
-          "price": -105,
-          "model_number": 3.7,
-          "edge_points": 6.2,
-          "edge_sigma": 1.58,
-          "floor_confidence": 5.9
+          "market_line": -6.5,
+          "bet_line": 6.5,
+          "price": -118,
+          "model_number": 4.8,
+          "edge_points": 11.3,
+          "edge_sigma": 2.85,
+          "floor_confidence": 7.5
         },
         {
           "market": "total",
           "period": "full",
           "side": "Under",
-          "market_line": 48.5,
-          "bet_line": 48.5,
-          "price": -110,
-          "model_number": 43.6,
-          "edge_points": -4.9,
-          "edge_sigma": -1.04,
-          "floor_confidence": 5.1
+          "market_line": 47.5,
+          "bet_line": 47.5,
+          "price": -128,
+          "model_number": 43.1,
+          "edge_points": -4.4,
+          "edge_sigma": -0.92,
+          "floor_confidence": 4.9
         }
       ]
     }
