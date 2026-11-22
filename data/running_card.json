@@ -1,87 +1,575 @@
 {
-  "updated_at": "2026-11-15T19:14:09+00:00",
-  "board_fetched_at": "2026-11-15T19:14:05+00:00",
+  "updated_at": "2026-11-22T03:37:09+00:00",
+  "board_fetched_at": "2026-11-22T03:37:06+00:00",
   "season": 2026,
-  "week": 11,
+  "week": 12,
   "top_n": 6,
   "leans": {
-    "8ad669f4c9b70f38fdb057c114588776|spread|full|Ole Miss": {
-      "event_id": "8ad669f4c9b70f38fdb057c114588776",
-      "matchup": "Ole Miss Rebels @ Oklahoma Sooners",
-      "kickoff": "2026-11-15T18:05:00Z",
-      "market": "spread",
+    "028f0fcc2f6411c4816e543bb7fa226c|total|full|Over": {
+      "event_id": "028f0fcc2f6411c4816e543bb7fa226c",
+      "matchup": "San Diego State Aztecs @ Boise State Broncos",
+      "kickoff": "2026-11-22T02:41:12Z",
+      "market": "total",
       "period": "full",
-      "side": "Ole Miss",
-      "line": 6.5,
-      "market_line": -6.5,
-      "price": -118,
-      "confidence": 7.5,
-      "sigma": 2.85,
-      "edge_points": 11.3,
-      "model_number": 4.8,
-      "first_seen": "2026-11-15T11:34:48+00:00",
-      "first_line": 2.5,
-      "first_confidence": 5.9,
+      "side": "Over",
+      "line": 45.5,
+      "market_line": 45.5,
+      "price": -120,
+      "confidence": 6.0,
+      "sigma": null,
+      "edge_points": 20.4,
+      "model_number": 65.9,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 45.5,
+      "first_confidence": 6.0,
       "history": [
         {
-          "at": "2026-11-15T11:34:48+00:00",
-          "line": 2.5,
-          "confidence": 5.9,
-          "sigma": 1.58
-        },
-        {
-          "at": "2026-11-15T19:14:05+00:00",
-          "line": 6.5,
-          "confidence": 7.5,
-          "sigma": 2.85
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 45.5,
+          "confidence": 6.0,
+          "sigma": null
         }
       ],
-      "last_seen": "2026-11-15T19:14:05+00:00",
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 3,
+      "peak_rank": 3
+    },
+    "44e73391c2ac535ab552aac4bdcfa3b3|spread|full|Pittsburgh": {
+      "event_id": "44e73391c2ac535ab552aac4bdcfa3b3",
+      "matchup": "Pittsburgh Panthers @ Louisville Cardinals",
+      "kickoff": "2026-11-22T00:35:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Pittsburgh",
+      "line": 27.5,
+      "market_line": -27.5,
+      "price": -122,
+      "confidence": 7.4,
+      "sigma": 2.57,
+      "edge_points": 17.9,
+      "model_number": -9.6,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 27.5,
+      "first_confidence": 7.4,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 27.5,
+          "confidence": 7.4,
+          "sigma": 2.57
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
       "on_board": true,
       "second_opinion": false,
       "rank": 1,
       "peak_rank": 1
     },
-    "8ad669f4c9b70f38fdb057c114588776|total|full|Under": {
-      "event_id": "8ad669f4c9b70f38fdb057c114588776",
-      "matchup": "Ole Miss Rebels @ Oklahoma Sooners",
-      "kickoff": "2026-11-15T18:05:00Z",
+    "44e73391c2ac535ab552aac4bdcfa3b3|total|full|Over": {
+      "event_id": "44e73391c2ac535ab552aac4bdcfa3b3",
+      "matchup": "Pittsburgh Panthers @ Louisville Cardinals",
+      "kickoff": "2026-11-22T00:35:00Z",
       "market": "total",
       "period": "full",
-      "side": "Under",
-      "line": 47.5,
-      "market_line": 47.5,
-      "price": -128,
-      "confidence": 4.9,
-      "sigma": -0.92,
-      "edge_points": -4.4,
-      "model_number": 43.1,
-      "first_seen": "2026-11-15T11:34:48+00:00",
-      "first_line": 48.5,
-      "first_confidence": 5.1,
+      "side": "Over",
+      "line": 52.5,
+      "market_line": 52.5,
+      "price": 114,
+      "confidence": 4.7,
+      "sigma": null,
+      "edge_points": 3.3,
+      "model_number": 55.8,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 52.5,
+      "first_confidence": 4.7,
       "history": [
         {
-          "at": "2026-11-15T11:34:48+00:00",
-          "line": 48.5,
-          "confidence": 5.1,
-          "sigma": -1.04
-        },
-        {
-          "at": "2026-11-15T19:14:05+00:00",
-          "line": 47.5,
-          "confidence": 4.9,
-          "sigma": -0.92
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 52.5,
+          "confidence": 4.7,
+          "sigma": null
         }
       ],
-      "last_seen": "2026-11-15T19:14:05+00:00",
+      "last_seen": "2026-11-22T03:37:06+00:00",
       "on_board": true,
       "second_opinion": true,
       "rank": null
+    },
+    "4e40d05a5d98ac108cd15278646a545d|spread|full|California": {
+      "event_id": "4e40d05a5d98ac108cd15278646a545d",
+      "matchup": "Stanford Cardinal @ California Golden Bears",
+      "kickoff": "2026-11-22T00:35:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "California",
+      "line": 17.5,
+      "market_line": 17.5,
+      "price": -158,
+      "confidence": 6.8,
+      "sigma": -2.21,
+      "edge_points": -15.4,
+      "model_number": 2.1,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 17.5,
+      "first_confidence": 6.8,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 17.5,
+          "confidence": 6.8,
+          "sigma": -2.21
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 2,
+      "peak_rank": 2
+    },
+    "4e40d05a5d98ac108cd15278646a545d|total|full|Under": {
+      "event_id": "4e40d05a5d98ac108cd15278646a545d",
+      "matchup": "Stanford Cardinal @ California Golden Bears",
+      "kickoff": "2026-11-22T00:35:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 63.5,
+      "market_line": 63.5,
+      "price": 132,
+      "confidence": 6.0,
+      "sigma": null,
+      "edge_points": -11.6,
+      "model_number": 51.9,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 63.5,
+      "first_confidence": 6.0,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 63.5,
+          "confidence": 6.0,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "f23bc59387b6db63ad3de8b6bcc541fc|total|full|Under": {
+      "event_id": "f23bc59387b6db63ad3de8b6bcc541fc",
+      "matchup": "Colorado State Rams @ Fresno State Bulldogs",
+      "kickoff": "2026-11-22T00:40:58Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 83.5,
+      "market_line": 83.5,
+      "price": -174,
+      "confidence": 6.0,
+      "sigma": null,
+      "edge_points": -15.3,
+      "model_number": 68.2,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 83.5,
+      "first_confidence": 6.0,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 83.5,
+          "confidence": 6.0,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 4,
+      "peak_rank": 4
+    },
+    "f23bc59387b6db63ad3de8b6bcc541fc|spread|full|Colorado State": {
+      "event_id": "f23bc59387b6db63ad3de8b6bcc541fc",
+      "matchup": "Colorado State Rams @ Fresno State Bulldogs",
+      "kickoff": "2026-11-22T00:40:58Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Colorado State",
+      "line": 22.5,
+      "market_line": -22.5,
+      "price": -138,
+      "confidence": 4.4,
+      "sigma": 0.57,
+      "edge_points": 4.0,
+      "model_number": -18.5,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 22.5,
+      "first_confidence": 4.4,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 22.5,
+          "confidence": 4.4,
+          "sigma": 0.57
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "a05c0d32b35dfd5cca63a61af28b9739|total|full|Over": {
+      "event_id": "a05c0d32b35dfd5cca63a61af28b9739",
+      "matchup": "Georgia Bulldogs @ South Carolina Gamecocks",
+      "kickoff": "2026-11-22T00:49:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 36.5,
+      "market_line": 36.5,
+      "price": 100,
+      "confidence": 6.0,
+      "sigma": null,
+      "edge_points": 12.8,
+      "model_number": 49.3,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 36.5,
+      "first_confidence": 6.0,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 36.5,
+          "confidence": 6.0,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 5,
+      "peak_rank": 5
+    },
+    "a05c0d32b35dfd5cca63a61af28b9739|spread|full|South Carolina": {
+      "event_id": "a05c0d32b35dfd5cca63a61af28b9739",
+      "matchup": "Georgia Bulldogs @ South Carolina Gamecocks",
+      "kickoff": "2026-11-22T00:49:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "South Carolina",
+      "line": 23.5,
+      "market_line": 23.5,
+      "price": 106,
+      "confidence": 4.7,
+      "sigma": -0.82,
+      "edge_points": -5.7,
+      "model_number": 17.8,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 23.5,
+      "first_confidence": 4.7,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 23.5,
+          "confidence": 4.7,
+          "sigma": -0.82
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "9f3f8efae55dbb803964a5107350e263|total|full|Over": {
+      "event_id": "9f3f8efae55dbb803964a5107350e263",
+      "matchup": "UTSA Roadrunners @ UAB Blazers",
+      "kickoff": "2026-11-22T01:05:21Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 44.5,
+      "market_line": 44.5,
+      "price": 102,
+      "confidence": 5.8,
+      "sigma": null,
+      "edge_points": 8.9,
+      "model_number": 53.4,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 44.5,
+      "first_confidence": 5.8,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 44.5,
+          "confidence": 5.8,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 6,
+      "peak_rank": 6
+    },
+    "9f3f8efae55dbb803964a5107350e263|spread|full|UTSA": {
+      "event_id": "9f3f8efae55dbb803964a5107350e263",
+      "matchup": "UTSA Roadrunners @ UAB Blazers",
+      "kickoff": "2026-11-22T01:05:21Z",
+      "market": "spread",
+      "period": "full",
+      "side": "UTSA",
+      "line": -3.5,
+      "market_line": 3.5,
+      "price": -106,
+      "confidence": 4.2,
+      "sigma": 0.47,
+      "edge_points": 3.3,
+      "model_number": 6.8,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": -3.5,
+      "first_confidence": 4.2,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": -3.5,
+          "confidence": 4.2,
+          "sigma": 0.47
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "430ea047c8a027987881d51f810a6cf8|total|full|Under": {
+      "event_id": "430ea047c8a027987881d51f810a6cf8",
+      "matchup": "Hawaii Rainbow Warriors @ Nevada Wolf Pack",
+      "kickoff": "2026-11-22T03:35:19Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 40.5,
+      "market_line": 40.5,
+      "price": -122,
+      "confidence": 5.6,
+      "sigma": null,
+      "edge_points": -7.8,
+      "model_number": 32.7,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 40.5,
+      "first_confidence": 5.6,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 40.5,
+          "confidence": 5.6,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 7,
+      "peak_rank": 7
+    },
+    "7585fb8b12453a68ca1195319ae44c78|total|full|Over": {
+      "event_id": "7585fb8b12453a68ca1195319ae44c78",
+      "matchup": "Utah Utes @ TCU Horned Frogs",
+      "kickoff": "2026-11-22T02:30:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Over",
+      "line": 36.5,
+      "market_line": 36.5,
+      "price": -112,
+      "confidence": 5.4,
+      "sigma": null,
+      "edge_points": 7.0,
+      "model_number": 43.5,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 36.5,
+      "first_confidence": 5.4,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 36.5,
+          "confidence": 5.4,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 8,
+      "peak_rank": 8
+    },
+    "7585fb8b12453a68ca1195319ae44c78|spread|full|TCU": {
+      "event_id": "7585fb8b12453a68ca1195319ae44c78",
+      "matchup": "Utah Utes @ TCU Horned Frogs",
+      "kickoff": "2026-11-22T02:30:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "TCU",
+      "line": 17.5,
+      "market_line": 17.5,
+      "price": -130,
+      "confidence": 4.8,
+      "sigma": -0.85,
+      "edge_points": -5.9,
+      "model_number": 11.6,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 17.5,
+      "first_confidence": 4.8,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 17.5,
+          "confidence": 4.8,
+          "sigma": -0.85
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "0bb0c3e15e4a8004f708162c14c5575d|spread|full|Kentucky": {
+      "event_id": "0bb0c3e15e4a8004f708162c14c5575d",
+      "matchup": "Kentucky Wildcats @ Missouri Tigers",
+      "kickoff": "2026-11-22T00:40:20Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Kentucky",
+      "line": 7.5,
+      "market_line": -7.5,
+      "price": -114,
+      "confidence": 4.3,
+      "sigma": 0.52,
+      "edge_points": 3.6,
+      "model_number": -3.9,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 7.5,
+      "first_confidence": 4.3,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 7.5,
+          "confidence": 4.3,
+          "sigma": 0.52
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 10,
+      "peak_rank": 10
+    },
+    "6e36f5c3c55edcb31749b0de4a146d14|spread|full|Oregon State": {
+      "event_id": "6e36f5c3c55edcb31749b0de4a146d14",
+      "matchup": "Utah State Aggies @ Oregon State Beavers",
+      "kickoff": "2026-11-22T03:40:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Oregon State",
+      "line": -7.5,
+      "market_line": -7.5,
+      "price": 104,
+      "confidence": 4.3,
+      "sigma": -0.52,
+      "edge_points": -3.6,
+      "model_number": -11.1,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": -7.5,
+      "first_confidence": 4.3,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": -7.5,
+          "confidence": 4.3,
+          "sigma": -0.52
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": true,
+      "rank": null
+    },
+    "6e36f5c3c55edcb31749b0de4a146d14|total|full|Under": {
+      "event_id": "6e36f5c3c55edcb31749b0de4a146d14",
+      "matchup": "Utah State Aggies @ Oregon State Beavers",
+      "kickoff": "2026-11-22T03:40:00Z",
+      "market": "total",
+      "period": "full",
+      "side": "Under",
+      "line": 51.5,
+      "market_line": 51.5,
+      "price": -108,
+      "confidence": 4.6,
+      "sigma": null,
+      "edge_points": -3.1,
+      "model_number": 48.4,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": 51.5,
+      "first_confidence": 4.6,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": 51.5,
+          "confidence": 4.6,
+          "sigma": null
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 9,
+      "peak_rank": 9
+    },
+    "ecfec2fe1db57f88e603f9947add1e26|spread|full|Oklahoma State": {
+      "event_id": "ecfec2fe1db57f88e603f9947add1e26",
+      "matchup": "Oklahoma State Cowboys @ Arizona State Sun Devils",
+      "kickoff": "2026-11-22T03:31:00Z",
+      "market": "spread",
+      "period": "full",
+      "side": "Oklahoma State",
+      "line": -5.5,
+      "market_line": 5.5,
+      "price": -108,
+      "confidence": 3.9,
+      "sigma": 0.27,
+      "edge_points": 1.9,
+      "model_number": 7.4,
+      "first_seen": "2026-11-22T03:37:06+00:00",
+      "first_line": -5.5,
+      "first_confidence": 3.9,
+      "history": [
+        {
+          "at": "2026-11-22T03:37:06+00:00",
+          "line": -5.5,
+          "confidence": 3.9,
+          "sigma": 0.27
+        }
+      ],
+      "last_seen": "2026-11-22T03:37:06+00:00",
+      "on_board": true,
+      "second_opinion": false,
+      "rank": 11,
+      "peak_rank": 11
     }
   },
   "card": [
-    "8ad669f4c9b70f38fdb057c114588776|spread|full|Ole Miss"
+    "44e73391c2ac535ab552aac4bdcfa3b3|spread|full|Pittsburgh",
+    "4e40d05a5d98ac108cd15278646a545d|spread|full|California",
+    "028f0fcc2f6411c4816e543bb7fa226c|total|full|Over",
+    "f23bc59387b6db63ad3de8b6bcc541fc|total|full|Under",
+    "a05c0d32b35dfd5cca63a61af28b9739|total|full|Over",
+    "9f3f8efae55dbb803964a5107350e263|total|full|Over"
   ],
-  "watch": [],
+  "watch": [
+    "430ea047c8a027987881d51f810a6cf8|total|full|Under",
+    "7585fb8b12453a68ca1195319ae44c78|total|full|Over",
+    "6e36f5c3c55edcb31749b0de4a146d14|total|full|Under",
+    "0bb0c3e15e4a8004f708162c14c5575d|spread|full|Kentucky"
+  ],
   "dropped": []
 }

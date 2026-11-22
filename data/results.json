@@ -3,7 +3,7 @@
   "weeks": [
     11
   ],
-  "fetched_at": "2026-11-15T19:14:06+00:00",
+  "fetched_at": "2026-11-22T03:37:06+00:00",
   "games": [
     {
       "id": 401866459,
@@ -3050,7 +3050,7 @@
       "seasonType": "regular",
       "startDate": "2026-11-15T18:00:00.000Z",
       "startTimeTBD": false,
-      "completed": false,
+      "completed": true,
       "neutralSite": false,
       "conferenceGame": true,
       "attendance": null,
@@ -3060,21 +3060,31 @@
       "homeTeam": "Oklahoma",
       "homeClassification": "fbs",
       "homeConference": "SEC",
-      "homePoints": null,
-      "homeLineScores": null,
-      "homePostgameWinProbability": null,
+      "homePoints": 24,
+      "homeLineScores": [
+        14,
+        0,
+        7,
+        3
+      ],
+      "homePostgameWinProbability": 0.9858747124671936,
       "homePregameElo": 1709,
-      "homePostgameElo": null,
+      "homePostgameElo": 1729,
       "awayId": 145,
       "awayTeam": "Ole Miss",
       "awayClassification": "fbs",
       "awayConference": "SEC",
-      "awayPoints": null,
-      "awayLineScores": null,
-      "awayPostgameWinProbability": null,
+      "awayPoints": 17,
+      "awayLineScores": [
+        0,
+        7,
+        0,
+        10
+      ],
+      "awayPostgameWinProbability": 0.014125287532806396,
       "awayPregameElo": 1880,
-      "awayPostgameElo": null,
-      "excitementIndex": null,
+      "awayPostgameElo": 1860,
+      "excitementIndex": 3.1765944421098293,
       "highlights": "",
       "notes": null,
       "playoff": null
