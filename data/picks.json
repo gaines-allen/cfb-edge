@@ -2506,5 +2506,471 @@
     "graded_at": "2026-11-15T11:34:49+00:00",
     "grader_note": null,
     "final_score": "Missouri 21 - Georgia 48"
+  },
+  {
+    "id": "96b38fe625f4",
+    "season": 2026,
+    "week": 13,
+    "event_id": "7e42ee2b96752d8e1bc6fab8c0ad998f",
+    "matchup": "UAB Blazers @ North Texas Mean Green",
+    "kickoff": "2026-11-28T21:00:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 45.5,
+    "price": -114,
+    "confidence": 6.6,
+    "live": true,
+    "units": 1.0,
+    "model_number": 62.0,
+    "edge": 16.5,
+    "rationale": "North Texas is down to its fourth quarterback of the season: Neal Brown ruled starter Tayven Jackson out for the last 2 regular season games after the UTSA loss, backup Chaston Ditta has been hurt for weeks, and third stringer Chris Jimerson Jr. is out for the season with a knee injury (Denton Record-Chronicle, 22 November; Birmingham Banner, 25 November). That leaves slot receiver James Tyre, who threw for 63 yards at Tulane, against a UAB defense that leads the country in passing yards allowed, while UAB's own offense scores 22.6 a game and its last 3 games totaled 35, 46 and 36. The model's 62.0 is built on a 40 point a game offense with a 3,000 yard passer and should be ignored here; I am betting against it, not with it. The market already moved from 48.5 to 45.5, so the remaining edge is roughly 3 to 4 points, not 16. What would make me wrong is North Texas running for 300 yards again as it did at Tulane while its defense, which allows 31.0 a game, gives UAB short fields.",
+    "factors": {
+      "injury_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://dentonrc.com/sports/colleges/mean_green/north-texas-sunday-update-unt-tulane-highlights-american-standings-unt-stats-and-more/article_c5656f41-b8d3-4180-b840-af55d1705987.html",
+        "publisher": "Denton Record-Chronicle",
+        "date": "2026-11-22",
+        "claim": "Brown ruled Jackson out for the final 2 regular season games",
+        "quote": "UNT coach Neal Brown ruled out starter Tayven Jackson for the final two weeks of the regular season"
+      },
+      {
+        "url": "https://dentonrc.com/sports/colleges/mean_green/north-texas-sunday-update-unt-tulane-highlights-american-standings-unt-stats-and-more/article_c5656f41-b8d3-4180-b840-af55d1705987.html",
+        "publisher": "Denton Record-Chronicle",
+        "date": "2026-11-22",
+        "claim": "Ditta and Jimerson are unlikely to be available against UAB",
+        "quote": "Brown didn't sound confident about either Ditta or Jimerson being available for the Mean Green's game against UAB."
+      },
+      {
+        "url": "https://www.bhambanner.com/archive-1/da6yj8xj3kxmfx7-rzm73-93s7y-slkmr-78zn7-3wrr5-k9m75-6e66h-s7jy5-t3gcy-j3z42-jahlh-jg4hc-6x7xw-sk52f-ywwzm-sk5zz-ktxll-yht8p-jgzmd-l5whj-6a6ts-23fzd-7cg4j-hmcex-6cxnc-lyx26-6hk7l-a3w6j-c5bgh",
+        "publisher": "The Birmingham Banner",
+        "date": "2026-11-25",
+        "claim": "UAB leads the nation in passing yards allowed",
+        "quote": "a UAB defense that continues to lead the nation in passing yards allowed per game"
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "8938b2cd4820",
+    "season": 2026,
+    "week": 13,
+    "event_id": "ab91c66dfce2e452eb546cde1cf61879",
+    "matchup": "USC Trojans @ UCLA Bruins",
+    "kickoff": "2026-11-28T20:30:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 45.5,
+    "price": -115,
+    "confidence": 6.5,
+    "live": true,
+    "units": 1.0,
+    "model_number": 47.7,
+    "edge": 2.2,
+    "rationale": "UCLA quarterback Ty Dieffenbach left the triple overtime loss at Michigan with a hip injury and his status for Saturday is unconfirmed, and if he cannot go third stringer Madden Iamaleava, 3 of 9 for 21 yards this season, starts (AP, 25 November). The under holds in either case: UCLA has allowed 13.0 points a game over its last 4, UCLA and USC are both 7 and 4 to the under, and USC is 6 and 2 to the under against Big Ten opponents and scored 7 and 13 in its last 2 road games against good defenses (NBC Sports, 24 November). With Dieffenbach starting UCLA scored 24 a game, against 50 a game in its first 4, so even the healthy version of this offense is a mid 20s team. The model sits at 47.7, slightly over, so this is a research call against a flat rating rather than an extension of it. What would make me wrong is UCLA's 31 takeaway defense handing USC short fields, or Dieffenbach starting fully healthy and the game opening up.",
+    "factors": {
+      "injury_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://abcnews.com/Sports/wireStory/college-football-week-13-usc-ucla-tops-schedule-138441044",
+        "publisher": "ABC News (AP)",
+        "date": "2026-11-25",
+        "claim": "Dieffenbach is hurt and the third stringer starts if he cannot",
+        "quote": "Third-stringer Madden Iamaleava, who struggled while playing the Bruins' last six snaps, would start if Dieffenbach can't go."
+      },
+      {
+        "url": "https://abcnews.com/Sports/wireStory/college-football-week-13-usc-ucla-tops-schedule-138441044",
+        "publisher": "ABC News (AP)",
+        "date": "2026-11-25",
+        "claim": "The nature of Dieffenbach's injury",
+        "quote": "Dieffenbach left the Bruins' triple-overtime loss at Michigan with a banged-up hip and sore elbow and ankle."
+      },
+      {
+        "url": "https://www.nbcsports.com/betting/college-football/news/ucla-vs-usc-prediction-odds-expert-picks-team-and-player-news-betting-trends-and-stats",
+        "publisher": "NBC Sports",
+        "date": "2026-11-24",
+        "claim": "USC games against Big Ten opponents have gone under 6 of 8 times",
+        "quote": "USC is 6-2 to the Under vs Big Ten opponents"
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "d5c0b5a207cd",
+    "season": 2026,
+    "week": 13,
+    "event_id": "8fc8552ec633bb09ca2bcb9b15cb6896",
+    "matchup": "Nebraska Cornhuskers @ Iowa Hawkeyes",
+    "kickoff": "2026-11-27T17:00:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 40.5,
+    "price": -108,
+    "confidence": 6.4,
+    "live": true,
+    "units": 1.0,
+    "model_number": 31.4,
+    "edge": -9.1,
+    "rationale": "Iowa allows 12.2 points a game, first in the country, and 8.5 at home, and 7 of its 11 games finished under 41 combined points (Hawk Fanatic and Predictem, 24 and 25 November). Nebraska's offense has scored 31 in both games since Glenn Thomas replaced fired coordinator Dana Holgorsen, but it did it by running more than 40 times each game, and a run first visitor against an Iowa defense allowing 78.5 rushing yards a game shortens the game rather than opening it. The model's 31.4 overstates the case because it does not see Nebraska's new play caller or its missing linebacker Owen Chambliss and tackle Jahsear Whittington, so my fair number is 37 to 38 rather than 31. What would make me wrong is a 24 to 17 type game landing on 41, which is a common final for these 2 teams.",
+    "factors": {
+      "rating_edge": true,
+      "scheme_mismatch": true
+    },
+    "sources": [
+      {
+        "url": "https://www.predictem.com/college-football/nebraska-at-iowa-black-friday-best-bet-heroes-game-odds/",
+        "publisher": "Predictem",
+        "date": "2026-11-24",
+        "claim": "Iowa games mostly stay under 41",
+        "quote": "Seven of Iowa's 11 games this season finished with fewer than 41 combined points."
+      },
+      {
+        "url": "https://www.predictem.com/college-football/nebraska-at-iowa-black-friday-best-bet-heroes-game-odds/",
+        "publisher": "Predictem",
+        "date": "2026-11-24",
+        "claim": "Nebraska's recent scoring came from a run heavy approach",
+        "quote": "The Huskers have scored 31 in back-to-back wins, but they did it by running the ball more than 40 times in each game."
+      },
+      {
+        "url": "https://hawkfanatic.com/2026/11/25/nebraska-vs-iowa-game-preview-column-prediction/",
+        "publisher": "Hawk Fanatic",
+        "date": "2026-11-25",
+        "claim": "Iowa leads the nation in scoring defense",
+        "quote": "allowing just 12.2 points per game"
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "2ab13a1fb4df",
+    "season": 2026,
+    "week": 13,
+    "event_id": "e6a3c909a8cfc7b2c666252e246418c7",
+    "matchup": "Minnesota Golden Gophers @ Wisconsin Badgers",
+    "kickoff": "2026-11-28T00:30:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Wisconsin",
+    "line": -7.5,
+    "price": -115,
+    "confidence": 6.2,
+    "live": true,
+    "units": 1.0,
+    "model_number": -12.1,
+    "edge": -4.6,
+    "rationale": "Minnesota has ruled out both starting defensive tackles, Riley Sunram and Theorin Randle, (Yahoo Sports, 25 November), for a game against Colton Joseph, who ran 16 times for 187 yards in his return at Purdue. Wisconsin allows 16.5 points a game, 14th nationally, has won its home games by 27.4 points on average, and Minnesota has allowed 32.5 a game on the road. Full game spreads read below_breakeven in the grader's file at 4 and 14, so this one is rated at the bottom of the scale and rests on the specific defensive line absences rather than on the rating gap alone. The line opened 6.5 and is now 7.5, so I am paying the hook past 7, which costs about a point and a half of the model's 4.6 point gap. What would make me wrong is Minnesota's 4 and 1 cover record in the last 5 meetings repeating against a Wisconsin secondary that is missing 2 cornerbacks and a safety.",
+    "factors": {
+      "rating_edge": true,
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://sports.yahoo.com/college-football/articles/gophers-wisconsin-preview-p-j-150401464.html",
+        "publisher": "Yahoo Sports / Bring Me The Sports",
+        "date": "2026-11-25",
+        "claim": "Minnesota's starting defensive tackles are out",
+        "quote": "Key defensive tackles Riley Sunram and Theorin Randle have already been ruled out again."
+      },
+      {
+        "url": "https://sports.yahoo.com/college-football/articles/gophers-wisconsin-preview-p-j-150401464.html",
+        "publisher": "Yahoo Sports / Bring Me The Sports",
+        "date": "2026-11-25",
+        "claim": "Wisconsin's defense ranks 10th in yards allowed",
+        "quote": "The Badgers have allowed 278.6 total yards per game, which ranks 10th best in the country."
+      },
+      {
+        "url": "https://www.docsports.com/free-picks/football/2026/minnesota-golden-gophers-vs-wisconsin-badgers-prediction-11-27-2026-college-football-picks-best-bets-odds.html",
+        "publisher": "Doc's Sports",
+        "date": "2026-11-23",
+        "claim": "Wisconsin's scoring defense and the opening number",
+        "quote": "The Badgers are relinquishing 16.5 PPG, ranking them 14th in college football."
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "cb80a83423f6",
+    "season": 2026,
+    "week": 13,
+    "event_id": "6530923d9380b559b3c0b49b4f770e5f",
+    "matchup": "Sam Houston State Bearkats @ Florida International Panthers",
+    "kickoff": "2026-11-28T19:00:00Z",
+    "market": "total",
+    "period": "full",
+    "side": "Under",
+    "line": 41.5,
+    "price": -114,
+    "confidence": 6.1,
+    "live": true,
+    "units": 1.0,
+    "model_number": 32.7,
+    "edge": -8.8,
+    "rationale": "Sam Houston is 0 and 5 away from home and has scored 11.0 points a game in those 5, with an offense that runs for 80.7 yards a game and a quarterback, Landyn Locke, who has struggled since a suspected fibula fracture and was replaced by DJ Bailey in parts of 2 games (Bang the Book, 25 November; Yahoo Sports, 20 November). FIU allows 14.4 points a game at home, and its 5 home games have averaged 38.6 combined points. Who starts at quarterback for Sam Houston this week is unconfirmed, and it matters less than usual because neither has moved this offense. My number is 37 to 38, so the model's 32.7 is too low but points the right way. What would make me wrong is FIU's defense, which has allowed 32.0 a game over its last 4, giving up the kind of short field touchdowns that took Sam Houston's road games to 46.8 combined, and the total has already moved a point against me from 40.5.",
+    "factors": {
+      "rating_edge": true,
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://bangthebook.com/sam-houston-bearkats-vs-florida-international-panthers-prediction-2026-11-28",
+        "publisher": "Bang the Book",
+        "date": "2026-11-25",
+        "claim": "Sam Houston's offense is weak and has not won away from home",
+        "quote": "Sam Houston averages 17.6 points and 80.7 rushing yards per game, leaving considerable pressure on its passing game."
+      },
+      {
+        "url": "https://bangthebook.com/sam-houston-bearkats-vs-florida-international-panthers-prediction-2026-11-28",
+        "publisher": "Bang the Book",
+        "date": "2026-11-25",
+        "claim": "FIU is strong at home",
+        "quote": "Florida International is 4-1 at home despite a 4-7 overall record."
+      },
+      {
+        "url": "https://sports.yahoo.com/articles/bearkats-look-end-home-slate-201100390.html",
+        "publisher": "Yahoo Sports",
+        "date": "2026-11-20",
+        "claim": "Locke has struggled since his injury and been replaced in stretches",
+        "quote": "Since the injury, Locke has struggled and has been replaced by junior DJ Bailey in the last two games."
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "aed100395c31",
+    "season": 2026,
+    "week": 13,
+    "event_id": "735be3d0a18e8d57cc515971a6735c7d",
+    "matchup": "Louisville Cardinals @ Kentucky Wildcats",
+    "kickoff": "2026-11-28T17:00:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Louisville",
+    "line": -2.5,
+    "price": -120,
+    "confidence": 6.1,
+    "live": true,
+    "units": 1.0,
+    "model_number": -5.6,
+    "edge": -3.1,
+    "rationale": "Kentucky lost running back C.J. Baxter to an ankle injury and right tackle Malachi Wood to an undisclosed injury in the loss at Missouri, both are in boots this week, and Kentucky files no availability report for a non conference game, so their status is unconfirmed (Kentucky Today, 21 November). Kentucky has scored 34 points in 3 straight losses, all of them against the spread too, with 7 turnovers and 3 touchdowns in 11 red zone trips, while Louisville has won 6 straight and allowed 16.3 a game over its last 4. The model has Louisville by 5.6, and the injuries point the same way, which is the specific reason this differs from the full game spreads that read below_breakeven in the grader's file; that record is why it sits at 6.1 and not higher. At minus 120 I am paying about 2 points of win probability, and the public has driven the line from 1.5. What would make me wrong is Kentucky's motivation in Will Stein's first rivalry game at home turning this into the close, low scoring game that Kentucky's last 5, all unders, describe.",
+    "factors": {
+      "rating_edge": true,
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://www.kentuckytoday.com/sports/turnovers-red-zone-miscues-hurt-cats-in-third-straight-loss-at-missouri/article_b27ebed0-72b7-46b1-b782-a39e5e88bd69.html",
+        "publisher": "Kentucky Today",
+        "date": "2026-11-21",
+        "claim": "Baxter was hurt at Missouri",
+        "quote": "Kentucky running back C.J. Baxter left with an apparent ankle injury in the first half."
+      },
+      {
+        "url": "https://www.kentuckytoday.com/sports/turnovers-red-zone-miscues-hurt-cats-in-third-straight-loss-at-missouri/article_b27ebed0-72b7-46b1-b782-a39e5e88bd69.html",
+        "publisher": "Kentucky Today",
+        "date": "2026-11-21",
+        "claim": "Wood was hurt at Missouri",
+        "quote": "Kentucky right tackle Malachi Wood also left in the second quarter because of an undisclosed injury."
+      },
+      {
+        "url": "https://www.wagertalk.com/news/college-football/louisville-vs-kentucky-predictions-picks-odds-november-28-2026/",
+        "publisher": "WagerTalk",
+        "date": "2026-11-25",
+        "claim": "Kentucky has lost and failed to cover 3 straight",
+        "quote": "Kentucky has lost three straight games, both straight-up and against the spread."
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "551bdb6db31f",
+    "season": 2026,
+    "week": 13,
+    "event_id": "426658869d8f93e891cad97029725975",
+    "matchup": "Michigan Wolverines @ Ohio State Buckeyes",
+    "kickoff": "2026-11-28T17:00:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Michigan",
+    "line": 10.5,
+    "price": -115,
+    "confidence": 6.0,
+    "live": false,
+    "units": 0.0,
+    "model_number": 17.8,
+    "edge": 7.3,
+    "rationale": "Ohio State has been without quarterback Julian Sayin since 17 October, and in 4 games with freshman Luke Fahey it has allowed 30.25 points a game against 13.4 with Sayin, going 1 and 3 (CBS Sports and BettorEdge, 24 and 25 November). Michigan has had 9 of 11 games decided by 10 or fewer and its defense ranks third in the Big Ten in total defense. The model's Ohio State by 17.8 is a full season rating that does not see the quarterback change, so this is a play against the model, and the market already moved from 14 to 10.5. Bryce Underwood carries an unconfirmed lower body injury and Michigan scores 16.3 a game on the road, which is why this stays a shadow pick. What would make me wrong is Michigan's 129th ranked offense failing to reach 14.",
+    "factors": {
+      "injury_edge": true
+    },
+    "sources": [
+      {
+        "url": "https://www.cbssports.com/college-football/news/ohio-state-michigan-look-to-salvage-seasons-in-the-game/",
+        "publisher": "CBS Sports (Field Level Media)",
+        "date": "2026-11-25",
+        "claim": "Ohio State has lost 3 of 4 without Sayin",
+        "quote": "Ohio State (7-4, 5-3) has lost three of its past four games"
+      },
+      {
+        "url": "https://sports.yahoo.com/articles/michigan-plans-start-qb-underwood-180432581.html",
+        "publisher": "Yahoo Sports / MLive",
+        "date": "2026-11-24",
+        "claim": "Underwood is hurt",
+        "quote": "Underwood suffered a lower-body injury in the win over UCLA that left his status in question for Saturday's game."
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "4fbaa8f0dde7",
+    "season": 2026,
+    "week": 13,
+    "event_id": "559227d3ba70769111dd09490258af44",
+    "matchup": "Army Black Knights @ Rice Owls",
+    "kickoff": "2026-11-28T19:00:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Rice",
+    "line": 5.5,
+    "price": -108,
+    "confidence": 6.0,
+    "live": false,
+    "units": 0.0,
+    "model_number": 10.3,
+    "edge": 4.8,
+    "rationale": "Army's offensive line lost left guard Kyle Kloska for the season, and center Brady Small, right guard Paolo Gennarelli and left tackle Henry Appleton were hurt or held out, leaving right tackle Teddy Williams as the only healthy starter, and Army scored 6 points against East Carolina (Times Herald-Record via Yahoo, 25 November). Rice has lost home games by 2, 3 and 7 and comes off 9 days of rest after winning at Temple, while Army is 1 and 3 on the road. The model's Army by 10.3 predates the line injuries and the market has already moved from 7.5 to 5.5, so this is a lean against the model at the bottom of the scale. What would make me wrong is Small, Appleton and Gennarelli all returning and Army, which needs this win to reach 6, playing like the team that scored 38 in October.",
+    "factors": {
+      "injury_edge": true,
+      "home_field": true
+    },
+    "sources": [
+      {
+        "url": "https://sports.yahoo.com/college-football/articles/anger-disappointment-must-fuel-critical-152623943.html",
+        "publisher": "Yahoo Sports / Times Herald-Record",
+        "date": "2026-11-25",
+        "claim": "Army's offensive line is depleted",
+        "quote": "That left right tackle Teddy Williams as the lone healthy starter."
+      },
+      {
+        "url": "https://sports.yahoo.com/college-football/articles/anger-disappointment-must-fuel-critical-152623943.html",
+        "publisher": "Yahoo Sports / Times Herald-Record",
+        "date": "2026-11-25",
+        "claim": "Line movement toward Rice",
+        "quote": "Army opened as a 7.5-point favorite, but the spread has dropped to 5.5"
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
+  },
+  {
+    "id": "15b6d9d87e40",
+    "season": 2026,
+    "week": 13,
+    "event_id": "f77049eaeb5b3c0945c4bc2790dda6e6",
+    "matchup": "Oklahoma Sooners @ Missouri Tigers",
+    "kickoff": "2026-11-28T21:15:00Z",
+    "market": "spread",
+    "period": "full",
+    "side": "Missouri",
+    "line": -1.5,
+    "price": -116,
+    "confidence": 6.0,
+    "live": false,
+    "units": 0.0,
+    "model_number": -3.6,
+    "edge": -2.1,
+    "rationale": "Missouri scores 33.5 points a game at home and is 5 and 1 there, while Oklahoma scores 17.3 a game on the road, with 10 at Michigan and 13 at Georgia (Bang the Book, 24 November). Oklahoma's 3 straight wins under interim coordinator Jason Witten came against offenses that scored 7, 17 and 7, so the defensive trend is softer than it looks. Most books have already moved to Missouri 2.5, so the 1.5 on this board is the value and the remaining gap to the model is about 2 points. What would make me wrong is John Mateer's improved running under Witten carrying over against a Missouri defense that allowed 34 and 48 in 2 of its last 4.",
+    "factors": {
+      "rating_edge": true,
+      "home_field": true
+    },
+    "sources": [
+      {
+        "url": "https://bangthebook.com/oklahoma-sooners-vs-missouri-tigers-prediction-2026-11-28/",
+        "publisher": "Bang the Book",
+        "date": "2026-11-24",
+        "claim": "Missouri's offense output",
+        "quote": "Missouri averages 29.2 points and 400.9 yards per game, with 255.2 yards coming through the air."
+      }
+    ],
+    "placed_at": "2026-11-26T00:13:12+00:00",
+    "close_line": null,
+    "close_price": null,
+    "clv_points": null,
+    "clv_cents": null,
+    "result": "pending",
+    "units_net": 0.0,
+    "graded_at": null,
+    "grader_note": null
   }
 ]
